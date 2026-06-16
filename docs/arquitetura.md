@@ -46,7 +46,10 @@ O objetivo científico é investigar se a arquitetura Mamba consegue identificar
 |-----------|-----|-----------|
 | **PyTorch** | Framework de deep learning | Framework principal para definição do modelo, DataLoader, loop de treinamento e inferência. Escolhido pela compatibilidade nativa com CUDA e com a biblioteca Mamba |
 | **Mamba (mamba-ssm)** | Arquitetura do modelo | Modelo baseado em State Space Models (SSM). Alternativa aos Transformers que processa sequências de forma linear (O(n) ao invés de O(n²)). Capaz de capturar dependências temporais longas sem mecanismo de atenção, o que o torna eficiente para séries temporais extensas |
-| **CUDA** | Aceleração por GPU | Toda a implementação é compatível com GPU CUDA. O treinamento e a inferência do Mamba são executados em GPU para viabilizar o processamento de sequências temporais longas |
+| **mamba_minimal** | Fallback do Mamba | Reimplementação de referência do bloco Mamba em PyTorch puro (sem kernels CUDA). Usada automaticamente quando `mamba-ssm` não está disponível, permitindo desenvolver em CPU/Windows |
+| **AdamW** | Otimizador | Otimizador recomendado pelo paper do Mamba. Decouples weight decay do gradiente para regularização L2 estável |
+| **scikit-learn** | Métricas de avaliação | Fornece `accuracy_score`, `precision_score`, `recall_score`, `f1_score` para avaliar a classificação direcional do Mamba e do baseline |
+| **CUDA** | Aceleração por GPU | Toda a implementação é compatível com GPU CUDA. O treinamento e a inferência do Mamba são executados em GPU (quando disponível) para viabilizar o processamento de sequências temporais longas |
 
 ---
 
@@ -82,25 +85,37 @@ CryptoCasting/
 │   ├── features.py            # Etapa 3 — Feature engineering
 │   ├── normalizacao.py        # Etapa 4 — Normalização
 │   └── janelas.py             # Etapa 5 — Construção de janelas
+├── modelo/                    # Módulo do modelo Mamba
+│   ├── __init__.py
+│   ├── config.py              # Hiperparâmetros do modelo
+│   ├── dataset.py             # Carrega .npz em DataLoaders
+│   ├── mamba_modelo.py        # MambaClassificador (PyTorch)
+│   ├── mamba_minimal.py       # Fallback puro PyTorch (sem CUDA)
+│   ├── treino.py              # Loop de treinamento
+│   ├── avaliacao.py           # Métricas (acc, precision, recall, f1)
+│   ├── baseline.py            # Baseline ingênuo (momentum)
+│   └── walkforward.py         # Walk-forward validation
 ├── dados/                     # Dados persistentes em cada etapa
 │   ├── brutos/                # Dados crus da Binance (.parquet)
 │   ├── processados/           # Dados limpos e validados
 │   ├── features/              # Dados com indicadores técnicos
 │   ├── normalizados/          # Dados normalizados
-│   └── janelas/               # Datasets finais (.npz por split)
-├── frontend/                  # Aplicação Next.js
+│   ├── janelas/               # Datasets finais (.npz por split)
+│   └── resultados/            # Métricas JSON + checkpoints (.pt)
+├── dataview/                  # Frontend Next.js
 │   ├── src/
-│   │   ├── app/               # Rotas (App Router)
+│   │   ├── app/               # Rotas (App Router) + API Routes
 │   │   ├── components/        # Componentes reutilizáveis
-│   │   ├── lib/               # Utilitários e tipos TypeScript
-│   │   └── styles/            # Estilos globais
+│   │   └── lib/               # Utilitários e tipos TypeScript
 │   ├── package.json
-│   ├── tsconfig.json
-│   └── next.config.js
+│   └── tsconfig.json
 ├── docs/                      # Documentação
 │   ├── arquitetura.md         # Este arquivo
-│   └── pipeline.md            # Documentação detalhada da pipeline
-├── run_pipeline.py            # Orquestrador / entry point
+│   ├── pipeline.md            # Pipeline de dados (5 etapas)
+│   └── mamba.md               # Guia completo do Mamba
+├── run_pipeline.py            # Orquestrador da pipeline de dados
+├── run_treino.py              # Orquestrador do treino Mamba
+├── requirements.txt           # Dependências Python
 ├── plano.md                   # Especificação do TCC
 └── pipeline.log               # Log de execução
 ```
@@ -151,10 +166,21 @@ Binance API
                │    ├── val.npz
                │    └── test.npz
                ▼
-         Pronto para PyTorch
+┌──────────────────────────────────────────┐
+│  ETAPA 6 — TREINAMENTO MAMBA             │
+│  (modelo/treino.py + run_treino.py)      │
+│  MambaClassificador (PyTorch)            │
+│  AdamW + CrossEntropy + Early Stopping   │
+│  Baseline ingênuo + Walk-Forward         │
+└──────────────┬───────────────────────────┘
+               │  dados/resultados/
+               │    ├── {PAR}_mamba.pt        (checkpoint)
+               │    └── {PAR}_metricas.json   (acc/prec/rec/f1)
+               ▼
+          Frontend (dataview)
 ```
 
-> A documentação detalhada de cada etapa, incluindo funções, validações, schemas de entrada/saída e decisões de implementação, está em [docs/pipeline.md](pipeline.md).
+> A documentação detalhada de cada etapa da pipeline de dados, incluindo funções, validações, schemas de entrada/saída e decisões de implementação, está em [docs/pipeline.md](pipeline.md). O guia completo da arquitetura Mamba (teoria, implementação, hiperparâmetros e experimentação) está em [docs/mamba.md](mamba.md).
 
 ---
 
@@ -187,3 +213,15 @@ Cada etapa salva seu resultado intermediário em disco, permitindo inspeção ma
 ### Extensibilidade
 
 Novos indicadores podem ser adicionados em `features.py`. Novos métodos de normalização podem ser registrados no dict `SCALERS` em `normalizacao.py`. O tamanho da janela e os ratios de split são parametrizáveis. No frontend, novos gráficos e páginas podem ser adicionados como componentes React independentes.
+
+### Mamba com Fallback Automático
+
+O modelo tenta importar a biblioteca oficial `mamba-ssm` (kernels CUDA, máxima performance). Se não estiver disponível — caso comum em Windows ou ambientes sem GPU — cai automaticamente para `modelo/mamba_minimal.py`, uma reimplementação do bloco Mamba em PyTorch puro com a mesma assinatura. Isso permite desenvolver e depurar em qualquer máquina e migrar para GPU apenas para o treino final.
+
+### Treino Reprodutível e Anti-Overfit
+
+O treinamento usa semente fixa (`config.SEED`), early stopping baseado na `val_loss`, gradient clipping e weight decay. Hiperparâmetros são centralizados em `modelo/config.py`. Os melhores pesos (menor `val_loss`) são preservados em `dados/resultados/{PAR}_mamba.pt`, e as métricas finais em `dados/resultados/{PAR}_metricas.json`.
+
+### Avaliação Científica
+
+O sistema implementa obrigatoriamente um baseline ingênuo (momentum: direção de amanhã = direção de hoje) e walk-forward validation (fatiamento temporal do conjunto de teste). A pergunta central do TCC é se o Mamba supera consistentemente esse baseline — ambos os resultados são cientificamente válidos.
