@@ -99,10 +99,17 @@ def main():
     parser.add_argument("--periodo", default=None)
     parser.add_argument("--janela", type=int, default=None)
     parser.add_argument("--normalizacao", choices=["standard", "minmax"], default=None)
+    parser.add_argument("--k", type=float, default=None, help="Regime K (threshold do label)")
+    parser.add_argument("--horizonte", type=int, default=None, help="Horizonte de previsão (candles à frente)")
     parser.add_argument("--completo", action="store_true", help="Forçar coleta completa")
     parser.add_argument("--sem-coleta", action="store_true", help="Pular etapa de coleta")
     parser.add_argument("--debug", action="store_true")
     args = parser.parse_args()
+
+    if args.k is not None:
+        config.REGIME_K = args.k
+    if args.horizonte is not None:
+        config.HORIZONTE = args.horizonte
 
     if args.debug:
         logging.getLogger().setLevel(logging.DEBUG)
@@ -116,6 +123,9 @@ def main():
         incremental=not args.completo,
         saltar_coleta=args.sem_coleta,
     )
+
+    logger.info(f"Config pipeline: k={config.REGIME_K}, horizonte={config.HORIZONTE}, "
+                f"janela={config.TAMANHO_JANELA}, normalizacao={config.NORMALIZADOR}")
 
 
 if __name__ == "__main__":

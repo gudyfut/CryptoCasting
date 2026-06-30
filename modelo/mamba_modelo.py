@@ -1,3 +1,4 @@
+import json
 import logging
 
 import torch
@@ -72,6 +73,9 @@ class MambaClassificador(nn.Module):
                 for _ in range(n_layers)
             ]
         )
+        self.norms = nn.ModuleList(
+            [nn.LayerNorm(d_model) for _ in range(n_layers)]
+        )
         self.dropout = nn.Dropout(dropout)
         self.norm = nn.LayerNorm(d_model)
         self.pooling = pooling
@@ -79,8 +83,9 @@ class MambaClassificador(nn.Module):
 
     def forward(self, x: torch.Tensor) -> torch.Tensor:
         x = self.input_proj(x)
-        for layer in self.layers:
-            x = layer(x)
+        for layer, norm in zip(self.layers, self.norms):
+            x = x + layer(x)
+            x = norm(x)
         x = self.dropout(x)
         x = self.norm(x)
 
@@ -92,3 +97,28 @@ class MambaClassificador(nn.Module):
             raise ValueError(f"Pooling desconhecido: {self.pooling}")
 
         return self.classifier(x)
+
+
+def carregar_modelo(par: str, nome: str = "mamba", device: str | None = None) -> "MambaClassificador":
+    """Carrega modelo do checkpoint, usando meta sidecar se disponível.
+
+    O sidecar `{par}_{nome}_meta.json` é salvo durante o treino e contém a
+    arquitetura exata (d_model, n_layers, etc.). Sem ele, usa config defaults.
+    """
+    device = device or config.DEVICE
+    ckpt_path = config.RESULTADOS_DIR / f"{par}_{nome}.pt"
+    meta_path = config.RESULTADOS_DIR / f"{par}_{nome}_meta.json"
+
+    if meta_path.exists():
+        meta = json.loads(meta_path.read_text(encoding="utf-8"))
+        logger.info(f"Carregando {par}/{nome} com arquitetura do meta: {meta}")
+        modelo = MambaClassificador(**meta).to(device)
+    else:
+        logger.info(f"Meta não encontrado para {par}/{nome}, usando config defaults")
+        modelo = MambaClassificador().to(device)
+
+    modelo.load_state_dict(
+        torch.load(ckpt_path, map_location=device, weights_only=True)
+    )
+    modelo.eval()
+    return modelo

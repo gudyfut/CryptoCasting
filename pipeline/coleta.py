@@ -140,9 +140,11 @@ def executar_coleta(
             resultados[par] = 0
             continue
 
-        df_final = mesclar_incremental(par, df)
+        if incremental:
+            df_final = mesclar_incremental(par, df)
+        else:
+            df_final = df.sort_values("timestamp").reset_index(drop=True)
         path = salvar_bruto(par, df_final)
-        adicionados = len(df_final) - (len(carregar_bruto(par)) or 0)
         logger.info(f"{par}: {len(df_final)} registros salvos em {path.name}")
         resultados[par] = len(df_final)
         time.sleep(config.RATE_LIMIT_DELAY_SEGUNDOS)

@@ -39,6 +39,7 @@ def normalizar(
     scaler.fit(df_train[feature_cols])
 
     df[feature_cols] = scaler.transform(df[feature_cols])
+    df[feature_cols] = df[feature_cols].clip(-5, 5)
 
     return df, scaler
 

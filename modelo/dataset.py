@@ -23,14 +23,28 @@ def carregar_split(par: str, split: str) -> tuple[torch.Tensor, torch.Tensor]:
     return X, y
 
 
+def carregar_split_direcional(par: str, split: str) -> tuple[torch.Tensor, torch.Tensor]:
+    """Carrega apenas amostras UP/DOWN (exclui NEUTRO) e remapeia para 0/1."""
+    X, y = carregar_split(par, split)
+    mask = y != 1  # remove NEUTRO
+    X_dir = X[mask]
+    y_dir = (y[mask] == 2).long()  # UP(2)->1, DOWN(0)->0
+    logger.info(f"{par}/{split} direcional: X={tuple(X_dir.shape)} ({int(mask.sum())}/{len(y)})")
+    return X_dir, y_dir
+
+
 def criar_dataloader(
     par: str,
     split: str,
     batch_size: int | None = None,
     shuffle: bool = False,
+    apenas_direcionais: bool = False,
 ) -> DataLoader:
     batch_size = batch_size or config.BATCH_SIZE
-    X, y = carregar_split(par, split)
+    if apenas_direcionais:
+        X, y = carregar_split_direcional(par, split)
+    else:
+        X, y = carregar_split(par, split)
     dataset = TensorDataset(X, y)
     return DataLoader(
         dataset,

@@ -1013,7 +1013,7 @@ Você reporta accuracy (ou F1) por fold, mostrando se o modelo se mantém estáv
 
 ### 14.2 Contrato com o frontend
 
-O frontend em `dataview/` já referencia `mamba_accuracy`, `mamba_precision`, `mamba_recall`, `mamba_f1` em `src/lib/types.ts`. A API do Next.js (`src/app/api/`) deve expor esses campos lendo do JSON acima. Diagrama:
+O frontend em `dataview/` lê as métricas via as API routes do Next.js (`src/app/api/`), que leem diretamente o JSON de `dados/resultados/`. A API deve expor os campos `mamba_accuracy`, `mamba_precision`, `mamba_recall`, `mamba_f1` lendo do JSON acima. Diagrama:
 
 ```
 Python (treino)                  Next.js (dataview)

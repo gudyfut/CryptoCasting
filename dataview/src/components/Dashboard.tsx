@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from "react";
 import CryptoChart from "./CryptoChart";
+import PredictionView from "./PredictionView";
 import type { Timeframe } from "@/lib/csv";
 
 const TIMEFRAMES: { value: Timeframe; label: string }[] = [
@@ -50,6 +51,7 @@ export default function Dashboard() {
   const [stats, setStats] = useState<Stats | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
+  const [viewMode, setViewMode] = useState<"mercado" | "previsoes">("mercado");
 
   useEffect(() => {
     fetch("/api/pairs")
@@ -149,12 +151,35 @@ export default function Dashboard() {
                 </button>
               ))}
             </div>
+
+            <div className="flex gap-1 rounded-lg bg-gray-800/50 p-0.5">
+              <button
+                onClick={() => setViewMode("mercado")}
+                className={`rounded-md px-3 py-1.5 text-sm font-medium transition-all ${
+                  viewMode === "mercado"
+                    ? "bg-gray-700 text-white"
+                    : "text-gray-400 hover:text-gray-200"
+                }`}
+              >
+                Mercado
+              </button>
+              <button
+                onClick={() => setViewMode("previsoes")}
+                className={`rounded-md px-3 py-1.5 text-sm font-medium transition-all ${
+                  viewMode === "previsoes"
+                    ? "bg-blue-600 text-white"
+                    : "text-gray-400 hover:text-gray-200"
+                }`}
+              >
+                Previsões
+              </button>
+            </div>
           </div>
         </div>
       </header>
 
       <main className="mx-auto max-w-[1600px] px-4 py-4">
-        {stats && (
+        {stats && viewMode === "mercado" && (
           <div className="mb-4 flex flex-wrap items-center gap-x-6 gap-y-2 text-sm">
             <div>
               <span className="text-gray-500">Preço </span>
@@ -188,25 +213,31 @@ export default function Dashboard() {
           </div>
         )}
 
-        {error && (
+        {error && viewMode === "mercado" && (
           <div className="mb-4 rounded-lg border border-red-800 bg-red-900/20 p-4 text-red-400">
             {error}
           </div>
         )}
 
-        <div className="rounded-xl border border-gray-800 bg-gray-900/50 p-2">
-          {loading && (
-            <div className="flex h-[800px] items-center justify-center">
-              <div className="flex flex-col items-center gap-3">
-                <div className="h-8 w-8 animate-spin rounded-full border-2 border-blue-500 border-t-transparent" />
-                <span className="text-sm text-gray-500">Carregando dados...</span>
+        {viewMode === "mercado" && (
+          <div className="rounded-xl border border-gray-800 bg-gray-900/50 p-2">
+            {loading && (
+              <div className="flex h-[800px] items-center justify-center">
+                <div className="flex flex-col items-center gap-3">
+                  <div className="h-8 w-8 animate-spin rounded-full border-2 border-blue-500 border-t-transparent" />
+                  <span className="text-sm text-gray-500">Carregando dados...</span>
+                </div>
               </div>
-            </div>
-          )}
-          {!loading && chartData && (
-            <CryptoChart data={chartData} height={800} />
-          )}
-        </div>
+            )}
+            {!loading && chartData && (
+              <CryptoChart data={chartData} height={800} />
+            )}
+          </div>
+        )}
+
+        {viewMode === "previsoes" && (
+          <PredictionView par={selected} />
+        )}
 
         <div className="mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
           <div className="rounded-lg border border-gray-800 bg-gray-900 p-4">
@@ -218,7 +249,7 @@ export default function Dashboard() {
               </div>
               <div className="flex justify-between">
                 <span className="text-gray-400">Features</span>
-                <span className="text-gray-200">15 indicadores</span>
+                <span className="text-gray-200">35 features</span>
               </div>
               <div className="flex justify-between">
                 <span className="text-gray-400">Normalização</span>

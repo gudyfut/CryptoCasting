@@ -42,14 +42,58 @@ python -m venv .venv
 pip install -r requirements.txt
 ```
 
-### GPU (opcional, recomendado para treino final)
+### GPU com Mamba oficial via WSL2 (opcional, recomendado para treino final)
 
-O modelo usa o `mamba-ssm` oficial automaticamente quando disponível. Caso contrário, cai para `modelo/mamba_minimal.py` (PyTorch puro, roda em CPU/Windows). Para ativar GPU (Linux/WSL2):
+O modelo usa o `mamba-ssm` oficial automaticamente quando disponível. Caso contrário, cai para `modelo/mamba_minimal.py` (PyTorch puro, roda em CPU/Windows).
+
+O `mamba-ssm` oficial (kernels CUDA otimizados) só funciona em **Linux/WSL2** com GPU NVIDIA. No Windows nativo, use o fallback PyTorch puro (CPU).
+
+#### Pré-requisitos
+
+- Windows 10/11 com **WSL2** instalado (`wsl --install` no PowerShell como admin, reiniciar)
+- Ubuntu como distro WSL (`wsl --install -d Ubuntu`)
+- **Python 3.12** no WSL (`/usr/bin/python3.12`)
+- GPU NVIDIA com driver recente (testado com RTX 4050, driver 581.80)
+
+#### Instalação (rodar dentro do WSL/Ubuntu)
+
+O script `setup_wsl_mamba.sh` automatiza toda a instalação:
 
 ```bash
-pip install torch --index-url https://download.pytorch.org/whl/cu121
-pip install causal-conv1d>=1.1.0 mamba-ssm
+# No terminal do Ubuntu (não PowerShell):
+cd /mnt/c/Users/<seu-usuario>/Documents/GitHub/CryptoCasting
+sed -i 's/\r$//' setup_wsl_mamba.sh   # corrige quebras de linha Windows
+bash setup_wsl_mamba.sh
 ```
+
+O que o script faz:
+
+1. Cria venv Python 3.12 no filesystem Linux (`~/.venvs/cc`) — evita a lentidão do `/mnt/c`
+2. Instala **PyTorch 2.6.0 + CUDA 11.8**
+3. Instala **causal-conv1d** e **mamba-ssm** via wheels pré-compilados do GitHub (sem precisar de `nvcc`)
+4. Instala as dependências do `requirements.txt`
+5. Aplica um patch no `__init__.py` do mamba-ssm (ignora `Mamba3`, que exige triton 3.5+)
+6. Verifica se GPU + mamba-ssm estão funcionando
+
+Para verificar a instalação a qualquer momento:
+
+```bash
+source ~/.venvs/cc/bin/activate
+cd /mnt/c/Users/<seu-usuario>/Documents/GitHub/CryptoCasting
+python test_mamba.py
+```
+
+#### Uso no dia a dia (sempre no terminal do Ubuntu)
+
+```bash
+source ~/.venvs/cc/bin/activate
+cd /mnt/c/Users/<seu-usuario>/Documents/GitHub/CryptoCasting
+
+python run_pipeline.py     # pipeline de dados
+python run_treino.py       # treino Mamba na GPU
+```
+
+> **Importante:** o venv GPU fica em `~/.venvs/cc` (filesystem Linux). Não use o `.venv` do Windows para treino — ele não tem CUDA. O `.venv` do Windows serve apenas para testes rápidos em CPU.
 
 ---
 

@@ -55,6 +55,143 @@ def volatilidade(df: pd.DataFrame, janela: int) -> pd.DataFrame:
     return df
 
 
+def vwap(df: pd.DataFrame, janela: int) -> pd.DataFrame:
+    """VWAP rolling — benchmark institucional. Distância normalizada."""
+    typical = (df["high"] + df["low"] + df["close"]) / 3
+    vol = df["volume"]
+    vol_sum = vol.rolling(janela, min_periods=1).sum()
+    vwap_val = (typical * vol).rolling(janela, min_periods=1).sum() / vol_sum.replace(0, np.nan)
+    df["dist_vwap"] = (df["close"] - vwap_val) / vwap_val.replace(0, np.nan)
+    return df
+
+
+def fair_value_gap(df: pd.DataFrame, lookback: int) -> pd.DataFrame:
+    """Fair Value Gap — canais bull/bear SEPARADOS para forcar aprendizado direcional."""
+    high, low, close = df["high"], df["low"], df["close"]
+
+    bullish = low > high.shift(2)
+    bearish = high < low.shift(2)
+
+    bull_gap = (low - high.shift(2)).where(bullish, 0) / close
+    bear_gap = (low.shift(2) - high).where(bearish, 0) / close
+
+    df["fvg_bull"] = bull_gap.clip(lower=0)
+    df["fvg_bear"] = bear_gap.clip(lower=0)
+    df["fvg_ativo"] = (bullish | bearish).astype(float).rolling(lookback, min_periods=1).sum()
+    return df
+
+
+def order_blocks(df: pd.DataFrame, decay: float) -> pd.DataFrame:
+    """Order Blocks — canais bull/bear SEPARADOS com decay independente."""
+    bearish = df["close"] < df["open"]
+    bullish = df["close"] > df["open"]
+
+    bull_ob = bearish.shift(1) & (df["high"] > df["high"].shift(1))
+    bear_ob = bullish.shift(1) & (df["low"] < df["low"].shift(1))
+
+    bull_signed = pd.Series(0.0, index=df.index)
+    bull_signed[bull_ob.fillna(False)] = 1.0
+    bear_signed = pd.Series(0.0, index=df.index)
+    bear_signed[bear_ob.fillna(False)] = 1.0
+
+    df["ob_bull"] = bull_signed.ewm(alpha=decay, min_periods=1).mean()
+    df["ob_bear"] = bear_signed.ewm(alpha=decay, min_periods=1).mean()
+    return df
+
+
+def estrutura_mercado(df: pd.DataFrame, janela: int) -> pd.DataFrame:
+    """Estrutura de mercado — tendencia e breakout em canais bull/bear SEPARADOS."""
+    high, low, close = df["high"], df["low"], df["close"]
+
+    rolling_high = high.rolling(janela).max().shift(1)
+    rolling_low = low.rolling(janela).min().shift(1)
+
+    df["dist_resistencia"] = (rolling_high - close) / close
+    df["dist_suporte"] = (close - rolling_low) / close
+
+    bos_bull = close > rolling_high
+    bos_bear = close < rolling_low
+
+    # Tendencia como dois canais binarios separados
+    bull_active = pd.Series(0.0, index=df.index)
+    bull_active[bos_bull.fillna(False)] = 1.0
+    bear_active = pd.Series(0.0, index=df.index)
+    bear_active[bos_bear.fillna(False)] = 1.0
+    df["tend_bull"] = bull_active.ewm(alpha=0.05, min_periods=1).mean()
+    df["tend_bear"] = bear_active.ewm(alpha=0.05, min_periods=1).mean()
+
+    # Breakout em canais separados
+    df["breakout_bull"] = ((close - rolling_high).where(bos_bull.fillna(False), 0) / close).clip(lower=0)
+    df["breakout_bear"] = ((rolling_low - close).where(bos_bear.fillna(False), 0) / close).clip(lower=0)
+
+    # Contexto multi-timeframe: SMAs ja calculadas
+    df["ctx_bull"] = ((df["sma_7"] - df["sma_50"]) / df["close"]).clip(lower=0)
+    df["ctx_bear"] = ((df["sma_50"] - df["sma_7"]) / df["close"]).clip(lower=0)
+    return df
+
+
+def manipulacao(df: pd.DataFrame, vol_janela: int, sweep_janela: int) -> pd.DataFrame:
+    """Features de manipulação — wick rejection, volume spike sem follow-through, liquidity sweep."""
+    high, low, open_, close, volume = df["high"], df["low"], df["open"], df["close"], df["volume"]
+
+    range_candle = (high - low).replace(0, np.nan)
+
+    df["wick_up"] = (high - np.maximum(open_, close)) / range_candle
+    df["wick_down"] = (np.minimum(open_, close) - low) / range_candle
+
+    vol_mean = volume.rolling(vol_janela, min_periods=1).mean().shift(1)
+    df["volume_spike"] = (volume / vol_mean.replace(0, np.nan)).fillna(1.0)
+
+    ret_norm = df["retorno_diario"].abs() / (df[f"volatilidade_{vol_janela}"].replace(0, np.nan) + 1e-8)
+    df["vol_price_div"] = (df["volume_spike"] * (1.0 - ret_norm).clip(lower=0)).clip(0, 5)
+
+    rolling_high = high.rolling(sweep_janela).max().shift(1)
+    rolling_low = low.rolling(sweep_janela).min().shift(1)
+
+    sweep_bull_cond = (low < rolling_low) & (close > rolling_low)
+    sweep_bear_cond = (high > rolling_high) & (close < rolling_high)
+
+    sweep_bull = pd.Series(0.0, index=df.index)
+    sweep_bull[sweep_bull_cond.fillna(False)] = ((rolling_low - low) / close).clip(lower=0)
+    sweep_bear = pd.Series(0.0, index=df.index)
+    sweep_bear[sweep_bear_cond.fillna(False)] = ((high - rolling_high) / close).clip(lower=0)
+
+    df["sweep_bull"] = sweep_bull
+    df["sweep_bear"] = sweep_bear
+
+    return df
+
+
+def features_derivados(df: pd.DataFrame, regime_janela: int, slope_janela: int) -> pd.DataFrame:
+    """Meta-features que amplificam sinais direcionais fracos.
+
+    A analise de anomalias mostrou que RSI e VWAP carregam sinal direcional
+    estatisticamente significativo antes de movimentos anormais, mas o sinal
+    e fraco e afogado pelo ruido nos valores pontuais. Estas features
+    transformam valores pontuais em contexto dinamico:
+
+    - vol_zscore:    volatilidade atual vs sua propria norma rolling
+                     (sinaliza "algo esta acontecendo")
+    - volume_zscore: volume atual vs sua propria norma rolling
+    - rsi_slope:     direcao do momentum (RSI subindo/descendo)
+    - vwap_slope:    forca da tendencia (preco divergindo/convergindo do VWAP)
+    """
+    df = df.copy()
+
+    r_mean = df["volatilidade_21"].rolling(regime_janela, min_periods=20).mean()
+    r_std = df["volatilidade_21"].rolling(regime_janela, min_periods=20).std()
+    df["vol_zscore"] = (df["volatilidade_21"] - r_mean) / r_std.replace(0, np.nan)
+
+    r_mean = df["volume"].rolling(regime_janela, min_periods=20).mean()
+    r_std = df["volume"].rolling(regime_janela, min_periods=20).std()
+    df["volume_zscore"] = (df["volume"] - r_mean) / r_std.replace(0, np.nan)
+
+    df["rsi_slope"] = df["rsi_14"].diff(slope_janela) / slope_janela
+    df["vwap_slope"] = df["dist_vwap"].diff(slope_janela)
+
+    return df
+
+
 def gerar_features(df: pd.DataFrame) -> pd.DataFrame:
     df = df.copy()
 
@@ -63,11 +200,56 @@ def gerar_features(df: pd.DataFrame) -> pd.DataFrame:
     df = macd(df, config.MACD_RAPIDO, config.MACD_LENTO, config.MACD_SINAL)
     df = retornos(df)
     df = volatilidade(df, config.VOLATILIDADE_JANELA)
+    df = vwap(df, config.VWAP_JANELA)
+    df = fair_value_gap(df, config.FVG_LOOKBACK)
+    df = order_blocks(df, config.OB_DECAY)
+    df = estrutura_mercado(df, config.ESTRUTURA_JANELA)
+    df = manipulacao(df, config.VOLATILIDADE_JANELA, config.SWEEP_JANELA)
+    df = features_derivados(df, config.REGIME_JANELA, config.SLOPE_JANELA)
 
-    df["direcao"] = (df["close"].shift(-1) > df["close"]).astype(int)
-    df.loc[df.index[-1], "direcao"] = np.nan
+    df["direcao"] = _label_regime(df, config.REGIME_K, config.HORIZONTE)
+
+    df.replace([np.inf, -np.inf], np.nan, inplace=True)
+    for col in ["dist_vwap", "fvg_bull", "fvg_bear", "breakout_bull", "breakout_bear",
+                 "dist_resistencia", "dist_suporte", "ctx_bull", "ctx_bear",
+                 "ob_bull", "ob_bear", "tend_bull", "tend_bear",
+                 "sweep_bull", "sweep_bear"]:
+        if col in df.columns:
+            df[col] = df[col].clip(-1.0, 1.0)
+
+    for col in ["wick_up", "wick_down"]:
+        if col in df.columns:
+            df[col] = df[col].clip(0, 1)
+    if "volume_spike" in df.columns:
+        df["volume_spike"] = df["volume_spike"].clip(0, 5)
+
+    for col in ["vol_zscore", "volume_zscore"]:
+        if col in df.columns:
+            df[col] = df[col].clip(-5, 5)
+    for col in ["rsi_slope", "vwap_slope"]:
+        if col in df.columns:
+            df[col] = df[col].clip(-10, 10)
 
     return df
+
+
+def _label_regime(df: pd.DataFrame, k: float, horizonte: int) -> pd.Series:
+    """Label 3 classes sobre um horizonte de H candles: 0=baixa, 1=neutro, 2=alta.
+
+    Threshold adaptativo escalado ao horizonte pela regra sqrt-tempo
+    (variancia de um passeio aleatorio cresce linearmente com o tempo):
+    k * vol_1h * sqrt(H). So movimentos que excedem a volatilidade esperada
+    no horizonte sao classificados como direcionais; o resto vira NEUTRO.
+    """
+    fut_ret = df["close"].shift(-horizonte) / df["close"] - 1
+    threshold = k * df["volatilidade_21"] * np.sqrt(horizonte)
+
+    regime = pd.Series(config.REGIME_NEUTRO, index=df.index)
+    regime[fut_ret > threshold] = config.REGIME_ALTA
+    regime[fut_ret < -threshold] = config.REGIME_BAIXA
+    regime.iloc[-horizonte:] = np.nan
+
+    return regime
 
 
 def executar_feature_engineering(par: str) -> pd.DataFrame:
