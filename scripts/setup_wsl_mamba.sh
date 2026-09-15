@@ -26,7 +26,8 @@ if grep -q "from mamba_ssm.modules.mamba3 import Mamba3" "$INIT_PY"; then
 fi
 
 echo "=== Step 5: Install project requirements ==="
-cd /mnt/c/Users/MuriloRFM/Documents/GitHub/CryptoCasting
+projeto_dir="$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")/.." && pwd)"
+cd "$projeto_dir"
 pip install -r requirements.txt
 
 echo "=== Step 6: Verify ==="

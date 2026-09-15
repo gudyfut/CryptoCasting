@@ -1,67 +1,35 @@
 # AGENTS.md
 
-TCC (academic thesis): investigates whether the **Mamba** (SSM) architecture can forecast crypto markets from OHLCV data. Scientific project — Mamba-only, PyTorch-only. Scope constraints from `plano.md`: no news/social/sentiment/macroeconomic data, no LLM-based forecasting, no competing architectures.
+TCC científico: prever direção de criptomoedas com Mamba e OHLCV. Leia `plano.md` e `docs/protocolo_experimental.md` antes de implementar. O protocolo é a referência metodológica; não reintroduza configurações dos testes antigos.
 
-Two orchestrators at the repo root: `run_pipeline.py` (data: coleta → limpeza → features → normalizacao → janelas) and `run_treino.py` (model: baseline → treino → avaliacao → walk-forward → previsao). For project goals and architecture see `README.md`, `plano.md`, and `docs/`.
+## Estado atual
 
-## Code instructions
+O usuário solicitou a remoção dos experimentos exploratórios em 14/09/2026. Pipeline, orquestradores, análises, previsões, dados de teste e documentação antiga foram removidos. Restam componentes Mamba reutilizáveis, preparação do ambiente, infraestrutura genérica de gráficos e o protocolo. Ainda não há implementação validada do estudo.
 
-### Never run training
+## Execução
 
-**The user runs all `run_treino.py` / `run_pipeline.py` executions.** OpenCode should only edit code, then hand off. Limit Python execution to fast non-training checks (e.g. `python -m py_compile`). There is no pytest/CI/lint for the Python side; verify changes via `py_compile` and let the user run orchestrators end-to-end.
+O usuário executa toda coleta, pipeline e treinamento. Agentes editam código e usam somente verificações Python rápidas sem treinamento, como `python -m py_compile`. Não executar `run_pipeline.py` ou `run_treino.py` quando forem reconstruídos. Frontend pode ser verificado com lint/build.
 
-### Conventions
+## Restrições científicas
 
-- Arg/identifier names are in **Portuguese** (`--pares`, `--sem-coleta`, `--sem-walkforward`, `saltar_coleta`, `paciencia`, etc.). Match this.
-- Two config files — edit the right one:
-  - `pipeline/config.py` — data side: pairs, candle interval, indicator periods, window/horizon/k parameters, split ratios.
-  - `modelo/config.py` — model side: `D_INPUT`, `D_MODEL`, `N_LAYERS`, hyperparameters, `SEED=42`, `DEVICE`. **This is the source of truth** (the hyperparameter table in `README.md` is stale).
-- CLI args override config defaults at runtime. See `run_treino.py --help` (model hyperparams) and `run_pipeline.py --help` (data params like `--k`, `--horizonte`).
+- Mamba-only e PyTorch-only para a arquitetura investigada. Sem arquiteturas neurais concorrentes, notícias, sentimento, macroeconomia ou previsão com LLM. Implementar as quatro referências B0–B3 do protocolo, incluindo AR(1), como controles metodológicos.
+- Pares: BTCUSDT, ETHUSDT e XRPUSDT. Granularidades: 15m, 1h, 4h e 1d.
+- Alvo binário: alta versus não alta. Não filtrar observações com base na magnitude futura.
+- Walk-forward expansivo por datas; não restaurar split fixo 70/15/15 ou avaliação de checkpoint único como substituto.
+- Ajustar transformações somente no treino de cada fold. Purgar rótulos que cruzem fronteiras temporais.
+- Somente o DataLoader de treino pode embaralhar amostras; validação e teste preservam a ordem.
+- Preservar timestamps de origem e do alvo. Nunca alinhar parquets distintos por índice de linha.
+- Dados, features, dimensões de entrada e metadados devem corresponder à configuração efetivamente executada.
+- Identificadores/argumentos novos em português; parâmetros da API Mamba preservam compatibilidade.
 
-### Mamba fallback
+## Mamba e ambientes
 
-`modelo/mamba_modelo.py:_importar_mamba()` tries the official `mamba_ssm` (CUDA kernels, **Linux/WSL2 + NVIDIA GPU only**) and falls back to `modelo/mamba_minimal.py` (pure PyTorch, CPU/Windows). Never assume `mamba_ssm` is importable; the fallback path is first-class and must stay API-compatible.
+`modelo/mamba_modelo.py:_importar_mamba()` tenta `mamba_ssm` e recorre a `modelo/mamba_minimal.py`. O fallback é de primeira classe; não assumir disponibilidade de CUDA. O classificador recebe dimensões explicitamente, sem configuração experimental global.
 
-### Two venvs
+Windows `.venv`: CPU. WSL2 `~/.venvs/cc`: PyTorch/CUDA/Mamba oficial. `scripts/setup_wsl_mamba.sh` é uma receita específica preservada; `scripts/test_mamba.py` é diagnóstico a cargo do usuário. Registrar backend e versões em cada execução científica; não misturar implementações silenciosamente.
 
-- Windows `.venv` — CPU only. Fine for `run_pipeline.py` and quick tests. No CUDA.
-- WSL2 `~/.venvs/cc` — PyTorch+CUDA + `mamba-ssm`. Use for `run_treino.py`. Setup: `scripts/setup_wsl_mamba.sh` (run in Ubuntu; fix CRLF first: `sed -i 's/\r$//'`). Verify: `python scripts/test_mamba.py`.
+## Frontend
 
-### NPZ indices & timestamp alignment
+Next.js/React/Tailwind/ECharts em `dataview/`. Executar npm nesse diretório. Alias `@/*` aponta para `src/*`. Interface atual mostra a matriz planejada sem resultados.
 
-NPZ `indices` store **window indices**, not dataframe row positions (the original df-row indices from `criar_janelas` are discarded by `split_temporal` — see `janelas.py:111-113`). To recover the entry candle: `entry_pos = window_index + TAMANHO_JANELA` in the post-dropna+reset normalizados parquet, then get the `timestamp` and look it up in the features parquet for raw OHLCV. **Never use row-index alignment between normalizados and features parquets** — they differ in row count. `avaliar_trade`, `avaliar_regime`, and `gerar_previsoes` all use this timestamp-join pattern.
-
-### Data layout
-
-- `dados/*.csv` — committed raw OHLCV (read by the frontend).
-- `dados/{brutos,processados,features,normalizados,janelas}/` — **gitignored**, regenerated by `run_pipeline.py`. Not present on a fresh clone; run the pipeline first.
-- `dados/resultados/` — `{PAR}_mamba.pt` weights (**gitignored**), `{PAR}_mamba_meta.json` (architecture sidecar for checkpoint loading), `{PAR}_metricas.json` and `{PAR}_previsoes.json` committed.
-- Pipeline stage order is strict, each reads the previous stage's parquet: coleta(brutos) → limpeza(processados) → features(features) → normalizacao(normalizados) → janelas(janelas/{PAR}/{train,val,test}.npz).
-
-### Features & labels
-
-Feature count and label scheme are defined in `pipeline/features.py` and `pipeline/config.py`. `modelo/config.py:D_INPUT` must match the number of feature columns. If you change features or labels, update `D_INPUT` and re-run the full pipeline so `.npz` shapes match.
-
-### Evaluation tools
-
-- `modelo/avaliacao.py:avaliar` — standard accuracy/precision/recall/f1.
-- `modelo/avaliacao.py:avaliar_seletivo` — confidence-thresholded selective prediction sweep.
-- `modelo/avaliacao.py:avaliar_trade` — simulates TP/SL trades (entry=close[t], stop=1×ATR, TP=RR×stop, hold=t+1..t+HORIZONTE, SL checked before TP within same candle, no-hit resolves by close[t+H]) and reports expectancy in R.
-- `modelo/avaliacao.py:avaliar_regime` — same trade simulation split by volatility regime (vol_zscore buckets), reports accuracy + expectancy per regime.
-- `modelo/mamba_modelo.py:carregar_modelo` — loads checkpoint with architecture auto-detection from meta sidecar.
-
-### Validation discipline
-
-Temporal split only (70/15/15), **no random shuffle for val/test**. Walk-forward validation via `modelo/walkforward.py` (skip with `--sem-walkforward`). Preserve time order; never shuffle or randomly split evaluation data. Only the train `DataLoader` shuffles.
-
-### Frontend (dataview/)
-
-Next.js 16 + React 19 + Tailwind 4 + ECharts. Run from inside `dataview/`:
-
-```bash
-cd dataview && npm install && npm run dev    # lint: npm run lint (eslint). No test script.
-```
-
-- API routes in `dataview/src/app/api/.../route.ts` read **directly from `../dados` via the filesystem** (`src/lib/csv.ts:getDataDir()` = `process.cwd()/../dados`). Dev server must run from `dataview/` or the relative path breaks.
-- **No separate Python API server.** Wire components to route handlers + `csv.ts` only.
-- Path alias `@/*` → `src/*`.
+Rotas genéricas preservadas acessam CSVs em `process.cwd()/../dados`; precisarão ser adaptadas ao contrato do novo dataset. Não há servidor Python API separado. Não apresentar dados simulados ou antigos como resultados científicos.
