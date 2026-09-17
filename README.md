@@ -15,6 +15,7 @@ A entrega da Atividade 1 está em **[docs/protocolo_experimental.md](docs/protoc
 | `docs/protocolo_experimental.md` | Desenho experimental e critérios para implementar as próximas atividades |
 | `docs/baseline_metodologia.md` | Pesquisa, fórmulas e régua de interpretação das quatro baselines |
 | `docs/Cronograma_Atividades_TCC2_Murilo_Monferrari.pdf` | Cronograma acadêmico original |
+| `docs/entregas/` | Pastas das 12 entregas do cronograma e seus documentos de acompanhamento |
 | `plano.md` | Objetivo e limites científicos |
 | `modelo/mamba_modelo.py` | Classificador Mamba reutilizável, com parâmetros explícitos; ainda exige validação |
 | `modelo/mamba_minimal.py` | Fallback Mamba em PyTorch puro para CPU/Windows |
