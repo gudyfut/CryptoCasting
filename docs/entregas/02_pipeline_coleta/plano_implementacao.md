@@ -2,7 +2,7 @@
 
 **Período do cronograma:** 14/09–20/09  
 **Resultado esperado:** dataset bruto reproduzível e script de coleta funcional.  
-**Estado:** planejamento; a coleta ainda não foi executada.
+**Estado:** camada implementada e testada; coleta oficial executada pelo pesquisador em 28/09/2026, com 216 arquivos completos e 24 com somente lacunas auditadas em ZIPs de checksum correto. O tratamento dessas lacunas pertence à Entrega 3.
 
 ## 1. Objetivo e limite da entrega
 
@@ -15,7 +15,7 @@ Esta entrega termina nos dados brutos auditados. Ela não deve agregar candles, 
 | Item | Definição |
 |---|---|
 | Fonte | Binance Public Data, mercado Spot |
-| Pares | `BTCUSDT`, `ETHUSDT` e `XRPUSDT` |
+| Pares | `BTCUSDT`, `ETHUSDT`, `BNBUSDT` e `XRPUSDT` |
 | Intervalo de origem | `15m` |
 | Início | `2021-01-01 00:00:00 UTC`, inclusivo |
 | Fim | `2026-01-01 00:00:00 UTC`, exclusivo |
@@ -25,37 +25,44 @@ Esta entrega termina nos dados brutos auditados. Ela não deve agregar candles, 
 
 O pipeline deve tratar explicitamente a mudança da unidade de timestamps da Binance Spot em 2025. A unidade detectada e a conversão aplicada precisam aparecer no relatório de auditoria; não se deve assumir milissegundos para todo o período.
 
-## 3. Estrutura proposta
+A [justificativa dos quatro ativos](justificativa_ativos.md) descreve os usos e mecanismos das redes. A hipótese de ordem crescente de volatilidade `BTC < ETH < BNB < XRP` será avaliada com retornos diários na Entrega 3; a coleta não calcula nem pressupõe esse ranking.
+
+## 3. Estrutura implementada
 
 ```text
-coleta/
+camada_dados/
   __init__.py
   configuracao.py
-  urls_binance.py
-  baixar.py
-  validar_arquivo.py
-  auditar_candles.py
+  dominio.py
+  fonte_binance.py
+  armazenamento.py
+  auditoria.py
   manifesto.py
+  servico_coleta.py
+configuracoes/
+  coleta_oficial.json
+tests/
+  test_camada_dados.py
 run_coleta.py
 dados/
   brutos/
     binance_spot/
       BTCUSDT/15m/
       ETHUSDT/15m/
+      BNBUSDT/15m/
       XRPUSDT/15m/
     manifestos/
       manifesto_coleta.jsonl
       resumo_cobertura.csv
-      falhas_coleta.jsonl
 ```
 
-Os nomes podem ser refinados durante a implementação, mas identificadores novos devem permanecer em português. O layout final deve continuar compatível com o contrato descrito em [`dados/README.md`](../../../dados/README.md).
+Os identificadores novos permanecem em português. O layout é compatível com o contrato descrito em [`dados/README.md`](../../../dados/README.md).
 
 ## 4. Fluxo de implementação
 
 ### 4.1. Configuração fechada
 
-Criar uma configuração explícita e serializável contendo fonte, mercado, pares, intervalo, início, fim e diretório de saída. A lista de competências mensais deve ser derivada do intervalo fechado, resultando em 60 arquivos esperados por par e 180 arquivos no total.
+Criar uma configuração explícita e serializável contendo fonte, mercado, pares, intervalo, início, fim e diretório de saída. A lista de competências mensais deve ser derivada do intervalo fechado, resultando em 60 arquivos esperados por par e 240 arquivos planejados no total. Arquivo esperado não significa arquivo disponível ou válido; o manifesto comprovará isso.
 
 O comando deve aceitar parâmetros úteis para retomada e diagnóstico, sem permitir que valores implícitos alterem o protocolo silenciosamente. Uma interface possível é:
 
@@ -149,7 +156,7 @@ O resumo de cobertura deve consolidar, por par e mês, quantidade esperada e obs
 
 Os testes devem ser independentes de rede sempre que possível:
 
-- geração correta dos 60 meses e das 180 combinações esperadas;
+- geração correta dos 60 meses e das 240 combinações esperadas, inclusive BNBUSDT;
 - construção das URLs para primeiro e último mês;
 - reconhecimento de timestamps em milissegundos e microssegundos;
 - detecção de lacuna, duplicata e duplicata conflitante em fixtures mínimas;
@@ -178,7 +185,7 @@ Agentes podem executar apenas essas verificações rápidas. A coleta completa e
 
 A Entrega 2 pode ser considerada concluída quando:
 
-- o inventário contém exatamente os três pares, o intervalo `15m` e os 60 meses previstos;
+- o inventário contém exatamente os quatro pares, o intervalo `15m` e os 60 meses previstos;
 - o script pode retomar uma execução interrompida sem corromper ou duplicar arquivos válidos;
 - cada arquivo baixado possui SHA-256 local e estado de checksum/ZIP registrado;
 - os ZIPs originais permanecem inalterados;
@@ -195,8 +202,8 @@ A Entrega 2 pode ser considerada concluída quando:
 - Agregação para `1h`, `4h` e `1d`: Entrega 3.
 - Cálculo de retornos, indicadores, alvo e janelas: Entrega 3.
 - Folds walk-forward, purga, scalers e métricas: Entregas 3 e 4.
-- Baselines B0–B3 e primeiros resultados: Entrega 4.
+- ARIMA(1,0,0) dos log-retornos, LSTM neural e infraestrutura de avaliação/PT: Entrega 4, conforme revisão 1.6 do protocolo. O piloto AR(1) já foi executado; LSTM e PT ainda estão pendentes.
 - Integração, treino e checkpoints do Mamba: Entrega 5.
 
-Essa separação permite que a baseline preparada em paralelo consuma posteriormente um dataset auditado, sem acoplar a coleta às regras do modelo ou aos resultados experimentais.
+Essa separação permite que as baselines consumam o dataset auditado, sem acoplar a coleta às regras dos modelos ou aos resultados experimentais.
 

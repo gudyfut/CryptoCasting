@@ -1,4 +1,4 @@
-const MOEDAS = ["BTC", "ETH", "XRP"];
+const MOEDAS = ["BTC", "ETH", "BNB", "XRP"];
 const CANDLES = ["15 min", "1 hora", "4 horas", "1 dia"];
 
 export default function Dashboard() {
@@ -10,7 +10,8 @@ export default function Dashboard() {
           <h1 className="text-3xl font-semibold">Previsibilidade por moeda e candle</h1>
           <p className="max-w-3xl text-gray-400">
             Fundação experimental em preparação. A tabela apresentará a comparação
-            do Mamba com referências random walk, prevalência, momentum e AR(1)
+            do Mamba com o AR(1) estatístico e a LSTM neural, além da referência de 50%
+            de balanced accuracy e do teste de Pesaran–Timmermann
             para prever a direção das próximas 24 horas.
           </p>
         </header>

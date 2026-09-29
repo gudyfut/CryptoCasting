@@ -4,7 +4,7 @@ TCC científico: prever direção de criptomoedas com Mamba e OHLCV. Leia `plano
 
 ## Estado atual
 
-O usuário solicitou a remoção dos experimentos exploratórios em 14/09/2026. Pipeline, orquestradores, análises, previsões, dados de teste e documentação antiga foram removidos. Restam componentes Mamba reutilizáveis, preparação do ambiente, infraestrutura genérica de gráficos e o protocolo. Ainda não há implementação validada do estudo.
+O usuário solicitou a remoção dos experimentos exploratórios em 14/09/2026. Pipeline experimental antigo, análises, previsões, dados de teste e documentação antiga foram removidos. As novas camadas de coleta (Entrega 2) e pré-processamento/amostras (Entrega 3) estão implementadas e foram executadas pelo pesquisador. O dataset oficial `daeec76f001afb50a8fe` tem 1.661 origens diárias comuns; cobertura e volatilidade estão em `docs/entregas/03_pre_processamento_amostras/resultados_execucao_oficial.md`. O pesquisador executou o AR(1) de BTCUSDT nos folds de desenvolvimento D1–D4; a interpretação está em `docs/entregas/04_infraestrutura_baselines/resultados_desenvolvimento_BTC_D1_D4.md`. Em 28/09/2026, decidiu incluir LSTM como segunda baseline; ela ainda não foi implementada. Ainda não há avaliação Mamba ou resultados finais de 2024–2025.
 
 ## Execução
 
@@ -12,8 +12,8 @@ O usuário executa toda coleta, pipeline e treinamento. Agentes editam código e
 
 ## Restrições científicas
 
-- Mamba-only e PyTorch-only para a arquitetura investigada. Sem arquiteturas neurais concorrentes, notícias, sentimento, macroeconomia ou previsão com LLM. Implementar as quatro referências B0–B3 do protocolo, incluindo AR(1), como controles metodológicos.
-- Pares: BTCUSDT, ETHUSDT e XRPUSDT. Granularidades: 15m, 1h, 4h e 1d.
+- Mamba é a arquitetura investigada; LSTM unidirecional em PyTorch é a baseline neural. ARIMA(1,0,0) dos log-retornos é a baseline estatística simples. Sem outras arquiteturas concorrentes, notícias, sentimento, macroeconomia ou previsão com LLM. O random walk sem deriva coincide com 50% de balanced accuracy após conversão ao alvo binário. Manter separadas as comparações Mamba versus AR(1), Mamba versus LSTM, referência de 50% e teste de Pesaran–Timmermann. LSTM e Mamba usam as mesmas entradas, folds e regras de treino do protocolo; não tratar a LSTM planejada como já executada.
+- Pares: BTCUSDT, ETHUSDT, BNBUSDT e XRPUSDT. Granularidades: 15m, 1h, 4h e 1d. A ordem BTC < ETH < BNB < XRP em volatilidade é hipótese descritiva a verificar, não pressuposto do experimento.
 - Alvo binário: alta versus não alta. Não filtrar observações com base na magnitude futura.
 - Walk-forward expansivo por datas; não restaurar split fixo 70/15/15 ou avaliação de checkpoint único como substituto.
 - Ajustar transformações somente no treino de cada fold. Purgar rótulos que cruzem fronteiras temporais.
