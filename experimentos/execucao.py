@@ -17,7 +17,8 @@ from .auditoria import auditar_execucao
 from .configuracao import RAIZ, VERSAO, gerar_celulas, validar_configuracao
 from .dados import DatasetProcessado, preparar_entradas
 from .registro import ambiente, assinatura_codigo, capturar_codigo, gravar_json, identidade, inventariar, verificar_resultado
-from .treinamento import treinar_modelo, REGRAS_TREINO
+from .treinamento import treinar_modelo, fixar_seed, REGRAS_TREINO
+from .qualificacao import verificar_modelos
 
 
 def obter_ar1(dataset: DatasetProcessado, celula: dict, raiz_saida: Path, codigo: str, versoes: dict):
@@ -50,6 +51,7 @@ def executar_grade(configuracao: dict, *, nova_tentativa: bool = False) -> list[
     validar_configuracao(configuracao)
     caminho = Path(configuracao["dataset"])
     dataset = DatasetProcessado(caminho if caminho.is_absolute() else RAIZ / caminho)
+    fixar_seed(configuracao["seeds"][0])
     ambiente_atual = ambiente()
     if configuracao["dispositivo"] == "cuda" and not ambiente_atual["cuda_disponivel"]:
         raise RuntimeError("CUDA indisponível. Revise dispositivo/backend explicitamente.")
@@ -65,6 +67,8 @@ def executar_grade(configuracao: dict, *, nova_tentativa: bool = False) -> list[
         identificador = identidade({"celula": celula, "opcoes": opcoes, "dataset": dataset.resumo_manifesto,
                                    "codigo": codigo, "protocolo": protocolo, "ambiente": ambiente_atual["versoes"],
                                    "hardware": {k: ambiente_atual[k] for k in ("gpu", "cpu", "sistema", "cuda_pytorch", "cudnn")},
+                                   "execucao_numerica": ambiente_atual["execucao_numerica"],
+                                   "fontes_backend": ambiente_atual["fontes_backend"],
                                    "regras": REGRAS_TREINO})
         destino = raiz_saida / f"pareado_{identificador}"
         if destino.exists() and not nova_tentativa:
@@ -90,6 +94,9 @@ def executar_grade(configuracao: dict, *, nova_tentativa: bool = False) -> list[
             matriz, scaler, indices = preparar_entradas(candles, blocos, configuracao["features"], configuracao["normalizador"])
             gravar_json(destino / "normalizador.json", scaler)
             np.save(destino / "indices_ajuste_normalizador.npy", indices, allow_pickle=False)
+            if configuracao["backend_mamba"] == "oficial":
+                passos = int(blocos["treino"].iloc[0]["indice_contexto_fim"] - blocos["treino"].iloc[0]["indice_contexto_inicio"] + 1)
+                gravar_json(destino / "qualificacao_modelos.json", verificar_modelos(configuracao, matriz.shape[1], passos))
             registro_ar1, previsoes_ar1 = obter_ar1(dataset, celula, raiz_saida, codigo, ambiente_atual["versoes"])
             for bloco in ("validacao", "teste"):
                 alinhar_previsoes(blocos[bloco], previsoes_ar1[bloco])
@@ -119,11 +126,14 @@ def executar_grade(configuracao: dict, *, nova_tentativa: bool = False) -> list[
                          "fontes_preservadas": True,
                          "arquivos": inventariar(destino)}
             gravar_json(destino / "resultado.json", resultado)
-            gravar_json(destino / "estado.json", {"estado": "concluido", "celula": celula})
+            gravar_json(destino / "estado.json", {"estado": "concluido", "celula": celula, "inicio_utc": inicio,
+                                                  "fim_utc": resultado["fim_utc"]})
             print(f"Execução pareada: {destino}", flush=True)
             saidas.append(destino)
         except BaseException as erro:
             gravar_json(destino / "estado.json", {"estado": "interrompido" if isinstance(erro, KeyboardInterrupt) else "falhou",
-                                                   "celula": celula, "erro": str(erro), "tipo": type(erro).__name__})
+                                                   "celula": celula, "inicio_utc": inicio,
+                                                   "fim_utc": datetime.now(timezone.utc).isoformat(),
+                                                   "erro": str(erro), "tipo": type(erro).__name__})
             raise
     return saidas

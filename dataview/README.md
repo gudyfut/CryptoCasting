@@ -1,39 +1,34 @@
-# Interface de acompanhamento do TCC
+# Interface do projeto
 
-Interface local em Next.js para consulta e apresentação do projeto ao orientador. A referência metodológica é `../docs/protocolo_experimental.md`.
+Next.js local para apresentar o TCC ao orientador. Metodologia: `../docs/protocolo_experimental.md`. Revisão visual: 13/10/2026.
 
-## Organização
+## Leitura em cinco etapas
 
 | Seção | Conteúdo |
 |---|---|
-| Resumo do projeto | Objetivo, escopo, evidências disponíveis e próxima etapa |
-| Metodologia | Função dos modelos, divisão temporal, métricas e limites de interpretação |
-| Configurações experimentais | Moedas, resoluções, janelas, timestamps, etapas e folds |
-| Dados e ativos | Fonte, justificativa dos ativos, volatilidade e cobertura |
-| Entregas e execução | Cronograma, estado das entregas, pendências e comandos |
-| Resultados e interpretação | Piloto AR(1) documentado, formato final planejado e execuções locais |
+| O estudo | Quatro eixos da combinação, estado da decisão, exemplo temporal e ativos |
+| O que prever | Cinco cartões com representação visual, razão de uso, fontes e impacto metodológico |
+| Combinar testes | Moeda, candle, prazo, alvo, contexto, agenda e política; lista temporária para discussão |
+| Como avaliar | Modelos, treino expansivo, comparações distintas e variáveis controladas |
+| Andamento e resultados | Etapas, piloto real em revisão, formato de registro e leitura de execuções locais |
 
-Usar títulos descritivos e linguagem objetiva, sem slogans ou blocos promocionais. Manter definições e evidências visíveis, com tabelas quando ajudam a comparar. Distinguir explicitamente código implementado, experimento executado e análise planejada.
+A página principal apresenta o essencial. Detalhes e fontes são expansíveis. A pesquisa está em `../docs/estudo_tarefas_previsao.md`, também disponível em `/api/estudo/documentos/tarefas`. Os cinco cartões são formulações úteis, não categorias mutuamente exclusivas: quantis podem descrever retorno ou volatilidade. Próximo candle é horizonte; abstenção é política de resposta.
 
-## Origem das informações
+## Componentes ativos
 
-- `src/components/SecoesProjeto.tsx`: conteúdo explicativo das seções, baseado no protocolo e nas entregas.
-- `src/lib/estudo.ts`: registro editorial dos ativos e entregas; números históricos do relatório oficial.
-- `src/lib/plano-experimental.json`: matriz gerada por `../scripts/atualizar_plano_experimental.py`. Não alterar manualmente os números ou as datas.
-- `/api/estudo/resultados`: leitura dos resumos reais de desenvolvimento em `../dados/experimentos/pareado_*`. Ausência não equivale a zero.
-- `/api/estudo/documentos/[id]`: documentos do repositório permitidos explicitamente, apresentados em texto para consulta.
+- `src/components/Dashboard.tsx`: navegação, visão do estudo, avaliação e andamento; pilotos documentados têm referência explícita.
+- `src/components/TiposPrevisao.tsx` e `src/lib/tarefas-previsao.ts`: catálogo editorial e fontes; não são contratos executáveis.
+- `src/components/CombinadorExperimentos.tsx`: rascunho de combinação, classificação de compatibilidade com o protocolo e lista em memória. Mantida ao navegar entre seções; recarregar limpa a lista. Não grava configuração científica.
+- `src/components/VisuaisPrevisao.tsx`: diagramas SVG acessíveis, fictícios e identificados. Contagens de contexto são exatas; desenho de candles é esquemático, fora de escala.
+- `src/app/caderno.css`: layout responsivo da interface atual. Estilos/componentes anteriores permanecem no repositório, mas não compõem a página principal.
+- `src/lib/estudo.ts`: dados editoriais de ativos/entregas e tipos dos resultados.
+- `/api/estudo/resultados`: resumos reais de desenvolvimento em `../dados/experimentos/pareado_*`; ausente não é zero; erros de leitura e resumos inconsistentes são expostos.
+- `/api/estudo/documentos/[id]`: lista explícita de documentos permitidos. Não aceita caminhos arbitrários.
 
-A interface não executa coleta, pré-processamento ou treinamento. Os controles da matriz alteram somente a visualização do plano. O estado editorial traz uma data de referência e não é atualizado automaticamente pela execução dos experimentos. A auditoria completa dos artefatos continua sob responsabilidade de `run_avaliacao.py`.
+O painel não executa coleta, treinamento nem ordens. “Prevista no protocolo” não significa tarefa treinada ou backend qualificado. A lista de prazos é candidata, não uma grade aprovada. Nenhuma alteração libera F1–F8. O estado editorial é datado; execuções locais são lidas separadamente e requerem auditoria científica por `run_avaliacao.py`.
 
-## Execução local e verificação
+## Verificação local
 
-Neste diretório:
+Neste diretório: `npm run dev`, `npm run lint`, `npm test` e `npm run build`.
 
-```text
-npm run dev
-npm run lint
-npm run test
-npm run build
-```
-
-As tabelas têm rolagem própria em telas pequenas. A impressão do navegador apresenta a seção selecionada, sem a navegação lateral.
+Verificar no navegador: cinco seções, expansão das fontes, alteração de combinações e contexto, distinção entre protocolo/proposta, inclusão/remoção sem duplicatas, persistência ao navegar, estados vazio/erro dos resultados e layout móvel. As tabelas possuem rolagem interna. Não há dependência de uma API Python.

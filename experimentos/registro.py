@@ -5,6 +5,7 @@ from __future__ import annotations
 import hashlib
 import importlib.metadata
 import json
+import os
 import platform
 import subprocess
 from pathlib import Path
@@ -27,7 +28,7 @@ def identidade(dados: dict) -> str:
 
 def capturar_codigo() -> dict[str, str]:
     """Preserva o código efetivo, inclusive edições locais; normaliza CRLF/LF."""
-    caminhos = [RAIZ / nome for nome in ("run_treino.py", "run_avaliacao.py", "requirements.txt")]
+    caminhos = [RAIZ / nome for nome in ("run_treino.py", "run_avaliacao.py", "run_verificacao.py", "requirements.txt")]
     for pasta in ("experimentos", "modelo", "baseline_ar1", "pre_processamento", "camada_dados"):
         caminhos.extend((RAIZ / pasta).glob("*.py"))
     return {p.relative_to(RAIZ).as_posix(): p.read_text(encoding="utf-8") for p in sorted(caminhos)}
@@ -45,7 +46,7 @@ def assinatura_codigo(fontes: dict[str, str] | None = None) -> str:
 
 def ambiente() -> dict:
     versoes = {"python": platform.python_version()}
-    for pacote in ("torch", "numpy", "pandas", "scikit-learn", "pyarrow", "mamba-ssm", "causal-conv1d"):
+    for pacote in ("torch", "numpy", "pandas", "scikit-learn", "pyarrow", "mamba-ssm", "causal-conv1d", "triton", "einops", "transformers"):
         try:
             versoes[pacote] = importlib.metadata.version(pacote)
         except importlib.metadata.PackageNotFoundError:
@@ -55,10 +56,40 @@ def ambiente() -> dict:
             return subprocess.check_output(["git", *argumentos], cwd=RAIZ, stderr=subprocess.DEVNULL, text=True).strip()
         except (OSError, subprocess.CalledProcessError):
             return None
+    fontes_backend = {}
+    for pacote in ("mamba-ssm", "causal-conv1d"):
+        if versoes[pacote] is None:
+            continue
+        distribuicao = importlib.metadata.distribution(pacote)
+        fontes_backend[pacote] = {
+            str(arquivo): sha256_arquivo(Path(distribuicao.locate_file(arquivo)))
+            for arquivo in distribuicao.files or []
+            if str(arquivo).endswith((".py", ".so", ".pyd")) and Path(distribuicao.locate_file(arquivo)).is_file()
+        }
+    propriedades = torch.cuda.get_device_properties(0) if torch.cuda.is_available() else None
+    driver = None
+    if propriedades:
+        try:
+            driver = subprocess.check_output(["nvidia-smi", "--query-gpu=driver_version", "--format=csv,noheader"],
+                                             text=True, stderr=subprocess.DEVNULL, timeout=10).strip()
+        except (OSError, subprocess.CalledProcessError, subprocess.TimeoutExpired):
+            pass
     return {"versoes": versoes, "sistema": platform.platform(), "cpu": platform.processor(),
             "cuda_pytorch": torch.version.cuda, "cudnn": torch.backends.cudnn.version(),
             "cuda_disponivel": torch.cuda.is_available(),
             "gpu": torch.cuda.get_device_name(0) if torch.cuda.is_available() else None,
+            "gpu_capacidade_compute": [propriedades.major, propriedades.minor] if propriedades else None,
+            "gpu_memoria_total_bytes": propriedades.total_memory if propriedades else None,
+            "driver_nvidia": driver,
+            "fontes_backend": fontes_backend,
+            "execucao_numerica": {"dtype_padrao": str(torch.get_default_dtype()), "amp": False,
+                "tf32_matmul": torch.backends.cuda.matmul.allow_tf32,
+                "tf32_cudnn": torch.backends.cudnn.allow_tf32,
+                "cudnn_deterministico": torch.backends.cudnn.deterministic,
+                "cudnn_benchmark": torch.backends.cudnn.benchmark,
+                "algoritmos_deterministicos": torch.are_deterministic_algorithms_enabled(),
+                "determinismo_somente_aviso": torch.is_deterministic_algorithms_warn_only_enabled(),
+                "cublas_workspace_config": os.environ.get("CUBLAS_WORKSPACE_CONFIG")},
             "commit": git("rev-parse", "HEAD"), "alteracoes_locais": git("status", "--porcelain")}
 
 

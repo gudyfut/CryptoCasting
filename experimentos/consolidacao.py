@@ -29,6 +29,8 @@ def consolidar(caminhos: list[Path], destino: Path) -> dict:
         chave.update({k: resultado[k] for k in ("sha256_manifesto_dataset", "sha256_codigo", "sha256_protocolo")})
         chave["versoes"] = resultado["ambiente"]["versoes"]
         chave["hardware"] = {k: resultado["ambiente"].get(k) for k in ("cpu", "gpu", "sistema", "cuda_pytorch", "cudnn")}
+        chave["execucao_numerica"] = resultado["ambiente"].get("execucao_numerica")
+        chave["fontes_backend"] = resultado["ambiente"].get("fontes_backend")
         identificador = identidade(chave)
         repeticao = (identificador, celula["fold"])
         if repeticao in vistos:

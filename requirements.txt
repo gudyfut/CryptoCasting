@@ -9,7 +9,8 @@ pyarrow>=14.0
 torch>=2.1
 
 # Mamba oficial (opcional — requer CUDA + Linux/WSL2):
-#   pip install causal-conv1d>=1.1.0
-#   pip install mamba-ssm
+# Instalação versionada e qualificação: docs/entregas/05_mamba_base/guia_notebook_nvidia.md
+# Não instalar a versão mais recente indiscriminadamente nem reutilizar wheels
+# de outra combinação Python/PyTorch/CUDA/ABI.
 # A CLI científica exige backend explícito; em CPU/Windows use backend_mamba=pytorch.
 # A interface reutilizável do classificador ainda aceita seleção automática.

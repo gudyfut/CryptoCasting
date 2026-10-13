@@ -17,6 +17,8 @@ Investigar se um classificador Mamba consegue prever a direção de retornos fut
 
 ## Protocolo de referência
 
+**Revisão aberta em 13/10/2026 — tipos de previsão:** o pesquisador solicitou estudar alternativas à agenda diária. O [estudo de tarefas](docs/estudo_tarefas_previsao.md) distingue a previsão de 24h e o próximo candle já implementados de candidatas ainda não adotadas: múltiplos horários/horizontes, abstenção, eventos, barreiras, magnitude e volatilidade. A interface distingue moeda, candle, prazo, alvo, contexto e políticas; inclui prazos candidatos intradiários, entre dias e de uma semana ou mais. A recomendação para discussão mantém o foco direcional e propõe uma grade pequena de horizontes; não há decisão de executar todas as opções. A revisão deve preceder a ampliação da grade. O piloto NVIDIA permanece um aceite técnico da tarefa diária. Regressão e volatilidade constam como possibilidades de outro escopo, sem alteração do contrato executável.
+
 As decisões operacionais, fórmulas, datas e critérios de avaliação estão em [docs/protocolo_experimental.md](docs/protocolo_experimental.md), que substitui as definições do protótipo anterior.
 
 Um resultado sem superioridade do Mamba também responde à pergunta científica. A conclusão deve acompanhar as evidências, inclusive limitações de amostragem e incerteza.

@@ -9,6 +9,12 @@
 
 ## 1. Objetivo e perguntas de pesquisa
 
+### Revisão de tarefas em aberto — 13/10/2026
+
+Por solicitação do pesquisador, estamos examinando **quais tarefas de previsão devem integrar a ampliação do estudo**. O [estudo fundamentado](estudo_tarefas_previsao.md) e a seção visual “O que prever” distinguem direção, retorno/preço, faixas probabilísticas, volatilidade e primeiro toque em barreiras. O explorador combina moeda, candle, prazo, alvo, contexto e agenda. O antigo catálogo A–H foi reorganizado para não confundir alvos com horizontes ou políticas de resposta. Direção diária de 24h e direção do próximo candle já pertencem a este protocolo; somente o piloto neural diário tem execução documentada.
+
+**Contrato executável permanece 1.6.** Este registro abre uma decisão, sem alterar retroativamente alvos, amostras, resultados ou liberar tarefas novas. A escolha deverá produzir uma versão operacional explícita, com baselines, purga, métricas e orçamento adequados. O piloto NVIDIA continua delimitado à Entrega 5; a grade maior aguarda essa definição e a qualificação técnica. Os totais de treinamento deste documento não incluem as novas candidatas, inclusive horizontes de 3/7/14 dias exibidos para discussão. O PT avalia associação direcional, não qualidade/correção do treinamento; alvos sobrepostos ou seleção de origens exigem rever a inferência antes do uso.
+
 Investigar se a arquitetura Mamba consegue prever a direção de retornos de criptomoedas utilizando apenas dados OHLCV e como seu desempenho varia entre moedas e granularidades de candle.
 
 A apresentação central dos resultados será uma **matriz com moedas nas linhas e granularidades nas colunas**. A comparação deve permitir responder:

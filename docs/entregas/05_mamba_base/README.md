@@ -22,8 +22,11 @@ A **[matriz de configurações e períodos](matriz_experimental.md)** reúne as 
 | `experimentos/planejamento.py` | Tabelas de janelas e folds usadas pela documentação e interface |
 | `run_treino.py` | CLI de planejamento e execução; piloto pelo agente expressamente autorizado pelo pesquisador |
 | `run_avaliacao.py` | Consolidação de execuções explicitamente selecionadas |
+| `run_verificacao.py` | Qualificação anterior ao treino e reprodução dos checkpoints sem treinar |
 
 ## Como executar o primeiro piloto
+
+**Para o notebook NVIDIA:** usar o [guia específico com configuração e critérios de aceite](guia_notebook_nvidia.md). A configuração `treino_piloto_nvidia.json` delimita uma célula oficial/CUDA. `run_verificacao.py` qualifica dados/forward/backward antes do treino e reproduz checkpoints depois. A configuração WSL de 128 treinos não é o primeiro piloto. Os comandos CPU abaixo documentam o backend já executado, cuja interpretação permanece em revisão.
 
 Na raiz do repositório, com o ambiente Python ativo e as dependências de `requirements.txt` instaladas:
 
@@ -113,6 +116,8 @@ Para atualizar as tabelas após uma revisão autorizada do protocolo: `python sc
 ## Critérios de aceite e pendências
 
 ### Verificações anteriores ao piloto em 13/10/2026
+
+**Revisão para o notebook NVIDIA, posterior ao piloto CPU:** 57 testes Python passaram, sem treinamento, incluindo forward/backward sintético, bloqueio de CUDA ausente, seleção/parada do checkpoint e recarga com detecção de probabilidades divergentes. A preparação CPU no dataset oficial confirmou 495/91/82 amostras e 525 candles no scaler. A preparação NVIDIA nesta máquina encerrou corretamente por CUDA indisponível. O [guia do notebook](guia_notebook_nvidia.md) separa esses testes locais do aceite oficial/CUDA que ainda será executado pelo pesquisador.
 
 - `python -m unittest discover -s tests`: 43 testes aprovados, incluindo 18 da infraestrutura experimental; nenhum treinamento. A suíte verifica contratos, causalidade do scaler/fallback, alinhamento temporal, PT, integridade, métricas adulteradas, snapshots e consolidação.
 - `npm run test`: oito testes do leitor de resultados, incluindo métricas inconsistentes, suporte de classes, backend incorreto e bloqueio de folds finais.

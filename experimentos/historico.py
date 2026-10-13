@@ -149,7 +149,7 @@ def registrar_execucao(origem: Path, destino: Path, *, titulo: str,
         registro = {
             "contrato": "historico-experimentos-v1", "id": origem.name, "titulo": titulo,
             "registrado_utc": datetime.now(timezone.utc).isoformat(),
-            "execucao_utc": resultado.get("inicio_utc"),
+            "execucao_utc": resultado.get("inicio_utc", estado.get("inicio_utc")),
             "nota_data": "Data ausente não é inferida de mtime nem da data de importação.",
             "situacao_revisao": situacao, "estado_execucao": resultado.get("estado", estado.get("estado", "historico_sem_estado_explicito")),
             "tipo_evidencia": resultado.get("tipo_fold", "não informado"),

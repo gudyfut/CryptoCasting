@@ -1,114 +1,96 @@
 "use client";
 
-import { useCallback, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { moedas, type RespostaResultados } from "@/lib/estudo";
-import MatrizExperimentos from "@/components/MatrizExperimentos";
-import { ResumoProjeto, MetodologiaProjeto, DadosProjeto, EntregasProjeto } from "@/components/SecoesProjeto";
+import type { TipoPrevisao } from "@/lib/tarefas-previsao";
+import TiposPrevisao from "@/components/TiposPrevisao";
+import CombinadorExperimentos, { combinacaoInicial, chaveCombinacao, type Combinacao } from "@/components/CombinadorExperimentos";
+import { LinhaTemporal } from "@/components/VisuaisPrevisao";
 
 const secoes = [
-  { id: "panorama", nome: "Resumo do projeto", icone: "grid" },
-  { id: "metodo", nome: "Metodologia", icone: "layers" },
-  { id: "matriz", nome: "Configurações experimentais", icone: "grid" },
-  { id: "dados", nome: "Dados e ativos", icone: "database" },
-  { id: "plano", nome: "Entregas e execução", icone: "route" },
-  { id: "resultados", nome: "Resultados e interpretação", icone: "chart" },
+  { id: "estudo", nome: "O estudo", titulo: "Como o estudo se organiza", descricao: "Investigar em quais condições o Mamba consegue antecipar movimentos de criptomoedas." },
+  { id: "previsoes", nome: "O que prever", titulo: "Escolher a pergunta da previsão", descricao: "Cinco formas de formular a tarefa, com exemplos e referências de pesquisa." },
+  { id: "combinar", nome: "Combinar testes", titulo: "Explorar uma combinação", descricao: "Escolha moeda, candle, prazo e resposta. Veja exatamente qual pergunta seria testada." },
+  { id: "avaliar", nome: "Como avaliar", titulo: "Como saber se funciona", descricao: "Comparações controladas e avaliação em períodos posteriores ao treinamento." },
+  { id: "andamento", nome: "Andamento e resultados", titulo: "O que já temos", descricao: "Estado documentado, resultados preliminares e próximos passos." },
 ] as const;
 type Secao = typeof secoes[number]["id"];
-const porcentagem = (n: number | null) => n === null ? "Indisponível" : `${(n * 100).toFixed(2).replace(".", ",")}%`;
-const pontos = (n: number | null) => n === null ? "—" : `${n > 0 ? "+" : ""}${n.toFixed(2).replace(".", ",")} p.p.`;
+const percentual = (n: number | null) => n === null ? "—" : `${(n * 100).toFixed(2).replace(".", ",")}%`;
+function Documento({ id, children }: { id: string; children: React.ReactNode }) { return <a href={`/api/estudo/documentos/${id}`} target="_blank" rel="noreferrer">{children} ↗</a>; }
 
-async function consultarResultados(sinal?: AbortSignal): Promise<RespostaResultados> {
-  const resposta = await fetch("/api/estudo/resultados", { cache: "no-store", signal: sinal });
-  if (!resposta.ok) throw new Error("A leitura dos resultados locais falhou. Tente atualizar.");
-  return resposta.json();
+function VisaoEstudo({ navegar }: { navegar: (s: Secao) => void }) {
+  return <>
+    <section className="decisao-atual"><div><span className="selo">Decisão em aberto</span><h2>Quais previsões vamos investigar?</h2><p>Moedas e modelos estão definidos. Estamos revendo os alvos e os prazos antes de ampliar os treinamentos.</p></div><button className="botao-principal" onClick={() => navegar("previsoes")}>Examinar as opções →</button></section>
+    <section className="bloco"><h2>Cada experimento é uma combinação</h2><div className="eixos-estudo">
+      <button onClick={() => navegar("combinar")}><span className="rotulo-eixo">01 · MERCADO</span><div className="simbolos-moedas"><i>₿</i><i>Ξ</i><i>B</i><i>X</i></div><h3>Qual moeda?</h3><p>BTC · ETH · BNB · XRP</p><span className="selo confirmado">Definido</span></button>
+      <button onClick={() => navegar("combinar")}><span className="rotulo-eixo">02 · ENTRADA</span><div className="desenho-candles" aria-hidden="true">{[18, 32, 23, 40, 28, 36].map((h, i) => <i key={i} style={{ height: h }} />)}</div><h3>Qual candle?</h3><p>15 min · 1h · 4h · 1 dia</p><span className="selo confirmado">Definido</span></button>
+      <button onClick={() => navegar("combinar")}><span className="rotulo-eixo">03 · FUTURO</span><div className="desenho-prazo" aria-hidden="true">horas <b>→</b> dias <b>→</b> semanas</div><h3>Daqui a quanto tempo?</h3><p>Prazo exato da previsão</p><span className="selo">Em revisão</span></button>
+      <button onClick={() => navegar("previsoes")}><span className="rotulo-eixo">04 · RESPOSTA</span><div className="desenho-resposta" aria-hidden="true">↗ <span>±%</span> ≋</div><h3>O que prever?</h3><p>Direção, magnitude, risco…</p><span className="selo">Em revisão</span></button>
+    </div></section>
+    <section className="bloco"><div className="titulo-com-acao"><h2>Um exemplo do protocolo atual</h2><span className="selo confirmado">Direção em 24h</span></div><p>Com os últimos <b>7 dias</b> de candles de <b>1 hora</b>, prever se o preço estará mais alto <b>24 horas depois</b>.</p><LinhaTemporal candle="1 hora" contexto={7} horizonte="24 horas" quantidade={168} /><div className="links-em-linha"><button className="botao-texto" onClick={() => navegar("combinar")}>Explorar combinações →</button><Documento id="protocolo">Contrato atual</Documento></div></section>
+    <section className="bloco"><h2>Quatro ativos, contextos diferentes</h2><div className="moedas-resumo">{moedas.map((m) => <div key={m.sigla}><span className="moeda-emblema" style={{ color: m.cor }}>{m.sigla}</span><h3>{m.nome}</h3><p>{m.papel}</p></div>)}</div><details><summary>Fonte dos dados e diferenças entre moedas</summary><p>Binance Spot · pares em USDT · 2021–2025 · abertura, máxima, mínima, fechamento e volume (OHLCV). Os candles maiores são agregados a partir de 15 minutos.</p>{moedas.map((m) => <p key={m.sigla}><b>{m.sigla}.</b> {m.descricao}</p>)}<p>Diferenças de uso motivam a escolha. A volatilidade é medida nos dados e pode mudar por período; a ordem dos ativos não é uma premissa do experimento.</p><Documento id="dados">Cobertura e volatilidade observadas</Documento></details></section>
+  </>;
 }
 
-function Icone({ nome, tamanho = 20 }: { nome: string; tamanho?: number }) {
-  const caminhos: Record<string, React.ReactNode> = {
-    grid: <><rect x="3" y="3" width="7" height="7" rx="1" /><rect x="14" y="3" width="7" height="7" rx="1" /><rect x="3" y="14" width="7" height="7" rx="1" /><rect x="14" y="14" width="7" height="7" rx="1" /></>,
-    layers: <path d="m12 3 9 5-9 5-9-5 9-5Zm-9 9 9 5 9-5M3 16l9 5 9-5" />,
-    database: <><ellipse cx="12" cy="5" rx="8" ry="3" /><path d="M4 5v14c0 4 16 4 16 0V5M4 12c0 4 16 4 16 0" /></>,
-    route: <><circle cx="5" cy="5" r="2" /><circle cx="19" cy="19" r="2" /><path d="M7 5h9a4 4 0 0 1 0 8H8a3 3 0 0 0 0 6h9" /></>,
-    chart: <path d="M3 3v18h18M7 16l4-6 4 3 6-9" />,
-    arrow: <path d="M5 12h14m-5-5 5 5-5 5" />,
-    file: <><path d="M14 2H5v20h14V7l-5-5Z" /><path d="M14 2v6h5M8 12h8M8 16h6" /></>,
-  };
-  return <svg aria-hidden="true" width={tamanho} height={tamanho} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round">{caminhos[nome] ?? caminhos.grid}</svg>;
+function Avaliacao() {
+  return <>
+    <section className="bloco"><h2>O Mamba é o objeto do estudo</h2><div className="modelos-estudo"><div className="modelo-principal"><span>INVESTIGADO</span><h3>Mamba</h3><p>Aprende sequências de OHLCV</p></div><div><span>COMPARAÇÃO NEURAL</span><h3>LSTM</h3><p>Mesmas entradas e regras de treino</p></div><div><span>REFERÊNCIA SIMPLES</span><h3>ARIMA(1,0,0)</h3><p>AR(1) dos log-retornos de fechamento</p></div></div><p className="miudo">Esses comparadores pertencem à tarefa direcional atual. Novos alvos exigem revisar a comparação.</p></section>
+    <section className="bloco"><h2>O tempo avança; o treino cresce</h2><div className="legenda-tempo"><span>Treino</span><span>Validação</span><span>Teste</span></div><div className="walk-visual" role="img" aria-label="Esquema de três folds: a janela de treino se expande, seguida por validação e teste em datas posteriores. Desenho sem escala.">{[0, 1, 2].map((i) => <div key={i}><span>Etapa {i + 1}</span><div className="barra-fold"><i style={{ width: `${35 + i * 16}%` }} /><b /><em /></div></div>)}</div><div className="grade-tripla notas-tempo"><p><b>Treino</b>Aprender os parâmetros.</p><p><b>Validação</b>Escolher a configuração.</p><p><b>Teste</b>Medir em dados posteriores.</p></div><details><summary>Datas e proteção contra vazamento</summary><p>D1–D4: desenvolvimento em 2021–2023. F1–F8: oito trimestres de 2024–2025, bloqueados até congelar as decisões. No final, três seeds para avaliar variação de treinamento.</p><p>Normalização ajustada só no treino. Rótulos que cruzam fronteiras temporais são purgados. Alinhamento por timestamps. Validação e teste mantêm a ordem. Prazos longos e previsões sobrepostas precisam de avaliação estatística específica.</p><Documento id="protocolo">Folds e regras completas</Documento></details></section>
+    <section className="bloco"><h2>Uma pergunta por comparação</h2><div className="comparacoes-curtas">{[
+      ["Mamba × AR(1)", "Supera uma previsão estatística simples?"],
+      ["Mamba × LSTM", "A arquitetura acrescenta valor com as mesmas entradas?"],
+      ["BA × 50%", "Discrimina as duas classes além da referência de 50%?"],
+      ["Teste PT", "Há associação entre a direção prevista e a realizada?"],
+    ].map(([nome, pergunta]) => <div key={nome}><b>{nome}</b><p>{pergunta}</p></div>)}</div><details><summary>Como interpretar os números</summary><p>Balanced accuracy (BA) é a média do acerto entre altas e não altas. A referência de 50% vale quando ambas as classes existem; accuracy comum pode ser maior só por privilegiar a classe mais frequente. O random walk sem deriva, convertido ao alvo atual, sempre prevê não alta e atinge BA de 50% nessa condição.</p><p>Reportar BA, F1, matriz de confusão e diferenças pareadas. Uma diferença positiva observada não demonstra, sozinha, superioridade estatística. PT não verifica se o treinamento foi implementado corretamente, não compara duas baselines e não comprova lucro.</p></details></section>
+    <section className="bloco"><h2>O que muda em cada teste</h2><div className="tabela-container"><table><thead><tr><th>Mudar</th><th>Manter igual</th><th>Verificar</th></tr></thead><tbody>
+      <tr><th>Candle</th><td>Moeda, alvo, prazo, contexto e origens</td><td>Mais detalhe do passado ajuda?</td></tr>
+      <tr><th>Contexto: 7 → 14 dias</th><td>Candle, prazo e datas avaliadas</td><td>Mais histórico ajuda?</td></tr>
+      <tr><th>Moeda</th><td>Mesma tarefa, método e períodos comuns</td><td>O desempenho se repete em outros ativos?</td></tr>
+      <tr><th>Prazo ou tipo de previsão</th><td>Regras pareadas dentro de cada tarefa</td><td>Em qual pergunta cada modelo funciona melhor?</td></tr>
+    </tbody></table></div><p className="miudo">Tarefas diferentes podem ter populações e métricas distintas. Seus scores não formam automaticamente um ranking único.</p><details><summary>Entradas e configurações das redes</summary><p>Após qualificar o Mamba e definir as tarefas: estudar OHLCV versus indicadores causais, normalização e larguras 32/64. O protocolo define a sequência de seleção; toda decisão usa o desenvolvimento.</p><Documento id="matriz">Grade técnica vigente</Documento></details></section>
+    <div className="faixa-informativa">A meta é medir previsibilidade. Validar uma estratégia de trading exigiria também entradas, saídas, custos e risco.</div>
+  </>;
 }
-function Etiqueta({ children, tom = "neutro" }: { children: React.ReactNode; tom?: string }) {
-  return <span className={`etiqueta ${tom}`}><span className="ponto" />{children}</span>;
-}
-function Documento({ id, children = "Ler documento" }: { id: string; children?: React.ReactNode }) {
-  return <a className="link-documento" href={`/api/estudo/documentos/${id}`} target="_blank" rel="noreferrer"><Icone nome="file" tamanho={15} />{children}<span aria-hidden="true">↗</span></a>;
-}
-function Titulo({ titulo, texto }: { titulo: string; texto: string }) {
-  return <div className="titulo-secao"><h2>{titulo}</h2><p>{texto}</p></div>;
-}
-export default function Dashboard() {
-  const [secao, setSecao] = useState<Secao>("panorama");
-  const [moeda, setMoeda] = useState("BTC");
-  const [comparacao, setComparacao] = useState("ar1");
-  const [locais, setLocais] = useState<RespostaResultados | null>(null);
+
+function Andamento() {
+  const [dados, setDados] = useState<RespostaResultados | null>(null);
   const [erro, setErro] = useState("");
-  const [carregando, setCarregando] = useState(true);
+  const [tentativa, setTentativa] = useState(0);
   useEffect(() => {
-    window.scrollTo({ top: 0, behavior: "instant" });
-  }, [secao]);
-  const carregar = useCallback(async () => {
-    setCarregando(true); setErro("");
-    try {
-      setLocais(await consultarResultados());
-    } catch (falha) { setErro(falha instanceof Error ? falha.message : "Falha de conexão."); }
-    finally { setCarregando(false); }
-  }, []);
-  useEffect(() => {
-    const controlador = new AbortController();
-    consultarResultados(controlador.signal).then((dados) => {
-      if (!controlador.signal.aborted) setLocais(dados);
-    }).catch((falha) => {
-      if (!controlador.signal.aborted) setErro(falha instanceof Error ? falha.message : "Falha de conexão.");
-    }).finally(() => {
-      if (!controlador.signal.aborted) setCarregando(false);
-    });
-    return () => controlador.abort();
-  }, []);
-  const resultados = (locais?.resultados ?? []).filter((r) => r.par === `${moeda}USDT`);
-  const descricoes: Record<Secao, string> = {
-    panorama: "Objetivo, escopo, situação atual e próximos passos do trabalho de conclusão de curso.",
-    metodo: "Modelos, regras de comparação, divisão temporal e critérios de avaliação.",
-    matriz: "Combinações de ativos, resoluções, janelas, entradas e períodos previstas no protocolo.",
-    dados: "Origem dos dados, propriedades dos ativos, cobertura e análise descritiva de volatilidade.",
-    plano: "Cronograma, evidências de conclusão e pendências para a execução dos experimentos.",
-    resultados: "Resultados documentados, execuções disponíveis e formato previsto para a análise final.",
-  };
+    const controle = new AbortController();
+    fetch("/api/estudo/resultados", { cache: "no-store", signal: controle.signal }).then((r) => { if (!r.ok) throw new Error("Não foi possível ler os resultados locais."); return r.json(); }).then((r: RespostaResultados) => { if (!controle.signal.aborted) setDados(r); }).catch((e: Error) => { if (!controle.signal.aborted) setErro(e.message); });
+    return () => controle.abort();
+  }, [tentativa]);
+  return <>
+    <section className="bloco"><h2>Andamento por etapa</h2><ol className="progresso-projeto">
+      <li className="feito"><span>✓</span><div><h3>Dados preparados</h3><p>Coleta e amostras executadas · 1.661 origens diárias comuns.</p></div><Documento id="dados">Entrega 3</Documento></li>
+      <li className="feito"><span>✓</span><div><h3>Baselines e piloto CPU</h3><p>AR(1), LSTM e Mamba executados no piloto documentado.</p></div><Documento id="infraestrutura">Entrega 4</Documento></li>
+      <li className="em-andamento"><span>3</span><div><h3>Definir tarefas e qualificar o Mamba</h3><p>Alvos e prazos em discussão. Validação NVIDIA pendente.</p></div><Documento id="nvidia">Entrega 5</Documento></li>
+      <li><span>4</span><div><h3>Ampliar os experimentos</h3><p>Comparar combinações, entradas e configurações no desenvolvimento.</p></div></li>
+      <li><span>5</span><div><h3>Congelar, avaliar e escrever</h3><p>Avaliação final de 2024–2025 ainda não executada.</p></div></li>
+    </ol></section>
+    <section className="bloco"><div className="titulo-com-acao"><h2>Piloto documentado</h2><span className="selo">Preliminar · Mamba em revisão</span></div><p className="miudo">BTC · candle 1d · contexto 7 dias · horizonte 24h · D1 · seed 42 · CPU</p><div className="placar-piloto">{[["Mamba", "41,46%"], ["LSTM", "50,00%"], ["AR(1)", "46,34%"]].map(([nome, ba]) => <div key={nome}><span>{nome}</span><strong>{ba}</strong><small>balanced accuracy</small></div>)}</div><p>Uma combinação avaliada: 495 exemplos de treino, 91 de validação e 82 de teste de desenvolvimento.</p><details><summary>Interpretação e evidências</summary><p>Neste piloto o Mamba ficou abaixo das duas baselines. A LSTM previu não alta em todos os exemplos. Uma moeda, um fold e uma seed não permitem concluir sobre toda a arquitetura.</p><p>Os checkpoints reproduzem as previsões. Há uma diferença de inicialização da implementação local em revisão; a causa da baixa BA não foi isolada.</p><div className="links-em-linha"><Documento id="piloto-neural">Relatório do piloto</Documento><Documento id="diagnostico">Diagnóstico</Documento></div><p>O AR(1) de BTC nos quatro folds D1–D4 teve BA média de 49,11% (média não ponderada). É outro conjunto de avaliações.</p><Documento id="piloto">AR(1) em D1–D4</Documento></details></section>
+    <section className="bloco"><h2>Como organizaremos os resultados</h2><div className="ficha-resultado"><div><span>IDENTIFICAÇÃO</span><b>Moeda + candle + prazo + alvo</b><small>Contexto · origens · entradas · fold · seed · backend</small></div><div><span>COMPARAÇÃO</span><b>Mamba | LSTM | AR(1)</b><small>Métricas adequadas à tarefa, tamanho da amostra e variação entre períodos.</small></div></div><p className="miudo">Cada combinação terá seu registro. Resultados finais ausentes permanecem ausentes; não há uma matriz final preenchida.</p></section>
+    <section className="bloco"><details><summary>Consultar execuções locais e documentação</summary>{erro ? <div role="alert"><p>{erro}</p><button className="botao-texto" onClick={() => { setErro(""); setDados(null); setTentativa((t) => t + 1); }}>Tentar novamente</button></div> : !dados ? <p role="status">Lendo arquivos locais…</p> : <>
+      {dados.resultados.length === 0 ? <p>Nenhuma execução pareada concluída encontrada neste ambiente.</p> : <div className="execucoes-locais">{dados.resultados.map((r) => <details key={r.pasta}><summary>{r.par} · {r.granularidade} · {r.fold} · {r.tarefa} · {r.id.slice(0, 8)}</summary><p>{r.contexto} dias de contexto · {r.features} · {r.normalizador} · seed {r.seed} · {r.amostras} exemplos avaliados</p><p>Backend: {r.backend} · {r.dispositivo} · larguras M{r.larguraMamba}/L{r.larguraLstm} · código {r.codigo.slice(0, 10)}</p><p>BA: Mamba {percentual(r.ba.mamba)} · LSTM {percentual(r.ba.lstm)} · AR(1) {percentual(r.ba.ar1)}</p><p className="miudo">{r.pasta}{r.id === "481b79d054b046fe6b70" ? " · Piloto em revisão" : " · Registro local, validade científica exige auditoria"}</p></details>)}</div>}
+      {dados.avisos.length > 0 && <div role="status"><h3>Pendências na leitura</h3><ul>{dados.avisos.map((a) => <li key={a}>{a}</li>)}</ul></div>}
+    </>}<div className="links-em-linha"><Documento id="tarefas">Pesquisa de tarefas</Documento><Documento id="protocolo">Protocolo</Documento><Documento id="mamba">Mamba base</Documento><Documento id="timeline">Histórico de execuções</Documento><Documento id="decisoes">Registro de decisões</Documento></div></details></section>
+  </>;
+}
 
-  return <div className="estudo-app">
-    <a href="#conteudo" className="pular">Pular para o conteúdo</a>
-    <aside className="barra-lateral">
-      <a className="marca" href="#conteudo" onClick={() => setSecao("panorama")}><div>CryptoCasting<small>Documentação do TCC</small></div></a>
-      <div className="rotulo-nav">SUMÁRIO</div>
-      <nav aria-label="Seções do projeto">{secoes.map((s, i) => <button key={s.id} className={s.id === secao ? "ativo" : ""} aria-current={s.id === secao ? "page" : undefined} onClick={() => setSecao(s.id)}><span className="nav-numero">{String(i + 1).padStart(2, "0")}</span><span>{s.nome}</span></button>)}</nav>
-      <div className="lateral-nota"><span className="pequeno">REFERÊNCIA METODOLÓGICA</span><p>Protocolo experimental 1.6</p><Documento id="protocolo">Consultar documento</Documento></div>
-      <div className="lateral-rodape">Estado documentado<small>13 de outubro de 2026</small><small>Resultados locais lidos separadamente.</small></div>
-    </aside>
-    <div className="area-principal">
-      <header className="barra-superior"><div>TCC · Ciência da Computação <span>/</span> CryptoCasting</div><span>Consulta do projeto</span></header>
-      <main id="conteudo" className="conteudo" tabIndex={-1}>
-        <div className="cabecalho-pagina"><div><h1>{secoes.find((s) => s.id === secao)?.nome}</h1><p>{descricoes[secao]}</p></div></div>
-        {secao === "panorama" && <ResumoProjeto />}
-        {secao === "metodo" && <MetodologiaProjeto />}
-        {secao === "matriz" && <MatrizExperimentos />}
-        {secao === "dados" && <DadosProjeto />}
-        {secao === "plano" && <EntregasProjeto />}
-        {secao === "resultados" && <>
-          <Titulo titulo="Estado das avaliações" texto="O piloto histórico e as execuções locais são desenvolvimento. A matriz final de 2024–2025 será preenchida após o congelamento metodológico." />
-          <section className="painel"><h2>Piloto neural CPU concluído</h2><p>Em 13/10/2026, o piloto BTCUSDT / 1d / D1 foi treinado e auditado: BA Mamba 41,46%, LSTM 50,00% e AR(1) 46,34%. A recarga dos checkpoints reproduziu exatamente as previsões. Este resultado valida o funcionamento do fluxo em CPU; o desempenho observado não favoreceu o Mamba.</p><p className="nota">Uma moeda, um fold e uma seed. O backend oficial/CUDA permanece pendente por indisponibilidade do ambiente. As métricas detalhadas desta execução aparecem na tabela de arquivos locais abaixo, quando seus artefatos estão presentes.</p><Documento id="piloto-neural">Relatório, matrizes de confusão e auditoria</Documento></section>
-          <section className="painel"><div className="painel-topo"><div><span className="sobretitulo">EVIDÊNCIA DOCUMENTADA · 2023</span><h3>Piloto AR(1) — Bitcoin</h3></div><Etiqueta tom="ambar">Desenvolvimento</Etiqueta></div><div className="piloto-conteudo"><div className="piloto-numero"><strong>49,11<span>%</span></strong><span>BA média dos quatro folds</span><small>Média não ponderada · BTCUSDT</small></div><div className="piloto-folds">{[['D1','46,34%'],['D2','50,11%'],['D3','47,06%'],['D4','52,94%']].map(([fold, ba]) => <div key={fold}><span>{fold}</span><b>{ba}</b></div>)}</div></div><p className="nota">Este AR(1) apresentou baixo recall de alta. O resultado não avalia toda a família ARIMA, outras moedas ou a capacidade do Mamba. O treino cresce entre folds, mas o trimestre avaliado também muda.</p><Documento id="piloto">Relatório e interpretação do piloto</Documento></section>
-          <section className="painel"><div className="painel-topo"><div><span className="sobretitulo">FORMATO DOS RESULTADOS FINAIS</span><h3>Matriz prevista para a avaliação final</h3></div><Etiqueta>F1–F8 · pendente</Etiqueta></div><div className="abas-comparacao" aria-label="Tipo de comparação">{[['ar1','Mamba × AR(1)'],['lstm','Mamba × LSTM'],['acaso','Referência de 50%'],['pt','Teste PT']].map(([id, texto]) => <button key={id} aria-pressed={comparacao === id} className={comparacao === id ? 'selecionada' : ''} onClick={() => setComparacao(id)}>{texto}</button>)}</div><p className="texto-suave">{comparacao === 'ar1' ? 'BA de cada modelo e diferença Mamba − AR(1), em pontos percentuais.' : comparacao === 'lstm' ? 'BA das duas redes nas mesmas entradas e diferença Mamba − LSTM, em pontos percentuais.' : comparacao === 'acaso' ? 'Distância da BA do Mamba a 50%, quando ambas as classes reais aparecem. Não é um p-valor.' : 'Estatística e p-valor por modelo e seed. PT avalia associação direcional; não testa a diferença de desempenho entre modelos.'}</p><div className="tabela-container"><table className="matriz-final"><caption>Modelo de apresentação · horizonte 24h · contexto 7 dias · sem resultados finais</caption><thead><tr><th>Moeda / candle</th>{['15 min','1 hora','4 horas','1 dia'].map((c) => <th key={c}>{c}</th>)}</tr></thead><tbody>{moedas.map((m) => <tr key={m.sigla}><th scope="row"><span className="ponto-moeda" style={{background:m.cor}} />{m.sigla}</th>{[0,1,2,3].map((i) => <td key={i}><span className="pendente-celula">— <small>A avaliar</small></span></td>)}</tr>)}</tbody></table></div><p className="nota">As matrizes serão repetidas para contexto de 14 dias e próximo candle. A célula diária de próximo candle reutiliza a principal. Uma diferença positiva observada não prova superioridade estatística.</p></section>
-          <section className="painel"><div className="painel-topo"><div><span className="sobretitulo">ARQUIVOS LOCAIS · NOVA INFRAESTRUTURA</span><h3>Execuções pareadas {locais && <span className="contador">{locais.resultados.length}</span>}</h3></div><button className="botao-contorno" onClick={() => void carregar()} disabled={carregando}>{carregando ? 'Lendo…' : 'Atualizar'}</button></div><p className="texto-suave">Resumos concluídos em <code>dados/experimentos/pareado_*</code>. Cada linha identifica uma execução; não se escolhe automaticamente a melhor tentativa.</p><div className="filtros"><label>Moeda<select value={moeda} onChange={(e) => setMoeda(e.target.value)}>{moedas.map((m) => <option key={m.sigla}>{m.sigla}</option>)}</select></label></div>{erro && <p role="alert" className="aviso-erro">{erro}</p>}{!erro && !carregando && resultados.length === 0 && <div className="estado-vazio"><Icone nome="chart" tamanho={34} /><h4>Nenhuma execução pareada de {moeda} encontrada.</h4><p>Depois de executar o piloto, atualize esta seção para ler o resultado real.</p><button className="link-botao" onClick={() => setSecao('plano')}>Ver como executar <Icone nome="arrow" tamanho={15} /></button></div>}{resultados.length > 0 && <div className="tabela-container"><table><caption>Resultados por fold de desenvolvimento · BA e diferenças em p.p.</caption><thead><tr><th>Execução</th><th>Configuração</th><th>BA Mamba</th><th>BA LSTM</th><th>BA AR(1)</th><th>Δ AR(1)</th><th>Δ LSTM</th><th>Δ 50%</th></tr></thead><tbody>{resultados.map((r) => <tr key={r.pasta}><th scope="row">{r.fold} · n={r.amostras}<small className="linha-meta">{r.pasta}</small></th><td>{r.granularidade} · {r.contexto}d · {r.tarefa}<small className="linha-meta">{r.features} · {r.normalizador} · seed {r.seed}<br />M{r.larguraMamba}/L{r.larguraLstm} · {r.backend} · {r.dispositivo}<br />código {r.codigo.slice(0,10)}</small></td><td>{porcentagem(r.ba.mamba)}</td><td>{porcentagem(r.ba.lstm)}</td><td>{porcentagem(r.ba.ar1)}</td><td>{pontos(r.diferencas.mamba_menos_ar1)}</td><td>{pontos(r.diferencas.mamba_menos_lstm)}</td><td>{pontos(r.diferencas.mamba_menos_50)}</td></tr>)}</tbody></table></div>}{locais && locais.avisos.length > 0 && <details className="avisos-locais"><summary>{locais.avisos.length} execução(ões) com pendências</summary><ul>{locais.avisos.map((a) => <li key={a}>{a}</li>)}</ul></details>}<p className="nota">Leitura de resumos locais; a auditoria completa dos hashes é feita por <code>run_avaliacao.py</code>. Resultados ausentes são exibidos como ausentes, nunca como zero.</p></section>
-        </>}
-        <footer className="rodape"><span>CryptoCasting <b>·</b> Murilo R. F. Monferrari</span><span>Protocolo 1.6 · Estado técnico de 13/10/2026</span></footer>
-      </main>
-    </div>
-  </div>;
+export default function Dashboard() {
+  const [secao, setSecao] = useState<Secao>("estudo");
+  const [combinacao, setCombinacao] = useState<Combinacao>(combinacaoInicial);
+  const [propostas, setPropostas] = useState<Combinacao[]>([]);
+  const indice = secoes.findIndex((s) => s.id === secao);
+  const atual = secoes[indice];
+  function navegar(destino: Secao) { setSecao(destino); }
+  useEffect(() => { window.scrollTo({ top: 0, behavior: "instant" }); document.getElementById("conteudo")?.focus({ preventScroll: true }); }, [secao]);
+  return <div className="caderno-app"><a href="#conteudo" className="pular">Pular para o conteúdo</a><aside className="caderno-menu"><a href="#conteudo" className="caderno-marca" onClick={() => navegar("estudo")}>CryptoCasting<small>Caderno do projeto · TCC</small></a><nav aria-label="Seções do projeto">{secoes.map((s, i) => <button key={s.id} aria-current={secao === s.id ? "page" : undefined} onClick={() => navegar(s.id)}><span>0{i + 1}</span>{s.nome}</button>)}</nav><div className="caderno-referencia"><span className="selo">Desenho em revisão</span><p>Contrato executável 1.6</p><Documento id="protocolo">Protocolo experimental</Documento></div></aside><div className="caderno-corpo"><header className="caderno-topo"><span>Mamba · previsão de criptomoedas</span><span>Revisão de conteúdo · 13 out 2026</span></header><main id="conteudo" tabIndex={-1}><header className="caderno-titulo"><span>0{indice + 1} / 05</span><h1>{atual.titulo}</h1><p>{atual.descricao}</p></header>
+    {secao === "estudo" && <VisaoEstudo navegar={navegar} />}
+    {secao === "previsoes" && <TiposPrevisao explorar={(tipo: TipoPrevisao) => { setCombinacao((c) => ({ ...c, tipo })); navegar("combinar"); }} />}
+    {secao === "combinar" && <CombinadorExperimentos valor={combinacao} alterar={setCombinacao} propostas={propostas} guardar={() => setPropostas((p) => p.some((c) => chaveCombinacao(c) === chaveCombinacao(combinacao)) ? p : [...p, { ...combinacao }])} remover={(chave) => setPropostas((p) => p.filter((c) => chaveCombinacao(c) !== chave))} />}
+    {secao === "avaliar" && <Avaliacao />}{secao === "andamento" && <Andamento />}
+    <nav className="caderno-paginacao" aria-label="Continuar a leitura">{indice > 0 ? <button onClick={() => navegar(secoes[indice - 1].id)}>← {secoes[indice - 1].nome}</button> : <span />}{indice < 4 ? <button onClick={() => navegar(secoes[indice + 1].id)}>{secoes[indice + 1].nome} →</button> : <button onClick={() => navegar("estudo")}>Voltar ao início ↑</button>}</nav><footer className="caderno-rodape">CryptoCasting · Murilo R. F. Monferrari · Documentação do estudo</footer>
+  </main></div></div>;
 }

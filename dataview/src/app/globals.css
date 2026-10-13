@@ -1,4 +1,5 @@
 @import "tailwindcss";
+@import "./caderno.css";
 
 :root {
   --fundo: #f5f6f8;
@@ -10,13 +11,13 @@
 
 * { box-sizing: border-box; }
 body { margin: 0; background: var(--fundo); color: var(--tinta); font-family: Arial, Helvetica, sans-serif; font-size: 15px; line-height: 1.65; }
-button, select { font: inherit; }
+button, select, input { font: inherit; }
 button, select, summary { cursor: pointer; }
 button { border: 0; }
 button:disabled { cursor: wait; opacity: .65; }
 a { color: var(--acento); text-decoration: none; }
 a:hover { text-decoration: underline; }
-button:focus-visible, a:focus-visible, select:focus-visible, summary:focus-visible, [tabindex="0"]:focus-visible { outline: 3px solid #4b80b7; outline-offset: 3px; }
+button:focus-visible, a:focus-visible, input:focus-visible, select:focus-visible, summary:focus-visible, [tabindex="0"]:focus-visible { outline: 3px solid #4b80b7; outline-offset: 3px; }
 h1, h2, h3, h4, p { margin: 0; }
 h1, h2, h3, h4 { font-weight: 600; }
 h1 { font-size: 28px; line-height: 1.3; letter-spacing: -.5px; }
@@ -135,6 +136,27 @@ select { width: 100%; background: white; border: 1px solid #bfcad7; border-radiu
 .avisos-locais { margin-top: 20px; font-size: 13px; color: #775318; }
 .avisos-locais ul { padding-left: 24px; }
 .rodape { padding: 18px 0 6px; border-top: 1px solid var(--borda); display: flex; flex-wrap: wrap; justify-content: space-between; gap: 10px; font-size: 11px; color: var(--suave); }
+.cabecalho-pagina .sobretitulo { display: block; margin-bottom: 8px; }
+.navegacao-leitura { display: flex; justify-content: space-between; align-items: center; gap: 20px; padding: 16px 0 28px; }
+.navegacao-leitura > span { font-size: 13px; color: var(--suave); max-width: 260px; }
+.navegacao-leitura button { display: grid; gap: 4px; max-width: 48%; border: 1px solid #bfcbd8; border-radius: 4px; padding: 12px 16px; color: var(--acento); background: white; text-align: left; font-size: 14px; }
+.navegacao-leitura button:hover { background: #eaf0f7; }
+.navegacao-leitura small { font-size: 11px; color: var(--suave); }
+.navegacao-leitura .proxima-secao { text-align: right; margin-left: auto; }
+.roteiro-testes { display: grid; gap: 18px; margin-top: 20px; }
+.teste-planejado { border: 1px solid var(--borda); border-radius: 4px; padding: 20px; }
+.teste-planejado h3 span { color: var(--acento); margin-right: 8px; font-size: 14px; }
+.pergunta-teste { margin-top: 8px; font-weight: 600; }
+.teste-planejado dl { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 22px; margin: 16px 0 0; font-size: 14px; }
+.teste-planejado dt { font-weight: 600; font-size: 12px; color: var(--suave); margin-bottom: 5px; }
+.teste-planejado dd { margin: 0; }
+.lista-explicativa { list-style: disc; padding-left: 22px; }
+.lista-explicativa li { margin: 12px 0; padding-left: 4px; }
+.links-fontes { display: flex; flex-wrap: wrap; gap: 12px 24px; margin-top: 16px; }
+.detalhes-tecnicos summary { font-weight: 600; list-style: disclosure-closed inside; }
+.detalhes-tecnicos[open] summary { list-style-type: disclosure-open; margin-bottom: 16px; }
+.detalhes-plano > summary { list-style: disclosure-closed inside; padding: 20px 24px; background: #eaf0f7; border: 1px solid #bfcbd8; border-radius: 4px; color: #204a74; font-weight: 600; margin-bottom: 22px; }
+.detalhes-plano[open] > summary { list-style-type: disclosure-open; }
 
 @media (min-width: 1650px) { .conteudo { padding-top: 40px; } }
 @media (max-width: 1100px) {
@@ -172,6 +194,9 @@ select { width: 100%; background: white; border: 1px solid #bfcad7; border-radiu
   .piloto-folds { grid-template-columns: repeat(2, 1fr); }
   .comando { flex-wrap: wrap; }
   .comando code { flex-basis: 100%; }
+  .teste-planejado { padding: 15px; }
+  .teste-planejado dl { grid-template-columns: 1fr; gap: 12px; }
+  .navegacao-leitura { gap: 12px; }
 }
 @media print {
   body { background: #fff; color: #000; font-size: 11pt; }
@@ -185,4 +210,53 @@ select { width: 100%; background: white; border: 1px solid #bfcad7; border-radiu
   table, .tabela-matriz, .tabela-etapas { min-width: 0; font-size: 9pt; }
   th, td, tbody th, tbody td, .tabela-etapas .celula-explicacao { min-width: 0; padding: 6px; }
   .etiqueta, .linha-meta, .nota { font-size: 9pt; }
+  .navegacao-leitura { display: none; }
+}
+
+/* Estudo de tarefas: figuras pedagógicas, separadas dos resultados científicos. */
+.revisao-tarefas { border-left: 4px solid #b57a28; }
+.revisao-tarefas > h2 { margin-top: 15px; }
+.conceitos-previsao { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 12px; }
+.conceitos-previsao > div { border: 1px solid var(--borda); padding: 14px; border-radius: 4px; }
+.conceitos-previsao p { margin: 8px 0; font-size: 14px; }
+.conceitos-previsao small { color: var(--suave); }
+.grafico-didatico { overflow-x: auto; margin: 20px 0 12px; border: 1px solid var(--borda); border-radius: 4px; background: #fcfdff; }
+.grafico-didatico svg { display: block; width: 100%; min-width: 720px; height: auto; }
+.controle-previsao { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; margin-top: 18px; font-size: 14px; }
+.controle-previsao input { width: 240px; max-width: 100%; accent-color: var(--acento); min-height: 28px; }
+.resumo-ilustracao { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; margin: 18px 0; }
+.resumo-ilustracao > div { padding: 14px; background: #f1f5f9; border-radius: 4px; }
+.resumo-ilustracao span, .resumo-ilustracao b { display: block; }
+.resumo-ilustracao span { font-size: 12px; color: var(--suave); }
+.resumo-ilustracao b { font-size: 14px; margin-top: 4px; }
+.catalogo-tarefas { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; margin: 20px 0; }
+.catalogo-tarefas button { border: 1px solid var(--borda); padding: 15px; background: #fff; color: var(--tinta); text-align: left; border-radius: 4px; }
+.catalogo-tarefas button:hover { background: #f4f7fa; }
+.catalogo-tarefas button.selecionada { border-color: var(--acento); background: #eaf1fa; box-shadow: inset 3px 0 var(--acento); }
+.catalogo-tarefas b, .catalogo-tarefas small { display: block; }
+.catalogo-tarefas small { color: var(--suave); margin-top: 5px; }
+.detalhe-tarefa { border: 1px solid var(--borda); border-radius: 4px; padding: 22px; }
+.detalhe-tarefa h3 { margin: 15px 0; }
+.detalhe-tarefa dl { margin: 0; }
+.detalhe-tarefa dl > div { display: grid; grid-template-columns: 150px minmax(0, 1fr); gap: 14px; padding: 11px 0; border-top: 1px solid #e6ebf0; }
+.detalhe-tarefa dt { font-weight: 600; font-size: 14px; }
+.detalhe-tarefa dd { margin: 0; font-size: 14px; }
+.exemplos-seletivos { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 10px; margin: 18px 0; }
+.exemplos-seletivos > div { border: 1px solid var(--borda); border-radius: 4px; padding: 12px; }
+.exemplos-seletivos .respondido { border-color: #7999ba; background: #eef4fb; }
+.exemplos-seletivos .abstido { background: #f5f6f7; color: #5b6674; }
+.exemplos-seletivos span, .exemplos-seletivos b, .exemplos-seletivos small { display: block; }
+.exemplos-seletivos b { font-size: 14px; margin: 7px 0; }
+.exemplos-seletivos small { font-size: 12px; }
+.fontes-tarefas { margin-top: 22px; border-top: 1px solid var(--borda); padding-top: 15px; }
+.fontes-tarefas summary { font-weight: 600; }
+.fontes-tarefas li { margin: 10px 0; }
+@media (max-width: 1150px) {
+  .conceitos-previsao { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  .exemplos-seletivos { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+@media (max-width: 650px) {
+  .conceitos-previsao, .catalogo-tarefas, .resumo-ilustracao { grid-template-columns: 1fr; }
+  .detalhe-tarefa { padding: 14px; }
+  .detalhe-tarefa dl > div { grid-template-columns: 1fr; gap: 3px; }
 }

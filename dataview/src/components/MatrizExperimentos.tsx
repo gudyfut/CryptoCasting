@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import plano from "@/lib/plano-experimental.json";
+import PlanoTestes from "@/components/PlanoTestes";
 
 const inteiro = (n: number) => n.toLocaleString("pt-BR");
 const dataUtc = (tempo: number) => new Intl.DateTimeFormat("pt-BR", {
@@ -26,8 +27,11 @@ export default function MatrizExperimentos() {
   const folds = plano.folds.filter((f) => f.tipo === fase);
 
   return <>
+    <PlanoTestes />
+    <details className="detalhes-plano">
+    <summary>Consultar matriz do protocolo 1.6, exemplos de timestamps e datas dos folds</summary>
     <section className="painel matriz-introducao">
-      <h2>Organização dos experimentos</h2>
+      <h2>Como ler a matriz de configurações</h2>
       <p>Treinaremos modelos separados para cada combinação. Mamba e LSTM recebem a mesma entrada; cada um aprende seus próprios pesos. Os controles abaixo explicam o plano e não iniciam treinamentos.</p>
       <div className="glossario-matriz">
         <div><b>Candle / resolução</b><p>Quanto tempo cada linha de OHLCV representa: 15 minutos, 1 hora, 4 horas ou 1 dia.</p></div>
@@ -79,7 +83,7 @@ export default function MatrizExperimentos() {
     </section>
 
     <section className="painel">
-      <div className="painel-topo"><h3>Etapas de desenvolvimento e critérios de escolha</h3><span className="etiqueta">Um fator por vez</span></div>
+      <div className="painel-topo"><h3>Valores usados em cada etapa</h3><span className="etiqueta">Resumo técnico de E0–E4</span></div>
       <p>Desenvolvimento com horizonte de 24h, quatro moedas, quatro resoluções, D1–D4 e seed 42. As etapas posteriores dependem das decisões documentadas nas anteriores.</p>
       <div className="tabela-container" role="region" aria-label="Sequência de experimentos" tabIndex={0}><table className="tabela-etapas"><caption>Até 64 treinamentos por rede em cada etapa; até 640 para as duas redes nas cinco etapas.</caption><thead><tr><th>Etapa</th><th>Janela</th><th>Entradas</th><th>Normalização</th><th>Larguras</th><th>Como decidir</th></tr></thead><tbody>{plano.etapas.map((e) => <tr key={e.id}><th scope="row">{e.id}<small className="linha-meta">{e.nome}</small></th><td>{e.contexto}</td><td>{e.features}</td><td>{e.normalizador}</td><td>{e.larguras}</td><td className="celula-explicacao">{e.decisao}</td></tr>)}</tbody></table></div>
       <p className="nota">BA global usa pesos iguais entre ativos, resoluções e folds; a cobertura deve estar completa antes da escolha. Features e scaler são escolhidos pelo Mamba e compartilhados. Cada rede escolhe sua própria largura: o resultado pode ser Mamba 32 / LSTM 64. Empates favorecem a opção inicial. O AR(1) permanece fixo.</p>
@@ -92,5 +96,6 @@ export default function MatrizExperimentos() {
       <p className="nota">A origem precisa estar dentro do bloco e o alvo terminar <b>estritamente antes</b> do seu fim. O modelo começa com pesos novos em cada fold. A validação escolhe a época; o bloco seguinte mede o desempenho. D1–D4 podem orientar decisões. F1–F8 só serão executados após congelar o protocolo e declarar exposições anteriores.</p>
       <a className="link-documento" href="/api/estudo/documentos/matriz" target="_blank" rel="noreferrer">Abrir tabela completa e orçamento ↗</a>
     </section>
+    </details>
   </>;
 }

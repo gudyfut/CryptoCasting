@@ -1,4 +1,7 @@
 #!/bin/bash
+# RECEITA HISTÓRICA ESPECÍFICA, não é o instalador do piloto NVIDIA atual.
+# Contém wheels de outro ambiente e alterações em site-packages.
+# Consulte docs/entregas/05_mamba_base/guia_notebook_nvidia.md antes de usar.
 set -ex
 export TMPDIR=$HOME/.tmp
 mkdir -p $TMPDIR

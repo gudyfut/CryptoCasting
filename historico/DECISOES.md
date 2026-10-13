@@ -14,4 +14,12 @@ Esta cronologia distingue datas documentadas, datas de execução desconhecidas 
 
 ## Regra de continuidade
 
+### 13/10/2026 — revisão aberta das tarefas de previsão
+
+O pesquisador solicitou comparar formas de previsão e seus momentos de emissão, com explicação visual na interface. Foi criado o [estudo de tarefas A–H](../docs/estudo_tarefas_previsao.md), com pesquisa, prioridades propostas, requisitos e limites. Próximo candle já integrava o contrato 1.6; a interface dava destaque insuficiente a ele. C–H são candidatas, não decisões de implementação. Não houve treinamento ou alteração do dataset/alvos nesta revisão. A ampliação da grade depende da definição das tarefas, e F1–F8 continuam bloqueados. O piloto NVIDIA permanece qualificação técnica de A. A versão executável continua 1.6 até nova decisão registrada.
+
 Registrar toda tentativa relevante, inclusive falhas, resultados ruins e conclusões provisórias. Qualquer revisão de implementação/inicialização deverá produzir nova execução identificada, mantendo este piloto. Mudanças metodológicas devem ser justificadas antes de novas avaliações; F1–F8 continuam bloqueados.
+
+### 13/10/2026 — separação dos eixos e simplificação integral da interface
+
+Após nova avaliação do pesquisador, o catálogo A–H foi reorganizado: ele misturava alvos, horizontes, origens e políticas de seleção. A interface agora tem cinco seções, cinco formulações ilustradas e um explorador de combinações com moeda/candle/prazo/alvo/contexto/agenda. Prazos de 3, 7 e 14 dias são candidatos para discutir usos entre dias e semanais; nomes de estilos de trading não substituem horizontes exatos. Fontes primárias e limites estão no [estudo atualizado](../docs/estudo_tarefas_previsao.md). A seleção de referências não constitui ranking bibliométrico. Nenhuma nova tarefa foi adotada ou treinada; o protocolo executável 1.6, os pilotos e o bloqueio final foram preservados. Rascunhos da interface são temporários e não alteram arquivos de treino.

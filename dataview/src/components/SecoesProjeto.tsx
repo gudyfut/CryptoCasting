@@ -17,11 +17,19 @@ function Quadro({ titulo, colunas, linhas }: { titulo: string; colunas: string[]
 
 export function ResumoProjeto() {
   return <>
+    <section className="painel revisao-tarefas"><span className="etiqueta ambar">Revisão metodológica em andamento</span><h2>Agora: definir quais previsões investigar</h2><p>Estamos comparando alternativas de alvo, horizonte e momento da previsão. A tarefa diária de 24h e a de próximo candle já integram o protocolo. Horizontes em vários horários, abstenção e outras tarefas estão em estudo.</p><p>Na seção <b>Tipos de previsão em estudo</b>, explore as opções e os exemplos visuais. A matriz atual documenta o protocolo 1.6; ampliar os experimentos depende desta definição. O piloto NVIDIA permanece um teste técnico delimitado.</p><Fonte id="tarefas">Pesquisa e recomendação para discussão com o orientador</Fonte></section>
     <section className="painel">
-      <h2>Objetivo da pesquisa</h2>
+      <h2>A pergunta central</h2>
       <p className="objetivo">Investigar a capacidade do Mamba de prever a direção de retornos de BTC, ETH, BNB e XRP a partir de preços e volume, comparando seu desempenho com ARIMA(1,0,0) e LSTM.</p>
       <p>A análise verifica como o desempenho varia com a resolução dos candles, a duração da janela de entrada e o horizonte de previsão. O resultado esperado é uma avaliação dessas condições; a superioridade do Mamba é uma hipótese a testar.</p>
+      <p className="nota">Mamba e LSTM são modelos que aprendem com sequências de observações. Neste trabalho, ARIMA(1,0,0), também chamado AR(1), é uma referência estatística simples baseada em retornos anteriores. “Baseline” significa modelo de comparação.</p>
       <Fonte id="protocolo">Referência: objetivo e escopo no protocolo experimental</Fonte>
+    </section>
+    <section className="painel">
+      <h2>O que esperamos entregar como resposta</h2>
+      <p>Uma comparação documentada que mostre <b>onde o Mamba ganha, empata ou perde</b> para as duas baselines, como isso muda entre moedas e períodos e se mais detalhe ou mais contexto ajudam.</p>
+      <p>O produto principal será uma matriz com <b>moedas nas linhas e resoluções dos candles nas colunas</b>, acompanhada dos resultados por período, erros de cada classe, custo computacional e limitações. Não há uma taxa de acerto garantida.</p>
+      <p className="nota">Roteiro de leitura: entender o problema → conhecer os dados → explorar tipos de previsão → entender a avaliação → acompanhar os testes → interpretar as evidências → consultar o andamento.</p>
     </section>
     <section className="painel">
       <h2>Delimitação do estudo</h2>
@@ -30,30 +38,43 @@ export function ResumoProjeto() {
         ["Dados", "OHLCV da Binance Spot · janeiro/2021 a dezembro/2025", "Abertura, máxima, mínima, fechamento e volume. Indicadores derivados são avaliados em uma etapa posterior."],
         ["Ativos", "BTCUSDT, ETHUSDT, BNBUSDT e XRPUSDT", "Mesma fonte e moeda de cotação. Cada ativo recebe modelos próprios."],
         ["Entrada", "Candles de 15m, 1h, 4h e 1d; contextos de 7 e 14 dias", "Mamba e LSTM recebem as mesmas sequências em cada comparação."],
-        ["Previsão principal", "Próximas 24 horas, diariamente às 00:00 UTC", "Todas as resoluções usam as mesmas origens elegíveis e o mesmo desfecho futuro."],
+        ["Referência controlada · A", "Próximas 24 horas, diariamente às 00:00 UTC", "Todas as resoluções usam as mesmas origens elegíveis e o mesmo desfecho futuro."],
+        ["Próximo candle · B", "A cada fechamento; horizonte depende da resolução", "Já implementada; treino neural desta tarefa ainda pendente. A célula diária coincide com A."],
+        ["Possíveis ampliações · C–H", "Em estudo, sem execução", "Horizontes em vários horários, abstenção, eventos, barreiras, magnitude e volatilidade. Exigem decisão e contratos próprios."],
         ["Avaliação", "Balanced accuracy (BA) em divisões temporais", "As comparações com AR(1), LSTM, 50% e o teste PT têm interpretações distintas."],
       ]} />
       <p className="nota">O estudo mede previsão direcional. Retorno financeiro de operações, notícias, sentimento e dados macroeconômicos estão fora deste escopo.</p>
     </section>
     <section className="painel">
       <h2>Situação atual e evidências disponíveis</h2>
+      <p className="nota">BA é a média das proporções de acerto de alta e não alta. D1–D4 identificam quatro rodadas em períodos diferentes. As próximas seções explicam a divisão e as métricas.</p>
       <Quadro titulo="Estado registrado do projeto · 13/10/2026" colunas={["Etapa", "Situação", "Evidência / pendência"]} linhas={[
         ["Entregas 1–3", <span className="etiqueta verde" key="dados">Documentadas / executadas</span>, <>Protocolo definido; coleta e pré-processamento executados. Dataset com 1.661 origens diárias comuns, antes da purga por fold. <Fonte id="dados">Relatório dos dados</Fonte></>],
         ["AR(1) · BTC", <span className="etiqueta verde" key="ar">Executado em D1–D4</span>, <>BA média de 49,11% nos quatro folds de desenvolvimento. <Fonte id="piloto">Resultados e limites da interpretação</Fonte></>],
-        ["Entregas 4–5", <span className="etiqueta verde" key="redes">Piloto CPU executado e auditado</span>, <>BTC/1d/D1: BA Mamba 41,46%, LSTM 50,00% e AR(1) 46,34%. Checkpoints recarregados reproduzem as previsões. Backend oficial/CUDA ainda pendente por ambiente. <Fonte id="piloto-neural">Relatório do piloto neural</Fonte></>],
+        ["Entregas 4–5", <span className="etiqueta ambar" key="redes">Piloto executado · Mamba em revisão</span>, <>BTC/1d/D1: BA Mamba 41,46%, LSTM 50,00% e AR(1) 46,34%. O fluxo foi auditado, mas uma diferença na inicialização do Mamba local exige verificação. A causa do resultado não está isolada. <Fonte id="diagnostico">Diagnóstico e limites do piloto</Fonte></>],
         ["Avaliação final", <span className="etiqueta" key="final">Planejada / bloqueada</span>, "Oito folds de 2024–2025. Exige congelamento das escolhas e declaração de exposições anteriores. Não há resultados finais."],
       ]} />
     </section>
     <section className="painel">
       <h2>Próxima etapa de trabalho</h2>
-      <p>O piloto em <b>BTCUSDT, candle diário, fold D1, contexto de 7 dias e seed 42</b> foi concluído em CPU. Antes de ampliar a grade, qualificar o backend oficial em ambiente CUDA compatível e medir o custo de janelas intradiárias. A máquina atual tem GPU AMD RX 6600 e não oferece o ambiente CUDA previsto.</p>
-      <p className="nota">A seção Entregas e execução reúne os comandos e as pendências. A seção Configurações experimentais apresenta as combinações previstas e as datas de treino, validação e avaliação.</p>
+      <p>Definir com o orientador quais tarefas entram na ampliação do estudo e qualificar o Mamba oficial no piloto NVIDIA preparado. O piloto CPU fica preservado em revisão. Depois, versionar as decisões e medir o custo intradiário antes de iniciar a grade; não executar todas as opções automaticamente.</p>
+      <p className="nota">As próximas seções explicam os termos e o procedimento. O andamento reúne as pendências, os registros históricos e os comandos para quem vai executar o estudo.</p>
     </section>
   </>;
 }
 
 export function MetodologiaProjeto() {
   return <>
+    <section className="painel">
+      <h2>Como uma comparação será feita</h2>
+      <p>Escolhemos uma moeda, uma resolução e uma janela de entrada. Treinamos Mamba e LSTM com os mesmos exemplos do passado e ajustamos o AR(1). Depois comparamos suas respostas com o que realmente aconteceu nas mesmas datas posteriores.</p>
+      <div className="glossario-matriz">
+        <div><b>Treino: aprender</b><p>Dados usados para ajustar os parâmetros do modelo.</p></div>
+        <div><b>Validação: escolher quando parar</b><p>Período posterior ao treino. Escolhe a época, isto é, qual passagem pelo conjunto de treino produziu a melhor BA de validação.</p></div>
+        <div><b>Teste de desenvolvimento: comparar opções</b><p>Bloco seguinte. Pode orientar escolhas em D1–D4; por isso, não é a avaliação final.</p></div>
+        <div><b>Fold: repetir em outro período</b><p>Uma rodada completa com seus próprios blocos. O histórico de treino cresce conforme avançamos no calendário.</p></div>
+      </div>
+    </section>
     <section className="painel">
       <h2>Modelos e função de cada comparação</h2>
       <Quadro titulo="Arquitetura investigada e baselines definidas" colunas={["Modelo", "Entrada e configuração", "Função no trabalho"]} linhas={[
@@ -76,18 +97,21 @@ export function MetodologiaProjeto() {
         ["Desenvolvimento · D1–D4", "Histórico de 2021–2023; avaliações trimestrais em 2023; seed 42.", "Escolher features, normalização e larguras. Os resultados servem a ajustes e não constituem a avaliação final."],
         ["Final · F1–F8", "Avaliações trimestrais em 2024–2025; seeds 17, 42 e 2026.", "Aplicar as escolhas congeladas e reportar todas as repetições. A execução permanece bloqueada até essa etapa."],
       ]} />
-      <p className="nota">As fronteiras exatas estão em Configurações experimentais. Contextos de 7 e 14 dias são reportados separadamente. Exposições a resultados antigos devem ser declaradas antes de considerar a reserva final intocada.</p>
+      <p className="nota">As fronteiras exatas estão na matriz expansível do Plano de testes. Contextos de 7 e 14 dias são reportados separadamente. Exposições a resultados antigos devem ser declaradas antes de considerar a reserva final intocada.</p>
     </section>
     <section className="painel">
       <h2>Métricas e interpretação</h2>
+      <p><b>Balanced accuracy (BA)</b> dá peso igual ao acerto das duas classes. Exemplo didático: acertar 80% das altas e 40% das não altas resulta em BA de 60%: (80% + 40%) ÷ 2. “Recall” é essa proporção de acertos dentro de uma classe.</p>
+      <p className="nota">Se um modelo tiver BA de 55% e a baseline 52%, a diferença é de 3 pontos percentuais (p.p.). Isso descreve o ganho observado; não demonstra sozinho que ele se repetirá em outros períodos.</p>
       <Quadro titulo="Comparações que devem permanecer separadas" colunas={["Medida", "O que responde", "Limite da interpretação"]} linhas={[
         ["BA · métrica principal", "Média do recall de alta e do recall de não alta. Dá o mesmo peso às duas classes.", "Deve acompanhar o suporte por classe e a matriz de confusão. É indefinida se uma classe real estiver ausente."],
         ["Mamba − AR(1)", "Quanto a BA do Mamba difere da baseline estatística, em pontos percentuais.", "Diferença positiva observada não demonstra, sozinha, superioridade estatística."],
         ["Mamba − LSTM", "Quanto a BA difere entre redes com as mesmas entradas e origens.", "É uma comparação de arquiteturas nas condições adotadas, não de todos os modelos possíveis."],
         ["Referência de 50%", "Quanto a BA se afasta da referência sem habilidade direcional, quando ambas as classes estão presentes.", "O random walk sem deriva prevê não alta e atinge essa BA. A referência não é o resultado do AR(1) nem um p-valor."],
-        ["Pesaran–Timmermann (PT)", "Verifica associação entre direção prevista e observada; reporta estatística e p-valor por modelo e seed.", "Não testa a diferença de desempenho entre Mamba e as baselines."],
+        ["Pesaran–Timmermann (PT)", "Verifica associação entre direção prevista e observada; reporta estatística e p-valor por modelo e seed.", "Não verifica correção ou qualidade do treinamento, superioridade sobre as baselines ou lucro. Seleção de origens e alvos sobrepostos exigem revisão da inferência."],
         ["Medidas complementares", "Accuracy, F1 macro, recall e quantidade de exemplos por classe.", "Ajudam a identificar desequilíbrio e erros. Nenhuma dessas medidas comprova rentabilidade de trading."],
       ]} />
+      <p className="nota">Para uma leitura favorável do PT de uma rede, o protocolo exige estatística positiva e p &lt; 0,05 nas três seeds finais. O AR(1) é determinístico e tem um único PT por célula. O p-valor não é a chance de o modelo estar certo. Dependência temporal e muitas comparações limitam a conclusão; um PT com estatística negativa não favorece o modelo.</p>
       <Fonte id="protocolo">Consultar fórmulas e critérios no protocolo</Fonte>
     </section>
   </>;
@@ -95,6 +119,18 @@ export function MetodologiaProjeto() {
 
 export function DadosProjeto() {
   return <>
+    <section className="painel">
+      <h2>Do candle à resposta do modelo</h2>
+      <p>Um <b>candle</b> resume um intervalo de mercado: preço de abertura, maior preço, menor preço, fechamento e volume negociado. Esses cinco valores formam o <b>OHLCV</b>. A resolução é a duração desse intervalo.</p>
+      <div className="glossario-matriz">
+        <div><b>Contexto: o passado observado</b><p>Os 7 ou 14 dias de candles que entram em uma previsão. O treino usa muitas dessas janelas, distribuídas pelo histórico.</p></div>
+        <div><b>Horizonte: o futuro a prever</b><p>24h na referência A; um candle na tarefa B. Candle de 1h pode servir para prever 1h ou 24h: resolução e horizonte são escolhas diferentes.</p></div>
+        <div><b>Origem: quando fazemos a previsão</b><p>00:00 UTC na referência A; cada fechamento na tarefa B. Nas candidatas, poderá haver outros horários ou eventos, sempre usando só o passado disponível.</p></div>
+        <div><b>Alvo: a resposta correta</b><p>“Alta” se o fechamento 24 horas depois for maior que o fechamento na origem; “não alta” se for menor ou igual. Não exigimos uma alta mínima de 5%.</p></div>
+      </div>
+      <p className="nota-destaque"><b>Exemplo didático:</b> um fechamento de 100 na origem e de 101 no alvo corresponde a alta; 99 ou 100 corresponde a não alta. O modelo recebe somente o passado. O fechamento futuro é usado depois para conferir sua resposta.</p>
+      <p>Para observar os mesmos 7 dias, usamos 672 candles de 15 minutos ou 7 candles diários. Na tarefa A, ambos geram <b>um exemplo e uma previsão diária</b>; os 672 candles não são 672 exemplos independentes. Na tarefa B, fazemos outro exemplo a cada fechamento elegível, com o horizonte de um candle.</p>
+    </section>
     <section className="painel">
       <h2>Fonte, período e unidade temporal</h2>
       <p>Arquivos históricos públicos de candles de 15 minutos da <b>Binance Spot</b>, de 01/01/2021 00:00 UTC até 01/01/2026 00:00 UTC, com limite final exclusivo. Os candles de 1h, 4h e 1d são agregados a partir dessa mesma base, usando somente blocos completos.</p>
@@ -143,35 +179,43 @@ export function EntregasProjeto() {
   return <>
     <section className="painel">
       <h2>Cronograma e situação das entregas</h2>
+      <p className="nota-destaque"><b>Decisão atual:</b> rever o conjunto de tarefas antes de ampliar os treinos. Os prazos e a matriz abaixo documentam o planejamento 1.6; as opções C–H ainda não entram no orçamento. <Fonte id="tarefas">Estudo dos tipos de previsão</Fonte></p>
       <p>Datas do cronograma acadêmico de 2026. O estado abaixo diferencia documentação, execução e implementação; uma data prevista não significa que a etapa foi concluída.</p>
       <Quadro titulo="Acompanhamento das 12 entregas" colunas={["Entrega", "Período previsto", "Estado registrado", "Conteúdo, evidência e pendências"]} linhas={entregas.map((e) => [
         <>{String(e.numero).padStart(2, "0")} · {e.titulo}</>, e.prazo,
-        <span key={e.numero} className={`etiqueta ${e.tipo === "concluida" ? "verde" : e.tipo === "implementada" ? "ambar" : ""}`}>{e.estado}</span>,
+        <span key={e.numero} className={`etiqueta ${e.estado.includes("revisão") ? "ambar" : e.tipo === "concluida" ? "verde" : e.tipo === "implementada" ? "ambar" : ""}`}>{e.estado}</span>,
         <>{e.detalhe}{"documento" in e && <Fonte id={e.documento}>Documento da entrega</Fonte>}</>,
       ])} />
     </section>
     <section className="painel">
       <h2>Pendências para ampliar os experimentos neurais</h2>
       <ol className="lista-metodo">
-        <li>Consultar o piloto CPU concluído: artefatos auditados, previsões reproduzidas após recarga e métricas documentadas. <Fonte id="piloto-neural">Evidências do piloto</Fonte></li>
-        <li>Qualificar Mamba oficial em um ambiente CUDA compatível. Medir tempo e memória em janelas intradiárias; o tempo do piloto diário não estima o custo da grade inteira.</li>
-        <li>Avaliar a viabilidade da grade e iniciar as etapas E0–E4, usando somente os folds de desenvolvimento.</li>
+        <li>Decidir quais tarefas entram na ampliação do estudo e registrar alvo, origens, horizontes, comparadores e orçamento. <Fonte id="tarefas">Opções e requisitos em discussão</Fonte></li>
+        <li>Verificar a recorrência e a inicialização do Mamba local contra a referência oficial. O piloto está em revisão; sua baixa BA ainda não tem causa isolada. <Fonte id="diagnostico">Diagnóstico e verificações pendentes</Fonte></li>
+        <li>Documentar qualquer correção e seu teste controlado com nova identidade. Preservar o piloto original. Manter a implementação escolhida consistente na grade e qualificar o ambiente se for usar Mamba oficial/CUDA.</li>
+        <li>Medir tempo e memória em janelas intradiárias. Só então avaliar a viabilidade e iniciar E0–E4 no desenvolvimento. O tempo do piloto diário não estima o custo da grade inteira.</li>
         <li>Documentar as escolhas e as exposições anteriores antes de liberar a avaliação final.</li>
       </ol>
-      <p className="nota">Orçamento planejado: até 640 treinamentos neurais no desenvolvimento e 2.112 na avaliação final (1.056 por rede). O piloto deve fornecer a estimativa de custo antes da execução da grade completa.</p>
+      <p className="nota">Orçamento do protocolo 1.6, sem as candidatas C–H: até 640 treinamentos neurais no desenvolvimento e 2.112 na avaliação final (1.056 por rede). São quantidades de ajustes, não execuções já feitas. O piloto diário ainda não fornece uma estimativa suficiente de custo.</p>
       <Fonte id="matriz">Matriz completa e orçamento de treinamentos</Fonte>
     </section>
     <section className="painel">
-      <h2>Comandos para futuras execuções</h2>
-      <p>O piloto CPU já está concluído; não é necessário repeti-lo para consultar os resultados. Os comandos abaixo ficam como referência, na raiz do projeto e com as dependências instaladas. Mudanças de código ou protocolo podem produzir uma nova identidade de execução.</p>
+      <h2>Histórico para a escrita do TCC</h2>
+      <p>Cada tentativa recebe uma ficha com dados, amostras, configuração, previsões, métricas e situação de revisão. Resultados ruins, falhas e hipóteses ainda não confirmadas permanecem registrados. Uma revisão posterior acrescenta evidência sem apagar a anterior.</p>
+      <p>Já estão arquivados os quatro pilotos AR(1) e o piloto pareado. As datas de execução dos registros AR(1) antigos não foram preservadas; o ano avaliado não deve ser confundido com a data em que o teste foi executado.</p>
+      <div className="links-fontes"><Fonte id="historico">Estrutura e regras do histórico</Fonte><Fonte id="timeline">Linha do tempo</Fonte><Fonte id="decisoes">Decisões registradas</Fonte></div>
+    </section>
+    <details className="painel detalhes-tecnicos">
+      <summary>Referência técnica: comandos para futuras execuções</summary>
+      <p>O piloto CPU já foi executado e está em revisão. O piloto NVIDIA preparado qualifica o backend oficial na tarefa A; seu guia explica instalação, treino e auditoria. Os comandos abaixo são referências de planejamento e verificação sem treino. Mudanças de código ou protocolo podem produzir uma nova identidade de execução.</p>
       <span className="passo-comando">1. Conferir a configuração do piloto, sem treinar</span>
-      <Comando texto="python run_treino.py --configuracao configuracoes/treino_piloto_cpu.json --planejar" />
-      <span className="passo-comando">2. Executar o piloto BTC / 1d / D1 em CPU</span>
-      <Comando texto="python run_treino.py --configuracao configuracoes/treino_piloto_cpu.json" />
-      <span className="passo-comando">3. Após validar o piloto, planejar o desenvolvimento em WSL/CUDA</span>
+      <Comando texto="python run_treino.py --configuracao configuracoes/treino_piloto_nvidia.json --planejar" />
+      <span className="passo-comando">2. Verificar ambiente e dados do piloto NVIDIA, sem treinar</span>
+      <Comando texto="python run_verificacao.py --configuracao configuracoes/treino_piloto_nvidia.json" />
+      <span className="passo-comando">3. Após qualificação e definição das tarefas, conferir a grade 1.6 em WSL/CUDA</span>
       <Comando texto="python run_treino.py --configuracao configuracoes/treino_desenvolvimento_wsl.json --planejar" />
       <p className="nota">O piloto em CPU usa a implementação PyTorch de fallback. A grade WSL solicita Mamba oficial explicitamente e exige um ambiente CUDA ainda indisponível nesta máquina. Identificar o backend ao interpretar cada resultado; implementações diferentes não devem ser misturadas silenciosamente.</p>
-      <Fonte id="mamba">Instruções completas e artefatos esperados</Fonte>
-    </section>
+      <Fonte id="nvidia">Guia do piloto NVIDIA e critérios de aceite</Fonte>
+    </details>
   </>;
 }

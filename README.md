@@ -12,6 +12,8 @@ A entrega da Atividade 1 está em **[docs/protocolo_experimental.md](docs/protoc
 
 ## Estrutura atual
 
+**Decisão atual: tarefas e prazos em revisão.** Consulte a [pesquisa de tarefas de previsão](docs/estudo_tarefas_previsao.md). A interface apresenta cinco formulações visuais e um explorador de combinações: moeda, candle, prazo, alvo, contexto e agenda. Direção diária de 24h e próximo candle integram o protocolo; novas tarefas e prazos continuam candidatos para decisão com o orientador.
+
 | Caminho | Finalidade |
 |---|---|
 | `docs/protocolo_experimental.md` | Desenho experimental e critérios para implementar as próximas atividades |
@@ -33,7 +35,8 @@ A entrega da Atividade 1 está em **[docs/protocolo_experimental.md](docs/protoc
 | `historico/` | Linha do tempo versionada, fichas de cada tentativa, evidências e revisões científicas |
 | `run_registro.py` | Exportação leve de uma execução, inclusive incompleta, sem treinamento |
 | `run_treino.py`, `run_avaliacao.py` | Execução e consolidação dos experimentos de desenvolvimento |
-| `configuracoes/treino_*.json` | Piloto CPU e grade inicial WSL/CUDA |
+| `configuracoes/treino_*.json` | Pilotos delimitados CPU/NVIDIA e grade inicial WSL/CUDA |
+| `run_verificacao.py` | Qualificação sem treinamento e reprodução dos checkpoints |
 | `dataview/` | Caderno visual Next.js: objetivo, método, moedas, decisões, progresso e resultados locais |
 | `dados/README.md` | Contrato dos dados e artefatos científicos |
 
@@ -52,7 +55,7 @@ npm install
 npm run dev
 ```
 
-Acesse **http://localhost:3000**. A interface possui seis seções: Resumo do projeto, Metodologia, Configurações experimentais, Dados e ativos, Entregas e execução e Resultados e interpretação. Apresenta evidências documentadas com fontes, permite explorar contexto/horizonte e lê novos resultados em `dados/experimentos/pareado_*`. Ausência de resultados é mostrada explicitamente. O registro editorial está em `dataview/src/lib/estudo.ts`; a matriz de planejamento é gerada dos contratos Python por `scripts/atualizar_plano_experimental.py`; as rotas de leitura atuais estão em `/api/estudo/`. As antigas rotas genéricas de CSV permanecem preservadas e não alimentam este painel.
+Acesse **http://localhost:3000**. A leitura tem cinco seções: O estudo, O que prever, Combinar testes, Como avaliar e Andamento e resultados. Os gráficos são didáticos e identificados; a lista de combinações é um rascunho temporário, sem alterar configurações ou executar treinos. As fontes e detalhes técnicos ficam expansíveis. Resultados documentados e leituras locais de `dados/experimentos/pareado_*` preservam as limitações do piloto. As rotas genéricas antigas de CSV não alimentam o painel. Consulte [dataview/README.md](dataview/README.md) para a estrutura.
 
 Verificações: `npm run test`, `npm run lint`, `npm run build` e `python -m unittest discover -s tests`. A suíte usa dados sintéticos e verificações rápidas, sem treinamento. A autorização excepcional do piloto neural está registrada em `AGENTS.md`; ela não autoriza automaticamente a grade completa ou a avaliação final.
 
@@ -77,9 +80,15 @@ python run_treino.py --configuracao configuracoes/treino_piloto_cpu.json
 
 O piloto usa BTCUSDT, candles diários, contexto de 7 dias, horizonte de 24h, fold D1 e seed 42. O AR(1) é comparado com LSTM e Mamba PyTorch/CPU nas mesmas datas. Não exige nova coleta ou pré-processamento. O treinador mediu 1,05 s para LSTM e 4,59 s para Mamba nessa pequena célula diária; isso não estima o custo da grade intradiária. Consulte a Entrega 5 antes de iniciar a grade maior em WSL/CUDA.
 
+## Piloto da Entrega 5 no notebook NVIDIA
+
+Seguir o **[guia do notebook NVIDIA](docs/entregas/05_mamba_base/guia_notebook_nvidia.md)**, incluindo cópia do dataset, ambiente Linux/WSL2, instalação versionada, verificação antes do treino e recarga dos checkpoints. A configuração `treino_piloto_nvidia.json` contém somente BTCUSDT/1d/D1, contexto de 7 dias, OHLCV, seed 42, Mamba oficial/CUDA e LSTM. São dois treinos neurais. A grade WSL maior tem 128 e fica para depois da qualificação.
+
+O roteiro está preparado; **a execução NVIDIA ainda não foi validada nesta máquina**. A verificação sintética não ajusta pesos e não produz resultado científico de mercado. O piloto CPU anterior continua preservado e em revisão.
+
 ## Matriz dos experimentos
 
-A [tabela completa](docs/entregas/05_mamba_base/matriz_experimental.md) detalha moedas, resolução dos candles, janelas de 7/14 dias, horizontes, entradas, sequência de comparações e períodos D1–D4/F1–F8. Na interface, abra **Configurações experimentais**. Os controles explicam o planejamento; não iniciam treinamento.
+A [tabela completa](docs/entregas/05_mamba_base/matriz_experimental.md) detalha moedas, resolução dos candles, janelas de 7/14 dias, horizontes, entradas, sequência de comparações e períodos D1–D4/F1–F8. Na interface, abra **Plano de testes** e expanda a matriz de configurações. Os controles explicam o planejamento; não iniciam treinamento.
 
 ## Histórico e revisão dos resultados
 
