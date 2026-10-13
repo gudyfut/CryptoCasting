@@ -1,0 +1,121 @@
+{
+  "contrato": "resumo-desenvolvimento-v1",
+  "tipo": "desenvolvimento",
+  "grupos": [
+    {
+      "id": "a9c3173e98ab17d60b9a",
+      "configuracao": {
+        "par": "BTCUSDT",
+        "granularidade": "1d",
+        "contexto_dias": 7,
+        "tarefa": "principal",
+        "seed": 42,
+        "features": "ohlcv",
+        "normalizador": "standard",
+        "largura_mamba": 32,
+        "largura_lstm": 32,
+        "backend_mamba": "pytorch",
+        "dispositivo": "cpu",
+        "microbatch": 32,
+        "sha256_manifesto_dataset": "5c813f1d9f29fe78724c63d718d5c9dae062028984f5d5a2f50acb1967bb00ed",
+        "sha256_codigo": "3648c9fe6c07cda69e37096462805bc6e073d03b9f4d6ed032050c7c46b1f2da",
+        "sha256_protocolo": "b71cba42dce397b244353cf0504a0301bff24f84fe6ba5a506bc2e38be7adb62",
+        "versoes": {
+          "python": "3.13.14",
+          "torch": "2.9.1",
+          "numpy": "2.2.6",
+          "pandas": "2.3.3",
+          "scikit-learn": "1.7.2",
+          "pyarrow": "23.0.1",
+          "mamba-ssm": null,
+          "causal-conv1d": null
+        },
+        "hardware": {
+          "cpu": "AMD64 Family 23 Model 96 Stepping 1, AuthenticAMD",
+          "gpu": null,
+          "sistema": "Windows-11-10.0.26200-SP0",
+          "cuda_pytorch": null,
+          "cudnn": null
+        }
+      },
+      "folds": [
+        "D1"
+      ],
+      "folds_ausentes": [
+        "D2",
+        "D3",
+        "D4"
+      ],
+      "cobertura_completa_desenvolvimento": false,
+      "modelos": {
+        "ar1": {
+          "ba_media_folds": 0.4634146341463415,
+          "desvio_padrao_folds": null,
+          "pt_concatenado_exploratorio": {
+            "amostras": 82,
+            "estatistica": -1.7754907933951236,
+            "p_valor_bicaudal": 0.07581688437983668,
+            "disponivel": true,
+            "interpretacao": "Exploratório: pressupõe independência serial; não compara modelos.",
+            "motivo": null,
+            "acerto_observado": 0.4634146341463415,
+            "acerto_esperado_marginais": 0.5,
+            "variancia": 0.00042459801094289285
+          },
+          "quantidade_folds_ba_disponivel": 1
+        },
+        "lstm": {
+          "ba_media_folds": 0.5,
+          "desvio_padrao_folds": null,
+          "pt_concatenado_exploratorio": {
+            "amostras": 82,
+            "estatistica": null,
+            "p_valor_bicaudal": null,
+            "disponivel": false,
+            "interpretacao": "Exploratório: pressupõe independência serial; não compara modelos.",
+            "motivo": "Amostra insuficiente ou série real/prevista constante."
+          },
+          "quantidade_folds_ba_disponivel": 1
+        },
+        "mamba": {
+          "ba_media_folds": 0.41463414634146345,
+          "desvio_padrao_folds": null,
+          "pt_concatenado_exploratorio": {
+            "amostras": 82,
+            "estatistica": -2.2821483179868367,
+            "p_valor_bicaudal": 0.02248058515958844,
+            "disponivel": true,
+            "interpretacao": "Exploratório: pressupõe independência serial; não compara modelos.",
+            "motivo": null,
+            "acerto_observado": 0.4146341463414634,
+            "acerto_esperado_marginais": 0.5,
+            "variancia": 0.0013992027280438793
+          },
+          "quantidade_folds_ba_disponivel": 1
+        }
+      },
+      "diferencas_pp": {
+        "mamba_menos_ar1": {
+          "media": -4.878048780487804,
+          "folds_positivos": 0,
+          "folds_disponiveis": 1
+        },
+        "mamba_menos_lstm": {
+          "media": -8.536585365853655,
+          "folds_positivos": 0,
+          "folds_disponiveis": 1
+        },
+        "mamba_menos_50": {
+          "media": -8.536585365853655,
+          "folds_positivos": 0,
+          "folds_disponiveis": 1
+        }
+      }
+    }
+  ],
+  "execucoes": [
+    "C:\\Users\\T-GAMER\\Documents\\GitHub\\CryptoCasting\\dados\\experimentos\\pareado_481b79d054b046fe6b70"
+  ],
+  "auditoria": "Hashes e contratos conferidos; métricas recalculadas a partir das previsões de validação e teste.",
+  "interpretacao": "Médias não ponderadas entre folds; cobertura parcial explícita. PT não testa diferenças entre modelos. Nenhuma avaliação final."
+}

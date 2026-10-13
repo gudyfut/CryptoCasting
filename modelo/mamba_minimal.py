@@ -9,8 +9,9 @@ class Mamba(nn.Module):
     """Bloco Mamba (SSM seletivo) em PyTorch puro.
 
     Fallback sem kernels CUDA — funciona em CPU e em qualquer SO (incl. Windows).
-    Tem a MESMA assinatura da classe oficial mamba_ssm.Mamba para que sejam
-    intercambiáveis. Baseado na reimplementação de referência do paper.
+    Aceita os argumentos usados neste projeto (d_model, d_state, d_conv, expand).
+    Não implementa toda a API oficial nem promete equivalência de inicialização
+    ou numérica com mamba_ssm.Mamba; registrar o backend em cada execução.
 
     Paper: Gu & Dao, "Mamba: Linear-Time Sequence Modeling with Selective
     State Spaces" (arXiv:2312.00752).

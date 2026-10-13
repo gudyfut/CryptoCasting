@@ -2,7 +2,9 @@
 
 **Revisão de 27/09/2026, antes dos experimentos do novo protocolo.** A regra SMA 5/20 proposta na revisão anterior foi retirada como baseline principal após uma pesquisa mais específica sobre *benchmarks de previsão*. Nenhum resultado do projeto foi usado nessa decisão.
 
-**Atualização de 28/09/2026:** este documento preserva a justificativa histórica da escolha do AR(1). Depois de observar o piloto de BTCUSDT em D1–D4, o pesquisador acrescentou **LSTM** como segunda baseline no [protocolo 1.6](protocolo_experimental.md). AR(1) permanece fixo; a LSTM ainda não foi implementada ou avaliada.
+**Atualização de 28/09/2026:** este documento preserva a justificativa histórica da escolha do AR(1). Depois de observar o piloto de BTCUSDT em D1–D4, o pesquisador acrescentou **LSTM** como segunda baseline no [protocolo 1.6](protocolo_experimental.md). AR(1) permanece fixo; naquela data, a LSTM ainda não havia sido implementada ou avaliada.
+
+**Estado técnico em 13/10/2026:** LSTM e treinamento pareado com Mamba estão implementados nas [Entregas 4 e 5](entregas/05_mamba_base/README.md), com verificações rápidas sem treinamento. O piloto neural depende da execução pelo pesquisador. A justificativa histórica e os resultados AR(1) abaixo permanecem preservados.
 
 ## Resposta da pesquisa
 

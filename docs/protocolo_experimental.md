@@ -5,7 +5,7 @@
 **Versão:** 1.6 — 28/09/2026; inclusão da LSTM como segunda baseline após o piloto AR(1) de desenvolvimento
 
 **Entrega:** definição do desenho experimental, conforme o [cronograma](Cronograma_Atividades_TCC2_Murilo_Monferrari.pdf).  
-**Estado:** decisões metodológicas estabelecidas para orientar o desenvolvimento. A coleta e o pré-processamento oficiais foram executados pelo pesquisador; o dataset `daeec76f001afb50a8fe` e suas medidas de cobertura/volatilidade estão descritos na [Entrega 3](entregas/03_pre_processamento_amostras/resultados_execucao_oficial.md). O AR(1) de BTCUSDT foi executado nos quatro folds de desenvolvimento e está na [Entrega 4](entregas/04_infraestrutura_baselines/resultados_desenvolvimento_BTC_D1_D4.md). A LSTM ainda não foi implementada ou executada; avaliações finais e resultados do Mamba também não existem.
+**Estado técnico em 13/10/2026:** a coleta e o pré-processamento foram executados pelo pesquisador; o dataset `daeec76f001afb50a8fe` está documentado na [Entrega 3](entregas/03_pre_processamento_amostras/resultados_execucao_oficial.md). AR(1) BTCUSDT/D1–D4 tem resultados na [Entrega 4](entregas/04_infraestrutura_baselines/resultados_desenvolvimento_BTC_D1_D4.md). LSTM e infraestrutura de treino pareado foram validadas no [piloto BTCUSDT/1d/D1 em CPU](entregas/05_mamba_base/resultados_piloto_BTC_D1_cpu.md), executado pelo agente com autorização explícita: BA Mamba 41,46%, LSTM 50,00% e AR(1) 46,34%. A qualificação do backend oficial/CUDA permanece pendente por indisponibilidade do ambiente compatível nesta máquina. A [Entrega 5](entregas/05_mamba_base/README.md) documenta comandos e artefatos. Não existem resultados finais de 2024–2025; as decisões metodológicas da versão 1.6 permanecem vigentes. Esta atualização de estado é posterior ao piloto; a pasta da execução preserva a cópia exata do protocolo que foi utilizado.
 
 ## 1. Objetivo e perguntas de pesquisa
 
@@ -325,7 +325,7 @@ Se o orçamento medido não couber no cronograma, a ordem de prioridade será: m
 | Robustez | Oito folds finais, três seeds para cada rede, matriz principal e análise complementar conforme orçamento registrado |
 | Análise e escrita | Consolidar scores, incerteza, cobertura, limitações e responder às perguntas de pesquisa |
 
-O novo `run_pipeline.py` foi construído na Entrega 3; `run_treino.py` será construído na etapa de treinamento. O usuário realizará a coleta, o processamento integral e as execuções de treinamento.
+O novo `run_pipeline.py` foi construído na Entrega 3. `run_treino.py`, implementado nas Entregas 4/5, executa as duas redes no desenvolvimento e mantém F1–F8 bloqueados; `run_avaliacao.py` consolida execuções por configuração e fold. O usuário realiza coleta, processamento integral e treinamentos.
 
 ## 13. Reprodutibilidade e critérios de conclusão da Atividade 1
 

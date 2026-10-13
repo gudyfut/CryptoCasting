@@ -9,8 +9,8 @@ O [protocolo experimental](../protocolo_experimental.md) continua sendo a refer�
 | 1 | 08/09–13/09 | Definição do protocolo experimental | Desenho experimental fechado | [`01_protocolo_experimental`](01_protocolo_experimental/) |
 | 2 | 14/09–20/09 | Construção do pipeline de coleta | Dataset bruto reproduzível e script de coleta funcional | [`02_pipeline_coleta`](02_pipeline_coleta/) |
 | 3 | 21/09–27/09 | Pré-processamento e construção das amostras | Executado; dataset auditado e cobertura/volatilidade documentadas | [`03_pre_processamento_amostras`](03_pre_processamento_amostras/README.md) |
-| 4 | 28/09–04/10 | Infraestrutura experimental e baselines | AR(1) BTCUSDT/D1–D4 executado; LSTM e infraestrutura compartilhada pendentes | [`04_infraestrutura_baselines`](04_infraestrutura_baselines/README.md) |
-| 5 | 05/10–11/10 | Implementação do Mamba base | Treinamento e previsão de ponta a ponta, com comparação pareada à LSTM | [`05_mamba_base`](05_mamba_base/) |
+| 4 | 28/09–04/10 | Infraestrutura experimental e baselines | AR(1) BTCUSDT/D1–D4 executado; piloto pareado CPU D1 concluído e auditado | [`04_infraestrutura_baselines`](04_infraestrutura_baselines/README.md) |
+| 5 | 05/10–11/10 | Implementação do Mamba base | Mamba PyTorch/CPU treinado e auditado no piloto D1; backend oficial/CUDA pendente por ambiente | [`05_mamba_base`](05_mamba_base/README.md) |
 | 6 | 12/10–18/10 | Experimento 1: resolução e contexto | Tabelas e gráficos de granularidade e janela histórica | [`06_experimento_1_resolucao_contexto`](06_experimento_1_resolucao_contexto/) |
 | 7 | 19/10–25/10 | Experimento 2: representação das entradas | Análise de OHLCV e indicadores causais | [`07_experimento_2_representacao_entradas`](07_experimento_2_representacao_entradas/) |
 | 8 | 26/10–01/11 | Experimento 3: normalização e Mamba | Configuração principal selecionada e documentada | [`08_experimento_3_normalizacao_mamba`](08_experimento_3_normalizacao_mamba/) |

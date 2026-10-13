@@ -1,10 +1,30 @@
 # Entrega 4 — infraestrutura e duas baselines
 
-**Estado em 28/09/2026:** ARIMA(1,0,0) implementado e executado pelo pesquisador em BTCUSDT/D1–D4. O [piloto D1](resultados_piloto_BTC_D1.md) e os [resultados dos quatro folds](resultados_desenvolvimento_BTC_D1_D4.md) estão documentados. A LSTM foi incluída no protocolo 1.6, mas **não está implementada nem foi executada**. Ainda faltam a LSTM e a infraestrutura experimental completa da Entrega 4.
+**Estado em 13/10/2026:** ARIMA(1,0,0) implementado e executado pelo pesquisador em BTCUSDT/D1–D4. O [piloto D1](resultados_piloto_BTC_D1.md) e os [resultados dos quatro folds](resultados_desenvolvimento_BTC_D1_D4.md) estão documentados. LSTM, infraestrutura de desenvolvimento, métricas, PT e pareamento foram validados no [piloto neural BTCUSDT/1d/D1 em CPU](../05_mamba_base/resultados_piloto_BTC_D1_cpu.md), executado com autorização do usuário. **Aceite funcional da infraestrutura no piloto CPU concluído; a grade completa pertence às entregas posteriores.**
 
-## Trabalho restante desta entrega
+## Infraestrutura implementada
 
-Implementar LSTM unidirecional com as duas larguras previstas no [protocolo](../../protocolo_experimental.md), alimentada pelos mesmos tensores e scaler de treino do Mamba. Preparar o treino walk-forward compartilhado, as seeds, os checkpoints e a saída de previsões com timestamps; verificar pareamento de amostras e a ausência de vazamento antes de qualquer comparação. Os ajustes completos ficam a cargo do pesquisador. O AR(1) existente mantém sua configuração e os resultados de BTC já observados.
+A LSTM unidirecional possui as duas larguras do [protocolo](../../protocolo_experimental.md) e usa os mesmos tensores e scaler do Mamba. A execução compartilhada inclui folds D1–D4, seed 42, checkpoints, probabilidades, comparação por timestamps, BA/accuracy/F1/matriz de confusão e teste PT. Os [comandos, artefatos e critérios de aceite estão na Entrega 5](../05_mamba_base/README.md). O AR(1) mantém sua especificação e os resultados de BTC já observados.
+
+O PT usa a formulação clássica de Pesaran–Timmermann (1992), com correção de amostra finita na variância e p-valor normal bicaudal; séries constantes ou variância não positiva retornam indisponibilidade. A autocorrelação de lag 1 de rótulos e previsões é registrada por fold (entre observações consecutivas disponíveis). Nesta etapa os p-valores são **exploratórios**, não provas confirmatórias de previsibilidade. PT não testa a diferença Mamba menos AR(1) ou LSTM. [Fonte original](https://doi.org/10.1080/07350015.1992.10509922).
+
+As quatro leituras são campos distintos: ganho sobre AR(1), ganho sobre LSTM, distância da BA a 50% e PT por modelo. A consolidação pode juntar D1–D4 para descrever o desenvolvimento, com pesos iguais por fold e cobertura explícita. As execuções finais de 2024–2025 continuam bloqueadas até o congelamento.
+
+Na revisão técnica, a consolidação passou a recalcular as métricas dos parquets e rejeitar resumos inconsistentes, arquivos obrigatórios ausentes, datas fora dos folds e metadados divergentes. Código e protocolo efetivos são preservados junto das novas execuções. A [matriz de configurações](../05_mamba_base/matriz_experimental.md) detalha como moedas, janelas e períodos se combinam.
+
+## Execução e aceite do piloto
+
+O agente executou AR(1), LSTM e Mamba em BTCUSDT/1d/D1 após autorização explícita. A auditoria recalculou métricas e a recarga independente dos checkpoints reproduziu exatamente as probabilidades salvas. Os testes sintéticos continuam separados dessa execução real.
+
+### Condição para concluir a Entrega 4
+
+| Parte | Situação | Evidência necessária para fechar |
+|---|---|---|
+| AR(1) e piloto BTC/D1–D4 | Implementado e executado | Relatórios históricos já vinculados nesta entrega |
+| LSTM, separação temporal e normalização | Validados no piloto CPU | Piloto `481b79d054b046fe6b70` concluído: histórico, checkpoint e previsões da LSTM preservados |
+| Métricas, PT, pareamento e registros | Validados no piloto CPU | Auditoria por `run_avaliacao.py` aprovada; interpretação registrada no relatório |
+
+O mesmo piloto BTCUSDT/1d/D1 produz as evidências de LSTM da Entrega 4 e de Mamba da Entrega 5. Os comandos e a lista de conferência estão na [Entrega 5](../05_mamba_base/README.md#aceite-das-entregas-4-e-5). Fechar esta entrega não exige executar toda a grade das Entregas 6–9 nem obter uma BA acima de 50%; exige funcionamento verificável e resultados corretamente registrados.
 
 ## O que o teste mede
 
@@ -50,7 +70,7 @@ python run_baseline_desenvolvimento.py --dataset dados/processados/daeec76f001af
 | D3 | 670 | 91 amostras, 2023-T3 |
 | D4 | 745 | 91 amostras, 2023-T4 |
 
-O comando salva cada execução individual e um JSON `dados/experimentos/resumo_ar1_desenvolvimento_{id_dataset}_BTCUSDT.json`, com BA média **não ponderada** dos quatro folds. Também é possível usar `--todos-pares` para incluir ETH, BNB e XRP nos mesmos folds de desenvolvimento. Agentes não executam esses ajustes; o pesquisador roda o script.
+O comando salva cada execução individual e um JSON `dados/experimentos/resumo_ar1_desenvolvimento_{id_dataset}_BTCUSDT.json`, com BA média **não ponderada** dos quatro folds. Também é possível usar `--todos-pares` para incluir ETH, BNB e XRP nos mesmos folds de desenvolvimento. A execução histórica D1–D4 foi feita pelo pesquisador; a exceção posterior autorizou o piloto pareado D1 pelo agente.
 
 O pesquisador executou o comando para BTCUSDT. A [análise dos resultados D1–D4](resultados_desenvolvimento_BTC_D1_D4.md) registra BA média de **49,11%**, matrizes de confusão e o baixo recall de alta.
 
@@ -62,10 +82,10 @@ A célula complementar diária reutiliza a baseline principal. O caminho de saí
 
 - BA da baseline responde quanto esse AR(1) acerta em ambas as classes na população e no período escolhidos. Accuracy e F1 macro complementam a leitura; consultar também suportes e a matriz de confusão.
 - O patamar de **50% de BA** é uma referência matemática quando as duas classes reais existem. Não é o score observado do AR(1).
-- Ainda não há diferenças `BA_Mamba − BA_AR1` ou `BA_Mamba − BA_LSTM`, porque Mamba e LSTM não foram avaliados.
+- No piloto pareado D1/CPU, `BA_Mamba − BA_AR1 = −4,88 p.p.` e `BA_Mamba − BA_LSTM = −8,54 p.p.`. As demais células neurais ainda não foram avaliadas.
 - O teste Pesaran–Timmermann (PT) é outra análise, aplicada conforme o protocolo depois das previsões dos modelos; não testa a diferença Mamba versus qualquer baseline.
 - Um resultado do D1 pode orientar desenvolvimento, mas não demonstra desempenho em 2024–2025, rentabilidade ou superioridade do Mamba.
 
 ## Verificações feitas pelo agente
 
-O código da baseline foi compilado e testado com dados sintéticos para conferir: alinhamento de retornos consecutivos, rejeição de lacuna/par divergente, decisão de classe com coeficientes congelados, métricas e bloqueio dos folds finais. **Nenhum parâmetro foi ajustado aos dados oficiais pelo agente.** O pesquisador executou o comando acima; os resultados estão no relatório vinculado.
+O código da baseline foi compilado e testado com dados sintéticos para conferir: alinhamento de retornos consecutivos, rejeição de lacuna/par divergente, decisão de classe com coeficientes congelados, métricas e bloqueio dos folds finais. O pesquisador executou o AR(1) histórico D1–D4. Posteriormente, em 13/10/2026, autorizou o piloto pareado D1 pelo agente; essa execução e sua auditoria estão documentadas separadamente na Entrega 5.

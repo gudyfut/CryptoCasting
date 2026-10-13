@@ -2,9 +2,9 @@ import type { Metadata } from "next";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "CryptoCasting — Dataview",
+  title: "CryptoCasting — Documentação do TCC",
   description:
-    "Visualização de resultados do sistema de previsão direcional de criptomoedas com arquitetura Mamba",
+    "Objetivos, método, dados, entregas e resultados do estudo de previsão direcional de criptomoedas com Mamba, ARIMA e LSTM.",
 };
 
 export default function RootLayout({
@@ -14,7 +14,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="pt-BR">
-      <body className="bg-gray-950 text-gray-100 antialiased">{children}</body>
+      <body>{children}</body>
     </html>
   );
 }

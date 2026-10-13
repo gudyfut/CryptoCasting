@@ -8,13 +8,20 @@ import torch.nn as nn
 logger = logging.getLogger(__name__)
 
 
-def _importar_mamba():
+def _importar_mamba(backend: str = "automatico"):
     """Usa Mamba oficial quando disponível e mantém o fallback PyTorch."""
+    if backend not in ("automatico", "oficial", "pytorch"):
+        raise ValueError(f"Backend Mamba desconhecido: {backend}")
+    if backend == "pytorch":
+        from modelo.mamba_minimal import Mamba
+        return Mamba
     try:
         from mamba_ssm import Mamba
 
         logger.info("Usando mamba-ssm oficial")
     except ImportError:
+        if backend == "oficial":
+            raise ImportError("Backend oficial solicitado, mas mamba_ssm não está disponível.")
         from modelo.mamba_minimal import Mamba
 
         logger.info("Usando fallback Mamba em PyTorch puro")
@@ -24,8 +31,8 @@ def _importar_mamba():
 class MambaClassificador(nn.Module):
     """Recebe (batch, sequência, entradas) e devolve logits de duas classes.
 
-    Dimensões e regularização devem ser fornecidas pelo futuro experimento.
-    Este componente preservado ainda precisa de validação antes do estudo.
+    Dimensões e regularização são fornecidas pelo experimento.
+    A validação empírica do treinamento cabe ao piloto do pesquisador.
     """
 
     def __init__(
@@ -39,13 +46,17 @@ class MambaClassificador(nn.Module):
         expand: int,
         dropout: float,
         pooling: str = "last",
+        backend: str = "automatico",
     ):
         super().__init__()
         if min(d_input, d_model, n_layers, d_state, d_conv, expand) <= 0:
             raise ValueError("As dimensões do modelo devem ser positivas.")
         if pooling not in ("last", "mean"):
             raise ValueError(f"Pooling desconhecido: {pooling}")
-        Mamba = _importar_mamba()
+        if not 0 <= dropout < 1:
+            raise ValueError("Dropout deve estar entre zero e um (exclusivo).")
+        Mamba = _importar_mamba(backend)
+        self.backend = "pytorch" if Mamba.__module__ == "modelo.mamba_minimal" else "oficial"
         self.input_proj = nn.Linear(d_input, d_model)
         self.layers = nn.ModuleList([
             Mamba(d_model=d_model, d_state=d_state, d_conv=d_conv, expand=expand)

@@ -1,0 +1,199 @@
+{
+  "protocolo": "1.6",
+  "pares": [
+    "BTCUSDT",
+    "ETHUSDT",
+    "BNBUSDT",
+    "XRPUSDT"
+  ],
+  "resolucoes": [
+    {
+      "granularidade": "15m",
+      "minutos": 15,
+      "janela_7d": 672,
+      "janela_14d": 1344,
+      "horizonte_24h_candles": 96
+    },
+    {
+      "granularidade": "1h",
+      "minutos": 60,
+      "janela_7d": 168,
+      "janela_14d": 336,
+      "horizonte_24h_candles": 24
+    },
+    {
+      "granularidade": "4h",
+      "minutos": 240,
+      "janela_7d": 42,
+      "janela_14d": 84,
+      "horizonte_24h_candles": 6
+    },
+    {
+      "granularidade": "1d",
+      "minutos": 1440,
+      "janela_7d": 7,
+      "janela_14d": 14,
+      "horizonte_24h_candles": 1
+    }
+  ],
+  "features": {
+    "ohlcv": 5,
+    "ampliadas": 8
+  },
+  "contextos_dias": [
+    7,
+    14
+  ],
+  "seeds_desenvolvimento": [
+    42
+  ],
+  "seeds_finais": [
+    17,
+    42,
+    2026
+  ],
+  "folds": [
+    {
+      "nome": "D1",
+      "tipo": "desenvolvimento",
+      "fim_treino": "2022-10-01",
+      "fim_validacao": "2023-01-01",
+      "fim_teste": "2023-04-01"
+    },
+    {
+      "nome": "D2",
+      "tipo": "desenvolvimento",
+      "fim_treino": "2023-01-01",
+      "fim_validacao": "2023-04-01",
+      "fim_teste": "2023-07-01"
+    },
+    {
+      "nome": "D3",
+      "tipo": "desenvolvimento",
+      "fim_treino": "2023-04-01",
+      "fim_validacao": "2023-07-01",
+      "fim_teste": "2023-10-01"
+    },
+    {
+      "nome": "D4",
+      "tipo": "desenvolvimento",
+      "fim_treino": "2023-07-01",
+      "fim_validacao": "2023-10-01",
+      "fim_teste": "2024-01-01"
+    },
+    {
+      "nome": "F1",
+      "tipo": "final",
+      "fim_treino": "2023-10-01",
+      "fim_validacao": "2024-01-01",
+      "fim_teste": "2024-04-01"
+    },
+    {
+      "nome": "F2",
+      "tipo": "final",
+      "fim_treino": "2024-01-01",
+      "fim_validacao": "2024-04-01",
+      "fim_teste": "2024-07-01"
+    },
+    {
+      "nome": "F3",
+      "tipo": "final",
+      "fim_treino": "2024-04-01",
+      "fim_validacao": "2024-07-01",
+      "fim_teste": "2024-10-01"
+    },
+    {
+      "nome": "F4",
+      "tipo": "final",
+      "fim_treino": "2024-07-01",
+      "fim_validacao": "2024-10-01",
+      "fim_teste": "2025-01-01"
+    },
+    {
+      "nome": "F5",
+      "tipo": "final",
+      "fim_treino": "2024-10-01",
+      "fim_validacao": "2025-01-01",
+      "fim_teste": "2025-04-01"
+    },
+    {
+      "nome": "F6",
+      "tipo": "final",
+      "fim_treino": "2025-01-01",
+      "fim_validacao": "2025-04-01",
+      "fim_teste": "2025-07-01"
+    },
+    {
+      "nome": "F7",
+      "tipo": "final",
+      "fim_treino": "2025-04-01",
+      "fim_validacao": "2025-07-01",
+      "fim_teste": "2025-10-01"
+    },
+    {
+      "nome": "F8",
+      "tipo": "final",
+      "fim_treino": "2025-07-01",
+      "fim_validacao": "2025-10-01",
+      "fim_teste": "2026-01-01"
+    }
+  ],
+  "etapas": [
+    {
+      "id": "E0",
+      "nome": "Referência inicial",
+      "contexto": "7 dias",
+      "features": "OHLCV (5)",
+      "normalizador": "StandardScaler",
+      "larguras": "Mamba 32 / LSTM 32",
+      "decisao": "Registrar as 16 células nos quatro folds D1–D4."
+    },
+    {
+      "id": "E1",
+      "nome": "Sensibilidade ao contexto",
+      "contexto": "14 dias",
+      "features": "OHLCV (5)",
+      "normalizador": "StandardScaler",
+      "larguras": "Mamba 32 / LSTM 32",
+      "decisao": "Comparar com E0. Publicar 7 e 14 dias separadamente; os próximos passos usam 7 dias."
+    },
+    {
+      "id": "E2",
+      "nome": "Representação",
+      "contexto": "7 dias",
+      "features": "OHLCV + indicadores (8)",
+      "normalizador": "StandardScaler",
+      "larguras": "Mamba 32 / LSTM 32",
+      "decisao": "Comparar com E0. Escolher features pela BA global de desenvolvimento do Mamba e aplicá-las a ambas as redes."
+    },
+    {
+      "id": "E3",
+      "nome": "Normalização",
+      "contexto": "7 dias",
+      "features": "Escolhidas em E2",
+      "normalizador": "MinMaxScaler",
+      "larguras": "Mamba 32 / LSTM 32",
+      "decisao": "Comparar com StandardScaler nas mesmas features. Escolher pela BA global do Mamba; aplicar a ambas."
+    },
+    {
+      "id": "E4",
+      "nome": "Largura das redes",
+      "contexto": "7 dias",
+      "features": "Escolhidas em E2",
+      "normalizador": "Escolhido em E3",
+      "larguras": "Mamba 64 / LSTM 64",
+      "decisao": "Comparar cada rede à sua largura 32. Escolher cada largura pela própria BA global; empate favorece 32."
+    }
+  ],
+  "orcamento": {
+    "celulas_por_contexto": 16,
+    "treinos_por_rede_por_etapa": 64,
+    "treinos_neurais_por_etapa": 128,
+    "maximo_desenvolvimento": 640,
+    "principal_7d_final": 768,
+    "principal_14d_final": 768,
+    "complementar_adicional_final": 576,
+    "total_final": 2112
+  },
+  "final_liberado": false
+}

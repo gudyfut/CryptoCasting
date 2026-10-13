@@ -1,0 +1,114 @@
+{
+  "tipo": "piloto_descritivo_baseline_ar1",
+  "id_piloto": "a9603a6ab3a0e0c5549f",
+  "id_dataset": "daeec76f001afb50a8fe",
+  "sha256_manifesto_dataset": "5c813f1d9f29fe78724c63d718d5c9dae062028984f5d5a2f50acb1967bb00ed",
+  "sha256_codigo_baseline": "20f06420161a434aff6b95bc2901e29bcd856254d5651d354af8ed9c1b526a58",
+  "metodo": "ARIMA(1,0,0) nos log-retornos, AR(1) com intercepto estimado por MQO condicional",
+  "serie": "retornos de fechamentos diários UTC",
+  "par": "BTCUSDT",
+  "fold": "D4",
+  "tipo_fold": "desenvolvimento",
+  "tarefa": "principal",
+  "granularidade": "1d",
+  "contexto_dias_amostras": 7,
+  "fronteiras_utc": {
+    "fim_treino": "2023-07-01",
+    "fim_validacao": "2023-10-01",
+    "fim_teste": "2024-01-01"
+  },
+  "coeficientes": {
+    "alfa": -0.0009080510034790651,
+    "phi": -0.03320172137727698
+  },
+  "pares_retorno_ajuste": 745,
+  "metricas": {
+    "validacao": {
+      "amostras": 91,
+      "suporte_nao_alta": 51,
+      "suporte_alta": 40,
+      "empates": 0,
+      "predicoes_nao_alta": 87,
+      "predicoes_alta": 4,
+      "balanced_accuracy": 0.48308823529411765,
+      "accuracy": 0.5384615384615384,
+      "f1_macro": 0.37055335968379444,
+      "por_classe": {
+        "0": {
+          "precision": 0.5517241379310345,
+          "recall": 0.9411764705882353,
+          "f1": 0.6956521739130435,
+          "suporte": 51
+        },
+        "1": {
+          "precision": 0.25,
+          "recall": 0.025,
+          "f1": 0.045454545454545456,
+          "suporte": 40
+        }
+      },
+      "matriz_confusao_linhas_reais_colunas_previstas": [
+        [
+          48,
+          3
+        ],
+        [
+          39,
+          1
+        ]
+      ]
+    },
+    "teste": {
+      "amostras": 91,
+      "suporte_nao_alta": 40,
+      "suporte_alta": 51,
+      "empates": 0,
+      "predicoes_nao_alta": 88,
+      "predicoes_alta": 3,
+      "balanced_accuracy": 0.5294117647058824,
+      "accuracy": 0.4725274725274725,
+      "f1_macro": 0.3680555555555556,
+      "por_classe": {
+        "0": {
+          "precision": 0.45454545454545453,
+          "recall": 1.0,
+          "f1": 0.625,
+          "suporte": 40
+        },
+        "1": {
+          "precision": 1.0,
+          "recall": 0.058823529411764705,
+          "f1": 0.1111111111111111,
+          "suporte": 51
+        }
+      },
+      "matriz_confusao_linhas_reais_colunas_previstas": [
+        [
+          40,
+          0
+        ],
+        [
+          48,
+          3
+        ]
+      ]
+    }
+  },
+  "versoes": {
+    "python": "3.13.14",
+    "numpy": "2.2.6",
+    "pandas": "2.3.3",
+    "scikit_learn": "1.7.2"
+  },
+  "arquivos": {
+    "previsoes_validacao.parquet": {
+      "sha256": "ee2dfd0d73af288e29c9607d0d0220208da43988cfe991abec3900e6b56a1594",
+      "linhas": 91
+    },
+    "previsoes_teste.parquet": {
+      "sha256": "b6bb568f6ff28ad7dfb654254a1c062cbb7cd992e8ac40a244890a9a7ce5943d",
+      "linhas": 91
+    }
+  },
+  "interpretacao": "Este piloto de desenvolvimento não mede ganho do Mamba, distância de BA_Mamba a 50% ou teste PT."
+}
