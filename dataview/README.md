@@ -1,4 +1,38 @@
-# Caderno visual do estudo
+# Portal científico do estudo
+
+Revisão de 19/10/2026: a página `/` organiza os seis marcos concluídos do ciclo inicial, sua cronologia e pendências. `/previsoes` é um explorador de todas as previsões reais dos três modelos, com gráfico financeiro Lightweight Charts 5.1.0, candles de 1/5/15/60 minutos, volume, probabilidades, limites e desfecho da origem selecionada. Zoom, cursor, lista paginada, filtros, busca por data UTC, link por origem, matriz de confusão e métricas por célula. O projeto continua local; nenhuma publicação externa foi realizada.
+
+## Exportação do explorador
+
+Na raiz do repositório, com Python, NumPy, pandas e suporte Parquet disponíveis:
+
+```bash
+python scripts/exportar_explorador.py
+```
+
+No ambiente WSL verificado nesta sessão, o executável é `/home/murilorfm/.venvs/cc/bin/python`. Executar o arquivo no checkout montado, sem modificar o ciclo científico. A exportação verifica o relatório fechado, os hashes de integridade, probabilidades, timestamps, rótulos e métricas de 96 células × três modelos. Gera `dataview/.dados/explorador/` (ignorado pelo Git) e o recibo `historico/qualificacoes/explorador_previsoes_2026-10-19.json`. Não treina, não recalibra e não executa backtests.
+
+São 189.792 previsões por modelo somando as configurações; 7.908 origens distintas por combinação. A exportação contém as previsões de teste de desenvolvimento e preços de 24/12/2022 a 31/12/2023; os últimos dias de 2022 são apenas contexto visual. As origens operacionais e B1–B4 não são expostos. O servidor lê os pacotes locais sob inventário fechado, verifica seu SHA-256 e agrega candles somente quando todos os minutos existem. Dados ausentes geram mensagem explícita, nunca substituição fictícia.
+
+Para outra máquina, copiar os artefatos científicos e executar o exportador, ou copiar a exportação completa com o recibo correspondente. Não sincronizar apenas o recibo. Os testes integrais do explorador exigem essa exportação; eles recalculam as métricas de todas as 288 séries e verificam uma lacuna real.
+
+```bash
+# Dentro de dataview/
+npm test
+npm run lint
+npm run build
+npm run dev
+```
+
+Os documentos `docs/registro_entregas.md` e `docs/guia_avaliacao.md` registram a organização e interpretação. A implementação financeira e o protocolo executado permanecem preservados. Uma apresentação não certifica rentabilidade ou teste final independente.
+
+## Conteúdo didático
+
+Além dos três laboratórios originais, `AvaliacaoDidatica.tsx` apresenta matriz de confusão interativa, comparação de acurácia comum/balanceada, calibração e efeito dos custos. Todos os exemplos são identificados como fictícios. As probabilidades reais mantêm a precisão original; valores muito pequenos não são apresentados como zero por arredondamento. As métricas por célula usam todas as suas origens, independentemente dos filtros visuais.
+
+TradingView Lightweight Charts™ — Copyright (с) 2025 TradingView, Inc. https://www.tradingview.com/ — Apache 2.0. A atribuição fica visível no gráfico e na proveniência. O produto não é o terminal TradingView e não consulta cotações em tempo real.
+
+## Estrutura da leitura
 
 Next.js/React para explicar o estudo de barreiras em uma leitura linear de nove capítulos: pergunta do TCC, fundamento do alvo, dados, treinamento temporal, métricas, resultados preditivos, simulação, resultados financeiros e conclusões. Inclui glossário, referências primárias e documentos do projeto.
 

@@ -1,5 +1,11 @@
 # Andamento — estudo de barreiras
 
+**Conferência acadêmica de 19/10/2026:** restaurado sem alteração o PDF do cronograma, removido no commit `dbe2a96`. A [correspondência das 12 entregas](acompanhamento_orientador.md) separa progresso técnico de envio/aceite: entregas 1–5 com conteúdo disponível no escopo atual, 6 parcial/alterada, 7 na semana corrente. A [proposta de pesquisa adaptativa](proposta_pesquisa_adaptativa.md) está em discussão; não altera o protocolo executado nem inicia outra busca.
+
+**Investigação complementar de 19/10/2026:** o [diagnóstico de probabilidades e classes](../historico/analises/diagnostico_previsoes_2026-10-19.md) reproduziu as matrizes/log-loss de 288 séries, a seleção de 192 épocas e os 16 ajustes AR(1). Identificou desajuste de escala no comparador e quantificou classes nunca escolhidas pelas redes. O explorador agora exibe porcentagens junto às barreiras e à expiração, além de um diagnóstico por recorte. Não houve novo treinamento ou alteração do ciclo fechado.
+
+**Revisão de apresentação em 19/10/2026:** o [registro de entregas](registro_entregas.md) organiza os seis marcos concluídos do ciclo inicial e as pendências do TCC. O [guia de avaliação](guia_avaliacao.md) explica métricas e seus limites. O portal inclui `/previsoes`, com todas as previsões de teste dos três modelos, preços reais e comparação por origem. É uma exportação de leitura verificada; não houve novos treinos, mudança do protocolo concluído ou simulação de futuros. Os itens abaixo preservam a cronologia de 18/10/2026, incluindo verificações parciais anteriores ao fechamento.
+
 Atualizado em 18/10/2026. **Primeiro ciclo concluído:** implementação, dados, qualificação, grade, auditorias, análise e proposta do próximo ciclo. O [relatório completo](../historico/analises/ciclo_001_resultados.md) contém resultados e limitações. A [proposta do ciclo 002](../historico/ciclos/ciclo_002_proposto.md) não foi executada; B1–B4 seguem bloqueados.
 
 ## Evidências já obtidas

@@ -1,10 +1,13 @@
 /** Calculadoras ilustrativas; não alteram nem executam o experimento. */
 export const numero = (n: number, casas = 3) => n.toLocaleString("pt-BR", { minimumFractionDigits: casas, maximumFractionDigits: casas });
 export const percentual = (n: number, casas = 2) => `${numero(100 * n, casas)}%`;
+export const probabilidadeLegivel = (p: number) => p > 0 && p < .00001 ? "<0,001%" : percentual(p, p > 0 && p < .001 ? 3 : 1);
 export const prazo = (h: number) => h === 168 ? "7 dias" : h === 24 ? "24 horas" : "1 hora";
 export const nomes: Record<string, string> = { mamba: "Mamba", lstm: "LSTM", ar1: "AR(1)", frequencia_treino: "Frequências do treino" };
 export function perdas(probabilidades: number[], classe: number) {
-  if (probabilidades.length !== 3 || probabilidades.some(p => !Number.isFinite(p) || p < 0 || p > 1) || Math.abs(probabilidades.reduce((a, b) => a + b, 0) - 1) > 1e-9 || ![0, 1, 2].includes(classe)) throw new Error("Probabilidades inválidas");
+  // Tolerância do contrato científico para probabilidades softmax salvas em float32.
+  // Não renormalizar: a avaliação individual deve reproduzir os escores originais.
+  if (probabilidades.length !== 3 || probabilidades.some(p => !Number.isFinite(p) || p < 0 || p > 1) || Math.abs(probabilidades.reduce((a, b) => a + b, 0) - 1) > 1e-6 || ![0, 1, 2].includes(classe)) throw new Error("Probabilidades inválidas");
   return { logLoss: -Math.log(Math.max(probabilidades[classe], 1e-7)), brier: probabilidades.reduce((s, p, i) => s + (p - Number(i === classe)) ** 2, 0) };
 }
 export function limites(entrada: number, sigma: number, horas: number) {

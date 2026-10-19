@@ -1,0 +1,71 @@
+{
+  "tipo": "teste_sintetico_sem_dados_de_mercado",
+  "inicio_utc": "2026-10-19T15:21:31.919589+00:00",
+  "configuracao": {
+    "horizonte": 1,
+    "sigma_barreira": 0.01,
+    "razoes_sigma": [
+      0.5,
+      1.0,
+      2.0
+    ],
+    "trajetorias_rotina": 16384,
+    "trajetorias_referencia": 65536,
+    "intercepto": 0,
+    "phi": 0,
+    "semente": 20261019,
+    "tolerancia_absoluta": 0.03
+  },
+  "status": "aprovado",
+  "casos": [
+    {
+      "razao_sigma": 0.5,
+      "rotina": [
+        0.037502670043636145,
+        0.9234078911232492,
+        0.039089438833114644
+      ],
+      "referencia_independente": [
+        0.03855044821666984,
+        0.9222429906542056,
+        0.039206561129124545
+      ],
+      "diferenca_maxima": 0.001164900469043606
+    },
+    {
+      "razao_sigma": 1.0,
+      "rotina": [
+        0.2824143297427604,
+        0.43364560129382684,
+        0.2839400689634128
+      ],
+      "referencia_independente": [
+        0.2788861338928095,
+        0.4383215716193019,
+        0.2827922944878886
+      ],
+      "diferenca_maxima": 0.004675970325475065
+    },
+    {
+      "razao_sigma": 2.0,
+      "rotina": [
+        0.4803942510146166,
+        0.02987397394037411,
+        0.4897317750450093
+      ],
+      "referencia_independente": [
+        0.48200648483692543,
+        0.03166889185580774,
+        0.48632462330726683
+      ],
+      "diferenca_maxima": 0.0034071517377424754
+    }
+  ],
+  "fim_utc": "2026-10-19T15:21:32.275101+00:00",
+  "script_sha256": "54f6d2cdeca6c90e1a35c13cff7cfe1c61436e86128bf48283b40300c1ccea07",
+  "fonte_ar1_sha256": "9cafc2a5794e3b5e2fcd130d08d433f11cb790b0b5f23ec1fe7e097d1ae3ca66",
+  "versoes": {
+    "numpy": "2.2.6",
+    "torch": "2.6.0+cu118"
+  }
+}

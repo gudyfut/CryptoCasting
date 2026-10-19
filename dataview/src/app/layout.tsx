@@ -1,10 +1,11 @@
 import type { Metadata } from "next";
 import "./globals.css";
+import "./portal.css";
 
 export const metadata: Metadata = {
-  title: "CryptoCasting — Entenda o experimento",
+  title: "CryptoCasting — Registro científico do TCC",
   description:
-    "Guia do TCC: barreiras, treinamento temporal, log-loss, Brier, simulação de operações e resultados explicados passo a passo.",
+    "Andamento, metodologia, avaliação e previsões reais do estudo de barreiras com Mamba, LSTM e AR(1).",
 };
 
 export default function RootLayout({

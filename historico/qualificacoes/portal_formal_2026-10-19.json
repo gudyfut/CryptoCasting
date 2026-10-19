@@ -1,0 +1,66 @@
+{
+  "tipo": "qualificacao_de_apresentacao_e_pos_processamento",
+  "verificado_utc": "2026-10-19T14:57:54.213861+00:00",
+  "ciclo_preservado": "4e232a796fcda0ea34c3",
+  "dataset": "9341610dbb329a858784",
+  "fontes_cientificas_conferidas": 1353,
+  "divergencias_cientificas": [],
+  "verificacoes": {
+    "testes_interface": {
+      "aprovados": 15,
+      "falhas": 0
+    },
+    "testes_alinhamento_exportacao": {
+      "aprovados": 3,
+      "falhas": 0
+    },
+    "lint": "aprovado",
+    "compilacao_producao": "aprovada",
+    "api": "quatro moedas, quatro folds, entrada igual ao preco bruto, bloqueio de 2024 e parametros invalidos, documentos HTTP 200",
+    "recalculo_metricas": "96 celulas x 3 modelos; log-loss e Brier reproduzidos"
+  },
+  "navegador": {
+    "desktop": [
+      1366,
+      1050
+    ],
+    "movel": [
+      390,
+      844
+    ],
+    "acoes_verificadas": [
+      "selecao de moedas, contextos, prazos e folds",
+      "filtros de classe e erro",
+      "navegacao entre previsoes",
+      "inspecao por minuto e zoom",
+      "aviso de ambiguidade real",
+      "calibracao real por faixa",
+      "link direto com pagina correta",
+      "exemplo acuracia 60% e balanceada 33,33%",
+      "exemplo reconhecimento 60% de cada classe",
+      "slider de log-loss e Brier",
+      "layout movel sem transbordamento horizontal"
+    ],
+    "erros_console_observados": 0
+  },
+  "limites": [
+    "Nao executa novo treinamento",
+    "Nao modifica protocolo ou resultados fechados",
+    "Nao implementa simulacao em futuros",
+    "DB1-DB4 continuam desenvolvimento; B1-B4 bloqueados",
+    "Exemplos didaticos identificados como ficticios"
+  ],
+  "arquivos_sha256": {
+    "scripts/exportar_explorador.py": "3ab579b2ce85437c40b1e48dd53de3ef9b6125a7af8ba046fe749bf4c58d8843",
+    "dataview/src/components/ExploradorPrevisoes.tsx": "97239585bc786bbbc39bca15e8e80fbbba6c2ba3f637f1f7f059a02e04a0638b",
+    "dataview/src/components/GraficoPrevisoes.tsx": "859c9b5422845c7a84f09cdbf8c8b57cd526233b1eddc903d35aeec2f8b07ee2",
+    "dataview/src/components/AvaliacaoDidatica.tsx": "ceb2e2eb2b9414b38640c931d7ee60395d19fd000ce595bc7c178f85935e5a1c",
+    "dataview/src/components/CalibracaoReal.tsx": "0be2b09ed282b90d3d6e4cd1b6c4a3fbe310a6abc4cf0559a3c0bdce2a916b29",
+    "dataview/src/app/portal.css": "0a6813b4abd8780e8ff0ebef07700b463bf3a578a89353085ba4a0c98df389fb",
+    "dataview/tests/exploracao.test.mjs": "4ff951346a2e566f6d7fb4a00c928ff4828bb1a374461fccb8a23d443e6cd966",
+    "dataview/tests/exportacao_test.py": "4ccc1ee34856f1bae7cddcab2f1e23a3c8a989046865f11c3bf1031713b499d3",
+    "dataview/scripts/verificar-api.mjs": "eb7a43f85d4a80839da91ce6d3e95740add42c4aa4770cc7e167d8d1b65d8f94",
+    "historico/qualificacoes/explorador_desktop_2026-10-19.png": "b49dd233a6814537ca273781228554236c1334c597f66208314f84fae0a2e6eb",
+    "historico/qualificacoes/portal_movel_2026-10-19.png": "b69a827d55ec2aaecd85ed06ee2399da5c5a7d13920634bd3282bf0f7303aa10"
+  }
+}
