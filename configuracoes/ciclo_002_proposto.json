@@ -1,0 +1,16 @@
+{
+  "versao": "barreiras-2.1",
+  "ciclo": "ciclo_002",
+  "hipotese": "Ablação proposta, ainda não executada: reduzir somente o estado Mamba de 16 para 8 em H168, comparando com o ciclo 001 nas quatro moedas e contextos 24/168; critérios e orçamento em historico/ciclos/ciclo_002_proposto.md.",
+  "pares": ["BTCUSDT", "ETHUSDT", "BNBUSDT", "XRPUSDT"],
+  "contextos": [24, 168],
+  "horizontes": [168],
+  "folds": ["DB1", "DB2", "DB3", "DB4"],
+  "seeds": [42],
+  "mamba": {"largura": 32, "camadas": 2, "estado": 8, "convolucao": 4, "expansao": 2, "dropout": 0.1},
+  "lstm": {"largura": 32, "camadas": 2, "dropout": 0.1},
+  "treino": {"epocas": 100, "paciencia": 10, "batch": 32, "microbatch": 32, "taxa_aprendizado": 0.0002, "weight_decay": 0.001, "clipping": 1.0},
+  "dispositivo": "cuda",
+  "backend": "oficial",
+  "ar1": {"trajetorias": 4096, "semente": 20261018}
+}

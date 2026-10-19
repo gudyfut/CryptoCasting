@@ -1,34 +1,31 @@
-# Interface do projeto
+# Caderno visual do estudo
 
-Next.js local para apresentar o TCC ao orientador. Metodologia: `../docs/protocolo_experimental.md`. Revisão visual: 13/10/2026.
+Next.js/React para explicar o estudo de barreiras em uma leitura linear de nove capítulos: pergunta do TCC, fundamento do alvo, dados, treinamento temporal, métricas, resultados preditivos, simulação, resultados financeiros e conclusões. Inclui glossário, referências primárias e documentos do projeto.
 
-## Leitura em cinco etapas
+## Leitura guiada e dados
 
-| Seção | Conteúdo |
-|---|---|
-| O estudo | Quatro eixos da combinação, estado da decisão, exemplo temporal e ativos |
-| O que prever | Cinco cartões com representação visual, razão de uso, fontes e impacto metodológico |
-| Combinar testes | Moeda, candle, prazo, alvo, contexto, agenda e política; lista temporária para discussão |
-| Como avaliar | Modelos, treino expansivo, comparações distintas e variáveis controladas |
-| Andamento e resultados | Etapas, piloto real em revisão, formato de registro e leitura de execuções locais |
+`src/lib/caderno.ts` lê o relatório fechado `../historico/analises/ciclo_001_completo/`, vinculado ao ciclo `4e232a796fcda0ea34c3` e dataset `9341610dbb329a858784`. Confere o SHA-256 fixado do resumo e os hashes dos CSVs financeiro e de barreiras antes de exibir os resultados. Ausência ou divergência bloqueia esses resultados, mantendo a explicação disponível. Para publicar outro ciclo, revisar explicitamente identidade, fontes e narrativa; não substituir o relatório histórico.
 
-A página principal apresenta o essencial. Detalhes e fontes são expansíveis. A pesquisa está em `../docs/estudo_tarefas_previsao.md`, também disponível em `/api/estudo/documentos/tarefas`. Os cinco cartões são formulações úteis, não categorias mutuamente exclusivas: quantis podem descrever retorno ou volatilidade. Próximo candle é horizonte; abstenção é política de resposta.
+`Laboratorios.tsx` contém três exemplos interativos claramente identificados como fictícios: trajetória com primeiro toque, cálculo de log-loss/Brier e contabilidade de uma operação. `src/lib/didatica.ts` implementa somente essas calculadoras; não executa treino, previsão de mercado ou backtest científico. Os testes verificam referência uniforme, erro confiante, custo nos dois lados, caixa e risco nominal.
 
-## Componentes ativos
+`LeituraResultados.tsx` apresenta médias por prazo/moeda/trimestre, contraste pareado, efeito do contexto e mapa de todas as 24 estratégias de cada modelo. A métrica financeira é anual concatenada, com custos, exposição, operações e intervalos. O controle sem filtro permanece indisponível quando sua trajetória não é auditável. Exemplos didáticos nunca entram nas médias reais.
 
-- `src/components/Dashboard.tsx`: navegação, visão do estudo, avaliação e andamento; pilotos documentados têm referência explícita.
-- `src/components/TiposPrevisao.tsx` e `src/lib/tarefas-previsao.ts`: catálogo editorial e fontes; não são contratos executáveis.
-- `src/components/CombinadorExperimentos.tsx`: rascunho de combinação, classificação de compatibilidade com o protocolo e lista em memória. Mantida ao navegar entre seções; recarregar limpa a lista. Não grava configuração científica.
-- `src/components/VisuaisPrevisao.tsx`: diagramas SVG acessíveis, fictícios e identificados. Contagens de contexto são exatas; desenho de candles é esquemático, fora de escala.
-- `src/app/caderno.css`: layout responsivo da interface atual. Estilos/componentes anteriores permanecem no repositório, mas não compõem a página principal.
-- `src/lib/estudo.ts`: dados editoriais de ativos/entregas e tipos dos resultados.
-- `/api/estudo/resultados`: resumos reais de desenvolvimento em `../dados/experimentos/pareado_*`; ausente não é zero; erros de leitura e resumos inconsistentes são expostos.
-- `/api/estudo/documentos/[id]`: lista explícita de documentos permitidos. Não aceita caminhos arbitrários.
+## Registros detalhados
 
-O painel não executa coleta, treinamento nem ordens. “Prevista no protocolo” não significa tarefa treinada ou backend qualificado. A lista de prazos é candidata, não uma grade aprovada. Nenhuma alteração libera F1–F8. O estado editorial é datado; execuções locais são lidas separadamente e requerem auditoria científica por `run_avaliacao.py`.
+`src/lib/registros.ts` lê e valida os resumos de `../historico/execucoes/`. Uma execução somente aparece como concluída quando declara auditoria aprovada e métricas dos três modelos. Ausência de resultado permanece ausência; falhas são apresentadas.
 
-## Verificação local
+A página não inicia treinamento nem altera parâmetros. As rotas de documentos permitem apenas protocolo, andamento, ciclo inicial, plano, resultados e proposta seguinte. As configurações científicas ficam no projeto Python. A tabela de execuções está em uma seção recolhível, separada do relatório fechado: pode receber novos registros sem alterar o ciclo explicado no caderno.
 
-Neste diretório: `npm run dev`, `npm run lint`, `npm test` e `npm run build`.
+A tabela permite filtrar moeda, contexto, prazo, período e identidade do ciclo. As colunas mantêm Mamba, LSTM e AR(1) no mesmo recorte. É possível alternar log-loss, Brier, acerto balanceado, retorno líquido, drawdown e número de operações. Retorno zero com nenhuma operação identifica permanência em caixa; percursos financeiros incompletos aparecem como indisponíveis.
 
-Verificar no navegador: cinco seções, expansão das fontes, alteração de combinações e contexto, distinção entre protocolo/proposta, inclusão/remoção sem duplicatas, persistência ao navegar, estados vazio/erro dos resultados e layout móvel. As tabelas possuem rolagem interna. Não há dependência de uma API Python.
+Os registros são consultados novamente a cada 30 segundos. O último estado registrado não certifica que o processo continue ativo; essa verificação é feita separadamente no executor. Falhas permanecem visíveis mesmo quando um filtro esvazia a tabela.
+
+```bash
+npm install
+npm test
+npm run lint
+npm run build
+npm run dev
+```
+
+Os testes usam fixtures de software e verificam a leitura íntegra do relatório real. Fixtures não aparecem como resultados de mercado. Os gráficos usam SVG e HTML acessíveis, com valores textuais, controles de teclado e distinção por rótulos além das cores. A interface adapta-se a celular e respeita a preferência por movimento reduzido.

@@ -1,0 +1,49 @@
+# Andamento — estudo de barreiras
+
+Atualizado em 18/10/2026. **Primeiro ciclo concluído:** implementação, dados, qualificação, grade, auditorias, análise e proposta do próximo ciclo. O [relatório completo](../historico/analises/ciclo_001_resultados.md) contém resultados e limitações. A [proposta do ciclo 002](../historico/ciclos/ciclo_002_proposto.md) não foi executada; B1–B4 seguem bloqueados.
+
+## Evidências já obtidas
+
+- Hardware atual: NVIDIA RTX 4050 Laptop, 6 GB, acesso CUDA pelo WSL Ubuntu.
+- Ambiente qualificado: Python 3.12.13, PyTorch 2.6.0+cu118, Mamba oficial 2.2.6.post3, causal-conv1d 1.6.2.post1. Dependências corrigidas e `pip check` aprovado. Comparação do scan oficial com a referência, gradientes, inicialização e causalidade sintética aprovadas em W24/W168.
+- Recarga de checkpoints reproduziu exatamente as previsões nos testes sintéticos. Dois treinos sintéticos com a mesma seed podem apresentar diferenças de poucos ULPs no kernel Mamba; não se afirma determinismo bit a bit entre treinamentos distintos.
+- Coleta 1m de 2021–2023 concluída: quatro pares, 144 arquivos mensais com checksum oficial. Nenhum arquivo de 2024–2025 foi coletado para este ciclo.
+- Dataset atual: `9341610dbb329a858784`, com 23.444 origens comuns. São 1.576.800 minutos teóricos por moeda; há 1.078 ausentes em BTC/ETH/BNB e 1.076 em XRP, incluindo registros interrompidos. Os dados brutos foram preservados e não houve interpolação.
+- Auditoria independente recalculou todos os rótulos do dataset e verificou 192 recortes de moeda/prazo/fold/partição. Todos passaram pelo limite de ambiguidade. Foram conferidos passado das features, volatilidade, normalização, purgas e alinhamento entre moedas/prazos.
+- Há lacuna de dados no primeiro trimestre de 2023. Uma estratégia que entrar antes e atravessá-la terá resultado econômico integral indisponível; não será excluída retrospectivamente para fabricar retorno válido. A avaliação preditiva mantém sua população comum observável.
+- Contexto verificado da lacuna: os quatro pares têm 81 minutos ausentes, de 24/03/2023 12:39 a 13:59 UTC. A Binance informou retomada do mercado spot às 14:00 UTC após manutenção temporária, compatível com esse intervalo. O anúncio contextualiza a ausência, mas não reconstrói preços ou execução; as regras da grade foram mantidas. [Anúncio oficial](https://www.binance.com/en/support/announcement/detail/813a31506e9f478ea8c1058b425df87a). Evidência local: `historico/qualificacoes/lacunas_2023.json`.
+- Código de treino, AR(1), contabilidade, auditoria e consolidação implementado. Os 21 testes Python passaram; registros em `historico/qualificacoes/testes_2026-10-18.json`. Testes sintéticos não são resultados de mercado.
+- Os dois casos iniciais BTCUSDT/W24/H24 e BTCUSDT/W168/H168, DB1/seed42, terminaram e foram auditados no ciclo `4e232a796fcda0ea34c3`. A grade completa foi iniciada reutilizando essas duas células. Logs em `dados/treino_ciclo001_pilotos.log` e `dados/treino_ciclo001_grade.log`; o estado atualizado fica em `historico/execucoes/`.
+- DB1–DB4 concluídos: 96 células e 192 ajustes neurais, quatro moedas e todos os contextos/prazos em 2023. Cada célula passou pela auditoria de execução; a auditoria suplementar integral também foi aprovada para 96/96. O executor encerrou com código zero após a consolidação completa. A [análise descritiva do primeiro trimestre](../historico/analises/ciclo_001_DB1.md) preserva o retrato parcial original; o [relatório integral](../historico/analises/ciclo_001_resultados.md) contém a análise conjunta.
+- AR(1) das quatro moedas passou na qualificação 4.096 versus 16.384 trajetórias, em 32 origens de validação por moeda e três prazos: 100% das diferenças dentro de 0,03. Diferenças máximas: BTC 0,01914; ETH 0,01584; BNB 0,01758; XRP 0,02204. Essa evidência numérica não equivale a bom desempenho financeiro. Registros completos: `qualificacao_ar1_<par>.json` no diretório do ciclo.
+- Frontend: lint, quatro testes de leitura dos registros e build de produção aprovados.
+- Painel conferido no navegador com filtros e atualização automática. O recorte BTC/H24 mostrou corretamente zero operações em W24 e sete operações com retorno de −0,15% no Mamba/W168. Um filtro para DB2, ainda sem execução no momento da verificação, permaneceu vazio. A conferência não altera a configuração nem os resultados científicos.
+- Pós-processamento: dois testes adicionais do controle comprar/manter passaram, incluindo saída no open e preservação de lacunas. A auditoria suplementar compara resumos com artefatos, fontes, ambiente e checkpoints; uma alteração deliberada do log-loss em cópia temporária foi detectada. Os arquivos originais foram preservados. Evidência do teste negativo: `historico/qualificacoes/teste_adulteracao_registro_2026-10-18.json`.
+- Descrição dos dados: gerados 144 recortes preditivos e 48 operacionais com largura efetiva, classes e duração. O dataset foi novamente verificado por hashes; as contagens foram confrontadas com as previsões das 48 células concluídas na atualização de metade da grade. O manifesto descritivo identifica essas execuções e separa população preditiva de elegibilidade causal.
+- Histórico da atualização de metade da grade: naquele momento, a auditoria suplementar aprovou 48/96 células e foram conferidos 144 registros de comprar/manter, correspondentes a oito trajetórias únicas de moeda/fold. O retrato cobria DB1–DB2 e ainda não havia contraste global. Os arquivos de consolidação foram atualizados no fechamento integral descrito abaixo.
+- Complemento de comprar/manter: os retornos entre entrada e saída fixas observadas foram conferidos separadamente, sem preencher o percurso ou alterar o contrato executado. O drawdown de DB1 permanece indisponível. Quatro testes do controle passaram, incluindo dois novos casos de pontas conhecidas/desconhecidas. [Decisão posterior, resultados e limites](../historico/analises/complemento_comprar_manter.md).
+- Fechamento técnico da grade: os 25 testes Python passaram em 7,986 segundos, sem casos ignorados, incluindo a qualificação sintética em CUDA. Registro: `historico/qualificacoes/testes_finais_ciclo_001.json`. A auditoria de comprar/manter conferiu 288 registros e 16 trajetórias únicas; diagnóstico de sinais e descrição dos dados foram atualizados para as 96 células. As figuras completas foram geradas, conferidas visualmente e passaram pelo lint do gerador. Esses controles sustentam integridade e rastreabilidade, sem demonstrar rentabilidade futura.
+- Fechamento da documentação/interface: relatório integral, seis tabelas CSV, resumo com proveniência e três figuras em PNG/SVG; proposta seguinte validada como 32 células/64 ajustes, sem execução. Lint, quatro testes e build de produção do painel passaram novamente após os links novos. Navegador confirmou 96 registros, filtros por moeda/prazo/período/métrica, perdas e caixa; relatório e proposta acessíveis. Evidência visual: `historico/qualificacoes/painel_final_2026-10-18.jpg`.
+
+## Resultado e continuidade
+
+Log-loss média: Mamba 1,010357, LSTM 1,009434, frequências de treino 1,038115, AR(1) 2,768856. O intervalo pareado Mamba−LSTM inclui zero. Contexto maior não ajudou uniformemente; em H168 ambas as redes perderam para a referência constante. As 24 estratégias Mamba tiveram nove retornos positivos, oito negativos e sete sem operações; LSTM teve uma positiva, duas negativas e 21 sem operações. Nenhuma configuração foi declarada vencedora para operar.
+
+O relatório preserva todas as estratégias, incluindo controles sem trajetória anual auditável. Tabelas leves e figuras estão em `historico/analises/ciclo_001_completo/`, com hashes e script de reprodução. Não foi alterado o código científico ou o protocolo da identidade concluída para elaborar a análise.
+
+Próximo trabalho proposto, ainda não executado: testar estado Mamba 8 versus referência 16 no prazo semanal, quatro moedas, contextos 24/168 e DB1–DB4, seed 42. Orçamento de 64 ajustes neurais no executor pareado; qualificação específica e comparação entre ciclos são pré-requisitos. Depois, se houver ganho consistente no desenvolvimento, propor confirmação com outras seeds. B1–B4 só podem ser abertos após congelamento e declaração de exposição prévia; não há pendência de treino da primeira grade.
+
+## Dois primeiros resultados auditados
+
+| BTCUSDT / DB1 / seed 42 | LSTM log-loss | Mamba log-loss | AR(1) log-loss | Entradas pela política base |
+|---|---:|---:|---:|---|
+| W24 / H24 | 1,061411 | 1,079261 | 2,023625 | Zero nos três modelos |
+| W168 / H168 | 1,098468 | 1,230089 | 1,346648 | Zero nos três modelos |
+
+Cada recorte preditivo contém 1.812 origens comuns. São resultados de duas células, não um ranking da grade. Retorno zero decorreu de permanecer em caixa; não é evidência de negócios lucrativos. Nenhum limiar ou parâmetro foi alterado para melhorar esses placares. Checkpoints recarregados reproduziram exatamente as probabilidades; rótulos, métricas e contabilidade foram recalculados.
+
+Na continuação da grade, BTCUSDT/W168/H24/DB1 produziu sete operações do Mamba: retorno líquido de −0,1500%, drawdown de 1,9824% e exposição em 4,9645% dos minutos. A auditoria independente reconstruiu as sete operações e toda a curva. Esse caso acrescenta evidência de execução financeira com posições efetivas; permanece um recorte parcial, sem escolher uma configuração vencedora. Registro: `historico/execucoes/95036ddf5ffed7fd6cb9.json`.
+
+## Regra de relato
+
+Um processo iniciado não equivale a concluído. Um teste sintético não equivale a resultado de mercado. A conclusão exige resultados registrados e auditados; nenhum escore será inventado para preencher a grade.

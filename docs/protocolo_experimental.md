@@ -1,384 +1,290 @@
-# Protocolo experimental — Atividade 1 do TCC 2
+# Protocolo experimental — versão 2.1: barreiras e pesquisa iterativa
 
-**Projeto:** CryptoCasting — Previsibilidade de Criptomoedas com a Arquitetura Mamba: um Sistema de Forecasting Temporal  
-**Autor:** Murilo R. F. Monferrari  
-**Versão:** 1.6 — 28/09/2026; inclusão da LSTM como segunda baseline após o piloto AR(1) de desenvolvimento
+**Ciclo inicial definido em 18/10/2026. Implementação, qualificação e execução autorizadas pelo pesquisador.**
 
-**Entrega:** definição do desenho experimental, conforme o [cronograma](Cronograma_Atividades_TCC2_Murilo_Monferrari.pdf).  
-**Estado técnico em 13/10/2026:** a coleta e o pré-processamento foram executados pelo pesquisador; o dataset `daeec76f001afb50a8fe` está documentado na [Entrega 3](entregas/03_pre_processamento_amostras/resultados_execucao_oficial.md). AR(1) BTCUSDT/D1–D4 tem resultados na [Entrega 4](entregas/04_infraestrutura_baselines/resultados_desenvolvimento_BTC_D1_D4.md). LSTM e infraestrutura de treino pareado foram validadas no [piloto BTCUSDT/1d/D1 em CPU](entregas/05_mamba_base/resultados_piloto_BTC_D1_cpu.md), executado pelo agente com autorização explícita: BA Mamba 41,46%, LSTM 50,00% e AR(1) 46,34%. A qualificação do backend oficial/CUDA permanece pendente por indisponibilidade do ambiente compatível nesta máquina. A [Entrega 5](entregas/05_mamba_base/README.md) documenta comandos e artefatos. Não existem resultados finais de 2024–2025; as decisões metodológicas da versão 1.6 permanecem vigentes. Esta atualização de estado é posterior ao piloto; a pasta da execução preserva a cópia exata do protocolo que foi utilizado.
+A pesquisa começa com uma grade de referência e prossegue por ciclos documentados de melhoria, inclusive de configurações internas do Mamba. Cada ciclo é fixado antes de ser executado; todas as tentativas e resultados do estudo são registrados. O desenvolvimento pode orientar mudanças futuras, mas não pode produzir uma alegação de teste final independente quando seus resultados foram consultados para decidir.
 
-## 1. Objetivo e perguntas de pesquisa
+O estado factual de execução fica em [andamento](andamento.md) e nos registros em `historico/`. A especificação não substitui evidência de testes, recarga de checkpoints e auditoria.
 
-### Revisão de tarefas em aberto — 13/10/2026
+## 1. Pergunta científica e limites da conclusão
 
-Por solicitação do pesquisador, estamos examinando **quais tarefas de previsão devem integrar a ampliação do estudo**. O [estudo fundamentado](estudo_tarefas_previsao.md) e a seção visual “O que prever” distinguem direção, retorno/preço, faixas probabilísticas, volatilidade e primeiro toque em barreiras. O explorador combina moeda, candle, prazo, alvo, contexto e agenda. O antigo catálogo A–H foi reorganizado para não confundir alvos com horizontes ou políticas de resposta. Direção diária de 24h e direção do próximo candle já pertencem a este protocolo; somente o piloto neural diário tem execução documentada.
+Investigar se Mamba prevê qual limite de preço será atingido primeiro — superior, inferior ou nenhum até um prazo máximo — melhor que LSTM e AR(1), e se essas probabilidades melhoram uma política fixa de compra à vista. Examinar diferenças entre quatro moedas, dois comprimentos de sequência e três prazos máximos.
 
-**Contrato executável permanece 1.6.** Este registro abre uma decisão, sem alterar retroativamente alvos, amostras, resultados ou liberar tarefas novas. A escolha deverá produzir uma versão operacional explícita, com baselines, purga, métricas e orçamento adequados. O piloto NVIDIA continua delimitado à Entrega 5; a grade maior aguarda essa definição e a qualificação técnica. Os totais de treinamento deste documento não incluem as novas candidatas, inclusive horizontes de 3/7/14 dias exibidos para discussão. O PT avalia associação direcional, não qualidade/correção do treinamento; alvos sobrepostos ou seleção de origens exigem rever a inferência antes do uso.
+A avaliação tem dois eixos separados: **qualidade probabilística** e **utilidade econômica após custos**. Um resultado negativo em qualquer eixo é resultado científico válido. Não exigir lucro nem superioridade de Mamba como condição de publicação.
 
-Investigar se a arquitetura Mamba consegue prever a direção de retornos de criptomoedas utilizando apenas dados OHLCV e como seu desempenho varia entre moedas e granularidades de candle.
+A aplicação operacional desta versão é Binance Spot, posição comprada ou caixa, sem empréstimo, venda a descoberto ou alavancagem. Há risco de perda de capital, mas não liquidação por margem. A tarefa pode informar decisões de exposição e risco; os resultados não demonstram adequação a derivativos nem investimento de meses/anos. Uma semana continua sendo um prazo curto. Stop não garante execução exatamente no limite.
 
-A apresentação central dos resultados será uma **matriz com moedas nas linhas e granularidades nas colunas**. A comparação deve permitir responder:
+O método de três barreiras associa dois limites de preço a um limite de tempo e permite distância ajustada à volatilidade; isso motiva o alvo, sem implicar rentabilidade. [Referência metodológica: mlfinpy](https://mlfinpy.readthedocs.io/en/latest/Labelling.html).
 
-1. O Mamba supera o AR(1) estatístico e uma LSTM neural com as mesmas entradas, em dados posteriores aos usados no treinamento?
-2. Para prever o mesmo período futuro, observar candles menores ou maiores altera o desempenho?
-3. Essa diferença se repete em BTC, ETH, BNB e XRP e em diferentes períodos históricos?
-4. Como os resultados mudam quando a tarefa passa a ser prever o próximo candle de cada granularidade?
-5. Usar 14 dias de contexto, em vez de 7, melhora ou piora a previsão em cada moeda e granularidade?
+## 2. Fatores que variam e escolhas fixas
 
-O objeto principal é a previsibilidade direcional. A expressão “melhor para tradar” não será usada como equivalente a maior F1 ou acurácia: comprovar rentabilidade exigiria outro protocolo, incluindo execução, custos, slippage, posições e risco. Simulações de trading não integram esta entrega nem o critério de sucesso do estudo.
-
-## 2. Decisões principais
-
-| Item | Definição |
+| Elemento | Definição do ciclo inicial |
 |---|---|
-| Criptomoedas | Bitcoin (BTC), Ether (ETH), BNB e XRP |
-| Pares | BTCUSDT, ETHUSDT, BNBUSDT e XRPUSDT |
-| Mercado/fonte | Binance Spot, arquivos históricos públicos de klines |
-| Período | 01/01/2021 00:00 UTC até 01/01/2026 00:00 UTC, limite final exclusivo |
-| Granularidades | 15 minutos, 1 hora, 4 horas e 1 dia |
-| Entradas principais | Open, high, low, close e volume, sem dados externos |
-| Alvo | Classe binária do retorno futuro: alta ou não alta |
-| Horizonte principal | Próximas 24 horas, igual para todas as granularidades |
-| Horizonte complementar | Próximo candle: 15 min, 1 h, 4 h ou 24 h, conforme a coluna |
-| Contextos analisados | 7 dias como referência e 14 dias como análise de sensibilidade, reportados separadamente |
-| Baseline estatística simples | ARIMA(1,0,0) nos log-retornos, equivalente a AR(1) com intercepto; parâmetros ajustados somente no treino de cada fold |
-| Baseline neural sequencial | LSTM unidirecional em PyTorch; mesmas janelas, features, alvo e folds do Mamba; topologia e escolha definidas na seção 7 |
-| Referência clássica e matemática | Random walk sem deriva prevê preço inalterado e, neste alvo, sempre não alta: BA de 50% quando ambas as classes reais estão presentes; não é a BA observada do AR(1) |
-| Teste direcional | Pesaran–Timmermann (PT), com nível de significância de 5%; não testa a diferença Mamba menos AR(1) ou LSTM |
-| Métrica primária | Balanced accuracy; diferenças pareadas Mamba menos AR(1) e Mamba menos LSTM, apresentadas separadamente |
-| Métricas secundárias | Accuracy direcional, F1 macro, matriz de confusão e suporte por classe |
-| Desenvolvimento | 2021–2023, com divisões cronológicas internas |
-| Avaliação final | 2024–2025, oito folds trimestrais com treino expansivo |
-| Repetições finais | Seeds 17, 42 e 2026; todas reportadas |
-| Arquiteturas | Mamba (objeto do estudo) e LSTM (baseline neural), ambas em PyTorch; um ajuste de cada arquitetura por moeda, granularidade, contexto, horizonte, fold e seed |
+| Moedas | BTCUSDT, ETHUSDT, BNBUSDT, XRPUSDT |
+| Candle de entrada | 1 hora, UTC, fixo |
+| Contexto sequencial W | 24 ou 168 candles: 1 ou 7 dias |
+| Prazo máximo H | 1, 24 ou 168 horas |
+| Alvo | Superior primeiro; inferior primeiro; prazo esgotado |
+| Modelos | Mamba, LSTM unidirecional, ARIMA(1,0,0) nos log-retornos horários |
+| Origem de previsão | A cada hora, imediatamente após fechar o candle |
+| Distância dos limites | Uma unidade de volatilidade horária histórica multiplicada por √H |
+| Histórico para volatilidade | Últimos 168 retornos horários, igual em todas as células |
+| Dados para execução/rótulo | OHLCV de 1 minuto; convenção explícita para ordem desconhecida |
+| Arquiteturas neurais | Largura 32, duas camadas; demais parâmetros fixados na seção 8 |
+| Entrada operacional | Probabilidade superior ≥ 0,60 e teste de viabilidade nominal após custos |
 
-Essas escolhas definem o estudo, mas não representam resultados previamente comprovados nem garantia de cobertura integral dos arquivos da fonte. A cobertura será auditada na coleta.
+São **4 × 2 × 3 = 24 células científicas** no ciclo inicial. Frequência de candle, features, scaler, largura, multiplicador das barreiras e limiar de entrada ficam fixos neste ciclo. Ciclos posteriores podem modificar escolhas e configurações internas das redes conforme a seção 13, sem reescrever os resultados já obtidos. A origem horária é frequência de decisão, não autorização para acumular posições a cada hora.
 
-## 3. Justificativa das moedas
+Os contextos são o passado visto em cada amostra; não são o número de anos usados para ajustar os pesos. O conjunto de treinamento cresce por datas em todos os casos. Há um modelo neural distinto por moeda, W, H, fold e seed; sem pré-treino conjunto entre moedas.
 
-Os quatro ativos foram escolhidos por terem **papéis de uso e mecanismos de rede diferentes**, documentados na [justificativa da Entrega 2](entregas/02_pipeline_coleta/justificativa_ativos.md): BTC é o ativo nativo de uma rede de pagamentos baseada em prova de trabalho; ETH paga pelo uso e pela validação de uma plataforma de contratos inteligentes; BNB é nativo da BNB Chain e também oferece usos na corretora Binance; XRP é o ativo nativo de uma rede voltada a pagamentos e liquidação por consenso entre validadores. Essas propriedades motivam a comparação, **sem demonstrar por si mesmas** diferenças de volatilidade ou previsibilidade.
+**Interpretação do efeito de contexto:** ambos os contextos recebem o mesmo resumo de risco calculado com sete dias. Portanto, comparamos 1 versus 7 dias de sequência detalhada, condicionados a esse resumo comum. Não afirmar que o modelo curto desconhece toda informação anterior a um dia.
 
-Os quatro pares usam USDT, mercado Spot e a mesma fonte de candles. A escolha é intencional, feita antes dos experimentos. Não representa uma amostra aleatória do mercado e não permite generalizar conclusões para todas as criptomoedas. A ligação de BNB com a Binance e o fato de todos os preços virem da mesma corretora serão explicitados como limites da amostra. Eventos e mudanças nas redes, como a transição do Ethereum para prova de participação em 2022, podem gerar mudanças de regime; este estudo não atribuirá causalmente resultados de previsão a esses eventos.
+## 3. Tempo, volatilidade e posição das barreiras
 
-**A ordem BTC < ETH < BNB < XRP é uma hipótese do projeto, não um ranking verificado de volatilidade.** Na Entrega 3, calcular retornos logarítmicos de fechamentos diários UTC para os quatro ativos nos **mesmos dias válidos**. Reportar, por ativo e ano e no período completo, desvio-padrão diário, sua versão anualizada com `sqrt(365)`, mediana e percentil 95 do retorno absoluto, além de cobertura e quantidade de dias. A comparação anual mostrará se a ordem persiste ou muda com o período. Nenhum ativo será incluído ou excluído depois de ver sua volatilidade ou seus scores preditivos.
+Seja t o instante UTC de fechamento de um candle horário completo. Somente observações anteriores ou iguais a esse fechamento podem entrar na previsão. O candle seguinte não está disponível.
 
-## 4. Dados, período e qualidade
+1. Calcular retornos horários `r_j = ln(C_j / C_(j-1))`.
+2. Calcular `sigma_t = desvio_padrao_amostral(r_(t-167), ..., r_t)`, com 168 retornos e divisor 167.
+3. Para H em horas, calcular `d_(t,H) = sigma_t × sqrt(H)`. Multiplicadores superior e inferior: ambos **1,0**.
+4. A decisão emitida em t é executada no **open do minuto iniciado em e = t + 1 minuto**. Esse atraso fixo evita assumir execução retroativa no fechamento observado.
+5. Seja A esse preço bruto de entrada. Fixar `U = A × exp(d)` e `L = A × exp(-d)` até a saída. Não mover limites com volatilidade futura.
+6. O prazo máximo vence em `v = e + H horas`. Não é obrigatório permanecer até v: o primeiro limite encerra a operação.
 
-### 4.1. Fonte e recorte
+A é desconhecido na origem e só ancora o rótulo e a execução posteriormente. Não é feature. A distância relativa d já é conhecida em t. O orçamento da ordem pode ser determinado em t e convertido em quantidade ao preencher a ordem.
 
-Serão coletados arquivos mensais de candles de **15 minutos** do Binance Public Data, preservando arquivos originais e checksums. A fonte disponibiliza klines Spot, arquivos por dia/mês e verificação de integridade; também documenta a mudança dos timestamps Spot para microssegundos a partir de 2025. O leitor deverá tratar explicitamente a unidade temporal. [Fonte: Binance Public Data](https://github.com/binance/binance-public-data).
+Exemplo **ilustrativo, não estimativa dos dados**: com sigma horário de 0,3%, os limites ficam aproximadamente em +0,30%/−0,30% para 1h; +1,48%/−1,46% para 24h; +3,96%/−3,81% para 168h. São simétricos em log-preço, não exatamente em percentual simples. No mesmo instante, a distância logarítmica semanal é √7 ≈ 2,65 vezes a diária.
 
-Os cinco anos completos oferecem mais de um período de avaliação e evitam uma coleta relativa, como “últimos 365 dias”, cujo conteúdo muda com a data de execução. A análise permanece restrita a esse recorte retrospectivo. Não se pressupõe que ele represente todos os regimes futuros.
+O escalonamento √H é uma **regra de desenho fixa**, não uma previsão de volatilidade futura, intervalo de confiança ou garantia de probabilidades iguais de toque. Dependência temporal, saltos e volatilidade variável limitam essa aproximação. Não recalibrar o multiplicador para obter classes equilibradas. Reportar largura efetiva, frequência das classes e tempo até saída por moeda e prazo. A literatura mostra, por exemplo, limitações de usar essa regra para escalar quantis de risco sob saltos; isso impede interpretá-la aqui como garantia de cobertura. [Daníelsson e Zigrand, On time-scaling of risk](https://eprints.lse.ac.uk/24827/1/dp439.pdf).
 
-Não haverá mistura automática com Yahoo Finance, outras exchanges ou futuros. Se faltar um arquivo, registrar a falha e tentar recuperar os mesmos candles na fonte Binance Spot, documentando a procedência. Se a cobertura inviabilizar uma comparação, revisar o protocolo por motivo de qualidade de dados antes dos experimentos e registrar a mudança; não substituir ativos com base em scores.
+Como H e a distância crescem juntos, o efeito de prazo representa uma operação mais longa com limites proporcionalmente mais largos. Não atribuir as diferenças exclusivamente ao tempo mantendo todo o restante constante.
 
-### 4.2. Agregação dos candles
+Sigma nulo, não finito ou impossível de calcular gera origem inelegível por informação passada, registrada como tal. Não excluir retornos futuros pequenos, prejuízos, operações sem toque ou episódios adversos.
 
-Os candles de 1h, 4h e 1d serão derivados dos mesmos candles-base de 15m: primeira abertura, máxima das máximas, mínima das mínimas, último fechamento e soma do volume.
+## 4. Rótulos, preços de saída e ambiguidade
 
-Os blocos serão alinhados em UTC: horas cheias, 00/04/08/12/16/20h para 4h e 00h para 1d. Somente blocos completos serão válidos. A referência temporal de previsão será o instante em que o candle terminou e seu fechamento ficou disponível, distinguindo-o do timestamp de abertura armazenado na fonte.
+Classes, nesta ordem fixa: `0 = inferior_primeiro`, `1 = prazo_esgotado`, `2 = superior_primeiro`. A classe de prazo esgotado não significa retorno zero nem ausência de oscilação.
 
-### 4.3. Regras de qualidade e rastreabilidade
+Examinar cronologicamente os minutos com início em `[e, v)`, usando o mesmo A, U e L para todos os modelos e ambos os contextos:
 
-- Ordenar timestamps, verificar frequência esperada e detectar duplicatas. Duplicatas conflitantes devem ser investigadas, sem escolher um valor silenciosamente.
-- Exigir preços positivos, volume não negativo e consistência entre abertura, máxima, mínima e fechamento.
-- Não interpolar preços com informação futura nem preencher candles ausentes automaticamente.
-- Rejeitar amostras cujo contexto, cálculo de indicador ou intervalo do alvo atravesse lacunas. Indicadores reiniciam após uma lacuna e respeitam novo aquecimento.
-- Na matriz principal, utilizar a interseção dos dias elegíveis dos quatro ativos e das quatro granularidades, definida pela qualidade dos dados, nunca pelo rótulo ou erro do modelo. Registrar as exclusões e o total efetivo de dias por fold; se BNB tiver falhas relevantes, mostrar o efeito na cobertura antes de qualquer revisão do protocolo.
-- Registrar fonte, URL, par, intervalo, datas solicitadas/observadas, unidade temporal, data da coleta, quantidade de registros e SHA-256 dos arquivos.
-- Preservar os dados brutos. Dados transformados recebem versão e manifestos próprios.
+1. Se o open do minuto já está em U/acima ou em L/abaixo, registrar o respectivo toque no open. O preço bruto de saída é esse open, incorporando o salto observado.
+2. Com open entre os limites: se apenas o high alcança U, saída superior em U; se apenas o low alcança L, saída inferior em L. Igualdade conta como toque.
+3. Se high alcança U e low alcança L no mesmo primeiro minuto de toque, a ordem é desconhecida em OHLCV. A convenção principal é **inferior primeiro para a posição comprada**, com `toque_ambiguo = true`. Isso é uma convenção conservadora, não uma reconstrução factual da ordem.
+4. Sem toque antes de v: classe prazo esgotado e saída no open do minuto v, com seu retorno efetivo. A expiração tem prioridade em v; não reclassificar como toque só porque esse open está fora dos limites.
 
-## 5. Comparação justa entre candles
+O timestamp de um toque dentro do minuto indica o minuto de ocorrência, sem inventar segundo exato. Para controle de posição e nova decisão, tratar a saída intraminuto como conhecida no fim desse minuto. Toque no open tem timestamp exato do open.
 
-### 5.1. Matriz principal: mesmo futuro, mesmo passado e mesmas origens
+Não descartar amostras ambíguas. Reportar sua proporção entre todas as origens e entre as origens com toque, por moeda, H e fold. **Gate de resolução:** se exceder 1% de todas as origens ou 5% das origens com toque em qualquer partição avaliada, não liberar sua comparação principal antes de obter trades da mesma fonte para resolver a ordem em todos os minutos ambíguos daquela partição. Se não for possível, registrar bloqueio de qualidade. Esses limites são tolerâncias administrativas predefinidas, não um teste estatístico. O diagnóstico do gate usa apenas contagem de qualidade, não desempenho dos modelos.
 
-Em todos os casos, a previsão principal será produzida **uma vez por dia, às 00:00 UTC**, imediatamente após o término dos candles anteriores, para a direção das próximas 24 horas. Treino, validação e teste principais também terão uma amostra por dia elegível, nas mesmas origens temporais.
+Mesmo abaixo do gate, publicar sensibilidade superior-primeiro nos casos ambíguos, mantendo previsões e configurações. Para log-loss e Brier, calcular também limites de incerteza de rotulagem escolhendo, em cada origem ambígua, o menor/maior erro entre os dois rótulos possíveis e depois agregando. Apenas comparar todos-inferior com todos-superior não fornece esses limites. Reexecutar a contabilidade completa da política sob a convenção alternativa, pois saídas podem alterar entradas posteriores; isso é sensibilidade econômica, não limite matemático global de retorno. Não escolher a convenção que favorece o modelo. A regra principal de treino permanece inferior-primeiro; refinamentos com trades geram outra identidade de dataset e exigem tratamento consistente nas partições.
 
-| Candle | Contexto inicial de 7 dias | Horizonte de 24 horas |
-|---|---:|---:|
-| 15 minutos | 672 candles | 96 candles |
-| 1 hora | 168 candles | 24 candles |
-| 4 horas | 42 candles | 6 candles |
-| 1 dia | 7 candles | 1 candle |
+A regra de preenchimento em U/L é uma aproximação de execução. Gaps observáveis usam open; taxas, slippage e cenário de custos agravados são obrigatórios. Não interpretar o stop nominal como teto garantido de perda.
 
-Assim, uma linha da comparação usa o mesmo preço de referência, o mesmo desfecho futuro e a mesma duração de histórico. A variável que muda entre colunas é a resolução com que esse histórico é representado. Também não se concede ao modelo de 15m mais exemplos de treinamento apenas por existir maior quantidade de candles.
+## 5. Dados e elegibilidade
 
-Essa escolha responde precisamente se **maior detalhe intradiário ajuda a prever o dia seguinte**. Não responde, por si só, se negociar a cada 15 minutos seria melhor. A quantidade de exemplos independentes continua limitada: aproximadamente 1.826 origens diárias no período completo, antes de contexto, purga e exclusões. Os 672 candles de uma entrada de 15m não são 672 exemplos independentes. O possível sobreajuste, especialmente com poucos dias de treino, deve ser discutido.
+Fonte: arquivos públicos Binance Spot de **1 minuto**, quatro pares, período `[2021-01-01 00:00 UTC, 2026-01-01 00:00 UTC)`. São 240 arquivos mensais esperados e 10.517.760 minutos teóricos somados nos quatro pares, antes de falhas. Os candles horários serão agregados destes mesmos minutos: primeiro open, máximo high, mínimo low, último close, soma de volume base.
 
-Na análise de contexto, serão comparados **7 e 14 dias**. Com 14 dias, as entradas terão 1.344/336/84/14 candles, respectivamente. Os dois resultados serão reportados separadamente; não será escolhido retrospectivamente um contexto diferente para cada célula. A grade comum de elegibilidade considerará 14 dias e o maior aquecimento entre candidatos, inclusive os retornos consecutivos exigidos pelo AR(1), para que a diferença observada não seja causada por avaliar dias diferentes.
+Verificar checksums, duplicatas, timestamps, OHLC válido, volume, calendário completo e unidade de tempo. Os arquivos Spot a partir de 2025 usam microssegundos; normalizar explicitamente, sem inferir a unidade a partir de um único arquivo. [Fonte e especificação: Binance Public Data](https://github.com/binance/binance-public-data).
 
-### 5.2. Matriz complementar: próximo candle
+Só agregar hora com 60 minutos válidos. Não interpolar preços ou fabricar candles em lacunas. O cálculo dos 168 retornos requer 169 closes consecutivos; os primeiros instantes sem histórico suficiente são aquecimento. Preservar o início e fim de cada candle e distinguir timestamp de fechamento exclusivo da convenção de close_time da fonte.
 
-Será avaliado também `H = 1` candle: 15m, 1h, 4h e 1d. Nessa análise, origens de treino, validação e teste ocorrem a cada candle completo da própria granularidade. O contexto ficará fixo em 7 dias, para isolar a mudança do horizonte. A coluna de 1d coincide com o horizonte de 24 horas e será reutilizada.
+Criar uma identidade de dataset com manifestos, hashes dos arquivos brutos e do código de transformação, convenções, contagens e causas de exclusão. Verificar arquivos já disponíveis antes de reutilizá-los.
 
-Essa tabela representa tarefas e frequências diferentes. Diferenças de desempenho podem decorrer da granularidade, do horizonte e da quantidade de amostras. Portanto, ela será identificada como **comparação operacional de tarefas distintas**, sem atribuir todas as diferenças ao tamanho do candle. A célula de 1d coincide com a tarefa principal e seus resultados serão reutilizados.
+O desenvolvimento inicial coleta e processa somente 2021–2023: 144 arquivos mensais. Os anos 2024–2025 não são necessários para construir ou escolher a primeira configuração e ficam bloqueados para avaliação. A base completa terá 240 meses somados entre moedas quando a avaliação final for liberada.
 
-## 6. Variável-alvo e alinhamento temporal
+Alguns arquivos públicos têm um candle cujo close_time é anterior ao fim normal do minuto. Esses registros são minutos interrompidos: preservar o dado bruto, registrar sua contagem e tratá-los como lacunas na série regular; não completar os preços nem fingir cobertura integral.
 
-Seja `t` o instante da previsão, `C_t` o último fechamento disponível e `H` o número de candles futuros. O retorno logarítmico futuro é:
+### 5.1 Amostras para avaliação preditiva pareada
 
-```text
-r(t, H) = ln(C_(t+H) / C_t)
-y(t, H) = 1, se r(t, H) > 0       (alta)
-y(t, H) = 0, se r(t, H) <= 0      (não alta: baixa ou empate)
-```
+Construir uma máscara comum aos quatro pares, ambos os contextos e três prazos: passado necessário válido e futuro completo até a expiração máxima de 168h, incluindo seu open. A qualidade futura é usada somente para determinar se o rótulo é observável, nunca como feature. Isso dá às comparações preditivas a mesma população. Publicar exclusões por motivo e por período; uma lacuna em XRP pode retirar uma origem da comparação comum, por exemplo.
 
-O empate fica na classe 0 e sua frequência será reportada. Não será criada classe neutra nem serão excluídos retornos pequenos: excluir amostras pela magnitude futura mudaria a população avaliada usando informação indisponível na previsão.
+Antes de qualquer fronteira entre partições, purgar origens cuja expiração **máxima planejada**, `e + 168h`, seja maior ou igual à fronteira. Aplicar a mesma purga aos três H, mesmo quando a operação teria saído antes. Não usar o toque futuro para permitir uma amostra que cruzaria a fronteira. Janelas de entrada de validação/teste podem usar passado anterior à fronteira; seus rótulos não entram no ajuste.
 
-Para contexto de `W` candles, a entrada será `[x_(t-W+1), ..., x_t]`. O alvo compara `C_t` com `C_(t+H)`. O último candle da entrada e o preço de referência do alvo correspondem ao mesmo instante; não haverá deslocamento adicional de uma linha.
+### 5.2 Simulação econômica sem conhecimento antecipado das lacunas
 
-Cada amostra armazenará início/fim do contexto, origem `t`, término do alvo, par, granularidade e horizonte. Alinhamentos serão feitos por timestamps, sem depender da posição relativa de linhas em parquets diferentes.
+A política usa elegibilidade **causal**: histórico válido, modelo disponível, ausência de posição/ordem e calendário conhecido. Não utilizar a máscara de completude futura para decidir entrar. Gerar probabilidades também nas origens causalmente elegíveis sem rótulo avaliável.
 
-## 7. Baseline e decisão de classe
+Não abrir se `e + H >= fim_do_bloco_de_teste`, pois o fim do bloco é conhecido de antemão. Essa restrição usa o H real da estratégia, não 168h para todos. Por isso a amostra econômica pode diferir da amostra preditiva comum; publicar ambas as contagens.
 
-O protocolo adotará **duas baselines de confronto com papéis diferentes**. **ARIMA(1,0,0) nos log-retornos**, equivalente a AR(1) com intercepto, verifica se o Mamba supera uma regra estatística simples que usa apenas fechamentos. **LSTM unidirecional** verifica se o Mamba acrescenta desempenho frente a outra arquitetura sequencial recebendo exatamente as mesmas entradas. ARIMA e LSTM aparecem como comparadores em estudos de direção de cripto; isso não demonstra que esta especificação seja universalmente a melhor ou a mais usada. A [pesquisa metodológica](baseline_metodologia.md) distingue também o *random walk* clássico, 50% de BA e regras técnicas como SMA.
+Se uma lacuna durante posição aberta impedir decidir a primeira saída ou seu preço, a trajetória financeira fica **não auditável** a partir dela. Isso inclui ordem de entrada/saída sem preço de negociação observável: preservar volume e contagem de negócios da fonte para auditoria, sem assumir execução em preço carregado de minuto sem negócios. Não fechar retrospectivamente antes da lacuna, preencher lucro zero, ignorar a operação ou compor uma curva com os trechos convenientes. Recuperar os dados da mesma fonte; sem recuperação, não publicar resultado econômico integral daquele fold como válido. A liberação final exige cobertura suficiente para auditar as estratégias, sem escolher folds pelo resultado financeiro.
 
-### 7.1. Modelo autorregressivo de um passo
+## 6. Calendário walk-forward e congelamento
 
-Para uma série de fechamentos completos disponíveis até a origem `t`, calcular `r_t = ln(C_t/C_(t-1))`. Estimar, por mínimos quadrados ordinários com intercepto, apenas em pares de retornos consecutivos do treino de cada fold:
+Datas são limites UTC, intervalos semiabertos. Treino expansivo começa em 01/01/2021, descontando aquecimento/purgas. Cada ajuste parte de pesos novos; não carregar checkpoint de outro fold. Validação serve a early stopping; teste do bloco não escolhe época ou parâmetros.
 
-```text
-r_t = alfa + phi * r_(t-1) + erro_t
-r_previsto_(t+1|t) = alfa_estimado + phi_estimado * r_t
-previsao_baseline(t) = 1, se r_previsto_(t+1|t) > 0
-previsao_baseline(t) = 0, se r_previsto_(t+1|t) <= 0
-```
-
-Os parâmetros `alfa` e `phi` são reestimados no treino de cada fold expansivo, sem seleção de ordem, limiar ou hiperparâmetros por desempenho final. A baseline não recebe seeds. Se o ajuste for impossível, registrar a indisponibilidade do fold e investigar, sem substituir silenciosamente o modelo.
-
-Na **matriz principal de 24 horas**, o AR(1) usa retornos de fechamentos **diários UTC** da moeda, derivados dos candles-base 15m. Às 00:00 UTC, o último dia completo já está disponível. Ajustar um modelo por moeda e fold. Em uma mesma moeda e origem, sua previsão é idêntica nas quatro granularidades e nos contextos de 7/14 dias.
-
-Na **tabela complementar de próximo candle**, ajustar um AR(1) por moeda, granularidade e fold aos retornos de candles completos daquela granularidade. Em cada origem, o último retorno já observado prevê o próximo. A célula diária coincide com a principal e será reutilizada. Essas colunas representam tarefas e frequências diferentes.
-
-O *random walk* sem deriva (`Ĉ_(t+H) = C_t`) é a referência clássica para preço. Convertido literalmente pelo limiar do alvo, prevê sempre classe 0; sua BA é 50% quando as duas classes reais aparecem. Por isso será explicado junto da referência de 50%, **sem ser contado como um segundo ganho independente**. A baseline AR(1) poderá ter BA diferente de 50%.
-
-### 7.2. LSTM: baseline neural pareada
-
-A LSTM receberá o mesmo tensor temporal `[amostras, candles_do_contexto, features]` do Mamba para cada configuração. Usará as mesmas cinco entradas OHLCV ou as mesmas oito entradas quando os indicadores forem avaliados, na mesma ordem, com o mesmo scaler ajustado somente ao treino purgado de cada fold. Moeda, granularidade, origem, término do alvo, contexto de 7/14 dias, horizonte, elegibilidade e rótulo também serão idênticos. Comparar essas previsões em pares permite investigar o efeito da arquitetura **sob entradas equivalentes**; não garante igualdade de capacidade ou número de parâmetros.
-
-A topologia inicial será uma LSTM **unidirecional de duas camadas**, `batch_first=True`, `hidden_size=32`, dropout entre camadas de `0,1`, último passo temporal e camada linear para duas classes. A única alternativa arquitetural no desenvolvimento será `hidden_size=64`, mantendo duas camadas e os demais valores. Escolher uma das duas larguras pela mesma regra global de BA do desenvolvimento descrita na seção 8, com empate a favor de 32; congelar essa escolha antes de 2024–2025. A comparação de larguras internas do Mamba continua específica do Mamba: não se deve escolher a largura da LSTM com resultados finais nem trocar sua topologia por célula. Registrar contagem de parâmetros de ambos e custo computacional, sem reivindicar controle perfeito de capacidade.
-
-A LSTM utilizará o mesmo orçamento de treino, otimizador, taxa inicial, batch efetivo, função de perda, regra de early stopping, limiar `p(alta) > 0,5`, folds e três identificadores de seed definidos para o Mamba. Os pesos e estados de otimizador serão novos a cada fold e seed. As escolhas de **dados** (contexto, features e normalização) serão aplicadas a ambos; não se dará a cada baseline um conjunto distinto de indicadores escolhido com base no teste final. A LSTM não substitui o AR(1): ela responde à pergunta de comparação entre arquiteturas, enquanto o AR(1) responde à de superar um modelo simples.
-
-### 7.3. Regras de comparação
-
-- Ajustar coeficientes apenas com o treino elegível do fold, sem pares que atravessem lacunas ou rótulos que cruzem o corte temporal. Durante validação e teste, manter os coeficientes congelados; atualizar apenas o último retorno **já realizado** e disponível na origem. Não reestimar no bloco de teste.
-- Usar somente fechamentos e timestamps até `t`; não consumir candle aberto, interpolar lacunas ou usar o alvo na previsão. Aplicar a mesma população elegível, timestamps, purga e convenção de empate do Mamba e da LSTM. Exigir dois retornos consecutivos para iniciar o AR(1); não há aquecimento de 20 dias da SMA.
-- A baseline é determinística dado seu treino e não recebe seeds. Repeti-la por seed duplicaria observações sem acrescentar evidência.
-- Salvar previsão, retorno estimado, coeficientes, tamanho e corte do treino, origem e término do alvo ao lado das previsões do Mamba e da LSTM e do valor real.
-- Mamba e LSTM preveem alta quando `p(alta) > 0,5`; caso contrário preveem classe 0. Não haverá ajuste de limiar ou abstinência no estudo principal.
-
-## 8. Entradas, normalização e escolha da configuração
-
-O ponto de partida será OHLCV: cinco entradas. O scaler StandardScaler será ajustado separadamente para cada ativo e fold, apenas sobre candles únicos utilizados nas entradas de treino, sem contar várias vezes um candle presente em janelas sobrepostas. Ele será reaplicado, sem novo ajuste, na validação e no teste. Mamba e LSTM reutilizarão **o mesmo scaler de cada célula/fold**. Não haverá clipping automático.
-
-O cronograma prevê comparações posteriores de representação e normalização. Para manter o escopo delimitado:
-
-| Etapa | Comparação permitida no desenvolvimento |
-|---|---|
-| Experimento 1 | Quatro granularidades com horizonte de 24h; resultados separados para contextos de 7 e 14 dias |
-| Experimento 2 | OHLCV versus OHLCV + três indicadores causais |
-| Experimento 3 | StandardScaler versus MinMaxScaler para ambos; duas larguras Mamba e duas larguras LSTM, escolhidas separadamente no desenvolvimento |
-
-Os três indicadores adicionais serão definidos por duração física: retorno logarítmico nas últimas 24h, distância relativa do close à SMA dos últimos 7 dias e desvio-padrão dos últimos 7 retornos diários disponíveis, calculados em uma série diária comum em UTC. Antes de 00h, usar somente o último dia encerrado. Os indicadores serão associados causalmente aos candles de cada granularidade. A lista resultará em oito entradas e ficará congelada antes do Experimento 2.
-
-A arquitetura Mamba inicial será compacta: `d_model=32`, duas camadas, `d_state=16`, `d_conv=4`, `expand=2`, pooling no último passo e dropout de 0,1. A única alternativa arquitetural Mamba será `d_model=64`, mantendo os demais valores. A LSTM terá as duas opções de `hidden_size` da seção 7. Esses são pontos de partida explícitos, não configurações selecionadas pelos testes anteriores.
-
-Treinamento planejado **para ambas as redes**: AdamW, taxa inicial `0,0002`, weight decay `0,001`, batch efetivo 32, até 100 épocas, clipping da norma do gradiente em 1 e cross-entropy sem pesos de classe. Early stopping por balanced accuracy de validação, paciência de 10 épocas; empate mantém o checkpoint mais antigo. Sem scheduler ou busca adicional nesta versão. Registrar também loss, épocas e duração. Em limitação de memória, reduzir microbatch e acumular gradientes para preservar batch efetivo, registrando a mudança.
-
-As comparações serão sequenciais, modificando um fator por vez. Os contextos de 7 e 14 dias são objetos de análise e ambos terão seus scores registrados; não será selecionado silenciosamente o melhor contexto de cada célula. Para decisões posteriores de features, normalização e largura, a configuração de referência usará contexto de 7 dias e horizonte de 24 horas. Cada escolha usará a média não ponderada de balanced accuracy nos quatro ativos, quatro granularidades e folds de desenvolvimento, com seed 42. As decisões compartilhadas de **features e normalização** seguirão a BA de desenvolvimento do Mamba, por ser o objeto do estudo, e serão aplicadas igualmente à LSTM; os resultados de ambos para todas as opções serão publicados. A largura da LSTM será selecionada pela própria BA de desenvolvimento, e a do Mamba pela BA do Mamba. Empates favorecem a opção inicial mais simples/menor. Todos os candidatos serão registrados.
-
-O teste final não escolherá o melhor candle, ativo ou modelo para então ocultar as demais células. Todas as combinações definidas serão apresentadas.
-
-## 9. Desenho walk-forward
-
-Walk-forward será implementado como avaliação em blocos posteriores com reestimação do modelo e expansão do histórico. A validação por origens móveis usa apenas observações anteriores à origem avaliada e pode considerar horizontes de vários passos. [Referência metodológica: Hyndman e Athanasopoulos, seção 5.10](https://otexts.com/fpp3/tscv.html).
-
-### 9.1. Desenvolvimento e congelamento
-
-Todas as decisões de contexto, entradas, normalização e configuração interna usarão somente **2021–2023**. Os quatro folds de desenvolvimento serão:
-
-| Fold | Treino expansivo a partir de 01/01/2021 | Validação para early stopping | Avaliação de desenvolvimento |
+| Fold | Fim exclusivo do treino / início da validação | Fim da validação / início do teste | Fim exclusivo do teste |
 |---|---|---|---|
-| D1 | Até 30/09/2022 | 2022-T4 | 2023-T1 |
-| D2 | Até 31/12/2022 | 2023-T1 | 2023-T2 |
-| D3 | Até 31/03/2023 | 2023-T2 | 2023-T3 |
-| D4 | Até 30/06/2023 | 2023-T3 | 2023-T4 |
+| DB1 | 2022-10-01 | 2023-01-01 | 2023-04-01 |
+| DB2 | 2023-01-01 | 2023-04-01 | 2023-07-01 |
+| DB3 | 2023-04-01 | 2023-07-01 | 2023-10-01 |
+| DB4 | 2023-07-01 | 2023-10-01 | 2024-01-01 |
+| B1 | 2023-10-01 | 2024-01-01 | 2024-07-01 |
+| B2 | 2024-04-01 | 2024-07-01 | 2025-01-01 |
+| B3 | 2024-10-01 | 2025-01-01 | 2025-07-01 |
+| B4 | 2025-04-01 | 2025-07-01 | 2026-01-01 |
 
-A coluna de avaliação de desenvolvimento pode orientar escolhas e, por isso, não é teste final. Antes de abrir scores de 2024–2025, salvar versão do protocolo, código, grade de candidatos, configuração selecionada e manifesto dos dados.
+DB1–DB4 são desenvolvimento em 2023, seed 42. B1–B4 são avaliação final semestral em 2024–2025, seeds **17, 42 e 2026**. O semestre reduz o número de ajustes; não implica estabilidade do mercado por seis meses. As validações finais são janelas anteriores de três meses. No walk-forward, dados de um teste antigo podem fazer parte do treino/validação de um bloco posterior, como ocorreria na implantação; não voltar atrás e alterar previsões já emitidas.
 
-O registro de reinício deverá informar quais períodos e métricas foram consultados nos testes antigos. Se 2024–2025 já tiverem orientado escolhas anteriores, sua avaliação não poderá ser descrita como completamente intocada: declarar a exposição e a limitação, ou definir outra reserva temporal em nova versão antes das execuções. Remover arquivos não apaga exposição prévia a resultados.
+Antes de B1, congelar commit, protocolo, dataset, ambiente, backend, parâmetros, regras de seleção e simulação. Congelar também os quatro folds como um único plano de avaliação: resultados de B1 não autorizam ajustes discricionários antes de B2. Bloquear B1–B4 na CLI até esse registro.
 
-### 9.2. Avaliação final
+Registrar declaração do pesquisador sobre exposição prévia a resultados de 2024–2025, inclusive experimentos removidos. Não presumir que o período nunca foi consultado. Se houve uso de seus resultados para orientar escolhas, descrever a avaliação como retrospectiva, sem alegar holdout intocado; uma confirmação prospectiva precisará de outro período, definida em revisão separada.
 
-| Fold | Treino expansivo a partir de 01/01/2021 | Validação para early stopping | Teste |
-|---|---|---|---|
-| F1 | Até 30/09/2023 | 2023-T4 | 2024-T1 |
-| F2 | Até 31/12/2023 | 2024-T1 | 2024-T2 |
-| F3 | Até 31/03/2024 | 2024-T2 | 2024-T3 |
-| F4 | Até 30/06/2024 | 2024-T3 | 2024-T4 |
-| F5 | Até 30/09/2024 | 2024-T4 | 2025-T1 |
-| F6 | Até 31/12/2024 | 2025-T1 | 2025-T2 |
-| F7 | Até 31/03/2025 | 2025-T2 | 2025-T3 |
-| F8 | Até 30/06/2025 | 2025-T3 | 2025-T4 |
+### Quantidade de execuções
 
-As datas da tabela representam blocos de calendário. Na implementação, usar intervalos `[início, início_do_bloco_seguinte)`, em UTC. Primeiro aplicar a separação por origem; depois a purga abaixo. Contexto e aquecimento reduzem as amostras iniciais de 2021.
+- Por fold e seed: 24 células × 2 redes = **48 ajustes neurais**.
+- Desenvolvimento: 48 × 4 × 1 = **192 ajustes**.
+- Final: 48 × 4 × 3 = **576 ajustes**.
+- Total planejado: **768 ajustes neurais**, além de qualificações e tentativas registradas. Um piloto só conta na grade se sua identidade e todos os parâmetros coincidirem com a execução definitiva.
+- AR(1): um ajuste por moeda/fold = **32 ajustes**; previsões para três H = 96 séries moeda/fold/H. Reutilizá-las nos dois W e nas seeds neurais, sem contá-las como novas evidências independentes.
 
-Em cada fold e seed, criar Mamba, LSTM e seus otimizadores novos; ajustar um scaler de treino por configuração e fold e aplicá-lo a ambas as redes. Não reutilizar pesos de um fold anterior. Treinar no histórico indicado, selecionar a época de cada rede pela validação e prever todo o bloco de teste sem atualizar parâmetros dentro dele. Dados de antigos testes tornam-se passado e podem compor a validação/treino posterior de acordo com a tabela; a regra e os hiperparâmetros permanecem congelados.
+É uma grade menor em fatores, mas não um experimento trivial em custo. Medir tempo/memória e custo das simulações do AR(1) no piloto antes da grade completa. Se inviável, revisar o orçamento antes da avaliação final, preservando o registro; não remover células por desempenho desfavorável.
 
-Cada configuração possui seu próprio treinamento, mas utiliza as mesmas origens elegíveis da comparação principal. Apenas o DataLoader de treino poderá embaralhar amostras.
+## 7. Entradas e transformações
 
-### 9.3. Purga dos alvos e contexto passado
+Para cada candle horário j, usar cinco variáveis causais:
 
-Uma amostra só pertence a um bloco se o término do seu alvo ocorrer **estritamente antes do início do bloco seguinte**. Remover as últimas origens que violem essa condição. Na tarefa principal, isso corresponde a uma separação conservadora de 24h; na complementar, à duração de um candle. Para o último teste, o término do alvo deve ser anterior a 01/01/2026 00:00 UTC.
+`[ln(O_j/C_(j-1)), ln(H_j/C_(j-1)), ln(L_j/C_(j-1)), ln(C_j/C_(j-1)), ln(1+V_j)]`.
 
-Essa regra impede que rótulos de treino dependam de preços do bloco de validação e que rótulos de validação dependam de preços do teste. O scaler também permanece restrito às entradas de treino efetivamente elegíveis.
+V é volume na moeda base. O close anterior é necessário também no primeiro candle da sequência. Essa representação evita obrigar a rede a interpretar níveis absolutos de preço de anos distintos, sem acrescentar indicadores ou informação externa.
 
-O contexto de uma amostra de validação/teste pode utilizar candles anteriores ao início daquele bloco: esse passado já estava disponível na previsão. Não é necessário apagar todo o contexto de `W` candles nas fronteiras. A restrição essencial está na disponibilidade temporal das entradas, dos rótulos usados no ajuste e das estatísticas de transformação.
+Aplicar StandardScaler por moeda e fold, ajustado apenas aos vetores horários únicos que integram as entradas W=168 das origens de treino elegíveis. Reutilizar esse ajuste em ambos W, nos três H e nas duas redes; não contar repetições das janelas como observações adicionais no ajuste do scaler. Dimensão sequencial: **5**.
 
-## 10. Métricas, agregação e interpretação
+Acrescentar à cabeça de classificação o escalar `ln(d_(t,H))`, padronizado por moeda/fold/H apenas nas origens de treino. Ele informa a distância efetivamente prevista. Dimensão auxiliar: **1**. Concatenar com o último estado da sequência e produzir três logits. A documentação/identidade deve distinguir cinco features por candle de uma feature auxiliar por origem.
 
-### 10.1. Métricas obrigatórias
+Não ajustar scalers na validação/teste, não recomputar seus parâmetros ao emitir uma previsão e não compartilhar estatísticas entre moedas. Colunas constantes no treino recebem escala 1, com registro. Rejeitar valores não finitos e inputs fora do contrato; não corrigir silenciosamente com dados futuros.
 
-Balanced accuracy será a métrica primária. Ela é a média do recall de alta e do recall de não alta; quando as duas classes reais aparecem, qualquer regra que sempre escolha a mesma classe obtém 0,5. **50% é uma referência matemática**, equivalente à BA da tradução binária do *random walk* sem deriva neste alvo; não é a BA observada do AR(1) nem um teste de significância. Isso oferece uma escala de ausência de discriminação mais estável diante de desequilíbrio que a accuracy bruta ou o F1 macro. Se faltar uma classe real, a leitura de BA contra 50% fica indisponível e o suporte será registrado.
+## 8. Modelos e treinamento
 
-F1 macro continuará obrigatório: é a média do F1 das duas classes. Usar sempre a lista de classes `[0, 1]` e definir F1/precision/recall indefinidos como zero, registrando suportes; isso evita que a métrica mude de definição quando uma classe estiver ausente. [Definição e opções: documentação do F1](https://scikit-learn.org/stable/modules/generated/sklearn.metrics.f1_score.html).
+### 8.1 Comparação neural controlada
 
-Para cada modelo, moeda, granularidade, contexto, horizonte, fold e seed, registrar:
+Mamba: bloco Mamba-1, `d_model=32`, duas camadas, `d_state=16`, `d_conv=4`, `expand=2`, dropout 0,1. Preservar o encadeamento atual do classificador: projeção linear 5→32; em cada bloco `x = LayerNorm(x + Mamba(x))`; depois dropout 0,1 e LayerNorm final; selecionar último estado, concatenar a variável auxiliar e aplicar linear 33→3. LSTM: unidirecional, duas camadas, hidden size 32, dropout 0,1 entre camadas; último estado de saída concatenado à variável auxiliar, linear 33→3, sem acrescentar normalização ou residual. Estado recorrente começa em zero em cada janela. Mesmo número de camadas/largura não significa mesmo número de parâmetros; publicar contagem, tempo e memória, com snapshot do código e versões.
 
-- Balanced accuracy de Mamba, AR(1) e LSTM; `BA_Mamba - BA_AR1`, `BA_Mamba - BA_LSTM` e `BA_Mamba - 50%` em pontos percentuais, mantidos como três cálculos distintos.
-- Accuracy direcional, também denominada taxa de acerto ou mean directional accuracy, e F1 macro.
-- Precision, recall e F1 por classe, matriz de confusão e quantidade de amostras por classe.
-- Previsões individuais dos três métodos, probabilidades de Mamba e LSTM, alvo e timestamps para auditoria e recálculo.
-- Tempo de treinamento, número de épocas, contagem de parâmetros e backend utilizado para cada rede.
+Ambas usam entradas, origens, folds, loss, otimização e regra de seleção iguais. Saída softmax com três classes. AdamW: learning rate 0,0002, weight decay 0,001, betas (0,9; 0,999), epsilon 1e-8, batch efetivo 32, clipping de norma de gradiente 1,0, máximo 100 épocas, patience 10. Cross-entropy sem pesos de classe, sem oversampling. Não introduzir scheduler, busca de hiperparâmetros ou calibração posterior dentro do ciclo inicial; mudanças posteriores exigem outro ciclo predefinido.
 
-Fold vazio deve ser marcado como indisponível, com motivo; não preencher com zero nem inventar observações. Ausência de classes ou perda material de cobertura deverá aparecer na discussão e na tabela de qualidade.
+Selecionar checkpoint pela **menor log-loss de validação**; empate exato mantém a primeira época. Acurácia não seleciona checkpoint. Só treino pode embaralhar; validação/teste preservam a ordem. Microbatch pode dividir 32 por necessidade de memória, com acumulação e normalização corretas, registrado na identidade. Fixar seeds de inicialização/ordenação e documentar limites de determinismo do ambiente. Sem mixed precision na referência inicial; qualquer mudança numérica exige qualificação e outra identidade.
 
-### 10.2. Agregação
+O backend de referência da nova grade será **Mamba oficial/CUDA, após qualificação**. O fallback PyTorch continua disponível e deve ser preservado; não substituir o backend silenciosamente se CUDA faltar. Não misturar implementações na mesma comparação científica. Se o backend de referência não estiver disponível, a execução fica pendente ou requer revisão documentada antes da grade.
 
-Cada célula principal mostrará balanced accuracy média de Mamba e LSTM nos oito folds e três seeds, balanced accuracy do AR(1) nos oito folds e as duas diferenças médias pareadas Mamba menos cada baseline. A média dará o mesmo peso a cada fold e seed; não juntar mais candles de 15m para dominar a média. O AR(1), ajustado ao treino do fold, será calculado uma única vez por fold e pareado a cada seed apenas para a diferença, sem tratá-lo como três ajustes independentes. Mostrar `BA_Mamba - 50%` em coluna separada; 50% não entra no cálculo de ganho sobre qualquer baseline.
+A qualificação inclui forward/backward finitos, inicialização, causalidade, consistência de recarga e comparação da implementação oficial com sua rotina de referência em entradas sintéticas. Registre divergências numéricas e de ambiente. Uma qualificação funcional não certifica qualidade de previsão financeira.
 
-Separar duas fontes de variabilidade: desvio-padrão entre seeds dentro de cada fold e variação entre folds após média das seeds. Seeds não são três novos históricos de mercado. Reportar também quantos folds tiveram diferença positiva e a diferença por ativo, sem transformar um percentual arbitrário de vitórias em prova estatística.
+### 8.2 AR(1) como previsão probabilística de trajetórias
 
-Reportar quantos folds tiveram cada diferença pareada positiva. Isso mostra estabilidade temporal sem acrescentar, nesta entrega, um procedimento de reamostragem complexo.
+O AR(1) atual de próximo retorno não basta para três barreiras. Implementar um comparador explicitamente probabilístico:
 
-### 10.3. O que contará como evidência
+`r_(j+1) = c + phi × r_j + epsilon_(j+1)`, com inovação gaussiana independente, média zero e variância residual estimada no treino.
 
-Há **quatro perguntas separadas**:
+Ajustar intercepto e coeficiente por mínimos quadrados em retornos horários consecutivos do treino, encerrados antes do limite purgado comum. Estimar variância por SSE/(n−2). Não ajustar em validação/teste. Usar todos os retornos horários válidos nesse intervalo, sem duplicação por janelas. Se o ajuste for singular, variância inválida ou `abs(phi) >= 1`, registrar falha e bloquear a execução dessa configuração; não truncar phi para obter resultado desejado.
 
-1. **Mamba versus AR(1):** `BA_Mamba - BA_AR1` mostra o ganho observado sobre o comparador estatístico simples nos mesmos timestamps. Entradas diferentes impedem atribuir a diferença somente à arquitetura.
-2. **Mamba versus LSTM:** `BA_Mamba - BA_LSTM` mostra o ganho observado sobre a baseline neural com as mesmas entradas, rótulos e períodos. Hiperparâmetros internos e capacidade podem diferir. Nenhuma das duas diferenças de BA, isoladamente, é prova de superioridade estatística; PT não testa diferenças entre modelos.
-3. **Comparação com 50%:** `BA_Mamba - 50%` mostra a distância ao patamar de um classificador constante ou de palpites independentes, quando as duas classes reais aparecem. O *random walk* sem deriva traduzido para este alvo é uma previsão constante de classe 0 e cai nesse mesmo patamar, não constituindo evidência adicional. Valor positivo não fornece p-valor e não implica vencer as baselines.
-4. **Teste PT:** avalia se o acerto direcional observado difere do esperado pelas frequências marginais de altas reais e previstas sob a hipótese de falha preditiva. A independência direcional implica essa hipótese, mas não deve ser usada como sinônimo exato dela. Exigir estatística **positiva** e `p < 0,05` no teste bicaudal para alegar associação direcional favorável. PT significativo com estatística negativa não é evidência favorável.
+Para prever o percurso intrahora, adotar esta **hipótese adicional do baseline**, predefinida: durante uma hora simulada, cada um de seus 60 incrementos de log-preço tem média `(c + phi × retorno_da_hora_anterior)/60` e desvio padrão `sigma_residual/sqrt(60)`, com ruídos independentes. A soma da hora obedece ao AR(1). Atualizar a média condicional apenas na próxima hora simulada. Interpolar linearmente entre preços simulados de minutos consecutivos para determinar toques. A origem usa o último retorno horário observado.
 
-O PT será calculado **separadamente para Mamba e LSTM**, por seed, concatenando as previsões fora da amostra dos oito folds sem duplicar timestamps. Publicar os três p-valores e estatísticas de cada rede; a célula exibirá o maior p-valor por rede. Uma alegação favorável pelo PT para uma rede exige suas três estatísticas positivas e seus três p-valores abaixo de 0,05. Para o AR(1) determinístico, calcular uma vez por célula. Quando o teste for degenerado, registrar indisponibilidade, sem fabricar p-valor. Registrar autocorrelação descritiva de previsões e rótulos dentro dos folds. O PT clássico pressupõe independência serial para a inferência; se houver dependência material, seu p-valor será tratado como condicional/exploratório, sem alegação confirmatória de previsibilidade pelo PT isolado. As muitas células examinadas também limitam a interpretação.
+Simular o minuto de latência até e; ancorar os limites no preço simulado de e e seguir até e+H. As barreiras usam o d observado na origem, igual ao das redes. Produzir **4.096 trajetórias por origem**, compartilhando prefixos entre os três H; contar superior, inferior e expiração conforme o primeiro evento. Probabilidade: `(contagem_classe + 0,5)/(4096 + 1,5)`. Semente base de simulação 20261018, derivada por hash estável de moeda/fold/origem; não depende de W ou seed neural.
 
-As diferenças entre candles serão apresentadas por moeda e também agregadas, usando 1h como referência previamente definida. Os intervalos por célula e contraste serão tratados como descritivos, sem alegar significância simultânea em dezenas de comparações. Uma conclusão de superioridade consistente exige discutir direção, tamanho e estabilidade dos ganhos por período e ativo; uma única célula favorável não basta.
+Essa interpolação não reproduz extremos dentro de cada minuto, saltos, caudas pesadas ou volatilidade futura variável. É uma hipótese simplificadora do modelo de previsão; **não substituir por ela o rótulo observado de OHLCV**. Avaliar as probabilidades contra o mesmo alvo real, com a mesma convenção de ambiguidade. Qualidade de calibração e erro refletem também essa limitação. AR(1) é um comparador simples; Mamba versus LSTM é a comparação que controla as entradas detalhadas e o treinamento neural.
 
-As antigas faixas únicas de "ruim" a "excelente" misturavam perguntas diferentes e foram retiradas antes dos experimentos. A conclusão apresentará **separadamente**: magnitude e sinal das duas diferenças frente às baselines; posição em relação a 50%; estatística/p-valor PT; estabilidade entre folds, seeds e moedas. Pode-se descrever uma célula como favorável neste protocolo se `BA_Mamba > 50%`, ambas as diferenças de BA forem positivas e PT do Mamba for positivo com `p < 0,05` nas três seeds, sempre informando magnitudes e limitações. Isso não equivale a demonstrar estatisticamente que Mamba supera as baselines, nem estabelece rentabilidade de trading.
+Qualificação numérica: em 32 origens de desenvolvimento igualmente espaçadas por moeda, escolhidas por índice temporal antes de observar escores, comparar 4.096 contra 16.384 trajetórias aninhadas, nos três H. Exigir diferença absoluta ≤ 0,03 em pelo menos 95% das combinações origem/classe/H. Falha bloqueia o aceite numérico e exige revisão registrada, sem escolher o orçamento que maximiza desempenho. Medir custo, processar em lotes e interromper cada percurso após resolver todos os H; Monte Carlo não é gratuito e não entra na contagem de ajustes neurais.
 
-## 11. Forma das tabelas finais
+Simular trajetórias é uma forma de transformar um modelo estocástico em distribuição preditiva; as hipóteses acima são escolhas deste projeto, não uma propriedade universal de AR(1). [Referência sobre previsão por simulação e hipóteses dos resíduos](https://otexts.com/fpp2/prediction-intervals.html).
 
-### Tabela principal — direção das próximas 24 horas, contexto de 7 dias
+## 9. Política econômica fixa
 
-Mesmas origens diárias, mesmo contexto em dias e mesma população de dias elegíveis. **Quatro tabelas separadas** usarão as mesmas linhas (moedas) e colunas (granularidades):
+Avaliar cada moeda/modelo/W/H/seed como estratégia separada. Capital inicial ilustrativo de **10.000 USDT**, sem juros sobre caixa. Uma posição por vez, sem pirâmide, sem reaproveitar capital já comprometido e sem somar retornos de estratégias sobrepostas como se fossem uma única carteira.
 
-1. **Comparação estatística:** `BA Mamba / BA AR(1) / BA Mamba − BA AR(1) em p.p.` por célula.
-2. **Comparação neural:** `BA Mamba / BA LSTM / BA Mamba − BA LSTM em p.p.` por célula.
-3. **Referência de 50%:** `BA Mamba / BA Mamba − 50% em p.p.`, com suporte das classes.
-4. **Teste PT:** estatísticas e p-valores de cada rede por seed, indicando o maior p-valor por célula e qualquer indisponibilidade; AR(1) uma vez por célula.
+Custos convencionais de referência, **não cotação da tarifa atual de uma conta**: taxa `f = 0,001` por lado (10 bps) e slippage adverso `s = 0,0005` por lado (5 bps). Sem desconto por token. Compra: `A × (1+s)`; venda: `B × (1−s)`, com taxa em cada lado. B é o preço bruto de saída da seção 4.
 
-| Moeda / candle de entrada | 15 minutos | 1 hora | 4 horas | 1 dia |
-|---|---|---|---|---|
-| BTC | A calcular | A calcular | A calcular | A calcular |
-| ETH | A calcular | A calcular | A calcular | A calcular |
-| BNB | A calcular | A calcular | A calcular | A calcular |
-| XRP | A calcular | A calcular | A calcular | A calcular |
+Definir retorno líquido nominal de um limite b, incluindo aquisição e venda:
 
-### Tabela complementar — direção do próximo candle, contexto de 7 dias
+`R_b = (b/A) × (1−s) × (1−f) / [(1+s) × (1+f)] − 1`.
 
-| Moeda / candle | 15 min → +15 min | 1 h → +1 h | 4 h → +4 h | 1 d → +24 h |
-|---|---|---|---|---|
-| BTC | A calcular | A calcular | A calcular | Reutilizar principal |
-| ETH | A calcular | A calcular | A calcular | Reutilizar principal |
-| BNB | A calcular | A calcular | A calcular | Reutilizar principal |
-| XRP | A calcular | A calcular | A calcular | Reutilizar principal |
+Na origem, entrar somente se estiver em caixa e:
 
-Apresentar separadamente suporte, proporção de classes, scores por fold/seed e caracterização dos ativos. Se for utilizado um mapa de calor, destacar `delta_BA` em uma escala comum, sem mascarar células desfavoráveis. Essas tabelas são modelos de apresentação; o piloto AR(1) de desenvolvimento não preenche as tabelas finais.
+1. `p_superior >= 0,60`;
+2. `p_superior × R_U + (1−p_superior) × R_L > 0`;
+3. demais requisitos causais/de calendário forem atendidos.
 
-### Tabelas de contexto e horizonte
+O segundo critério trata nominalmente todo resultado que não seja superior como stop. Evita operar um alvo estreito cujo ganho seria consumido pelos custos e dispensa inventar retorno esperado da expiração. É um **filtro nominal conservador**, não prova de esperança matemática positiva: probabilidades podem estar erradas, gaps podem ultrapassar o stop e preenchimentos são aproximados. Não calibrar 0,60 olhando resultados de teste. O prazo de 1h pode gerar poucas ou nenhuma entrada após custos; publicar esse resultado, sem alargar barreiras ou reduzir taxas retrospectivamente para forçar operações.
 
-A análise de contexto repetirá a matriz principal duas vezes: uma para 7 dias e outra para 14 dias, além de uma tabela de contraste `BA_14d - BA_7d`. A análise de horizonte manterá contexto de 7 dias e apresentará lado a lado próximo candle e próximas 24 horas. Não agregar essas tarefas em um único score antes de mostrar seus resultados individuais.
+Com patrimônio E em caixa, o desembolso total de entrada é:
 
-Essas separações permitem que uma moeda apresente resultado favorável apenas em previsão curta, apenas em previsão longa ou apenas com determinada quantidade de contexto. Qualquer conclusão ficará limitada à configuração efetivamente avaliada.
+`N = E × min(1, 0,01 / (−R_L))`; quantidade `q = N / [A × (1+s) × (1+f)]`.
 
-## 12. Viabilidade e sequência de implementação
+Assim o risco de stop nominal é de até 1% do patrimônio, com investimento limitado a 100% e sem empréstimo. Barreiras mais largas levam a posições menores; risco não é comparado usando alavancagem oculta. Gaps e execução pior podem exceder 1%. O saldo não investido permanece em caixa. Após a venda, somar ao caixa `q × B × (1−s) × (1−f)`.
 
-A matriz principal com contexto de 7 dias terá `4 moedas × 4 granularidades × 8 folds × 3 seeds = 384` treinamentos **por rede**. Repeti-la com contexto de 14 dias adiciona 384 por rede. A análise de próximo candle adiciona `4 × 3 granularidades não diárias × 8 folds × 3 seeds = 288` por rede; a coluna diária é reutilizada. O escopo completo chega a **1.056 treinamentos Mamba + 1.056 treinamentos LSTM = 2.112 treinamentos neurais finais**, além do desenvolvimento e dos ajustes determinísticos AR(1). Isso será medido por um piloto de tempo/memória somente no desenvolvimento; o tempo total não está estimado por execução real nesta entrega.
+Abrir apenas em uma origem estritamente posterior ao instante em que a saída anterior é conhecida; não reentrar retroativamente na mesma origem. Uma ordem pendente também ocupa a vaga. Operações ignoradas enquanto há posição não desaparecem da avaliação preditiva, apenas não são transações da estratégia.
 
-Para o desenvolvimento, cada configuração global custa `4 × 4 × 4 × 1 = 64` treinamentos **por rede**. A sequência admite no máximo cinco configurações distintas por rede: inicial, contexto alternativo, entradas alternativas, normalizador alternativo e largura alternativa, reaproveitando resultados já existentes quando a configuração não mudou. Limite planejado: **320 Mamba + 320 LSTM = 640 treinamentos de desenvolvimento**. O conjunto diário tem poucos exemplos, enquanto a tarefa complementar intradiária pode ser substancialmente mais cara.
+Concatenar folds em ordem cronológica, mantendo o capital acumulado e trocando o modelo nas fronteiras; as regras de expiração impedem posições atravessando fronteiras. Mostrar resultados individuais e concatenados. Cada seed produz sua curva; não selecionar a melhor nem transformar três seeds em ensemble não planejado.
 
-Se o orçamento medido não couber no cronograma, a ordem de prioridade será: matriz principal de 7 dias e 24 horas **com as duas baselines**; comparação de contexto com 14 dias; análise de próximo candle; demais alternativas de desenvolvimento. Qualquer redução será registrada **antes de consultar resultados finais**, preservando a comparação pareada Mamba–LSTM em toda célula mantida. Não remover seletivamente moedas, granularidades, contextos, horizontes ou seeds por apresentarem desempenho baixo.
+**Sensibilidade de custos:** taxa 0,002/lado e slippage 0,001/lado, mantendo previsões, regra de sinal e frações de exposição calculadas no cenário base. Aplicar a mesma fração ao patrimônio corrente do cenário agravado e recalcular q com seus custos de compra, sem gastar mais caixa que o disponível. Recontabilizar com os custos agravados; não recalibrar limiar ou fração de risco para recuperar lucro. Custos alteram patrimônio, mas não os limites brutos ou horários de toque. Identificar este cenário como sensibilidade, não segunda estratégia otimizada.
 
-| Etapa do cronograma | Implementação/entrega orientada por este protocolo |
-|---|---|
-| Atividade 1 | Este documento: decisões, fórmulas, matriz, folds e regras de avaliação |
-| Coleta | Download do período fechado, manifesto, checksums e auditoria dos quatro pares |
-| Pré-processamento | Agregações UTC, janelas com timestamps, alvo binário, elegibilidade, purga e scaler por fold |
-| Infraestrutura e baselines | Preservar ARIMA(1,0,0) já implementado; implementar LSTM e infraestrutura compartilhada de dados, treino, avaliação e alinhamento |
-| Mamba base | Validar os componentes preservados, construir treino, checkpoint, seeds e registro de backend; verificar a comparação pareada com LSTM |
-| Experimentos 1–3 | Comparações delimitadas em 2021–2023 para ambas as redes e congelamento das escolhas compartilhadas e das larguras próprias |
-| Robustez | Oito folds finais, três seeds para cada rede, matriz principal e análise complementar conforme orçamento registrado |
-| Análise e escrita | Consolidar scores, incerteza, cobertura, limitações e responder às perguntas de pesquisa |
+Controles econômicos: (a) aplicar a mesma regra de barreiras, calendário e dimensionamento sem filtro preditivo, entrando quando estiver em caixa; (b) comprar com todo o capital na primeira origem causalmente elegível de cada bloco e manter até o open do último minuto antes do fim do bloco, com custos de entrada/saída; (c) caixa, retorno zero. Concatenar também os capitais dos controles entre blocos. Não são novas arquiteturas. O controle (a) identifica se filtrar entradas acrescenta valor à própria regra de saídas; as exposições diferentes devem ser reportadas.
 
-O novo `run_pipeline.py` foi construído na Entrega 3. `run_treino.py`, implementado nas Entregas 4/5, executa as duas redes no desenvolvimento e mantém F1–F8 bloqueados; `run_avaliacao.py` consolida execuções por configuração e fold. O usuário realiza coleta, processamento integral e treinamentos.
+A simulação mantém quantidades fracionárias e taxas descontadas em USDT. Não reconstrói livro de ofertas, impacto dependente de tamanho, fila, mínimos de ordem ou regras históricas de arredondamento da corretora. Portanto, avalia utilidade sob um modelo de custos declarado, não certifica que cada ordem seria executável com esse preenchimento. O valor de 10.000 USDT é uma escala da simulação, não recomendação de capital. Não converter retorno em USDT automaticamente em retorno em USD ou BRL.
 
-## 13. Reprodutibilidade e critérios de conclusão da Atividade 1
+## 10. Métricas e análise sem seleção de vencedores
 
-Cada experimento deverá identificar protocolo, commit, versão dos dados, par, granularidade, contexto, horizonte, lista/ordem das features, scaler, fronteiras temporais, modelo, seed quando aplicável, hiperparâmetros, backend Mamba quando aplicável, versões de dependências e hardware. Salvar estado do scaler, checkpoints neurais e previsões. Não sobrescrever resultados de outro modelo, célula ou fold.
+### 10.1 Previsão
 
-O estudo final usará um backend Mamba registrado e consistente entre células. O fallback PyTorch permanece disponível para desenvolvimento, mas sua compatibilidade de interface não comprova equivalência numérica ao backend oficial. Trocas não podem ocorrer silenciosamente na matriz científica.
+Métrica principal: **log-loss multiclasse**, menor é melhor. Métricas secundárias: Brier (soma dos três erros quadráticos por origem), balanced accuracy multiclasse, macro-F1, precisão/recall por classe, matriz de confusão e calibração com dez faixas de probabilidade de largura 0,1. Mostrar quantidade de observações e frequência de cada classe. Para log-loss, usar `max(p_classe_verdadeira, 1e-7)` somente no cálculo do log, sem mudar a decisão.
 
-A Atividade 1 estabelece:
+Classificação por argmax; empate exato resolve pela ordem fixa 0, 1, 2. Se uma classe não ocorrer em um recorte, marcar sua métrica e a BA completa como indisponíveis, sem alterar silenciosamente o conjunto de classes. Frequências de treino com suavização 0,5 por classe servem como referência probabilística constante, sem outra arquitetura.
 
-- [x] Criptomoedas e justificativa de seleção.
-- [x] Fonte, datas históricas e granularidades.
-- [x] Variável-alvo, instante de previsão e horizontes.
-- [x] Duas baselines, referência de 50%, teste PT e população de avaliação.
-- [x] Métricas, agregação e interpretação.
-- [x] Walk-forward por datas, seleção interna e proteção contra vazamento.
-- [x] Tabelas separadas por moeda, candle, contexto e horizonte, modificando um fator por vez.
-- [x] Escopo dos experimentos posteriores e orçamento de execuções.
+Uma referência de 1/3 para balanced accuracy requer as três classes presentes e não substitui log-loss ou comparação pareada. Acurácia isolada não demonstra calibração ou utilidade econômica.
 
-Antes da implementação experimental, registrar o histórico de exposição a dados/resultados dos testes anteriores. Na coleta, comprovar cobertura. Na infraestrutura, comprovar viabilidade computacional. Esses registros verificam pressupostos explícitos do protocolo; não autorizam escolher decisões a partir do teste final.
+Comparações principais: Mamba menos LSTM e Mamba menos AR(1), sempre nas mesmas origens. Para resumir efeitos de W, comparar 24 versus 168 dentro da mesma moeda/H/fold/seed. Apresentar cada H separadamente antes de agregar: ele muda tanto a duração como a largura. Não pressupor uma ordem de volatilidade das quatro moedas; descrevê-la com os dados.
 
-## 14. Referências e registro da fundação
+Resumo global: primeiro média entre seeds para cada célula/fold, depois média com pesos iguais entre 24 células e folds. Também fornecer escores por origem e tamanho dos recortes para permitir outras leituras, sem substituir a análise principal depois de ver o resultado. AR(1) repetido entre W/seeds não gera réplicas independentes.
 
-- [Cronograma de Atividades TCC 2](Cronograma_Atividades_TCC2_Murilo_Monferrari.pdf), documento do projeto.
-- [Binance Public Data](https://github.com/binance/binance-public-data): origem dos candles, arquivos e integridade.
-- [Hyndman e Athanasopoulos — Time series cross-validation](https://otexts.com/fpp3/tscv.html): validação por origens temporais.
-- [Fama — The Behavior of Stock-Market Prices](https://doi.org/10.1086/294743): passeio aleatório como referência histórica em ações.
-- [Gradojevic et al. — Forecasting Bitcoin with technical analysis](https://www.sciencedirect.com/science/article/pii/S0169207021001230): passeio aleatório e ARMAX como benchmarks de retornos de Bitcoin.
-- [Predicting market movement direction for bitcoin: A comparison of time series modeling methods](https://doi.org/10.1016/j.compeleceng.2020.106905): ARIMA e outros comparadores na tarefa binária de direção.
-- [Deep learning for Bitcoin price direction prediction: models and trading strategies empirically compared](https://doi.org/10.1186/s40854-024-00643-1): ARIMA como benchmark estatístico de direção.
-- [Dynamic Bayesian Networks for Predicting Cryptocurrency Price Directions](https://link.springer.com/article/10.1007/s40745-025-00637-5): exemplo de estudo de direção de cripto que inclui ARIMA e LSTM entre os comparadores; sua configuração não define a deste TCC.
-- [Bustos e Pomares-Quimbaya — Stock market movement forecast: A Systematic review](https://doi.org/10.1016/j.eswa.2020.113464): indicadores técnicos como entradas comuns, sem estabelecer SMA como baseline dominante.
-- [Brock, Lakonishok e LeBaron — Simple Technical Trading Rules and the Stochastic Properties of Stock Returns](https://doi.org/10.1111/j.1540-6261.1992.tb04681.x): médias móveis como regras de negociação em ações, tarefa diferente da classificação deste TCC.
-- [Welch e Goyal — A Comprehensive Look at the Empirical Performance of Equity Premium Prediction](https://doi.org/10.1093/rfs/hhm014): média histórica como benchmark de retornos de ações.
-- [Pesaran e Timmermann — A Simple Nonparametric Test of Predictive Performance](https://doi.org/10.1080/07350015.1992.10509922): teste de acurácia direcional, distinto da diferença Mamba menos baseline.
-- [Blaskowitz e Herwartz — Testing the value of directional forecasts in the presence of serial correlation](https://doi.org/10.1016/j.ijforecast.2013.06.001): limitação do PT clássico sob dependência serial.
-- [Documentação de balanced accuracy](https://scikit-learn.org/stable/modules/generated/sklearn.metrics.balanced_accuracy_score.html): média dos recalls e referência de 50% no caso binário com ambas as classes.
-- [Documentação de F1](https://scikit-learn.org/stable/modules/generated/sklearn.metrics.f1_score.html): definição e convenções da métrica.
-- [Documentação PyTorch LSTM](https://docs.pytorch.org/docs/stable/generated/torch.nn.LSTM.html): parâmetros e comportamento da arquitetura de comparação.
+### 10.2 Operações
 
-As datas, moedas, granularidades, grades e regras de comparação são decisões deste protocolo; não foram determinadas pelas referências como configurações universalmente ótimas.
+Retorno líquido e curva de patrimônio; custos acumulados; número de entradas; percentual de origens aproveitadas; tempo exposto; duração realizada; proporção de saídas por cada motivo; ganho/perda médios; taxa de acerto econômico; profit factor (indisponível se denominador zero); drawdown. A classe superior não equivale automaticamente a ganho líquido positivo.
 
-**Revisão 1.6, 28/09/2026:** por decisão do pesquisador, LSTM foi acrescentada à baseline ARIMA(1,0,0) para comparar arquiteturas com as mesmas entradas. Esta revisão ocorreu **depois** da observação dos scores AR(1) de BTCUSDT nos folds de desenvolvimento D1–D4 (BA média 49,11%). Preservam-se esses resultados, sem recalibrar retroativamente o AR(1). A LSTM e o Mamba ainda não foram executados neste protocolo; a comparação final de 2024–2025 permanece reservada, sujeita ao registro de exposições anteriores previsto na seção 9.1. Foram atualizados os critérios de confronto, as tabelas e o orçamento de execução.
+Marcar posições a mercado em cada fechamento de minuto, com valor de liquidação após custos. Reportar máximo drawdown dessa série e uma medida conservadora de pior marca intraminuto com o low observado enquanto a posição estava aberta. No minuto da saída, não incluir extremos que possam ter ocorrido depois dela: usar o preço de saída e marcar a incerteza de ordenação; não afirmar que OHLCV recupera drawdown contínuo exato. Curvas somente de operações encerradas não bastam para medir risco durante a posição.
 
-**Revisão 1.5, 27/09/2026:** inclusão de BNBUSDT como quarto par, a pedido do pesquisador, antes de coleta e resultados oficiais. A justificativa dos quatro ativos e a hipótese não verificada de ordem de volatilidade foram documentadas. Matriz, elegibilidade comum, inventário e orçamento de execução foram atualizados; baseline AR(1), alvo e avaliação temporal foram mantidos.
+### 10.3 Dependência e incerteza
 
-**Revisão 1.4, 27/09/2026:** a pesquisa aprofundada distinguiu a referência canônica de preço (*random walk*) de um comparador útil para o alvo binário. O *random walk* sem deriva, convertido pelo limiar deste estudo, prevê sempre classe 0 e coincide com 50% de BA; ARIMA(1,0,0) nos retornos foi fixado como baseline algorítmica de confronto. A SMA 5/20 da revisão 1.3 foi retirada desse papel por faltar evidência de que seja o benchmark padrão de previsão direcional. Nenhuma mudança foi motivada por resultados deste protocolo.
+Origens horárias com prazo semanal compartilham grande parte do futuro; não tratá-las como ensaios independentes. Para intervalos descritivos de diferenças médias, bootstrap por blocos temporais de **14 dias**, 2.000 réplicas, dentro de cada fold, mantendo os mesmos dias para moedas/modelos/contextos/seeds. Usar blocos móveis contíguos de dias UTC completos, amostrados com reposição e truncados ao número de dias original; não atravessar fronteiras entre folds. Intervalos percentis de 95%: quantis 2,5% e 97,5% das réplicas. Semente 20261018.
 
-**Revisão 1.3, 27/09/2026, superada pela 1.4:** separou explicitamente ganho sobre baseline, distância da BA a 50% e teste PT e removeu antigas faixas compostas de qualidade. Propôs SMA 5/20 no lugar da persistência direcional; essa escolha de baseline não é mais vigente. Nenhuma janela foi selecionada por resultados de 2024–2025.
+Para log-loss/Brier, calcular a média dos escores entre seeds e reagrupar por dia de origem, preservando contagens para recomputar médias. Para finanças, reamostrar retornos diários de cada estratégia/seed já simulada com os mesmos blocos, calcular as métricas por seed e então tirar sua média. Não compor uma curva a partir da média diária de retornos entre seeds, pois isso introduziria uma carteira não planejada; não inventar novos sinais reordenando operações. Reportar sensibilidades com blocos de 7 e 28 dias e todas as estimativas, sem escolher o intervalo favorável. São intervalos condicionais ao conjunto de previsões e ao período observado; não capturam toda a incerteza de reestimar modelos ou mudar de regime. [Bootstrap de séries temporais: documentação arch](https://arch.readthedocs.io/en/stable/bootstrap/bootstrap_examples.html).
 
-Em 14/09/2026, foram removidos os módulos de análise de anomalias, pipeline e treino exploratórios, baselines/avaliações/previsões antigos, CSVs de teste, metadado do checkpoint e documentação técnica desatualizada. O frontend deixou de apresentar previsões e parâmetros experimentais antigos. Foram preservados o cronograma, os componentes genéricos Mamba, a infraestrutura de ambiente e os componentes genéricos de gráficos. Arquivos anteriormente versionados podem ser recuperados pelo histórico Git; nenhum teste anterior integra a evidência científica deste protocolo.
+Publicar tabelas completas e gráficos dos efeitos de contexto, prazo e moeda, inclusive ausências e falhas. Não declarar cada célula uma descoberta confirmatória a partir de dezenas de testes isolados. A grade explora padrões predefinidos; não procurar a combinação de maior retorno final e apresentá-la como uma estratégia validada sem outra avaliação. [Risco de seleção em backtests: Bailey e coautores](https://www.davidhbailey.com/dhbpapers/backtest-prob.pdf).
+
+## 11. Contrato executável e evidências
+
+A configuração de referência é `configuracoes/ciclo_001.json`. O pacote `barreiras/` concentra coleta, transformação, rotulagem, folds, treino, AR(1), operações, métricas e auditoria. As CLIs devem validar versão e configuração e rejeitar campos desconhecidos. Não aceitar um argumento e ignorá-lo silenciosamente.
+
+Cada tentativa possui identidade do ciclo/configuração/célula/dataset/código/ambiente, snapshot do protocolo, scalers, épocas, checkpoint, previsões com timestamps, probabilidades das três classes, rótulos observados, ordens e resultados. Arquivos parciais não contam como execução concluída. Falhas geram registro com causa; a repetição corrigida tem nova identidade. Os modelos das duas redes começam com pesos novos em cada fold.
+
+O dataset é independente do modelo: suas features são causais e não normalizadas globalmente. Scalers são artefatos do ajuste de cada fold. A origem, entrada, expiração máxima, saída observada e limite do ajuste ficam preservados para auditoria.
+
+## 12. Ordem de execução e aceite
+
+1. Validar os contratos com testes de casos-limite e testes de vazamento por perturbação do futuro. Testar toques isolados/duplos, latência, expiração, gaps, custos, caixa e sobreposição.
+2. Coletar/reutilizar dados 1m, auditar checksums e cobertura, executar a pipeline e gerar contagens comuns às quatro moedas.
+3. Qualificar ambiente Mamba oficial/CUDA e AR(1); registrar versões, opções numéricas, recursos e resultados dos testes.
+4. Executar primeiro BTCUSDT/W24/H24/DB1/seed42 pareado e o caso longo BTCUSDT/W168/H168/DB1. Usar configuração real do ciclo, sem reduzir épocas ou amostras para chamar um teste rápido de avaliação científica.
+5. Recarregar checkpoints, reproduzir previsões, recalcular métricas e auditar simulador e cortes temporais. Só promover a execução a auditada quando as verificações correspondentes passarem.
+6. Executar a grade inicial DB1–DB4; comparar moedas/contextos/prazos e documentar padrões, limitações e custo. Publicar também células desfavoráveis, falhas e situações sem operação.
+7. Formular os próximos ciclos de melhoria com o desenvolvimento; reservar a avaliação final para o fim da pesquisa.
+
+O pesquisador autorizou o agente a executar essas etapas nesta sessão. Não é necessário pedir confirmação repetida. Isso não elimina os gates científicos nem autoriza abrir B1–B4 antes de congelar o estudo.
+
+## 13. Ciclos de melhoria e configurações do Mamba
+
+A primeira grade estabelece uma referência, não o encerramento do trabalho. O objetivo é buscar uma configuração melhor e documentar como cada decisão foi tomada.
+
+Antes de cada ciclo, registrar em `historico/ciclos/`: identificador, hipótese, motivo, configuração completa, ciclo de referência, fator alterado, orçamento, períodos/seeds, critério de comparação e regra de parada. Configurações executadas são imutáveis. Registrar tentativas interrompidas e desfavoráveis junto às bem-sucedidas.
+
+Sequência recomendada, sem executar automaticamente um produto cartesiano:
+- Contexto e prazo: examinar as 24 células iniciais e sua estabilidade entre os quatro folds.
+- Capacidade do Mamba: estudar largura, quantidade de camadas e tamanho do estado; por exemplo 32/64, 1/2/4 camadas ou estados 8/16/32, alterando primeiro um fator por ciclo.
+- Dinâmica local: kernel convolucional e expansão; declarar efeito em parâmetros, memória e tempo.
+- Otimização/regularização: learning rate e dropout, com orçamento igual e seleção pela validação.
+- Confirmação no desenvolvimento: repetir candidatos selecionados nas seeds 17/42/2026, mantendo todas, antes de congelar a escolha final.
+
+Esses valores são um catálogo de hipóteses futuras, não configurações já executadas nem autorização para procurar indefinidamente. Mamba/LSTM seguem pareados quando a hipótese requer mesma entrada ou regra de treino. Alterar apenas um parâmetro interno do Mamba constitui ablação dessa arquitetura; declarar a mudança de capacidade, sem afirmar orçamento ou quantidade de parâmetros idênticos à LSTM.
+
+Critério principal inicial: menor log-loss média nos folds de desenvolvimento, com métricas econômicas e risco como segundo eixo. Ganho em acurácia sem melhora probabilística ou econômica não constitui vitória universal. Reportar troca entre qualidade, risco e custo computacional. Não mudar a métrica de seleção depois de conhecer o resultado de um ciclo.
+
+Os testes DB são fora do treino de seus folds, mas fazem parte do **desenvolvimento consultado repetidamente**. Walk-forward evita olhar o futuro ao ajustar cada modelo; sozinho não remove viés de seleção acumulado entre dezenas de tentativas. Quantidade de tentativas e escolhas deve aparecer no relatório final.
+
+B1–B4 ficam fechados durante essa busca. Depois de abertos, uma alteração guiada por seus resultados é um novo estudo retrospectivo e precisa de outro período para confirmação independente. A remoção de arquivos não apaga exposição humana anterior aos dados; a situação de exposição deve ser declarada sem reconstituir relatórios removidos.
+
+Se aparecer vazamento ou defeito, marcar a tentativa como inválida, explicar o impacto e gerar execução corrigida. Não editar previsões ou trocar o checkpoint retrospectivamente para melhorar o placar.

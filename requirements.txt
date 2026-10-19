@@ -1,16 +1,13 @@
-# Pipeline de dados
-python-binance>=1.0.19
-pandas>=2.0
-numpy>=1.24
-scikit-learn>=1.3
-pyarrow>=14.0
+# Ambiente de análise e testes (Python 3.12 recomendado)
+numpy==2.2.6
+pandas==3.0.3
+pyarrow==24.0.0
+numba==0.61.2
+torch==2.6.0
 
-# Modelos (Mamba e baseline LSTM)
-torch>=2.1
-
-# Mamba oficial (opcional — requer CUDA + Linux/WSL2):
-# Instalação versionada e qualificação: docs/entregas/05_mamba_base/guia_notebook_nvidia.md
-# Não instalar a versão mais recente indiscriminadamente nem reutilizar wheels
-# de outra combinação Python/PyTorch/CUDA/ABI.
-# A CLI científica exige backend explícito; em CPU/Windows use backend_mamba=pytorch.
-# A interface reutilizável do classificador ainda aceita seleção automática.
+# Execução científica oficial: Linux/WSL + CUDA, wheels compatíveis com
+# Python/PyTorch/CUDA/ABI. O comando qualificar registra o ambiente completo.
+# Combinação verificada nesta máquina:
+# torch 2.6.0+cu118; mamba-ssm 2.2.6.post3;
+# causal-conv1d 1.6.2.post1; transformers 4.51.3; triton 3.2.0.
+# Não assumir que instalar somente este arquivo instala kernels Mamba.

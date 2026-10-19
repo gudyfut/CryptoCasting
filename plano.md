@@ -1,24 +1,42 @@
 # Plano científico do TCC
 
-**Título:** Previsibilidade de Criptomoedas com a Arquitetura Mamba: um Sistema de Forecasting Temporal.
-
 ## Objetivo
 
-Investigar se um classificador Mamba consegue prever a direção de retornos futuros de BTC, ETH, BNB e XRP a partir de OHLCV, superar o comparador estatístico ARIMA(1,0,0) e uma LSTM neural pareada, e apresentar diferenças de desempenho entre moedas, granularidades de candle, durações de contexto e horizontes de previsão.
+Investigar como moeda, contexto, prazo e configuração do Mamba afetam a previsão de primeiro toque em barreiras e sua utilidade econômica após custos. Comparar com LSTM e AR(1), documentando toda a sequência de hipóteses e tentativas.
 
-## Escopo
+O [protocolo 2.1](docs/protocolo_experimental.md) é a referência metodológica. O projeto é iterativo: a primeira grade estabelece a referência; os ciclos seguintes procuram melhorias no desenvolvimento. O teste final fica separado dessa seleção.
 
-- Arquitetura Mamba, implementada em PyTorch, com fallback PyTorch preservado.
-- Dados Binance Spot de pares cotados em USDT; OHLCV e indicadores derivados causalmente.
-- Classificação direcional binária, avaliação temporal e resultados separados por moeda, granularidade, contexto e horizonte.
-- Sem notícias, redes sociais, sentimento, dados macroeconômicos ou previsão com LLMs.
-- Sem outras arquiteturas neurais concorrentes além da LSTM definida como baseline, e sem regressão de preço nesta versão. ARIMA(1,0,0) nos log-retornos é o comparador estatístico simples; LSTM usa as mesmas janelas e features do Mamba para comparar arquiteturas. O random walk sem deriva é a referência clássica de previsão de preço e, convertido para este alvo binário, coincide com 50% de balanced accuracy. O teste de Pesaran–Timmermann é uma verificação distinta; não testa a diferença Mamba menos qualquer baseline.
-- Rentabilidade de trading não é a variável de sucesso científico.
+## Ciclo inicial
 
-## Protocolo de referência
+| Fator | Valores |
+|---|---|
+| Moedas | BTCUSDT, ETHUSDT, BNBUSDT, XRPUSDT |
+| Candle de entrada | 1h |
+| Contextos | 24 e 168 candles |
+| Prazos máximos | 1h, 24h, 168h |
+| Alvo | Inferior primeiro, prazo esgotado, superior primeiro |
+| Distância | Desvio padrão dos últimos 168 retornos horários × raiz do prazo |
+| Execução/rótulo | OHLCV 1m, com ordem ambígua sinalizada |
+| Redes | Mamba e LSTM, largura 32, duas camadas |
+| Operação | Spot comprado/caixa, sem alavancagem, custos e risco explícitos |
 
-**Revisão aberta em 13/10/2026 — tipos de previsão:** o pesquisador solicitou estudar alternativas à agenda diária. O [estudo de tarefas](docs/estudo_tarefas_previsao.md) distingue a previsão de 24h e o próximo candle já implementados de candidatas ainda não adotadas: múltiplos horários/horizontes, abstenção, eventos, barreiras, magnitude e volatilidade. A interface distingue moeda, candle, prazo, alvo, contexto e políticas; inclui prazos candidatos intradiários, entre dias e de uma semana ou mais. A recomendação para discussão mantém o foco direcional e propõe uma grade pequena de horizontes; não há decisão de executar todas as opções. A revisão deve preceder a ampliação da grade. O piloto NVIDIA permanece um aceite técnico da tarefa diária. Regressão e volatilidade constam como possibilidades de outro escopo, sem alteração do contrato executável.
+Desenvolvimento em quatro folds de 2023, seed 42: 192 ajustes neurais. AR(1) é ajustado uma vez por moeda/fold e reutilizado entre contextos. A grade final predefinida em 2024–2025 fica bloqueada enquanto a busca estiver em andamento.
 
-As decisões operacionais, fórmulas, datas e critérios de avaliação estão em [docs/protocolo_experimental.md](docs/protocolo_experimental.md), que substitui as definições do protótipo anterior.
+## Ciclos seguintes
 
-Um resultado sem superioridade do Mamba também responde à pergunta científica. A conclusão deve acompanhar as evidências, inclusive limitações de amostragem e incerteza.
+Após analisar a referência, registrar outra hipótese e configuração antes de executar. Podem ser estudados contexto/prazo, largura, camadas, estado interno, convolução, expansão, dropout e otimização do Mamba. Evitar mudar tudo ao mesmo tempo; comparar cada ciclo com uma referência explícita e custo medido.
+
+Log-loss média nos folds de desenvolvimento é o critério preditivo inicial. Risco, retorno líquido, exposição e custo computacional compõem a análise de utilidade. Não trocar a métrica depois de ver um resultado nem escolher apenas seeds favoráveis. Testes de desenvolvimento consultados repetidamente são parte da busca, não confirmação independente.
+
+## Primeiro ciclo concluído em 18/10/2026
+
+1. Concluído: implementação e verificação de rótulos, entradas causais, purgas, scalers e operação.
+2. Concluído: coleta de 144 meses somados entre moedas e dataset `9341610dbb329a858784`, sem interpolação.
+3. Concluído: ambiente CUDA, Mamba oficial e qualificação Monte Carlo do AR(1).
+4. Concluído: duas células iniciais integradas à grade; recargas exatas em todas as células.
+5. Concluído: DB1–DB4, 96 células auditadas, 192 ajustes neurais, 16 ajustes únicos AR(1); identidade `4e232a796fcda0ea34c3`.
+6. Concluído: [análise completa](historico/analises/ciclo_001_resultados.md), tabelas e [proposta delimitada do ciclo 002](historico/ciclos/ciclo_002_proposto.md).
+
+O próximo ciclo foi apenas proposto: estado Mamba 16→8 no prazo semanal, quatro moedas e ambos os contextos, 64 ajustes neurais no executor pareado. Sua qualificação específica e comparação entre ciclos precisam ser preparadas antes da execução. Não é uma configuração final escolhida. B1–B4 seguem bloqueados até congelamento e declaração de exposição prévia.
+
+O pesquisador autorizou execução autônoma de coleta, pipeline, treino e testes nesta sessão. O [andamento](docs/andamento.md) registra o que realmente foi comprovado; a existência de código não significa que a grade foi executada.

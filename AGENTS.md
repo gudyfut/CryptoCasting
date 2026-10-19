@@ -1,47 +1,37 @@
 # AGENTS.md
 
-TCC científico: prever direção de criptomoedas com Mamba e OHLCV. Leia `plano.md` e `docs/protocolo_experimental.md` antes de implementar. O protocolo é a referência metodológica; não reintroduza configurações dos testes antigos.
+TCC científico: primeiro toque em barreiras de preço com Mamba, LSTM e AR(1). Leia `plano.md` e `docs/protocolo_experimental.md` antes de implementar.
 
-## Estado atual
+## Autorização e objetivo atual
 
-O usuário solicitou a remoção dos experimentos exploratórios em 14/09/2026. Pipeline experimental antigo, análises, previsões, dados de teste e documentação antiga foram removidos. Coleta (Entrega 2) e pré-processamento (Entrega 3) foram implementados e executados pelo pesquisador. O dataset oficial `daeec76f001afb50a8fe` tem 1.661 origens diárias comuns; cobertura/volatilidade estão em `docs/entregas/03_pre_processamento_amostras/resultados_execucao_oficial.md`. AR(1) BTCUSDT/D1–D4 foi executado pelo pesquisador. Em 13/10/2026, as Entregas 4 e 5 receberam LSTM, treinador pareado Mamba/LSTM, métricas/PT, consolidação e painel Next.js. Após autorização explícita do usuário, o agente executou e auditou o piloto neural BTCUSDT/1d/D1/seed 42 em CPU, identidade `481b79d054b046fe6b70`: BA Mamba 41,46%, LSTM 50,00%, AR(1) 46,34%. Checkpoints recarregados reproduzem exatamente as previsões. Relatório: `docs/entregas/05_mamba_base/resultados_piloto_BTC_D1_cpu.md`. Não há resultados neurais D2–D4 nem finais de 2024–2025. Consultar `docs/entregas/05_mamba_base/README.md`. A revisão técnica acrescentou auditoria com recálculo das métricas, snapshots de código/protocolo e matriz experimental gerada. `scripts/atualizar_plano_experimental.py` só gera documentação e não treina.
+Em 18/10/2026, o pesquisador solicitou retirar os registros da metodologia e do piloto anteriores, reorganizar o projeto para barreiras, implementar, auditar e executar coleta, pipeline, treinamento e testes. Esta autorização substitui a restrição anterior de execução exclusiva pelo pesquisador. Não é necessário pedir nova confirmação para essas etapas. Não reescrever o histórico Git.
 
-## Execução
+O trabalho é iterativo: avaliar uma grade inicial e depois formular ciclos novos, inclusive de parâmetros internos do Mamba, documentando cada hipótese e todos os resultados. Desenvolvimento iterativo não transforma o mesmo teste consultado repetidamente em avaliação final independente.
 
-O usuário executa toda coleta, pipeline e treinamento. Agentes editam código e usam somente verificações Python rápidas sem treinamento, como `python -m py_compile`. Não executar `run_pipeline.py` ou `run_treino.py` quando forem reconstruídos. Frontend pode ser verificado com lint/build.
+## Estado verificado em 18/10/2026
 
-**Exceção autorizada pelo usuário em 13/10/2026:** o agente pode preparar, executar e auditar o piloto de treinamento LSTM/Mamba necessário à validação das Entregas 4 e 5, com o dataset oficial existente. Registrar configuração, ambiente, artefatos e resultados; manter a avaliação restrita ao desenvolvimento e preservar o bloqueio F1–F8. Esta autorização não inicia automaticamente a grade completa das entregas posteriores.
+Primeiro ciclo concluído: dataset `9341610dbb329a858784`, execução `4e232a796fcda0ea34c3`, DB1–DB4/seed 42, 96 células auditadas, 192 ajustes neurais e 16 ajustes únicos AR(1). Recargas exatas; auditoria suplementar 96/96 aprovada; 25 testes Python finais aprovados. Ler `historico/analises/ciclo_001_resultados.md` antes de interpretar os placares. Não há superioridade demonstrada de Mamba sobre LSTM nem rentabilidade consistente. O relatório preserva perdas, caixa e controles financeiramente não auditáveis.
 
-## Restrições científicas
+`historico/ciclos/ciclo_002_proposto.md` e `configuracoes/ciclo_002_proposto.json` são proposta não executada de ablação do estado 16→8 em H168. Não iniciar outra busca automaticamente. A qualificação atual foi feita para a configuração inicial; antes de uma variante, qualificar suas dimensões e preparar comparação entre ciclos. Preservar protocolo/fontes/checkpoints do ciclo concluído. B1–B4 seguem bloqueados.
 
-**Revisão de escopo solicitada em 13/10/2026:** consultar `docs/estudo_tarefas_previsao.md`. A interface separa moeda, candle, horizonte, alvo, contexto e políticas. O catálogo A–H foi substituído por cinco formulações visuais: direção, retorno/preço, faixa probabilística, volatilidade e barreiras. Direção diária/próximo candle são vigentes; outros alvos e prazos são candidatos. O usuário pediu pesquisa e visualização das alternativas, não execução de todas elas. Não converter uma proposta em configuração científica nem misturar exemplos fictícios da interface com resultados. O contrato operacional 1.6 e seus bloqueios continuam vigentes até decisão explícita; o piloto NVIDIA é qualificação técnica da tarefa diária. Magnitude e volatilidade são possibilidades de extensão, ainda fora do escopo executável binário.
+## Invariantes científicos
 
-- Mamba é a arquitetura investigada; LSTM unidirecional em PyTorch é a baseline neural. ARIMA(1,0,0) dos log-retornos é a baseline estatística simples. Sem outras arquiteturas concorrentes, notícias, sentimento, macroeconomia ou previsão com LLM. O random walk sem deriva coincide com 50% de balanced accuracy após conversão ao alvo binário. Manter separadas as comparações Mamba versus AR(1), Mamba versus LSTM, referência de 50% e teste de Pesaran–Timmermann. LSTM e Mamba usam as mesmas entradas, folds e regras de treino do protocolo; implementação não equivale a avaliação científica executada. A CLI atual aceita somente D1–D4/seed 42; preservar o bloqueio final até o congelamento.
-- Pares: BTCUSDT, ETHUSDT, BNBUSDT e XRPUSDT. Granularidades: 15m, 1h, 4h e 1d. A ordem BTC < ETH < BNB < XRP em volatilidade é hipótese descritiva a verificar, não pressuposto do experimento.
-- Alvo binário: alta versus não alta. Não filtrar observações com base na magnitude futura.
-- Walk-forward expansivo por datas; não restaurar split fixo 70/15/15 ou avaliação de checkpoint único como substituto.
-- Ajustar transformações somente no treino de cada fold. Purgar rótulos que cruzem fronteiras temporais.
-- Somente o DataLoader de treino pode embaralhar amostras; validação e teste preservam a ordem.
-- Preservar timestamps de origem e do alvo. Nunca alinhar parquets distintos por índice de linha.
-- Dados, features, dimensões de entrada e metadados devem corresponder à configuração efetivamente executada.
-- Identificadores/argumentos novos em português; parâmetros da API Mamba preservam compatibilidade.
+- Quatro moedas: BTCUSDT, ETHUSDT, BNBUSDT e XRPUSDT; Binance Spot.
+- Ciclo inicial: entrada 1h, base 1m, contextos 24/168h, prazos máximos 1/24/168h; três classes de primeiro toque.
+- Walk-forward expansivo por datas. Scalers só no treino; purga pela expiração máxima planejada. Sem split aleatório.
+- Mamba e LSTM recebem as mesmas origens, entradas e regras de treino. Validação escolhe época por log-loss; testes de desenvolvimento só orientam ciclos posteriores, nunca a seleção retroativa de checkpoint.
+- DB1–DB4 são desenvolvimento. B1–B4 permanecem bloqueados até congelamento e declaração de exposição anterior. Não afirmar holdout intocado sem evidência.
+- Toda tentativa nova, inclusive falha, precisa de configuração, versões, hashes, timestamps, métricas recalculáveis e estado de auditoria. Não apagar tentativas deste novo ciclo por resultado ruim.
+- Probabilidades e operações são avaliações distintas. Custos, caixa, risco e ordem desconhecida de toques devem ser explícitos. Não usar completude futura para decidir entrada financeira.
+- Não filtrar por magnitude futura. Não inventar ordem intraminuto ou preencher lacunas de preço. Não alinhar arquivos por número de linha.
+- Identificadores novos em português; argumentos da API Mamba mantêm compatibilidade.
 
-## Mamba e ambientes
+## Ambiente e execução
 
-`modelo/mamba_modelo.py:_importar_mamba()` tenta `mamba_ssm` e recorre a `modelo/mamba_minimal.py`. O fallback é de primeira classe; não assumir disponibilidade de CUDA. O classificador recebe dimensões explicitamente, sem configuração experimental global.
+Inspecionar a máquina atual, sem presumir hardware a partir de registros. Em 18/10/2026 foi encontrada RTX 4050 6 GB e WSL Ubuntu com Python 3.12 e PyTorch CUDA em `~/.venvs/cc`. Qualificar importação, forward/backward, recarga e determinismo antes do treino. O protocolo especifica backend oficial; não substituir silenciosamente.
 
-Ambiente verificado em 13/10/2026: Python 3.13.14 do Windows e PyTorch 2.9.1+cpu; GPU AMD Radeon RX 6600, CUDA indisponível. O ambiente WSL2 `~/.venvs/cc` citado historicamente está ausente nesta máquina; PyTorch/Mamba oficial não estão instalados no Ubuntu verificado. Não presumir disponibilidade do backend oficial. O fluxo do piloto CPU foi auditado; a qualificação científica da implementação e a qualificação CUDA permanecem pendentes. `scripts/setup_wsl_mamba.sh` é uma receita específica preservada; `scripts/test_mamba.py` é diagnóstico a cargo do usuário. Registrar backend e versões em cada execução científica; não misturar implementações silenciosamente.
+Não lançar processos duplicados após timeout de observação. Verificar o handle/PID vivo e seus logs. Registros científicos não podem confundir teste sintético com treino de mercado. Não fazer compras ou contratar computação paga sem autorização.
 
-## Histórico científico
+## Interface
 
-Preparação do notebook NVIDIA (13/10/2026): `configuracoes/treino_piloto_nvidia.json` delimita BTCUSDT/1d/D1/seed 42, OHLCV/StandardScaler e contexto de 7 dias, backend oficial/CUDA, microbatch 32. `run_verificacao.py` faz qualificação sintética sem otimização ou recarga/auditoria de checkpoints; consulte `docs/entregas/05_mamba_base/guia_notebook_nvidia.md`. Não confundir testes CPU aprovados com validação NVIDIA. A grade WSL de 128 treinos não é o piloto. Os novos registros incluem fontes instaladas e opções numéricas; alterações de código exigem outra identidade, preservando o piloto antigo.
-
-Toda tentativa científica deve ser registrada em `historico/`, inclusive falhas, resultados desfavoráveis e testes sob suspeita. Usar `run_registro.py` após encerrar a tentativa; consultar `historico/README.md`. Preservar os originais, registrar revisões por data em `acompanhamento.md` e criar outra identidade para novos treinos. Não inventar metadados ausentes, não confundir data de importação com execução e não chamar integridade de artefatos de validação científica. Checkpoints/datasets fora do Git exigem backup separado.
-
-**Revisão de 13/10/2026:** o piloto Mamba está `em_revisao`. Há diferença entre a inicialização de `dt_proj.bias` do fallback e a referência oficial; isso não demonstra a causa da BA baixa. Consultar `historico/analises/2026-10-13_diagnostico_mamba.md`. O aceite funcional CPU não certifica equivalência entre implementações. Não repetir a grade para procurar resultados favoráveis antes de qualificar a implementação e documentar o teste controlado.
-
-## Frontend
-
-Next.js/React/Tailwind/ECharts em `dataview/`. Executar npm nesse diretório. Alias `@/*` aponta para `src/*`. Painel de pesquisa com método, matriz de treinos, moedas, entregas, piloto histórico identificado e matriz final pendente. A tabela usa `dataview/src/lib/plano-experimental.json`, gerado de `experimentos/planejamento.py`; não editar números de janelas/folds manualmente no JSON. API `/api/estudo/resultados` lê resumos locais `pareado_*`; `/api/estudo/documentos/[id]` expõe somente documentos permitidos.
-
-Rotas genéricas preservadas acessam CSVs em `process.cwd()/../dados`; precisarão ser adaptadas ao contrato do novo dataset. Não há servidor Python API separado. Não apresentar dados simulados ou antigos como resultados científicos.
+Next.js em `dataview/`. Npm deve rodar nesse diretório. Interface e documentação devem mostrar somente o estudo de barreiras e resultados reais auditados. A configuração executada e os registros são a fonte das contagens, nunca números inventados na interface.

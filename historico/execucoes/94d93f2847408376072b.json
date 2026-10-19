@@ -1,0 +1,2093 @@
+{
+  "id": "94d93f2847408376072b",
+  "ciclo": "ciclo_001",
+  "id_ciclo": "4e232a796fcda0ea34c3",
+  "celula": {
+    "par": "XRPUSDT",
+    "contexto": 24,
+    "horizonte": 168,
+    "fold": "DB3",
+    "seed": 42
+  },
+  "dataset": "9341610dbb329a858784",
+  "status": "concluida_auditada",
+  "inicio_utc": "2026-10-18T10:37:36.987613+00:00",
+  "pid": 437,
+  "diretorio": "dados/experimentos/barreiras_4e232a796fcda0ea34c3/94d93f2847408376072b",
+  "codigo": "916119b261002b4130ceffe3a4ff7204e95726cd543d5086d6d366004c1579a8",
+  "modelo": "mamba",
+  "fim_utc": "2026-10-18T10:40:39.728280+00:00",
+  "resultados": {
+    "lstm": {
+      "modelo": "lstm",
+      "epoca_selecionada": 18,
+      "epocas_executadas": 28,
+      "parametros": 13542,
+      "metricas": {
+        "validacao": {
+          "n": 2016,
+          "log_loss": 0.9105748906306784,
+          "brier": 0.5381660216894324,
+          "balanced_accuracy": 0.4965397647446019,
+          "macro_f1": 0.47448039859202895,
+          "matriz_confusao": [
+            [
+              331,
+              131,
+              107
+            ],
+            [
+              97,
+              792,
+              89
+            ],
+            [
+              261,
+              162,
+              46
+            ]
+          ],
+          "suporte": [
+            569,
+            978,
+            469
+          ],
+          "recall": [
+            0.5817223198594025,
+            0.8098159509202454,
+            0.09808102345415778
+          ],
+          "precisao": [
+            0.48040638606676345,
+            0.7299539170506912,
+            0.19008264462809918
+          ],
+          "calibracao": [
+            [
+              {
+                "n": 65,
+                "previsao_media": 0.08352087942453532,
+                "frequencia": 0.0
+              },
+              {
+                "n": 377,
+                "previsao_media": 0.16345615817396963,
+                "frequencia": 0.09549071618037135
+              },
+              {
+                "n": 572,
+                "previsao_media": 0.2485571068327327,
+                "frequencia": 0.20804195804195805
+              },
+              {
+                "n": 348,
+                "previsao_media": 0.3502200562721011,
+                "frequencia": 0.27011494252873564
+              },
+              {
+                "n": 313,
+                "previsao_media": 0.45313036898835396,
+                "frequencia": 0.3514376996805112
+              },
+              {
+                "n": 247,
+                "previsao_media": 0.5441185274587469,
+                "frequencia": 0.6072874493927125
+              },
+              {
+                "n": 82,
+                "previsao_media": 0.6391026624819127,
+                "frequencia": 0.6341463414634146
+              },
+              {
+                "n": 12,
+                "previsao_media": 0.7191550632317861,
+                "frequencia": 0.6666666666666666
+              },
+              {
+                "n": 0,
+                "previsao_media": null,
+                "frequencia": null
+              },
+              {
+                "n": 0,
+                "previsao_media": null,
+                "frequencia": null
+              }
+            ],
+            [
+              {
+                "n": 151,
+                "previsao_media": 0.07579926845451064,
+                "frequencia": 0.026490066225165563
+              },
+              {
+                "n": 354,
+                "previsao_media": 0.14684282074877097,
+                "frequencia": 0.062146892655367235
+              },
+              {
+                "n": 227,
+                "previsao_media": 0.24719903129050386,
+                "frequencia": 0.2907488986784141
+              },
+              {
+                "n": 264,
+                "previsao_media": 0.35267560771017364,
+                "frequencia": 0.4696969696969697
+              },
+              {
+                "n": 270,
+                "previsao_media": 0.4474221581662143,
+                "frequencia": 0.6703703703703704
+              },
+              {
+                "n": 392,
+                "previsao_media": 0.5558824542225623,
+                "frequencia": 0.6887755102040817
+              },
+              {
+                "n": 252,
+                "previsao_media": 0.6409539464447234,
+                "frequencia": 0.8174603174603174
+              },
+              {
+                "n": 100,
+                "previsao_media": 0.7482492363452912,
+                "frequencia": 0.99
+              },
+              {
+                "n": 6,
+                "previsao_media": 0.8065104385217031,
+                "frequencia": 1.0
+              },
+              {
+                "n": 0,
+                "previsao_media": null,
+                "frequencia": null
+              }
+            ],
+            [
+              {
+                "n": 80,
+                "previsao_media": 0.0826831302139908,
+                "frequencia": 0.1
+              },
+              {
+                "n": 474,
+                "previsao_media": 0.15429740961845415,
+                "frequencia": 0.22362869198312235
+              },
+              {
+                "n": 608,
+                "previsao_media": 0.24735986335987323,
+                "frequencia": 0.1875
+              },
+              {
+                "n": 598,
+                "previsao_media": 0.34663717757698687,
+                "frequencia": 0.3060200668896321
+              },
+              {
+                "n": 205,
+                "previsao_media": 0.44249723422818066,
+                "frequencia": 0.22926829268292684
+              },
+              {
+                "n": 51,
+                "previsao_media": 0.5283001591177547,
+                "frequencia": 0.21568627450980393
+              },
+              {
+                "n": 0,
+                "previsao_media": null,
+                "frequencia": null
+              },
+              {
+                "n": 0,
+                "previsao_media": null,
+                "frequencia": null
+              },
+              {
+                "n": 0,
+                "previsao_media": null,
+                "frequencia": null
+              },
+              {
+                "n": 0,
+                "previsao_media": null,
+                "frequencia": null
+              }
+            ]
+          ],
+          "ambiguidade": {
+            "n": 0,
+            "log_loss_superior_primeiro": 0.9105748906306784,
+            "limite_inferior_log_loss": 0.9105748906306784,
+            "limite_superior_log_loss": 0.9105748906306784,
+            "limite_inferior_brier": 0.5381660216894324,
+            "limite_superior_brier": 0.5381660216894324
+          }
+        },
+        "teste": {
+          "n": 2040,
+          "log_loss": 0.929387518195271,
+          "brier": 0.5454720138452143,
+          "balanced_accuracy": 0.46404497149933893,
+          "macro_f1": 0.4105320202447819,
+          "matriz_confusao": [
+            [
+              615,
+              40,
+              30
+            ],
+            [
+              483,
+              482,
+              39
+            ],
+            [
+              336,
+              10,
+              5
+            ]
+          ],
+          "suporte": [
+            685,
+            1004,
+            351
+          ],
+          "recall": [
+            0.8978102189781022,
+            0.4800796812749004,
+            0.014245014245014245
+          ],
+          "precisao": [
+            0.42887029288702927,
+            0.9060150375939849,
+            0.06756756756756757
+          ],
+          "calibracao": [
+            [
+              {
+                "n": 171,
+                "previsao_media": 0.06313728521528997,
+                "frequencia": 0.0
+              },
+              {
+                "n": 160,
+                "previsao_media": 0.14631206304766237,
+                "frequencia": 0.03125
+              },
+              {
+                "n": 144,
+                "previsao_media": 0.2552162708921565,
+                "frequencia": 0.18055555555555555
+              },
+              {
+                "n": 163,
+                "previsao_media": 0.358406272219734,
+                "frequencia": 0.2392638036809816
+              },
+              {
+                "n": 486,
+                "previsao_media": 0.4542183100931929,
+                "frequencia": 0.2716049382716049
+              },
+              {
+                "n": 464,
+                "previsao_media": 0.5482798068430917,
+                "frequencia": 0.375
+              },
+              {
+                "n": 235,
+                "previsao_media": 0.6467615708391717,
+                "frequencia": 0.6
+              },
+              {
+                "n": 145,
+                "previsao_media": 0.7463115922335921,
+                "frequencia": 0.696551724137931
+              },
+              {
+                "n": 64,
+                "previsao_media": 0.8475132808089256,
+                "frequencia": 0.921875
+              },
+              {
+                "n": 8,
+                "previsao_media": 0.9089756309986115,
+                "frequencia": 1.0
+              }
+            ],
+            [
+              {
+                "n": 451,
+                "previsao_media": 0.06460366881723018,
+                "frequencia": 0.11529933481152993
+              },
+              {
+                "n": 524,
+                "previsao_media": 0.15098945453819881,
+                "frequencia": 0.30725190839694655
+              },
+              {
+                "n": 386,
+                "previsao_media": 0.24755563880341042,
+                "frequencia": 0.5362694300518135
+              },
+              {
+                "n": 167,
+                "previsao_media": 0.3431140020222007,
+                "frequencia": 0.7125748502994012
+              },
+              {
+                "n": 86,
+                "previsao_media": 0.44201966669670373,
+                "frequencia": 0.7441860465116279
+              },
+              {
+                "n": 107,
+                "previsao_media": 0.5456969281223333,
+                "frequencia": 0.897196261682243
+              },
+              {
+                "n": 80,
+                "previsao_media": 0.6467667244374752,
+                "frequencia": 0.9125
+              },
+              {
+                "n": 116,
+                "previsao_media": 0.7575939395304384,
+                "frequencia": 0.9568965517241379
+              },
+              {
+                "n": 81,
+                "previsao_media": 0.8459902545552195,
+                "frequencia": 0.9753086419753086
+              },
+              {
+                "n": 42,
+                "previsao_media": 0.9229283034801483,
+                "frequencia": 1.0
+              }
+            ],
+            [
+              {
+                "n": 195,
+                "previsao_media": 0.07115259528733217,
+                "frequencia": 0.06153846153846154
+              },
+              {
+                "n": 459,
+                "previsao_media": 0.14929629711349027,
+                "frequencia": 0.08496732026143791
+              },
+              {
+                "n": 659,
+                "previsao_media": 0.25419912888627494,
+                "frequencia": 0.20182094081942337
+              },
+              {
+                "n": 625,
+                "previsao_media": 0.3426966045856476,
+                "frequencia": 0.2368
+              },
+              {
+                "n": 92,
+                "previsao_media": 0.4353973544810129,
+                "frequencia": 0.20652173913043478
+              },
+              {
+                "n": 10,
+                "previsao_media": 0.516763550043106,
+                "frequencia": 0.0
+              },
+              {
+                "n": 0,
+                "previsao_media": null,
+                "frequencia": null
+              },
+              {
+                "n": 0,
+                "previsao_media": null,
+                "frequencia": null
+              },
+              {
+                "n": 0,
+                "previsao_media": null,
+                "frequencia": null
+              },
+              {
+                "n": 0,
+                "previsao_media": null,
+                "frequencia": null
+              }
+            ]
+          ],
+          "ambiguidade": {
+            "n": 0,
+            "log_loss_superior_primeiro": 0.929387518195271,
+            "limite_inferior_log_loss": 0.929387518195271,
+            "limite_superior_log_loss": 0.929387518195271,
+            "limite_inferior_brier": 0.5454720138452143,
+            "limite_superior_brier": 0.5454720138452143
+          }
+        }
+      },
+      "segundos": 73.46947274400009,
+      "recarga_exata": true,
+      "memoria_cuda_maxima_bytes": 71784960
+    },
+    "mamba": {
+      "modelo": "mamba",
+      "epoca_selecionada": 9,
+      "epocas_executadas": 19,
+      "parametros": 20326,
+      "metricas": {
+        "validacao": {
+          "n": 2016,
+          "log_loss": 0.9502409927189807,
+          "brier": 0.5603687270564742,
+          "balanced_accuracy": 0.4689836563301835,
+          "macro_f1": 0.4633961201594707,
+          "matriz_confusao": [
+            [
+              235,
+              163,
+              171
+            ],
+            [
+              69,
+              799,
+              110
+            ],
+            [
+              181,
+              205,
+              83
+            ]
+          ],
+          "suporte": [
+            569,
+            978,
+            469
+          ],
+          "recall": [
+            0.4130052724077329,
+            0.8169734151329243,
+            0.17697228144989338
+          ],
+          "precisao": [
+            0.4845360824742268,
+            0.6846615252784919,
+            0.22802197802197802
+          ],
+          "calibracao": [
+            [
+              {
+                "n": 39,
+                "previsao_media": 0.09186070622541966,
+                "frequencia": 0.07692307692307693
+              },
+              {
+                "n": 544,
+                "previsao_media": 0.1577483646790771,
+                "frequencia": 0.13602941176470587
+              },
+              {
+                "n": 609,
+                "previsao_media": 0.24753434195111343,
+                "frequencia": 0.22495894909688013
+              },
+              {
+                "n": 361,
+                "previsao_media": 0.3445291827094852,
+                "frequencia": 0.3407202216066482
+              },
+              {
+                "n": 257,
+                "previsao_media": 0.4428811734288583,
+                "frequencia": 0.3968871595330739
+              },
+              {
+                "n": 127,
+                "previsao_media": 0.5419313105072562,
+                "frequencia": 0.5275590551181102
+              },
+              {
+                "n": 64,
+                "previsao_media": 0.6395262181758881,
+                "frequencia": 0.75
+              },
+              {
+                "n": 15,
+                "previsao_media": 0.7235332369804383,
+                "frequencia": 1.0
+              },
+              {
+                "n": 0,
+                "previsao_media": null,
+                "frequencia": null
+              },
+              {
+                "n": 0,
+                "previsao_media": null,
+                "frequencia": null
+              }
+            ],
+            [
+              {
+                "n": 41,
+                "previsao_media": 0.08695928316290785,
+                "frequencia": 0.12195121951219512
+              },
+              {
+                "n": 273,
+                "previsao_media": 0.15520211598484507,
+                "frequencia": 0.1282051282051282
+              },
+              {
+                "n": 315,
+                "previsao_media": 0.2476484920770403,
+                "frequencia": 0.1492063492063492
+              },
+              {
+                "n": 269,
+                "previsao_media": 0.3501240011706228,
+                "frequencia": 0.4052044609665427
+              },
+              {
+                "n": 338,
+                "previsao_media": 0.4512498422839938,
+                "frequencia": 0.5414201183431953
+              },
+              {
+                "n": 395,
+                "previsao_media": 0.5496942247016521,
+                "frequencia": 0.7088607594936709
+              },
+              {
+                "n": 245,
+                "previsao_media": 0.6421158858707973,
+                "frequencia": 0.7795918367346939
+              },
+              {
+                "n": 126,
+                "previsao_media": 0.7410335517118848,
+                "frequencia": 0.9285714285714286
+              },
+              {
+                "n": 14,
+                "previsao_media": 0.8147044479846954,
+                "frequencia": 0.7857142857142857
+              },
+              {
+                "n": 0,
+                "previsao_media": null,
+                "frequencia": null
+              }
+            ],
+            [
+              {
+                "n": 21,
+                "previsao_media": 0.08715226856015977,
+                "frequencia": 0.0
+              },
+              {
+                "n": 561,
+                "previsao_media": 0.16108369052994484,
+                "frequencia": 0.1836007130124777
+              },
+              {
+                "n": 700,
+                "previsao_media": 0.24663296050259045,
+                "frequencia": 0.26285714285714284
+              },
+              {
+                "n": 385,
+                "previsao_media": 0.34425657832777345,
+                "frequencia": 0.2883116883116883
+              },
+              {
+                "n": 231,
+                "previsao_media": 0.44463418043537056,
+                "frequencia": 0.23376623376623376
+              },
+              {
+                "n": 92,
+                "previsao_media": 0.5414953387301901,
+                "frequencia": 0.16304347826086957
+              },
+              {
+                "n": 21,
+                "previsao_media": 0.6469990923291161,
+                "frequencia": 0.09523809523809523
+              },
+              {
+                "n": 5,
+                "previsao_media": 0.7362242460250854,
+                "frequencia": 0.0
+              },
+              {
+                "n": 0,
+                "previsao_media": null,
+                "frequencia": null
+              },
+              {
+                "n": 0,
+                "previsao_media": null,
+                "frequencia": null
+              }
+            ]
+          ],
+          "ambiguidade": {
+            "n": 0,
+            "log_loss_superior_primeiro": 0.9502409927189807,
+            "limite_inferior_log_loss": 0.9502409927189807,
+            "limite_superior_log_loss": 0.9502409927189807,
+            "limite_inferior_brier": 0.5603687270564742,
+            "limite_superior_brier": 0.5603687270564742
+          }
+        },
+        "teste": {
+          "n": 2040,
+          "log_loss": 0.9460651136249125,
+          "brier": 0.5570020171070906,
+          "balanced_accuracy": 0.4690257913176458,
+          "macro_f1": 0.4611011629184951,
+          "matriz_confusao": [
+            [
+              464,
+              88,
+              133
+            ],
+            [
+              291,
+              561,
+              152
+            ],
+            [
+              241,
+              50,
+              60
+            ]
+          ],
+          "suporte": [
+            685,
+            1004,
+            351
+          ],
+          "recall": [
+            0.6773722627737226,
+            0.5587649402390438,
+            0.17094017094017094
+          ],
+          "precisao": [
+            0.46586345381526106,
+            0.8025751072961373,
+            0.17391304347826086
+          ],
+          "calibracao": [
+            [
+              {
+                "n": 153,
+                "previsao_media": 0.06686120212467667,
+                "frequencia": 0.0
+              },
+              {
+                "n": 181,
+                "previsao_media": 0.14559654426344193,
+                "frequencia": 0.049723756906077346
+              },
+              {
+                "n": 307,
+                "previsao_media": 0.2565863426131612,
+                "frequencia": 0.23452768729641693
+              },
+              {
+                "n": 465,
+                "previsao_media": 0.3513096797209914,
+                "frequencia": 0.2967741935483871
+              },
+              {
+                "n": 403,
+                "previsao_media": 0.45024016603050987,
+                "frequencia": 0.38213399503722084
+              },
+              {
+                "n": 316,
+                "previsao_media": 0.5483389885365209,
+                "frequencia": 0.5158227848101266
+              },
+              {
+                "n": 181,
+                "previsao_media": 0.6396436444303607,
+                "frequencia": 0.6795580110497238
+              },
+              {
+                "n": 24,
+                "previsao_media": 0.729103667040666,
+                "frequencia": 0.7083333333333334
+              },
+              {
+                "n": 10,
+                "previsao_media": 0.82877037525177,
+                "frequencia": 0.9
+              },
+              {
+                "n": 0,
+                "previsao_media": null,
+                "frequencia": null
+              }
+            ],
+            [
+              {
+                "n": 133,
+                "previsao_media": 0.07662640909727354,
+                "frequencia": 0.11278195488721804
+              },
+              {
+                "n": 482,
+                "previsao_media": 0.15372819465843968,
+                "frequencia": 0.3008298755186722
+              },
+              {
+                "n": 489,
+                "previsao_media": 0.2464191702733498,
+                "frequencia": 0.35787321063394684
+              },
+              {
+                "n": 303,
+                "previsao_media": 0.34535602767868795,
+                "frequencia": 0.47854785478547857
+              },
+              {
+                "n": 199,
+                "previsao_media": 0.4466411925140937,
+                "frequencia": 0.6080402010050251
+              },
+              {
+                "n": 118,
+                "previsao_media": 0.541985179408122,
+                "frequencia": 0.8220338983050848
+              },
+              {
+                "n": 80,
+                "previsao_media": 0.6492381900548935,
+                "frequencia": 0.8875
+              },
+              {
+                "n": 101,
+                "previsao_media": 0.751572060112906,
+                "frequencia": 0.9900990099009901
+              },
+              {
+                "n": 114,
+                "previsao_media": 0.8463620559165352,
+                "frequencia": 1.0
+              },
+              {
+                "n": 21,
+                "previsao_media": 0.9159534232957023,
+                "frequencia": 1.0
+              }
+            ],
+            [
+              {
+                "n": 136,
+                "previsao_media": 0.06656047075932078,
+                "frequencia": 0.0
+              },
+              {
+                "n": 467,
+                "previsao_media": 0.1579670587143755,
+                "frequencia": 0.139186295503212
+              },
+              {
+                "n": 619,
+                "previsao_media": 0.24602512950273245,
+                "frequencia": 0.21163166397415187
+              },
+              {
+                "n": 507,
+                "previsao_media": 0.3463014401862842,
+                "frequencia": 0.20315581854043394
+              },
+              {
+                "n": 217,
+                "previsao_media": 0.44377649187492335,
+                "frequencia": 0.17050691244239632
+              },
+              {
+                "n": 81,
+                "previsao_media": 0.5422702394885781,
+                "frequencia": 0.14814814814814814
+              },
+              {
+                "n": 13,
+                "previsao_media": 0.6352239067737873,
+                "frequencia": 0.23076923076923078
+              },
+              {
+                "n": 0,
+                "previsao_media": null,
+                "frequencia": null
+              },
+              {
+                "n": 0,
+                "previsao_media": null,
+                "frequencia": null
+              },
+              {
+                "n": 0,
+                "previsao_media": null,
+                "frequencia": null
+              }
+            ]
+          ],
+          "ambiguidade": {
+            "n": 0,
+            "log_loss_superior_primeiro": 0.9460651136249125,
+            "limite_inferior_log_loss": 0.9460651136249125,
+            "limite_superior_log_loss": 0.9460651136249125,
+            "limite_inferior_brier": 0.5570020171070906,
+            "limite_superior_brier": 0.5570020171070906
+          }
+        }
+      },
+      "segundos": 103.871312063,
+      "recarga_exata": true,
+      "memoria_cuda_maxima_bytes": 72489472
+    },
+    "ar1": {
+      "modelo": "ar1",
+      "metricas": {
+        "teste": {
+          "n": 2040,
+          "log_loss": 2.14510759844784,
+          "brier": 0.7429848395251495,
+          "balanced_accuracy": 0.44295630366286914,
+          "macro_f1": 0.38460337820266544,
+          "matriz_confusao": [
+            [
+              187,
+              6,
+              492
+            ],
+            [
+              154,
+              345,
+              505
+            ],
+            [
+              99,
+              2,
+              250
+            ]
+          ],
+          "suporte": [
+            685,
+            1004,
+            351
+          ],
+          "recall": [
+            0.272992700729927,
+            0.3436254980079681,
+            0.7122507122507122
+          ],
+          "precisao": [
+            0.425,
+            0.9773371104815864,
+            0.20048115477145148
+          ],
+          "calibracao": [
+            [
+              {
+                "n": 168,
+                "previsao_media": 0.03670647026351724,
+                "frequencia": 0.0
+              },
+              {
+                "n": 9,
+                "previsao_media": 0.1883126567690326,
+                "frequencia": 0.0
+              },
+              {
+                "n": 169,
+                "previsao_media": 0.2227675267427461,
+                "frequencia": 0.011834319526627219
+              },
+              {
+                "n": 24,
+                "previsao_media": 0.3475391498881432,
+                "frequencia": 0.4166666666666667
+              },
+              {
+                "n": 1350,
+                "previsao_media": 0.48407041330531264,
+                "frequencia": 0.39555555555555555
+              },
+              {
+                "n": 320,
+                "previsao_media": 0.5048329774252592,
+                "frequencia": 0.434375
+              },
+              {
+                "n": 0,
+                "previsao_media": null,
+                "frequencia": null
+              },
+              {
+                "n": 0,
+                "previsao_media": null,
+                "frequencia": null
+              },
+              {
+                "n": 0,
+                "previsao_media": null,
+                "frequencia": null
+              },
+              {
+                "n": 0,
+                "previsao_media": null,
+                "frequencia": null
+              }
+            ],
+            [
+              {
+                "n": 1571,
+                "previsao_media": 0.006422462657323537,
+                "frequencia": 0.36155315085932527
+              },
+              {
+                "n": 106,
+                "previsao_media": 0.13626808799659249,
+                "frequencia": 0.7735849056603774
+              },
+              {
+                "n": 2,
+                "previsao_media": 0.2535692495424039,
+                "frequencia": 0.5
+              },
+              {
+                "n": 16,
+                "previsao_media": 0.34687309334960337,
+                "frequencia": 0.75
+              },
+              {
+                "n": 17,
+                "previsao_media": 0.45879481749991025,
+                "frequencia": 0.8823529411764706
+              },
+              {
+                "n": 158,
+                "previsao_media": 0.554814992161012,
+                "frequencia": 1.0
+              },
+              {
+                "n": 2,
+                "previsao_media": 0.6884685784014644,
+                "frequencia": 0.0
+              },
+              {
+                "n": 0,
+                "previsao_media": null,
+                "frequencia": null
+              },
+              {
+                "n": 12,
+                "previsao_media": 0.8773032336790728,
+                "frequencia": 1.0
+              },
+              {
+                "n": 156,
+                "previsao_media": 0.9273822374493517,
+                "frequencia": 1.0
+              }
+            ],
+            [
+              {
+                "n": 168,
+                "previsao_media": 0.03948836398500828,
+                "frequencia": 0.0
+              },
+              {
+                "n": 3,
+                "previsao_media": 0.16900549115314215,
+                "frequencia": 0.6666666666666666
+              },
+              {
+                "n": 173,
+                "previsao_media": 0.23289895502332947,
+                "frequencia": 0.0
+              },
+              {
+                "n": 19,
+                "previsao_media": 0.33679714845380687,
+                "frequencia": 0.0
+              },
+              {
+                "n": 718,
+                "previsao_media": 0.4844988366777079,
+                "frequencia": 0.15459610027855153
+              },
+              {
+                "n": 959,
+                "previsao_media": 0.5075898284833767,
+                "frequencia": 0.24817518248175183
+              },
+              {
+                "n": 0,
+                "previsao_media": null,
+                "frequencia": null
+              },
+              {
+                "n": 0,
+                "previsao_media": null,
+                "frequencia": null
+              },
+              {
+                "n": 0,
+                "previsao_media": null,
+                "frequencia": null
+              },
+              {
+                "n": 0,
+                "previsao_media": null,
+                "frequencia": null
+              }
+            ]
+          ],
+          "ambiguidade": {
+            "n": 0,
+            "log_loss_superior_primeiro": 2.14510759844784,
+            "limite_inferior_log_loss": 2.14510759844784,
+            "limite_superior_log_loss": 2.14510759844784,
+            "limite_inferior_brier": 0.7429848395251495,
+            "limite_superior_brier": 0.7429848395251495
+          }
+        }
+      }
+    }
+  },
+  "financeiro": {
+    "lstm": {
+      "base": {
+        "status": "auditavel",
+        "capital_inicial": 10000.0,
+        "capital_final": 10000.0,
+        "retorno_liquido": 0.0,
+        "drawdown_maximo": 0.0,
+        "pior_marca_vs_pico_fechamento": 0.0,
+        "operacoes": 0,
+        "origens": 2040,
+        "proporcao_origens_operadas": 0.0,
+        "tempo_exposto": 0.0,
+        "taxas": 0,
+        "slippage": 0,
+        "taxa_acerto_financeiro": null,
+        "ganho_medio": null,
+        "perda_media": null,
+        "profit_factor": null,
+        "duracao_media_minutos": null,
+        "saidas_por_classe": [
+          0,
+          0,
+          0
+        ],
+        "incerteza": {
+          "status": "calculado",
+          "dias": 92,
+          "intervalos": {
+            "7": {
+              "retorno_liquido": [
+                0.0,
+                0.0
+              ],
+              "drawdown_fechamento_diario": [
+                0.0,
+                0.0
+              ]
+            },
+            "14": {
+              "retorno_liquido": [
+                0.0,
+                0.0
+              ],
+              "drawdown_fechamento_diario": [
+                0.0,
+                0.0
+              ]
+            },
+            "28": {
+              "retorno_liquido": [
+                0.0,
+                0.0
+              ],
+              "drawdown_fechamento_diario": [
+                0.0,
+                0.0
+              ]
+            }
+          },
+          "interpretacao": "Reamostragem de retornos diários observados; não recria sinais nem treina modelos."
+        }
+      },
+      "custos_agravados": {
+        "status": "auditavel",
+        "capital_inicial": 10000.0,
+        "capital_final": 10000.0,
+        "retorno_liquido": 0.0,
+        "drawdown_maximo": 0.0,
+        "pior_marca_vs_pico_fechamento": 0.0,
+        "operacoes": 0,
+        "origens": 2040,
+        "proporcao_origens_operadas": 0.0,
+        "tempo_exposto": 0.0,
+        "taxas": 0,
+        "slippage": 0,
+        "taxa_acerto_financeiro": null,
+        "ganho_medio": null,
+        "perda_media": null,
+        "profit_factor": null,
+        "duracao_media_minutos": null,
+        "saidas_por_classe": [
+          0,
+          0,
+          0
+        ],
+        "incerteza": {
+          "status": "calculado",
+          "dias": 92,
+          "intervalos": {
+            "7": {
+              "retorno_liquido": [
+                0.0,
+                0.0
+              ],
+              "drawdown_fechamento_diario": [
+                0.0,
+                0.0
+              ]
+            },
+            "14": {
+              "retorno_liquido": [
+                0.0,
+                0.0
+              ],
+              "drawdown_fechamento_diario": [
+                0.0,
+                0.0
+              ]
+            },
+            "28": {
+              "retorno_liquido": [
+                0.0,
+                0.0
+              ],
+              "drawdown_fechamento_diario": [
+                0.0,
+                0.0
+              ]
+            }
+          },
+          "interpretacao": "Reamostragem de retornos diários observados; não recria sinais nem treina modelos."
+        }
+      },
+      "ambiguidade_superior": {
+        "status": "auditavel",
+        "capital_inicial": 10000.0,
+        "capital_final": 10000.0,
+        "retorno_liquido": 0.0,
+        "drawdown_maximo": 0.0,
+        "pior_marca_vs_pico_fechamento": 0.0,
+        "operacoes": 0,
+        "origens": 2040,
+        "proporcao_origens_operadas": 0.0,
+        "tempo_exposto": 0.0,
+        "taxas": 0,
+        "slippage": 0,
+        "taxa_acerto_financeiro": null,
+        "ganho_medio": null,
+        "perda_media": null,
+        "profit_factor": null,
+        "duracao_media_minutos": null,
+        "saidas_por_classe": [
+          0,
+          0,
+          0
+        ],
+        "incerteza": {
+          "status": "calculado",
+          "dias": 92,
+          "intervalos": {
+            "7": {
+              "retorno_liquido": [
+                0.0,
+                0.0
+              ],
+              "drawdown_fechamento_diario": [
+                0.0,
+                0.0
+              ]
+            },
+            "14": {
+              "retorno_liquido": [
+                0.0,
+                0.0
+              ],
+              "drawdown_fechamento_diario": [
+                0.0,
+                0.0
+              ]
+            },
+            "28": {
+              "retorno_liquido": [
+                0.0,
+                0.0
+              ],
+              "drawdown_fechamento_diario": [
+                0.0,
+                0.0
+              ]
+            }
+          },
+          "interpretacao": "Reamostragem de retornos diários observados; não recria sinais nem treina modelos."
+        }
+      },
+      "sem_filtro": {
+        "status": "auditavel",
+        "capital_inicial": 10000.0,
+        "capital_final": 9755.384635870838,
+        "retorno_liquido": -0.024461536412916263,
+        "drawdown_maximo": 0.07039532999169151,
+        "pior_marca_vs_pico_fechamento": 0.0711382013916605,
+        "operacoes": 18,
+        "origens": 2040,
+        "proporcao_origens_operadas": 0.008823529411764706,
+        "tempo_exposto": 0.9411156400966184,
+        "taxas": 48.29072644628508,
+        "slippage": 24.14532017831316,
+        "taxa_acerto_financeiro": 0.3333333333333333,
+        "ganho_medio": 76.03603248225045,
+        "perda_media": -58.4026299185554,
+        "profit_factor": 0.6509641140158027,
+        "duracao_media_minutos": 6926.611111111111,
+        "saidas_por_classe": [
+          5,
+          9,
+          4
+        ],
+        "incerteza": {
+          "status": "calculado",
+          "dias": 92,
+          "intervalos": {
+            "7": {
+              "retorno_liquido": [
+                -0.09420173269012894,
+                0.051055110991015645
+              ],
+              "drawdown_fechamento_diario": [
+                0.019994403306057174,
+                0.09838401444194057
+              ]
+            },
+            "14": {
+              "retorno_liquido": [
+                -0.08917197963828932,
+                0.03746552458175146
+              ],
+              "drawdown_fechamento_diario": [
+                0.023094404898286815,
+                0.09465776933720452
+              ]
+            },
+            "28": {
+              "retorno_liquido": [
+                -0.09558289935700921,
+                0.008985158214726091
+              ],
+              "drawdown_fechamento_diario": [
+                0.029294718809390496,
+                0.0983340216091427
+              ]
+            }
+          },
+          "interpretacao": "Reamostragem de retornos diários observados; não recria sinais nem treina modelos."
+        }
+      },
+      "comprar_manter": {
+        "status": "auditavel",
+        "retorno_liquido": 0.08513050000151678,
+        "drawdown_maximo": 0.5272247277527224,
+        "capital_final": 10851.305000015169
+      },
+      "caixa": {
+        "retorno_liquido": 0.0
+      }
+    },
+    "mamba": {
+      "base": {
+        "status": "auditavel",
+        "capital_inicial": 10000.0,
+        "capital_final": 10055.573826540744,
+        "retorno_liquido": 0.005557382654074461,
+        "drawdown_maximo": 0.01063191758614368,
+        "pior_marca_vs_pico_fechamento": 0.010643261294490447,
+        "operacoes": 4,
+        "origens": 2040,
+        "proporcao_origens_operadas": 0.00196078431372549,
+        "tempo_exposto": 0.18735658212560385,
+        "taxas": 11.43480517906945,
+        "slippage": 5.717420771047847,
+        "taxa_acerto_financeiro": 0.75,
+        "ganho_medio": 51.857942180247846,
+        "perda_media": -100.0,
+        "profit_factor": 1.5557382654074354,
+        "duracao_media_minutos": 6205.25,
+        "saidas_por_classe": [
+          1,
+          2,
+          1
+        ],
+        "incerteza": {
+          "status": "calculado",
+          "dias": 92,
+          "intervalos": {
+            "7": {
+              "retorno_liquido": [
+                -0.022667841143940583,
+                0.03717996651102644
+              ],
+              "drawdown_fechamento_diario": [
+                0.0022488496858497076,
+                0.028316612191379202
+              ]
+            },
+            "14": {
+              "retorno_liquido": [
+                -0.021058294921422516,
+                0.039406029659483366
+              ],
+              "drawdown_fechamento_diario": [
+                0.0013025989856874087,
+                0.026570270636468617
+              ]
+            },
+            "28": {
+              "retorno_liquido": [
+                -0.02422180031483978,
+                0.02687181456202836
+              ],
+              "drawdown_fechamento_diario": [
+                0.0022488496858495965,
+                0.02581661609538122
+              ]
+            }
+          },
+          "interpretacao": "Reamostragem de retornos diários observados; não recria sinais nem treina modelos."
+        }
+      },
+      "custos_agravados": {
+        "status": "auditavel",
+        "capital_inicial": 10000.0,
+        "capital_final": 10038.264251797818,
+        "retorno_liquido": 0.0038264251797819337,
+        "drawdown_maximo": 0.01084996571636021,
+        "pior_marca_vs_pico_fechamento": 0.010861274894428785,
+        "operacoes": 4,
+        "origens": 2040,
+        "proporcao_origens_operadas": 0.00196078431372549,
+        "tempo_exposto": 0.18735658212560385,
+        "taxas": 22.82129415976,
+        "slippage": 11.410719576145535,
+        "taxa_acerto_financeiro": 0.75,
+        "ganho_medio": 47.48336463831038,
+        "perda_media": -104.18584211711277,
+        "profit_factor": 1.3672692087549327,
+        "duracao_media_minutos": 6205.25,
+        "saidas_por_classe": [
+          1,
+          2,
+          1
+        ],
+        "incerteza": {
+          "status": "calculado",
+          "dias": 92,
+          "intervalos": {
+            "7": {
+              "retorno_liquido": [
+                -0.024436737673982266,
+                0.03425274909812233
+              ],
+              "drawdown_fechamento_diario": [
+                0.002242526099186848,
+                0.02997577154390045
+              ]
+            },
+            "14": {
+              "retorno_liquido": [
+                -0.023216484268338434,
+                0.03568052832527505
+              ],
+              "drawdown_fechamento_diario": [
+                0.0012989327168545506,
+                0.027953836476659367
+              ]
+            },
+            "28": {
+              "retorno_liquido": [
+                -0.025978716559623583,
+                0.024169680024358195
+              ],
+              "drawdown_fechamento_diario": [
+                0.002242526099186848,
+                0.02739839670325062
+              ]
+            }
+          },
+          "interpretacao": "Reamostragem de retornos diários observados; não recria sinais nem treina modelos."
+        }
+      },
+      "ambiguidade_superior": {
+        "status": "auditavel",
+        "capital_inicial": 10000.0,
+        "capital_final": 10055.573826540744,
+        "retorno_liquido": 0.005557382654074461,
+        "drawdown_maximo": 0.01063191758614368,
+        "pior_marca_vs_pico_fechamento": 0.010643261294490447,
+        "operacoes": 4,
+        "origens": 2040,
+        "proporcao_origens_operadas": 0.00196078431372549,
+        "tempo_exposto": 0.18735658212560385,
+        "taxas": 11.43480517906945,
+        "slippage": 5.717420771047847,
+        "taxa_acerto_financeiro": 0.75,
+        "ganho_medio": 51.857942180247846,
+        "perda_media": -100.0,
+        "profit_factor": 1.5557382654074354,
+        "duracao_media_minutos": 6205.25,
+        "saidas_por_classe": [
+          1,
+          2,
+          1
+        ],
+        "incerteza": {
+          "status": "calculado",
+          "dias": 92,
+          "intervalos": {
+            "7": {
+              "retorno_liquido": [
+                -0.022667841143940583,
+                0.03717996651102644
+              ],
+              "drawdown_fechamento_diario": [
+                0.0022488496858497076,
+                0.028316612191379202
+              ]
+            },
+            "14": {
+              "retorno_liquido": [
+                -0.021058294921422516,
+                0.039406029659483366
+              ],
+              "drawdown_fechamento_diario": [
+                0.0013025989856874087,
+                0.026570270636468617
+              ]
+            },
+            "28": {
+              "retorno_liquido": [
+                -0.02422180031483978,
+                0.02687181456202836
+              ],
+              "drawdown_fechamento_diario": [
+                0.0022488496858495965,
+                0.02581661609538122
+              ]
+            }
+          },
+          "interpretacao": "Reamostragem de retornos diários observados; não recria sinais nem treina modelos."
+        }
+      },
+      "sem_filtro": {
+        "status": "auditavel",
+        "capital_inicial": 10000.0,
+        "capital_final": 9755.384635870838,
+        "retorno_liquido": -0.024461536412916263,
+        "drawdown_maximo": 0.07039532999169151,
+        "pior_marca_vs_pico_fechamento": 0.0711382013916605,
+        "operacoes": 18,
+        "origens": 2040,
+        "proporcao_origens_operadas": 0.008823529411764706,
+        "tempo_exposto": 0.9411156400966184,
+        "taxas": 48.29072644628508,
+        "slippage": 24.14532017831316,
+        "taxa_acerto_financeiro": 0.3333333333333333,
+        "ganho_medio": 76.03603248225045,
+        "perda_media": -58.4026299185554,
+        "profit_factor": 0.6509641140158027,
+        "duracao_media_minutos": 6926.611111111111,
+        "saidas_por_classe": [
+          5,
+          9,
+          4
+        ],
+        "incerteza": {
+          "status": "calculado",
+          "dias": 92,
+          "intervalos": {
+            "7": {
+              "retorno_liquido": [
+                -0.09420173269012894,
+                0.051055110991015645
+              ],
+              "drawdown_fechamento_diario": [
+                0.019994403306057174,
+                0.09838401444194057
+              ]
+            },
+            "14": {
+              "retorno_liquido": [
+                -0.08917197963828932,
+                0.03746552458175146
+              ],
+              "drawdown_fechamento_diario": [
+                0.023094404898286815,
+                0.09465776933720452
+              ]
+            },
+            "28": {
+              "retorno_liquido": [
+                -0.09558289935700921,
+                0.008985158214726091
+              ],
+              "drawdown_fechamento_diario": [
+                0.029294718809390496,
+                0.0983340216091427
+              ]
+            }
+          },
+          "interpretacao": "Reamostragem de retornos diários observados; não recria sinais nem treina modelos."
+        }
+      },
+      "comprar_manter": {
+        "status": "auditavel",
+        "retorno_liquido": 0.08513050000151678,
+        "drawdown_maximo": 0.5272247277527224,
+        "capital_final": 10851.305000015169
+      },
+      "caixa": {
+        "retorno_liquido": 0.0
+      }
+    },
+    "ar1": {
+      "base": {
+        "status": "auditavel",
+        "capital_inicial": 10000.0,
+        "capital_final": 10000.0,
+        "retorno_liquido": 0.0,
+        "drawdown_maximo": 0.0,
+        "pior_marca_vs_pico_fechamento": 0.0,
+        "operacoes": 0,
+        "origens": 2040,
+        "proporcao_origens_operadas": 0.0,
+        "tempo_exposto": 0.0,
+        "taxas": 0,
+        "slippage": 0,
+        "taxa_acerto_financeiro": null,
+        "ganho_medio": null,
+        "perda_media": null,
+        "profit_factor": null,
+        "duracao_media_minutos": null,
+        "saidas_por_classe": [
+          0,
+          0,
+          0
+        ],
+        "incerteza": {
+          "status": "calculado",
+          "dias": 92,
+          "intervalos": {
+            "7": {
+              "retorno_liquido": [
+                0.0,
+                0.0
+              ],
+              "drawdown_fechamento_diario": [
+                0.0,
+                0.0
+              ]
+            },
+            "14": {
+              "retorno_liquido": [
+                0.0,
+                0.0
+              ],
+              "drawdown_fechamento_diario": [
+                0.0,
+                0.0
+              ]
+            },
+            "28": {
+              "retorno_liquido": [
+                0.0,
+                0.0
+              ],
+              "drawdown_fechamento_diario": [
+                0.0,
+                0.0
+              ]
+            }
+          },
+          "interpretacao": "Reamostragem de retornos diários observados; não recria sinais nem treina modelos."
+        }
+      },
+      "custos_agravados": {
+        "status": "auditavel",
+        "capital_inicial": 10000.0,
+        "capital_final": 10000.0,
+        "retorno_liquido": 0.0,
+        "drawdown_maximo": 0.0,
+        "pior_marca_vs_pico_fechamento": 0.0,
+        "operacoes": 0,
+        "origens": 2040,
+        "proporcao_origens_operadas": 0.0,
+        "tempo_exposto": 0.0,
+        "taxas": 0,
+        "slippage": 0,
+        "taxa_acerto_financeiro": null,
+        "ganho_medio": null,
+        "perda_media": null,
+        "profit_factor": null,
+        "duracao_media_minutos": null,
+        "saidas_por_classe": [
+          0,
+          0,
+          0
+        ],
+        "incerteza": {
+          "status": "calculado",
+          "dias": 92,
+          "intervalos": {
+            "7": {
+              "retorno_liquido": [
+                0.0,
+                0.0
+              ],
+              "drawdown_fechamento_diario": [
+                0.0,
+                0.0
+              ]
+            },
+            "14": {
+              "retorno_liquido": [
+                0.0,
+                0.0
+              ],
+              "drawdown_fechamento_diario": [
+                0.0,
+                0.0
+              ]
+            },
+            "28": {
+              "retorno_liquido": [
+                0.0,
+                0.0
+              ],
+              "drawdown_fechamento_diario": [
+                0.0,
+                0.0
+              ]
+            }
+          },
+          "interpretacao": "Reamostragem de retornos diários observados; não recria sinais nem treina modelos."
+        }
+      },
+      "ambiguidade_superior": {
+        "status": "auditavel",
+        "capital_inicial": 10000.0,
+        "capital_final": 10000.0,
+        "retorno_liquido": 0.0,
+        "drawdown_maximo": 0.0,
+        "pior_marca_vs_pico_fechamento": 0.0,
+        "operacoes": 0,
+        "origens": 2040,
+        "proporcao_origens_operadas": 0.0,
+        "tempo_exposto": 0.0,
+        "taxas": 0,
+        "slippage": 0,
+        "taxa_acerto_financeiro": null,
+        "ganho_medio": null,
+        "perda_media": null,
+        "profit_factor": null,
+        "duracao_media_minutos": null,
+        "saidas_por_classe": [
+          0,
+          0,
+          0
+        ],
+        "incerteza": {
+          "status": "calculado",
+          "dias": 92,
+          "intervalos": {
+            "7": {
+              "retorno_liquido": [
+                0.0,
+                0.0
+              ],
+              "drawdown_fechamento_diario": [
+                0.0,
+                0.0
+              ]
+            },
+            "14": {
+              "retorno_liquido": [
+                0.0,
+                0.0
+              ],
+              "drawdown_fechamento_diario": [
+                0.0,
+                0.0
+              ]
+            },
+            "28": {
+              "retorno_liquido": [
+                0.0,
+                0.0
+              ],
+              "drawdown_fechamento_diario": [
+                0.0,
+                0.0
+              ]
+            }
+          },
+          "interpretacao": "Reamostragem de retornos diários observados; não recria sinais nem treina modelos."
+        }
+      },
+      "sem_filtro": {
+        "status": "auditavel",
+        "capital_inicial": 10000.0,
+        "capital_final": 9755.384635870838,
+        "retorno_liquido": -0.024461536412916263,
+        "drawdown_maximo": 0.07039532999169151,
+        "pior_marca_vs_pico_fechamento": 0.0711382013916605,
+        "operacoes": 18,
+        "origens": 2040,
+        "proporcao_origens_operadas": 0.008823529411764706,
+        "tempo_exposto": 0.9411156400966184,
+        "taxas": 48.29072644628508,
+        "slippage": 24.14532017831316,
+        "taxa_acerto_financeiro": 0.3333333333333333,
+        "ganho_medio": 76.03603248225045,
+        "perda_media": -58.4026299185554,
+        "profit_factor": 0.6509641140158027,
+        "duracao_media_minutos": 6926.611111111111,
+        "saidas_por_classe": [
+          5,
+          9,
+          4
+        ],
+        "incerteza": {
+          "status": "calculado",
+          "dias": 92,
+          "intervalos": {
+            "7": {
+              "retorno_liquido": [
+                -0.09420173269012894,
+                0.051055110991015645
+              ],
+              "drawdown_fechamento_diario": [
+                0.019994403306057174,
+                0.09838401444194057
+              ]
+            },
+            "14": {
+              "retorno_liquido": [
+                -0.08917197963828932,
+                0.03746552458175146
+              ],
+              "drawdown_fechamento_diario": [
+                0.023094404898286815,
+                0.09465776933720452
+              ]
+            },
+            "28": {
+              "retorno_liquido": [
+                -0.09558289935700921,
+                0.008985158214726091
+              ],
+              "drawdown_fechamento_diario": [
+                0.029294718809390496,
+                0.0983340216091427
+              ]
+            }
+          },
+          "interpretacao": "Reamostragem de retornos diários observados; não recria sinais nem treina modelos."
+        }
+      },
+      "comprar_manter": {
+        "status": "auditavel",
+        "retorno_liquido": 0.08513050000151678,
+        "drawdown_maximo": 0.5272247277527224,
+        "capital_final": 10851.305000015169
+      },
+      "caixa": {
+        "retorno_liquido": 0.0
+      }
+    }
+  },
+  "comparacoes": {
+    "lstm": {
+      "diferenca_log_loss": 0.01667759542964156,
+      "n": 2040,
+      "intervalos": {
+        "7": [
+          -0.03539628653421555,
+          0.07972882216928566
+        ],
+        "14": [
+          -0.012998045681799698,
+          0.08541074917716075
+        ],
+        "28": [
+          0.0010202711207199717,
+          0.07519492426502972
+        ]
+      }
+    },
+    "ar1": {
+      "diferenca_log_loss": -1.1990424848229277,
+      "n": 2040,
+      "intervalos": {
+        "7": [
+          -1.785198083310702,
+          -0.3424672733326438
+        ],
+        "14": [
+          -1.4768078553488126,
+          -0.33576563835190293
+        ],
+        "28": [
+          -1.4351827240590849,
+          -0.43963483924248187
+        ]
+      }
+    }
+  },
+  "auditoria": "aprovado",
+  "referencia_constante": {
+    "probabilidades": [
+      0.3206504160663354,
+      0.4276809079949425,
+      0.2516686759387221
+    ],
+    "origens_ajuste": 17003,
+    "metricas_teste": {
+      "n": 2040,
+      "log_loss": 1.0373290682380447,
+      "brier": 0.6261501905544131,
+      "balanced_accuracy": 0.3333333333333333,
+      "macro_f1": 0.21988611476127898,
+      "matriz_confusao": [
+        [
+          0,
+          685,
+          0
+        ],
+        [
+          0,
+          1004,
+          0
+        ],
+        [
+          0,
+          351,
+          0
+        ]
+      ],
+      "suporte": [
+        685,
+        1004,
+        351
+      ],
+      "recall": [
+        0.0,
+        1.0,
+        0.0
+      ],
+      "precisao": [
+        null,
+        0.492156862745098,
+        null
+      ],
+      "calibracao": [
+        [
+          {
+            "n": 0,
+            "previsao_media": null,
+            "frequencia": null
+          },
+          {
+            "n": 0,
+            "previsao_media": null,
+            "frequencia": null
+          },
+          {
+            "n": 0,
+            "previsao_media": null,
+            "frequencia": null
+          },
+          {
+            "n": 2040,
+            "previsao_media": 0.3206504160663353,
+            "frequencia": 0.33578431372549017
+          },
+          {
+            "n": 0,
+            "previsao_media": null,
+            "frequencia": null
+          },
+          {
+            "n": 0,
+            "previsao_media": null,
+            "frequencia": null
+          },
+          {
+            "n": 0,
+            "previsao_media": null,
+            "frequencia": null
+          },
+          {
+            "n": 0,
+            "previsao_media": null,
+            "frequencia": null
+          },
+          {
+            "n": 0,
+            "previsao_media": null,
+            "frequencia": null
+          },
+          {
+            "n": 0,
+            "previsao_media": null,
+            "frequencia": null
+          }
+        ],
+        [
+          {
+            "n": 0,
+            "previsao_media": null,
+            "frequencia": null
+          },
+          {
+            "n": 0,
+            "previsao_media": null,
+            "frequencia": null
+          },
+          {
+            "n": 0,
+            "previsao_media": null,
+            "frequencia": null
+          },
+          {
+            "n": 0,
+            "previsao_media": null,
+            "frequencia": null
+          },
+          {
+            "n": 2040,
+            "previsao_media": 0.4276809079949426,
+            "frequencia": 0.492156862745098
+          },
+          {
+            "n": 0,
+            "previsao_media": null,
+            "frequencia": null
+          },
+          {
+            "n": 0,
+            "previsao_media": null,
+            "frequencia": null
+          },
+          {
+            "n": 0,
+            "previsao_media": null,
+            "frequencia": null
+          },
+          {
+            "n": 0,
+            "previsao_media": null,
+            "frequencia": null
+          },
+          {
+            "n": 0,
+            "previsao_media": null,
+            "frequencia": null
+          }
+        ],
+        [
+          {
+            "n": 0,
+            "previsao_media": null,
+            "frequencia": null
+          },
+          {
+            "n": 0,
+            "previsao_media": null,
+            "frequencia": null
+          },
+          {
+            "n": 2040,
+            "previsao_media": 0.25166867593872216,
+            "frequencia": 0.17205882352941176
+          },
+          {
+            "n": 0,
+            "previsao_media": null,
+            "frequencia": null
+          },
+          {
+            "n": 0,
+            "previsao_media": null,
+            "frequencia": null
+          },
+          {
+            "n": 0,
+            "previsao_media": null,
+            "frequencia": null
+          },
+          {
+            "n": 0,
+            "previsao_media": null,
+            "frequencia": null
+          },
+          {
+            "n": 0,
+            "previsao_media": null,
+            "frequencia": null
+          },
+          {
+            "n": 0,
+            "previsao_media": null,
+            "frequencia": null
+          },
+          {
+            "n": 0,
+            "previsao_media": null,
+            "frequencia": null
+          }
+        ]
+      ],
+      "ambiguidade": {
+        "n": 0,
+        "log_loss_superior_primeiro": 1.0373290682380447,
+        "limite_inferior_log_loss": 1.0373290682380447,
+        "limite_superior_log_loss": 1.0373290682380447,
+        "limite_inferior_brier": 0.6261501905544131,
+        "limite_superior_brier": 0.6261501905544131
+      }
+    }
+  }
+}
