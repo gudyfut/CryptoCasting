@@ -11,6 +11,9 @@ Em 26/10/2026 foi autorizado um experimento controlado para corrigir o tratament
 O ponto de entrada da extensão é `python run_penalizacao.py executar`, no ambiente WSL qualificado. Antes de repetir o comando, conferir o processo e `registros/penalizacao/execucao.json`; há exclusão de execução concorrente e retomada por artefatos auditados. A referência mantém seu próprio ponteiro. O estado e a conclusão da extensão devem ser lidos em `progresso.json` na pasta indicada pelo novo ponteiro; sua grade prevista não deve ser apresentada como concluída antes da execução.
 
 - [Plano e entregas](plano.md)
+- [Decisões do trabalho — ADRs](docs/adr/README.md)
+- [Mapa dos registros de treinamentos e testes](registros/README.md)
+- [Preservação no GitHub e reprodução entre máquinas](docs/armazenamento_e_reproducao.md)
 - [Protocolo experimental](docs/protocolo_experimental.md)
 - [Estado real da execução](docs/andamento.md)
 - [Resultados auditados do desenvolvimento de 2023](docs/resultados_desenvolvimento.md)
@@ -45,4 +48,4 @@ A sequência desta execução terminou; seu estado está em `registros/continuac
 
 Preservar fontes científicas e recibos congelados desta identidade mesmo depois da conclusão. Mudanças de método exigem novo ciclo e nova identidade; os períodos de avaliação agora consultados não voltam a ser confirmação intocada. Os testes suplementares de publicação (`python manutencao/testar_consolidacao.py`) usam dados temporários identificados como sintéticos e não alteram os recibos do treinamento.
 
-Dados, checkpoints e exportações grandes são locais e ficam fora do Git. Os respectivos manifestos e hashes permitem conferir integridade; não substituem uma cópia externa dos arquivos.
+Código, documentação, decisões e evidências leves devem ser versionados no Git. Checkpoints, previsões completas, dataset processado e portal devem ser preservados em pacotes por ciclo no GitHub Releases, com inventário e hashes, além de uma cópia de segurança independente. A publicação desses pacotes ainda está pendente; um clone ou pull não os transfere automaticamente. Consulte a [política de preservação](docs/armazenamento_e_reproducao.md) para o procedimento e as pendências de sincronização.

@@ -1,0 +1,14 @@
+# Novos artefatos científicos precisam conservar os bytes usados nos hashes.
+/dados/brutos/binance_spot_1m/** -text
+/dados/processados/retorno24_*/** -text
+/dados/experimentos/retorno24_*/** -text
+/dados/experimentos/penalizacao_*/** -text
+
+# Publicações textuais do WSL: impedir conversão para CRLF em novos checkouts.
+# Não normaliza o checkout existente nem resolve divergências de conteúdo.
+/registros/** text=auto eol=lf
+/registros/**/*.pt -text
+
+/AGENTS.md text eol=lf
+/docs/adr/** text eol=lf
+/docs/armazenamento_e_reproducao.md text eol=lf

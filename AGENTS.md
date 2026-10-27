@@ -1,41 +1,42 @@
-# AGENTS.md
+# Orientações para trabalhar no CryptoCasting
 
-TCC: previsão de retorno em 24 horas, Mamba versus LSTM, Naive e ARIMA. Leia `plano.md` e `docs/protocolo_experimental.md`.
+## Contexto e objetivo
 
-## Extensão autorizada em 26/10/2026
+Este repositório contém um TCC sobre previsão do retorno de criptomoedas em 24 horas. A pergunta principal é como o tamanho do contexto histórico afeta Mamba e LSTM, com Naive e ARIMA como referências. Uma conclusão negativa é válida: não condicionar o sucesso do trabalho à vitória do Mamba ou a lucro simulado.
 
-O pesquisador autorizou corrigir a penalização do Mamba e executar uma comparação controlada completa, preservando o ciclo anterior. Ler `docs/protocolo_penalizacao_mamba.md`, `docs/auditoria_configuracao_penalizacao.md` e `docs/roteiro_redacao_tcc.md`. Código novo em `experimento_penalizacao/`, entrada `run_penalizacao.py`, ponteiro próprio `registros/penalizacao/execucao.json`. Grade: 384 Mamba corrigidos e dois controles originais reexecutados; as demais referências são herdadas. Não contar planejamento como execução.
+O estudo ativo usa BTCUSDT, ETHUSDT, BNBUSDT e XRPUSDT da Binance Spot; retornos horários como única entrada; contextos de 24/72/168/336 horas; origem horária e alvo terminal `ln(P[t+24h]/P[t])`. É regressão, avaliada principalmente por MSE. Direção é um diagnóstico secundário; previsão e utilidade econômica são eixos distintos.
 
-Preservar `previsao24/`, `run_previsao.py`, protocolo/configuração originais e todos os artefatos da execução `1e7c5ed662fba55ddd25`. A correção vale somente no novo ciclo; os arquivos antigos continuam representando a implementação realmente executada. Não alterar fontes após o congelamento da extensão. Os períodos DB/B são conhecidos: comparação retrospectiva, sem nova alegação de holdout intocado. Verificar PID, lock e logs antes de retomar; nunca duplicar processo por timeout. Qualquer falha/revisão deve ser registrada.
+## Leitura inicial e fontes de informação
 
-A extensão foi congelada como `7868a4d847c1410fc681` após 24 testes e 12 casos de qualificação CUDA. O manifesto inicial preserva 7.082 arquivos. A execução foi iniciada; conferir seu `progresso.json` para contagens atuais. Não presumir grade concluída por este registro. Os resultados previstos serão consolidados em `dados/experimentos/penalizacao_7868a4d847c1410fc681/analises/` e documentados em `docs/resultados_penalizacao_mamba.md` após as duas fases.
+1. Ler [plano.md](plano.md) e [protocolo experimental](docs/protocolo_experimental.md) para entender o contrato científico.
+2. Ler o [índice de decisões (ADRs)](docs/adr/README.md) e as decisões pertinentes à tarefa. Para a extensão de penalização, ler também [seu protocolo](docs/protocolo_penalizacao_mamba.md) e a [auditoria de configuração](docs/auditoria_configuracao_penalizacao.md).
+3. Consultar [andamento](docs/andamento.md) e o [mapa de registros](registros/README.md). Confirmar o estado pelos artefatos da máquina responsável; um snapshot no Git não informa se o processo remoto continua ativo.
+4. Antes de transferir ou publicar resultados, seguir a [política de preservação](docs/armazenamento_e_reproducao.md). Para escrever o TCC, usar o [roteiro de redação](docs/roteiro_redacao_tcc.md).
 
-## Autorização vigente — 20/10/2026
+## Regras científicas permanentes
 
-O pesquisador autorizou arquivar o estudo anterior, substituir integralmente o projeto ativo, implementar, auditar e executar o protocolo novo de treinamento e testes, e apresentar os resultados reais na interface. Não é necessário pedir novamente autorização para coleta, preparação, qualificação e execução. Não reescrever Git.
+- Aplicar scalers somente no treino, purga temporal de 24h e mesmas origens entre modelos/contextos. Não interpolar lacunas nem selecionar exemplos pela magnitude do retorno futuro.
+- Usar Mamba oficial CUDA, sem fallback silencioso. Preservar seeds 17/42/2026, Naive de retorno zero e ARIMA(p,1,q) sem deriva, p/q em 0..2 selecionados na validação, conforme o protocolo.
+- DB1–DB4 são desenvolvimento. B1–B4 já foram consultados: novas hipóteses nesses períodos são retrospectivas, sem alegação de holdout intocado. Não selecionar seed favorável nem alterar modelos durante uma avaliação congelada.
+- Preservar toda tentativa, falha, interrupção e revisão. Recarga de checkpoint e métricas recalculadas são requisitos de auditoria. Planejamento e aprovação de testes sintéticos não comprovam conclusão de treinamento.
+- Fontes, configurações, protocolos e recibos congelados são imutáveis sob a identidade da execução. Não regenerar hashes para aceitar divergências. Uma nova mudança científica exige ciclo identificado, registro da decisão e autorização compatível.
+- Indicadores, candles menores, horizontes diferentes e busca adicional de parâmetros são extensões futuras; não iniciá-las automaticamente.
 
-O arquivo `arquivo/estudo_barreiras_2026-10-20/` é histórico imutável: manter fontes, configurações, dados, checkpoints e resultados; não importar código dele na aplicação atual. A preservação possui manifesto SHA-256 antes/depois. Arquivamento local não é backup externo.
+## Escopo autorizado e preservação
 
-## Contrato atual
+As autorizações de 20/10 e 26/10/2026 estão contextualizadas nas ADRs 0001 e 0002. Elas permitem executar os ciclos definidos, sem pedir novamente autorização para suas etapas necessárias; não autorizam buscas indefinidas.
 
-- Quatro moedas Binance Spot: BTCUSDT, ETHUSDT, BNBUSDT, XRPUSDT.
-- Alvo terminal `ln(P[t+24h]/P[t])`; entradas exclusivamente retornos horários; contextos 24/72/168/336h; origem horária.
-- Mamba oficial CUDA e LSTM, seeds 17/42/2026; Naive = retorno zero; ARIMA(p,1,q) sem deriva, p/q 0..2, seleção na validação.
-- Scalers só no treino; purga temporal de 24h; mesmas origens entre modelos/contextos; nenhum filtro pela magnitude do retorno futuro; não interpolar lacunas.
-- DB1–DB4 = desenvolvimento. B1–B4 exigem congelamento e registro de exposição prévia. Exposição desconhecida não permite alegar holdout intocado. Não alterar modelos após consultar esses resultados.
-- Toda tentativa, falha e revisão fica registrada. Recarga de checkpoint e métricas recalculadas são obrigatórias. Não escolher seed favorável.
-- Indicadores, granularidades 15/30min e outras configurações são extensões futuras, não parte da grade atual nem busca automática.
-- Previsão e utilidade econômica são eixos distintos; nenhum resultado garante lucro ou superioridade de Mamba.
-- Identificadores novos em português. Não alterar argumentos oficiais da API Mamba.
+- Referência: código `previsao24/`, entrada `run_previsao.py`, configuração `configuracoes/retorno24_001.json` e ponteiro `registros/execucao_atual.json`. Preservar integralmente a execução `1e7c5ed662fba55ddd25`.
+- Extensão: código `experimento_penalizacao/`, entrada `run_penalizacao.py`, ponteiro `registros/penalizacao/execucao.json`; identidade congelada `7868a4d847c1410fc681`. Respeitar o escopo de 384 Mamba corrigidos e dois controles reexecutados; LSTM/Naive/ARIMA são referências herdadas. Não alterar suas fontes congeladas.
+- `arquivo/estudo_barreiras_2026-10-20/` é histórico imutável. Não importar seu código na aplicação ativa nem misturar seus resultados com os atuais. Não reescrever o histórico Git.
 
-## Execução e interface
+## Operação, interface e trabalho entre máquinas
 
-Inspecionar hardware e ambiente; qualificar dimensões, forward/backward, recarga e determinismo antes de treinar. Não substituir backend silenciosamente. Não duplicar processos após timeout: verificar PID e logs. Não comprar computação paga.
+- Antes de treinar, inspecionar hardware/ambiente e exigir qualificação de dimensões, forward/backward, atualização, repetição e recarga. Não comprar computação paga.
+- Antes de retomar, conferir host, PID, lock e logs no computador executor. Nunca duplicar um treinamento por timeout, falta de arquivos em outra máquina ou snapshot antigo. Não iniciar cópia concorrente de um ciclo que segue no notebook.
+- A interface Next.js está em `dataview/`; executar npm nesse diretório. Exibir contagens e resultados derivados de evidências reais, distinguir ciclos e informar artefatos indisponíveis. Ausência local não significa zero treinamentos no estudo.
+- Identificadores novos em português; preservar nomes dos argumentos oficiais da API Mamba. Registrar verificações realizadas e limitações do ambiente.
 
-Next.js em `dataview/`, npm nesse diretório. A interface ativa mostra somente o novo estudo, com status/contagens derivados de registros reais. O arquivo histórico não compõe resultados atuais.
+## Manutenção da documentação
 
-## Estado verificado em 21/10/2026
-
-Oito entregas computacionais concluídas. Dataset `d25f6a93a9900725f51e`; execução `1e7c5ed662fba55ddd25`. Desenvolvimento e avaliação completos: 768 ajustes neurais, 32 Naive e 32 seleções ARIMA; 288 candidatos ARIMA válidos. Ler `docs/resultados_avaliacao.md` e `docs/resultados_desenvolvimento.md`. LSTM teve menor MSE que Mamba; LSTM–Naive inconclusivo na avaliação; sem melhoria geral de contexto ou rentabilidade consistente.
-
-Fechamento em `registros/auditorias/1e7c5ed662fba55ddd25/fechamento.json`; aceite visual em `registros/interface/aceite_final.json`. Portal: 832 resultados/384 séries. A interrupção operacional e os 636 registros anteriores íntegros estão preservados em `registros/incidentes/`. Não regenerar recibos congelados nem alterar fontes científicas sob esta identidade. Novas hipóteses exigem novo ciclo; não iniciar busca automaticamente. Os períodos B1–B4 agora foram consultados e não voltam a ser confirmação intocada.
+Manter este arquivo como guia estável. Atualizá-lo quando mudarem objetivo, regras permanentes ou caminhos de referência; não usá-lo como diário de treinamento ou placar. Registrar decisões e motivos em `docs/adr/`, evolução factual em `docs/andamento.md`, evidências em `registros/` e artefatos por tentativa em `dados/experimentos/`. Seguir os formatos existentes sem mover artefatos congelados. Distinguir claramente proposto, autorizado, executado e auditado.

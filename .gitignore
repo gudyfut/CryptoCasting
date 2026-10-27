@@ -14,13 +14,45 @@ node_modules/
 .next/
 dataview/.dados/
 
-# Dados e checkpoints reproduzíveis, com manifestos leves versionados
-dados/brutos/
-dados/processados/
+# Dados volumosos ficam em pacotes; metadados do estudo ativo entram no Git.
+# Ver docs/armazenamento_e_reproducao.md. Não liberar pilotos antigos em massa.
+/dados/brutos/*
+!/dados/brutos/binance_spot_1m/
+/dados/brutos/binance_spot_1m/**
+!/dados/brutos/binance_spot_1m/**/
+!/dados/brutos/binance_spot_1m/**/*.json
+!/dados/brutos/binance_spot_1m/**/*.CHECKSUM
+
+/dados/processados/*
+!/dados/processados/retorno24_*/
+/dados/processados/retorno24_*/**
+!/dados/processados/retorno24_*/**/
+!/dados/processados/retorno24_*/**/*.json
+
 dados/features/
 dados/normalizados/
 dados/janelas/
-dados/experimentos/
+
+/dados/experimentos/*
+!/dados/experimentos/retorno24_*/
+!/dados/experimentos/penalizacao_*/
+/dados/experimentos/retorno24_*/**
+/dados/experimentos/penalizacao_*/**
+!/dados/experimentos/retorno24_*/**/
+!/dados/experimentos/penalizacao_*/**/
+!/dados/experimentos/retorno24_*/**/*.json
+!/dados/experimentos/retorno24_*/**/*.csv
+!/dados/experimentos/retorno24_*/**/*.md
+!/dados/experimentos/retorno24_*/**/*.py
+!/dados/experimentos/retorno24_*/**/*.log
+!/dados/experimentos/penalizacao_*/**/*.json
+!/dados/experimentos/penalizacao_*/**/*.csv
+!/dados/experimentos/penalizacao_*/**/*.md
+!/dados/experimentos/penalizacao_*/**/*.py
+!/dados/experimentos/penalizacao_*/**/*.log
+
+# Logs científicos são evidências; conservar também os dos testes.
+!/registros/**/*.log
 
 # Modelos treinados (binarios grandes)
 dados/resultados/*.pt
@@ -32,3 +64,8 @@ arquivo/**/projeto/dataview/.dados/
 arquivo/**/projeto/tmp/
 registros/logs/
 registros/continuacao_protocolo.lock
+
+# Estado de processo local e escritas incompletas não são resultados publicados.
+/dados/experimentos/**/processo.json
+/dados/experimentos/**/exclusao.lock
+/dados/**/*.parcial
