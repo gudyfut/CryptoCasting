@@ -1,0 +1,14 @@
+"use client";
+import {useState} from "react";
+import {numero} from "@/lib/tipos";
+
+export default function LaboratorioErro(){
+  const [previsto,setPrevisto]=useState(1);
+  const [real,setReal]=useState(3);
+  const erro=previsto-real, absoluto=Math.abs(erro), quadrado=erro**2;
+  const mse=quadrado/10000, naive=(real/100)**2;
+  const x=(v:number)=>55+(v+10)*25;
+  return <div className="laboratorio"><div><p className="sobretitulo">EXEMPLO DIDÁTICO · NÃO É RESULTADO DE MERCADO</p><h3>Mova a previsão e veja o erro acontecer</h3><p>Os controles usam <b>log-retorno × 100</b>. Um valor de 3 equivale a aproximadamente +3,05% de retorno simples. A diferença entre os controles é medida em pontos de log-retorno.</p><label>Previsão do modelo <b>{numero(previsto,1)}</b><input aria-label="Log-retorno previsto no exemplo" type="range" min={-10} max={10} step={.1} value={previsto} onChange={e=>setPrevisto(Number(e.target.value))}/></label><label>Resultado observado <b>{numero(real,1)}</b><input aria-label="Log-retorno observado no exemplo" type="range" min={-10} max={10} step={.1} value={real} onChange={e=>setReal(Number(e.target.value))}/></label></div><div>
+    <svg viewBox="0 0 610 155" role="img" aria-label={`Previsão ${numero(previsto,1)} e observação ${numero(real,1)}: erro absoluto ${numero(absoluto,1)}`}><line x1="55" y1="80" x2="555" y2="80" stroke="#bacbd8"/>{[-10,-5,0,5,10].map(v=><g key={v}><line x1={x(v)} y1="75" x2={x(v)} y2="85" stroke="#8a9ead"/><text x={x(v)} y="110" textAnchor="middle" fontSize="13" fill="#556b7e">{v}</text></g>)}<line x1={x(previsto)} y1="80" x2={x(real)} y2="80" stroke="#dba343" strokeWidth="7"/><circle cx={x(previsto)} cy="80" r="8" fill="#176fba"/><circle cx={x(real)} cy="80" r="5" fill="#172b3d"/><text x="55" y="30" fontSize="14" fill="#176fba">● Previsão</text><text x="365" y="30" fontSize="14" fill="#172b3d">● Observado</text></svg>
+    <div className="valores-laboratorio"><div><span>Erro absoluto</span><b>{numero(absoluto,2)}</b><small>pontos de log-retorno</small></div><div><span>Erro quadrático</span><b>{numero(quadrado,2)}</b><small>pontos ao quadrado</small></div></div><p className="nota">No formato original usado no treinamento, o erro quadrático deste exemplo é <b>{numero(mse,6)}</b>. O Naive prevê zero e teria erro <b>{numero(naive,6)}</b>. {naive===0?"Aqui o Naive acerta exatamente; a razão de ganho fica indefinida.":`O ganho relativo deste único exemplo é ${numero((1-mse/naive)*100,1)}%.`}</p></div><p className="laboratorio-rodape">Em muitas previsões: <b>MAE</b> é a média dos erros absolutos; <b>MSE</b> é a média dos erros ao quadrado; <b>RMSE</b> é a raiz do MSE e volta à unidade do retorno. Dobrar um erro multiplica sua contribuição ao MSE por quatro. Acertar o sinal não garante erro pequeno: tente prever +1 com resultado +10.</p></div>;
+}

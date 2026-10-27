@@ -1,42 +1,26 @@
-# Plano científico do TCC
+# Plano científico — retorno em 24 horas
 
-## Objetivo
+Versão adotada em 20/10/2026 após definição do pesquisador e discussão com o orientador.
 
-Investigar como moeda, contexto, prazo e configuração do Mamba afetam a previsão de primeiro toque em barreiras e sua utilidade econômica após custos. Comparar com LSTM e AR(1), documentando toda a sequência de hipóteses e tentativas.
+Investigar o efeito de 1, 3, 7 e 14 dias de contexto na previsão do retorno de quatro criptomoedas em 24 horas. Comparação principal Mamba–LSTM; referências Naive e ARIMA. Não condicionar sucesso do TCC a vitória de uma arquitetura ou lucro.
 
-O [protocolo 2.1](docs/protocolo_experimental.md) é a referência metodológica. O projeto é iterativo: a primeira grade estabelece a referência; os ciclos seguintes procuram melhorias no desenvolvimento. O teste final fica separado dessa seleção.
+O contrato executável é `configuracoes/retorno24_001.json`; as regras estão em `docs/protocolo_experimental.md`. Acompanhamento factual: `docs/andamento.md` e `registros/`. Código científico: `previsao24/`; entrada: `run_previsao.py`.
 
-## Ciclo inicial
+## Entregas obrigatórias desta execução
 
-| Fator | Valores |
-|---|---|
-| Moedas | BTCUSDT, ETHUSDT, BNBUSDT, XRPUSDT |
-| Candle de entrada | 1h |
-| Contextos | 24 e 168 candles |
-| Prazos máximos | 1h, 24h, 168h |
-| Alvo | Inferior primeiro, prazo esgotado, superior primeiro |
-| Distância | Desvio padrão dos últimos 168 retornos horários × raiz do prazo |
-| Execução/rótulo | OHLCV 1m, com ordem ambígua sinalizada |
-| Redes | Mamba e LSTM, largura 32, duas camadas |
-| Operação | Spot comprado/caixa, sem alavancagem, custos e risco explícitos |
+1. Preservar e verificar o estudo anterior no arquivo histórico; retirar seus componentes do projeto ativo.
+2. Fixar protocolo, configuração, fontes e classificação da exposição prévia aos períodos de avaliação.
+3. Coletar/auditar dados de 2021–2025; construir dataset causal, com origem e destino identificáveis.
+4. Testar contratos, vazamento, fronteiras temporais, ARIMA, métricas e contabilidade; qualificar redes CUDA em todos os contextos.
+5. Executar desenvolvimento: quatro moedas × quatro contextos × quatro blocos × três seeds × duas redes = 384 ajustes neurais. ARIMA ajustado/selecionado por moeda/bloco; Naive determinístico.
+6. Congelar e executar avaliação 2024–2025 em quatro blocos semestrais, mesma grade e três seeds: outros 384 ajustes neurais. Não selecionar configurações ou seeds pelo teste. Classificar corretamente a independência conforme exposição anterior.
+7. Auditar todos os checkpoints e previsões; consolidar resultados por moeda, contexto, período e seed, diferenças pareadas e incerteza temporal. Simulação diária Spot separada, com custos e ausências explícitos.
+8. Reconstruir interface e explorador de previsões reais; verificar métricas, filtros, gráficos, explicações e versões responsivas.
 
-Desenvolvimento em quatro folds de 2023, seed 42: 192 ajustes neurais. AR(1) é ajustado uma vez por moeda/fold e reutilizado entre contextos. A grade final predefinida em 2024–2025 fica bloqueada enquanto a busca estiver em andamento.
+Nenhum item é concluído apenas por existir código. A conclusão exige execução e evidência verificável. Futuras entradas/indicadores e candles menores exigem novos ciclos; não fazem parte desta entrega inicial.
 
-## Ciclos seguintes
+## Extensão autorizada em 26/10/2026
 
-Após analisar a referência, registrar outra hipótese e configuração antes de executar. Podem ser estudados contexto/prazo, largura, camadas, estado interno, convolução, expansão, dropout e otimização do Mamba. Evitar mudar tudo ao mesmo tempo; comparar cada ciclo com uma referência explícita e custo medido.
+O pesquisador solicitou corrigir a penalização dos parâmetros marcados pelo Mamba, executar um novo experimento controlado com o restante igual, preservar o estudo concluído e comparar os resultados. O contrato adicional está em `docs/protocolo_penalizacao_mamba.md`. São previstos 384 novos ajustes Mamba e dois controles originais reexecutados para conferir reprodução; LSTM, Naive e ARIMA são referências herdadas, sem novos ajustes.
 
-Log-loss média nos folds de desenvolvimento é o critério preditivo inicial. Risco, retorno líquido, exposição e custo computacional compõem a análise de utilidade. Não trocar a métrica depois de ver um resultado nem escolher apenas seeds favoráveis. Testes de desenvolvimento consultados repetidamente são parte da busca, não confirmação independente.
-
-## Primeiro ciclo concluído em 18/10/2026
-
-1. Concluído: implementação e verificação de rótulos, entradas causais, purgas, scalers e operação.
-2. Concluído: coleta de 144 meses somados entre moedas e dataset `9341610dbb329a858784`, sem interpolação.
-3. Concluído: ambiente CUDA, Mamba oficial e qualificação Monte Carlo do AR(1).
-4. Concluído: duas células iniciais integradas à grade; recargas exatas em todas as células.
-5. Concluído: DB1–DB4, 96 células auditadas, 192 ajustes neurais, 16 ajustes únicos AR(1); identidade `4e232a796fcda0ea34c3`.
-6. Concluído: [análise completa](historico/analises/ciclo_001_resultados.md), tabelas e [proposta delimitada do ciclo 002](historico/ciclos/ciclo_002_proposto.md).
-
-O próximo ciclo foi apenas proposto: estado Mamba 16→8 no prazo semanal, quatro moedas e ambos os contextos, 64 ajustes neurais no executor pareado. Sua qualificação específica e comparação entre ciclos precisam ser preparadas antes da execução. Não é uma configuração final escolhida. B1–B4 seguem bloqueados até congelamento e declaração de exposição prévia.
-
-O pesquisador autorizou execução autônoma de coleta, pipeline, treino e testes nesta sessão. O [andamento](docs/andamento.md) registra o que realmente foi comprovado; a existência de código não significa que a grade foi executada.
+A comparação é retrospectiva em períodos já expostos. Não altera a classificação histórica do primeiro ciclo nem autoriza busca indefinida de hiperparâmetros. As novas entregas são: correção isolada e testada; qualificação e congelamento; controles e piloto; grade completa; comparação pareada e simulação com política preservada; preservação antes/depois; documentação com rastreabilidade para a redação. As oito entregas anteriores continuam sendo do ciclo original.

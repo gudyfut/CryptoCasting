@@ -1,0 +1,49 @@
+{
+  "data": "2026-10-24",
+  "execucao": "1e7c5ed662fba55ddd25",
+  "natureza": "Revisão solicitada após exposição aos resultados; diagnósticos adicionais são exploratórios.",
+  "conclusao": "Resultados preditivos reproduzidos e artefatos íntegros. O protocolo executado compara configurações específicas; há ressalva de regularização do Mamba, sem demonstração causal de seu impacto.",
+  "evidencias": {
+    "metricas_e_intervalos": "registros/revisoes/revisao_2026-10-24T184315.322655_0000/resumo.json",
+    "diagnosticos_por_ajuste": "registros/revisoes/revisao_2026-10-24T184315.322655_0000/diagnosticos_por_ajuste.csv",
+    "testes": "registros/revisoes/revisao_2026-10-24T184315.322655_0000/testes_contratos.log",
+    "escalas_e_recargas": "registros/revisoes/checkpoints_2026-10-24T184651.638314_0000/resumo.json"
+  },
+  "escopo_verificado": {
+    "resultados_recalculados": 832,
+    "intervalos_bootstrap_reproduzidos": 60,
+    "candidatos_arima_validos": 288,
+    "escalas_checkpoint_conferidas_com_treino": 768,
+    "checkpoints_com_inferencia_repetida": 32,
+    "previsoes_amostrais_reproduzidas_exatamente": 3392,
+    "testes_automatizados_aprovados": 17,
+    "reconstrucao": "Fechamentos, retornos, alvo de 24h, máscaras causais/observáveis e fronteiras desde os dados de minuto salvos das quatro moedas.",
+    "integridade": "Assinatura da execução, fontes científicas atuais e cópias congeladas, qualificação, dataset e artefatos auditados dos 832 resultados, incluindo checkpoints e publicações.",
+    "limites": "Não refez os 768 treinamentos nem toda inferência. Não repetiu coleta externa nem uma nova auditoria completa de cada operação financeira; os números financeiros citados vêm da publicação previamente auditada. Não alterou o ciclo congelado."
+  },
+  "ressalva_mamba": {
+    "achado": "A_log e D têm _no_weight_decay=True na biblioteca instalada. AdamW recebe rede.parameters() em um único grupo com weight_decay=0.001 e não interpreta automaticamente esse marcador.",
+    "interpretacao": "A configuração foi aplicada conforme o código congelado, mas não incorporou a exceção indicada pela biblioteca. As métricas permanecem corretas para os modelos efetivamente treinados; esse detalhe limita uma conclusão geral sobre a arquitetura.",
+    "causalidade": "Não foi realizado experimento isolando esse fator; não se pode atribuir a ele a diferença observada nem prometer melhora ao alterá-lo.",
+    "seguimento": "Testar a exclusão desses parâmetros da penalização em novo ciclo registrado, mantendo os demais fatores constantes; qualquer seleção adicional exige orçamento comparável para as redes e avaliação independente.",
+    "fonte_primaria": "https://github.com/state-spaces/mamba/blob/main/mamba_ssm/modules/mamba_simple.py"
+  },
+  "outras_limitacoes": [
+    "13.0 mil parâmetros na LSTM e 20.1 mil no Mamba; mesma largura não significa mesma capacidade nem custo computacional.",
+    "Uma configuração fixa de treino por família, sem busca para estimar o melhor desempenho possível de cada arquitetura.",
+    "Na qualificação original, a repetição do treino Mamba em W168/W336 teve diferenças de 5.96e-8/1.49e-8, dentro da tolerância; recarga exata não equivale a todo treinamento bit a bit determinístico.",
+    "Diagnósticos por moeda, amplitude e inicialização não isolam causalmente os motivos da diferença.",
+    "Os períodos de avaliação 2024–2025 já foram consultados; novas escolhas baseadas neles não podem reivindicar confirmação intocada nesses mesmos dados."
+  ],
+  "tentativas_da_revisao": [
+    {
+      "registro": "registros/revisoes/revisao_2026-10-24T183846.408537_0000/estado.json",
+      "status": "falha_do_revisor",
+      "explicacao": "A primeira versão do novo verificador presumiu timestamps em ns ou us, mas a coluna lida estava em ms. Foi corrigido apenas o verificador para usar dt.as_unit('s'). Os dados e o código científico não foram alterados."
+    },
+    {
+      "registro": "registros/revisoes/revisao_2026-10-24T184315.322655_0000/estado.json",
+      "status": "aprovado"
+    }
+  ]
+}

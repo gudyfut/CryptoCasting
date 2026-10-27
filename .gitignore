@@ -14,7 +14,7 @@ node_modules/
 .next/
 dataview/.dados/
 
-# Dados intermediarios da pipeline (run_barreiras.py preparar)
+# Dados e checkpoints reproduzíveis, com manifestos leves versionados
 dados/brutos/
 dados/processados/
 dados/features/
@@ -24,3 +24,11 @@ dados/experimentos/
 
 # Modelos treinados (binarios grandes)
 dados/resultados/*.pt
+dados/portal/
+
+# Arquivo científico: fontes/relatórios versionados; binários preservados localmente
+arquivo/**/projeto/dados/
+arquivo/**/projeto/dataview/.dados/
+arquivo/**/projeto/tmp/
+registros/logs/
+registros/continuacao_protocolo.lock

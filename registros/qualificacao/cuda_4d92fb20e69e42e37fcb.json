@@ -1,0 +1,260 @@
+{
+  "tipo": "sintetico_sem_dados_de_mercado",
+  "status": "aprovado",
+  "inicio_utc": "2026-10-21T01:23:16.810716+00:00",
+  "configuracao": {
+    "versao": "retorno24-1.0",
+    "ciclo": "retorno24_001",
+    "hipotese": "Efeito de 1/3/7/14 dias de contexto na previsão do retorno em 24h; comparação pareada Mamba/LSTM, ARIMA e Naive.",
+    "pares": [
+      "BTCUSDT",
+      "ETHUSDT",
+      "BNBUSDT",
+      "XRPUSDT"
+    ],
+    "contextos": [
+      24,
+      72,
+      168,
+      336
+    ],
+    "horizonte": 24,
+    "candle_minutos": 60,
+    "origem_minutos": 60,
+    "entradas": [
+      "retorno_log_horario"
+    ],
+    "seeds": [
+      17,
+      42,
+      2026
+    ],
+    "folds_desenvolvimento": [
+      "DB1",
+      "DB2",
+      "DB3",
+      "DB4"
+    ],
+    "folds_avaliacao": [
+      "B1",
+      "B2",
+      "B3",
+      "B4"
+    ],
+    "inicio": "2021-01-01",
+    "fim": "2026-01-01",
+    "mamba": {
+      "largura": 32,
+      "camadas": 2,
+      "estado": 16,
+      "convolucao": 4,
+      "expansao": 2,
+      "dropout": 0.1
+    },
+    "lstm": {
+      "largura": 32,
+      "camadas": 2,
+      "dropout": 0.1
+    },
+    "treino": {
+      "epocas": 100,
+      "paciencia": 10,
+      "batch": 64,
+      "microbatch": 32,
+      "taxa_aprendizado": 0.0002,
+      "weight_decay": 0.001,
+      "clipping": 1.0
+    },
+    "arima": {
+      "ordens": [
+        [
+          0,
+          1,
+          0
+        ],
+        [
+          0,
+          1,
+          1
+        ],
+        [
+          0,
+          1,
+          2
+        ],
+        [
+          1,
+          1,
+          0
+        ],
+        [
+          1,
+          1,
+          1
+        ],
+        [
+          1,
+          1,
+          2
+        ],
+        [
+          2,
+          1,
+          0
+        ],
+        [
+          2,
+          1,
+          1
+        ],
+        [
+          2,
+          1,
+          2
+        ]
+      ],
+      "tendencia": "n",
+      "maxiter": 200
+    },
+    "dispositivo": "cuda",
+    "backend": "oficial",
+    "bootstrap": {
+      "dias": [
+        7,
+        14,
+        28
+      ],
+      "principal": 14,
+      "replicas": 2000,
+      "seed": 20261020
+    },
+    "operacao": {
+      "hora_utc": 0,
+      "latencia_minutos": 1,
+      "capital": 10000.0,
+      "taxa": 0.001,
+      "slippage": 0.0005,
+      "taxa_agravada": 0.002,
+      "slippage_agravado": 0.001
+    }
+  },
+  "fontes": {
+    "previsao24/redes.py": "348740604b13de71a0329c0351853758f79e46c1c3666233903d84b5a63fa232",
+    "previsao24/treino.py": "2e5e6d19b81a744ac6c4e37d6a885c07c01c90fba5b8e58f2a5115b0134dd00b",
+    "previsao24/qualificacao.py": "b26a801e0ce00d05e60db855ec201da4988cf3ccf9398e5f8ff9e762fcb1d85c"
+  },
+  "python": "3.12.13",
+  "sistema": "Linux-6.6.87.2-microsoft-standard-WSL2-x86_64-with-glibc2.43",
+  "torch": "2.6.0+cu118",
+  "versoes": {
+    "mamba-ssm": "2.2.6.post3",
+    "causal-conv1d": "1.6.2.post1",
+    "numpy": "2.2.6",
+    "pandas": "3.0.3",
+    "pyarrow": "24.0.0",
+    "statsmodels": "0.14.6"
+  },
+  "casos": [
+    {
+      "modelo": "lstm",
+      "contexto": 24,
+      "batch": 64,
+      "microbatch": 32,
+      "forward_backward": true,
+      "recarga_exata": true,
+      "repeticao_exata": true,
+      "diferenca_repeticao": 0.0,
+      "memoria_maxima_bytes": 72701952,
+      "avisos": []
+    },
+    {
+      "modelo": "lstm",
+      "contexto": 72,
+      "batch": 64,
+      "microbatch": 32,
+      "forward_backward": true,
+      "recarga_exata": true,
+      "repeticao_exata": true,
+      "diferenca_repeticao": 0.0,
+      "memoria_maxima_bytes": 81389568,
+      "avisos": []
+    },
+    {
+      "modelo": "lstm",
+      "contexto": 168,
+      "batch": 64,
+      "microbatch": 32,
+      "forward_backward": true,
+      "recarga_exata": true,
+      "repeticao_exata": true,
+      "diferenca_repeticao": 0.0,
+      "memoria_maxima_bytes": 98998784,
+      "avisos": []
+    },
+    {
+      "modelo": "lstm",
+      "contexto": 336,
+      "batch": 64,
+      "microbatch": 32,
+      "forward_backward": true,
+      "recarga_exata": true,
+      "repeticao_exata": true,
+      "diferenca_repeticao": 0.0,
+      "memoria_maxima_bytes": 129821184,
+      "avisos": []
+    },
+    {
+      "modelo": "mamba",
+      "contexto": 24,
+      "batch": 64,
+      "microbatch": 32,
+      "forward_backward": true,
+      "recarga_exata": true,
+      "repeticao_exata": true,
+      "diferenca_repeticao": 0.0,
+      "memoria_maxima_bytes": 72389120,
+      "avisos": []
+    },
+    {
+      "modelo": "mamba",
+      "contexto": 72,
+      "batch": 64,
+      "microbatch": 32,
+      "forward_backward": true,
+      "recarga_exata": true,
+      "repeticao_exata": true,
+      "diferenca_repeticao": 0.0,
+      "memoria_maxima_bytes": 80019968,
+      "avisos": []
+    },
+    {
+      "modelo": "mamba",
+      "contexto": 168,
+      "batch": 64,
+      "microbatch": 32,
+      "forward_backward": true,
+      "recarga_exata": true,
+      "repeticao_exata": false,
+      "diferenca_repeticao": 5.960464477539063e-08,
+      "memoria_maxima_bytes": 95281664,
+      "avisos": []
+    },
+    {
+      "modelo": "mamba",
+      "contexto": 336,
+      "batch": 64,
+      "microbatch": 32,
+      "forward_backward": true,
+      "recarga_exata": true,
+      "repeticao_exata": false,
+      "diferenca_repeticao": 1.4901161193847656e-08,
+      "memoria_maxima_bytes": 122386944,
+      "avisos": []
+    }
+  ],
+  "gpu": "NVIDIA GeForce RTX 4050 Laptop GPU",
+  "memoria_total": 6438780928,
+  "nvidia_smi": "Tue Oct 20 22:23:17 2026       \n+-----------------------------------------------------------------------------------------+\n| NVIDIA-SMI 580.105.07             Driver Version: 581.80         CUDA Version: 13.0     |\n+-----------------------------------------+------------------------+----------------------+\n| GPU  Name                 Persistence-M | Bus-Id          Disp.A | Volatile Uncorr. ECC |\n| Fan  Temp   Perf          Pwr:Usage/Cap |           Memory-Usage | GPU-Util  Compute M. |\n|                                         |                        |               MIG M. |\n|=========================================+========================+======================|\n|   0  NVIDIA GeForce RTX 4050 ...    On  |   00000000:01:00.0 Off |                  N/A |\n| N/A   39C    P8              1W /   64W |     121MiB /   6141MiB |      0%      Default |\n|                                         |                        |                  N/A |\n+-----------------------------------------+------------------------+----------------------+\n\n+-----------------------------------------------------------------------------------------+\n| Processes:                                                                              |\n|  GPU   GI   CI              PID   Type   Process name                        GPU Memory |\n|        ID   ID                                                               Usage      |\n|=========================================================================================|\n|  No running processes found                                                             |\n+-----------------------------------------------------------------------------------------+\n",
+  "cuda": "11.8",
+  "fim_utc": "2026-10-21T01:23:21.908009+00:00"
+}

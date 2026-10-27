@@ -1,14 +1,9 @@
-import Navegacao from "@/components/Navegacao";
-import ExploradorPrevisoes from "@/components/ExploradorPrevisoes";
-import { lerIndice } from "@/lib/previsoes";
-import type { IndicePublico } from "@/lib/exploracao";
-export const dynamic = "force-dynamic";
-export const metadata = { title: "Previsões reais | CryptoCasting" };
-export default async function PaginaPrevisoes({ searchParams }: { searchParams: Promise<Record<string, string | string[] | undefined>> }) {
-  let indice: IndicePublico | undefined, erro: string | undefined;
-  try { const { ciclo, dataset, geradoUtc, celulas, recallMedio, inicioPrecos, fimPrecos } = await lerIndice(); indice = { ciclo, dataset, geradoUtc, celulas, recallMedio, inicioPrecos, fimPrecos }; }
-  catch (e) { erro = e instanceof Error ? e.message : "Exportação indisponível."; }
-  const q = await searchParams;
-  const inicial = indice?.celulas.find(c => c.id === q.id) ?? indice?.celulas.find(c => c.par === "BTCUSDT" && c.contexto === 24 && c.horizonte === 24 && c.fold === "DB1");
-  return <><Navegacao ativa="previsoes"/><main className="pagina-explorador"><div className="abertura-explorador"><span className="selo">CICLO 001 · EVIDÊNCIA OBSERVADA</span><h1>Explorador de previsões</h1><p>Examine o que cada modelo previu, o caminho efetivamente percorrido pelo preço e o primeiro evento observado. Navegue por todas as origens de teste de desenvolvimento de 2023.</p><a href="#inspecao" className="atalho-grafico">Ir para a observação selecionada ↓</a></div>{indice && inicial ? <ExploradorPrevisoes indice={indice} inicial={inicial.id} origemInicial={typeof q.origem === "string" && Number.isSafeInteger(Number(q.origem)) ? Number(q.origem) : undefined}/> : <div className="erro-dados" role="alert"><h2>Previsões indisponíveis</h2><p>{erro}</p><p>O explorador requer a exportação local verificada dos artefatos do ciclo. Nenhuma previsão ilustrativa substitui dados ausentes.</p></div>}</main></>;
+import {ler} from "@/lib/estudo";
+import type {ResumoPortal} from "@/lib/tipos";
+import ExploradorRetorno from "@/components/ExploradorRetorno";
+export const dynamic="force-dynamic";
+export default async function Previsoes({searchParams}:{searchParams:Promise<{id?:string}>}) {
+  const resumo=await ler<ResumoPortal>("dados/portal/resumo.json");
+  const parametros=await searchParams;
+  return <section className="secao explorador"><p className="sobretitulo">EXPLORADOR DE PREVISÕES REAIS</p><h1>Do retorno previsto ao preço observado.</h1><p className="introducao">Compare as previsões no mesmo instante. Escolha a moeda, o período e o contexto; inspecione o preço observado exatamente 24 horas depois.</p>{!resumo?.avaliacao_completa&&<div className="aviso"><b>Resultados parciais de uma execução em andamento.</b> Somente previsões já auditadas estão disponíveis. A ausência de um modelo ou recorte nesta lista não significa resultado zero ou exclusão por desempenho.</div>}<ExploradorRetorno indice={resumo?.series??[]} idInicial={parametros.id}/></section>;
 }

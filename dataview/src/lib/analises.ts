@@ -1,0 +1,8 @@
+export type Escore = {modelo:string;mse:number;rmse:number;mae:number;habilidade_mse:number;acuracia_direcional:number;acerto_balanceado_direcional:number};
+export type CelulaMedia = Escore & {par:string;fold:string;contexto:number};
+export type Ajuste = Escore & {par:string;fold:string;contexto?:number;seed?:number;n:number;epoca:number|null;segundos:number|null;parametros:number|null;media_previsao:number;desvio_previsao:number;media_alvo:number;desvio_alvo:number;previsoes_alta:number;previsoes_queda:number;previsoes_zero:number};
+export type Intervalo = {inferior:number;superior:number;dias:number;replicas:number};
+export type Contraste = {contraste:string;metrica:string;diferenca:number;intervalos:Intervalo[]};
+export type Contexto = {modelo:string;contexto_referencia:number;contexto_comparado:number;mse_curto_menos_longo:number;intervalos:Intervalo[]};
+export type Financeiro = {par:string;modelo:string;contexto:number|null;seed:number|null;capital_inicial:number;capital_final:number|null;retorno_liquido:number|null;drawdown:number|null;retorno_auditavel:boolean;risco_auditavel:boolean;entradas_planejadas:number;minutos_expostos_planejados:number;custos_observados:number;cenario:string;controle:boolean;arquivo?:string};
+export type Analise = {fase:string;execucao:string;dataset:string;gerado_utc:string;modelos:Escore[];metricas:CelulaMedia[];ajustes:Ajuste[];estabilidade:{modelo:string;por_seed:{seed:number;mse:number;habilidade_mse:number}[];mse_desvio_entre_seeds:number}[];contrastes:Contraste[];contextos:Contexto[];financeiro:Financeiro[];arima:{par:string;fold:string;ordem:number[];validos:number;falhos:number}[];configuracao:{pares:string[];contextos:number[];seeds:number[];operacao:{taxa:number;slippage:number;capital:number}}};

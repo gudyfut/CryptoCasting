@@ -1,65 +1,48 @@
-# CryptoCasting
+# CryptoCasting — retorno em 24 horas
 
-Pesquisa de primeiro toque em barreiras de criptomoedas com Mamba, LSTM e AR(1). O trabalho combina avaliação probabilística e simulação financeira com custos, por ciclos documentados de melhoria.
+Pesquisa de TCC sobre previsão do retorno de BTC, ETH, BNB e XRP com Mamba, LSTM, ARIMA e Naive. Entrada horária; contextos de 1, 3, 7 e 14 dias; alvo sempre 24 horas à frente.
 
-## O estudo
+Em 26/10/2026 foi autorizado um experimento controlado para corrigir o tratamento de `weight_decay` do Mamba. O estudo de referência permanece preservado. A extensão tem protocolo e identidade próprios, e não transforma os testes de 2024–2025, já consultados, em um novo holdout intocado.
 
-- Quatro pares: BTCUSDT, ETHUSDT, BNBUSDT e XRPUSDT.
-- Entradas de 1h, contextos de 24/168 horas e prazos máximos de 1/24/168 horas.
-- Três classes: inferior primeiro, prazo esgotado e superior primeiro.
-- Base 1m, sem interpolação de preços. Barreiras dependem apenas da volatilidade passada e do prazo.
-- Walk-forward expansivo: desenvolvimento DB1–DB4 em 2023; avaliação final B1–B4 bloqueada.
-- Primeira grade: 24 combinações, 96 células com fold/seed, 192 ajustes neurais.
+- [Protocolo da correção de penalização](docs/protocolo_penalizacao_mamba.md)
+- [Revisão das configurações e estruturas](docs/auditoria_configuracao_penalizacao.md)
+- [Roteiro e fontes para a redação do TCC](docs/roteiro_redacao_tcc.md)
 
-Leia o [protocolo](docs/protocolo_experimental.md), o [plano](plano.md), a [hipótese do ciclo inicial](historico/ciclos/ciclo_001.md) e o [andamento verificado](docs/andamento.md).
+O ponto de entrada da extensão é `python run_penalizacao.py executar`, no ambiente WSL qualificado. Antes de repetir o comando, conferir o processo e `registros/penalizacao/execucao.json`; há exclusão de execução concorrente e retomada por artefatos auditados. A referência mantém seu próprio ponteiro. O estado e a conclusão da extensão devem ser lidos em `progresso.json` na pasta indicada pelo novo ponteiro; sua grade prevista não deve ser apresentada como concluída antes da execução.
 
-O [roteiro de análise](docs/leitura_resultados.md) explica como comparar probabilidades, contexto, prazo, moedas e utilidade econômica antes de formular outro ciclo.
+- [Plano e entregas](plano.md)
+- [Protocolo experimental](docs/protocolo_experimental.md)
+- [Estado real da execução](docs/andamento.md)
+- [Resultados auditados do desenvolvimento de 2023](docs/resultados_desenvolvimento.md)
+- [Resultados auditados da avaliação de 2024–2025](docs/resultados_avaliacao.md)
+- [Critérios de aceite das oito entregas](docs/aceite_execucao.md)
+- [Decisões de reformulação](docs/decisoes.md)
+- [Arquivo do estudo anterior](arquivo/estudo_barreiras_2026-10-20/README.md)
 
-**Primeiro ciclo concluído em 18/10/2026:** 96/96 células auditadas, 192 ajustes neurais e 16 ajustes únicos de AR(1), identidade `4e232a796fcda0ea34c3`. O [relatório completo](historico/analises/ciclo_001_resultados.md) apresenta todas as combinações, inclusive perdas e ausência de operações. Mamba e LSTM ficaram próximos; não houve superioridade demonstrada de Mamba nem rentabilidade consistente. A [proposta do ciclo 002](historico/ciclos/ciclo_002_proposto.md) está documentada e não foi executada. A avaliação final continua bloqueada.
+As oito entregas computacionais do protocolo estão concluídas e verificadas: desenvolvimento de 2023 e avaliação predefinida de 2024–2025, com 768 ajustes neurais, 64 referências e 288 candidatos ARIMA. O portal apresenta 832 resultados em 384 séries reais. Aceite em `registros/interface/aceite_final.json`; integridade global em `registros/auditorias/1e7c5ed662fba55ddd25/fechamento.json`. Dataset: `d25f6a93a9900725f51e`. Execução: `1e7c5ed662fba55ddd25`. Cada fase tem interpretação própria. Resultados do arquivo não representam este protocolo.
 
-## Execução
+Na avaliação, LSTM teve menor erro que Mamba, mas não demonstrou redução de erro frente ao Naive. Não houve melhoria geral com mais contexto nem rentabilidade consistente na simulação Spot. Esta conclusão computacional não substitui redação, defesa ou aprovação acadêmica.
 
-O ambiente científico usa WSL Ubuntu, Python 3.12, PyTorch CUDA e Mamba oficial. O Python padrão do Windows não representa esse ambiente. Nesta máquina o interpretador qualificado está em `~/.venvs/cc/bin/python`. Executar os comandos abaixo no WSL, a partir da raiz do repositório:
+## Ambiente
 
-Versões, proveniência dos wheels e limites de reprodução estão em [ambiente CUDA](docs/ambiente_cuda.md).
+Execução científica em Linux/WSL, Python 3.12, PyTorch CUDA e Mamba oficial. Dependências gerais em `requirements.txt`; registro completo do ambiente em `registros/qualificacao/`. Não há fallback silencioso para uma implementação diferente de Mamba.
 
-```bash
-~/.venvs/cc/bin/python -m unittest discover -s tests -v
-~/.venvs/cc/bin/python run_barreiras.py planejar
-~/.venvs/cc/bin/python run_barreiras.py coletar
-~/.venvs/cc/bin/python run_barreiras.py preparar
-~/.venvs/cc/bin/python run_barreiras.py qualificar
-~/.venvs/cc/bin/python run_barreiras.py auditar-dados
-~/.venvs/cc/bin/python -u run_barreiras.py treinar --somente-pilotos
-~/.venvs/cc/bin/python -u run_barreiras.py treinar
-```
+A interface Next.js fica em `dataview/`. Execute npm nesse diretório. `npm run dev` abre o portal local; `npm run build`, `npm run lint` e `npm test` verificam código e séries exportadas. Com o servidor ativo, `node --test tests/api.integration.mjs` também verifica os endpoints de publicação.
 
-A primeira coleta usa 2021–2023 e verifica 144 arquivos mensais. A pipeline registra lacunas e minutos interrompidos e produz uma nova identidade de dataset. O comando de treino começa pelos dois casos de qualificação e depois percorre a grade. Células concluídas com a mesma identidade são verificadas e reutilizadas; falhas não são apagadas. Não iniciar dois executores para a mesma identidade.
+## Execução e reprodução
 
-A CLI rejeita folds finais. A abertura final exige congelamento do estudo e declaração de exposição aos dados; rodar mais ciclos de desenvolvimento não libera essa etapa automaticamente.
+O ponto de entrada é `run_previsao.py`, sempre a partir da raiz do projeto e no ambiente científico qualificado. A ordem do protocolo é:
 
-Durante a execução, `python scripts/estado_grade.py dados/experimentos/barreiras_<identidade>` mostra contagens e progresso sem lançar outro treino. No WSL, também confere o lock do executor; um estado escrito como “treinando” não prova sozinho que o processo continua vivo. Não reiniciar após um simples timeout de observação.
+1. `python run_previsao.py coletar` e `python run_previsao.py preparar` para obter os arquivos oficiais e construir o dataset.
+2. Qualificação CUDA e testes de contrato antes de qualquer treinamento de mercado; os recibos de ambiente, configuração e fontes fazem parte da identidade da execução.
+3. Piloto real curto/longo, seguido de `python run_previsao.py executar --fase desenvolvimento`.
+4. `python manutencao/consolidar_resultados.py --fase desenvolvimento` para consolidar e conferir a publicação completa. Não aceita uma fase parcial.
+5. `python run_previsao.py congelar`, depois `python run_previsao.py executar --fase avaliacao`.
+6. `python manutencao/consolidar_resultados.py --fase avaliacao` e `python manutencao/exportar_portal.py`.
+7. Inspeção científica e visual final descrita em `docs/aceite_execucao.md`.
 
-Para recalcular a consolidação, usar `run_barreiras.py consolidar dados/experimentos/barreiras_<identidade>`. O comando verifica hashes e produz tabelas por célula, contrastes pareados, efeito de contexto, incerteza por blocos e curvas concatenadas. Uma grade parcial é identificada como parcial; uma lacuna financeira impede publicar um retorno integral dessa estratégia.
+A sequência desta execução terminou; seu estado está em `registros/continuacao_protocolo.json`. Os comandos acima descrevem a reprodução do fluxo, não solicitam nova execução automática. A interrupção operacional e a retomada estão preservadas em `registros/incidentes/`. Conferir processo/handle antes de qualquer retomada futura, sem duplicar processos por timeout de observação.
 
-Ao encerrar a grade, executar também `scripts/auditar_resultados.py <diretorio_do_ciclo>`, `scripts/auditar_controles.py <diretorio_do_ciclo>` e `scripts/diagnosticar_sinais.py <diretorio_do_ciclo>` com o Python científico. A auditoria suplementar exige a grade completa; `--parcial` permite uma inspeção intermediária sem certificá-la como concluída. Esses comandos conferem e analisam artefatos existentes, sem treinar ou escolher novos parâmetros.
+Preservar fontes científicas e recibos congelados desta identidade mesmo depois da conclusão. Mudanças de método exigem novo ciclo e nova identidade; os períodos de avaliação agora consultados não voltam a ser confirmação intocada. Os testes suplementares de publicação (`python manutencao/testar_consolidacao.py`) usam dados temporários identificados como sintéticos e não alteram os recibos do treinamento.
 
-`scripts/descrever_amostras.py <diretorio_do_ciclo>` verifica o dataset e descreve largura das barreiras, classes e duração por moeda/prazo/fold/partição, com conferência contra previsões já auditadas. Também preserva a contagem das origens operacionais cujo futuro não foi observado. A existência dessa descrição não significa que todos os modelos foram executados.
-
-Figuras vetoriais podem ser geradas sem alterar o ambiente científico: em `dataview/`, executar `node scripts/gerar-figuras.mjs ../dados/experimentos/barreiras_<identidade>`. São gráficos dos resultados reais consolidados, com células ausentes sinalizadas e identidade no manifesto.
-
-O resumo portátil da primeira grade foi gerado com `scripts/resumir_ciclo.py dados/experimentos/barreiras_4e232a796fcda0ea34c3 --destino historico/analises/ciclo_001_completo`. Esse comando somente lê artefatos auditados e exporta tabelas e proveniência; não treina. As quantidades e regras desse agregador correspondem ao ciclo inicial, não a grades futuras arbitrárias.
-
-## Registro e melhoria
-
-`configuracoes/ciclo_001.json` contém todos os parâmetros de redes e treinamento, sem configuração global oculta. Um ciclo posterior pode alterar a grade ou a configuração interna do Mamba, com hipótese, orçamento e critério de comparação definidos antes de executar. Resultados ruins, falhas e correções continuam no registro.
-
-`historico/execucoes/` contém os resumos leves e o estado de cada tentativa. `dados/experimentos/` guarda checkpoints, fontes, scalers, previsões, curvas, ordens e auditorias; esses arquivos não entram no Git e precisam de backup.
-
-## Interface
-
-Em `dataview/`, usar `npm install` e `npm run dev`. A página lê os registros reais e distingue preparação, treino, falha e conclusão auditada. Não usa placares simulados. Verificações: `npm test`, `npm run lint` e `npm run build`.
-
-## Limites
-
-Acerto de previsão não garante lucro. O simulador opera comprado ou em caixa, sem alavancagem. Custos são hipóteses declaradas; não reconstrói livro de ofertas ou garante execução de stops. Lacunas que impeçam determinar uma saída tornam a trajetória financeira não auditável, sem remover a operação retrospectivamente.
+Dados, checkpoints e exportações grandes são locais e ficam fora do Git. Os respectivos manifestos e hashes permitem conferir integridade; não substituem uma cópia externa dos arquivos.

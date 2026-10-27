@@ -1,0 +1,18 @@
+{
+  "ciclo": "penalizacao_mamba_001",
+  "referencia": "1e7c5ed662fba55ddd25",
+  "dataset": "d25f6a93a9900725f51e",
+  "intervencao": "weight_decay=0 somente nos parâmetros com _no_weight_decay=True; demais parâmetros mantêm 0.001",
+  "exposicao": "Todos os resultados DB1–DB4 e B1–B4 foram consultados; análise retrospectiva pareada, sem holdout intocado.",
+  "ajustes_corrigidos": 384,
+  "controles_reexecutados": [
+    {"par":"BTCUSDT","fold":"DB1","contexto":24,"seed":42,"modelo":"mamba"},
+    {"par":"BTCUSDT","fold":"DB1","contexto":336,"seed":42,"modelo":"mamba"}
+  ],
+  "contraste_principal": "mamba_corrigido_menos_mamba_original",
+  "fase_principal": "avaliacao",
+  "fase_secundaria": "desenvolvimento",
+  "metrica": "mse",
+  "referencias_reutilizadas": ["lstm","arima","naive"],
+  "regra": "Executar toda a grade original Mamba nas duas fases, sem seleção de seeds/contextos e sem modificar o método após consultar resultados novos."
+}
