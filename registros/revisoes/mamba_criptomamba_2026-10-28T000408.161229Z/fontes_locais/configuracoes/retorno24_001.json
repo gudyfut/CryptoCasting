@@ -1,0 +1,136 @@
+{
+  "versao": "retorno24-1.0",
+  "ciclo": "retorno24_001",
+  "hipotese": "Efeito de 1/3/7/14 dias de contexto na previsão do retorno em 24h; comparação pareada Mamba/LSTM, ARIMA e Naive.",
+  "pares": [
+    "BTCUSDT",
+    "ETHUSDT",
+    "BNBUSDT",
+    "XRPUSDT"
+  ],
+  "contextos": [
+    24,
+    72,
+    168,
+    336
+  ],
+  "horizonte": 24,
+  "candle_minutos": 60,
+  "origem_minutos": 60,
+  "entradas": [
+    "retorno_log_horario"
+  ],
+  "seeds": [
+    17,
+    42,
+    2026
+  ],
+  "folds_desenvolvimento": [
+    "DB1",
+    "DB2",
+    "DB3",
+    "DB4"
+  ],
+  "folds_avaliacao": [
+    "B1",
+    "B2",
+    "B3",
+    "B4"
+  ],
+  "inicio": "2021-01-01",
+  "fim": "2026-01-01",
+  "mamba": {
+    "largura": 32,
+    "camadas": 2,
+    "estado": 16,
+    "convolucao": 4,
+    "expansao": 2,
+    "dropout": 0.1
+  },
+  "lstm": {
+    "largura": 32,
+    "camadas": 2,
+    "dropout": 0.1
+  },
+  "treino": {
+    "epocas": 100,
+    "paciencia": 10,
+    "batch": 64,
+    "microbatch": 32,
+    "taxa_aprendizado": 0.0002,
+    "weight_decay": 0.001,
+    "clipping": 1.0
+  },
+  "arima": {
+    "ordens": [
+      [
+        0,
+        1,
+        0
+      ],
+      [
+        0,
+        1,
+        1
+      ],
+      [
+        0,
+        1,
+        2
+      ],
+      [
+        1,
+        1,
+        0
+      ],
+      [
+        1,
+        1,
+        1
+      ],
+      [
+        1,
+        1,
+        2
+      ],
+      [
+        2,
+        1,
+        0
+      ],
+      [
+        2,
+        1,
+        1
+      ],
+      [
+        2,
+        1,
+        2
+      ]
+    ],
+    "tendencia": "n",
+    "maxiter": 200
+  },
+  "dispositivo": "cuda",
+  "backend": "oficial",
+  "bootstrap": {
+    "dias": [
+      7,
+      14,
+      28
+    ],
+    "principal": 14,
+    "replicas": 2000,
+    "seed": 20261020
+  },
+  "operacao": {
+    "hora_utc": 0,
+    "latencia_minutos": 1,
+    "capital": 10000.0,
+    "taxa": 0.001,
+    "slippage": 0.0005,
+    "taxa_agravada": 0.002,
+    "slippage_agravado": 0.001
+  }
+}

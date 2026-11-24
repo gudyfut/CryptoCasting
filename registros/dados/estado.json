@@ -1,0 +1,54 @@
+{
+  "versao": 1,
+  "utc": "2026-10-28T22:49:33.407517+00:00",
+  "situacao": "dados_modularizados_conferidos_sem_treinamento",
+  "decisao": "docs/adr/0007-modulos-de-dados.md",
+  "documentacao": "docs/arquitetura_dados.md",
+  "revisao": "registros/revisoes/modularizacao_dados_2026-10-28T222751.152378Z",
+  "artefatos": {
+    "mercado": {
+      "pasta": "dados/mercado/binance_spot/449aab6c79dbf88aa625",
+      "manifesto_sha256": "c400f234dee55aba0ea042d09a77018166502b516be54bdb27f1b6d3ed0ac3d3"
+    },
+    "candles": {
+      "pasta": "dados/mercado/candles/93509a1b06b19103ac1c",
+      "manifesto_sha256": "d5db95722b2649ebefe360f3e8235762e373be3469d9d06ce442c31e45fc7908"
+    },
+    "entradas": {
+      "pasta": "dados/entradas/0420879c2afc454c7754",
+      "manifesto_sha256": "0fa4dd361ff2c7a3fee4b1cb6ffcb3264a38d550024cef329b0d7b90cb5b8c1f"
+    }
+  },
+  "conferencia": "registros/revisoes/modularizacao_dados_2026-10-28T222751.152378Z/conferencia_dados.json",
+  "conferencia_rede": "registros/revisoes/modularizacao_dados_2026-10-28T222751.152378Z/conferencia_rede.json",
+  "testes": {
+    "quantidade": 30,
+    "status": "aprovados",
+    "log": "registros/revisoes/modularizacao_dados_2026-10-28T222751.152378Z/testes_iniciais.log"
+  },
+  "preservacao": "registros/revisoes/modularizacao_dados_2026-10-28T222751.152378Z/preservacao_depois.json",
+  "ocorrencias": "registros/revisoes/modularizacao_dados_2026-10-28T222751.152378Z/ocorrencias.json",
+  "ambiente": {
+    "python": "3.14.5",
+    "sistema": "Windows-11-10.0.26200-SP0",
+    "bibliotecas": {
+      "numpy": "2.4.6",
+      "pandas": "3.0.3",
+      "pyarrow": "24.0.0"
+    }
+  },
+  "configuracoes": {
+    "mercado": "configuracoes/mercado_binance_001.json",
+    "entradas": "configuracoes/entradas_ohlcv24_001.json"
+  },
+  "limites": [
+    "Sem treinamento, inferencia neural ou simulacao nesta revisao.",
+    "Executor R0 preservado, ainda nao integrado ao novo modulo; proxima revisao deve gerar nova identidade e qualificacao.",
+    "API validada em duas amostras de cinco minutos; nao e reconciliacao de todos os negocios.",
+    "Dados 2024-2025 continuam retrospectivos; reorganizacao nao muda exposicao.",
+    "Arquivos locais nao comprovam backup remoto."
+  ],
+  "fontes_entrega": "registros/revisoes/modularizacao_dados_2026-10-28T222751.152378Z/fontes_entrega.json",
+  "conferencia_cadeia": "registros/revisoes/modularizacao_dados_2026-10-28T222751.152378Z/conferencia_cadeia.log",
+  "links_documentais": "registros/revisoes/modularizacao_dados_2026-10-28T222751.152378Z/links_documentais.json"
+}

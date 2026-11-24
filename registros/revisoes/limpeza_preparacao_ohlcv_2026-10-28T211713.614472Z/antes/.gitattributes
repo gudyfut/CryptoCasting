@@ -1,0 +1,29 @@
+# Novos artefatos científicos precisam conservar os bytes usados nos hashes.
+/dados/brutos/binance_spot_1m/** -text
+/dados/processados/retorno24_*/** -text
+/dados/experimentos/retorno24_*/** -text
+/dados/experimentos/penalizacao_*/** -text
+/dados/experimentos/normalizacao_*/** -text
+/experimento_normalizacao/** -text
+/run_normalizacao.py -text
+/docs/protocolo_normalizacao_mamba.md -text
+/tests_normalizacao/*.py -text
+
+# Recibos/snapshots e fontes congeladas podem conter LF ou CRLF originais.
+# Conservar bytes; não normalizar o checkout nem reescrever blobs antigos.
+/registros/** -text
+/arquivo/** -text
+/previsao24/** -text
+/experimento_penalizacao/** -text
+/run_previsao.py -text
+/run_penalizacao.py -text
+/configuracoes/*.json -text
+/docs/protocolo_experimental.md -text
+/docs/protocolo_penalizacao_mamba.md -text
+/tests/*.py -text
+/tests_penalizacao/*.py -text
+/manutencao/consolidar_resultados.py -text
+
+/AGENTS.md text eol=lf
+/docs/adr/** text eol=lf
+/docs/armazenamento_e_reproducao.md text eol=lf

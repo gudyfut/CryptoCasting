@@ -1,0 +1,57 @@
+{
+  "perda": {
+    "nome": "HuberLoss",
+    "delta": 1.0,
+    "multiplicador": 2.0,
+    "reducao": "sum_por_lote_real",
+    "alvo": "padronizado_treino"
+  },
+  "modelo": "mamba",
+  "seed": 2026,
+  "epoca_selecionada": 20,
+  "epocas_executadas": 30,
+  "parametros": 20257,
+  "segundos": 290.3334646200001,
+  "memoria_cuda_maxima_bytes": 201577472,
+  "metricas": {
+    "validacao": {
+      "n": 2184,
+      "mse": 0.0005924811752577242,
+      "rmse": 0.024340936203394566,
+      "mae": 0.018184117194934304,
+      "mse_naive": 0.0006130715287467167,
+      "habilidade_mse": 0.03358556469109697,
+      "vies": -0.0032476015787191756,
+      "acuracia_direcional": 0.5398351648351648,
+      "acerto_balanceado_direcional": 0.5422262386846339,
+      "recall_queda": 0.5657492354740061,
+      "recall_alta": 0.5187032418952618,
+      "reais_queda": 981,
+      "reais_zero": 0,
+      "reais_alta": 1203,
+      "previsoes_queda": 1134,
+      "previsoes_zero": 0,
+      "previsoes_alta": 1050
+    },
+    "teste": {
+      "n": 4320,
+      "mse": 0.0006576842953884947,
+      "rmse": 0.025645356214888,
+      "mae": 0.018164980613746055,
+      "mse_naive": 0.0005900900176014218,
+      "habilidade_mse": -0.11454909551228787,
+      "vies": -0.00037413509660357897,
+      "acuracia_direcional": 0.5118055555555555,
+      "acerto_balanceado_direcional": 0.5185725054712768,
+      "recall_queda": 0.6968238691049086,
+      "recall_alta": 0.34032114183764495,
+      "reais_queda": 2078,
+      "reais_zero": 0,
+      "reais_alta": 2242,
+      "previsoes_queda": 2927,
+      "previsoes_zero": 0,
+      "previsoes_alta": 1393
+    }
+  },
+  "recarga_exata": true
+}

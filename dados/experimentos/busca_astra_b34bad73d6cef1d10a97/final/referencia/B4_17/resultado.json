@@ -1,0 +1,69 @@
+{
+  "utc": "2026-11-04T06:22:57.926275+00:00",
+  "seed": 17,
+  "bloco": "B4",
+  "receita": {
+    "representacao": "relativa",
+    "indicadores": false,
+    "contexto": 168,
+    "largura": 32,
+    "camadas": 2,
+    "estado": 16,
+    "dropout": 0.1,
+    "pooling": "ultimo",
+    "taxa": 0.0002,
+    "decay": 0.001,
+    "otimizador": "AdamW",
+    "perda": "mse",
+    "scheduler": "constante",
+    "ganho_saida": 1.0
+  },
+  "epoca": 10,
+  "epocas_executadas": 20,
+  "parametros": 20257,
+  "recarga_exata": true,
+  "segundos": 209.0349176689997,
+  "checkpoint_final_sha256": "4b502bd1e3736107e4e93c49b9feab4339342bccf4aae892d7b6846a39cd3b54",
+  "memoria_cuda_maxima_bytes": 212099584,
+  "treino_amostra_fixa": {
+    "n": 2048,
+    "mse": 0.0009953188975270217,
+    "rmse": 0.03154867505184682,
+    "mae": 0.021508307640171708,
+    "mse_naive": 0.001007153315789526,
+    "vies": 0.00013081533817695177,
+    "sd_previsao": 0.003853853947025982,
+    "sd_alvo": 0.031732292810460166,
+    "acuracia_direcional": 0.53515625,
+    "balanced_accuracy": 0.5329312977099236
+  },
+  "validacao": {
+    "n": 2160,
+    "mse": 0.0003956258547080665,
+    "rmse": 0.019890345766428157,
+    "mae": 0.014261449264032488,
+    "mse_naive": 0.0004113721267422935,
+    "vies": -0.002596609657846583,
+    "sd_previsao": 0.0033595161332388274,
+    "sd_alvo": 0.02009276302169721,
+    "acuracia_direcional": 0.5314814814814814,
+    "balanced_accuracy": 0.5393155786662919
+  },
+  "teste": {
+    "n": 4392,
+    "mse": 0.0004218437220460613,
+    "rmse": 0.02053883448606715,
+    "mae": 0.014918504625987669,
+    "mse_naive": 0.0004038082592308915,
+    "vies": 0.0004140110957706423,
+    "sd_previsao": 0.0028806738433029043,
+    "sd_alvo": 0.020068859493126073,
+    "acuracia_direcional": 0.45901639344262296,
+    "balanced_accuracy": 0.46384313725490195
+  },
+  "diagnostico": {
+    "sd_representacao_media": 0.22158172726631165,
+    "norma_pesos_saida": 0.4035407602787018,
+    "fracao_clipping_ultima_epoca": 1.0
+  }
+}

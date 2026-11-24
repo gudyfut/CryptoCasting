@@ -1,0 +1,47 @@
+test_adam_sem_decay_equivale_e_com_decay_difere (tests_otimizador.test_ablação.Ablacao.test_adam_sem_decay_equivale_e_com_decay_difere) ... ok
+test_autorizacao_nao_amplia_orcamento (tests_otimizador.test_ablação.Ablacao.test_autorizacao_nao_amplia_orcamento) ... ok
+test_executor_para_em_falha_e_nao_repete_encerrado (tests_otimizador.test_ablação.Ablacao.test_executor_para_em_falha_e_nao_repete_encerrado) ... ok
+test_fator_unico_e_rejeicao_de_taxa (tests_otimizador.test_ablação.Ablacao.test_fator_unico_e_rejeicao_de_taxa) ... ok
+test_inicializacao_dimensoes_decay_e_atualizacao (tests_otimizador.test_ablação.Ablacao.test_inicializacao_dimensoes_decay_e_atualizacao) ... ok
+test_publicacao_separa_65_series_e_54_carteiras_artificiais (tests_otimizador.test_ablação.Ablacao.test_publicacao_separa_65_series_e_54_carteiras_artificiais) ... ERROR
+test_auditor_detecta_fraude_no_saldo (tests_backtest_carteira.test_carteira.Carteira.test_auditor_detecta_fraude_no_saldo) ... ok
+test_causalidade_e_proibir_coluna_futura (tests_backtest_carteira.test_carteira.Carteira.test_causalidade_e_proibir_coluna_futura) ... ok
+test_compra_manter_e_caixa_controles (tests_backtest_carteira.test_carteira.Carteira.test_compra_manter_e_caixa_controles) ... ok
+test_fee_recebido_e_caixa_conservado (tests_backtest_carteira.test_carteira.Carteira.test_fee_recebido_e_caixa_conservado) ... ok
+test_filtro_e_poeira_real (tests_backtest_carteira.test_carteira.Carteira.test_filtro_e_poeira_real) ... ok
+test_fracoes_equivalem_codigo_publico (tests_backtest_carteira.test_carteira.Carteira.test_fracoes_equivalem_codigo_publico) ... ok
+test_precos_ausentes_e_origens_deslocadas (tests_backtest_carteira.test_carteira.Carteira.test_precos_ausentes_e_origens_deslocadas) ... ok
+test_reter_evitar_roundtrip_diario (tests_backtest_carteira.test_carteira.Carteira.test_reter_evitar_roundtrip_diario) ... ok
+test_risco_inclui_ultimo_preco_e_saida (tests_backtest_carteira.test_carteira.Carteira.test_risco_inclui_ultimo_preco_e_saida) ... ok
+test_smart_acumula_caixa_nao_peso_alvo (tests_backtest_carteira.test_carteira.Carteira.test_smart_acumula_caixa_nao_peso_alvo) ... ok
+test_matriz_propria_e_preservacao_da_origem (tests_backtest_carteira.test_mercado.Mercado.test_matriz_propria_e_preservacao_da_origem) ... ok
+test_recusa_lacuna_em_vez_de_interpolar (tests_backtest_carteira.test_mercado.Mercado.test_recusa_lacuna_em_vez_de_interpolar) ... ok
+
+======================================================================
+ERROR: test_publicacao_separa_65_series_e_54_carteiras_artificiais (tests_otimizador.test_ablação.Ablacao.test_publicacao_separa_65_series_e_54_carteiras_artificiais)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/mnt/c/Users/MuriloRFM/Documents/GitHub/CryptoCasting/tests_otimizador/test_ablação.py", line 45, in test_publicacao_separa_65_series_e_54_carteiras_artificiais
+    pub,r=publicacao.publicar(p,{'id':'fixture','contrato':{'configuracao':c}},consumo._conjunto.partes,
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/mnt/c/Users/MuriloRFM/Documents/GitHub/CryptoCasting/experimento_otimizador/publicacao.py", line 53, in publicar
+    q=pd.read_parquet(t/f'previsoes_{b}.parquet');prev[k,b]=q
+      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/murilorfm/.venvs/cc/lib/python3.12/site-packages/pandas/io/parquet.py", line 671, in read_parquet
+    return impl.read(
+           ^^^^^^^^^^
+  File "/home/murilorfm/.venvs/cc/lib/python3.12/site-packages/pandas/io/parquet.py", line 253, in read
+    path_or_handle, handles, filesystem = _get_path_or_handle(
+                                          ^^^^^^^^^^^^^^^^^^^^
+  File "/home/murilorfm/.venvs/cc/lib/python3.12/site-packages/pandas/io/parquet.py", line 141, in _get_path_or_handle
+    handles = get_handle(
+              ^^^^^^^^^^^
+  File "/home/murilorfm/.venvs/cc/lib/python3.12/site-packages/pandas/io/common.py", line 939, in get_handle
+    handle = open(handle, ioargs.mode)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: '/mnt/c/Users/MuriloRFM/Documents/GitHub/CryptoCasting/registros/treinamento/qualificacoes/09524ec9434041e7805053d7c507987c/ciclo_sintetico/celulas/mamba_17/tentativa_001/previsoes_treino.parquet'
+
+----------------------------------------------------------------------
+Ran 18 tests in 6.128s
+
+FAILED (errors=1)

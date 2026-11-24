@@ -1,0 +1,187 @@
+{
+  "utc": "2026-10-30T07:33:01.090775+00:00",
+  "vinculo": {
+    "execucao": "6829c5fa076dc8c0e0ac",
+    "seed": 31415,
+    "familia": "cryptomamba_adaptado",
+    "identidade_consumo": "8fcc08d64f197a43e68db65e674430ad26a5cbf8fd720c7511435b2a9336908d",
+    "configuracao": {
+      "versao": "cryptomamba-adamw-1.0",
+      "ciclo": "cryptomamba_otimizador_001",
+      "hipotese": "Trocar somente Adam por AdamW na adaptação preservada; medir efeito total da regra de penalização sob o mesmo valor nominal, sem busca.",
+      "horizonte": 24,
+      "candle_minutos": 60,
+      "origem_minutos": 60,
+      "entradas": [
+        "abertura_relativa",
+        "maxima_relativa",
+        "minima_relativa",
+        "fechamento_relativo",
+        "volume_transformado"
+      ],
+      "seeds": [
+        17,
+        42,
+        2026,
+        7,
+        123,
+        31415
+      ],
+      "treino": {
+        "epocas": 100,
+        "paciencia": 10,
+        "batch": 32,
+        "microbatch": 32,
+        "taxa_aprendizado": 0.01,
+        "weight_decay": 0.001,
+        "clipping": 1.0
+      },
+      "arima": {
+        "ordens": [
+          [
+            0,
+            1,
+            0
+          ],
+          [
+            0,
+            1,
+            1
+          ],
+          [
+            0,
+            1,
+            2
+          ],
+          [
+            1,
+            1,
+            0
+          ],
+          [
+            1,
+            1,
+            1
+          ],
+          [
+            1,
+            1,
+            2
+          ],
+          [
+            2,
+            1,
+            0
+          ],
+          [
+            2,
+            1,
+            1
+          ],
+          [
+            2,
+            1,
+            2
+          ]
+        ],
+        "tendencia": "n",
+        "maxiter": 200
+      },
+      "dispositivo": "cuda",
+      "backend": "oficial",
+      "bootstrap": {
+        "dias": [
+          7,
+          14,
+          28
+        ],
+        "principal": 14,
+        "replicas": 2000,
+        "seed": 20261020
+      },
+      "operacao": {
+        "hora_utc": 0,
+        "latencia_minutos": 1,
+        "capital": 10000.0,
+        "taxa": 0.001,
+        "slippage": 0.0005,
+        "taxa_agravada": 0.002,
+        "slippage_agravado": 0.001
+      },
+      "par": "BTCUSDT",
+      "contexto": 168,
+      "representacao": "log_ohlc_relativo_close_anterior_e_log1p_volume_base",
+      "normalizacao": "padronizacao_estatica_por_canal_treino_horas_unicas",
+      "normalizacao_bloco": "pre_layernorm",
+      "divisao": {
+        "treino": [
+          "2021-01-01",
+          "2024-01-01"
+        ],
+        "validacao": [
+          "2024-01-01",
+          "2025-01-01"
+        ],
+        "teste": [
+          "2025-01-01",
+          "2026-01-01"
+        ]
+      },
+      "exposicao": "retrospectiva_periodos_ja_consultados",
+      "modelos": [
+        "cryptomamba_adaptado"
+      ],
+      "controles_reproducao": [],
+      "reproducao": {
+        "diferenca_absoluta_previsao": 1e-05,
+        "diferenca_relativa_mse": 0.0001,
+        "mesma_epoca": true,
+        "origem_limites": "mesmos limites dos controles dos ciclos preliminares; recarga do checkpoint permanece exata"
+      },
+      "entradas_pasta": "dados/entradas/0420879c2afc454c7754",
+      "mercado_pasta": "dados/mercado/binance_spot/449aab6c79dbf88aa625",
+      "origem_codigo": "fef42727861a9c3a32241283ab981ef21a49e291",
+      "parametros_esperados": 139317,
+      "arquitetura": {
+        "contexto_projetado": 14,
+        "larguras": [
+          14,
+          16,
+          32,
+          1
+        ],
+        "densidade": 4,
+        "estado": 64,
+        "convolucao": 4,
+        "expansao": 2,
+        "dropout": 0.0,
+        "eps_layernorm": 1e-05,
+        "varredura": "canais",
+        "canais": 5
+      },
+      "otimizador": {
+        "nome": "AdamW",
+        "betas": [
+          0.9,
+          0.999
+        ],
+        "eps": 1e-08,
+        "isencoes_oficiais": true
+      },
+      "scheduler": {
+        "nome": "StepLR",
+        "passo_epocas": 10,
+        "gamma": 0.5
+      },
+      "perda": {
+        "nome": "rmse_por_lote",
+        "epsilon": 1e-08,
+        "escala": "alvo_padronizado_treino"
+      },
+      "orcamento_ajustes_reais": 6,
+      "controle": "Reprodução sintética e recarga exata; sem ajuste real extra.",
+      "comparacao_primaria": "AdamW6 menos Adam6: MSE de validação, pareado nas mesmas seis seeds."
+    }
+  },
+  "anteriores_preservadas": []
+}

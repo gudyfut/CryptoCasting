@@ -1,0 +1,46 @@
+mamba seed=42 época=1 mse_val=0.000139739158 espera=0
+mamba seed=42 época=2 mse_val=0.000136959477 espera=0
+mamba seed=42 época=1 mse_val=0.000139739157 espera=0
+mamba seed=42 época=2 mse_val=0.000136959476 espera=0
+test_configuracao_rejeita_segunda_mudanca (tests_estado_mamba.test_ciclo.Extensao.test_configuracao_rejeita_segunda_mudanca) ... ok
+test_seis_ajustes_heranca_pareamento_e_publicacao (tests_estado_mamba.test_ciclo.Extensao.test_seis_ajustes_heranca_pareamento_e_publicacao) ... ERROR
+
+======================================================================
+ERROR: test_seis_ajustes_heranca_pareamento_e_publicacao (tests_estado_mamba.test_ciclo.Extensao.test_seis_ajustes_heranca_pareamento_e_publicacao)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/mnt/c/Users/MuriloRFM/Documents/GitHub/CryptoCasting/tests_estado_mamba/test_ciclo.py", line 55, in test_seis_ajustes_heranca_pareamento_e_publicacao
+    ciclo.executar(pasta/'auth.json')
+  File "/mnt/c/Users/MuriloRFM/Documents/GitHub/CryptoCasting/experimento_estado_mamba/ciclo.py", line 201, in executar
+    publicar(pasta,c,partes,prontas,refs)
+  File "/mnt/c/Users/MuriloRFM/Documents/GitHub/CryptoCasting/experimento_estado_mamba/publicacao.py", line 59, in publicar
+    salvar_json(destino/'resultados.json',{'utc':agora(),'natureza':cfg['exposicao'],'por_ajuste':resumo,'medias':medias,'contrastes':contrastes,
+  File "/mnt/c/Users/MuriloRFM/Documents/GitHub/CryptoCasting/infraestrutura/artefatos.py", line 40, in salvar_json
+    temporario.write_text(json.dumps(valor, ensure_ascii=False, indent=2, allow_nan=False)+'\n', encoding='utf-8')
+                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/json/__init__.py", line 238, in dumps
+    **kw).encode(obj)
+          ^^^^^^^^^^^
+  File "/usr/lib/python3.12/json/encoder.py", line 202, in encode
+    chunks = list(chunks)
+             ^^^^^^^^^^^^
+  File "/usr/lib/python3.12/json/encoder.py", line 432, in _iterencode
+    yield from _iterencode_dict(o, _current_indent_level)
+  File "/usr/lib/python3.12/json/encoder.py", line 406, in _iterencode_dict
+    yield from chunks
+  File "/usr/lib/python3.12/json/encoder.py", line 406, in _iterencode_dict
+    yield from chunks
+  File "/usr/lib/python3.12/json/encoder.py", line 406, in _iterencode_dict
+    yield from chunks
+  [Previous line repeated 1 more time]
+  File "/usr/lib/python3.12/json/encoder.py", line 398, in _iterencode_dict
+    yield _floatstr(value)
+          ^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/json/encoder.py", line 240, in floatstr
+    raise ValueError(
+ValueError: Out of range float values are not JSON compliant: nan
+
+----------------------------------------------------------------------
+Ran 2 tests in 2.288s
+
+FAILED (errors=1)

@@ -1,0 +1,394 @@
+ M .gitattributes
+ M .gitignore
+ M AGENTS.md
+ M README.md
+ M dataview/README.md
+ M dataview/package-lock.json
+ M dataview/package.json
+ M dataview/src/app/globals.css
+ M dataview/src/app/layout.tsx
+ M dataview/src/app/page.tsx
+ M dataview/src/app/previsoes/page.tsx
+ D dataview/src/components/DiagnosticoPrevisoes.tsx
+ D dataview/src/components/ExploradorRetorno.tsx
+ D dataview/src/components/GraficoRetorno.tsx
+ D dataview/src/components/LaboratorioErro.tsx
+ D dataview/src/components/LinhaAndamento.tsx
+ D dataview/src/components/MetodoDetalhado.tsx
+ D dataview/src/components/PainelFinanceiro.tsx
+ D dataview/src/components/PainelResultados.tsx
+ M dataview/tsconfig.json
+ D docs/aceite_execucao.md
+ M docs/adr/0001-estudo-retorno-24h.md
+ M docs/adr/0002-penalizacao-mamba.md
+ M docs/adr/README.md
+ M docs/andamento.md
+ M docs/armazenamento_e_reproducao.md
+ D docs/auditoria_configuracao_penalizacao.md
+ D docs/decisoes.md
+ D docs/resultados_avaliacao.md
+ D docs/resultados_desenvolvimento.md
+ M docs/roteiro_redacao_tcc.md
+ D experimento_penalizacao/__init__.py
+ D experimento_penalizacao/analise.py
+ D experimento_penalizacao/ciclo.py
+ D experimento_penalizacao/otimizador.py
+ D experimento_penalizacao/qualificacao.py
+ D experimento_penalizacao/treino.py
+ D manutencao/acompanhar_execucao.py
+ D manutencao/arquivar_estudo.ps1
+ D manutencao/auditar_publicacao.py
+ D manutencao/concluir_protocolo.py
+ D manutencao/consolidar_resultados.py
+ D manutencao/exportar_portal.py
+ D manutencao/figuras_penalizacao.py
+ D manutencao/registrar_aceite.py
+ D manutencao/retomar_avaliacao.py
+ D manutencao/revisar_checkpoints.py
+ D manutencao/revisar_resultados.py
+ D manutencao/testar_consolidacao.py
+ D manutencao/verificar_contratos.py
+ D manutencao/verificar_fechamento.py
+ D manutencao/verificar_inventario.py
+ D manutencao/verificar_retomada_penalizacao.py
+ M plano.md
+ D previsao24/__init__.py
+ D previsao24/arquivos.py
+ D previsao24/auditoria.py
+ D previsao24/baselines.py
+ D previsao24/coleta.py
+ D previsao24/configuracao.py
+ D previsao24/dados.py
+ D previsao24/execucao.py
+ D previsao24/financeiro.py
+ D previsao24/metricas.py
+ D previsao24/qualificacao.py
+ D previsao24/redes.py
+ D previsao24/treino.py
+ M registros/README.md
+ D run_penalizacao.py
+ D run_previsao.py
+ D tests/test_contratos.py
+ D tests/test_financeiro.py
+ D tests_penalizacao/test_analise.py
+ D tests_penalizacao/test_otimizador.py
+?? arquivo/desenvolvimento_encerrado/
+?? arquivo/estudos_preliminares_2026-10-28/
+?? arquivo/exploracao_ia_2026-11-05/
+?? arquivo/fontes_referencia/
+?? arquivo/orientacoes_2026-11-11/
+?? codigo/
+?? configuracoes/ablacao_linear_2026_001.json
+?? configuracoes/ablacao_linear_diaria_001.json
+?? configuracoes/alvo_retorno_diario_001.json
+?? configuracoes/backtest_carteira_001.json
+?? configuracoes/busca_astra_001.json
+?? configuracoes/busca_astra_002.json
+?? configuracoes/busca_astra_002_proposta.json
+?? configuracoes/comparacao_astra_crua_001.json
+?? configuracoes/comparacao_cryptomamba_diaria_001.json
+?? configuracoes/complemento_diario_001.json
+?? configuracoes/continuidade_moedas_001.json
+?? configuracoes/crua_huber_001.json
+?? configuracoes/cryptomamba_adamw_001.json
+?? configuracoes/cryptomamba_adaptado_001.json
+?? configuracoes/cryptomamba_diario_001.json
+?? configuracoes/cryptomamba_reproducivel_001.json
+?? configuracoes/custos_vigentes_001.json
+?? configuracoes/diagnostico_operacional_001.json
+?? configuracoes/eixo_temporal_diario_001.json
+?? configuracoes/ensemble_2026_001.json
+?? configuracoes/entradas_niveis_001.json
+?? configuracoes/entradas_ohlcv24_001.json
+?? configuracoes/fechamento_ramos_diarios_001.json
+?? configuracoes/futuros_001.json
+?? configuracoes/generalizacao_moedas_001.json
+?? configuracoes/historico_treino_001.json
+?? configuracoes/huber_blocos_001.json
+?? configuracoes/lstm_diaria_001.json
+?? configuracoes/mamba16_perda_huber_001.json
+?? configuracoes/mamba16_taxa_dinamica_001.json
+?? configuracoes/mamba_estado16_complemento_001.json
+?? configuracoes/mamba_estado32_001.json
+?? configuracoes/mamba_estado64_001.json
+?? configuracoes/mamba_estado8_001.json
+?? configuracoes/mamba_taxa0001_estado16_001.json
+?? configuracoes/mamba_taxa0001_estado32_001.json
+?? configuracoes/mamba_taxa0001_estado64_001.json
+?? configuracoes/mamba_taxa0001_estado8_001.json
+?? configuracoes/mercado_binance_001.json
+?? configuracoes/modelos_mamba_estado32_001.json
+?? configuracoes/modelos_mamba_estado64_001.json
+?? configuracoes/modelos_mamba_estado8_001.json
+?? configuracoes/modelos_mamba_taxa0001_estado16_001.json
+?? configuracoes/modelos_mamba_taxa0001_estado32_001.json
+?? configuracoes/modelos_mamba_taxa0001_estado64_001.json
+?? configuracoes/modelos_mamba_taxa0001_estado8_001.json
+?? configuracoes/modelos_ohlcv24_001.json
+?? configuracoes/normalizacao_mamba_001.json
+?? configuracoes/ohlcv24_001.json
+?? configuracoes/operacional_futuros_001_proposta.json
+?? configuracoes/padronizacao_diaria_001.json
+?? configuracoes/penalizacao_seletiva_diaria_001.json
+?? configuracoes/revisao_operacional_001.json
+?? configuracoes/sem_penalizacao_diaria_001.json
+?? configuracoes/smart_mercados_001.json
+?? configuracoes/taxa_aprendizado_mamba_001.json
+?? configuracoes/taxa_diaria_001.json
+?? configuracoes/treinamento_ohlcv24_001.json
+?? configuracoes/walkforward_diario_001.json
+?? dados/
+?? dataview/scripts/
+?? dataview/src/app/api/panorama/
+?? dataview/src/components/panorama/
+?? dataview/src/data/
+?? dataview/src/lib/custos-servidor.ts
+?? dataview/src/lib/etapas.ts
+?? dataview/src/lib/evolucao-servidor.ts
+?? dataview/src/lib/fichas-servidor.ts
+?? dataview/src/lib/fichas.ts
+?? dataview/src/lib/panorama-servidor.ts
+?? dataview/src/lib/panorama-tipos.ts
+?? dataview/tests/custos.test.mjs
+?? dataview/tests/panorama.integration.mjs
+?? dataview/tests/panorama.test.mjs
+?? docs/README.md
+?? docs/TCC_1_MuriloRFM.pdf
+?? docs/adr/0004-rastreabilidade-de-ciclos.md
+?? docs/adr/0005-proposta-prenormalizacao-mamba.md
+?? docs/adr/0006-reorganizacao-e-desenho-ohlcv.md
+?? docs/adr/0007-modulos-de-dados.md
+?? docs/adr/0008-consumo-de-dados-pelos-modelos.md
+?? docs/adr/0009-treinamento-modular.md
+?? docs/adr/0010-estado-interno-mamba.md
+?? docs/adr/0011-estados32-64.md
+?? docs/adr/0012-referencia16-e-proxima-hipotese.md
+?? docs/adr/0013-taxa-aprendizado-quatro-estados.md
+?? docs/adr/0014-cryptomamba-adaptado.md
+?? docs/adr/0015-backtest-carteira.md
+?? docs/adr/0016-otimizador-cryptomamba.md
+?? docs/adr/0017-taxa-dinamica-mamba16.md
+?? docs/adr/0018-perda-huber-mamba16.md
+?? docs/adr/0019-huber-blocos-oito-seeds.md
+?? docs/adr/0020-comparacao-entradas-niveis.md
+?? docs/adr/0021-crua-huber-complemento-fatorial.md
+?? docs/adr/0022-busca-adaptativa-astra.md
+?? docs/adr/0023-comparacao-astra-crua.md
+?? docs/adr/0024-simulacao-futuros.md
+?? docs/adr/0025-smart-spot-futuros.md
+?? docs/adr/0026-revisao-execucao-operacional.md
+?? docs/adr/0027-busca-astra-treino-parada-comparacao.md
+?? docs/adr/0028-pesquisa-operacional-futuros.md
+?? docs/adr/0029-diagnostico-operacional.md
+?? docs/adr/0030-historico-acumulado-movel.md
+?? docs/adr/0031-cryptomamba-diario-futuros.md
+?? docs/adr/0032-reproducao-numerica-cryptomamba.md
+?? docs/adr/0033-alvo-retorno-diario.md
+?? docs/adr/0034-padronizacao-diaria.md
+?? docs/adr/0035-sem-penalizacao-diaria.md
+?? docs/adr/0036-generalizacao-tres-moedas.md
+?? docs/adr/0037-continuidade-posicoes-diarias.md
+?? docs/ambiente_e_execucao.md
+?? docs/arquitetura_dados.md
+?? docs/arquitetura_modelos.md
+?? docs/arquitetura_operacoes.md
+?? docs/arquitetura_treinamento.md
+?? docs/desenho_ohlcv24.md
+?? docs/desenho_operacional_futuros.md
+?? docs/diagnostico_operacional.md
+?? docs/diagnostico_previsoes.md
+?? docs/diretrizes_pesquisa.md
+?? docs/exploracao_ia.md
+?? docs/figuras/
+?? docs/modelos/
+?? docs/protocolo_ablacao_linear_2026.md
+?? docs/protocolo_ablacao_linear_diaria.md
+?? docs/protocolo_alvo_retorno_diario.md
+?? docs/protocolo_backtest_carteira.md
+?? docs/protocolo_busca_astra.md
+?? docs/protocolo_busca_astra_002.md
+?? docs/protocolo_comparacao_astra_crua.md
+?? docs/protocolo_complemento_diario.md
+?? docs/protocolo_complemento_estado16.md
+?? docs/protocolo_continuidade_moedas.md
+?? docs/protocolo_crua_huber.md
+?? docs/protocolo_cryptomamba_adaptado.md
+?? docs/protocolo_cryptomamba_diario.md
+?? docs/protocolo_cryptomamba_reproducivel.md
+?? docs/protocolo_eixo_temporal_diario.md
+?? docs/protocolo_ensemble_2026.md
+?? docs/protocolo_entradas_niveis.md
+?? docs/protocolo_estado_mamba.md
+?? docs/protocolo_estados32_64.md
+?? docs/protocolo_fechamento_ramos_diarios.md
+?? docs/protocolo_futuros.md
+?? docs/protocolo_generalizacao_moedas.md
+?? docs/protocolo_historico_treino.md
+?? docs/protocolo_huber_blocos.md
+?? docs/protocolo_lstm_diaria.md
+?? docs/protocolo_normalizacao_mamba.md
+?? docs/protocolo_otimizador_cryptomamba.md
+?? docs/protocolo_padronizacao_diaria.md
+?? docs/protocolo_penalizacao_seletiva_diaria.md
+?? docs/protocolo_perda_huber.md
+?? docs/protocolo_revisao_operacional.md
+?? docs/protocolo_sem_penalizacao_diaria.md
+?? docs/protocolo_smart_mercados.md
+?? docs/protocolo_taxa_aprendizado.md
+?? docs/protocolo_taxa_diaria.md
+?? docs/protocolo_taxa_dinamica.md
+?? docs/protocolo_walkforward_diario.md
+?? docs/registro_de_experimentos.md
+?? docs/resultados_ablacao_linear_diaria.md
+?? docs/resultados_backtest_carteira.md
+?? docs/resultados_crua_huber.md
+?? docs/resultados_cryptomamba_adaptado.md
+?? docs/resultados_eixo_temporal_diario.md
+?? docs/resultados_entradas_niveis.md
+?? docs/resultados_estado_mamba.md
+?? docs/resultados_estados32_64.md
+?? docs/resultados_huber_blocos.md
+?? docs/resultados_lstm_diaria.md
+?? docs/resultados_operacional_futuros.md
+?? docs/resultados_otimizador_cryptomamba.md
+?? docs/resultados_penalizacao_seletiva_diaria.md
+?? docs/resultados_perda_huber.md
+?? docs/resultados_revisao_operacional.md
+?? docs/resultados_taxa_aprendizado.md
+?? docs/resultados_taxa_diaria.md
+?? docs/resultados_taxa_dinamica.md
+?? docs/resultados_walkforward_diario.md
+?? escrita_tcc/
+?? pyproject.toml
+?? registros/ablacao_linear_2026/
+?? registros/ablacao_linear_diaria/
+?? registros/alvo_retorno_diario/
+?? registros/auditorias/7868a4d847c1410fc681/
+?? registros/auditorias/9e03af2150cbb7b1068d/
+?? registros/backtest_carteira/
+?? registros/busca_astra/
+?? registros/busca_astra_002/
+?? registros/catalogo_estudos.json
+?? registros/comparacao_astra_crua/
+?? registros/comparacao_cryptomamba_diaria/
+?? registros/complemento_diario/
+?? registros/complemento_estado16/
+?? registros/continuidade_diaria/
+?? registros/continuidade_moedas/
+?? registros/crua_huber/
+?? registros/cryptomamba/
+?? registros/cryptomamba_diario/
+?? registros/cryptomamba_reproducivel/
+?? registros/custos_vigentes/
+?? registros/dados/
+?? registros/diagnostico_operacional/
+?? registros/diagnosticos_previsoes/
+?? registros/eixo_temporal_diario/
+?? registros/ensemble_2026/
+?? registros/entradas_niveis/
+?? registros/estado_mamba/
+?? registros/estados_ampliados/
+?? registros/fechamento_ramos_diarios/
+?? registros/futuros/
+?? registros/generalizacao_moedas/
+?? registros/historico_treino/
+?? registros/huber_blocos/
+?? registros/incidentes/penalizacao_retomada_2026-10-27T040636.095845_0000/tentativas_incompletas/32d0e8b74dfb0cdd4e73/tentativa_001/treinamento.log
+?? registros/incidentes/penalizacao_retomada_2026-10-27T152403.256870_0000/tentativas_incompletas/1a936f5577099377e905/tentativa_001/treinamento.log
+?? registros/incidentes/retomada_1e7c5ed662fba55ddd25_2026-10-21T121439.243349_0000/avaliar_1e7c5ed662fba55ddd25.log
+?? registros/incidentes/retomada_1e7c5ed662fba55ddd25_2026-10-21T121439.243349_0000/avaliar_retomada.log
+?? registros/incidentes/retomada_1e7c5ed662fba55ddd25_2026-10-21T121439.243349_0000/consolidar_avaliacao_retomada.log
+?? registros/incidentes/retomada_1e7c5ed662fba55ddd25_2026-10-21T121439.243349_0000/continuacao_20261020.log
+?? registros/incidentes/retomada_1e7c5ed662fba55ddd25_2026-10-21T121439.243349_0000/exportar_retomada.log
+?? registros/interface/panorama_20261103/
+?? registros/investigacoes/
+?? registros/lstm_diaria/
+?? registros/mercado_futuros/
+?? registros/modelos/
+?? registros/normalizacao/
+?? registros/ohlcv/
+?? registros/operacional_futuros/
+?? registros/organizacao_exploracao_ia_001/
+?? registros/organizacao_futuros_001/
+?? registros/organizacao_repositorio/
+?? registros/otimizador/
+?? registros/padronizacao_diaria/
+?? registros/penalizacao/acompanhamento_encerrado.json
+?? registros/penalizacao/preparacao_2026-10-26T233400.168859_0000/tests.log
+?? registros/penalizacao/preparacao_2026-10-26T233400.168859_0000/tests_penalizacao.log
+?? registros/penalizacao_seletiva_diaria/
+?? registros/perda_huber/
+?? registros/referencias/
+?? registros/retomada_alvo_diario/
+?? registros/revisao_operacional/
+?? registros/revisoes/catalogo_2026-10-27T224713.066988Z/
+?? registros/revisoes/catalogo_2026-10-28T201506.642435Z/
+?? registros/revisoes/catalogo_2026-10-28T204312.995454Z/
+?? registros/revisoes/catalogo_2026-10-28T210136.199413Z/
+?? registros/revisoes/catalogo_2026-10-28T211532.284632Z/
+?? registros/revisoes/catalogo_2026-10-28T212727.147106Z/
+?? registros/revisoes/catalogo_2026-10-28T214045.974219Z/
+?? registros/revisoes/catalogo_2026-10-29T064426.996705Z/
+?? registros/revisoes/catalogo_2026-11-05T092828.293001Z/
+?? registros/revisoes/catalogo_2026-11-05T093251.586773Z/
+?? registros/revisoes/catalogo_2026-11-05T105350.349304Z/
+?? registros/revisoes/catalogo_2026-11-05T111629.726671Z/
+?? registros/revisoes/catalogo_2026-11-05T113519.559632Z/
+?? registros/revisoes/catalogo_2026-11-05T124303.931721Z/
+?? registros/revisoes/catalogo_2026-11-05T151200.598374Z/
+?? registros/revisoes/catalogo_2026-11-05T200236.850696Z/
+?? registros/revisoes/catalogo_2026-11-05T204007.524900Z/
+?? registros/revisoes/catalogo_2026-11-06T051711.600503Z/
+?? registros/revisoes/catalogo_2026-11-06T071755.852825Z/
+?? registros/revisoes/catalogo_2026-11-07T065732.102412Z/
+?? registros/revisoes/catalogo_2026-11-07T194839.072413Z/
+?? registros/revisoes/catalogo_2026-11-07T211512.972365Z/
+?? registros/revisoes/catalogo_2026-11-07T222830.971842Z/
+?? registros/revisoes/catalogo_2026-11-08T081024.393064Z/
+?? registros/revisoes/catalogo_2026-11-08T200525.766039Z/
+?? registros/revisoes/catalogo_2026-11-08T221952.380247Z/
+?? registros/revisoes/catalogo_2026-11-09T120836.649451Z/
+?? registros/revisoes/catalogo_2026-11-09T124351.386158Z/
+?? registros/revisoes/catalogo_2026-11-09T234325.004371Z/
+?? registros/revisoes/catalogo_organizado_2026-11-10T003627.680312Z/
+?? registros/revisoes/catalogo_organizado_2026-11-10T090415.163998Z/
+?? registros/revisoes/catalogo_organizado_2026-11-10T161108.523499Z/
+?? registros/revisoes/catalogo_organizado_2026-11-10T164207.685594Z/
+?? registros/revisoes/catalogo_organizado_2026-11-10T174056.093285Z/
+?? registros/revisoes/catalogo_organizado_2026-11-11T095310.401245Z/
+?? registros/revisoes/catalogo_organizado_2026-11-11T100519.518158Z/
+?? registros/revisoes/catalogo_organizado_2026-11-11T202904.435745Z/
+?? registros/revisoes/catalogo_organizado_2026-11-12T064228.341663Z/
+?? registros/revisoes/consumo_modelos_2026-10-29T054622.136468+0000/
+?? registros/revisoes/desempenho_normalizacao_2026-10-28T065710.587327Z/
+?? registros/revisoes/diagnostico_calibracao_2026-11-07T211512.627568Z/
+?? registros/revisoes/diagnostico_sinal_padronizado_2026-11-08T200404.700962Z/
+?? registros/revisoes/fechamento_alvo_diario_2026-11-07T194838.909733Z/
+?? registros/revisoes/fechamento_padronizacao_2026-11-08T080923.273399Z/
+?? registros/revisoes/fechamento_sem_penalizacao_2026-11-09T120522.298524Z/
+?? registros/revisoes/frequencia_2026-10-27T230053.607585Z/
+?? registros/revisoes/fundamentos_mamba_2026-10-28T151138.942559Z/
+?? registros/revisoes/limpeza_preparacao_ohlcv_2026-10-28T211713.614472Z/
+?? registros/revisoes/mamba_criptomamba_2026-10-28T000408.161229Z/
+?? registros/revisoes/modularizacao_dados_2026-10-28T222751.152378Z/
+?? registros/revisoes/normalizacao_2026-10-28T200441.557811_0000/
+?? registros/revisoes/organizacao_2026-10-27T223818/
+?? registros/revisoes/organizacao_escrita_20261109/
+?? registros/revisoes/penalizacao_2026-10-27T210425.386923_0000/
+?? registros/revisoes/penalizacao_2026-10-27T210853.776756_0000/
+?? registros/revisoes/planejamento_fechamento_20261113T014332Z/
+?? registros/revisoes/progresso_normalizacao_2026-10-28T140736.296023Z/
+?? registros/revisoes/reestruturacao_ohlcv_2026-10-28T204537.973691Z/
+?? registros/revisoes/revisao_2026-10-24T184315.322655_0000/testes_contratos.log
+?? registros/revisoes/selecao_estado16_2026-10-29T213827Z/
+?? registros/revisoes/selecao_estado16_atual.json
+?? registros/revisoes/treinamento_modular_2026-10-29/
+?? registros/saidas_diarias/
+?? registros/sem_penalizacao_diaria/
+?? registros/smart_mercados/
+?? registros/taxa_aprendizado/
+?? registros/taxa_diaria/
+?? registros/taxa_dinamica/
+?? registros/treinamento/
+?? registros/walkforward_diario/
+?? testes/

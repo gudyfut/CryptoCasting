@@ -1,0 +1,124 @@
+{
+  "arquivo": "dados/mercado/cryptomamba_diario/2026-11-05T144800.898686_0000/diario.parquet",
+  "sha256": "579fddd39b3c8f1615c5d28c128840e625519c050115b04415d6981f03b442ac",
+  "metodo": "Candles únicos da união das janelas vigentes: D-15 janelas de14dias; unique(arange(D-15)[:,None]+arange(14)) = índices0..D-3, totalD-2. Timestamp/1000 e volume/1e9. Estatísticas float64 anteriores à conversão float32. Nenhum scaler aplicado ao modelo.",
+  "resultados": {
+    "treino": {
+      "Timestamp": {
+        "min": 1577836800.0,
+        "max": 1703808000.0,
+        "media": 1640822400.0,
+        "desvio": 36389686.09922323
+      },
+      "Open": {
+        "min": 4762.28,
+        "max": 67606.96,
+        "media": 28832.6382179575,
+        "desvio": 15113.2204831241
+      },
+      "High": {
+        "min": 5361.26,
+        "max": 69198.7,
+        "media": 29577.97540781357,
+        "desvio": 15550.677450439607
+      },
+      "Low": {
+        "min": 3621.81,
+        "max": 66300.0,
+        "media": 28035.19260452365,
+        "desvio": 14609.25431502095
+      },
+      "Close": {
+        "min": 4764.65,
+        "max": 67606.96,
+        "media": 28856.591590130232,
+        "desvio": 15106.60789611188
+      },
+      "Volume": {
+        "min": 5.6238035e-05,
+        "max": 0.002065606412,
+        "media": 0.000394026745584647,
+        "desvio": 0.00024255373448467884
+      }
+    },
+    "validacao": {
+      "Timestamp": {
+        "min": 1704067200.0,
+        "max": 1735430400.0,
+        "media": 1719748800.0,
+        "desvio": 9078683.252542738
+      },
+      "Open": {
+        "min": 39567.1,
+        "max": 106074.6,
+        "media": 65671.06895604395,
+        "desvio": 14546.199859445487
+      },
+      "High": {
+        "min": 40172.7,
+        "max": 108366.8,
+        "media": 67088.82664835165,
+        "desvio": 14857.145311795293
+      },
+      "Low": {
+        "min": 38545.0,
+        "max": 105252.0,
+        "media": 64300.23021978022,
+        "desvio": 14251.941740948267
+      },
+      "Close": {
+        "min": 39567.0,
+        "max": 106074.6,
+        "media": 65812.24587912088,
+        "desvio": 14568.170204216502
+      },
+      "Volume": {
+        "min": 5.0943057999999995e-05,
+        "max": 0.001281982025,
+        "media": 0.0002745931942857143,
+        "desvio": 0.00015102838404363684
+      }
+    },
+    "teste": {
+      "Timestamp": {
+        "min": 1735689600.0,
+        "max": 1766966400.0,
+        "media": 1751328000.0,
+        "desvio": 9053741.626532093
+      },
+      "Open": {
+        "min": 76298.0,
+        "max": 124628.6,
+        "media": 101683.49090909092,
+        "desvio": 11681.572419414586
+      },
+      "High": {
+        "min": 80832.1,
+        "max": 126208.5,
+        "media": 103302.79862258954,
+        "desvio": 11585.083133481068
+      },
+      "Low": {
+        "min": 74457.0,
+        "max": 123018.5,
+        "media": 99900.54462809917,
+        "desvio": 11828.430692748716
+      },
+      "Close": {
+        "min": 76297.9,
+        "max": 124628.5,
+        "media": 101665.99449035812,
+        "desvio": 11698.486768129538
+      },
+      "Volume": {
+        "min": 2.7294109e-05,
+        "max": 0.000693843503,
+        "media": 0.0001688050524269972,
+        "desvio": 9.52621525864806e-05
+      }
+    }
+  },
+  "arquitetura_fonte_sha256": "b8ab2e0f6b5db9a13db30c20b5d007b6a4d95079ad15e6f66454ed2aae155855",
+  "formula_caminho_residual": "op(LayerNorm(x)) + x",
+  "hipotese": "Padronizar canais na entrada pode melhorar condicionamento; escalas não provam causa nem melhora de lucro."
+}

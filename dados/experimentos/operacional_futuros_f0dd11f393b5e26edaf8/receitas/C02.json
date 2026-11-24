@@ -1,0 +1,25 @@
+{
+  "receita": {
+    "representacao": "relativa",
+    "contexto_horas": 168,
+    "momentum": true,
+    "volatilidade": false,
+    "volume_relativo": false,
+    "d_state": 16,
+    "taxa": 0.0002,
+    "barreiras_payoff": [
+      1.0,
+      1.5
+    ],
+    "familia_alvo": "payoff"
+  },
+  "proposta": {
+    "acao": "propor",
+    "pai": "C01",
+    "campo": "momentum",
+    "valor_json": "true",
+    "hipotese": "Adicionar momentum padronizado só em T facilitará identificar persistência direcional nos payoffs líquidos. Após retreino e seleção conjunta da política em C, a hipótese será rejeitada se S não cumprir todos os gates, incluindo atividade mínima, crescimento médio positivo base e com 2x slippage e Calmar mediano positivo.",
+    "risco": "Momentum pode induzir entradas tardias e perdas nas reversões. Mais operações podem elevar custos e drawdown, com resultados instáveis entre recortes e seeds."
+  },
+  "utc": "2026-11-05T07:36:51.250856+00:00"
+}

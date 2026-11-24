@@ -1,0 +1,27 @@
+{
+  "nome": "diagnostico_operacional_001",
+  "versao": 1,
+  "origem": "registros/operacional_futuros/execucao.json",
+  "execucao_origem": "f0dd11f393b5e26edaf8",
+  "natureza": "diagnostico retrospectivo de leitura, sem selecao ou promocao",
+  "novos_treinamentos": 0,
+  "novas_carteiras": 0,
+  "fases": ["validacao", "calibracao", "comparacao"],
+  "receitas": ["R0", "P0", "C01", "C02", "C03", "C04", "C05", "C06"],
+  "seeds": [17, 42, 2026],
+  "recortes": ["D1", "D2", "D3"],
+  "limites_magnitude": [0, 0.001, 0.0025, 0.005, 0.01, 0.02, 0.05],
+  "limiares_score_descritivos": [0, 0.001, 0.002, 0.005, 0.01],
+  "quantis_calibracao": [0.2, 0.4, 0.6, 0.8],
+  "cadencias_diagnosticas_horas": [1, 4, 24, 48],
+  "bootstrap": {"repeticoes": 2000, "dias": [7, 14, 28], "seed": 5052026, "nivel": 0.95},
+  "grupo_pequeno": {"linhas": 100, "dias": 20},
+  "limites": [
+    "V/C/S nao sao independentes entre folds; nunca reunir fases em uma amostra",
+    "Previsoes horarias de 24h e seeds nao multiplicam historia independente",
+    "Payoffs hipoteticos sobrepostos nao sao retorno de carteira",
+    "Quintis ajustados em C por job, aplicados a S sem consultar seus alvos",
+    "Intervalos exploratorios sem correcao de multiplicidade, nao confirmam filtros",
+    "Nao ler avaliacao final 2024-2025 nem alterar fontes encerradas"
+  ]
+}

@@ -1,0 +1,78 @@
+{
+  "versao": 1,
+  "utc": "2026-11-11T13:28:25.661901+00:00",
+  "natureza": "backtest exploratório isolado; sem treinamento e sem seleção por lucro",
+  "autorizacao": "Pesquisador solicitou executar continuidade diária, com mesmas previsões/alvo95%, comparar retorno, risco e diferença efetiva.",
+  "referencia": {
+    "id": "f3f8772670f244779ad7",
+    "pasta": "dados/experimentos/padronizacao_diaria_f3f8772670f244779ad7",
+    "congelamento_sha256": "3ccc75d5ecf0028b1ec909c19bfb5c96a22e1af06a5fd9d5a0efd7cd9040c943"
+  },
+  "seeds": [
+    42,
+    17,
+    2026
+  ],
+  "fases": [
+    "validacao",
+    "teste"
+  ],
+  "unidades": [
+    "42",
+    "17",
+    "2026",
+    "ensemble",
+    "naive",
+    "sempre_comprado",
+    "sempre_vendido"
+  ],
+  "modos": [
+    "diaria",
+    "liquida",
+    "agenda"
+  ],
+  "carteiras_previstas": 126,
+  "hipotese": "Negociar somente a variação necessária da posição reduz giro/custos e melhora crescimento líquido frente a zerar/reabrir diariamente.",
+  "primario": "delta crescimento log diário liquida menos diaria, média das três seeds; bootstrap pareado seeds/blocos14dias,2000réplicas;7/28sensibilidade",
+  "secundarios": [
+    "retorno líquido",
+    "drawdown envelope mark",
+    "volume negociado",
+    "comissão",
+    "slippage/ticks",
+    "funding",
+    "exposição"
+  ],
+  "modo_diaria": "zerar na fronteira24h e abrir alvo novo; controle de reprodução contra simulador e publicação financeira vigentes",
+  "modo_liquida": "alvo de95% do patrimônio liquidável por dia; negociar apenas delta, fechar em caixa, fechar/abrir em inversão, liquidar no fim",
+  "orcamento_comum": "patrimônio liquidável antes da decisão = colateral/PnL a preço adverso de fechamento menos comissão hipotética; serve só para dimensionar, nenhum custo fictício debitado",
+  "modo_agenda": "controle auxiliar: quantidades diárias exatas herdadas do modo diária; netar deltas. Mesmo PnL bruto de contrato e funding, isola custo. Exposição proporcional não é95% do novo saldo e não é candidata principal.",
+  "precos": "execução no open1m, slippage adverso, ticks e lotes herdados; mesmo arredondador científico histórico para reprodução; não certifica livro/execução",
+  "funding": "histórico; fronteira pertence ao intervalo seguinte, após decisão; sem pagamento duplo ou omissão",
+  "risco": "mark high/low minuto; envelope conservador com high antes de low; buffer prudencial bloqueante; não liquidação oficial",
+  "exposicao": "mesmos sinais/filtro0.2%, dias e lados; quantidades principais dependem de saldo; sem SL/TP/reentrada intradiária",
+  "custos": {
+    "comissao_por_lado": 0.0005,
+    "slippage_por_lado": [
+      0.0001,
+      0.0002,
+      0.0003
+    ],
+    "natureza": "1bp provisório,2/3bp estresses"
+  },
+  "contabilidade": "caixa equivalente e quantidade assinada; auditor independente usa conta por preço médio/colateral e Decimal",
+  "limites": [
+    "Receita BTC escolhida retrospectivamente;2024 selecionou checkpoints e2025 já consultado",
+    "Seeds compartilham mercado, não independência temporal",
+    "IC condicionado aos modelos e à pesquisa anterior",
+    "MSE não muda",
+    "Conta/simulação não certifica ordens reais ou taxas históricas",
+    "Média de carteiras não é ensemble; ensemble separado"
+  ],
+  "qualificacao": {
+    "testes_sinteticos": 9,
+    "falhas": 0,
+    "avisos": 0,
+    "escopo": "sem mercado, reprodução de contabilidade, agenda, inversão, cash, funding e causalidade"
+  }
+}

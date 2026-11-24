@@ -1,0 +1,159 @@
+{
+  "versao": "ohlcv24-modular-1.0",
+  "ciclo": "ohlcv24_modular_001",
+  "hipotese": "Referencia exploratoria OHLCV de BTC; futuras mudancas isoladas contra esta referencia.",
+  "horizonte": 24,
+  "candle_minutos": 60,
+  "origem_minutos": 60,
+  "entradas": [
+    "abertura_relativa",
+    "maxima_relativa",
+    "minima_relativa",
+    "fechamento_relativo",
+    "volume_transformado"
+  ],
+  "seeds": [
+    17,
+    42,
+    2026
+  ],
+  "mamba": {
+    "largura": 32,
+    "camadas": 2,
+    "estado": 16,
+    "convolucao": 4,
+    "expansao": 2,
+    "dropout": 0.1
+  },
+  "lstm": {
+    "largura": 32,
+    "camadas": 2,
+    "dropout": 0.1
+  },
+  "treino": {
+    "epocas": 100,
+    "paciencia": 10,
+    "batch": 64,
+    "microbatch": 32,
+    "taxa_aprendizado": 0.0002,
+    "weight_decay": 0.001,
+    "clipping": 1.0
+  },
+  "arima": {
+    "ordens": [
+      [
+        0,
+        1,
+        0
+      ],
+      [
+        0,
+        1,
+        1
+      ],
+      [
+        0,
+        1,
+        2
+      ],
+      [
+        1,
+        1,
+        0
+      ],
+      [
+        1,
+        1,
+        1
+      ],
+      [
+        1,
+        1,
+        2
+      ],
+      [
+        2,
+        1,
+        0
+      ],
+      [
+        2,
+        1,
+        1
+      ],
+      [
+        2,
+        1,
+        2
+      ]
+    ],
+    "tendencia": "n",
+    "maxiter": 200
+  },
+  "dispositivo": "cuda",
+  "backend": "oficial",
+  "bootstrap": {
+    "dias": [
+      7,
+      14,
+      28
+    ],
+    "principal": 14,
+    "replicas": 2000,
+    "seed": 20261020
+  },
+  "operacao": {
+    "hora_utc": 0,
+    "latencia_minutos": 1,
+    "capital": 10000.0,
+    "taxa": 0.001,
+    "slippage": 0.0005,
+    "taxa_agravada": 0.002,
+    "slippage_agravado": 0.001
+  },
+  "par": "BTCUSDT",
+  "contexto": 168,
+  "representacao": "log_ohlc_relativo_close_anterior_e_log1p_volume_base",
+  "normalizacao": "padronizacao_estatica_por_canal_treino_horas_unicas",
+  "normalizacao_bloco": "pre_layernorm",
+  "divisao": {
+    "treino": [
+      "2021-01-01",
+      "2024-01-01"
+    ],
+    "validacao": [
+      "2024-01-01",
+      "2025-01-01"
+    ],
+    "teste": [
+      "2025-01-01",
+      "2026-01-01"
+    ]
+  },
+  "exposicao": "retrospectiva_periodos_ja_consultados",
+  "modelos": [
+    "mamba",
+    "lstm",
+    "naive",
+    "arima"
+  ],
+  "controles_reproducao": [
+    {
+      "modelo": "mamba",
+      "seed": 42
+    },
+    {
+      "modelo": "lstm",
+      "seed": 42
+    }
+  ],
+  "reproducao": {
+    "diferenca_absoluta_previsao": 1e-05,
+    "diferenca_relativa_mse": 0.0001,
+    "mesma_epoca": true,
+    "origem_limites": "mesmos limites dos controles dos ciclos preliminares; recarga do checkpoint permanece exata"
+  },
+  "entradas_pasta": "dados/entradas/0420879c2afc454c7754",
+  "mercado_pasta": "dados/mercado/binance_spot/449aab6c79dbf88aa625",
+  "configuracao_modelos": "configuracoes/modelos_ohlcv24_001.json"
+}

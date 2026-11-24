@@ -1,0 +1,205 @@
+{
+  "epoca": 500,
+  "populacao": "janelas de treino fixas e espaçadas; sem alvos na sonda",
+  "indices": [
+    0,
+    46,
+    93,
+    139,
+    186,
+    233,
+    279,
+    326,
+    372,
+    419,
+    466,
+    512,
+    559,
+    605,
+    652,
+    699,
+    745,
+    792,
+    839,
+    885,
+    932,
+    978,
+    1025,
+    1072,
+    1118,
+    1165,
+    1211,
+    1258,
+    1305,
+    1351,
+    1398,
+    1445
+  ],
+  "normas": {
+    "lineares": {
+      "norma": 16.223315792264927,
+      "elementos": 824,
+      "fracao_menor_1e6": 0.0
+    },
+    "layernorm": {
+      "norma": 10.96002831520097,
+      "elementos": 496,
+      "fracao_menor_1e6": 0.0
+    },
+    "A_log": {
+      "norma": 645.4952167574158,
+      "elementos": 31744,
+      "fracao_menor_1e6": 0.0
+    },
+    "D": {
+      "norma": 18.119623339843272,
+      "elementos": 496,
+      "fracao_menor_1e6": 0.0
+    },
+    "outros_mamba": {
+      "norma": 217.7837465552854,
+      "elementos": 103392,
+      "fracao_menor_1e6": 0.0
+    }
+  },
+  "ativacoes": {
+    "nucleo.blocks.0.0.op": {
+      "forma": [
+        32,
+        6,
+        14
+      ],
+      "rms_saida": 645.4801036698913,
+      "max_saida": 20398.134765625
+    },
+    "nucleo.blocks.0.1.op": {
+      "forma": [
+        32,
+        6,
+        14
+      ],
+      "rms_saida": 6.144584239369995,
+      "max_saida": 138.18775939941406
+    },
+    "nucleo.blocks.0.2.op": {
+      "forma": [
+        32,
+        6,
+        14
+      ],
+      "rms_saida": 23.780931666261356,
+      "max_saida": 273.9331359863281
+    },
+    "nucleo.blocks.0.3.op": {
+      "forma": [
+        32,
+        6,
+        14
+      ],
+      "rms_saida": 629.6498284465963,
+      "max_saida": 3627.61328125
+    },
+    "nucleo.blocks.1.0.op": {
+      "forma": [
+        32,
+        6,
+        16
+      ],
+      "rms_saida": 6721.509990907029,
+      "max_saida": 20826.591796875
+    },
+    "nucleo.blocks.1.1.op": {
+      "forma": [
+        32,
+        6,
+        16
+      ],
+      "rms_saida": 5.715438433639557,
+      "max_saida": 20.904552459716797
+    },
+    "nucleo.blocks.1.2.op": {
+      "forma": [
+        32,
+        6,
+        16
+      ],
+      "rms_saida": 40.7184935341048,
+      "max_saida": 294.6468505859375
+    },
+    "nucleo.blocks.1.3.op": {
+      "forma": [
+        32,
+        6,
+        16
+      ],
+      "rms_saida": 3.965433060030807,
+      "max_saida": 9.145052909851074
+    },
+    "nucleo.blocks.2.0.op": {
+      "forma": [
+        32,
+        6,
+        32
+      ],
+      "rms_saida": 7.704437813961815,
+      "max_saida": 53.41563034057617
+    },
+    "nucleo.blocks.2.1.op": {
+      "forma": [
+        32,
+        6,
+        32
+      ],
+      "rms_saida": 7.856927547145145,
+      "max_saida": 45.649070739746094
+    },
+    "nucleo.blocks.2.2.op": {
+      "forma": [
+        32,
+        6,
+        32
+      ],
+      "rms_saida": 1.1351443691786234,
+      "max_saida": 3.575150489807129
+    },
+    "nucleo.blocks.2.3.op": {
+      "forma": [
+        32,
+        6,
+        32
+      ],
+      "rms_saida": 0.3437600415614744,
+      "max_saida": 6.11210823059082
+    }
+  },
+  "contribuicao_ramos": {
+    "max_abs": 1.2105798721313477,
+    "rms": 1.0343253477291112,
+    "previsao_media": 0.04930378869175911,
+    "previsao_desvio": 0.0647076373194497
+  },
+  "gradiente_ultimo_lote_antes_atualizacao": {
+    "lineares": {
+      "norma_gradiente_tarefa": 134.84557161337975,
+      "norma_l2": 0.0
+    },
+    "layernorm": {
+      "norma_gradiente_tarefa": 15.83112472126916,
+      "norma_l2": 0.0
+    },
+    "A_log": {
+      "norma_gradiente_tarefa": 0.2532471100597058,
+      "norma_l2": 0.0
+    },
+    "D": {
+      "norma_gradiente_tarefa": 3.4727160575957643,
+      "norma_l2": 0.0
+    },
+    "outros_mamba": {
+      "norma_gradiente_tarefa": 33.414933851681546,
+      "norma_l2": 0.0
+    }
+  },
+  "pesos_e_rng_preservados": true,
+  "limites": "Somente observação; não seleciona épocas nem interrompe por desempenho. Gradiente de um lote não é trajetória do Adam; contribuição funcional não é lucro."
+}

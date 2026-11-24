@@ -1,32 +1,47 @@
 # Mapa dos registros científicos
 
-Esta pasta já concentra evidências do trabalho. Não criar outra timeline concorrente nem mover recibos congelados. O histórico factual legível está em [docs/andamento.md](../docs/andamento.md); motivos e decisões estão em [docs/adr/](../docs/adr/README.md).
+O [catálogo](catalogo_estudos.json) é o índice estruturado das execuções; [andamento](../docs/andamento.md) é a cronologia única. Para entender a fase posterior à interface, ler a [síntese da exploração com IA](../docs/exploracao_ia.md).
 
-| Local | Conteúdo |
+## Como ler um ciclo
+
+- `execucao.json`: identidade, pasta de artefatos e vínculo ao congelamento.
+- `estado.json`: situação observada; conferir host/PID/logs se houver execução ativa.
+- Autorizações, qualificação e preparação: distinguem o que foi proposto do que foi executado.
+- Fechamento, publicação e conferências: resultados e integridade, com leitores posteriores identificados.
+- Incidentes: falhas e suas resoluções; não apagar por parecerem arquivos temporários.
+
+Os layouts históricos variam. O catálogo aponta as fontes corretas; ausência local não equivale a zero treinamentos. Heranças não são ajustes novos. Ciclos encerrados não devem ser reexecutados para gerar relatório.
+
+Para retomar a etapa mais recente, usar [ensemble_2026/entrega.json](ensemble_2026/entrega.json) e o [índice dos12modelos utilizados](ensemble_2026/modelos_utilizados.json). Checkpoints e scalers continuam em seus estudos originais; o índice identifica caminhos/hashes/épocas sem copiá-los. Mercado novo, previsões, carteiras, métricas e figura pertencem à identidade2026, separada de2024/2025. A [verificação de organização](ensemble_2026/organizacao/verificacao.json) registra integridade e versões editoriais, sem substituir o fechamento científico.
+
+O marco de continuidade diária está em [continuidade_moedas/fechamento.json](continuidade_moedas/fechamento.json): comparação ampliada de408carteiras, referências diárias, incidente técnico e continuação preservados. Não substitui a primeira comparação BTC em `continuidade_diaria/`, nem os custos vigentes ou modelos publicados. Os ledgers compactados, tabelas e figuras ficam em `dados/reavaliacoes/` sob a identidade do fechamento.
+
+## Fase de exploração com IA consolidada
+
+O contraste [historico_treino](historico_treino/estado.json), acumulado versus12meses, é uma etapa histórica posterior à exploração. A etapa vigente está indicada no [plano](../plano.md) e no [catálogo](catalogo_estudos.json); seu andamento deve ser consultado no estado próprio. Ponteiros, qualificações, autorizações e artefatos de cada ciclo permanecem independentes.
+
+| Registro | Função |
 |---|---|
-| `dataset_atual.json` | Identidade e caminho do dataset; não contém os dados |
-| `execucao_atual.json` | Ponteiro do estudo de referência |
-| `penalizacao/execucao.json` | Ponteiro separado da extensão corrigida |
-| `qualificacao/` | Ambiente e evidências dos testes prévios |
-| `penalizacao/preparacao_*/` | Preparação, qualificação e preservação da extensão |
-| `analises/<execucao>/<fase>/` | Publicações, tabelas, operações e respectivas auditorias |
-| `auditorias/` | Recibos de integridade e fechamento |
-| `revisoes/` | Verificações posteriores, pareceres e diagnósticos |
-| `incidentes/` | Falhas, interrupções, snapshots e decisões de retomada |
-| `interface/` | Verificações e aceite da interface |
-| `exposicao_previa.json` | Declaração histórica sobre exposição aos períodos de avaliação |
+| [busca_astra](busca_astra/estado.json) | Primeira busca e candidata final |
+| [comparacao_astra_crua](comparacao_astra_crua/estado.json) | Comparação no mesmo executor |
+| [futuros](futuros/estado.json) | F01: primeira simulação de futuros |
+| [smart_mercados](smart_mercados/estado.json) | F02: política comum Spot/futuros |
+| [revisao_operacional](revisao_operacional/estado.json) | F03: contabilidade e hipóteses de política |
+| [busca_astra_002](busca_astra_002/estado.json) | Segunda busca, sem finalista |
+| [operacional_futuros](operacional_futuros/estado.json) | Busca conjunta modelo/política |
+| [diagnostico_operacional](diagnostico_operacional/estado.json) | Diagnóstico de leitura posterior |
+| `organizacao_exploracao_ia_001/` | Consolidação, inventário, limpeza e duas verificações |
 
-## Onde estão os modelos e cada tentativa?
+Modelos, previsões e carteiras estão em `dados/experimentos/`; tabelas diagnósticas em `dados/diagnosticos/`. Os registros acima não duplicam todos esses arquivos. As investigações anteriores, dados, módulos e referências continuam indexados no catálogo em seus próprios diretórios.
 
-Na pasta indicada pelo ponteiro, em `dados/experimentos/<ciclo>/celulas/<id>/tentativa_*/`. Conforme o modelo, os arquivos incluem `tentativa.json`, `resultado.json`, `auditoria.json`, `checkpoint.pt`, `epocas.json`, previsões Parquet e log. Na extensão há também `otimizador.json`; controles reexecutados ficam em `controles/` com organização equivalente.
+## Regras de manutenção
 
-Esses arquivos devem permitir identificar moeda, contexto, bloco, seed, configuração, escalas, origens avaliadas, seleção de época e resultado da auditoria. Não inferir informações ausentes pelo nome da pasta. Preservar tentativas interrompidas e falhas, inclusive quando outra tentativa termina corretamente.
+Não guardar explicações de chat como novos relatórios aqui. Recibos e snapshots só quando necessários para uma execução, incidente, transferência ou preservação de versão vinculada. Dados e artefatos congelados mantêm seus caminhos; fontes encerradas são localizadas pelo índice do pacote histórico. Não reescrever hashes nem selecionar seeds favoráveis.
 
-## Como ler o progresso
+Arquivos locais ignorados pelo Git não estão protegidos remotamente. A transferência entre máquinas deve incluir os pacotes e a [verificação de integridade](../docs/armazenamento_e_reproducao.md). Auditoria atual: `python -m manutencao.auditar_repositorio --integridade --exigir-completo` no computador executor.
 
-1. Resolver o ponteiro do ciclo correto e verificar se a pasta existe localmente.
-2. Consultar progresso e tentativas, conferindo data, host e recibos. Para atividade em tempo real, conferir PID/lock/logs no executor.
-3. Se houver apenas registros copiados, relatar a data do snapshot. Ausência de pasta não demonstra que o treinamento nunca aconteceu.
-4. Diferenciar resultados novos, controles e referências herdadas; não somar revalidação ou recarga como novo treinamento.
+## Fontes de desenvolvimento encerrado
 
-Novos recibos devem identificar ciclo, data UTC, ambiente/host quando relevante, escopo, status e caminhos/hashes das evidências. Um manifesto descreve arquivos e permite conferi-los; não substitui seu armazenamento. Seguir a [política de preservação](../docs/armazenamento_e_reproducao.md).
+Os recibos, resultados, logs e incidentes mantêm suas identidades. Scripts avulsos de revisões e versões editoriais antigas foram consolidados no [pacote de fontes](../arquivo/desenvolvimento_encerrado/README.md), com cada caminho e hash original no índice. Os caminhos citados nos registros históricos continuam identificando os originais; o auditor atual localiza esses bytes explicitamente no pacote. Essa localização não aceita uma fonte local divergente nem altera hashes científicos. As leituras posteriores úteis estão em [analises/etapas](../codigo/analises/README.md).
+
+Fatorial temporal BTC de12/11: [autorização](eixo_temporal_diario/autorizacao.json), [qualificação](eixo_temporal_diario/qualificacao.json), [execução](eixo_temporal_diario/execucao.json) e [estado](eixo_temporal_diario/estado.json). A/B herdados após equivalência prefixo200; C/D novos, separados dos estudos anteriores.

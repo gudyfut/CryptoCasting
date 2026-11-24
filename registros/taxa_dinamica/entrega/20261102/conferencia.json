@@ -1,0 +1,300 @@
+{
+  "utc": "2026-11-03T01:16:38.108030+00:00",
+  "execucao": "99884456ac71fedfd9b0",
+  "conferido": true,
+  "script_sha256": "b1343f04c3cb88caf7890351bea8a7ebdcd581cdcd4e27aebb65395dac651f42",
+  "fontes_atuais_e_copiadas": 74,
+  "arquivos_publicados": 350,
+  "anteriores_preservados": 4998,
+  "series": 59,
+  "novas": 6,
+  "carteiras_com_recibo": 54,
+  "medias": {
+    "validacao": {
+      "scheduler_seis": {
+        "mse": 0.0007219385669746267,
+        "mae": 0.019536939138988064,
+        "rmse": 0.02686889715863265
+      },
+      "mamba16_seis": {
+        "mse": 0.0007198377556273794,
+        "mae": 0.019492588428615547,
+        "rmse": 0.026829785956667115
+      },
+      "scheduler_tres": {
+        "mse": 0.0007209551355966719,
+        "mae": 0.01952824168168336,
+        "rmse": 0.026850592368727777
+      },
+      "mamba16_tres": {
+        "mse": 0.0007191639649393512,
+        "mae": 0.019477157430665814,
+        "rmse": 0.026817229410708677
+      },
+      "lstm_tres": {
+        "mse": 0.0007194461126312054,
+        "mae": 0.01947729069661525,
+        "rmse": 0.026822389202868557
+      },
+      "naive": {
+        "mse": 0.0007218624747170446,
+        "mae": 0.01952317340881851,
+        "rmse": 0.026867498482684327
+      },
+      "arima": {
+        "mse": 0.0007215880388459149,
+        "mae": 0.019514755535297384,
+        "rmse": 0.026862390787975574
+      }
+    },
+    "teste": {
+      "scheduler_seis": {
+        "mse": 0.0004976927066667346,
+        "mae": 0.015905828118057276,
+        "rmse": 0.022309003460024072
+      },
+      "mamba16_seis": {
+        "mse": 0.0004965700544756442,
+        "mae": 0.015893904321981938,
+        "rmse": 0.02228369313893577
+      },
+      "scheduler_tres": {
+        "mse": 0.0004988807013883889,
+        "mae": 0.015927960085701236,
+        "rmse": 0.02233562555331584
+      },
+      "mamba16_tres": {
+        "mse": 0.0004958900852585443,
+        "mae": 0.015889174609555242,
+        "rmse": 0.022268305975051594
+      },
+      "lstm_tres": {
+        "mse": 0.0004980096415650243,
+        "mae": 0.015931068406533095,
+        "rmse": 0.022315952611489432
+      },
+      "naive": {
+        "mse": 0.0004952210450734487,
+        "mae": 0.015863957149945096,
+        "rmse": 0.022253562525435082
+      },
+      "arima": {
+        "mse": 0.000494621670222033,
+        "mae": 0.015854094605724754,
+        "rmse": 0.02224009150660206
+      }
+    }
+  },
+  "contrastes": {
+    "validacao": {
+      "delta_mse": 2.1008113472474235e-06,
+      "delta_relativo_pct": 0.29184511799000834,
+      "ic95": {
+        "7": [
+          -1.8982567277699573e-06,
+          6.061731367733732e-06
+        ],
+        "14": [
+          -1.5667853194362177e-06,
+          6.279515936232667e-06
+        ],
+        "28": [
+          -1.1986573836397824e-06,
+          6.0211520208973e-06
+        ]
+      }
+    },
+    "teste": {
+      "delta_mse": 1.1226521910904008e-06,
+      "delta_relativo_pct": 0.22608133152046683,
+      "ic95": {
+        "7": [
+          -2.8938465031208428e-06,
+          5.32215980573409e-06
+        ],
+        "14": [
+          -3.073162218867243e-06,
+          5.700744486656315e-06
+        ],
+        "28": [
+          -3.374604232592564e-06,
+          5.588343144488975e-06
+        ]
+      }
+    }
+  },
+  "trajetorias": [
+    {
+      "seed": 17,
+      "epocas": 18,
+      "selecionada": 8,
+      "taxa_selecionada": 0.0002,
+      "cortes": [
+        11,
+        14,
+        17
+      ],
+      "delta_mse_pct": {
+        "validacao": 0.08171768930940182,
+        "teste": 0.2682905242300526
+      }
+    },
+    {
+      "seed": 42,
+      "epocas": 14,
+      "selecionada": 4,
+      "taxa_selecionada": 0.0002,
+      "cortes": [
+        7,
+        10,
+        13
+      ],
+      "delta_mse_pct": {
+        "validacao": 0.3629648374625427,
+        "teste": 2.1532734936509534
+      }
+    },
+    {
+      "seed": 2026,
+      "epocas": 19,
+      "selecionada": 9,
+      "taxa_selecionada": 0.0001,
+      "cortes": [
+        6,
+        12,
+        15
+      ],
+      "delta_mse_pct": {
+        "validacao": 0.30217982787879016,
+        "teste": -0.5782139182783252
+      }
+    },
+    {
+      "seed": 7,
+      "epocas": 22,
+      "selecionada": 12,
+      "taxa_selecionada": 5e-05,
+      "cortes": [
+        6,
+        9,
+        15
+      ],
+      "delta_mse_pct": {
+        "validacao": 0.6656031173829735,
+        "teste": -0.4073313668112477
+      }
+    },
+    {
+      "seed": 123,
+      "epocas": 12,
+      "selecionada": 2,
+      "taxa_selecionada": 0.0002,
+      "cortes": [
+        5,
+        8,
+        11
+      ],
+      "delta_mse_pct": {
+        "validacao": 0.14532077069939753,
+        "teste": -0.1983234362488373
+      }
+    },
+    {
+      "seed": 31415,
+      "epocas": 17,
+      "selecionada": 7,
+      "taxa_selecionada": 0.0001,
+      "cortes": [
+        6,
+        10,
+        13
+      ],
+      "delta_mse_pct": {
+        "validacao": 0.193396386494471,
+        "teste": 0.1578347853734785
+      }
+    }
+  ],
+  "smart_base": {
+    "validacao": {
+      "retorno_medio": 0.6100881062811462,
+      "desvio_seeds": 0.1935154820479476,
+      "seeds_lucrativas": 6,
+      "referencia": {
+        "capital_final": 18145.217912634074,
+        "retorno_liquido": 0.8145217912634074,
+        "drawdown_minuto_close": 0.2969863832090495,
+        "exposicao_media": 0.7591776799691189,
+        "ordens_executadas": 325.5,
+        "compras": 235.16666666666666,
+        "vendas": 90.33333333333333,
+        "comissoes_usdt": 120.48280854639127,
+        "slippage_usdt": 60.243471615659985,
+        "giro_capital_inicial": 12.04828085463913,
+        "valor_residual_usdt": 0.4374676958062274,
+        "n_seeds": 6,
+        "desvio_retorno_seeds": 0.23285931767886148,
+        "seeds_lucrativas": 6,
+        "retornos_individuais": {
+          "estado16_17": 0.9503679233965323,
+          "estado16_42": 1.0388037210369698,
+          "estado16_2026": 0.8228169666266691,
+          "estado16_7": 1.0101425812946756,
+          "estado16_123": 0.48274227708781225,
+          "estado16_31415": 0.5822572781377853
+        }
+      },
+      "retornos_por_seed": {
+        "17": 0.6921368518753666,
+        "42": 0.9339860587294544,
+        "2026": 0.5320747492103357,
+        "7": 0.37105563939351516,
+        "123": 0.63054160553404,
+        "31415": 0.5007337329441657
+      }
+    },
+    "teste": {
+      "retorno_medio": -0.08494087173004256,
+      "desvio_seeds": 0.016904729477666965,
+      "seeds_lucrativas": 0,
+      "referencia": {
+        "capital_final": 9120.5425553915,
+        "retorno_liquido": -0.08794574446085002,
+        "drawdown_minuto_close": 0.3442893795404256,
+        "exposicao_media": 0.8940364435957636,
+        "ordens_executadas": 254.16666666666666,
+        "compras": 211.33333333333334,
+        "vendas": 42.833333333333336,
+        "comissoes_usdt": 49.08593909788278,
+        "slippage_usdt": 24.54276179511396,
+        "giro_capital_inicial": 4.90859390978828,
+        "valor_residual_usdt": 0.2158066052062875,
+        "n_seeds": 6,
+        "desvio_retorno_seeds": 0.015663501226827803,
+        "seeds_lucrativas": 0,
+        "retornos_individuais": {
+          "estado16_17": -0.09840532859908269,
+          "estado16_42": -0.057655998623922455,
+          "estado16_2026": -0.09270495909604493,
+          "estado16_7": -0.09425988271294339,
+          "estado16_123": -0.0852886874703983,
+          "estado16_31415": -0.09935961026270834
+        }
+      },
+      "retornos_por_seed": {
+        "17": -0.10537079897682,
+        "42": -0.08359311487928023,
+        "2026": -0.0976460299306966,
+        "7": -0.0580105216363489,
+        "123": -0.07505614024246898,
+        "31415": -0.08996862471464062
+      }
+    }
+  },
+  "limites": [
+    "Sem treino, inferência ou repetição do executor; recarga exata é a evidência congelada, não nova inferência nesta conferência.",
+    "IC temporal condicional aos modelos existentes; não mede integralmente incerteza de novos treinamentos.",
+    "Seeds iguais não garantem trajetórias CUDA bit a bit; não há controle real extra nesta rodada.",
+    "2024 seleção e 2025 já consultado; exploração retrospectiva."
+  ]
+}

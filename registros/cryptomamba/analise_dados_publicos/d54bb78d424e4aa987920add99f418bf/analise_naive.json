@@ -1,0 +1,67 @@
+{
+  "utc": "2026-10-30T02:12:22.854826+00:00",
+  "natureza": "Análise externa de persistência sem treino; splits públicos commit fixado e índices da implementação CMambaDataset(window_size=14). Não replica checkpoints/métricas exatas do artigo.",
+  "commit": "fef42727861a9c3a32241283ab981ef21a49e291",
+  "proveniencia_sha256": "7c6a59d9720515df3b48b31f878a41521c73305463ff3136a003372b2f9bbac3",
+  "formula": "prever Close[i+14] com Close[i+13]; i em range(len(split)-14-1), preservando exclusão da última janela pelo código público",
+  "metricas_globais": {
+    "train": {
+      "linhas_csv": 1461,
+      "origens_conforme_dataset_publico": 1446,
+      "primeiro_alvo_indice": 14,
+      "ultimo_alvo_indice": 1459,
+      "naive": {
+        "mse_usd2": 1229186.2673555324,
+        "rmse_usd": 1108.686730936892,
+        "mae_usd": 621.5940733056709,
+        "mape_percentual": 2.5678534491051406
+      },
+      "primeira_data_alvo_utc": "2018-10-01T07:00:00+00:00",
+      "ultima_data_alvo_utc": "2022-09-15T07:00:00+00:00"
+    },
+    "val": {
+      "linhas_csv": 365,
+      "origens_conforme_dataset_publico": 350,
+      "primeiro_alvo_indice": 14,
+      "ultimo_alvo_indice": 363,
+      "naive": {
+        "mse_usd2": 323020.95200399985,
+        "rmse_usd": 568.3493221637551,
+        "mae_usd": 372.8586857142856,
+        "mape_percentual": 1.5694858834486094
+      },
+      "primeira_data_alvo_utc": "2022-10-01T07:00:00+00:00",
+      "ultima_data_alvo_utc": "2023-09-15T07:00:00+00:00"
+    },
+    "test": {
+      "linhas_csv": 365,
+      "origens_conforme_dataset_publico": 350,
+      "primeiro_alvo_indice": 14,
+      "ultimo_alvo_indice": 363,
+      "naive": {
+        "mse_usd2": 2460191.905104001,
+        "rmse_usd": 1568.4998900554635,
+        "mae_usd": 1091.8994285714286,
+        "mape_percentual": 1.9732268677678733
+      },
+      "primeira_data_alvo_utc": "2023-10-01T07:00:00+00:00",
+      "ultima_data_alvo_utc": "2024-09-14T07:00:00+00:00"
+    }
+  },
+  "numeros_artigo_cryptomamba_v": {
+    "rmse_usd": 1598.1,
+    "mae_usd": 1120.7,
+    "mape_percentual": 2.034
+  },
+  "mudanca_artigo_vs_naive_deste_recorte_percentual": {
+    "rmse_usd": 1.8871604730230196,
+    "mae_usd": 2.6376578899992786,
+    "mape_percentual": 3.0798857052293016
+  },
+  "limites": [
+    "Os números do artigo não foram recalculados de previsões/checkpoints.",
+    "Igualdade de população efetiva entre tabela publicada e split público atual não certificada.",
+    "Não somar este diagnóstico aos59resultados Binance; dados/tarefa/período diferentes.",
+    "Não há simulação operacional ou nova seleção de configuração neste diagnóstico."
+  ]
+}

@@ -1,0 +1,69 @@
+{
+  "utc": "2026-11-04T04:56:39.562501+00:00",
+  "seed": 17,
+  "bloco": "B2",
+  "receita": {
+    "representacao": "relativa",
+    "indicadores": false,
+    "contexto": 168,
+    "largura": 32,
+    "camadas": 2,
+    "estado": 16,
+    "dropout": 0.1,
+    "pooling": "ultimo",
+    "taxa": 0.0002,
+    "decay": 0.001,
+    "otimizador": "AdamW",
+    "perda": "mse",
+    "scheduler": "constante",
+    "ganho_saida": 1.0
+  },
+  "epoca": 3,
+  "epocas_executadas": 13,
+  "parametros": 20257,
+  "recarga_exata": true,
+  "segundos": 90.4626021969998,
+  "checkpoint_final_sha256": "37c8dffe02a90ddea2d6d4baa5940c4834da79b44314c79c8800085b0df87dbc",
+  "memoria_cuda_maxima_bytes": 182633984,
+  "treino_amostra_fixa": {
+    "n": 2048,
+    "mse": 0.001079524200830719,
+    "rmse": 0.03285611359900496,
+    "mae": 0.022497969712473063,
+    "mse_naive": 0.0010804153835294685,
+    "vies": 0.0003164142555405229,
+    "sd_previsao": 0.0017503179539076722,
+    "sd_alvo": 0.03286701410288522,
+    "acuracia_direcional": 0.5048828125,
+    "balanced_accuracy": 0.5032238619195142
+  },
+  "validacao": {
+    "n": 2160,
+    "mse": 0.0005741370907365363,
+    "rmse": 0.02396115795900808,
+    "mae": 0.01770627699058064,
+    "mse_naive": 0.0005737635341431438,
+    "vies": 0.001968591808010444,
+    "sd_previsao": 0.0010708401186911183,
+    "sd_alvo": 0.023912761601148975,
+    "acuracia_direcional": 0.5150532654006484,
+    "balanced_accuracy": 0.5127695819709414
+  },
+  "teste": {
+    "n": 4392,
+    "mse": 0.0007164547463412292,
+    "rmse": 0.026766672306082973,
+    "mae": 0.01958809765436646,
+    "mse_naive": 0.0007158615200008409,
+    "vies": -0.001422238303106134,
+    "sd_previsao": 0.0011393860815885983,
+    "sd_alvo": 0.02666856927670914,
+    "acuracia_direcional": 0.49977231329690347,
+    "balanced_accuracy": 0.480364744869116
+  },
+  "diagnostico": {
+    "sd_representacao_media": 0.4839276373386383,
+    "norma_pesos_saida": 0.4504680633544922,
+    "fracao_clipping_ultima_epoca": 0.93
+  }
+}

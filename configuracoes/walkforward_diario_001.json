@@ -1,0 +1,19 @@
+{
+  "ciclo": "walkforward_diario_001",
+  "simbolo": "BTCUSDT",
+  "seeds": [42, 17, 2026],
+  "variantes": ["A", "L"],
+  "blocos": [
+    {"id":"B1", "treino_fim":"2023-10-01", "validacao_fim":"2024-01-01", "teste_fim":"2024-07-01"},
+    {"id":"B2", "treino_fim":"2024-04-01", "validacao_fim":"2024-07-01", "teste_fim":"2025-01-01"},
+    {"id":"B3", "treino_fim":"2024-10-01", "validacao_fim":"2025-01-01", "teste_fim":"2025-07-01"},
+    {"id":"B4", "treino_fim":"2025-04-01", "validacao_fim":"2025-07-01", "teste_fim":"2026-01-01"}
+  ],
+  "treino_inicio": "2020-01-01",
+  "bootstrap": {"blocos":[7,14,28], "principal":14, "replicas":2000, "seed":20261113},
+  "slippage_cenarios": [0.0001,0.0002,0.0003],
+  "referencia": "registros/fechamento_ramos_diarios/execucao.json",
+  "ajustes_cientificos": 24,
+  "controles": 2,
+  "epocas": 200
+}

@@ -1,0 +1,2843 @@
+{
+  "id": "8ec8a66648313caa48e3",
+  "utc": "2026-10-30T05:38:47.559994+00:00",
+  "contrato": {
+    "configuracao": {
+      "versao": 1,
+      "ciclo": "backtest_carteira_001",
+      "pergunta": "Retenção e rebalanceamento fracionado aproveitam as previsões preservadas após custos?",
+      "mercado_pasta": "dados/mercado/binance_spot/449aab6c79dbf88aa625",
+      "dataset_pasta": "dados/entradas/0420879c2afc454c7754",
+      "publicacao_origem": "dados/experimentos/cryptomamba_adaptado_35dd98141ee20d9b8885/publicacoes/tentativa_001",
+      "series": {
+        "estado16_17": "dados/experimentos/ohlcv_modular_ab5baf3eab3a2e66d8b2/celulas/mamba_17/tentativa_001",
+        "estado16_42": "dados/experimentos/ohlcv_modular_ab5baf3eab3a2e66d8b2/celulas/mamba_42/tentativa_001",
+        "estado16_2026": "dados/experimentos/ohlcv_modular_ab5baf3eab3a2e66d8b2/celulas/mamba_2026/tentativa_001",
+        "estado16_7": "dados/experimentos/complemento_estado16_cc0b166fe42a3ed1678d/celulas/mamba_7/tentativa_001",
+        "estado16_123": "dados/experimentos/complemento_estado16_cc0b166fe42a3ed1678d/celulas/mamba_123/tentativa_001",
+        "estado16_31415": "dados/experimentos/complemento_estado16_cc0b166fe42a3ed1678d/celulas/mamba_31415/tentativa_001",
+        "lstm_17": "dados/experimentos/ohlcv_modular_ab5baf3eab3a2e66d8b2/celulas/lstm_17/tentativa_001",
+        "lstm_42": "dados/experimentos/ohlcv_modular_ab5baf3eab3a2e66d8b2/celulas/lstm_42/tentativa_001",
+        "lstm_2026": "dados/experimentos/ohlcv_modular_ab5baf3eab3a2e66d8b2/celulas/lstm_2026/tentativa_001",
+        "cryptomamba_17": "dados/experimentos/cryptomamba_adaptado_35dd98141ee20d9b8885/celulas/cryptomamba_17/tentativa_001",
+        "cryptomamba_42": "dados/experimentos/cryptomamba_adaptado_35dd98141ee20d9b8885/celulas/cryptomamba_42/tentativa_001",
+        "cryptomamba_2026": "dados/experimentos/cryptomamba_adaptado_35dd98141ee20d9b8885/celulas/cryptomamba_2026/tentativa_001",
+        "cryptomamba_7": "dados/experimentos/cryptomamba_adaptado_35dd98141ee20d9b8885/celulas/cryptomamba_7/tentativa_001",
+        "cryptomamba_123": "dados/experimentos/cryptomamba_adaptado_35dd98141ee20d9b8885/celulas/cryptomamba_123/tentativa_001",
+        "cryptomamba_31415": "dados/experimentos/cryptomamba_adaptado_35dd98141ee20d9b8885/celulas/cryptomamba_31415/tentativa_001",
+        "naive": "dados/experimentos/ohlcv_modular_ab5baf3eab3a2e66d8b2/celulas/naive/tentativa_001",
+        "arima": "dados/experimentos/ohlcv_modular_ab5baf3eab3a2e66d8b2/celulas/arima/tentativa_001"
+      },
+      "seeds": [
+        17,
+        42,
+        2026,
+        7,
+        123,
+        31415
+      ],
+      "seeds_pareadas_lstm": [
+        17,
+        42,
+        2026
+      ],
+      "politicas": [
+        "smart",
+        "vanilla",
+        "diaria24"
+      ],
+      "partes": [
+        "validacao",
+        "teste"
+      ],
+      "capital": 10000.0,
+      "latencia_minutos": 1,
+      "risco_smart": 0.02,
+      "limiar_vanilla": 0.01,
+      "minimo_usdt": 5.0,
+      "passo_btc": 1e-05,
+      "custos": {
+        "ideal": {
+          "taxa": 0.0,
+          "slippage": 0.0
+        },
+        "base": {
+          "taxa": 0.001,
+          "slippage": 0.0005
+        },
+        "agravado": {
+          "taxa": 0.002,
+          "slippage": 0.001
+        }
+      },
+      "bootstrap": {
+        "dias": 14,
+        "replicas": 2000,
+        "seed": 20261030
+      },
+      "simulacoes_planejadas": 369,
+      "novos_treinamentos": 0,
+      "buscas_parametros": 0,
+      "exposicao": "2024 seleção de checkpoints; 2025 consultado, análise retrospectiva; não holdout novo/walk-forward."
+    },
+    "fontes": {
+      "backtest_carteira/__init__.py": "935fcaa3336cd1f24f27457418b2cc6abd9d5b24f85f3fdc8dbb69dae8553d27",
+      "backtest_carteira/auditoria.py": "ad439a8d6e2bfe8367ff6d2e96da7e53cd2ca9f86f20ec8d25b4b6a64297bcd9",
+      "backtest_carteira/ciclo.py": "c5ce171fc8298a9e104eb57a2720418bf234425e9b3800df5c62c0a47ad45747",
+      "backtest_carteira/mercado.py": "fb85e0bdac113a4fd57af4332e6ef3fd9ebb31ffb7ba007011648dce505d6f37",
+      "backtest_carteira/politicas.py": "0ab300634f73d4cd34d23bb6a3d48d4bd5f838e23201cf8327a3712eed7a6b79",
+      "backtest_carteira/relatorio.py": "ac0724e405cf6d08280567ca43446f2deb4826a61896b09eff60f4303e9dd54e",
+      "backtest_carteira/simulador.py": "d7fa1748b0e92d23ceb5e1289790977eee351dd86b442f8ab3d18d127be020ec",
+      "tests_backtest_carteira/__init__.py": "3b9d78ec5b1842d5310fe7bd0d0c05979a27e7a5d991d647403cba1e02683f8c",
+      "tests_backtest_carteira/test_carteira.py": "20fc9a6b641f852582b58f1d96aac32705a24b5144b1e639c00ba8592dcc2d6a",
+      "tests_backtest_carteira/test_mercado.py": "08c9857ad5c710f21c0b6e634d4cf27cfb5cfc0997c2250fcec880a39fa299a4",
+      "configuracoes/backtest_carteira_001.json": "90c49786892452830ed4cdf3a8589bbd9a2f8e0283325ad7c708b7a025c530b1",
+      "run_backtest.py": "16fcbd67f006e364f336258ad20d841b62070881fd58613218eb25153ac8fb44",
+      "infraestrutura/artefatos.py": "8a6b3cfeee815cdc3742ddf6b6fe7e972fa0757099f16212310515c49eb28a3e",
+      "docs/protocolo_backtest_carteira.md": "9804a340fa6a02499cc090618e15dd3b9d3f247ea54e568ce44f30fe32a56fdd",
+      "registros/cryptomamba/fontes_externas/fef42727861a9c3a32241283ab981ef21a49e291/utils/trade.py": "2ef7749cae1ca3e8e994f35b9112d3fa90448162d14404bf7ccb83964facc99e",
+      "registros/cryptomamba/fontes_externas/fef42727861a9c3a32241283ab981ef21a49e291/scripts/simulate_trade.py": "57ffbc1288b5a1102fd02f8f7125792aed8f4d45f2fee3a61d9ab92e0b0657e4",
+      "registros/cryptomamba/fontes_externas/fef42727861a9c3a32241283ab981ef21a49e291/LICENSE": "1903d57dbabb004f056ae9433e12ee8847b44c2852f453ae9667abb030a8a8a8",
+      "registros/cryptomamba/fontes_externas/fef42727861a9c3a32241283ab981ef21a49e291/proveniencia.json": "c750c6dcb37eb9fa61fe5704b5021bd30e5920a3d9aac3b891aa4fdd2d7c4bf3",
+      "run_backtest_revisado.py": "8d52cf35761360b80084c9147dba9f666d22c2ebabbf4fce6d847d377b231059"
+    },
+    "insumos": {
+      "dados/experimentos/ohlcv_modular_ab5baf3eab3a2e66d8b2/celulas/mamba_17/tentativa_001/conclusao.json": "b3fc8bb1b9fa2788b45612dbf0117127a9c99ea70460827f5762365f497cb63e",
+      "dados/experimentos/ohlcv_modular_ab5baf3eab3a2e66d8b2/celulas/mamba_17/tentativa_001/previsoes_validacao.parquet": "8ad7fe09f5387ee6ccf30ea0b387e2b8965d52ce114bd4292e1ecb8288e6a92e",
+      "dados/experimentos/ohlcv_modular_ab5baf3eab3a2e66d8b2/celulas/mamba_17/tentativa_001/previsoes_teste.parquet": "b40bbd18419b13654f54d3a5fff3f76e590f3b4959790c350f6be54d59225691",
+      "dados/experimentos/ohlcv_modular_ab5baf3eab3a2e66d8b2/celulas/mamba_42/tentativa_001/conclusao.json": "92c7ebee418dcc313554dfd699f1fa742cdd5ae256d14e603d876fcad0f29688",
+      "dados/experimentos/ohlcv_modular_ab5baf3eab3a2e66d8b2/celulas/mamba_42/tentativa_001/previsoes_validacao.parquet": "25957a1f5d7c795d82441e93089d931805306615cd2df4f27ad196fa7ed71e5b",
+      "dados/experimentos/ohlcv_modular_ab5baf3eab3a2e66d8b2/celulas/mamba_42/tentativa_001/previsoes_teste.parquet": "6892c343f160da64f8ca30eabacf890034a053d4a0e602def20ba422f68c8782",
+      "dados/experimentos/ohlcv_modular_ab5baf3eab3a2e66d8b2/celulas/mamba_2026/tentativa_001/conclusao.json": "065b5c1e9c613a9e149cc6e9c400d808517a43305a16737b6e949a599043f64a",
+      "dados/experimentos/ohlcv_modular_ab5baf3eab3a2e66d8b2/celulas/mamba_2026/tentativa_001/previsoes_validacao.parquet": "30ea3774609c81bc3a2b412b71648bfb27f9642d4c863e5e0fe01bc93a1a6a90",
+      "dados/experimentos/ohlcv_modular_ab5baf3eab3a2e66d8b2/celulas/mamba_2026/tentativa_001/previsoes_teste.parquet": "e114e61563841c36ece5438a88ee8d5479d7313f8501b00139fcad3da3abdddb",
+      "dados/experimentos/complemento_estado16_cc0b166fe42a3ed1678d/celulas/mamba_7/tentativa_001/conclusao.json": "283061d0627c996b5c80d5047fbbcc3a6ea82cc38d06c67ed417d7a0dd222e71",
+      "dados/experimentos/complemento_estado16_cc0b166fe42a3ed1678d/celulas/mamba_7/tentativa_001/previsoes_validacao.parquet": "624055b33f03227bb080e656aee1a7171869f9917e419c2fb1b06d5f3c3930c7",
+      "dados/experimentos/complemento_estado16_cc0b166fe42a3ed1678d/celulas/mamba_7/tentativa_001/previsoes_teste.parquet": "d9129ddcd6993a237fb9f358cac408d140063952271656732d8c61c88539814b",
+      "dados/experimentos/complemento_estado16_cc0b166fe42a3ed1678d/celulas/mamba_123/tentativa_001/conclusao.json": "37bfc4fc3d0a35b7bba57b0107f58ebcf4b97acf234371c6c0bb0d31eb8400a1",
+      "dados/experimentos/complemento_estado16_cc0b166fe42a3ed1678d/celulas/mamba_123/tentativa_001/previsoes_validacao.parquet": "4c50467cde612402501f559cb852d65369950ae3638225c97b41ecc6934766cc",
+      "dados/experimentos/complemento_estado16_cc0b166fe42a3ed1678d/celulas/mamba_123/tentativa_001/previsoes_teste.parquet": "038c02e748fc1d866315afde34e60c88506b34ef29fa57f93e3c1cace0885f83",
+      "dados/experimentos/complemento_estado16_cc0b166fe42a3ed1678d/celulas/mamba_31415/tentativa_001/conclusao.json": "a5ef18ff3f46e1dfb02dd79699fb8db6771e74c8d00aca2cbe0c73d5eb682b6e",
+      "dados/experimentos/complemento_estado16_cc0b166fe42a3ed1678d/celulas/mamba_31415/tentativa_001/previsoes_validacao.parquet": "536caa84cb0efa7fb98f6461da0a85d0e6be556638480d4cd5da05445f0aafa7",
+      "dados/experimentos/complemento_estado16_cc0b166fe42a3ed1678d/celulas/mamba_31415/tentativa_001/previsoes_teste.parquet": "7dfc157604b4c4f7956c7fc8aa098ff4c0411c4c5fe820890327f4caf1030e65",
+      "dados/experimentos/ohlcv_modular_ab5baf3eab3a2e66d8b2/celulas/lstm_17/tentativa_001/conclusao.json": "64e8aa41ba1854bdead0596b0511219565eee932593aa354475479edef305eb9",
+      "dados/experimentos/ohlcv_modular_ab5baf3eab3a2e66d8b2/celulas/lstm_17/tentativa_001/previsoes_validacao.parquet": "c7fee36a361d38cb812abef1a2ae239e6827d5fb07cf80a87654209d815cabc9",
+      "dados/experimentos/ohlcv_modular_ab5baf3eab3a2e66d8b2/celulas/lstm_17/tentativa_001/previsoes_teste.parquet": "05e57b7510dff1e17fe7051c1d7ef07de45644b0a247becdab555882e234696e",
+      "dados/experimentos/ohlcv_modular_ab5baf3eab3a2e66d8b2/celulas/lstm_42/tentativa_001/conclusao.json": "cd79420cecf8496f97b0d0db3bc48aa5a6ef3cf820db20b52a7fd2867313b02c",
+      "dados/experimentos/ohlcv_modular_ab5baf3eab3a2e66d8b2/celulas/lstm_42/tentativa_001/previsoes_validacao.parquet": "849dde68b5aae00c2c16c6048fbd5518f74c56d76f18e7ed20b1b65010bc0bdc",
+      "dados/experimentos/ohlcv_modular_ab5baf3eab3a2e66d8b2/celulas/lstm_42/tentativa_001/previsoes_teste.parquet": "ba874628103f89f8ab38be789ab11f9805bcdc2c7d1a5ddfb3a7629552f9e390",
+      "dados/experimentos/ohlcv_modular_ab5baf3eab3a2e66d8b2/celulas/lstm_2026/tentativa_001/conclusao.json": "9fa4733d2d1acf5f2a1c6a36b7cf8aec15c825f163bbb265221896adda7c36fa",
+      "dados/experimentos/ohlcv_modular_ab5baf3eab3a2e66d8b2/celulas/lstm_2026/tentativa_001/previsoes_validacao.parquet": "7675faf9a7385f53256c80b8f26bfb056650a834359fea71900edc1138799ad3",
+      "dados/experimentos/ohlcv_modular_ab5baf3eab3a2e66d8b2/celulas/lstm_2026/tentativa_001/previsoes_teste.parquet": "121500ff54b4428817f79f3368aa28cadeaeeaade2a820214203f75428e96428",
+      "dados/experimentos/cryptomamba_adaptado_35dd98141ee20d9b8885/celulas/cryptomamba_17/tentativa_001/conclusao.json": "0cd10f341f8192189778bbb19af26882449bc9a2728f1611a5252d1b9614d7b1",
+      "dados/experimentos/cryptomamba_adaptado_35dd98141ee20d9b8885/celulas/cryptomamba_17/tentativa_001/previsoes_validacao.parquet": "ccdb4812966393cab38a86c75ea155a3fa35df68b158d80eb854af4b596d3936",
+      "dados/experimentos/cryptomamba_adaptado_35dd98141ee20d9b8885/celulas/cryptomamba_17/tentativa_001/previsoes_teste.parquet": "942788da99e8adc6596ce2ebac546439c67afe09b55eaed5fe6d85e345eea53d",
+      "dados/experimentos/cryptomamba_adaptado_35dd98141ee20d9b8885/celulas/cryptomamba_42/tentativa_001/conclusao.json": "55e68c3ddf934feea12efa3ab8bba01dd5642056cd66c73e477ec038e49fbf50",
+      "dados/experimentos/cryptomamba_adaptado_35dd98141ee20d9b8885/celulas/cryptomamba_42/tentativa_001/previsoes_validacao.parquet": "d512a698a2b84fa23ccc880a09bd70a7feae62ced19c225301d25ea5ecc4f12f",
+      "dados/experimentos/cryptomamba_adaptado_35dd98141ee20d9b8885/celulas/cryptomamba_42/tentativa_001/previsoes_teste.parquet": "d74edd7940a6f18cf13ee5772d179feabb6b917b825d124c7baad08d5aadb728",
+      "dados/experimentos/cryptomamba_adaptado_35dd98141ee20d9b8885/celulas/cryptomamba_2026/tentativa_001/conclusao.json": "eabde8fca660770743103a755593921627680439368a295744f763e575df2cdd",
+      "dados/experimentos/cryptomamba_adaptado_35dd98141ee20d9b8885/celulas/cryptomamba_2026/tentativa_001/previsoes_validacao.parquet": "e082c48b303450a5ee3d441091382f8ce8b2884f2c131e6eb101e15f4edf72b4",
+      "dados/experimentos/cryptomamba_adaptado_35dd98141ee20d9b8885/celulas/cryptomamba_2026/tentativa_001/previsoes_teste.parquet": "071b797595f1ffe5f066bb65aa9c3e5b15889aaf1f2e777feede9f7c9f777371",
+      "dados/experimentos/cryptomamba_adaptado_35dd98141ee20d9b8885/celulas/cryptomamba_7/tentativa_001/conclusao.json": "c6349d1eb130559934cb6367928431c52e8f6f50248470d82b7536760dbc7598",
+      "dados/experimentos/cryptomamba_adaptado_35dd98141ee20d9b8885/celulas/cryptomamba_7/tentativa_001/previsoes_validacao.parquet": "aed6c3288bc01fa90bdc425541ca8d23427ad6ba3d9c45731657dc8029c8647f",
+      "dados/experimentos/cryptomamba_adaptado_35dd98141ee20d9b8885/celulas/cryptomamba_7/tentativa_001/previsoes_teste.parquet": "211f1c4121aa6e3658c5e1cdfeceba7bdae88e7076c6aff28ee7cf52f606d56b",
+      "dados/experimentos/cryptomamba_adaptado_35dd98141ee20d9b8885/celulas/cryptomamba_123/tentativa_001/conclusao.json": "0c6cbb0426b5e5db2b689da718c596703f0497f2b6f58734af6ad94e8b5c9b4f",
+      "dados/experimentos/cryptomamba_adaptado_35dd98141ee20d9b8885/celulas/cryptomamba_123/tentativa_001/previsoes_validacao.parquet": "d447a65936746022e3ae3d438d53aa3897582a8cfb7638dff792976fafab79d1",
+      "dados/experimentos/cryptomamba_adaptado_35dd98141ee20d9b8885/celulas/cryptomamba_123/tentativa_001/previsoes_teste.parquet": "91ed7bb3269e110bc4987a10fd1495738aa913438bdd8a7e2df9c50d61e731d5",
+      "dados/experimentos/cryptomamba_adaptado_35dd98141ee20d9b8885/celulas/cryptomamba_31415/tentativa_001/conclusao.json": "385f1ba3a1bdf922f3c3a44213d8190d9c5170a90666f7c77a8346d7b43c45c8",
+      "dados/experimentos/cryptomamba_adaptado_35dd98141ee20d9b8885/celulas/cryptomamba_31415/tentativa_001/previsoes_validacao.parquet": "06007ee00499ad081432bd331b899042070c7740e82581a28a42aa93c60ad02d",
+      "dados/experimentos/cryptomamba_adaptado_35dd98141ee20d9b8885/celulas/cryptomamba_31415/tentativa_001/previsoes_teste.parquet": "36af5038b5a8f95d89129679308204c577294430a16b7fbfc560fb397f8b92d3",
+      "dados/experimentos/ohlcv_modular_ab5baf3eab3a2e66d8b2/celulas/naive/tentativa_001/conclusao.json": "47728d6dfe7371555fe3e24087789fd795f5772007f0acc0302495ebba1d8b1d",
+      "dados/experimentos/ohlcv_modular_ab5baf3eab3a2e66d8b2/celulas/naive/tentativa_001/previsoes_validacao.parquet": "f03cafedc54343317b5de382c13b36038e5dfa3b8f7a254bb8d02fb4a7eb6085",
+      "dados/experimentos/ohlcv_modular_ab5baf3eab3a2e66d8b2/celulas/naive/tentativa_001/previsoes_teste.parquet": "16919d4895e518d7ddbc319e7f5b65fb93a85bfb6be37636e69073a29c646bf3",
+      "dados/experimentos/ohlcv_modular_ab5baf3eab3a2e66d8b2/celulas/arima/tentativa_001/conclusao.json": "b57695e9c63f77a71a68c45468ad2e537b2bed2957df520411debc4a82d7b302",
+      "dados/experimentos/ohlcv_modular_ab5baf3eab3a2e66d8b2/celulas/arima/tentativa_001/previsoes_validacao.parquet": "53ca61776b6466f478bb2c6bf042da49d5d5875bedd583e8fd20a2a208d02534",
+      "dados/experimentos/ohlcv_modular_ab5baf3eab3a2e66d8b2/celulas/arima/tentativa_001/previsoes_teste.parquet": "a2f38cb3ed4ee23739e5392fb447ac7987db9e1a233446b6dfd1348098c484ad",
+      "dados/mercado/binance_spot/449aab6c79dbf88aa625/minutos/BTCUSDT/2023-12.parquet": "5543a6f607974e29f90ca09177f515987db4493f099f5213c519d92c041df1c2",
+      "dados/mercado/binance_spot/449aab6c79dbf88aa625/minutos/BTCUSDT/2024-01.parquet": "b62633b9a49f15b3bed8df98355a8f4eb3f1216e394965748cc7d8427550f471",
+      "dados/mercado/binance_spot/449aab6c79dbf88aa625/minutos/BTCUSDT/2024-02.parquet": "af6f68371a6a1e10ee54345eedbceb5721ccce18f849eb3f604378de720406bc",
+      "dados/mercado/binance_spot/449aab6c79dbf88aa625/minutos/BTCUSDT/2024-03.parquet": "eff6d8079d5036e5fa556bd41a7458e22b03745293c8848984124d89b6fb4e4d",
+      "dados/mercado/binance_spot/449aab6c79dbf88aa625/minutos/BTCUSDT/2024-04.parquet": "028395c10a756510cc8f7edef4ebeb06628530c40e8a7e9b764d5399f7a2178e",
+      "dados/mercado/binance_spot/449aab6c79dbf88aa625/minutos/BTCUSDT/2024-05.parquet": "a4d30d844c09111c6b8fc96a0b29145457bccf60059afe2a6c73fc8c4a9e31fb",
+      "dados/mercado/binance_spot/449aab6c79dbf88aa625/minutos/BTCUSDT/2024-06.parquet": "82069f2aa0748cb224bfbfe149c73d2194d02c6cb863be88d41d2e0177010ac9",
+      "dados/mercado/binance_spot/449aab6c79dbf88aa625/minutos/BTCUSDT/2024-07.parquet": "f1fd65c63b52523a145bd188da6617a2fef58778c0679e5636a35b1761269046",
+      "dados/mercado/binance_spot/449aab6c79dbf88aa625/minutos/BTCUSDT/2024-08.parquet": "9dae872db866cd624280f25dddc90f5cde81e0dfa9348bc7a7d0d1c9aef4dcff",
+      "dados/mercado/binance_spot/449aab6c79dbf88aa625/minutos/BTCUSDT/2024-09.parquet": "10f5322143ca67fc796b852881806b2b44d0856aa6f96292e3ff9dc6f48de0ec",
+      "dados/mercado/binance_spot/449aab6c79dbf88aa625/minutos/BTCUSDT/2024-10.parquet": "42438631dcf61679ab0701801aef47b6f9ba3d993a5284fe68325863e680414a",
+      "dados/mercado/binance_spot/449aab6c79dbf88aa625/minutos/BTCUSDT/2024-11.parquet": "b731dc69365139acb61943ea20c0eb163ea680ffbce96cd1d5e8ab539fe4672f",
+      "dados/mercado/binance_spot/449aab6c79dbf88aa625/minutos/BTCUSDT/2024-12.parquet": "1582634c83d683410d3e663d4d1cca3379654be09a048f9722a92f71571e5c12",
+      "dados/mercado/binance_spot/449aab6c79dbf88aa625/minutos/BTCUSDT/2025-01.parquet": "a1c5bb41fa3712d9cc02bbfb26c0b411d4fc10659d9d3767ed7251c705dadafa",
+      "dados/mercado/binance_spot/449aab6c79dbf88aa625/minutos/BTCUSDT/2025-02.parquet": "f23add94e24e5f9754e90eb631f3d7ec2c053652010100f16f97b0f8679d36b0",
+      "dados/mercado/binance_spot/449aab6c79dbf88aa625/minutos/BTCUSDT/2025-03.parquet": "3063cd7e75cef9e9ff30a8cb328557568769be2ceaa11bf8e5361a4c11eec920",
+      "dados/mercado/binance_spot/449aab6c79dbf88aa625/minutos/BTCUSDT/2025-04.parquet": "63d3f4ac928819b912d1660c329f816c68131c28498e1c1a494a7b4bc52e1573",
+      "dados/mercado/binance_spot/449aab6c79dbf88aa625/minutos/BTCUSDT/2025-05.parquet": "6fb1f0d05ca289a5a44566ed473a1f49084f6cdfc69ed6179a79bd538862b910",
+      "dados/mercado/binance_spot/449aab6c79dbf88aa625/minutos/BTCUSDT/2025-06.parquet": "164a095966a9ac2a6df398fa58df95a7639968d7b2a26880139ba5ab20ae2f6a",
+      "dados/mercado/binance_spot/449aab6c79dbf88aa625/minutos/BTCUSDT/2025-07.parquet": "aa42869e3c0759779d429c98cbfad28ecd62a851cbbec96d993e740f111ba547",
+      "dados/mercado/binance_spot/449aab6c79dbf88aa625/minutos/BTCUSDT/2025-08.parquet": "67df46b1df4b8283d174805097eb16e630fc5053333c56d4db379c67ca562718",
+      "dados/mercado/binance_spot/449aab6c79dbf88aa625/minutos/BTCUSDT/2025-09.parquet": "36576312a046a3f60c3488e68709eb50064f52caff7a066f91da080e004dd7da",
+      "dados/mercado/binance_spot/449aab6c79dbf88aa625/minutos/BTCUSDT/2025-10.parquet": "38e1e9749e72d81c1787e05745c460236bf2e5772caf5e2a6e2dc12027b40e08",
+      "dados/mercado/binance_spot/449aab6c79dbf88aa625/minutos/BTCUSDT/2025-11.parquet": "a37faf43f6c1352e5bd2cd6fd2664a9c4212810b8774647cbb101a3d1495b580",
+      "dados/mercado/binance_spot/449aab6c79dbf88aa625/minutos/BTCUSDT/2025-12.parquet": "cd0df96952c0495cbee76c5150e0c57007754b6866d186325d38a8c608c428a1",
+      "dados/mercado/binance_spot/449aab6c79dbf88aa625/manifesto.json": "c400f234dee55aba0ea042d09a77018166502b516be54bdb27f1b6d3ed0ac3d3",
+      "dados/mercado/binance_spot/449aab6c79dbf88aa625/qualidade.json": "5f2d45b655b07665e70b4f3c87000ef4899fa54ca87a7927cdbfb473aabaeca1",
+      "dados/experimentos/cryptomamba_adaptado_35dd98141ee20d9b8885/publicacoes/tentativa_001/manifesto.json": "86dc915f920be638deeb66691663f45326afd8107fcac9938d9eaf20778f4893",
+      "dados/experimentos/cryptomamba_adaptado_35dd98141ee20d9b8885/publicacoes/tentativa_001/resultados.json": "92753992d8814e678da16b1d550243fc8a2aeaff9ef0c70ecc7efd5c04823e03",
+      "registros/cryptomamba/execucao.json": "03792c71827f9216affc5a4587fd6cf84762e5a1f39b38c611a3baceae5d76b1",
+      "registros/cryptomamba/fechamento.json": "f7060f95a2fac4be256c2213b6fc484df2ebd24c39c4e1f3bd4bae954cc384a3",
+      "registros/referencias/mamba16_ohlcv24_001.json": "d09a1f74a118d249e61f1d539aae6919e7a195ff0dec9ade513db5955232ecc3",
+      "registros/backtest_carteira/revisao_loader/qualificacao_loader.json": "001182bca7cc5776dc8bca07ac04185e02b577413d8f9bc2a15cce7d5920e2ee"
+    },
+    "mercado_partes": [
+      {
+        "par": "BTCUSDT",
+        "periodo": {
+          "inicio": "2023-12-01T00:00:00+00:00",
+          "fim": "2024-01-01T00:00:00+00:00"
+        },
+        "arquivo": "minutos/BTCUSDT/2023-12.parquet",
+        "esperados": 44640,
+        "registros_recebidos": 44640,
+        "completos": 44640,
+        "interrompidos": 0,
+        "ausentes_na_fonte": 0,
+        "indisponiveis": 0,
+        "completos_sem_negocios": 0,
+        "unidade_fonte": "ms"
+      },
+      {
+        "par": "BTCUSDT",
+        "periodo": {
+          "inicio": "2024-01-01T00:00:00+00:00",
+          "fim": "2024-02-01T00:00:00+00:00"
+        },
+        "arquivo": "minutos/BTCUSDT/2024-01.parquet",
+        "esperados": 44640,
+        "registros_recebidos": 44640,
+        "completos": 44640,
+        "interrompidos": 0,
+        "ausentes_na_fonte": 0,
+        "indisponiveis": 0,
+        "completos_sem_negocios": 0,
+        "unidade_fonte": "ms"
+      },
+      {
+        "par": "BTCUSDT",
+        "periodo": {
+          "inicio": "2024-02-01T00:00:00+00:00",
+          "fim": "2024-03-01T00:00:00+00:00"
+        },
+        "arquivo": "minutos/BTCUSDT/2024-02.parquet",
+        "esperados": 41760,
+        "registros_recebidos": 41760,
+        "completos": 41760,
+        "interrompidos": 0,
+        "ausentes_na_fonte": 0,
+        "indisponiveis": 0,
+        "completos_sem_negocios": 0,
+        "unidade_fonte": "ms"
+      },
+      {
+        "par": "BTCUSDT",
+        "periodo": {
+          "inicio": "2024-03-01T00:00:00+00:00",
+          "fim": "2024-04-01T00:00:00+00:00"
+        },
+        "arquivo": "minutos/BTCUSDT/2024-03.parquet",
+        "esperados": 44640,
+        "registros_recebidos": 44640,
+        "completos": 44640,
+        "interrompidos": 0,
+        "ausentes_na_fonte": 0,
+        "indisponiveis": 0,
+        "completos_sem_negocios": 0,
+        "unidade_fonte": "ms"
+      },
+      {
+        "par": "BTCUSDT",
+        "periodo": {
+          "inicio": "2024-04-01T00:00:00+00:00",
+          "fim": "2024-05-01T00:00:00+00:00"
+        },
+        "arquivo": "minutos/BTCUSDT/2024-04.parquet",
+        "esperados": 43200,
+        "registros_recebidos": 43200,
+        "completos": 43200,
+        "interrompidos": 0,
+        "ausentes_na_fonte": 0,
+        "indisponiveis": 0,
+        "completos_sem_negocios": 0,
+        "unidade_fonte": "ms"
+      },
+      {
+        "par": "BTCUSDT",
+        "periodo": {
+          "inicio": "2024-05-01T00:00:00+00:00",
+          "fim": "2024-06-01T00:00:00+00:00"
+        },
+        "arquivo": "minutos/BTCUSDT/2024-05.parquet",
+        "esperados": 44640,
+        "registros_recebidos": 44640,
+        "completos": 44640,
+        "interrompidos": 0,
+        "ausentes_na_fonte": 0,
+        "indisponiveis": 0,
+        "completos_sem_negocios": 0,
+        "unidade_fonte": "ms"
+      },
+      {
+        "par": "BTCUSDT",
+        "periodo": {
+          "inicio": "2024-06-01T00:00:00+00:00",
+          "fim": "2024-07-01T00:00:00+00:00"
+        },
+        "arquivo": "minutos/BTCUSDT/2024-06.parquet",
+        "esperados": 43200,
+        "registros_recebidos": 43200,
+        "completos": 43200,
+        "interrompidos": 0,
+        "ausentes_na_fonte": 0,
+        "indisponiveis": 0,
+        "completos_sem_negocios": 0,
+        "unidade_fonte": "ms"
+      },
+      {
+        "par": "BTCUSDT",
+        "periodo": {
+          "inicio": "2024-07-01T00:00:00+00:00",
+          "fim": "2024-08-01T00:00:00+00:00"
+        },
+        "arquivo": "minutos/BTCUSDT/2024-07.parquet",
+        "esperados": 44640,
+        "registros_recebidos": 44640,
+        "completos": 44640,
+        "interrompidos": 0,
+        "ausentes_na_fonte": 0,
+        "indisponiveis": 0,
+        "completos_sem_negocios": 0,
+        "unidade_fonte": "ms"
+      },
+      {
+        "par": "BTCUSDT",
+        "periodo": {
+          "inicio": "2024-08-01T00:00:00+00:00",
+          "fim": "2024-09-01T00:00:00+00:00"
+        },
+        "arquivo": "minutos/BTCUSDT/2024-08.parquet",
+        "esperados": 44640,
+        "registros_recebidos": 44640,
+        "completos": 44640,
+        "interrompidos": 0,
+        "ausentes_na_fonte": 0,
+        "indisponiveis": 0,
+        "completos_sem_negocios": 0,
+        "unidade_fonte": "ms"
+      },
+      {
+        "par": "BTCUSDT",
+        "periodo": {
+          "inicio": "2024-09-01T00:00:00+00:00",
+          "fim": "2024-10-01T00:00:00+00:00"
+        },
+        "arquivo": "minutos/BTCUSDT/2024-09.parquet",
+        "esperados": 43200,
+        "registros_recebidos": 43200,
+        "completos": 43200,
+        "interrompidos": 0,
+        "ausentes_na_fonte": 0,
+        "indisponiveis": 0,
+        "completos_sem_negocios": 0,
+        "unidade_fonte": "ms"
+      },
+      {
+        "par": "BTCUSDT",
+        "periodo": {
+          "inicio": "2024-10-01T00:00:00+00:00",
+          "fim": "2024-11-01T00:00:00+00:00"
+        },
+        "arquivo": "minutos/BTCUSDT/2024-10.parquet",
+        "esperados": 44640,
+        "registros_recebidos": 44640,
+        "completos": 44640,
+        "interrompidos": 0,
+        "ausentes_na_fonte": 0,
+        "indisponiveis": 0,
+        "completos_sem_negocios": 0,
+        "unidade_fonte": "ms"
+      },
+      {
+        "par": "BTCUSDT",
+        "periodo": {
+          "inicio": "2024-11-01T00:00:00+00:00",
+          "fim": "2024-12-01T00:00:00+00:00"
+        },
+        "arquivo": "minutos/BTCUSDT/2024-11.parquet",
+        "esperados": 43200,
+        "registros_recebidos": 43200,
+        "completos": 43200,
+        "interrompidos": 0,
+        "ausentes_na_fonte": 0,
+        "indisponiveis": 0,
+        "completos_sem_negocios": 0,
+        "unidade_fonte": "ms"
+      },
+      {
+        "par": "BTCUSDT",
+        "periodo": {
+          "inicio": "2024-12-01T00:00:00+00:00",
+          "fim": "2025-01-01T00:00:00+00:00"
+        },
+        "arquivo": "minutos/BTCUSDT/2024-12.parquet",
+        "esperados": 44640,
+        "registros_recebidos": 44640,
+        "completos": 44640,
+        "interrompidos": 0,
+        "ausentes_na_fonte": 0,
+        "indisponiveis": 0,
+        "completos_sem_negocios": 0,
+        "unidade_fonte": "ms"
+      },
+      {
+        "par": "BTCUSDT",
+        "periodo": {
+          "inicio": "2025-01-01T00:00:00+00:00",
+          "fim": "2025-02-01T00:00:00+00:00"
+        },
+        "arquivo": "minutos/BTCUSDT/2025-01.parquet",
+        "esperados": 44640,
+        "registros_recebidos": 44640,
+        "completos": 44640,
+        "interrompidos": 0,
+        "ausentes_na_fonte": 0,
+        "indisponiveis": 0,
+        "completos_sem_negocios": 0,
+        "unidade_fonte": "us"
+      },
+      {
+        "par": "BTCUSDT",
+        "periodo": {
+          "inicio": "2025-02-01T00:00:00+00:00",
+          "fim": "2025-03-01T00:00:00+00:00"
+        },
+        "arquivo": "minutos/BTCUSDT/2025-02.parquet",
+        "esperados": 40320,
+        "registros_recebidos": 40320,
+        "completos": 40320,
+        "interrompidos": 0,
+        "ausentes_na_fonte": 0,
+        "indisponiveis": 0,
+        "completos_sem_negocios": 0,
+        "unidade_fonte": "us"
+      },
+      {
+        "par": "BTCUSDT",
+        "periodo": {
+          "inicio": "2025-03-01T00:00:00+00:00",
+          "fim": "2025-04-01T00:00:00+00:00"
+        },
+        "arquivo": "minutos/BTCUSDT/2025-03.parquet",
+        "esperados": 44640,
+        "registros_recebidos": 44640,
+        "completos": 44640,
+        "interrompidos": 0,
+        "ausentes_na_fonte": 0,
+        "indisponiveis": 0,
+        "completos_sem_negocios": 0,
+        "unidade_fonte": "us"
+      },
+      {
+        "par": "BTCUSDT",
+        "periodo": {
+          "inicio": "2025-04-01T00:00:00+00:00",
+          "fim": "2025-05-01T00:00:00+00:00"
+        },
+        "arquivo": "minutos/BTCUSDT/2025-04.parquet",
+        "esperados": 43200,
+        "registros_recebidos": 43200,
+        "completos": 43200,
+        "interrompidos": 0,
+        "ausentes_na_fonte": 0,
+        "indisponiveis": 0,
+        "completos_sem_negocios": 0,
+        "unidade_fonte": "us"
+      },
+      {
+        "par": "BTCUSDT",
+        "periodo": {
+          "inicio": "2025-05-01T00:00:00+00:00",
+          "fim": "2025-06-01T00:00:00+00:00"
+        },
+        "arquivo": "minutos/BTCUSDT/2025-05.parquet",
+        "esperados": 44640,
+        "registros_recebidos": 44640,
+        "completos": 44640,
+        "interrompidos": 0,
+        "ausentes_na_fonte": 0,
+        "indisponiveis": 0,
+        "completos_sem_negocios": 0,
+        "unidade_fonte": "us"
+      },
+      {
+        "par": "BTCUSDT",
+        "periodo": {
+          "inicio": "2025-06-01T00:00:00+00:00",
+          "fim": "2025-07-01T00:00:00+00:00"
+        },
+        "arquivo": "minutos/BTCUSDT/2025-06.parquet",
+        "esperados": 43200,
+        "registros_recebidos": 43200,
+        "completos": 43200,
+        "interrompidos": 0,
+        "ausentes_na_fonte": 0,
+        "indisponiveis": 0,
+        "completos_sem_negocios": 0,
+        "unidade_fonte": "us"
+      },
+      {
+        "par": "BTCUSDT",
+        "periodo": {
+          "inicio": "2025-07-01T00:00:00+00:00",
+          "fim": "2025-08-01T00:00:00+00:00"
+        },
+        "arquivo": "minutos/BTCUSDT/2025-07.parquet",
+        "esperados": 44640,
+        "registros_recebidos": 44640,
+        "completos": 44640,
+        "interrompidos": 0,
+        "ausentes_na_fonte": 0,
+        "indisponiveis": 0,
+        "completos_sem_negocios": 0,
+        "unidade_fonte": "us"
+      },
+      {
+        "par": "BTCUSDT",
+        "periodo": {
+          "inicio": "2025-08-01T00:00:00+00:00",
+          "fim": "2025-09-01T00:00:00+00:00"
+        },
+        "arquivo": "minutos/BTCUSDT/2025-08.parquet",
+        "esperados": 44640,
+        "registros_recebidos": 44640,
+        "completos": 44640,
+        "interrompidos": 0,
+        "ausentes_na_fonte": 0,
+        "indisponiveis": 0,
+        "completos_sem_negocios": 0,
+        "unidade_fonte": "us"
+      },
+      {
+        "par": "BTCUSDT",
+        "periodo": {
+          "inicio": "2025-09-01T00:00:00+00:00",
+          "fim": "2025-10-01T00:00:00+00:00"
+        },
+        "arquivo": "minutos/BTCUSDT/2025-09.parquet",
+        "esperados": 43200,
+        "registros_recebidos": 43200,
+        "completos": 43200,
+        "interrompidos": 0,
+        "ausentes_na_fonte": 0,
+        "indisponiveis": 0,
+        "completos_sem_negocios": 0,
+        "unidade_fonte": "us"
+      },
+      {
+        "par": "BTCUSDT",
+        "periodo": {
+          "inicio": "2025-10-01T00:00:00+00:00",
+          "fim": "2025-11-01T00:00:00+00:00"
+        },
+        "arquivo": "minutos/BTCUSDT/2025-10.parquet",
+        "esperados": 44640,
+        "registros_recebidos": 44640,
+        "completos": 44640,
+        "interrompidos": 0,
+        "ausentes_na_fonte": 0,
+        "indisponiveis": 0,
+        "completos_sem_negocios": 0,
+        "unidade_fonte": "us"
+      },
+      {
+        "par": "BTCUSDT",
+        "periodo": {
+          "inicio": "2025-11-01T00:00:00+00:00",
+          "fim": "2025-12-01T00:00:00+00:00"
+        },
+        "arquivo": "minutos/BTCUSDT/2025-11.parquet",
+        "esperados": 43200,
+        "registros_recebidos": 43200,
+        "completos": 43200,
+        "interrompidos": 0,
+        "ausentes_na_fonte": 0,
+        "indisponiveis": 0,
+        "completos_sem_negocios": 0,
+        "unidade_fonte": "us"
+      },
+      {
+        "par": "BTCUSDT",
+        "periodo": {
+          "inicio": "2025-12-01T00:00:00+00:00",
+          "fim": "2026-01-01T00:00:00+00:00"
+        },
+        "arquivo": "minutos/BTCUSDT/2025-12.parquet",
+        "esperados": 44640,
+        "registros_recebidos": 44640,
+        "completos": 44640,
+        "interrompidos": 0,
+        "ausentes_na_fonte": 0,
+        "indisponiveis": 0,
+        "completos_sem_negocios": 0,
+        "unidade_fonte": "us"
+      }
+    ],
+    "medias_validacao_para_controle": {
+      "estado16_17": 0.0012720258517386301,
+      "estado16_42": 0.0002935820592785094,
+      "estado16_2026": 0.0014143533616629716,
+      "estado16_7": 0.0011941958038099501,
+      "estado16_123": 0.0005152532680851871,
+      "estado16_31415": 0.0005719455401240154,
+      "lstm_17": 0.00024186447883863023,
+      "lstm_42": -0.0004991753504630769,
+      "lstm_2026": -8.884303222528236e-06,
+      "cryptomamba_17": 0.0015787388270256002,
+      "cryptomamba_42": 0.0018877214297081553,
+      "cryptomamba_2026": 0.0019279785130431625,
+      "cryptomamba_7": 0.001093812923041885,
+      "cryptomamba_123": 0.0008317526588648191,
+      "cryptomamba_31415": 0.0014596697359185939,
+      "naive": 0.0,
+      "arima": -1.134072543926834e-05
+    },
+    "grade": [
+      {
+        "parte": "validacao",
+        "cenario": "ideal",
+        "politica": "smart",
+        "serie": "estado16_17"
+      },
+      {
+        "parte": "validacao",
+        "cenario": "ideal",
+        "politica": "smart",
+        "serie": "estado16_42"
+      },
+      {
+        "parte": "validacao",
+        "cenario": "ideal",
+        "politica": "smart",
+        "serie": "estado16_2026"
+      },
+      {
+        "parte": "validacao",
+        "cenario": "ideal",
+        "politica": "smart",
+        "serie": "estado16_7"
+      },
+      {
+        "parte": "validacao",
+        "cenario": "ideal",
+        "politica": "smart",
+        "serie": "estado16_123"
+      },
+      {
+        "parte": "validacao",
+        "cenario": "ideal",
+        "politica": "smart",
+        "serie": "estado16_31415"
+      },
+      {
+        "parte": "validacao",
+        "cenario": "ideal",
+        "politica": "smart",
+        "serie": "lstm_17"
+      },
+      {
+        "parte": "validacao",
+        "cenario": "ideal",
+        "politica": "smart",
+        "serie": "lstm_42"
+      },
+      {
+        "parte": "validacao",
+        "cenario": "ideal",
+        "politica": "smart",
+        "serie": "lstm_2026"
+      },
+      {
+        "parte": "validacao",
+        "cenario": "ideal",
+        "politica": "smart",
+        "serie": "cryptomamba_17"
+      },
+      {
+        "parte": "validacao",
+        "cenario": "ideal",
+        "politica": "smart",
+        "serie": "cryptomamba_42"
+      },
+      {
+        "parte": "validacao",
+        "cenario": "ideal",
+        "politica": "smart",
+        "serie": "cryptomamba_2026"
+      },
+      {
+        "parte": "validacao",
+        "cenario": "ideal",
+        "politica": "smart",
+        "serie": "cryptomamba_7"
+      },
+      {
+        "parte": "validacao",
+        "cenario": "ideal",
+        "politica": "smart",
+        "serie": "cryptomamba_123"
+      },
+      {
+        "parte": "validacao",
+        "cenario": "ideal",
+        "politica": "smart",
+        "serie": "cryptomamba_31415"
+      },
+      {
+        "parte": "validacao",
+        "cenario": "ideal",
+        "politica": "smart",
+        "serie": "naive"
+      },
+      {
+        "parte": "validacao",
+        "cenario": "ideal",
+        "politica": "smart",
+        "serie": "arima"
+      },
+      {
+        "parte": "validacao",
+        "cenario": "ideal",
+        "politica": "vanilla",
+        "serie": "estado16_17"
+      },
+      {
+        "parte": "validacao",
+        "cenario": "ideal",
+        "politica": "vanilla",
+        "serie": "estado16_42"
+      },
+      {
+        "parte": "validacao",
+        "cenario": "ideal",
+        "politica": "vanilla",
+        "serie": "estado16_2026"
+      },
+      {
+        "parte": "validacao",
+        "cenario": "ideal",
+        "politica": "vanilla",
+        "serie": "estado16_7"
+      },
+      {
+        "parte": "validacao",
+        "cenario": "ideal",
+        "politica": "vanilla",
+        "serie": "estado16_123"
+      },
+      {
+        "parte": "validacao",
+        "cenario": "ideal",
+        "politica": "vanilla",
+        "serie": "estado16_31415"
+      },
+      {
+        "parte": "validacao",
+        "cenario": "ideal",
+        "politica": "vanilla",
+        "serie": "lstm_17"
+      },
+      {
+        "parte": "validacao",
+        "cenario": "ideal",
+        "politica": "vanilla",
+        "serie": "lstm_42"
+      },
+      {
+        "parte": "validacao",
+        "cenario": "ideal",
+        "politica": "vanilla",
+        "serie": "lstm_2026"
+      },
+      {
+        "parte": "validacao",
+        "cenario": "ideal",
+        "politica": "vanilla",
+        "serie": "cryptomamba_17"
+      },
+      {
+        "parte": "validacao",
+        "cenario": "ideal",
+        "politica": "vanilla",
+        "serie": "cryptomamba_42"
+      },
+      {
+        "parte": "validacao",
+        "cenario": "ideal",
+        "politica": "vanilla",
+        "serie": "cryptomamba_2026"
+      },
+      {
+        "parte": "validacao",
+        "cenario": "ideal",
+        "politica": "vanilla",
+        "serie": "cryptomamba_7"
+      },
+      {
+        "parte": "validacao",
+        "cenario": "ideal",
+        "politica": "vanilla",
+        "serie": "cryptomamba_123"
+      },
+      {
+        "parte": "validacao",
+        "cenario": "ideal",
+        "politica": "vanilla",
+        "serie": "cryptomamba_31415"
+      },
+      {
+        "parte": "validacao",
+        "cenario": "ideal",
+        "politica": "vanilla",
+        "serie": "naive"
+      },
+      {
+        "parte": "validacao",
+        "cenario": "ideal",
+        "politica": "vanilla",
+        "serie": "arima"
+      },
+      {
+        "parte": "validacao",
+        "cenario": "ideal",
+        "politica": "diaria24",
+        "serie": "estado16_17"
+      },
+      {
+        "parte": "validacao",
+        "cenario": "ideal",
+        "politica": "diaria24",
+        "serie": "estado16_42"
+      },
+      {
+        "parte": "validacao",
+        "cenario": "ideal",
+        "politica": "diaria24",
+        "serie": "estado16_2026"
+      },
+      {
+        "parte": "validacao",
+        "cenario": "ideal",
+        "politica": "diaria24",
+        "serie": "estado16_7"
+      },
+      {
+        "parte": "validacao",
+        "cenario": "ideal",
+        "politica": "diaria24",
+        "serie": "estado16_123"
+      },
+      {
+        "parte": "validacao",
+        "cenario": "ideal",
+        "politica": "diaria24",
+        "serie": "estado16_31415"
+      },
+      {
+        "parte": "validacao",
+        "cenario": "ideal",
+        "politica": "diaria24",
+        "serie": "lstm_17"
+      },
+      {
+        "parte": "validacao",
+        "cenario": "ideal",
+        "politica": "diaria24",
+        "serie": "lstm_42"
+      },
+      {
+        "parte": "validacao",
+        "cenario": "ideal",
+        "politica": "diaria24",
+        "serie": "lstm_2026"
+      },
+      {
+        "parte": "validacao",
+        "cenario": "ideal",
+        "politica": "diaria24",
+        "serie": "cryptomamba_17"
+      },
+      {
+        "parte": "validacao",
+        "cenario": "ideal",
+        "politica": "diaria24",
+        "serie": "cryptomamba_42"
+      },
+      {
+        "parte": "validacao",
+        "cenario": "ideal",
+        "politica": "diaria24",
+        "serie": "cryptomamba_2026"
+      },
+      {
+        "parte": "validacao",
+        "cenario": "ideal",
+        "politica": "diaria24",
+        "serie": "cryptomamba_7"
+      },
+      {
+        "parte": "validacao",
+        "cenario": "ideal",
+        "politica": "diaria24",
+        "serie": "cryptomamba_123"
+      },
+      {
+        "parte": "validacao",
+        "cenario": "ideal",
+        "politica": "diaria24",
+        "serie": "cryptomamba_31415"
+      },
+      {
+        "parte": "validacao",
+        "cenario": "ideal",
+        "politica": "diaria24",
+        "serie": "naive"
+      },
+      {
+        "parte": "validacao",
+        "cenario": "ideal",
+        "politica": "diaria24",
+        "serie": "arima"
+      },
+      {
+        "parte": "validacao",
+        "cenario": "ideal",
+        "politica": "caixa",
+        "serie": "benchmark"
+      },
+      {
+        "parte": "validacao",
+        "cenario": "ideal",
+        "politica": "comprar_manter",
+        "serie": "benchmark"
+      },
+      {
+        "parte": "validacao",
+        "cenario": "base",
+        "politica": "smart",
+        "serie": "estado16_17"
+      },
+      {
+        "parte": "validacao",
+        "cenario": "base",
+        "politica": "smart",
+        "serie": "estado16_42"
+      },
+      {
+        "parte": "validacao",
+        "cenario": "base",
+        "politica": "smart",
+        "serie": "estado16_2026"
+      },
+      {
+        "parte": "validacao",
+        "cenario": "base",
+        "politica": "smart",
+        "serie": "estado16_7"
+      },
+      {
+        "parte": "validacao",
+        "cenario": "base",
+        "politica": "smart",
+        "serie": "estado16_123"
+      },
+      {
+        "parte": "validacao",
+        "cenario": "base",
+        "politica": "smart",
+        "serie": "estado16_31415"
+      },
+      {
+        "parte": "validacao",
+        "cenario": "base",
+        "politica": "smart",
+        "serie": "lstm_17"
+      },
+      {
+        "parte": "validacao",
+        "cenario": "base",
+        "politica": "smart",
+        "serie": "lstm_42"
+      },
+      {
+        "parte": "validacao",
+        "cenario": "base",
+        "politica": "smart",
+        "serie": "lstm_2026"
+      },
+      {
+        "parte": "validacao",
+        "cenario": "base",
+        "politica": "smart",
+        "serie": "cryptomamba_17"
+      },
+      {
+        "parte": "validacao",
+        "cenario": "base",
+        "politica": "smart",
+        "serie": "cryptomamba_42"
+      },
+      {
+        "parte": "validacao",
+        "cenario": "base",
+        "politica": "smart",
+        "serie": "cryptomamba_2026"
+      },
+      {
+        "parte": "validacao",
+        "cenario": "base",
+        "politica": "smart",
+        "serie": "cryptomamba_7"
+      },
+      {
+        "parte": "validacao",
+        "cenario": "base",
+        "politica": "smart",
+        "serie": "cryptomamba_123"
+      },
+      {
+        "parte": "validacao",
+        "cenario": "base",
+        "politica": "smart",
+        "serie": "cryptomamba_31415"
+      },
+      {
+        "parte": "validacao",
+        "cenario": "base",
+        "politica": "smart",
+        "serie": "naive"
+      },
+      {
+        "parte": "validacao",
+        "cenario": "base",
+        "politica": "smart",
+        "serie": "arima"
+      },
+      {
+        "parte": "validacao",
+        "cenario": "base",
+        "politica": "vanilla",
+        "serie": "estado16_17"
+      },
+      {
+        "parte": "validacao",
+        "cenario": "base",
+        "politica": "vanilla",
+        "serie": "estado16_42"
+      },
+      {
+        "parte": "validacao",
+        "cenario": "base",
+        "politica": "vanilla",
+        "serie": "estado16_2026"
+      },
+      {
+        "parte": "validacao",
+        "cenario": "base",
+        "politica": "vanilla",
+        "serie": "estado16_7"
+      },
+      {
+        "parte": "validacao",
+        "cenario": "base",
+        "politica": "vanilla",
+        "serie": "estado16_123"
+      },
+      {
+        "parte": "validacao",
+        "cenario": "base",
+        "politica": "vanilla",
+        "serie": "estado16_31415"
+      },
+      {
+        "parte": "validacao",
+        "cenario": "base",
+        "politica": "vanilla",
+        "serie": "lstm_17"
+      },
+      {
+        "parte": "validacao",
+        "cenario": "base",
+        "politica": "vanilla",
+        "serie": "lstm_42"
+      },
+      {
+        "parte": "validacao",
+        "cenario": "base",
+        "politica": "vanilla",
+        "serie": "lstm_2026"
+      },
+      {
+        "parte": "validacao",
+        "cenario": "base",
+        "politica": "vanilla",
+        "serie": "cryptomamba_17"
+      },
+      {
+        "parte": "validacao",
+        "cenario": "base",
+        "politica": "vanilla",
+        "serie": "cryptomamba_42"
+      },
+      {
+        "parte": "validacao",
+        "cenario": "base",
+        "politica": "vanilla",
+        "serie": "cryptomamba_2026"
+      },
+      {
+        "parte": "validacao",
+        "cenario": "base",
+        "politica": "vanilla",
+        "serie": "cryptomamba_7"
+      },
+      {
+        "parte": "validacao",
+        "cenario": "base",
+        "politica": "vanilla",
+        "serie": "cryptomamba_123"
+      },
+      {
+        "parte": "validacao",
+        "cenario": "base",
+        "politica": "vanilla",
+        "serie": "cryptomamba_31415"
+      },
+      {
+        "parte": "validacao",
+        "cenario": "base",
+        "politica": "vanilla",
+        "serie": "naive"
+      },
+      {
+        "parte": "validacao",
+        "cenario": "base",
+        "politica": "vanilla",
+        "serie": "arima"
+      },
+      {
+        "parte": "validacao",
+        "cenario": "base",
+        "politica": "diaria24",
+        "serie": "estado16_17"
+      },
+      {
+        "parte": "validacao",
+        "cenario": "base",
+        "politica": "diaria24",
+        "serie": "estado16_42"
+      },
+      {
+        "parte": "validacao",
+        "cenario": "base",
+        "politica": "diaria24",
+        "serie": "estado16_2026"
+      },
+      {
+        "parte": "validacao",
+        "cenario": "base",
+        "politica": "diaria24",
+        "serie": "estado16_7"
+      },
+      {
+        "parte": "validacao",
+        "cenario": "base",
+        "politica": "diaria24",
+        "serie": "estado16_123"
+      },
+      {
+        "parte": "validacao",
+        "cenario": "base",
+        "politica": "diaria24",
+        "serie": "estado16_31415"
+      },
+      {
+        "parte": "validacao",
+        "cenario": "base",
+        "politica": "diaria24",
+        "serie": "lstm_17"
+      },
+      {
+        "parte": "validacao",
+        "cenario": "base",
+        "politica": "diaria24",
+        "serie": "lstm_42"
+      },
+      {
+        "parte": "validacao",
+        "cenario": "base",
+        "politica": "diaria24",
+        "serie": "lstm_2026"
+      },
+      {
+        "parte": "validacao",
+        "cenario": "base",
+        "politica": "diaria24",
+        "serie": "cryptomamba_17"
+      },
+      {
+        "parte": "validacao",
+        "cenario": "base",
+        "politica": "diaria24",
+        "serie": "cryptomamba_42"
+      },
+      {
+        "parte": "validacao",
+        "cenario": "base",
+        "politica": "diaria24",
+        "serie": "cryptomamba_2026"
+      },
+      {
+        "parte": "validacao",
+        "cenario": "base",
+        "politica": "diaria24",
+        "serie": "cryptomamba_7"
+      },
+      {
+        "parte": "validacao",
+        "cenario": "base",
+        "politica": "diaria24",
+        "serie": "cryptomamba_123"
+      },
+      {
+        "parte": "validacao",
+        "cenario": "base",
+        "politica": "diaria24",
+        "serie": "cryptomamba_31415"
+      },
+      {
+        "parte": "validacao",
+        "cenario": "base",
+        "politica": "diaria24",
+        "serie": "naive"
+      },
+      {
+        "parte": "validacao",
+        "cenario": "base",
+        "politica": "diaria24",
+        "serie": "arima"
+      },
+      {
+        "parte": "validacao",
+        "cenario": "base",
+        "politica": "caixa",
+        "serie": "benchmark"
+      },
+      {
+        "parte": "validacao",
+        "cenario": "base",
+        "politica": "comprar_manter",
+        "serie": "benchmark"
+      },
+      {
+        "parte": "validacao",
+        "cenario": "agravado",
+        "politica": "smart",
+        "serie": "estado16_17"
+      },
+      {
+        "parte": "validacao",
+        "cenario": "agravado",
+        "politica": "smart",
+        "serie": "estado16_42"
+      },
+      {
+        "parte": "validacao",
+        "cenario": "agravado",
+        "politica": "smart",
+        "serie": "estado16_2026"
+      },
+      {
+        "parte": "validacao",
+        "cenario": "agravado",
+        "politica": "smart",
+        "serie": "estado16_7"
+      },
+      {
+        "parte": "validacao",
+        "cenario": "agravado",
+        "politica": "smart",
+        "serie": "estado16_123"
+      },
+      {
+        "parte": "validacao",
+        "cenario": "agravado",
+        "politica": "smart",
+        "serie": "estado16_31415"
+      },
+      {
+        "parte": "validacao",
+        "cenario": "agravado",
+        "politica": "smart",
+        "serie": "lstm_17"
+      },
+      {
+        "parte": "validacao",
+        "cenario": "agravado",
+        "politica": "smart",
+        "serie": "lstm_42"
+      },
+      {
+        "parte": "validacao",
+        "cenario": "agravado",
+        "politica": "smart",
+        "serie": "lstm_2026"
+      },
+      {
+        "parte": "validacao",
+        "cenario": "agravado",
+        "politica": "smart",
+        "serie": "cryptomamba_17"
+      },
+      {
+        "parte": "validacao",
+        "cenario": "agravado",
+        "politica": "smart",
+        "serie": "cryptomamba_42"
+      },
+      {
+        "parte": "validacao",
+        "cenario": "agravado",
+        "politica": "smart",
+        "serie": "cryptomamba_2026"
+      },
+      {
+        "parte": "validacao",
+        "cenario": "agravado",
+        "politica": "smart",
+        "serie": "cryptomamba_7"
+      },
+      {
+        "parte": "validacao",
+        "cenario": "agravado",
+        "politica": "smart",
+        "serie": "cryptomamba_123"
+      },
+      {
+        "parte": "validacao",
+        "cenario": "agravado",
+        "politica": "smart",
+        "serie": "cryptomamba_31415"
+      },
+      {
+        "parte": "validacao",
+        "cenario": "agravado",
+        "politica": "smart",
+        "serie": "naive"
+      },
+      {
+        "parte": "validacao",
+        "cenario": "agravado",
+        "politica": "smart",
+        "serie": "arima"
+      },
+      {
+        "parte": "validacao",
+        "cenario": "agravado",
+        "politica": "vanilla",
+        "serie": "estado16_17"
+      },
+      {
+        "parte": "validacao",
+        "cenario": "agravado",
+        "politica": "vanilla",
+        "serie": "estado16_42"
+      },
+      {
+        "parte": "validacao",
+        "cenario": "agravado",
+        "politica": "vanilla",
+        "serie": "estado16_2026"
+      },
+      {
+        "parte": "validacao",
+        "cenario": "agravado",
+        "politica": "vanilla",
+        "serie": "estado16_7"
+      },
+      {
+        "parte": "validacao",
+        "cenario": "agravado",
+        "politica": "vanilla",
+        "serie": "estado16_123"
+      },
+      {
+        "parte": "validacao",
+        "cenario": "agravado",
+        "politica": "vanilla",
+        "serie": "estado16_31415"
+      },
+      {
+        "parte": "validacao",
+        "cenario": "agravado",
+        "politica": "vanilla",
+        "serie": "lstm_17"
+      },
+      {
+        "parte": "validacao",
+        "cenario": "agravado",
+        "politica": "vanilla",
+        "serie": "lstm_42"
+      },
+      {
+        "parte": "validacao",
+        "cenario": "agravado",
+        "politica": "vanilla",
+        "serie": "lstm_2026"
+      },
+      {
+        "parte": "validacao",
+        "cenario": "agravado",
+        "politica": "vanilla",
+        "serie": "cryptomamba_17"
+      },
+      {
+        "parte": "validacao",
+        "cenario": "agravado",
+        "politica": "vanilla",
+        "serie": "cryptomamba_42"
+      },
+      {
+        "parte": "validacao",
+        "cenario": "agravado",
+        "politica": "vanilla",
+        "serie": "cryptomamba_2026"
+      },
+      {
+        "parte": "validacao",
+        "cenario": "agravado",
+        "politica": "vanilla",
+        "serie": "cryptomamba_7"
+      },
+      {
+        "parte": "validacao",
+        "cenario": "agravado",
+        "politica": "vanilla",
+        "serie": "cryptomamba_123"
+      },
+      {
+        "parte": "validacao",
+        "cenario": "agravado",
+        "politica": "vanilla",
+        "serie": "cryptomamba_31415"
+      },
+      {
+        "parte": "validacao",
+        "cenario": "agravado",
+        "politica": "vanilla",
+        "serie": "naive"
+      },
+      {
+        "parte": "validacao",
+        "cenario": "agravado",
+        "politica": "vanilla",
+        "serie": "arima"
+      },
+      {
+        "parte": "validacao",
+        "cenario": "agravado",
+        "politica": "diaria24",
+        "serie": "estado16_17"
+      },
+      {
+        "parte": "validacao",
+        "cenario": "agravado",
+        "politica": "diaria24",
+        "serie": "estado16_42"
+      },
+      {
+        "parte": "validacao",
+        "cenario": "agravado",
+        "politica": "diaria24",
+        "serie": "estado16_2026"
+      },
+      {
+        "parte": "validacao",
+        "cenario": "agravado",
+        "politica": "diaria24",
+        "serie": "estado16_7"
+      },
+      {
+        "parte": "validacao",
+        "cenario": "agravado",
+        "politica": "diaria24",
+        "serie": "estado16_123"
+      },
+      {
+        "parte": "validacao",
+        "cenario": "agravado",
+        "politica": "diaria24",
+        "serie": "estado16_31415"
+      },
+      {
+        "parte": "validacao",
+        "cenario": "agravado",
+        "politica": "diaria24",
+        "serie": "lstm_17"
+      },
+      {
+        "parte": "validacao",
+        "cenario": "agravado",
+        "politica": "diaria24",
+        "serie": "lstm_42"
+      },
+      {
+        "parte": "validacao",
+        "cenario": "agravado",
+        "politica": "diaria24",
+        "serie": "lstm_2026"
+      },
+      {
+        "parte": "validacao",
+        "cenario": "agravado",
+        "politica": "diaria24",
+        "serie": "cryptomamba_17"
+      },
+      {
+        "parte": "validacao",
+        "cenario": "agravado",
+        "politica": "diaria24",
+        "serie": "cryptomamba_42"
+      },
+      {
+        "parte": "validacao",
+        "cenario": "agravado",
+        "politica": "diaria24",
+        "serie": "cryptomamba_2026"
+      },
+      {
+        "parte": "validacao",
+        "cenario": "agravado",
+        "politica": "diaria24",
+        "serie": "cryptomamba_7"
+      },
+      {
+        "parte": "validacao",
+        "cenario": "agravado",
+        "politica": "diaria24",
+        "serie": "cryptomamba_123"
+      },
+      {
+        "parte": "validacao",
+        "cenario": "agravado",
+        "politica": "diaria24",
+        "serie": "cryptomamba_31415"
+      },
+      {
+        "parte": "validacao",
+        "cenario": "agravado",
+        "politica": "diaria24",
+        "serie": "naive"
+      },
+      {
+        "parte": "validacao",
+        "cenario": "agravado",
+        "politica": "diaria24",
+        "serie": "arima"
+      },
+      {
+        "parte": "validacao",
+        "cenario": "agravado",
+        "politica": "caixa",
+        "serie": "benchmark"
+      },
+      {
+        "parte": "validacao",
+        "cenario": "agravado",
+        "politica": "comprar_manter",
+        "serie": "benchmark"
+      },
+      {
+        "parte": "teste",
+        "cenario": "ideal",
+        "politica": "smart",
+        "serie": "estado16_17"
+      },
+      {
+        "parte": "teste",
+        "cenario": "ideal",
+        "politica": "smart",
+        "serie": "estado16_42"
+      },
+      {
+        "parte": "teste",
+        "cenario": "ideal",
+        "politica": "smart",
+        "serie": "estado16_2026"
+      },
+      {
+        "parte": "teste",
+        "cenario": "ideal",
+        "politica": "smart",
+        "serie": "estado16_7"
+      },
+      {
+        "parte": "teste",
+        "cenario": "ideal",
+        "politica": "smart",
+        "serie": "estado16_123"
+      },
+      {
+        "parte": "teste",
+        "cenario": "ideal",
+        "politica": "smart",
+        "serie": "estado16_31415"
+      },
+      {
+        "parte": "teste",
+        "cenario": "ideal",
+        "politica": "smart",
+        "serie": "lstm_17"
+      },
+      {
+        "parte": "teste",
+        "cenario": "ideal",
+        "politica": "smart",
+        "serie": "lstm_42"
+      },
+      {
+        "parte": "teste",
+        "cenario": "ideal",
+        "politica": "smart",
+        "serie": "lstm_2026"
+      },
+      {
+        "parte": "teste",
+        "cenario": "ideal",
+        "politica": "smart",
+        "serie": "cryptomamba_17"
+      },
+      {
+        "parte": "teste",
+        "cenario": "ideal",
+        "politica": "smart",
+        "serie": "cryptomamba_42"
+      },
+      {
+        "parte": "teste",
+        "cenario": "ideal",
+        "politica": "smart",
+        "serie": "cryptomamba_2026"
+      },
+      {
+        "parte": "teste",
+        "cenario": "ideal",
+        "politica": "smart",
+        "serie": "cryptomamba_7"
+      },
+      {
+        "parte": "teste",
+        "cenario": "ideal",
+        "politica": "smart",
+        "serie": "cryptomamba_123"
+      },
+      {
+        "parte": "teste",
+        "cenario": "ideal",
+        "politica": "smart",
+        "serie": "cryptomamba_31415"
+      },
+      {
+        "parte": "teste",
+        "cenario": "ideal",
+        "politica": "smart",
+        "serie": "naive"
+      },
+      {
+        "parte": "teste",
+        "cenario": "ideal",
+        "politica": "smart",
+        "serie": "arima"
+      },
+      {
+        "parte": "teste",
+        "cenario": "ideal",
+        "politica": "vanilla",
+        "serie": "estado16_17"
+      },
+      {
+        "parte": "teste",
+        "cenario": "ideal",
+        "politica": "vanilla",
+        "serie": "estado16_42"
+      },
+      {
+        "parte": "teste",
+        "cenario": "ideal",
+        "politica": "vanilla",
+        "serie": "estado16_2026"
+      },
+      {
+        "parte": "teste",
+        "cenario": "ideal",
+        "politica": "vanilla",
+        "serie": "estado16_7"
+      },
+      {
+        "parte": "teste",
+        "cenario": "ideal",
+        "politica": "vanilla",
+        "serie": "estado16_123"
+      },
+      {
+        "parte": "teste",
+        "cenario": "ideal",
+        "politica": "vanilla",
+        "serie": "estado16_31415"
+      },
+      {
+        "parte": "teste",
+        "cenario": "ideal",
+        "politica": "vanilla",
+        "serie": "lstm_17"
+      },
+      {
+        "parte": "teste",
+        "cenario": "ideal",
+        "politica": "vanilla",
+        "serie": "lstm_42"
+      },
+      {
+        "parte": "teste",
+        "cenario": "ideal",
+        "politica": "vanilla",
+        "serie": "lstm_2026"
+      },
+      {
+        "parte": "teste",
+        "cenario": "ideal",
+        "politica": "vanilla",
+        "serie": "cryptomamba_17"
+      },
+      {
+        "parte": "teste",
+        "cenario": "ideal",
+        "politica": "vanilla",
+        "serie": "cryptomamba_42"
+      },
+      {
+        "parte": "teste",
+        "cenario": "ideal",
+        "politica": "vanilla",
+        "serie": "cryptomamba_2026"
+      },
+      {
+        "parte": "teste",
+        "cenario": "ideal",
+        "politica": "vanilla",
+        "serie": "cryptomamba_7"
+      },
+      {
+        "parte": "teste",
+        "cenario": "ideal",
+        "politica": "vanilla",
+        "serie": "cryptomamba_123"
+      },
+      {
+        "parte": "teste",
+        "cenario": "ideal",
+        "politica": "vanilla",
+        "serie": "cryptomamba_31415"
+      },
+      {
+        "parte": "teste",
+        "cenario": "ideal",
+        "politica": "vanilla",
+        "serie": "naive"
+      },
+      {
+        "parte": "teste",
+        "cenario": "ideal",
+        "politica": "vanilla",
+        "serie": "arima"
+      },
+      {
+        "parte": "teste",
+        "cenario": "ideal",
+        "politica": "diaria24",
+        "serie": "estado16_17"
+      },
+      {
+        "parte": "teste",
+        "cenario": "ideal",
+        "politica": "diaria24",
+        "serie": "estado16_42"
+      },
+      {
+        "parte": "teste",
+        "cenario": "ideal",
+        "politica": "diaria24",
+        "serie": "estado16_2026"
+      },
+      {
+        "parte": "teste",
+        "cenario": "ideal",
+        "politica": "diaria24",
+        "serie": "estado16_7"
+      },
+      {
+        "parte": "teste",
+        "cenario": "ideal",
+        "politica": "diaria24",
+        "serie": "estado16_123"
+      },
+      {
+        "parte": "teste",
+        "cenario": "ideal",
+        "politica": "diaria24",
+        "serie": "estado16_31415"
+      },
+      {
+        "parte": "teste",
+        "cenario": "ideal",
+        "politica": "diaria24",
+        "serie": "lstm_17"
+      },
+      {
+        "parte": "teste",
+        "cenario": "ideal",
+        "politica": "diaria24",
+        "serie": "lstm_42"
+      },
+      {
+        "parte": "teste",
+        "cenario": "ideal",
+        "politica": "diaria24",
+        "serie": "lstm_2026"
+      },
+      {
+        "parte": "teste",
+        "cenario": "ideal",
+        "politica": "diaria24",
+        "serie": "cryptomamba_17"
+      },
+      {
+        "parte": "teste",
+        "cenario": "ideal",
+        "politica": "diaria24",
+        "serie": "cryptomamba_42"
+      },
+      {
+        "parte": "teste",
+        "cenario": "ideal",
+        "politica": "diaria24",
+        "serie": "cryptomamba_2026"
+      },
+      {
+        "parte": "teste",
+        "cenario": "ideal",
+        "politica": "diaria24",
+        "serie": "cryptomamba_7"
+      },
+      {
+        "parte": "teste",
+        "cenario": "ideal",
+        "politica": "diaria24",
+        "serie": "cryptomamba_123"
+      },
+      {
+        "parte": "teste",
+        "cenario": "ideal",
+        "politica": "diaria24",
+        "serie": "cryptomamba_31415"
+      },
+      {
+        "parte": "teste",
+        "cenario": "ideal",
+        "politica": "diaria24",
+        "serie": "naive"
+      },
+      {
+        "parte": "teste",
+        "cenario": "ideal",
+        "politica": "diaria24",
+        "serie": "arima"
+      },
+      {
+        "parte": "teste",
+        "cenario": "ideal",
+        "politica": "smart_constante",
+        "serie": "estado16_17"
+      },
+      {
+        "parte": "teste",
+        "cenario": "ideal",
+        "politica": "smart_constante",
+        "serie": "estado16_42"
+      },
+      {
+        "parte": "teste",
+        "cenario": "ideal",
+        "politica": "smart_constante",
+        "serie": "estado16_2026"
+      },
+      {
+        "parte": "teste",
+        "cenario": "ideal",
+        "politica": "smart_constante",
+        "serie": "estado16_7"
+      },
+      {
+        "parte": "teste",
+        "cenario": "ideal",
+        "politica": "smart_constante",
+        "serie": "estado16_123"
+      },
+      {
+        "parte": "teste",
+        "cenario": "ideal",
+        "politica": "smart_constante",
+        "serie": "estado16_31415"
+      },
+      {
+        "parte": "teste",
+        "cenario": "ideal",
+        "politica": "smart_constante",
+        "serie": "lstm_17"
+      },
+      {
+        "parte": "teste",
+        "cenario": "ideal",
+        "politica": "smart_constante",
+        "serie": "lstm_42"
+      },
+      {
+        "parte": "teste",
+        "cenario": "ideal",
+        "politica": "smart_constante",
+        "serie": "lstm_2026"
+      },
+      {
+        "parte": "teste",
+        "cenario": "ideal",
+        "politica": "smart_constante",
+        "serie": "cryptomamba_17"
+      },
+      {
+        "parte": "teste",
+        "cenario": "ideal",
+        "politica": "smart_constante",
+        "serie": "cryptomamba_42"
+      },
+      {
+        "parte": "teste",
+        "cenario": "ideal",
+        "politica": "smart_constante",
+        "serie": "cryptomamba_2026"
+      },
+      {
+        "parte": "teste",
+        "cenario": "ideal",
+        "politica": "smart_constante",
+        "serie": "cryptomamba_7"
+      },
+      {
+        "parte": "teste",
+        "cenario": "ideal",
+        "politica": "smart_constante",
+        "serie": "cryptomamba_123"
+      },
+      {
+        "parte": "teste",
+        "cenario": "ideal",
+        "politica": "smart_constante",
+        "serie": "cryptomamba_31415"
+      },
+      {
+        "parte": "teste",
+        "cenario": "ideal",
+        "politica": "smart_constante",
+        "serie": "naive"
+      },
+      {
+        "parte": "teste",
+        "cenario": "ideal",
+        "politica": "smart_constante",
+        "serie": "arima"
+      },
+      {
+        "parte": "teste",
+        "cenario": "ideal",
+        "politica": "caixa",
+        "serie": "benchmark"
+      },
+      {
+        "parte": "teste",
+        "cenario": "ideal",
+        "politica": "comprar_manter",
+        "serie": "benchmark"
+      },
+      {
+        "parte": "teste",
+        "cenario": "base",
+        "politica": "smart",
+        "serie": "estado16_17"
+      },
+      {
+        "parte": "teste",
+        "cenario": "base",
+        "politica": "smart",
+        "serie": "estado16_42"
+      },
+      {
+        "parte": "teste",
+        "cenario": "base",
+        "politica": "smart",
+        "serie": "estado16_2026"
+      },
+      {
+        "parte": "teste",
+        "cenario": "base",
+        "politica": "smart",
+        "serie": "estado16_7"
+      },
+      {
+        "parte": "teste",
+        "cenario": "base",
+        "politica": "smart",
+        "serie": "estado16_123"
+      },
+      {
+        "parte": "teste",
+        "cenario": "base",
+        "politica": "smart",
+        "serie": "estado16_31415"
+      },
+      {
+        "parte": "teste",
+        "cenario": "base",
+        "politica": "smart",
+        "serie": "lstm_17"
+      },
+      {
+        "parte": "teste",
+        "cenario": "base",
+        "politica": "smart",
+        "serie": "lstm_42"
+      },
+      {
+        "parte": "teste",
+        "cenario": "base",
+        "politica": "smart",
+        "serie": "lstm_2026"
+      },
+      {
+        "parte": "teste",
+        "cenario": "base",
+        "politica": "smart",
+        "serie": "cryptomamba_17"
+      },
+      {
+        "parte": "teste",
+        "cenario": "base",
+        "politica": "smart",
+        "serie": "cryptomamba_42"
+      },
+      {
+        "parte": "teste",
+        "cenario": "base",
+        "politica": "smart",
+        "serie": "cryptomamba_2026"
+      },
+      {
+        "parte": "teste",
+        "cenario": "base",
+        "politica": "smart",
+        "serie": "cryptomamba_7"
+      },
+      {
+        "parte": "teste",
+        "cenario": "base",
+        "politica": "smart",
+        "serie": "cryptomamba_123"
+      },
+      {
+        "parte": "teste",
+        "cenario": "base",
+        "politica": "smart",
+        "serie": "cryptomamba_31415"
+      },
+      {
+        "parte": "teste",
+        "cenario": "base",
+        "politica": "smart",
+        "serie": "naive"
+      },
+      {
+        "parte": "teste",
+        "cenario": "base",
+        "politica": "smart",
+        "serie": "arima"
+      },
+      {
+        "parte": "teste",
+        "cenario": "base",
+        "politica": "vanilla",
+        "serie": "estado16_17"
+      },
+      {
+        "parte": "teste",
+        "cenario": "base",
+        "politica": "vanilla",
+        "serie": "estado16_42"
+      },
+      {
+        "parte": "teste",
+        "cenario": "base",
+        "politica": "vanilla",
+        "serie": "estado16_2026"
+      },
+      {
+        "parte": "teste",
+        "cenario": "base",
+        "politica": "vanilla",
+        "serie": "estado16_7"
+      },
+      {
+        "parte": "teste",
+        "cenario": "base",
+        "politica": "vanilla",
+        "serie": "estado16_123"
+      },
+      {
+        "parte": "teste",
+        "cenario": "base",
+        "politica": "vanilla",
+        "serie": "estado16_31415"
+      },
+      {
+        "parte": "teste",
+        "cenario": "base",
+        "politica": "vanilla",
+        "serie": "lstm_17"
+      },
+      {
+        "parte": "teste",
+        "cenario": "base",
+        "politica": "vanilla",
+        "serie": "lstm_42"
+      },
+      {
+        "parte": "teste",
+        "cenario": "base",
+        "politica": "vanilla",
+        "serie": "lstm_2026"
+      },
+      {
+        "parte": "teste",
+        "cenario": "base",
+        "politica": "vanilla",
+        "serie": "cryptomamba_17"
+      },
+      {
+        "parte": "teste",
+        "cenario": "base",
+        "politica": "vanilla",
+        "serie": "cryptomamba_42"
+      },
+      {
+        "parte": "teste",
+        "cenario": "base",
+        "politica": "vanilla",
+        "serie": "cryptomamba_2026"
+      },
+      {
+        "parte": "teste",
+        "cenario": "base",
+        "politica": "vanilla",
+        "serie": "cryptomamba_7"
+      },
+      {
+        "parte": "teste",
+        "cenario": "base",
+        "politica": "vanilla",
+        "serie": "cryptomamba_123"
+      },
+      {
+        "parte": "teste",
+        "cenario": "base",
+        "politica": "vanilla",
+        "serie": "cryptomamba_31415"
+      },
+      {
+        "parte": "teste",
+        "cenario": "base",
+        "politica": "vanilla",
+        "serie": "naive"
+      },
+      {
+        "parte": "teste",
+        "cenario": "base",
+        "politica": "vanilla",
+        "serie": "arima"
+      },
+      {
+        "parte": "teste",
+        "cenario": "base",
+        "politica": "diaria24",
+        "serie": "estado16_17"
+      },
+      {
+        "parte": "teste",
+        "cenario": "base",
+        "politica": "diaria24",
+        "serie": "estado16_42"
+      },
+      {
+        "parte": "teste",
+        "cenario": "base",
+        "politica": "diaria24",
+        "serie": "estado16_2026"
+      },
+      {
+        "parte": "teste",
+        "cenario": "base",
+        "politica": "diaria24",
+        "serie": "estado16_7"
+      },
+      {
+        "parte": "teste",
+        "cenario": "base",
+        "politica": "diaria24",
+        "serie": "estado16_123"
+      },
+      {
+        "parte": "teste",
+        "cenario": "base",
+        "politica": "diaria24",
+        "serie": "estado16_31415"
+      },
+      {
+        "parte": "teste",
+        "cenario": "base",
+        "politica": "diaria24",
+        "serie": "lstm_17"
+      },
+      {
+        "parte": "teste",
+        "cenario": "base",
+        "politica": "diaria24",
+        "serie": "lstm_42"
+      },
+      {
+        "parte": "teste",
+        "cenario": "base",
+        "politica": "diaria24",
+        "serie": "lstm_2026"
+      },
+      {
+        "parte": "teste",
+        "cenario": "base",
+        "politica": "diaria24",
+        "serie": "cryptomamba_17"
+      },
+      {
+        "parte": "teste",
+        "cenario": "base",
+        "politica": "diaria24",
+        "serie": "cryptomamba_42"
+      },
+      {
+        "parte": "teste",
+        "cenario": "base",
+        "politica": "diaria24",
+        "serie": "cryptomamba_2026"
+      },
+      {
+        "parte": "teste",
+        "cenario": "base",
+        "politica": "diaria24",
+        "serie": "cryptomamba_7"
+      },
+      {
+        "parte": "teste",
+        "cenario": "base",
+        "politica": "diaria24",
+        "serie": "cryptomamba_123"
+      },
+      {
+        "parte": "teste",
+        "cenario": "base",
+        "politica": "diaria24",
+        "serie": "cryptomamba_31415"
+      },
+      {
+        "parte": "teste",
+        "cenario": "base",
+        "politica": "diaria24",
+        "serie": "naive"
+      },
+      {
+        "parte": "teste",
+        "cenario": "base",
+        "politica": "diaria24",
+        "serie": "arima"
+      },
+      {
+        "parte": "teste",
+        "cenario": "base",
+        "politica": "smart_constante",
+        "serie": "estado16_17"
+      },
+      {
+        "parte": "teste",
+        "cenario": "base",
+        "politica": "smart_constante",
+        "serie": "estado16_42"
+      },
+      {
+        "parte": "teste",
+        "cenario": "base",
+        "politica": "smart_constante",
+        "serie": "estado16_2026"
+      },
+      {
+        "parte": "teste",
+        "cenario": "base",
+        "politica": "smart_constante",
+        "serie": "estado16_7"
+      },
+      {
+        "parte": "teste",
+        "cenario": "base",
+        "politica": "smart_constante",
+        "serie": "estado16_123"
+      },
+      {
+        "parte": "teste",
+        "cenario": "base",
+        "politica": "smart_constante",
+        "serie": "estado16_31415"
+      },
+      {
+        "parte": "teste",
+        "cenario": "base",
+        "politica": "smart_constante",
+        "serie": "lstm_17"
+      },
+      {
+        "parte": "teste",
+        "cenario": "base",
+        "politica": "smart_constante",
+        "serie": "lstm_42"
+      },
+      {
+        "parte": "teste",
+        "cenario": "base",
+        "politica": "smart_constante",
+        "serie": "lstm_2026"
+      },
+      {
+        "parte": "teste",
+        "cenario": "base",
+        "politica": "smart_constante",
+        "serie": "cryptomamba_17"
+      },
+      {
+        "parte": "teste",
+        "cenario": "base",
+        "politica": "smart_constante",
+        "serie": "cryptomamba_42"
+      },
+      {
+        "parte": "teste",
+        "cenario": "base",
+        "politica": "smart_constante",
+        "serie": "cryptomamba_2026"
+      },
+      {
+        "parte": "teste",
+        "cenario": "base",
+        "politica": "smart_constante",
+        "serie": "cryptomamba_7"
+      },
+      {
+        "parte": "teste",
+        "cenario": "base",
+        "politica": "smart_constante",
+        "serie": "cryptomamba_123"
+      },
+      {
+        "parte": "teste",
+        "cenario": "base",
+        "politica": "smart_constante",
+        "serie": "cryptomamba_31415"
+      },
+      {
+        "parte": "teste",
+        "cenario": "base",
+        "politica": "smart_constante",
+        "serie": "naive"
+      },
+      {
+        "parte": "teste",
+        "cenario": "base",
+        "politica": "smart_constante",
+        "serie": "arima"
+      },
+      {
+        "parte": "teste",
+        "cenario": "base",
+        "politica": "caixa",
+        "serie": "benchmark"
+      },
+      {
+        "parte": "teste",
+        "cenario": "base",
+        "politica": "comprar_manter",
+        "serie": "benchmark"
+      },
+      {
+        "parte": "teste",
+        "cenario": "agravado",
+        "politica": "smart",
+        "serie": "estado16_17"
+      },
+      {
+        "parte": "teste",
+        "cenario": "agravado",
+        "politica": "smart",
+        "serie": "estado16_42"
+      },
+      {
+        "parte": "teste",
+        "cenario": "agravado",
+        "politica": "smart",
+        "serie": "estado16_2026"
+      },
+      {
+        "parte": "teste",
+        "cenario": "agravado",
+        "politica": "smart",
+        "serie": "estado16_7"
+      },
+      {
+        "parte": "teste",
+        "cenario": "agravado",
+        "politica": "smart",
+        "serie": "estado16_123"
+      },
+      {
+        "parte": "teste",
+        "cenario": "agravado",
+        "politica": "smart",
+        "serie": "estado16_31415"
+      },
+      {
+        "parte": "teste",
+        "cenario": "agravado",
+        "politica": "smart",
+        "serie": "lstm_17"
+      },
+      {
+        "parte": "teste",
+        "cenario": "agravado",
+        "politica": "smart",
+        "serie": "lstm_42"
+      },
+      {
+        "parte": "teste",
+        "cenario": "agravado",
+        "politica": "smart",
+        "serie": "lstm_2026"
+      },
+      {
+        "parte": "teste",
+        "cenario": "agravado",
+        "politica": "smart",
+        "serie": "cryptomamba_17"
+      },
+      {
+        "parte": "teste",
+        "cenario": "agravado",
+        "politica": "smart",
+        "serie": "cryptomamba_42"
+      },
+      {
+        "parte": "teste",
+        "cenario": "agravado",
+        "politica": "smart",
+        "serie": "cryptomamba_2026"
+      },
+      {
+        "parte": "teste",
+        "cenario": "agravado",
+        "politica": "smart",
+        "serie": "cryptomamba_7"
+      },
+      {
+        "parte": "teste",
+        "cenario": "agravado",
+        "politica": "smart",
+        "serie": "cryptomamba_123"
+      },
+      {
+        "parte": "teste",
+        "cenario": "agravado",
+        "politica": "smart",
+        "serie": "cryptomamba_31415"
+      },
+      {
+        "parte": "teste",
+        "cenario": "agravado",
+        "politica": "smart",
+        "serie": "naive"
+      },
+      {
+        "parte": "teste",
+        "cenario": "agravado",
+        "politica": "smart",
+        "serie": "arima"
+      },
+      {
+        "parte": "teste",
+        "cenario": "agravado",
+        "politica": "vanilla",
+        "serie": "estado16_17"
+      },
+      {
+        "parte": "teste",
+        "cenario": "agravado",
+        "politica": "vanilla",
+        "serie": "estado16_42"
+      },
+      {
+        "parte": "teste",
+        "cenario": "agravado",
+        "politica": "vanilla",
+        "serie": "estado16_2026"
+      },
+      {
+        "parte": "teste",
+        "cenario": "agravado",
+        "politica": "vanilla",
+        "serie": "estado16_7"
+      },
+      {
+        "parte": "teste",
+        "cenario": "agravado",
+        "politica": "vanilla",
+        "serie": "estado16_123"
+      },
+      {
+        "parte": "teste",
+        "cenario": "agravado",
+        "politica": "vanilla",
+        "serie": "estado16_31415"
+      },
+      {
+        "parte": "teste",
+        "cenario": "agravado",
+        "politica": "vanilla",
+        "serie": "lstm_17"
+      },
+      {
+        "parte": "teste",
+        "cenario": "agravado",
+        "politica": "vanilla",
+        "serie": "lstm_42"
+      },
+      {
+        "parte": "teste",
+        "cenario": "agravado",
+        "politica": "vanilla",
+        "serie": "lstm_2026"
+      },
+      {
+        "parte": "teste",
+        "cenario": "agravado",
+        "politica": "vanilla",
+        "serie": "cryptomamba_17"
+      },
+      {
+        "parte": "teste",
+        "cenario": "agravado",
+        "politica": "vanilla",
+        "serie": "cryptomamba_42"
+      },
+      {
+        "parte": "teste",
+        "cenario": "agravado",
+        "politica": "vanilla",
+        "serie": "cryptomamba_2026"
+      },
+      {
+        "parte": "teste",
+        "cenario": "agravado",
+        "politica": "vanilla",
+        "serie": "cryptomamba_7"
+      },
+      {
+        "parte": "teste",
+        "cenario": "agravado",
+        "politica": "vanilla",
+        "serie": "cryptomamba_123"
+      },
+      {
+        "parte": "teste",
+        "cenario": "agravado",
+        "politica": "vanilla",
+        "serie": "cryptomamba_31415"
+      },
+      {
+        "parte": "teste",
+        "cenario": "agravado",
+        "politica": "vanilla",
+        "serie": "naive"
+      },
+      {
+        "parte": "teste",
+        "cenario": "agravado",
+        "politica": "vanilla",
+        "serie": "arima"
+      },
+      {
+        "parte": "teste",
+        "cenario": "agravado",
+        "politica": "diaria24",
+        "serie": "estado16_17"
+      },
+      {
+        "parte": "teste",
+        "cenario": "agravado",
+        "politica": "diaria24",
+        "serie": "estado16_42"
+      },
+      {
+        "parte": "teste",
+        "cenario": "agravado",
+        "politica": "diaria24",
+        "serie": "estado16_2026"
+      },
+      {
+        "parte": "teste",
+        "cenario": "agravado",
+        "politica": "diaria24",
+        "serie": "estado16_7"
+      },
+      {
+        "parte": "teste",
+        "cenario": "agravado",
+        "politica": "diaria24",
+        "serie": "estado16_123"
+      },
+      {
+        "parte": "teste",
+        "cenario": "agravado",
+        "politica": "diaria24",
+        "serie": "estado16_31415"
+      },
+      {
+        "parte": "teste",
+        "cenario": "agravado",
+        "politica": "diaria24",
+        "serie": "lstm_17"
+      },
+      {
+        "parte": "teste",
+        "cenario": "agravado",
+        "politica": "diaria24",
+        "serie": "lstm_42"
+      },
+      {
+        "parte": "teste",
+        "cenario": "agravado",
+        "politica": "diaria24",
+        "serie": "lstm_2026"
+      },
+      {
+        "parte": "teste",
+        "cenario": "agravado",
+        "politica": "diaria24",
+        "serie": "cryptomamba_17"
+      },
+      {
+        "parte": "teste",
+        "cenario": "agravado",
+        "politica": "diaria24",
+        "serie": "cryptomamba_42"
+      },
+      {
+        "parte": "teste",
+        "cenario": "agravado",
+        "politica": "diaria24",
+        "serie": "cryptomamba_2026"
+      },
+      {
+        "parte": "teste",
+        "cenario": "agravado",
+        "politica": "diaria24",
+        "serie": "cryptomamba_7"
+      },
+      {
+        "parte": "teste",
+        "cenario": "agravado",
+        "politica": "diaria24",
+        "serie": "cryptomamba_123"
+      },
+      {
+        "parte": "teste",
+        "cenario": "agravado",
+        "politica": "diaria24",
+        "serie": "cryptomamba_31415"
+      },
+      {
+        "parte": "teste",
+        "cenario": "agravado",
+        "politica": "diaria24",
+        "serie": "naive"
+      },
+      {
+        "parte": "teste",
+        "cenario": "agravado",
+        "politica": "diaria24",
+        "serie": "arima"
+      },
+      {
+        "parte": "teste",
+        "cenario": "agravado",
+        "politica": "smart_constante",
+        "serie": "estado16_17"
+      },
+      {
+        "parte": "teste",
+        "cenario": "agravado",
+        "politica": "smart_constante",
+        "serie": "estado16_42"
+      },
+      {
+        "parte": "teste",
+        "cenario": "agravado",
+        "politica": "smart_constante",
+        "serie": "estado16_2026"
+      },
+      {
+        "parte": "teste",
+        "cenario": "agravado",
+        "politica": "smart_constante",
+        "serie": "estado16_7"
+      },
+      {
+        "parte": "teste",
+        "cenario": "agravado",
+        "politica": "smart_constante",
+        "serie": "estado16_123"
+      },
+      {
+        "parte": "teste",
+        "cenario": "agravado",
+        "politica": "smart_constante",
+        "serie": "estado16_31415"
+      },
+      {
+        "parte": "teste",
+        "cenario": "agravado",
+        "politica": "smart_constante",
+        "serie": "lstm_17"
+      },
+      {
+        "parte": "teste",
+        "cenario": "agravado",
+        "politica": "smart_constante",
+        "serie": "lstm_42"
+      },
+      {
+        "parte": "teste",
+        "cenario": "agravado",
+        "politica": "smart_constante",
+        "serie": "lstm_2026"
+      },
+      {
+        "parte": "teste",
+        "cenario": "agravado",
+        "politica": "smart_constante",
+        "serie": "cryptomamba_17"
+      },
+      {
+        "parte": "teste",
+        "cenario": "agravado",
+        "politica": "smart_constante",
+        "serie": "cryptomamba_42"
+      },
+      {
+        "parte": "teste",
+        "cenario": "agravado",
+        "politica": "smart_constante",
+        "serie": "cryptomamba_2026"
+      },
+      {
+        "parte": "teste",
+        "cenario": "agravado",
+        "politica": "smart_constante",
+        "serie": "cryptomamba_7"
+      },
+      {
+        "parte": "teste",
+        "cenario": "agravado",
+        "politica": "smart_constante",
+        "serie": "cryptomamba_123"
+      },
+      {
+        "parte": "teste",
+        "cenario": "agravado",
+        "politica": "smart_constante",
+        "serie": "cryptomamba_31415"
+      },
+      {
+        "parte": "teste",
+        "cenario": "agravado",
+        "politica": "smart_constante",
+        "serie": "naive"
+      },
+      {
+        "parte": "teste",
+        "cenario": "agravado",
+        "politica": "smart_constante",
+        "serie": "arima"
+      },
+      {
+        "parte": "teste",
+        "cenario": "agravado",
+        "politica": "caixa",
+        "serie": "benchmark"
+      },
+      {
+        "parte": "teste",
+        "cenario": "agravado",
+        "politica": "comprar_manter",
+        "serie": "benchmark"
+      }
+    ],
+    "ambiente": {
+      "python": "3.14.5",
+      "host": "MuriloRFM",
+      "sistema": "Windows",
+      "pacotes": {
+        "numpy": "2.4.6",
+        "pandas": "3.0.3",
+        "pyarrow": "24.0.0",
+        "matplotlib": "3.11.0"
+      }
+    },
+    "qualificacao": {
+      "arquivo": "registros/backtest_carteira/revisao_loader/qualificacoes/273c3cfca01f498da3a1434f555b3c25/resultado.json",
+      "sha256": "b9ff943b6ab02f9fb81d9e483d44d7ee87bb9d99d8bd8f3db472020a2181e395"
+    }
+  }
+}

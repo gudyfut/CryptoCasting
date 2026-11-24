@@ -1,0 +1,69 @@
+{
+  "utc": "2026-11-04T06:02:40.844516+00:00",
+  "seed": 17,
+  "bloco": "B3",
+  "receita": {
+    "representacao": "janela_relativa",
+    "indicadores": false,
+    "contexto": 72,
+    "largura": 32,
+    "camadas": 2,
+    "estado": 16,
+    "dropout": 0.1,
+    "pooling": "ultimo",
+    "taxa": 0.0002,
+    "decay": 0.001,
+    "otimizador": "AdamW",
+    "perda": "huber",
+    "scheduler": "constante",
+    "ganho_saida": 1
+  },
+  "epoca": 4,
+  "epocas_executadas": 14,
+  "parametros": 20257,
+  "recarga_exata": true,
+  "segundos": 117.80853963299978,
+  "checkpoint_final_sha256": "a697ca9fc13effb74cd8a8e54d5b4bed6dfd9e6f291432577dbcbc08ed897abf",
+  "memoria_cuda_maxima_bytes": 124245504,
+  "treino_amostra_fixa": {
+    "n": 2048,
+    "mse": 0.0010493997000203628,
+    "rmse": 0.03239443933795371,
+    "mae": 0.022161726467417868,
+    "mse_naive": 0.0010505126024746077,
+    "vies": 0.0012188669241033033,
+    "sd_previsao": 0.0007394287577693867,
+    "sd_alvo": 0.032409768087787345,
+    "acuracia_direcional": 0.5048828125,
+    "balanced_accuracy": 0.5002193660131466
+  },
+  "validacao": {
+    "n": 2184,
+    "mse": 0.0006024253810076757,
+    "rmse": 0.024544355379754336,
+    "mae": 0.018193264517346153,
+    "mse_naive": 0.0006130715287467168,
+    "vies": -0.002859530579444335,
+    "sd_previsao": 0.0006983028146301823,
+    "sd_alvo": 0.02437207051743923,
+    "acuracia_direcional": 0.5439560439560439,
+    "balanced_accuracy": 0.4958348267964136
+  },
+  "teste": {
+    "n": 4320,
+    "mse": 0.0005879382490977512,
+    "rmse": 0.024247437990388823,
+    "mae": 0.017280378591814083,
+    "mse_naive": 0.0005900900176014218,
+    "vies": 0.0008186335421300108,
+    "sd_previsao": 0.000676979098782958,
+    "sd_alvo": 0.0242799385262664,
+    "acuracia_direcional": 0.5208333333333334,
+    "balanced_accuracy": 0.5025761578543838
+  },
+  "diagnostico": {
+    "sd_representacao_media": 0.3229769468307495,
+    "norma_pesos_saida": 0.4553585648536682,
+    "fracao_clipping_ultima_epoca": 0.3411513859275053
+  }
+}

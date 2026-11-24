@@ -1,0 +1,23 @@
+{
+  "acao": "experimentar",
+  "hipotese": "Reduzir somente a profundidade da C04 de duas para uma camada pode limitar o ajuste de relações específicas do treino, preservando o acesso aos indicadores de 24/168h e melhorando sua transferência.",
+  "justificativa": "Comparar diretamente com C04 mantém representação, indicadores, contexto e perda fixos. Uma camada reduz a composição de transformações e a capacidade de ajustar interações entre indicadores. Também reduz parâmetros, processamento e ativações dos blocos, embora o tempo total dependa da parada antecipada. Encurtar novamente o contexto alteraria a normalização local; contrair a saída modificaria a amplitude sem alterar as relações aprendidas. Aplicar triagem seed42 nos dois recortes e, se promovida, avaliar estabilidade nas seeds17/2026, sem ajustes individuais.",
+  "diagnostico": "C06 piorou o score da C05 de 0,99698 para 1,00312 ao substituir Huber por MSE, sustentando manter Huber nesta investigação, ainda apenas na seed42. C04 reduziu a MSE frente a Naive na amostra fixa de treino em aproximadamente 3,7%/1,3%, mas apresentou razões de validação de 1,03297/0,99599. Esse contraste motiva testar menor capacidade no ramo com indicadores. C05 permanece líder, porém seu benefício em D2 decorre do nível médio previsto; sua liderança não estabelece aprendizagem temporal consistente.",
+  "riscos": "A discrepância entre treino e validação não identifica profundidade excessiva: mudanças de média, volatilidade e relações entre entradas e alvo também podem explicá-la. Menor profundidade pode remover relações úteis ou produzir saídas quase constantes. Embora apenas um campo mude, inicialização, gradientes e checkpoint selecionado também podem mudar. Uma melhora deverá ser examinada quanto à contribuição da média e da variação temporal das previsões. As candidatas ainda têm somente seed42; reutilização adaptativa das validações e alvos sobrepostos limitam inferências. Score próximo de 1 não comprova sinal.",
+  "receita": {
+    "representacao": "janela_relativa",
+    "indicadores": true,
+    "contexto": 168,
+    "largura": 32,
+    "camadas": 1,
+    "estado": 16,
+    "dropout": 0.1,
+    "pooling": "ultimo",
+    "taxa": 0.0002,
+    "decay": 0.001,
+    "otimizador": "AdamW",
+    "perda": "huber",
+    "scheduler": "constante",
+    "ganho_saida": 1
+  }
+}

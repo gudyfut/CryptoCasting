@@ -1,0 +1,248 @@
+{
+  "ciclo_proposto": "busca_astra_002",
+  "situacao": "autorizado_em_implementacao",
+  "execucao_autorizada": true,
+  "executor_implementado": true,
+  "protocolo": "docs/protocolo_busca_astra_002.md",
+  "agente": {
+    "modelo": "gpt-6-astra",
+    "esforco": "max",
+    "consultas_maximas": 12,
+    "consulta_segundos_maximos": 1800,
+    "api_paga": false,
+    "ferramentas": false
+  },
+  "referencias": {
+    "A0_C05": {
+      "representacao": "janela_relativa",
+      "indicadores": false,
+      "contexto": 72,
+      "largura": 32,
+      "camadas": 2,
+      "estado": 16,
+      "dropout": 0.1,
+      "pooling": "ultimo",
+      "taxa": 0.0002,
+      "decay": 0.001,
+      "otimizador": "AdamW",
+      "perda": "huber",
+      "scheduler": "constante",
+      "ganho_saida": 1
+    },
+    "R0_crua_huber": {
+      "representacao": "crua",
+      "indicadores": false,
+      "contexto": 168,
+      "largura": 32,
+      "camadas": 2,
+      "estado": 16,
+      "dropout": 0.1,
+      "pooling": "ultimo",
+      "taxa": 0.0002,
+      "decay": 0.001,
+      "otimizador": "AdamW",
+      "perda": "huber",
+      "scheduler": "constante",
+      "ganho_saida": 1.0
+    }
+  },
+  "fixos": {
+    "moeda": "BTCUSDT",
+    "candles_horas": 1,
+    "alvo_horas": 24,
+    "origens_treino_horas": 1,
+    "origens_avaliacao": [
+      "horarias",
+      "00:00UTC"
+    ],
+    "inicio_comum": 336,
+    "estado": 16,
+    "camadas": 2,
+    "otimizador": "AdamW",
+    "decay": 0.001,
+    "perda": "huber2_delta1",
+    "scheduler": "constante",
+    "ganho_saida": 1,
+    "epocas_maximas": 100,
+    "paciencia": 10,
+    "batch": 64,
+    "microbatch": 32,
+    "clipping": 1
+  },
+  "recortes": {
+    "S1": {
+      "treino": [
+        "2021-01-01",
+        "2023-01-01"
+      ],
+      "parada": [
+        "2023-01-01",
+        "2023-04-01"
+      ],
+      "comparacao": [
+        "2023-04-01",
+        "2023-07-01"
+      ]
+    },
+    "S2": {
+      "treino": [
+        "2021-01-01",
+        "2023-04-01"
+      ],
+      "parada": [
+        "2023-04-01",
+        "2023-07-01"
+      ],
+      "comparacao": [
+        "2023-07-01",
+        "2023-10-01"
+      ]
+    },
+    "S3": {
+      "treino": [
+        "2021-01-01",
+        "2023-07-01"
+      ],
+      "parada": [
+        "2023-07-01",
+        "2023-10-01"
+      ],
+      "comparacao": [
+        "2023-10-01",
+        "2024-01-01"
+      ]
+    }
+  },
+  "espaco": {
+    "representacao": [
+      "janela_relativa",
+      "relativa",
+      "log_niveis"
+    ],
+    "contexto": [
+      24,
+      72,
+      168
+    ],
+    "momentum": [
+      false,
+      true
+    ],
+    "volatilidade": [
+      false,
+      true
+    ],
+    "volume_relativo": [
+      false,
+      true
+    ],
+    "pooling": [
+      "ultimo",
+      "media"
+    ],
+    "largura": [
+      32,
+      64
+    ],
+    "dropout": [
+      0.0,
+      0.1,
+      0.2
+    ],
+    "taxa": [
+      0.0001,
+      0.0002,
+      0.0005
+    ]
+  },
+  "seeds": {
+    "triagem": [
+      42,
+      17
+    ],
+    "promocao": [
+      42,
+      17,
+      2026
+    ],
+    "final": [
+      42,
+      17,
+      2026,
+      7,
+      123,
+      31415,
+      271828,
+      161803
+    ]
+  },
+  "busca": {
+    "candidatas_maximas": 12,
+    "iniciais": 4,
+    "adaptativas": 6,
+    "contrastes_finais": 2,
+    "promovidas_maximas": 3,
+    "finalistas_maximas": 1,
+    "fatores_por_proposta": 1,
+    "pai_obrigatorio": true,
+    "primario": "media_MSE_sobre_Naive",
+    "checkpoint": "menor_MSE_em_parada_V",
+    "comparacao": "somente_depois_da_recarga_no_trecho_S",
+    "ganho_minimo_relativo": 0.001,
+    "piora_maxima_por_recorte": 0.05,
+    "piora_maxima_mae": 0.01,
+    "pares_melhores_minimos": 6,
+    "pares": 9,
+    "recortes_melhores_minimos": 2,
+    "sem_elegivel": "encerrar_sem_finalista"
+  },
+  "orcamento": {
+    "horas_totais_maximas": 24,
+    "fechar_triagem_hora": 11,
+    "fechar_selecao_hora": 14,
+    "fechar_treinos_finais_hora": 22,
+    "ajuste_segundos_maximos": 2700,
+    "referencias_triagem": 12,
+    "controle_desenvolvimento": 1,
+    "candidatas_triagem": 72,
+    "complemento_candidatas": 9,
+    "complemento_referencias": 6,
+    "redes_finais": 96,
+    "controle_final": 1,
+    "ajustes_maximos_sem_heranca": 197,
+    "ajustes_maximos_com_64_herdados": 133,
+    "carteiras_totais_maximas": 800,
+    "heranca_final": "Nenhum ajuste herdado. Duas ancoras reestimadas pelo mesmo executor; teto197.",
+    "ajustes_reais_maximos": 197
+  },
+  "operacao": {
+    "executor_fonte": "simulacao_operacoes/revisada",
+    "politicas": [
+      "smart",
+      "direcional_filtrada"
+    ],
+    "bracos": [
+      "spot",
+      "futuro_bilateral"
+    ],
+    "custos": [
+      "base",
+      "estresse"
+    ],
+    "momento": "somente_apos_congelar_candidata",
+    "seleciona_modelo": false
+  },
+  "incerteza": {
+    "contrastes_mse": 3,
+    "bootstrap_replicas": 2000,
+    "dias_bloco": 14,
+    "sensibilidades_dias": [
+      7,
+      28
+    ],
+    "ic_descritivo": 0.95,
+    "ic_familia": 0.9833333333333333,
+    "limite": "Retrospectivo; nao corrige integralmente selecao adaptativa."
+  },
+  "origem_proposta": "configuracoes/busca_astra_002_proposta.json"
+}

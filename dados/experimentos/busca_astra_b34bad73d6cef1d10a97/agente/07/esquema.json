@@ -1,0 +1,169 @@
+{
+  "type": "object",
+  "properties": {
+    "acao": {
+      "type": "string",
+      "enum": [
+        "experimentar",
+        "encerrar"
+      ]
+    },
+    "hipotese": {
+      "type": "string"
+    },
+    "justificativa": {
+      "type": "string"
+    },
+    "diagnostico": {
+      "type": "string"
+    },
+    "riscos": {
+      "type": "string"
+    },
+    "receita": {
+      "type": "object",
+      "properties": {
+        "representacao": {
+          "type": "string",
+          "enum": [
+            "relativa",
+            "crua",
+            "niveis",
+            "log_niveis",
+            "janela_relativa"
+          ]
+        },
+        "indicadores": {
+          "type": "boolean",
+          "enum": [
+            false,
+            true
+          ]
+        },
+        "contexto": {
+          "type": "integer",
+          "enum": [
+            24,
+            72,
+            168
+          ]
+        },
+        "largura": {
+          "type": "integer",
+          "enum": [
+            16,
+            32,
+            64
+          ]
+        },
+        "camadas": {
+          "type": "integer",
+          "enum": [
+            1,
+            2,
+            3
+          ]
+        },
+        "estado": {
+          "type": "integer",
+          "enum": [
+            8,
+            16,
+            32,
+            64
+          ]
+        },
+        "dropout": {
+          "type": "number",
+          "enum": [
+            0.0,
+            0.1,
+            0.2
+          ]
+        },
+        "pooling": {
+          "type": "string",
+          "enum": [
+            "ultimo",
+            "media"
+          ]
+        },
+        "taxa": {
+          "type": "number",
+          "enum": [
+            5e-05,
+            0.0001,
+            0.0002,
+            0.0005,
+            0.001
+          ]
+        },
+        "decay": {
+          "type": "number",
+          "enum": [
+            0.0,
+            0.0001,
+            0.001,
+            0.01
+          ]
+        },
+        "otimizador": {
+          "type": "string",
+          "enum": [
+            "AdamW",
+            "Adam"
+          ]
+        },
+        "perda": {
+          "type": "string",
+          "enum": [
+            "mse",
+            "huber"
+          ]
+        },
+        "scheduler": {
+          "type": "string",
+          "enum": [
+            "constante",
+            "plateau"
+          ]
+        },
+        "ganho_saida": {
+          "type": "number",
+          "enum": [
+            0.25,
+            0.5,
+            0.75,
+            1.0
+          ]
+        }
+      },
+      "required": [
+        "representacao",
+        "indicadores",
+        "contexto",
+        "largura",
+        "camadas",
+        "estado",
+        "dropout",
+        "pooling",
+        "taxa",
+        "decay",
+        "otimizador",
+        "perda",
+        "scheduler",
+        "ganho_saida"
+      ],
+      "additionalProperties": false
+    }
+  },
+  "required": [
+    "acao",
+    "hipotese",
+    "justificativa",
+    "diagnostico",
+    "riscos",
+    "receita"
+  ],
+  "additionalProperties": false
+}

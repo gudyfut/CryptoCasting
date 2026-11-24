@@ -1,0 +1,69 @@
+{
+  "utc": "2026-11-04T06:16:12.392945+00:00",
+  "seed": 161803,
+  "bloco": "B3",
+  "receita": {
+    "representacao": "janela_relativa",
+    "indicadores": false,
+    "contexto": 72,
+    "largura": 32,
+    "camadas": 2,
+    "estado": 16,
+    "dropout": 0.1,
+    "pooling": "ultimo",
+    "taxa": 0.0002,
+    "decay": 0.001,
+    "otimizador": "AdamW",
+    "perda": "huber",
+    "scheduler": "constante",
+    "ganho_saida": 1
+  },
+  "epoca": 2,
+  "epocas_executadas": 12,
+  "parametros": 20257,
+  "recarga_exata": true,
+  "segundos": 104.94039685200005,
+  "checkpoint_final_sha256": "6f20b68af8fc23533f360006a17e0cb01f7953a242a3db3ffcb26af85489c1d5",
+  "memoria_cuda_maxima_bytes": 124245504,
+  "treino_amostra_fixa": {
+    "n": 2048,
+    "mse": 0.0010551382222134884,
+    "rmse": 0.03248289122312681,
+    "mae": 0.022286404964965638,
+    "mse_naive": 0.0010505126024746077,
+    "vies": 0.002298052808903487,
+    "sd_previsao": 0.0010244735780457416,
+    "sd_alvo": 0.032409768087787345,
+    "acuracia_direcional": 0.5048828125,
+    "balanced_accuracy": 0.5000095376527455
+  },
+  "validacao": {
+    "n": 2184,
+    "mse": 0.0005949828561506153,
+    "rmse": 0.024392270418118426,
+    "mae": 0.01814808697482637,
+    "mse_naive": 0.0006130715287467168,
+    "vies": -0.0017597366038812567,
+    "sd_previsao": 0.0010555614372965332,
+    "sd_alvo": 0.02437207051743923,
+    "acuracia_direcional": 0.5508241758241759,
+    "balanced_accuracy": 0.5
+  },
+  "teste": {
+    "n": 4320,
+    "mse": 0.0005906989872111298,
+    "rmse": 0.02430429976796554,
+    "mae": 0.01731525635198069,
+    "mse_naive": 0.0005900900176014218,
+    "vies": 0.0018496555960057733,
+    "sd_previsao": 0.001030616489604337,
+    "sd_alvo": 0.0242799385262664,
+    "acuracia_direcional": 0.5189814814814815,
+    "balanced_accuracy": 0.5
+  },
+  "diagnostico": {
+    "sd_representacao_media": 0.328482985496521,
+    "norma_pesos_saida": 0.5428065657615662,
+    "fracao_clipping_ultima_epoca": 0.31769722814498935
+  }
+}

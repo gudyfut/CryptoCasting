@@ -1,0 +1,78 @@
+{
+  "versao": 1,
+  "ciclo": "backtest_carteira_001",
+  "pergunta": "Retenção e rebalanceamento fracionado aproveitam as previsões preservadas após custos?",
+  "mercado_pasta": "dados/mercado/binance_spot/449aab6c79dbf88aa625",
+  "dataset_pasta": "dados/entradas/0420879c2afc454c7754",
+  "publicacao_origem": "dados/experimentos/cryptomamba_adaptado_35dd98141ee20d9b8885/publicacoes/tentativa_001",
+  "series": {
+    "estado16_17": "dados/experimentos/ohlcv_modular_ab5baf3eab3a2e66d8b2/celulas/mamba_17/tentativa_001",
+    "estado16_42": "dados/experimentos/ohlcv_modular_ab5baf3eab3a2e66d8b2/celulas/mamba_42/tentativa_001",
+    "estado16_2026": "dados/experimentos/ohlcv_modular_ab5baf3eab3a2e66d8b2/celulas/mamba_2026/tentativa_001",
+    "estado16_7": "dados/experimentos/complemento_estado16_cc0b166fe42a3ed1678d/celulas/mamba_7/tentativa_001",
+    "estado16_123": "dados/experimentos/complemento_estado16_cc0b166fe42a3ed1678d/celulas/mamba_123/tentativa_001",
+    "estado16_31415": "dados/experimentos/complemento_estado16_cc0b166fe42a3ed1678d/celulas/mamba_31415/tentativa_001",
+    "lstm_17": "dados/experimentos/ohlcv_modular_ab5baf3eab3a2e66d8b2/celulas/lstm_17/tentativa_001",
+    "lstm_42": "dados/experimentos/ohlcv_modular_ab5baf3eab3a2e66d8b2/celulas/lstm_42/tentativa_001",
+    "lstm_2026": "dados/experimentos/ohlcv_modular_ab5baf3eab3a2e66d8b2/celulas/lstm_2026/tentativa_001",
+    "cryptomamba_17": "dados/experimentos/cryptomamba_adaptado_35dd98141ee20d9b8885/celulas/cryptomamba_17/tentativa_001",
+    "cryptomamba_42": "dados/experimentos/cryptomamba_adaptado_35dd98141ee20d9b8885/celulas/cryptomamba_42/tentativa_001",
+    "cryptomamba_2026": "dados/experimentos/cryptomamba_adaptado_35dd98141ee20d9b8885/celulas/cryptomamba_2026/tentativa_001",
+    "cryptomamba_7": "dados/experimentos/cryptomamba_adaptado_35dd98141ee20d9b8885/celulas/cryptomamba_7/tentativa_001",
+    "cryptomamba_123": "dados/experimentos/cryptomamba_adaptado_35dd98141ee20d9b8885/celulas/cryptomamba_123/tentativa_001",
+    "cryptomamba_31415": "dados/experimentos/cryptomamba_adaptado_35dd98141ee20d9b8885/celulas/cryptomamba_31415/tentativa_001",
+    "naive": "dados/experimentos/ohlcv_modular_ab5baf3eab3a2e66d8b2/celulas/naive/tentativa_001",
+    "arima": "dados/experimentos/ohlcv_modular_ab5baf3eab3a2e66d8b2/celulas/arima/tentativa_001"
+  },
+  "seeds": [
+    17,
+    42,
+    2026,
+    7,
+    123,
+    31415
+  ],
+  "seeds_pareadas_lstm": [
+    17,
+    42,
+    2026
+  ],
+  "politicas": [
+    "smart",
+    "vanilla",
+    "diaria24"
+  ],
+  "partes": [
+    "validacao",
+    "teste"
+  ],
+  "capital": 10000.0,
+  "latencia_minutos": 1,
+  "risco_smart": 0.02,
+  "limiar_vanilla": 0.01,
+  "minimo_usdt": 5.0,
+  "passo_btc": 1e-05,
+  "custos": {
+    "ideal": {
+      "taxa": 0.0,
+      "slippage": 0.0
+    },
+    "base": {
+      "taxa": 0.001,
+      "slippage": 0.0005
+    },
+    "agravado": {
+      "taxa": 0.002,
+      "slippage": 0.001
+    }
+  },
+  "bootstrap": {
+    "dias": 14,
+    "replicas": 2000,
+    "seed": 20261030
+  },
+  "simulacoes_planejadas": 369,
+  "novos_treinamentos": 0,
+  "buscas_parametros": 0,
+  "exposicao": "2024 seleção de checkpoints; 2025 consultado, análise retrospectiva; não holdout novo/walk-forward."
+}

@@ -1,0 +1,185 @@
+{
+  "arquivo": "checkpoints/epoca_002.pt",
+  "sha256": "25d4002f431dc73539150cab88bbc40e48fa0d720a026732273584c15913bf09",
+  "epoca": 2,
+  "mse_validacao": 0.0006049080257384236,
+  "vinculo": {
+    "execucao": "10dac17ea9df2c540c57",
+    "bloco": "B3",
+    "variante": "mse",
+    "controle": false,
+    "seed": 7,
+    "familia": "mamba",
+    "identidade_consumo": "fd2a695986044972e0e34bd1481793aeb3cd8662635e9711cbca19bb7e284513",
+    "configuracao": {
+      "versao": "huber-blocos-1",
+      "ciclo": "huber_blocos_001",
+      "hipotese": "Trocar somente MSE supervisionado por 2*Huber(delta=1) no alvo padronizado; seleção continua MSE real.",
+      "horizonte": 24,
+      "candle_minutos": 60,
+      "origem_minutos": 60,
+      "entradas": [
+        "abertura_relativa",
+        "maxima_relativa",
+        "minima_relativa",
+        "fechamento_relativo",
+        "volume_transformado"
+      ],
+      "seeds": [
+        17,
+        42,
+        2026,
+        7,
+        123,
+        31415,
+        271828,
+        161803
+      ],
+      "mamba": {
+        "largura": 32,
+        "camadas": 2,
+        "estado": 16,
+        "convolucao": 4,
+        "expansao": 2,
+        "dropout": 0.1
+      },
+      "lstm": {
+        "largura": 32,
+        "camadas": 2,
+        "dropout": 0.1
+      },
+      "treino": {
+        "epocas": 100,
+        "paciencia": 10,
+        "batch": 64,
+        "microbatch": 32,
+        "taxa_aprendizado": 0.0002,
+        "weight_decay": 0.001,
+        "clipping": 1.0
+      },
+      "arima": {
+        "ordens": [
+          [
+            0,
+            1,
+            0
+          ],
+          [
+            0,
+            1,
+            1
+          ],
+          [
+            0,
+            1,
+            2
+          ],
+          [
+            1,
+            1,
+            0
+          ],
+          [
+            1,
+            1,
+            1
+          ],
+          [
+            1,
+            1,
+            2
+          ],
+          [
+            2,
+            1,
+            0
+          ],
+          [
+            2,
+            1,
+            1
+          ],
+          [
+            2,
+            1,
+            2
+          ]
+        ],
+        "tendencia": "n",
+        "maxiter": 200
+      },
+      "dispositivo": "cuda",
+      "backend": "oficial",
+      "bootstrap": {
+        "dias": [
+          7,
+          14,
+          28
+        ],
+        "principal": 14,
+        "replicas": 2000,
+        "seed": 20261020
+      },
+      "operacao": {
+        "hora_utc": 0,
+        "latencia_minutos": 1,
+        "capital": 10000.0,
+        "taxa": 0.001,
+        "slippage": 0.0005,
+        "taxa_agravada": 0.002,
+        "slippage_agravado": 0.001
+      },
+      "par": "BTCUSDT",
+      "contexto": 168,
+      "representacao": "log_ohlc_relativo_close_anterior_e_log1p_volume_base",
+      "normalizacao": "padronizacao_estatica_por_canal_treino_horas_unicas",
+      "normalizacao_bloco": "pre_layernorm",
+      "divisao": {
+        "treino": [
+          "2021-01-01T00:00:00Z",
+          "2024-10-01T00:00:00Z"
+        ],
+        "validacao": [
+          "2024-10-01T00:00:00Z",
+          "2025-01-01T00:00:00Z"
+        ],
+        "teste": [
+          "2025-01-01T00:00:00Z",
+          "2025-07-01T00:00:00Z"
+        ]
+      },
+      "exposicao": "retrospectiva_periodos_ja_consultados",
+      "modelos": [
+        "mamba"
+      ],
+      "controles_reproducao": [],
+      "reproducao": {
+        "diferenca_absoluta_previsao": 1e-05,
+        "diferenca_relativa_mse": 0.0001,
+        "mesma_epoca": true,
+        "origem_limites": "mesmos limites dos controles dos ciclos preliminares; recarga do checkpoint permanece exata"
+      },
+      "entradas_pasta": "dados/entradas/3fb143ccbf6e346d07cf",
+      "mercado_pasta": "dados/mercado/binance_spot/449aab6c79dbf88aa625",
+      "configuracao_modelos": "configuracoes/modelos_ohlcv24_001.json",
+      "referencia_execucao": "nova_comparacao_pareada_em_blocos",
+      "seeds_pareadas": [
+        17,
+        42,
+        2026,
+        7,
+        123,
+        31415,
+        271828,
+        161803
+      ],
+      "controle": "Dois controles reais B1/42, além de reprodução sintética; 66 ajustes no total.",
+      "perda": {
+        "nome": "MSELoss",
+        "alvo": "padronizado_treino"
+      },
+      "bloco": "B3",
+      "variante": "mse"
+    }
+  }
+}

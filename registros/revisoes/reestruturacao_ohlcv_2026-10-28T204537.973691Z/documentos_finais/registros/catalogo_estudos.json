@@ -1,0 +1,173 @@
+{
+  "versao": 1,
+  "registrado_em": "2026-10-27",
+  "natureza": "Indice retrospectivo de navegacao; nao substitui recibos, nao e pre-registro e nao declara disponibilidade em outra maquina.",
+  "cronologia": "docs/andamento.md",
+  "procedimento": "docs/registro_de_experimentos.md",
+  "estudos": [
+    {
+      "chave": "barreiras_001",
+      "tipo": "historico_arquivado",
+      "execucao": "4e232a796fcda0ea34c3",
+      "dataset": "9341610dbb329a858784",
+      "situacao_historica": "executado_e_arquivado",
+      "pergunta": "Primeiro limite atingido com barreiras; contextos e prazos variaveis.",
+      "comparabilidade": "Alvo, metrica e grade diferentes do retorno24; nao ordenar seus escores no mesmo placar.",
+      "raiz": "arquivo/estudo_barreiras_2026-10-20/projeto",
+      "fontes": {
+        "indice": "arquivo/estudo_barreiras_2026-10-20/README.md",
+        "protocolo": "arquivo/estudo_barreiras_2026-10-20/projeto/docs/protocolo_experimental.md",
+        "configuracao": "arquivo/estudo_barreiras_2026-10-20/projeto/configuracoes/ciclo_001.json",
+        "relatorio": "arquivo/estudo_barreiras_2026-10-20/projeto/historico/analises/ciclo_001_resultados.md",
+        "preservacao": "arquivo/estudo_barreiras_2026-10-20/verificacao.json",
+        "manifesto": "arquivo/estudo_barreiras_2026-10-20/manifesto_antes.json"
+      },
+      "exposicao": "Desenvolvimento 2023; consultar protocolo arquivado para limites.",
+      "distribuicao": "Sem recibo de pacote externo restaurado neste catalogo."
+    },
+    {
+      "chave": "retorno24_001",
+      "tipo": "referencia",
+      "execucao": "1e7c5ed662fba55ddd25",
+      "dataset": "d25f6a93a9900725f51e",
+      "situacao_historica": "concluido_auditado",
+      "decisao": "docs/adr/0001-estudo-retorno-24h.md",
+      "antecessor": "barreiras_001",
+      "relacao": "Substituicao do desenho ativo; resultados nao diretamente comparaveis ao alvo por barreiras.",
+      "pergunta": "Efeito de 24/72/168/336h de contexto no retorno terminal de 24h, Mamba versus LSTM com Naive e ARIMA.",
+      "raiz": "dados/experimentos/retorno24_1e7c5ed662fba55ddd25",
+      "fontes": {
+        "execucao": "dados/experimentos/retorno24_1e7c5ed662fba55ddd25/execucao.json",
+        "protocolo": "docs/protocolo_experimental.md",
+        "configuracao": "configuracoes/retorno24_001.json",
+        "congelamento": "dados/experimentos/retorno24_1e7c5ed662fba55ddd25/congelamento.json",
+        "dataset": "dados/processados/retorno24_d25f6a93a9900725f51e/dataset.json",
+        "fechamento": "registros/auditorias/1e7c5ed662fba55ddd25/fechamento.json",
+        "desenvolvimento": "docs/resultados_desenvolvimento.md",
+        "avaliacao": "docs/resultados_avaliacao.md",
+        "diagnostico_posterior_frequencia": "docs/diagnostico_frequencia_e_configuracoes.md",
+        "revisao_posterior_frequencia": "registros/revisoes/frequencia_2026-10-27T230053.607585Z/resumo.json",
+        "pesquisa_mamba_criptomamba": "docs/revisao_mamba_criptomamba.md",
+        "revisao_identidade_mamba": "registros/revisoes/mamba_criptomamba_2026-10-28T000408.161229Z/fechamento.json"
+      },
+      "publicacoes": {
+        "desenvolvimento": "registros/analises/1e7c5ed662fba55ddd25/desenvolvimento",
+        "avaliacao": "registros/analises/1e7c5ed662fba55ddd25/avaliacao"
+      },
+      "exposicao": "Declaracao previa preservada; B1-B4 abertos em 21/10/2026 e conhecidos para hipoteses posteriores.",
+      "distribuicao": "Pacotes externos e restauracao em outra maquina pendentes de recibo."
+    },
+    {
+      "chave": "penalizacao_mamba_001",
+      "tipo": "extensao_controlada",
+      "execucao": "7868a4d847c1410fc681",
+      "dataset": "d25f6a93a9900725f51e",
+      "situacao_historica": "concluido_auditado",
+      "decisao": "docs/adr/0002-penalizacao-mamba.md",
+      "antecessor": "retorno24_001",
+      "relacao": "Comparacao pareada: retirar weight decay somente dos parametros marcados; demais fatores iguais.",
+      "pergunta": "Respeitar _no_weight_decay altera o erro do Mamba e a simulacao Spot?",
+      "raiz": "dados/experimentos/penalizacao_7868a4d847c1410fc681",
+      "fontes": {
+        "execucao": "dados/experimentos/penalizacao_7868a4d847c1410fc681/execucao.json",
+        "protocolo": "docs/protocolo_penalizacao_mamba.md",
+        "configuracao": "configuracoes/penalizacao_mamba_001.json",
+        "congelamento": "dados/experimentos/penalizacao_7868a4d847c1410fc681/congelamento.json",
+        "dataset": "dados/processados/retorno24_d25f6a93a9900725f51e/dataset.json",
+        "fechamento": "registros/auditorias/7868a4d847c1410fc681/fechamento_extensao.json",
+        "relatorio": "docs/resultados_penalizacao_mamba.md",
+        "revisao": "registros/revisoes/penalizacao_2026-10-27T210853.776756_0000/resumo.json",
+        "diagnostico_posterior_frequencia": "docs/diagnostico_frequencia_e_configuracoes.md",
+        "revisao_posterior_frequencia": "registros/revisoes/frequencia_2026-10-27T230053.607585Z/resumo.json",
+        "pesquisa_mamba_criptomamba": "docs/revisao_mamba_criptomamba.md",
+        "revisao_identidade_mamba": "registros/revisoes/mamba_criptomamba_2026-10-28T000408.161229Z/fechamento.json"
+      },
+      "publicacoes": {
+        "desenvolvimento": "dados/experimentos/penalizacao_7868a4d847c1410fc681/analises/desenvolvimento",
+        "avaliacao": "dados/experimentos/penalizacao_7868a4d847c1410fc681/analises/avaliacao"
+      },
+      "heranca": {
+        "execucao": "1e7c5ed662fba55ddd25",
+        "modelos": [
+          "mamba_original",
+          "lstm",
+          "naive",
+          "arima"
+        ]
+      },
+      "exposicao": "Desenvolvimento e avaliacao retrospectivos em periodos ja consultados; sem novo holdout intocado.",
+      "distribuicao": "Pacotes externos e restauracao em outra maquina pendentes de recibo."
+    },
+    {
+      "chave": "normalizacao_mamba_001",
+      "tipo": "extensao_controlada",
+      "execucao": "9e03af2150cbb7b1068d",
+      "dataset": "d25f6a93a9900725f51e",
+      "situacao_historica": "concluido_auditado",
+      "decisao": "docs/adr/0005-proposta-prenormalizacao-mamba.md",
+      "antecessor": "penalizacao_mamba_001",
+      "relacao": "Somente posicao da LayerNorm: pos para pre; manter penalizacao corrigida, dados e demais fatores.",
+      "pergunta": "Pre-normalizacao altera erro e politica Spot em relacao ao Mamba pos-normalizado corrigido?",
+      "raiz": "dados/experimentos/normalizacao_9e03af2150cbb7b1068d",
+      "fontes": {
+        "execucao": "dados/experimentos/normalizacao_9e03af2150cbb7b1068d/execucao.json",
+        "protocolo": "docs/protocolo_normalizacao_mamba.md",
+        "configuracao": "configuracoes/normalizacao_mamba_001.json",
+        "congelamento": "dados/experimentos/normalizacao_9e03af2150cbb7b1068d/congelamento.json",
+        "dataset": "dados/processados/retorno24_d25f6a93a9900725f51e/dataset.json",
+        "fechamento": "registros/auditorias/9e03af2150cbb7b1068d/fechamento_normalizacao.json",
+        "relatorio": "docs/resultados_normalizacao_mamba.md",
+        "autorizacao": "registros/normalizacao/autorizacao.json",
+        "revisao": "registros/revisoes/normalizacao_2026-10-28T200441.557811_0000/resumo.json"
+      },
+      "publicacoes": {
+        "desenvolvimento": "dados/experimentos/normalizacao_9e03af2150cbb7b1068d/analises/desenvolvimento",
+        "avaliacao": "dados/experimentos/normalizacao_9e03af2150cbb7b1068d/analises/avaliacao"
+      },
+      "heranca": {
+        "execucao": "7868a4d847c1410fc681",
+        "modelos": [
+          "mamba_posnorm"
+        ]
+      },
+      "herancas_complementares": [
+        {
+          "execucao": "1e7c5ed662fba55ddd25",
+          "modelos": [
+            "lstm",
+            "arima",
+            "naive"
+          ]
+        }
+      ],
+      "exposicao": "DB1-DB4 desenvolvimento; B1-B4 retrospectivos ja consultados.",
+      "distribuicao": "Publicacoes e fechamento locais disponiveis; pacotes externos e restauracao em outra maquina pendentes de recibo."
+    }
+  ],
+  "propostas_historicas_nao_executadas": [
+    {
+      "chave": "barreiras_002_proposto",
+      "fonte": "arquivo/estudo_barreiras_2026-10-20/projeto/historico/ciclos/ciclo_002_proposto.md",
+      "configuracao": "arquivo/estudo_barreiras_2026-10-20/projeto/configuracoes/ciclo_002_proposto.json",
+      "situacao": "proposto_no_estudo_arquivado; nao contar como treinamento e nao executar"
+    }
+  ],
+  "etapa_atual": {
+    "situacao": "reestruturacao_documental_adotada_desenho_cientifico_proposto",
+    "fonte_academica": "docs/TCC_1_MuriloRFM.pdf",
+    "indice_documentacao": "docs/README.md",
+    "proposta": "docs/desenho_ohlcv24.md",
+    "decisao": "docs/adr/0006-reorganizacao-e-desenho-ohlcv.md",
+    "arquivo_preliminar": "arquivo/estudos_preliminares_2026-10-28/README.md",
+    "execucao_nova": null,
+    "limite": "OHLCV como direcao solicitada pelo pesquisador; detalhes recomendados sem treino novo nem aceite academico presumido."
+  },
+  "propostas_em_definicao": [
+    {
+      "chave": "ohlcv24_em_definicao",
+      "fonte": "docs/desenho_ohlcv24.md",
+      "situacao": "proposto_sem_execucao",
+      "origem": "Reorganizacao de28/10 apos leitura do TCC1; nao e protocolo pre-registrado antes dos estudos preliminares."
+    }
+  ]
+}

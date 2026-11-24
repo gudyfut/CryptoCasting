@@ -1,0 +1,9 @@
+{
+  "etapa": "qualificacao_numerica_da_recontabilizacao",
+  "falha_preservada": "Primeira conferência ideal da Smart sem volume na validação diferiu em 0.00000392654593 USD.",
+  "causa_confirmada": "Previsões float32 do código público foram lidas do CSV como float64; a expressão diff=pred*2/100 tem arredondamento distinto.",
+  "correcao": "Restaurar float32 da previsão e a ordem de operações pública ao obter a fração; nenhuma decisão ajustada por lucro.",
+  "resultado": "Após correção, saldos dos dois modelos, dois splits e quatro políticas conferem com o trade público em tolerância absoluta de 1e-8 USD.",
+  "desvio_tabela": "Vanilla com volume na validação reproduz 124.90 USD, enquanto a tabela4 do artigo imprime124.09; três saldos de teste com volume e demais saldos examinados são compatíveis aos centavos.",
+  "treinamentos": 0
+}

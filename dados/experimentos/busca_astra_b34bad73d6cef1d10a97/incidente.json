@@ -1,0 +1,12 @@
+{
+  "utc": "2026-11-04T03:14:06.055769+00:00",
+  "situacao": "interrompido",
+  "execucao": {
+    "id": "b34bad73d6cef1d10a97",
+    "pasta": "dados/experimentos/busca_astra_b34bad73d6cef1d10a97",
+    "congelamento_sha256": "406c6f7c26279ef894b82492f86b7d6630a6f411b7b7abd74b68ecc09e1960e4"
+  },
+  "erro": "Traceback (most recent call last):\n  File \"C:\\Users\\MuriloRFM\\Documents\\GitHub\\CryptoCasting\\experimentos\\busca_astra\\ciclo.py\", line 230, in executar\n    return Coordenador(p,ptr,f).executar()\n           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^\n  File \"C:\\Users\\MuriloRFM\\Documents\\GitHub\\CryptoCasting\\experimentos\\busca_astra\\ciclo.py\", line 165, in executar\n    proposta=consultar(self.p/'agente'/f'{n:02}',contexto,versao_cli=self.f['ambiente_coordenador']['codex'])\n  File \"C:\\Users\\MuriloRFM\\Documents\\GitHub\\CryptoCasting\\experimentos\\busca_astra\\agente.py\", line 87, in consultar\n    raise RuntimeError(f'Astra encerrou codigo{proc.returncode}; verificar stderr/cota. Sem fallback.')\nRuntimeError: Astra encerrou codigo1; verificar stderr/cota. Sem fallback.\n",
+  "retomada_automatica": false,
+  "aviso": "Conferir worker_windows e processos WSL antes de qualquer retomada."
+}

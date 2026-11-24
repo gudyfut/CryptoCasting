@@ -1,0 +1,23 @@
+{
+  "acao": "experimentar",
+  "hipotese": "Trocar somente a representação da C04 para relativa pode melhorar a transferência dos indicadores ao combinar movimentos horários padronizados com resumos explícitos de 24/168h.",
+  "justificativa": "Comparar diretamente com C04, mantendo os demais fatores. A representação relativa coloca OHLC e indicadores em escalas de treino comparáveis e oferece movimentos horários como complemento aos resumos longos. Com C01, C02 e C04, esta candidata permite comparar o efeito dos indicadores nas duas representações. A contração seria um controle de amplitude; manter ganho 1 permite investigar a aprendizagem. Permanecem 20.417 parâmetros e contexto de 168h, com custo esperado por época semelhante. Aplicar triagem seed42 nos dois recortes e, se promovida, verificar seeds17/2026 sem ajustes individuais.",
+  "diagnostico": "C07 obteve score 1,01304, com razões MSE/Naive de 1,03472 em D1 e 0,99137 em D2: reduzir profundidade não trouxe melhora uniforme. Pela decomposição dos resumos, Var(previsão)-2Cov(previsão,alvo) em D1 é aproximadamente -5,95e-6 na C01 e +6,35e-6 na C02. Portanto, o ramo relativo mostrou uma contribuição temporal favorável nesse recorte, apesar de perder no score agregado. Isso fundamenta testar nele os indicadores, cuja transferência em janela_relativa permaneceu problemática em D1.",
+  "riscos": "A troca altera conjuntamente geometria e escala dos preços e normalização do volume; eventual ganho não identifica qual componente ajudou. A normalização global do volume volta a expor o modelo ao deslocamento observado em D2. Indicadores podem continuar capturando relações específicas do treino, e melhorias podem decorrer apenas do nível médio previsto ou do checkpoint selecionado. O contraste entre representações e indicadores ainda depende de uma seed. Validações reutilizadas adaptativamente e alvos sobrepostos limitam inferências; score próximo de 1 não comprova sinal.",
+  "receita": {
+    "representacao": "relativa",
+    "indicadores": true,
+    "contexto": 168,
+    "largura": 32,
+    "camadas": 2,
+    "estado": 16,
+    "dropout": 0.1,
+    "pooling": "ultimo",
+    "taxa": 0.0002,
+    "decay": 0.001,
+    "otimizador": "AdamW",
+    "perda": "huber",
+    "scheduler": "constante",
+    "ganho_saida": 1
+  }
+}

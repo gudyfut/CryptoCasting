@@ -1,0 +1,112 @@
+{
+  "utc": "2026-10-28T21:26:14.957303+00:00",
+  "fontes": {
+    "configuracoes/ohlcv24_001.json": "f6308465087a478ef30f2c93e9d438c4a8f933c016ce2d39ac67eddf691e0dd8",
+    "estudo_ohlcv/__init__.py": "5154f4a77a69320aaa947f55ba30c1557be47f59fa9448f986a1fb24208ebdfd",
+    "estudo_ohlcv/avaliacao.py": "1a7df4af19bff39940782b370a42c9c1e499abfce497b8095c6d53736f568261",
+    "estudo_ohlcv/ciclo.py": "53c5aaa4273f61d9ed55fb79623bcdd06dc828af0da3134326fa061e701c54e4",
+    "estudo_ohlcv/dados.py": "8f960de60672bdcb8dc1a730b70b8d49234915d9eda35db3de5901f0274a60a8",
+    "estudo_ohlcv/qualificacao.py": "5b7845345a62c3655d78b5dcd4dd817164a40f021963b46a9d01e4b3c5054f70",
+    "estudo_ohlcv/redes.py": "50d9a422db8f78c77b2ed4b04da190a46dff30dcd0221d8db5605521d111c7c3",
+    "estudo_ohlcv/treino.py": "8dbf330abb8a38d8d9b4f50b68a27321bd5610af1502362340e2fe3d70d88df0",
+    "experimento_penalizacao/__init__.py": "8fcc0ad8843531b2a5023a5022e5b9a8ce76bae0325084f8bfdcd397d02076c6",
+    "experimento_penalizacao/otimizador.py": "68f8cae6f23206378d5016e5a531867f785cf80ea15cecb762a1503600c39306",
+    "previsao24/__init__.py": "c129983e060ce36115341055ad9823c649aed6dde5c5bbfac2f3e4c78e1606c8",
+    "previsao24/arquivos.py": "71b40ab9628e4c3461ae2fadeb69bcb12ceea2d8331012168e1bd2a4dc9b1334",
+    "previsao24/baselines.py": "3aec448eb8974aec09af336e471cfece916e0e8c04f62d162b51d3b579f8e459",
+    "previsao24/financeiro.py": "e37d98a16580294a3b0c3c6a353df7ff8aaed176a32a3e0f1b9b07c0b6b80bf6",
+    "previsao24/metricas.py": "89016c0fba23691707fec66ec11a2e233cab108f27ff5dcd5872b547f9af4af4",
+    "run_ohlcv.py": "6a3f53a8c1b0b391b88c2676e6e641cd498c57c0d00580f5f414b5797cc81278",
+    "tests_ohlcv/test_contratos.py": "ade77713de6a377ef2b55ae753d8df3f2fa28012725638144613969c9275f1b8"
+  },
+  "natureza": "sintetico_sem_treinamento_de_mercado",
+  "ambiente": {
+    "python": "3.12.13",
+    "torch": "2.6.0+cu118",
+    "cuda": "11.8",
+    "gpu": "NVIDIA GeForce RTX 4050 Laptop GPU",
+    "host": "MuriloRFM",
+    "pacotes": {
+      "mamba_ssm": "2.2.6.post3",
+      "causal_conv1d": "1.6.2.post1",
+      "numpy": "2.2.6",
+      "pandas": "3.0.3",
+      "statsmodels": "0.14.6",
+      "pyarrow": "24.0.0"
+    }
+  },
+  "redes": {
+    "mamba": {
+      "parametros": 20257,
+      "gradiente_por_canal": [
+        0.07402515411376953,
+        0.09669940173625946,
+        0.07199710607528687,
+        0.11335726827383041,
+        0.062314778566360474
+      ],
+      "grupos": [
+        {
+          "nomes": [
+            "projecao.weight",
+            "projecao.bias"
+          ],
+          "weight_decay": 0.001,
+          "elementos": 192
+        },
+        {
+          "nomes": [
+            "blocos.0.A_log",
+            "blocos.0.D"
+          ],
+          "weight_decay": 0.0,
+          "elementos": 1088
+        },
+        {
+          "nomes": [
+            "blocos.0.in_proj.weight",
+            "blocos.0.conv1d.weight",
+            "blocos.0.conv1d.bias",
+            "blocos.0.x_proj.weight",
+            "blocos.0.dt_proj.weight",
+            "blocos.0.dt_proj.bias",
+            "blocos.0.out_proj.weight"
+          ],
+          "weight_decay": 0.001,
+          "elementos": 8832
+        },
+        {
+          "nomes": [
+            "blocos.1.A_log",
+            "blocos.1.D"
+          ],
+          "weight_decay": 0.0,
+          "elementos": 1088
+        },
+        {
+          "nomes": [
+            "blocos.1.in_proj.weight",
+            "blocos.1.conv1d.weight",
+            "blocos.1.conv1d.bias",
+            "blocos.1.x_proj.weight",
+            "blocos.1.dt_proj.weight",
+            "blocos.1.dt_proj.bias",
+            "blocos.1.out_proj.weight",
+            "normas.0.weight",
+            "normas.0.bias",
+            "normas.1.weight",
+            "normas.1.bias",
+            "norma_final.weight",
+            "norma_final.bias",
+            "saida.weight",
+            "saida.bias"
+          ],
+          "weight_decay": 0.001,
+          "elementos": 9057
+        }
+      ]
+    }
+  },
+  "status": "falha",
+  "erro": "Traceback (most recent call last):\n  File \"/mnt/c/Users/MuriloRFM/Documents/GitHub/CryptoCasting/estudo_ohlcv/qualificacao.py\", line 76, in qualificar\n    pd.testing.assert_frame_equal(a,z,check_exact=True)\n  File \"/home/murilorfm/.venvs/cc/lib/python3.12/site-packages/pandas/util/_decorators.py\", line 220, in wrapper\n    return func(*args, **kwargs)\n           ^^^^^^^^^^^^^^^^^^^^^\n  File \"/home/murilorfm/.venvs/cc/lib/python3.12/site-packages/pandas/_testing/asserters.py\", line 1347, in assert_frame_equal\n    assert_series_equal(\n  File \"/home/murilorfm/.venvs/cc/lib/python3.12/site-packages/pandas/util/_decorators.py\", line 193, in wrapper\n    return func(*args, **kwargs)\n           ^^^^^^^^^^^^^^^^^^^^^\n  File \"/home/murilorfm/.venvs/cc/lib/python3.12/site-packages/pandas/_testing/asserters.py\", line 1051, in assert_series_equal\n    assert_numpy_array_equal(\n  File \"/home/murilorfm/.venvs/cc/lib/python3.12/site-packages/pandas/_testing/asserters.py\", line 695, in assert_numpy_array_equal\n    _raise(left, right, err_msg)\n  File \"/home/murilorfm/.venvs/cc/lib/python3.12/site-packages/pandas/_testing/asserters.py\", line 689, in _raise\n    raise_assert_detail(obj, msg, left, right, index_values=index_values)\n  File \"/home/murilorfm/.venvs/cc/lib/python3.12/site-packages/pandas/_testing/asserters.py\", line 619, in raise_assert_detail\n    raise AssertionError(msg)\nAssertionError: DataFrame.iloc[:, 6] (column name=\"previsao\") are different\n\nDataFrame.iloc[:, 6] (column name=\"previsao\") values are different (9.375 %)\n[index]: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31]\n[left]:  [0.002277497053146362, 0.0005725508183240891, -0.0027071699500083924, -0.0035208263993263245, -0.002636370360851288, -0.003294481337070465, 0.003826200067996979, -0.002211717963218689, -0.00020729027688503265, -0.004500755667686463, -0.0034424862265586853, 0.003509059846401215, 1.5771910548210143e-05, -0.002598623037338257, -0.005284755229949951, 0.0008008138090372086, -5.671374499797821e-05, -0.002960762679576874, 0.0003135015815496445, 0.00022969014942646028, 0.0007735434919595718, -0.0022779470682144165, -0.0027359032630920412, -0.0011899080127477646, 0.002341166138648987, 0.0007416965812444687, -0.0016104145348072051, -0.0019277775287628175, -0.00025963284075260164, -0.0010021068155765533, -0.0009845751523971558, -0.00019223637878894805]\n[right]: [0.002277497053146362, 0.0005725508183240891, -0.0027071699500083924, -0.0035208263993263245, -0.002636370360851288, -0.003294481337070465, 0.0038262003660202025, -0.002211717963218689, -0.00020729027688503265, -0.004500755667686463, -0.0034424862265586853, 0.003509059846401215, 1.5771910548210143e-05, -0.0025986233353614808, -0.005284755229949951, 0.0008008138090372086, -5.671374499797821e-05, -0.002960762679576874, 0.0003135015815496445, 0.00022969014942646028, 0.0007735434919595718, -0.002277946770191193, -0.0027359032630920412, -0.0011899080127477646, 0.002341166138648987, 0.0007416965812444687, -0.0016104145348072051, -0.0019277775287628175, -0.00025963284075260164, -0.0010021068155765533, -0.0009845751523971558, -0.00019223637878894805]\n"
+}

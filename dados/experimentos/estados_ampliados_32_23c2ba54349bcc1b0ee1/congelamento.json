@@ -1,0 +1,317 @@
+{
+  "id": "23c2ba54349bcc1b0ee1",
+  "utc": "2026-10-29T18:18:39.770711+00:00",
+  "contrato": {
+    "estado": 32,
+    "configuracao": {
+      "versao": "mamba-estado32-1.0",
+      "ciclo": "mamba_estado32_001",
+      "hipotese": "Avaliar d_state32 mantendo restante igual; comparar estados8/16/32/64, com seis seeds em8/32/64 e três comuns aos quatro.",
+      "horizonte": 24,
+      "candle_minutos": 60,
+      "origem_minutos": 60,
+      "entradas": [
+        "abertura_relativa",
+        "maxima_relativa",
+        "minima_relativa",
+        "fechamento_relativo",
+        "volume_transformado"
+      ],
+      "seeds": [
+        17,
+        42,
+        2026,
+        7,
+        123,
+        31415
+      ],
+      "mamba": {
+        "largura": 32,
+        "camadas": 2,
+        "estado": 32,
+        "convolucao": 4,
+        "expansao": 2,
+        "dropout": 0.1
+      },
+      "lstm": {
+        "largura": 32,
+        "camadas": 2,
+        "dropout": 0.1
+      },
+      "treino": {
+        "epocas": 100,
+        "paciencia": 10,
+        "batch": 64,
+        "microbatch": 32,
+        "taxa_aprendizado": 0.0002,
+        "weight_decay": 0.001,
+        "clipping": 1.0
+      },
+      "arima": {
+        "ordens": [
+          [
+            0,
+            1,
+            0
+          ],
+          [
+            0,
+            1,
+            1
+          ],
+          [
+            0,
+            1,
+            2
+          ],
+          [
+            1,
+            1,
+            0
+          ],
+          [
+            1,
+            1,
+            1
+          ],
+          [
+            1,
+            1,
+            2
+          ],
+          [
+            2,
+            1,
+            0
+          ],
+          [
+            2,
+            1,
+            1
+          ],
+          [
+            2,
+            1,
+            2
+          ]
+        ],
+        "tendencia": "n",
+        "maxiter": 200
+      },
+      "dispositivo": "cuda",
+      "backend": "oficial",
+      "bootstrap": {
+        "dias": [
+          7,
+          14,
+          28
+        ],
+        "principal": 14,
+        "replicas": 2000,
+        "seed": 20261020
+      },
+      "operacao": {
+        "hora_utc": 0,
+        "latencia_minutos": 1,
+        "capital": 10000.0,
+        "taxa": 0.001,
+        "slippage": 0.0005,
+        "taxa_agravada": 0.002,
+        "slippage_agravado": 0.001
+      },
+      "par": "BTCUSDT",
+      "contexto": 168,
+      "representacao": "log_ohlc_relativo_close_anterior_e_log1p_volume_base",
+      "normalizacao": "padronizacao_estatica_por_canal_treino_horas_unicas",
+      "normalizacao_bloco": "pre_layernorm",
+      "divisao": {
+        "treino": [
+          "2021-01-01",
+          "2024-01-01"
+        ],
+        "validacao": [
+          "2024-01-01",
+          "2025-01-01"
+        ],
+        "teste": [
+          "2025-01-01",
+          "2026-01-01"
+        ]
+      },
+      "exposicao": "retrospectiva_periodos_ja_consultados",
+      "modelos": [
+        "mamba"
+      ],
+      "controles_reproducao": [],
+      "reproducao": {
+        "diferenca_absoluta_previsao": 1e-05,
+        "diferenca_relativa_mse": 0.0001,
+        "mesma_epoca": true,
+        "origem_limites": "mesmos limites dos controles dos ciclos preliminares; recarga do checkpoint permanece exata"
+      },
+      "entradas_pasta": "dados/entradas/0420879c2afc454c7754",
+      "mercado_pasta": "dados/mercado/binance_spot/449aab6c79dbf88aa625",
+      "configuracao_modelos": "configuracoes/modelos_mamba_estado32_001.json",
+      "referencia_execucao": "ab5baf3eab3a2e66d8b2",
+      "seeds_pareadas": [
+        17,
+        42,
+        2026
+      ],
+      "controle": "reprodução sintética antes da grade e recarga exata em cada ajuste; sem ajuste real adicional, conforme orçamento explícito de seis treinamentos"
+    },
+    "fontes": {
+      "experimento_estado_mamba/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "experimento_estado_mamba/ciclo.py": "d2487894d1901d4854ddf7ce4fc1aa82cd89a2eba874f1f98c075becb9e3a1ab",
+      "experimento_estado_mamba/publicacao.py": "319660e2ce5e05927c56d45b2296319cc906d42fbedf13bf37109a9b33605759",
+      "treinamento/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "treinamento/ambiente.py": "9e0acf1c09537ea3259d6f02bb6f096cdb819a11c6b1670d95e292e793732bd6",
+      "treinamento/arima.py": "7d22218fac30a5a42921cfe7426d34132e836d400fda4e87c375c80919720ca0",
+      "treinamento/avaliar.py": "0ac89e31da797126b0a19c52444792f0eaee795240f87771b104ed16178b94f0",
+      "treinamento/checkpoints.py": "0f9ceb192473ec2f66245dee215bc63ba88b264beaa47153409ec95fcbc986d2",
+      "treinamento/ciclo.py": "f2438024b6cbfe050eb07ec0f74ab082b666fb23764dff0e1ec6b0aaf694ecf6",
+      "treinamento/configuracao.py": "e63e4131786d207a9e514e4d3c4b82b688c33213d20bb08850112cad04c81182",
+      "treinamento/neural.py": "05928af030bed5b12fe3904ee940f21a735c39e5aac568febbce8a7c4d3d2f08",
+      "treinamento/otimizacao.py": "96bf1dcad24de3cfd9beb1e0b76becfb68c1ff137b84a4eb66b9067f5b07a334",
+      "treinamento/preservacao.py": "0dbaefa24cad87ddadeaa727748bef5ff24a9f26e612497d0341399dc6db08e8",
+      "treinamento/qualificacao.py": "a7f760310cbef8c3d81900cf92b2ad2995d5e7ef0d1fec56f92a2cf2f7610cda",
+      "treinamento/selecao.py": "1671fb202499e547a032488ee51b3b0e214cea0f7e50c394b3b2a2e09591a8db",
+      "avaliacao/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "avaliacao/mercado.py": "c83fc429fda2642d9429fe546e167a4c6415b199c78f45befd71dcbb0e8a026b",
+      "avaliacao/metricas.py": "89016c0fba23691707fec66ec11a2e233cab108f27ff5dcd5872b547f9af4af4",
+      "avaliacao/publicacao.py": "b3bf2fb4ab48d757119f6e2079c4809b2d76d4bc77f0655faf909f544c87d7ce",
+      "avaliacao/spot.py": "e37d98a16580294a3b0c3c6a353df7ff8aaed176a32a3e0f1b9b07c0b6b80bf6",
+      "modelos/__init__.py": "9008c1d8057a95f0496b9d1237b06c59032143dbe0534ceed59cb83af38f05b8",
+      "modelos/arima.py": "df37e823342bff7d70833ea056ba24e6293f204b455f227a66c28bfff4654538",
+      "modelos/conferencia.py": "b553421f8ea9c18370695c9e41561384330a207dd5efb0906bcec308538d50bf",
+      "modelos/consumo.py": "45bc850a421175b72a2500b256d0e7b8563892a638ba1e572e4ca22527af6a40",
+      "modelos/contratos.py": "cbcd7f912ce4615549300cee2f04974e59a7ecfb3eb836e035c634eddb620447",
+      "modelos/lstm.py": "bff60cbcc12a185e666b8a511e5be2d5e0ab25c0764f7ecd93e876601dbc04dd",
+      "modelos/mamba.py": "0ca157f55f0f788beee09aa43768eccf0dae139fe969f5823a855cb1a755773a",
+      "modelos/naive.py": "bd12107c6e9311e68b2377c6417ff32d3de756f5150e3d4d9714fa630cfd045d",
+      "modelos/neurais.py": "4b6cb724313d3b5df83a79afc3291dc0d644110158f0e5c6f62bd6bab85d4c54",
+      "entradas_modelo/__init__.py": "a32efc5cc42d7d1b858e7dd9c01d39c0b7466ce593021169fbc8940795ade29c",
+      "entradas_modelo/alvos.py": "60cd54bc0bf9bfdefbf49271edb44110b46a8538f45a1d4d6ceb44df4e0a7e4d",
+      "entradas_modelo/amostras.py": "a2c20315d8bae37ad2b35dcae8aa7f01c515afaa7ff82984a5d62b2211c10bbc",
+      "entradas_modelo/conjunto.py": "9744fd6327ed74634660b42185e120e23a481b6187d0897d3042973be2e61610",
+      "entradas_modelo/pipeline.py": "e9a69438d603ad5ab3e8dde88a0445811f78947ef5552c4949258bca370c0e63",
+      "entradas_modelo/receitas.py": "f60a285ba54b89be78ec30fa0e5c3e88ae73152e7b98920c1d6b36451aad3d5c",
+      "mercado_binance/__init__.py": "1993613e6993a8af8ee69166f85eb809bea6f069829376487a40ee3fb544dcc8",
+      "mercado_binance/api.py": "b170c17c808da6f030f69531e8196033b22dbb1137cb950c77c8a4f8f7d586a3",
+      "mercado_binance/candles.py": "99d539cc682c8662b4f267f0c594b54a46c8da9fa5cdd8b7757a22bb0a2eee05",
+      "mercado_binance/contratos.py": "7dfc6f0c4739629a7ca98f4cecbfc49d939a90967ccdef7dad5012356e4d9ac5",
+      "mercado_binance/pipeline.py": "2fae3c6c7474e7a77735e2c34a0bf56f38cf4f03ca267dcaeb830e8100ce1ba1",
+      "mercado_binance/transporte.py": "ec0bd84e482ec957ba611c4af3b8f5f7dc60abafdba88211a531c954c9da589b",
+      "mercado_binance/validacao.py": "fdb47dcb5a66e984db584170e597f14dd636cbf55f087a382b03c04e43f78395",
+      "infraestrutura/__init__.py": "91c8cb2892c40d290684a1d0bd676b3278cdce4841696602d9e41805f1b062d5",
+      "infraestrutura/artefatos.py": "8a6b3cfeee815cdc3742ddf6b6fe7e972fa0757099f16212310515c49eb28a3e",
+      "tests_modelos/apoio.py": "19d5616bcc78550c38282016825f14ff7e985168ad60b39c3f08d29d7f61ba2f",
+      "tests_modelos/test_arima.py": "457f2c03864813cd8c5adff95aa8988efeff16e48f9282b28f7fb78e7b960090",
+      "tests_modelos/test_consumo.py": "af243c8458133075ece7c5037439e419cae57660cf3f7bc887ce178396f818a6",
+      "tests_modelos/test_neurais.py": "18c1781677834988de34b44daea9c442c626b68bee96609143508c6fc6dcfadc",
+      "tests_estado_mamba/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "tests_estado_mamba/test_ciclo.py": "1d0402282d5cdef6ef119e27e46a0ee7d3a71a4545e24df42affd01a5b25934c",
+      "configuracoes/mamba_estado8_001.json": "0afa359b15f298c0ff315c8d8e45e1c64f0a0dbcbf610a434ab677a187649227",
+      "configuracoes/modelos_mamba_estado8_001.json": "7c9818a6b226fd1f30c40c3bb72fdfed297aff3693c944cd5624b2f5cb48c351",
+      "configuracoes/modelos_ohlcv24_001.json": "4311f1d1da59cc7b6bcb400d2539dc009d67f84ab570accee3b1a3b164b02c7d",
+      "configuracoes/treinamento_ohlcv24_001.json": "25b4d7cb28efc723dc2390490c744366816390142354e060a6ae8421259c4724",
+      "run_estado_mamba.py": "f8c0759d4777cce3ee3d2b85ead595b2d53bcff27815a91c2fc19432883f7df3",
+      "experimento_estados_ampliados/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "experimento_estados_ampliados/ciclo.py": "c600d9c9362ca2c7cd62fd486376ddb545eee19f9cb714e3a648278c8d38a35a",
+      "experimento_estados_ampliados/publicacao.py": "94aaf338970e71815df8ece5d9e771377a2dce90db563a24d735a20d73518577",
+      "tests_estados_ampliados/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "tests_estados_ampliados/test_sequencia.py": "3a9fc9663d8d935d104b44b8be5c1ad624d68f2377ba988a5771164285389be2",
+      "configuracoes/mamba_estado32_001.json": "4683348fa4b7db23205cb0fe080274d147aed7750cef2c7e82692c25cde3e571",
+      "configuracoes/modelos_mamba_estado32_001.json": "15a1b86757ef0432b477c6ef7572eb937b0b9a12044d67b0f6af83b130cc1890",
+      "configuracoes/mamba_estado64_001.json": "1975f83c267a7054c753f2e4e34c378bd12504486ab8ffdf3e24b9c7bfa07c8c",
+      "configuracoes/modelos_mamba_estado64_001.json": "e944f38e0a8ad5b309b0cef99910e75b16e1e22fa5a027bbcc9ea4867a207e83",
+      "run_estados_ampliados.py": "3d9fce8862567fb6159080de0a884e3d62bbcbc71732a2c2dcee124a00531953"
+    },
+    "ambiente": {
+      "python": "3.12.13",
+      "torch": "2.6.0+cu118",
+      "cuda": "11.8",
+      "host": "MuriloRFM",
+      "gpu": "NVIDIA GeForce RTX 4050 Laptop GPU",
+      "implementacao_instalada": {
+        "mamba": "a17e4c51b582dc0d4d690a649eba521cd0c1ee3dc8f0473a0967cdc9ec0874e3",
+        "mamba_ssm.ops.selective_scan_interface": "543edd077f11c80cccd5c5e2f926420d9105fd238d9e8960e53660cfa234dce8",
+        "selective_scan_cuda": "9ef2a8bad7534cfac451bfe312124cd1efb609ecfd65ce63262526d3113c87e1",
+        "causal_conv1d_cuda": "72a06e63ea5a209ec95d5a7ecc7199750b6df4ddf5ecc9019cd2a5c5758e2aac"
+      },
+      "pacotes": {
+        "mamba_ssm": "2.2.6.post3",
+        "causal_conv1d": "1.6.2.post1",
+        "numpy": "2.2.6",
+        "pandas": "3.0.3",
+        "statsmodels": "0.14.6",
+        "pyarrow": "24.0.0"
+      }
+    },
+    "consumo": "8fcc08d64f197a43e68db65e674430ad26a5cbf8fd720c7511435b2a9336908d",
+    "referencias": {
+      "estado16_17": {
+        "pasta": "dados/experimentos/ohlcv_modular_ab5baf3eab3a2e66d8b2/celulas/mamba_17/tentativa_001",
+        "conclusao_sha256": "b3fc8bb1b9fa2788b45612dbf0117127a9c99ea70460827f5762365f497cb63e"
+      },
+      "estado16_42": {
+        "pasta": "dados/experimentos/ohlcv_modular_ab5baf3eab3a2e66d8b2/celulas/mamba_42/tentativa_001",
+        "conclusao_sha256": "92c7ebee418dcc313554dfd699f1fa742cdd5ae256d14e603d876fcad0f29688"
+      },
+      "estado16_2026": {
+        "pasta": "dados/experimentos/ohlcv_modular_ab5baf3eab3a2e66d8b2/celulas/mamba_2026/tentativa_001",
+        "conclusao_sha256": "065b5c1e9c613a9e149cc6e9c400d808517a43305a16737b6e949a599043f64a"
+      },
+      "lstm_17": {
+        "pasta": "dados/experimentos/ohlcv_modular_ab5baf3eab3a2e66d8b2/celulas/lstm_17/tentativa_001",
+        "conclusao_sha256": "64e8aa41ba1854bdead0596b0511219565eee932593aa354475479edef305eb9"
+      },
+      "lstm_42": {
+        "pasta": "dados/experimentos/ohlcv_modular_ab5baf3eab3a2e66d8b2/celulas/lstm_42/tentativa_001",
+        "conclusao_sha256": "cd79420cecf8496f97b0d0db3bc48aa5a6ef3cf820db20b52a7fd2867313b02c"
+      },
+      "lstm_2026": {
+        "pasta": "dados/experimentos/ohlcv_modular_ab5baf3eab3a2e66d8b2/celulas/lstm_2026/tentativa_001",
+        "conclusao_sha256": "9fa4733d2d1acf5f2a1c6a36b7cf8aec15c825f163bbb265221896adda7c36fa"
+      },
+      "naive": {
+        "pasta": "dados/experimentos/ohlcv_modular_ab5baf3eab3a2e66d8b2/celulas/naive/tentativa_001",
+        "conclusao_sha256": "47728d6dfe7371555fe3e24087789fd795f5772007f0acc0302495ebba1d8b1d"
+      },
+      "arima": {
+        "pasta": "dados/experimentos/ohlcv_modular_ab5baf3eab3a2e66d8b2/celulas/arima/tentativa_001",
+        "conclusao_sha256": "b57695e9c63f77a71a68c45468ad2e537b2bed2957df520411debc4a82d7b302"
+      },
+      "estado8_17": {
+        "pasta": "dados/experimentos/estado_mamba_dcf4b0ed9012f7247bce/celulas/mamba_17/tentativa_001",
+        "conclusao_sha256": "cd25194a35d0d246ec4204385816bf79eb8d9e62fb5d708702ee7f8c2c958de7"
+      },
+      "estado8_42": {
+        "pasta": "dados/experimentos/estado_mamba_dcf4b0ed9012f7247bce/celulas/mamba_42/tentativa_001",
+        "conclusao_sha256": "4751d8555a9e4eea3a7b30e9943c65b3cb6455a9ebf1cb1faeeb207f362415e1"
+      },
+      "estado8_2026": {
+        "pasta": "dados/experimentos/estado_mamba_dcf4b0ed9012f7247bce/celulas/mamba_2026/tentativa_001",
+        "conclusao_sha256": "e3d4d5de1d62572bbdb3fe832ff62c27abe1d31254c500a197b058109bc60c1b"
+      },
+      "estado8_7": {
+        "pasta": "dados/experimentos/estado_mamba_dcf4b0ed9012f7247bce/celulas/mamba_7/tentativa_001",
+        "conclusao_sha256": "1e9328e4769ba395cb1435140d6353dd8eed92da88fb4e3758aaddaba266e692"
+      },
+      "estado8_123": {
+        "pasta": "dados/experimentos/estado_mamba_dcf4b0ed9012f7247bce/celulas/mamba_123/tentativa_001",
+        "conclusao_sha256": "501461a99c9af6dcf1a7facce3df41ea47bbeec94eb97b7a666155e3c5e25490"
+      },
+      "estado8_31415": {
+        "pasta": "dados/experimentos/estado_mamba_dcf4b0ed9012f7247bce/celulas/mamba_31415/tentativa_001",
+        "conclusao_sha256": "19b7f5e971c4f9c142b681d5aa04a07f25784dccf38cb8a22700e674f01b8e7f"
+      }
+    },
+    "qualificacao": {
+      "arquivo": "registros/estados_ampliados/estado32/qualificacoes/933b6ddde1554fa7833641c57309784d/qualificacao.json",
+      "sha256": "6946c84be0184a1b9906cc521cab83836ce2afff0ff3e3203446af70bbed24dd"
+    },
+    "protocolo_sha256": "46d65267855b65f2f517ae6c6fa3c6037a6a9ac8ba2c3b134531194abe1f825e",
+    "dependencia32": null
+  }
+}

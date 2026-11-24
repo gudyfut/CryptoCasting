@@ -1,0 +1,475 @@
+{
+  "status": "aprovado",
+  "inicio_utc": "2026-10-27T21:08:53.781366+00:00",
+  "execucao": "penalizacao_7868a4d847c1410fc681",
+  "codigo_sha256": "1f5dc4cc06d3c619e1f05e00b0d4b9f96dba125efcc1a33c474cee3777b82a12",
+  "fim_utc": "2026-10-27T21:12:43.396889+00:00",
+  "ajustes_corrigidos": 384,
+  "controles": 2,
+  "estados_tentativas": {
+    "auditada": 384,
+    "interrompida": 2
+  },
+  "arquivos_preservados": 7082,
+  "intervalos_conferidos": 60,
+  "ordens_conferidas": 9022,
+  "fases": {
+    "desenvolvimento": {
+      "modelos": [
+        {
+          "modelo": "mamba_original",
+          "mse": 0.0008363257084644307,
+          "mae": 0.017754946429172667,
+          "habilidade_mse": -0.017096131180264037,
+          "vies": -0.0026202601892878164,
+          "acuracia_direcional": 0.48747694676043707,
+          "acerto_balanceado_direcional": 0.5007762044941182,
+          "rmse": 0.02891929647250138
+        },
+        {
+          "modelo": "mamba_corrigido",
+          "mse": 0.0008362687931946647,
+          "mae": 0.017754279699722736,
+          "habilidade_mse": -0.017040388563458395,
+          "vies": -0.002617740397355353,
+          "acuracia_direcional": 0.48750976353012376,
+          "acerto_balanceado_direcional": 0.5008052132170866,
+          "rmse": 0.028918312419549393
+        },
+        {
+          "modelo": "lstm",
+          "mse": 0.0008268838547573669,
+          "mae": 0.017623751474711798,
+          "habilidade_mse": -0.007639055612071413,
+          "vies": -0.002247724354869505,
+          "acuracia_direcional": 0.5012545526187558,
+          "acerto_balanceado_direcional": 0.5067057881519154,
+          "rmse": 0.02875558823528684
+        },
+        {
+          "modelo": "arima",
+          "mse": 0.0008204784745215523,
+          "mae": 0.017557975263674735,
+          "habilidade_mse": 0.0007029989842186751,
+          "vies": -0.0016046271025854243,
+          "acuracia_direcional": 0.4470970244275896,
+          "acerto_balanceado_direcional": 0.4495496222472067,
+          "rmse": 0.028643995435720073
+        },
+        {
+          "modelo": "naive",
+          "mse": 0.0008207934030734483,
+          "mae": 0.017570468430496686,
+          "habilidade_mse": 0.0,
+          "vies": -0.001601634692811528,
+          "acuracia_direcional": 0.004814613830029774,
+          "acerto_balanceado_direcional": 0.0,
+          "rmse": 0.028649492195734434
+        }
+      ],
+      "contrastes": [
+        {
+          "referencia": "mamba_original",
+          "diferenca_mse": -5.6915269765953776e-08,
+          "intervalos": [
+            {
+              "inferior": -1.2235097074413528e-07,
+              "superior": -1.130803423434459e-08,
+              "dias": 7,
+              "replicas": 2000
+            },
+            {
+              "inferior": -1.1723353764022049e-07,
+              "superior": -1.221849777340736e-08,
+              "dias": 14,
+              "replicas": 2000
+            },
+            {
+              "inferior": -1.0400370787878695e-07,
+              "superior": -1.704297744404047e-08,
+              "dias": 28,
+              "replicas": 2000
+            }
+          ],
+          "variacao_relativa": -6.805395217435173e-05
+        },
+        {
+          "referencia": "lstm",
+          "diferenca_mse": 9.384938437298033e-06,
+          "intervalos": [
+            {
+              "inferior": 3.844719079329392e-06,
+              "superior": 1.5540428388721588e-05,
+              "dias": 7,
+              "replicas": 2000
+            },
+            {
+              "inferior": 3.615783004843635e-06,
+              "superior": 1.5133966842541987e-05,
+              "dias": 14,
+              "replicas": 2000
+            },
+            {
+              "inferior": 3.884628836976994e-06,
+              "superior": 1.172725645793926e-05,
+              "dias": 28,
+              "replicas": 2000
+            }
+          ],
+          "variacao_relativa": 0.011349766213601509
+        },
+        {
+          "referencia": "naive",
+          "diferenca_mse": 1.547539012121655e-05,
+          "intervalos": [
+            {
+              "inferior": 7.470571744293375e-06,
+              "superior": 2.393689826619143e-05,
+              "dias": 7,
+              "replicas": 2000
+            },
+            {
+              "inferior": 7.059127281812656e-06,
+              "superior": 2.3612177891495446e-05,
+              "dias": 14,
+              "replicas": 2000
+            },
+            {
+              "inferior": 6.56018935529855e-06,
+              "superior": 1.845245715630512e-05,
+              "dias": 28,
+              "replicas": 2000
+            }
+          ],
+          "variacao_relativa": 0.018854184333437773
+        },
+        {
+          "referencia": "arima",
+          "diferenca_mse": 1.5790318673112502e-05,
+          "intervalos": [
+            {
+              "inferior": 7.669393724991482e-06,
+              "superior": 2.417605619601096e-05,
+              "dias": 7,
+              "replicas": 2000
+            },
+            {
+              "inferior": 7.4907067501053915e-06,
+              "superior": 2.3870894811956282e-05,
+              "dias": 14,
+              "replicas": 2000
+            },
+            {
+              "inferior": 6.834658492238872e-06,
+              "superior": 1.8723975682971404e-05,
+              "dias": 28,
+              "replicas": 2000
+            }
+          ],
+          "variacao_relativa": 0.019245256473450212
+        }
+      ],
+      "estabilidade": [
+        {
+          "modelo": "mamba_original",
+          "por_seed": [
+            {
+              "seed": 17,
+              "mse": 0.0008312637465139606
+            },
+            {
+              "seed": 42,
+              "mse": 0.0008416418377396055
+            },
+            {
+              "seed": 2026,
+              "mse": 0.000836071541139726
+            }
+          ],
+          "desvio_mse": 4.240648153577668e-06
+        },
+        {
+          "modelo": "mamba_corrigido",
+          "por_seed": [
+            {
+              "seed": 17,
+              "mse": 0.0008312570254655878
+            },
+            {
+              "seed": 42,
+              "mse": 0.0008414766787173542
+            },
+            {
+              "seed": 2026,
+              "mse": 0.0008360726754010525
+            }
+          ],
+          "desvio_mse": 4.174460028020656e-06
+        },
+        {
+          "modelo": "lstm",
+          "por_seed": [
+            {
+              "seed": 17,
+              "mse": 0.0008268158180082222
+            },
+            {
+              "seed": 42,
+              "mse": 0.0008271638298520951
+            },
+            {
+              "seed": 2026,
+              "mse": 0.0008266719164117832
+            }
+          ],
+          "desvio_mse": 2.0650497591342625e-07
+        }
+      ],
+      "epocas_selecionadas_alteradas": 0,
+      "pares_melhores": 89,
+      "sinais_alterados": 2,
+      "ordens_conferidas": 798,
+      "financeiro": {
+        "base": {
+          "mediana": 0.004016686315765461,
+          "pares_retorno_alterado": 2,
+          "positivos": 25
+        },
+        "agravado_sinais_base": {
+          "mediana": -0.0073896429463019,
+          "pares_retorno_alterado": 2,
+          "positivos": 19
+        }
+      }
+    },
+    "avaliacao": {
+      "modelos": [
+        {
+          "modelo": "mamba_original",
+          "mse": 0.0011907138230304224,
+          "mae": 0.02320605946358021,
+          "habilidade_mse": -0.01552542577755842,
+          "vies": -0.00035533830939459785,
+          "acuracia_direcional": 0.5051022279358796,
+          "acerto_balanceado_direcional": 0.505114232750713,
+          "rmse": 0.034506721418158845
+        },
+        {
+          "modelo": "mamba_corrigido",
+          "mse": 0.001191315442520457,
+          "mae": 0.023212186654253036,
+          "habilidade_mse": -0.016154975593720144,
+          "vies": -0.0003866258308162394,
+          "acuracia_direcional": 0.5047592610806481,
+          "acerto_balanceado_direcional": 0.5049296051035377,
+          "rmse": 0.03451543774197941
+        },
+        {
+          "modelo": "lstm",
+          "mse": 0.0011764163725050832,
+          "mae": 0.02305746306584438,
+          "habilidade_mse": 0.00041070508808606007,
+          "vies": -0.0005417292026898464,
+          "acuracia_direcional": 0.5077538616543654,
+          "acerto_balanceado_direcional": 0.506445796469454,
+          "rmse": 0.03429892669610936
+        },
+        {
+          "modelo": "arima",
+          "mse": 0.0011761429069887656,
+          "mae": 0.0230531477377756,
+          "habilidade_mse": 0.00037795776006212256,
+          "vies": -0.0010367119114232264,
+          "acuracia_direcional": 0.4462209327313683,
+          "acerto_balanceado_direcional": 0.44768337698470756,
+          "rmse": 0.034294939961877255
+        },
+        {
+          "modelo": "naive",
+          "mse": 0.0011763537707533199,
+          "mae": 0.023060710794895828,
+          "habilidade_mse": 0.0,
+          "vies": -0.0010324476266965008,
+          "acuracia_direcional": 0.0007888906604843228,
+          "acerto_balanceado_direcional": 0.0,
+          "rmse": 0.034298014093432874
+        }
+      ],
+      "contrastes": [
+        {
+          "referencia": "mamba_original",
+          "diferenca_mse": 6.016194900345328e-07,
+          "intervalos": [
+            {
+              "inferior": -3.3352315521782484e-07,
+              "superior": 1.8617071514762435e-06,
+              "dias": 7,
+              "replicas": 2000
+            },
+            {
+              "inferior": -3.575148086664987e-07,
+              "superior": 1.8095910060786186e-06,
+              "dias": 14,
+              "replicas": 2000
+            },
+            {
+              "inferior": -3.415892030590615e-07,
+              "superior": 1.4758129318337552e-06,
+              "dias": 28,
+              "replicas": 2000
+            }
+          ],
+          "variacao_relativa": 0.0005052595160972562
+        },
+        {
+          "referencia": "lstm",
+          "diferenca_mse": 1.4899070015373764e-05,
+          "intervalos": [
+            {
+              "inferior": 4.365333782859514e-06,
+              "superior": 2.982596097398207e-05,
+              "dias": 7,
+              "replicas": 2000
+            },
+            {
+              "inferior": 3.7907384131393313e-06,
+              "superior": 3.333391921347992e-05,
+              "dias": 14,
+              "replicas": 2000
+            },
+            {
+              "inferior": 4.239901560084252e-06,
+              "superior": 3.546738662513643e-05,
+              "dias": 28,
+              "replicas": 2000
+            }
+          ],
+          "variacao_relativa": 0.012664793149425035
+        },
+        {
+          "referencia": "naive",
+          "diferenca_mse": 1.496167176713707e-05,
+          "intervalos": [
+            {
+              "inferior": 3.976629250647401e-06,
+              "superior": 3.0342197815580013e-05,
+              "dias": 7,
+              "replicas": 2000
+            },
+            {
+              "inferior": 3.4195611425546394e-06,
+              "superior": 3.49287251986363e-05,
+              "dias": 14,
+              "replicas": 2000
+            },
+            {
+              "inferior": 4.011114560424309e-06,
+              "superior": 3.640390470041948e-05,
+              "dias": 28,
+              "replicas": 2000
+            }
+          ],
+          "variacao_relativa": 0.012718683901999928
+        },
+        {
+          "referencia": "arima",
+          "diferenca_mse": 1.5172535531691344e-05,
+          "intervalos": [
+            {
+              "inferior": 4.190023437858922e-06,
+              "superior": 3.069360653183667e-05,
+              "dias": 7,
+              "replicas": 2000
+            },
+            {
+              "inferior": 3.63314945530048e-06,
+              "superior": 3.524460753075359e-05,
+              "dias": 14,
+              "replicas": 2000
+            },
+            {
+              "inferior": 4.304430289517058e-06,
+              "superior": 3.6872516466667544e-05,
+              "dias": 28,
+              "replicas": 2000
+            }
+          ],
+          "variacao_relativa": 0.012900248295963479
+        }
+      ],
+      "estabilidade": [
+        {
+          "modelo": "mamba_original",
+          "por_seed": [
+            {
+              "seed": 17,
+              "mse": 0.0011766798182198455
+            },
+            {
+              "seed": 42,
+              "mse": 0.0012018724564635012
+            },
+            {
+              "seed": 2026,
+              "mse": 0.0011935891944079204
+            }
+          ],
+          "desvio_mse": 1.0483894818174745e-05
+        },
+        {
+          "modelo": "mamba_corrigido",
+          "por_seed": [
+            {
+              "seed": 17,
+              "mse": 0.0011762958253141234
+            },
+            {
+              "seed": 42,
+              "mse": 0.001205202677300112
+            },
+            {
+              "seed": 2026,
+              "mse": 0.0011924478249471355
+            }
+          ],
+          "desvio_mse": 1.1828306173614552e-05
+        },
+        {
+          "modelo": "lstm",
+          "por_seed": [
+            {
+              "seed": 17,
+              "mse": 0.0011744246202720736
+            },
+            {
+              "seed": 42,
+              "mse": 0.0011770918473865202
+            },
+            {
+              "seed": 2026,
+              "mse": 0.0011777326498566558
+            }
+          ],
+          "desvio_mse": 1.4324721450944113e-06
+        }
+      ],
+      "epocas_selecionadas_alteradas": 8,
+      "pares_melhores": 108,
+      "sinais_alterados": 219,
+      "ordens_conferidas": 8224,
+      "financeiro": {
+        "base": {
+          "mediana": -0.1047789154562162,
+          "pares_retorno_alterado": 20,
+          "positivos": 23
+        },
+        "agravado_sinais_base": {
+          "mediana": -0.28480034899496054,
+          "pares_retorno_alterado": 20,
+          "positivos": 12
+        }
+      }
+    }
+  },
+  "limites": "Conferência independente aritmética e temporal, escalas/configurações de todos os checkpoints. Não repete o treino nem a inferência neural; recarga exata de cada treino consta dos recibos originais. Todos os cenários desta execução tinham pontas observadas; a ausência financeira gera falha nesta conferência, não imputação."
+}

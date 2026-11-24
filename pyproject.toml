@@ -1,0 +1,17 @@
+[build-system]
+requires = ["setuptools>=64"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "cryptocasting"
+version = "0.1.0"
+description = "Pesquisa de previsão e simulação operacional em criptoativos"
+requires-python = ">=3.10"
+
+[tool.setuptools.packages.find]
+where = ["codigo"]
+namespaces = true
+
+[tool.setuptools]
+package-dir = {"" = "codigo"}
+

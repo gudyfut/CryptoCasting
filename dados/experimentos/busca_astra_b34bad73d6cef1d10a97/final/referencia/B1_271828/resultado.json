@@ -1,0 +1,69 @@
+{
+  "utc": "2026-11-04T04:37:50.731370+00:00",
+  "seed": 271828,
+  "bloco": "B1",
+  "receita": {
+    "representacao": "relativa",
+    "indicadores": false,
+    "contexto": 168,
+    "largura": 32,
+    "camadas": 2,
+    "estado": 16,
+    "dropout": 0.1,
+    "pooling": "ultimo",
+    "taxa": 0.0002,
+    "decay": 0.001,
+    "otimizador": "AdamW",
+    "perda": "mse",
+    "scheduler": "constante",
+    "ganho_saida": 1.0
+  },
+  "epoca": 17,
+  "epocas_executadas": 27,
+  "parametros": 20257,
+  "recarga_exata": true,
+  "segundos": 162.76705333400014,
+  "checkpoint_final_sha256": "e09185e713f33b74810a9fe3c882e9c1efc2a338a24a48a0b8f9ad36ecf08ac3",
+  "memoria_cuda_maxima_bytes": 167180800,
+  "treino_amostra_fixa": {
+    "n": 2048,
+    "mse": 0.0010950032134585017,
+    "rmse": 0.03309083277070104,
+    "mae": 0.02290408831843185,
+    "mse_naive": 0.0011857132237557987,
+    "vies": 0.001422108669206361,
+    "sd_previsao": 0.008231120552816168,
+    "sd_alvo": 0.03442042509987141,
+    "acuracia_direcional": 0.5556640625,
+    "balanced_accuracy": 0.5554541671280052
+  },
+  "validacao": {
+    "n": 2184,
+    "mse": 0.00048098296829675937,
+    "rmse": 0.021931323906612645,
+    "mae": 0.015199875654958485,
+    "mse_naive": 0.00048677487682377503,
+    "vies": -0.004502586121411577,
+    "sd_previsao": 0.0026123064277377636,
+    "sd_alvo": 0.021510187860790026,
+    "acuracia_direcional": 0.5224358974358975,
+    "balanced_accuracy": 0.5100787639568933
+  },
+  "teste": {
+    "n": 4344,
+    "mse": 0.0007447480989582594,
+    "rmse": 0.02729007326773344,
+    "mae": 0.019690506250842465,
+    "mse_naive": 0.0007274219044532415,
+    "vies": -0.0011927448070425865,
+    "sd_previsao": 0.004183492999746307,
+    "sd_alvo": 0.026895935476635532,
+    "acuracia_direcional": 0.5173842965691918,
+    "balanced_accuracy": 0.5032014727500269
+  },
+  "diagnostico": {
+    "sd_representacao_media": 0.1584096997976303,
+    "norma_pesos_saida": 0.4754161536693573,
+    "fracao_clipping_ultima_epoca": 1.0
+  }
+}

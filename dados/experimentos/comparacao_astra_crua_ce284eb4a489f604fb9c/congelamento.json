@@ -1,0 +1,1005 @@
+{
+  "configuracao": {
+    "versao": 1,
+    "ciclo": "comparacao_astra_crua_001",
+    "pergunta": "C05 Astra versus OHLCV cru + Huber no mesmo executor e populacao",
+    "orcamento": {
+      "principais_novos": 32,
+      "controle_crua": 1,
+      "controle_heranca_astra": 1,
+      "ajustes_novos_total": 34,
+      "principais_herdados": 32,
+      "simulacoes_novas": 192,
+      "simulacoes_herdadas": 216
+    },
+    "seeds": [
+      42,
+      17,
+      2026,
+      7,
+      123,
+      31415,
+      271828,
+      161803
+    ],
+    "blocos": [
+      "B1",
+      "B2",
+      "B3",
+      "B4"
+    ],
+    "origem": "b34bad73d6cef1d10a97",
+    "executor_cientifico": "experimentos.busca_astra.dados.Dados + rede.Rede + treino.ajustar, importados sem alteracao",
+    "mudancas_entre_receitas": [
+      "representacao: janela_relativa versus crua",
+      "contexto: 72 versus 168"
+    ],
+    "fixos": "BTCUSDT; candle1h; alvo log-retorno24h; origens1h; elegibilidade336h; Huber2xdelta1; estado16; largura32; duas camadas; dropout0.1; AdamW0.0002constante; decay0.001; isencoesA_log/D; batch64/micro32; clipping1; epocas100; paciencia10; selecaoMSEvalidacao",
+    "contrastes": [
+      "astra_menos_crua",
+      "astra_menos_naive",
+      "crua_menos_naive"
+    ],
+    "primario": "MSE teste, media com peso igual entre quatro blocos e oito seeds; contraste Astra menos crua",
+    "bootstrap": {
+      "replicas": 2000,
+      "dias": [
+        7,
+        14,
+        28
+      ],
+      "principal_dias": 14,
+      "ic_descritivo": 0.95,
+      "familia_bonferroni": 3
+    },
+    "limites": {
+      "ajuste_segundos": 2700,
+      "inicio_novos_ajustes_ate_horas": 12
+    },
+    "falhas": "Preservar e interromper sem repeticao ou retomada automatica; sem ampliar busca ou promover referencia.",
+    "exposicao": "2024/2025 e resultados das duas receitas ja consultados; avaliacao retrospectiva, nao confirmacao independente."
+  },
+  "fontes": {
+    "experimentos/busca_astra/agente.py": "57f00107973e1307669e7719ee31e1cd353c4428034bc98155dc16c55362f80f",
+    "experimentos/busca_astra/ciclo.py": "32f625e634565c31894a51d2942b95c7ead2f530a5692c4ebeab3fb9800cf267",
+    "experimentos/busca_astra/contrato.py": "80c31abde18710ee637795a2abb2d6abbb9789b3b210b802c3f824a77baabc1c",
+    "experimentos/busca_astra/dados.py": "34fdfff67f19a54ee2c3d7abacee6743aea78108d6a750b0d26c90badb79a248",
+    "experimentos/busca_astra/publicacao.py": "72baec7480908394cc682bad0ede0adc87bac7020e692de9ac65bc5aa8e68268",
+    "experimentos/busca_astra/qualificar.py": "81bd59b378dc5ea175daea5b43bee2442b457bb045a6d4d5852544b373009bfb",
+    "experimentos/busca_astra/rede.py": "173891f3c6536154f6933ad878b95dc74b1feecdc033df0426dc2085f3363d84",
+    "experimentos/busca_astra/treino.py": "10d21d050e5b55dd1b0f5096b0bcaa9ff74c53cb9beea37c94d27322721100a6",
+    "experimentos/busca_astra/worker.py": "5cf6dd0966c7912996f1fed96217888fac0cdf18957b670fd12b8abdd9e71f23",
+    "experimentos/busca_astra/__init__.py": "80f36454f7f79193110b36dd87aba774d7fd61fbeb6fad83c744b4d3581b67a1",
+    "experimentos/busca_astra/__main__.py": "cca829957c2c8bf81e1f8f165e20e88e1f8648999418b58092e43a5f33e59b40",
+    "tests_busca_astra/test_contrato_dados.py": "74ca17703309f9cc4f55f37f300aea3cb02af3ea1f383dc9d111a735ea154ff6",
+    "tests_busca_astra/test_orquestracao.py": "079211db0e17897a97cfc7b480d4a707713f1db8b89e9fec08539e0351848b53",
+    "tests_busca_astra/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "infraestrutura/artefatos.py": "8a6b3cfeee815cdc3742ddf6b6fe7e972fa0757099f16212310515c49eb28a3e",
+    "infraestrutura/__init__.py": "91c8cb2892c40d290684a1d0bd676b3278cdce4841696602d9e41805f1b062d5",
+    "modelos/arima.py": "df37e823342bff7d70833ea056ba24e6293f204b455f227a66c28bfff4654538",
+    "modelos/conferencia.py": "b553421f8ea9c18370695c9e41561384330a207dd5efb0906bcec308538d50bf",
+    "modelos/consumo.py": "45bc850a421175b72a2500b256d0e7b8563892a638ba1e572e4ca22527af6a40",
+    "modelos/contratos.py": "cbcd7f912ce4615549300cee2f04974e59a7ecfb3eb836e035c634eddb620447",
+    "modelos/lstm.py": "bff60cbcc12a185e666b8a511e5be2d5e0ab25c0764f7ecd93e876601dbc04dd",
+    "modelos/mamba.py": "0ca157f55f0f788beee09aa43768eccf0dae139fe969f5823a855cb1a755773a",
+    "modelos/naive.py": "bd12107c6e9311e68b2377c6417ff32d3de756f5150e3d4d9714fa630cfd045d",
+    "modelos/neurais.py": "4b6cb724313d3b5df83a79afc3291dc0d644110158f0e5c6f62bd6bab85d4c54",
+    "modelos/__init__.py": "9008c1d8057a95f0496b9d1237b06c59032143dbe0534ceed59cb83af38f05b8",
+    "treinamento/ambiente.py": "9e0acf1c09537ea3259d6f02bb6f096cdb819a11c6b1670d95e292e793732bd6",
+    "treinamento/arima.py": "7d22218fac30a5a42921cfe7426d34132e836d400fda4e87c375c80919720ca0",
+    "treinamento/avaliar.py": "0ac89e31da797126b0a19c52444792f0eaee795240f87771b104ed16178b94f0",
+    "treinamento/checkpoints.py": "0f9ceb192473ec2f66245dee215bc63ba88b264beaa47153409ec95fcbc986d2",
+    "treinamento/ciclo.py": "f2438024b6cbfe050eb07ec0f74ab082b666fb23764dff0e1ec6b0aaf694ecf6",
+    "treinamento/configuracao.py": "e63e4131786d207a9e514e4d3c4b82b688c33213d20bb08850112cad04c81182",
+    "treinamento/neural.py": "05928af030bed5b12fe3904ee940f21a735c39e5aac568febbce8a7c4d3d2f08",
+    "treinamento/otimizacao.py": "96bf1dcad24de3cfd9beb1e0b76becfb68c1ff137b84a4eb66b9067f5b07a334",
+    "treinamento/preservacao.py": "0dbaefa24cad87ddadeaa727748bef5ff24a9f26e612497d0341399dc6db08e8",
+    "treinamento/qualificacao.py": "a7f760310cbef8c3d81900cf92b2ad2995d5e7ef0d1fec56f92a2cf2f7610cda",
+    "treinamento/selecao.py": "1671fb202499e547a032488ee51b3b0e214cea0f7e50c394b3b2a2e09591a8db",
+    "treinamento/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "backtest_carteira/auditoria.py": "ad439a8d6e2bfe8367ff6d2e96da7e53cd2ca9f86f20ec8d25b4b6a64297bcd9",
+    "backtest_carteira/ciclo.py": "c5ce171fc8298a9e104eb57a2720418bf234425e9b3800df5c62c0a47ad45747",
+    "backtest_carteira/mercado.py": "fb85e0bdac113a4fd57af4332e6ef3fd9ebb31ffb7ba007011648dce505d6f37",
+    "backtest_carteira/politicas.py": "0ab300634f73d4cd34d23bb6a3d48d4bd5f838e23201cf8327a3712eed7a6b79",
+    "backtest_carteira/relatorio.py": "ac0724e405cf6d08280567ca43446f2deb4826a61896b09eff60f4303e9dd54e",
+    "backtest_carteira/simulador.py": "d7fa1748b0e92d23ceb5e1289790977eee351dd86b442f8ab3d18d127be020ec",
+    "backtest_carteira/__init__.py": "935fcaa3336cd1f24f27457418b2cc6abd9d5b24f85f3fdc8dbb69dae8553d27",
+    "docs/protocolo_busca_astra.md": "3b657576a124437a61c2ecb34f76c760ac72f3dd86416bef542c8aac888e80f6",
+    "configuracoes/busca_astra_001.json": "03dbc1df353330e20ccfbb25038fd3caeef065a8525642f7c704505ae773861e",
+    "experimentos/__init__.py": "a14e911bc32033a54926e3b27386c9f3f4b04efeb02cf5aceda53f68d1856b3a",
+    "experimentos/comparacao_astra_crua/ciclo.py": "f57466268c24a2d179a146117e627e64898c127168c0e1a91f2a5f469dff50bf",
+    "experimentos/comparacao_astra_crua/contrato.py": "4ea426ad3014fa950c0d3ebb9ba67df09ade33f2f62578a21be4b07fc8829c36",
+    "experimentos/comparacao_astra_crua/publicacao.py": "d03132fdff07b667abcddd711c8550b883403ac98efc0b9dd90ec3b51843f25b",
+    "experimentos/comparacao_astra_crua/qualificar.py": "aa58d0f93289267e8145747a0dac163c267f59de58c1c5c43cac01dfb8b79c00",
+    "experimentos/comparacao_astra_crua/worker.py": "b2edc1e4dbb1f67f7c1ebb3263c41967196dbbb70be5da114940bf75d3a2105e",
+    "experimentos/comparacao_astra_crua/__init__.py": "d02ebc34a591bdca857686339509005e9b2de65182128ccd92ddd77a85ebed5c",
+    "experimentos/comparacao_astra_crua/__main__.py": "e55633d71820caa1d326d2bb430d95f6c84b226c5af25464d9b797bbee09f3ed",
+    "tests_comparacao_astra_crua/test_contrato.py": "6d7fb586c0b2adec507ebddae9fcb6b414ffbcc3ca1c81250996626a6d6e4156",
+    "tests_comparacao_astra_crua/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "configuracoes/comparacao_astra_crua_001.json": "46ce372522f4717624fde0e939dec4adc5a0fac428bfdfb804dd9403b95688f8",
+    "docs/protocolo_comparacao_astra_crua.md": "37f4ebaf7ff5a7b5888e21b32261a1033838f39d4069cea8ea8da9615e122e63"
+  },
+  "ambiente_cuda": {
+    "python": "3.12.13",
+    "torch": "2.6.0+cu118",
+    "cuda": "11.8",
+    "gpu": "NVIDIA GeForce RTX 4050 Laptop GPU",
+    "pacotes": {
+      "mamba-ssm": "2.2.6.post3",
+      "causal-conv1d": "1.6.2.post1",
+      "numpy": "2.2.6",
+      "pandas": "3.0.3",
+      "pyarrow": "24.0.0"
+    }
+  },
+  "grade": [
+    {
+      "bloco": "B1",
+      "seed": 42,
+      "tipo": "controle_astra",
+      "receita": {
+        "representacao": "janela_relativa",
+        "indicadores": false,
+        "contexto": 72,
+        "largura": 32,
+        "camadas": 2,
+        "estado": 16,
+        "dropout": 0.1,
+        "pooling": "ultimo",
+        "taxa": 0.0002,
+        "decay": 0.001,
+        "otimizador": "AdamW",
+        "perda": "huber",
+        "scheduler": "constante",
+        "ganho_saida": 1.0
+      }
+    },
+    {
+      "bloco": "B1",
+      "seed": 42,
+      "tipo": "crua",
+      "receita": {
+        "representacao": "crua",
+        "indicadores": false,
+        "contexto": 168,
+        "largura": 32,
+        "camadas": 2,
+        "estado": 16,
+        "dropout": 0.1,
+        "pooling": "ultimo",
+        "taxa": 0.0002,
+        "decay": 0.001,
+        "otimizador": "AdamW",
+        "perda": "huber",
+        "scheduler": "constante",
+        "ganho_saida": 1.0
+      }
+    },
+    {
+      "bloco": "B1",
+      "seed": 42,
+      "tipo": "controle_crua",
+      "receita": {
+        "representacao": "crua",
+        "indicadores": false,
+        "contexto": 168,
+        "largura": 32,
+        "camadas": 2,
+        "estado": 16,
+        "dropout": 0.1,
+        "pooling": "ultimo",
+        "taxa": 0.0002,
+        "decay": 0.001,
+        "otimizador": "AdamW",
+        "perda": "huber",
+        "scheduler": "constante",
+        "ganho_saida": 1.0
+      }
+    },
+    {
+      "bloco": "B1",
+      "seed": 17,
+      "tipo": "crua",
+      "receita": {
+        "representacao": "crua",
+        "indicadores": false,
+        "contexto": 168,
+        "largura": 32,
+        "camadas": 2,
+        "estado": 16,
+        "dropout": 0.1,
+        "pooling": "ultimo",
+        "taxa": 0.0002,
+        "decay": 0.001,
+        "otimizador": "AdamW",
+        "perda": "huber",
+        "scheduler": "constante",
+        "ganho_saida": 1.0
+      }
+    },
+    {
+      "bloco": "B1",
+      "seed": 2026,
+      "tipo": "crua",
+      "receita": {
+        "representacao": "crua",
+        "indicadores": false,
+        "contexto": 168,
+        "largura": 32,
+        "camadas": 2,
+        "estado": 16,
+        "dropout": 0.1,
+        "pooling": "ultimo",
+        "taxa": 0.0002,
+        "decay": 0.001,
+        "otimizador": "AdamW",
+        "perda": "huber",
+        "scheduler": "constante",
+        "ganho_saida": 1.0
+      }
+    },
+    {
+      "bloco": "B1",
+      "seed": 7,
+      "tipo": "crua",
+      "receita": {
+        "representacao": "crua",
+        "indicadores": false,
+        "contexto": 168,
+        "largura": 32,
+        "camadas": 2,
+        "estado": 16,
+        "dropout": 0.1,
+        "pooling": "ultimo",
+        "taxa": 0.0002,
+        "decay": 0.001,
+        "otimizador": "AdamW",
+        "perda": "huber",
+        "scheduler": "constante",
+        "ganho_saida": 1.0
+      }
+    },
+    {
+      "bloco": "B1",
+      "seed": 123,
+      "tipo": "crua",
+      "receita": {
+        "representacao": "crua",
+        "indicadores": false,
+        "contexto": 168,
+        "largura": 32,
+        "camadas": 2,
+        "estado": 16,
+        "dropout": 0.1,
+        "pooling": "ultimo",
+        "taxa": 0.0002,
+        "decay": 0.001,
+        "otimizador": "AdamW",
+        "perda": "huber",
+        "scheduler": "constante",
+        "ganho_saida": 1.0
+      }
+    },
+    {
+      "bloco": "B1",
+      "seed": 31415,
+      "tipo": "crua",
+      "receita": {
+        "representacao": "crua",
+        "indicadores": false,
+        "contexto": 168,
+        "largura": 32,
+        "camadas": 2,
+        "estado": 16,
+        "dropout": 0.1,
+        "pooling": "ultimo",
+        "taxa": 0.0002,
+        "decay": 0.001,
+        "otimizador": "AdamW",
+        "perda": "huber",
+        "scheduler": "constante",
+        "ganho_saida": 1.0
+      }
+    },
+    {
+      "bloco": "B1",
+      "seed": 271828,
+      "tipo": "crua",
+      "receita": {
+        "representacao": "crua",
+        "indicadores": false,
+        "contexto": 168,
+        "largura": 32,
+        "camadas": 2,
+        "estado": 16,
+        "dropout": 0.1,
+        "pooling": "ultimo",
+        "taxa": 0.0002,
+        "decay": 0.001,
+        "otimizador": "AdamW",
+        "perda": "huber",
+        "scheduler": "constante",
+        "ganho_saida": 1.0
+      }
+    },
+    {
+      "bloco": "B1",
+      "seed": 161803,
+      "tipo": "crua",
+      "receita": {
+        "representacao": "crua",
+        "indicadores": false,
+        "contexto": 168,
+        "largura": 32,
+        "camadas": 2,
+        "estado": 16,
+        "dropout": 0.1,
+        "pooling": "ultimo",
+        "taxa": 0.0002,
+        "decay": 0.001,
+        "otimizador": "AdamW",
+        "perda": "huber",
+        "scheduler": "constante",
+        "ganho_saida": 1.0
+      }
+    },
+    {
+      "bloco": "B2",
+      "seed": 42,
+      "tipo": "crua",
+      "receita": {
+        "representacao": "crua",
+        "indicadores": false,
+        "contexto": 168,
+        "largura": 32,
+        "camadas": 2,
+        "estado": 16,
+        "dropout": 0.1,
+        "pooling": "ultimo",
+        "taxa": 0.0002,
+        "decay": 0.001,
+        "otimizador": "AdamW",
+        "perda": "huber",
+        "scheduler": "constante",
+        "ganho_saida": 1.0
+      }
+    },
+    {
+      "bloco": "B2",
+      "seed": 17,
+      "tipo": "crua",
+      "receita": {
+        "representacao": "crua",
+        "indicadores": false,
+        "contexto": 168,
+        "largura": 32,
+        "camadas": 2,
+        "estado": 16,
+        "dropout": 0.1,
+        "pooling": "ultimo",
+        "taxa": 0.0002,
+        "decay": 0.001,
+        "otimizador": "AdamW",
+        "perda": "huber",
+        "scheduler": "constante",
+        "ganho_saida": 1.0
+      }
+    },
+    {
+      "bloco": "B2",
+      "seed": 2026,
+      "tipo": "crua",
+      "receita": {
+        "representacao": "crua",
+        "indicadores": false,
+        "contexto": 168,
+        "largura": 32,
+        "camadas": 2,
+        "estado": 16,
+        "dropout": 0.1,
+        "pooling": "ultimo",
+        "taxa": 0.0002,
+        "decay": 0.001,
+        "otimizador": "AdamW",
+        "perda": "huber",
+        "scheduler": "constante",
+        "ganho_saida": 1.0
+      }
+    },
+    {
+      "bloco": "B2",
+      "seed": 7,
+      "tipo": "crua",
+      "receita": {
+        "representacao": "crua",
+        "indicadores": false,
+        "contexto": 168,
+        "largura": 32,
+        "camadas": 2,
+        "estado": 16,
+        "dropout": 0.1,
+        "pooling": "ultimo",
+        "taxa": 0.0002,
+        "decay": 0.001,
+        "otimizador": "AdamW",
+        "perda": "huber",
+        "scheduler": "constante",
+        "ganho_saida": 1.0
+      }
+    },
+    {
+      "bloco": "B2",
+      "seed": 123,
+      "tipo": "crua",
+      "receita": {
+        "representacao": "crua",
+        "indicadores": false,
+        "contexto": 168,
+        "largura": 32,
+        "camadas": 2,
+        "estado": 16,
+        "dropout": 0.1,
+        "pooling": "ultimo",
+        "taxa": 0.0002,
+        "decay": 0.001,
+        "otimizador": "AdamW",
+        "perda": "huber",
+        "scheduler": "constante",
+        "ganho_saida": 1.0
+      }
+    },
+    {
+      "bloco": "B2",
+      "seed": 31415,
+      "tipo": "crua",
+      "receita": {
+        "representacao": "crua",
+        "indicadores": false,
+        "contexto": 168,
+        "largura": 32,
+        "camadas": 2,
+        "estado": 16,
+        "dropout": 0.1,
+        "pooling": "ultimo",
+        "taxa": 0.0002,
+        "decay": 0.001,
+        "otimizador": "AdamW",
+        "perda": "huber",
+        "scheduler": "constante",
+        "ganho_saida": 1.0
+      }
+    },
+    {
+      "bloco": "B2",
+      "seed": 271828,
+      "tipo": "crua",
+      "receita": {
+        "representacao": "crua",
+        "indicadores": false,
+        "contexto": 168,
+        "largura": 32,
+        "camadas": 2,
+        "estado": 16,
+        "dropout": 0.1,
+        "pooling": "ultimo",
+        "taxa": 0.0002,
+        "decay": 0.001,
+        "otimizador": "AdamW",
+        "perda": "huber",
+        "scheduler": "constante",
+        "ganho_saida": 1.0
+      }
+    },
+    {
+      "bloco": "B2",
+      "seed": 161803,
+      "tipo": "crua",
+      "receita": {
+        "representacao": "crua",
+        "indicadores": false,
+        "contexto": 168,
+        "largura": 32,
+        "camadas": 2,
+        "estado": 16,
+        "dropout": 0.1,
+        "pooling": "ultimo",
+        "taxa": 0.0002,
+        "decay": 0.001,
+        "otimizador": "AdamW",
+        "perda": "huber",
+        "scheduler": "constante",
+        "ganho_saida": 1.0
+      }
+    },
+    {
+      "bloco": "B3",
+      "seed": 42,
+      "tipo": "crua",
+      "receita": {
+        "representacao": "crua",
+        "indicadores": false,
+        "contexto": 168,
+        "largura": 32,
+        "camadas": 2,
+        "estado": 16,
+        "dropout": 0.1,
+        "pooling": "ultimo",
+        "taxa": 0.0002,
+        "decay": 0.001,
+        "otimizador": "AdamW",
+        "perda": "huber",
+        "scheduler": "constante",
+        "ganho_saida": 1.0
+      }
+    },
+    {
+      "bloco": "B3",
+      "seed": 17,
+      "tipo": "crua",
+      "receita": {
+        "representacao": "crua",
+        "indicadores": false,
+        "contexto": 168,
+        "largura": 32,
+        "camadas": 2,
+        "estado": 16,
+        "dropout": 0.1,
+        "pooling": "ultimo",
+        "taxa": 0.0002,
+        "decay": 0.001,
+        "otimizador": "AdamW",
+        "perda": "huber",
+        "scheduler": "constante",
+        "ganho_saida": 1.0
+      }
+    },
+    {
+      "bloco": "B3",
+      "seed": 2026,
+      "tipo": "crua",
+      "receita": {
+        "representacao": "crua",
+        "indicadores": false,
+        "contexto": 168,
+        "largura": 32,
+        "camadas": 2,
+        "estado": 16,
+        "dropout": 0.1,
+        "pooling": "ultimo",
+        "taxa": 0.0002,
+        "decay": 0.001,
+        "otimizador": "AdamW",
+        "perda": "huber",
+        "scheduler": "constante",
+        "ganho_saida": 1.0
+      }
+    },
+    {
+      "bloco": "B3",
+      "seed": 7,
+      "tipo": "crua",
+      "receita": {
+        "representacao": "crua",
+        "indicadores": false,
+        "contexto": 168,
+        "largura": 32,
+        "camadas": 2,
+        "estado": 16,
+        "dropout": 0.1,
+        "pooling": "ultimo",
+        "taxa": 0.0002,
+        "decay": 0.001,
+        "otimizador": "AdamW",
+        "perda": "huber",
+        "scheduler": "constante",
+        "ganho_saida": 1.0
+      }
+    },
+    {
+      "bloco": "B3",
+      "seed": 123,
+      "tipo": "crua",
+      "receita": {
+        "representacao": "crua",
+        "indicadores": false,
+        "contexto": 168,
+        "largura": 32,
+        "camadas": 2,
+        "estado": 16,
+        "dropout": 0.1,
+        "pooling": "ultimo",
+        "taxa": 0.0002,
+        "decay": 0.001,
+        "otimizador": "AdamW",
+        "perda": "huber",
+        "scheduler": "constante",
+        "ganho_saida": 1.0
+      }
+    },
+    {
+      "bloco": "B3",
+      "seed": 31415,
+      "tipo": "crua",
+      "receita": {
+        "representacao": "crua",
+        "indicadores": false,
+        "contexto": 168,
+        "largura": 32,
+        "camadas": 2,
+        "estado": 16,
+        "dropout": 0.1,
+        "pooling": "ultimo",
+        "taxa": 0.0002,
+        "decay": 0.001,
+        "otimizador": "AdamW",
+        "perda": "huber",
+        "scheduler": "constante",
+        "ganho_saida": 1.0
+      }
+    },
+    {
+      "bloco": "B3",
+      "seed": 271828,
+      "tipo": "crua",
+      "receita": {
+        "representacao": "crua",
+        "indicadores": false,
+        "contexto": 168,
+        "largura": 32,
+        "camadas": 2,
+        "estado": 16,
+        "dropout": 0.1,
+        "pooling": "ultimo",
+        "taxa": 0.0002,
+        "decay": 0.001,
+        "otimizador": "AdamW",
+        "perda": "huber",
+        "scheduler": "constante",
+        "ganho_saida": 1.0
+      }
+    },
+    {
+      "bloco": "B3",
+      "seed": 161803,
+      "tipo": "crua",
+      "receita": {
+        "representacao": "crua",
+        "indicadores": false,
+        "contexto": 168,
+        "largura": 32,
+        "camadas": 2,
+        "estado": 16,
+        "dropout": 0.1,
+        "pooling": "ultimo",
+        "taxa": 0.0002,
+        "decay": 0.001,
+        "otimizador": "AdamW",
+        "perda": "huber",
+        "scheduler": "constante",
+        "ganho_saida": 1.0
+      }
+    },
+    {
+      "bloco": "B4",
+      "seed": 42,
+      "tipo": "crua",
+      "receita": {
+        "representacao": "crua",
+        "indicadores": false,
+        "contexto": 168,
+        "largura": 32,
+        "camadas": 2,
+        "estado": 16,
+        "dropout": 0.1,
+        "pooling": "ultimo",
+        "taxa": 0.0002,
+        "decay": 0.001,
+        "otimizador": "AdamW",
+        "perda": "huber",
+        "scheduler": "constante",
+        "ganho_saida": 1.0
+      }
+    },
+    {
+      "bloco": "B4",
+      "seed": 17,
+      "tipo": "crua",
+      "receita": {
+        "representacao": "crua",
+        "indicadores": false,
+        "contexto": 168,
+        "largura": 32,
+        "camadas": 2,
+        "estado": 16,
+        "dropout": 0.1,
+        "pooling": "ultimo",
+        "taxa": 0.0002,
+        "decay": 0.001,
+        "otimizador": "AdamW",
+        "perda": "huber",
+        "scheduler": "constante",
+        "ganho_saida": 1.0
+      }
+    },
+    {
+      "bloco": "B4",
+      "seed": 2026,
+      "tipo": "crua",
+      "receita": {
+        "representacao": "crua",
+        "indicadores": false,
+        "contexto": 168,
+        "largura": 32,
+        "camadas": 2,
+        "estado": 16,
+        "dropout": 0.1,
+        "pooling": "ultimo",
+        "taxa": 0.0002,
+        "decay": 0.001,
+        "otimizador": "AdamW",
+        "perda": "huber",
+        "scheduler": "constante",
+        "ganho_saida": 1.0
+      }
+    },
+    {
+      "bloco": "B4",
+      "seed": 7,
+      "tipo": "crua",
+      "receita": {
+        "representacao": "crua",
+        "indicadores": false,
+        "contexto": 168,
+        "largura": 32,
+        "camadas": 2,
+        "estado": 16,
+        "dropout": 0.1,
+        "pooling": "ultimo",
+        "taxa": 0.0002,
+        "decay": 0.001,
+        "otimizador": "AdamW",
+        "perda": "huber",
+        "scheduler": "constante",
+        "ganho_saida": 1.0
+      }
+    },
+    {
+      "bloco": "B4",
+      "seed": 123,
+      "tipo": "crua",
+      "receita": {
+        "representacao": "crua",
+        "indicadores": false,
+        "contexto": 168,
+        "largura": 32,
+        "camadas": 2,
+        "estado": 16,
+        "dropout": 0.1,
+        "pooling": "ultimo",
+        "taxa": 0.0002,
+        "decay": 0.001,
+        "otimizador": "AdamW",
+        "perda": "huber",
+        "scheduler": "constante",
+        "ganho_saida": 1.0
+      }
+    },
+    {
+      "bloco": "B4",
+      "seed": 31415,
+      "tipo": "crua",
+      "receita": {
+        "representacao": "crua",
+        "indicadores": false,
+        "contexto": 168,
+        "largura": 32,
+        "camadas": 2,
+        "estado": 16,
+        "dropout": 0.1,
+        "pooling": "ultimo",
+        "taxa": 0.0002,
+        "decay": 0.001,
+        "otimizador": "AdamW",
+        "perda": "huber",
+        "scheduler": "constante",
+        "ganho_saida": 1.0
+      }
+    },
+    {
+      "bloco": "B4",
+      "seed": 271828,
+      "tipo": "crua",
+      "receita": {
+        "representacao": "crua",
+        "indicadores": false,
+        "contexto": 168,
+        "largura": 32,
+        "camadas": 2,
+        "estado": 16,
+        "dropout": 0.1,
+        "pooling": "ultimo",
+        "taxa": 0.0002,
+        "decay": 0.001,
+        "otimizador": "AdamW",
+        "perda": "huber",
+        "scheduler": "constante",
+        "ganho_saida": 1.0
+      }
+    },
+    {
+      "bloco": "B4",
+      "seed": 161803,
+      "tipo": "crua",
+      "receita": {
+        "representacao": "crua",
+        "indicadores": false,
+        "contexto": 168,
+        "largura": 32,
+        "camadas": 2,
+        "estado": 16,
+        "dropout": 0.1,
+        "pooling": "ultimo",
+        "taxa": 0.0002,
+        "decay": 0.001,
+        "otimizador": "AdamW",
+        "perda": "huber",
+        "scheduler": "constante",
+        "ganho_saida": 1.0
+      }
+    }
+  ],
+  "herancas": {
+    "B1_42": {
+      "pasta": "dados/experimentos/busca_astra_b34bad73d6cef1d10a97/final/candidata/B1_42",
+      "conclusao_sha256": "9dce55750663c516bf07349f043e2dd664ba7099d40c8cc7225d40153269dab8"
+    },
+    "B1_17": {
+      "pasta": "dados/experimentos/busca_astra_b34bad73d6cef1d10a97/final/candidata/B1_17",
+      "conclusao_sha256": "10b6c33fae74fe1d1cd9c8dd7766ad4abb9e12058fbdbd8347f7392e131d0bd4"
+    },
+    "B1_2026": {
+      "pasta": "dados/experimentos/busca_astra_b34bad73d6cef1d10a97/final/candidata/B1_2026",
+      "conclusao_sha256": "2d9eed3481c804ccac7bb8736133e186752ab0b93b82e0d78ac97759aea674eb"
+    },
+    "B1_7": {
+      "pasta": "dados/experimentos/busca_astra_b34bad73d6cef1d10a97/final/candidata/B1_7",
+      "conclusao_sha256": "13d43e7fa9ff9fa450f931fbad66afcd631a744d4b303eabb850fff4a86267f4"
+    },
+    "B1_123": {
+      "pasta": "dados/experimentos/busca_astra_b34bad73d6cef1d10a97/final/candidata/B1_123",
+      "conclusao_sha256": "a8f36eaa1e2b51842305de843f932b788a8ca858e3d4da7367139acce6da1817"
+    },
+    "B1_31415": {
+      "pasta": "dados/experimentos/busca_astra_b34bad73d6cef1d10a97/final/candidata/B1_31415",
+      "conclusao_sha256": "e3995ef4412609991bc30fa435bab18cb7a408e8d8823cebb58ed64c8d17148e"
+    },
+    "B1_271828": {
+      "pasta": "dados/experimentos/busca_astra_b34bad73d6cef1d10a97/final/candidata/B1_271828",
+      "conclusao_sha256": "ad44850cb3eb41f5b317a04946e9bf5fb1ed1923e5fb356a23be966695d3bf05"
+    },
+    "B1_161803": {
+      "pasta": "dados/experimentos/busca_astra_b34bad73d6cef1d10a97/final/candidata/B1_161803",
+      "conclusao_sha256": "692dc7c00a20f23a93dd2821e71eeabe4b3d8b8556315daf908e675d81f56aab"
+    },
+    "B2_42": {
+      "pasta": "dados/experimentos/busca_astra_b34bad73d6cef1d10a97/final/candidata/B2_42",
+      "conclusao_sha256": "acc2738e729602a9ac9befd42cb588d868929c9e2434d8e57bcc196eeeb1a39d"
+    },
+    "B2_17": {
+      "pasta": "dados/experimentos/busca_astra_b34bad73d6cef1d10a97/final/candidata/B2_17",
+      "conclusao_sha256": "d2e215d59db54007744188dd8dbcc1df18aeb7e85b006da79ba1cccc2cbb06cc"
+    },
+    "B2_2026": {
+      "pasta": "dados/experimentos/busca_astra_b34bad73d6cef1d10a97/final/candidata/B2_2026",
+      "conclusao_sha256": "99a2b8f3171f153a4e86cb437048862eb1511e526238f374efa9059ffea9f9f0"
+    },
+    "B2_7": {
+      "pasta": "dados/experimentos/busca_astra_b34bad73d6cef1d10a97/final/candidata/B2_7",
+      "conclusao_sha256": "00407eb9c4576e50a54fa1a0622be0904e4e72da8f98289a44a922487230e017"
+    },
+    "B2_123": {
+      "pasta": "dados/experimentos/busca_astra_b34bad73d6cef1d10a97/final/candidata/B2_123",
+      "conclusao_sha256": "7dcdf32cbfaefd35c6a5af9da8d1ee510aa0b85eafb4e7fe8a7efb9ceb692af7"
+    },
+    "B2_31415": {
+      "pasta": "dados/experimentos/busca_astra_b34bad73d6cef1d10a97/final/candidata/B2_31415",
+      "conclusao_sha256": "9fb43f713513ae66edbe37fd4ac8360632ae2e7fbd649d4d0641946de9a00b9d"
+    },
+    "B2_271828": {
+      "pasta": "dados/experimentos/busca_astra_b34bad73d6cef1d10a97/final/candidata/B2_271828",
+      "conclusao_sha256": "d3b4daa41cf81d81b4086fc753b1d4ef671fa5e5a6f50387bd84fcf07486476e"
+    },
+    "B2_161803": {
+      "pasta": "dados/experimentos/busca_astra_b34bad73d6cef1d10a97/final/candidata/B2_161803",
+      "conclusao_sha256": "00ed6224ef759101df42b2ffbe9bfee6c24c6d792a146bb3df45e18e453ae18d"
+    },
+    "B3_42": {
+      "pasta": "dados/experimentos/busca_astra_b34bad73d6cef1d10a97/final/candidata/B3_42",
+      "conclusao_sha256": "0ed6c6be1cd078f0a049608032c211b78e1c1132082f62595cf2958fe598e1c6"
+    },
+    "B3_17": {
+      "pasta": "dados/experimentos/busca_astra_b34bad73d6cef1d10a97/final/candidata/B3_17",
+      "conclusao_sha256": "76db97b2b83234eb7cc424ed31728cad1687f802cf285f395c5f86441fdbce2b"
+    },
+    "B3_2026": {
+      "pasta": "dados/experimentos/busca_astra_b34bad73d6cef1d10a97/final/candidata/B3_2026",
+      "conclusao_sha256": "9396bd1c65a00dafc93d77066441f689d8540692338abf6ea7586a38a78d169f"
+    },
+    "B3_7": {
+      "pasta": "dados/experimentos/busca_astra_b34bad73d6cef1d10a97/final/candidata/B3_7",
+      "conclusao_sha256": "451525c09722ce8fb8eced2089bc994f8310308143f472a297173e93de7a5a59"
+    },
+    "B3_123": {
+      "pasta": "dados/experimentos/busca_astra_b34bad73d6cef1d10a97/final/candidata/B3_123",
+      "conclusao_sha256": "ee7ec51ee72878d885f8dfc1ef79025a75f10bfaa859fdc8d217cf91d69e39d1"
+    },
+    "B3_31415": {
+      "pasta": "dados/experimentos/busca_astra_b34bad73d6cef1d10a97/final/candidata/B3_31415",
+      "conclusao_sha256": "1fb5579f7770990c0c3c7626b92980736dfe13b3412dcfdcdc41b48c29d1ac9c"
+    },
+    "B3_271828": {
+      "pasta": "dados/experimentos/busca_astra_b34bad73d6cef1d10a97/final/candidata/B3_271828",
+      "conclusao_sha256": "0f1e83cb277d3958552e064b3896dae193910f2f6aeedfeb27f981c4c4d91af0"
+    },
+    "B3_161803": {
+      "pasta": "dados/experimentos/busca_astra_b34bad73d6cef1d10a97/final/candidata/B3_161803",
+      "conclusao_sha256": "8c740bfd1a73fbe5b45c1c47490f9efed7d7bbd19de4776609862eb91e37426b"
+    },
+    "B4_42": {
+      "pasta": "dados/experimentos/busca_astra_b34bad73d6cef1d10a97/final/candidata/B4_42",
+      "conclusao_sha256": "6939519797284fe18dc8c9eb1c21f4d5760e712db31c92ba3c6cd43b7f0fe7a3"
+    },
+    "B4_17": {
+      "pasta": "dados/experimentos/busca_astra_b34bad73d6cef1d10a97/final/candidata/B4_17",
+      "conclusao_sha256": "c9ffeda18e5ef18c899f1060e2cab7ebcc1b647abf4ac673b89e703a90a68011"
+    },
+    "B4_2026": {
+      "pasta": "dados/experimentos/busca_astra_b34bad73d6cef1d10a97/final/candidata/B4_2026",
+      "conclusao_sha256": "a5dc62077231e78825242f2a2888d75f342584f8e41628913e2a57804be04154"
+    },
+    "B4_7": {
+      "pasta": "dados/experimentos/busca_astra_b34bad73d6cef1d10a97/final/candidata/B4_7",
+      "conclusao_sha256": "f0a561410d1c581e42feb43d81eb7ebd7a9d70bccfef4e08db267cca01c43ac7"
+    },
+    "B4_123": {
+      "pasta": "dados/experimentos/busca_astra_b34bad73d6cef1d10a97/final/candidata/B4_123",
+      "conclusao_sha256": "d0f134bdba6ff40fbed5cbe260d82a447bb217f1df9ae6ded3a8f2f1dc7f94f2"
+    },
+    "B4_31415": {
+      "pasta": "dados/experimentos/busca_astra_b34bad73d6cef1d10a97/final/candidata/B4_31415",
+      "conclusao_sha256": "cf66e26587ca021d79ed4adda2e5c0e4c3d8e51dbfbd5e8d01ebb36a17952810"
+    },
+    "B4_271828": {
+      "pasta": "dados/experimentos/busca_astra_b34bad73d6cef1d10a97/final/candidata/B4_271828",
+      "conclusao_sha256": "77caedff4bd1573725d99ac055ae4c2b5bcbbc56950d19f62d78490dda3dc5cc"
+    },
+    "B4_161803": {
+      "pasta": "dados/experimentos/busca_astra_b34bad73d6cef1d10a97/final/candidata/B4_161803",
+      "conclusao_sha256": "6d40b35c639c86f1f92a63eae2b3503218689238faaf3093090eb223b7782bd5"
+    }
+  },
+  "publicacao_origem": {
+    "utc": "2026-11-04T07:24:57.395211+00:00",
+    "pasta": "dados/experimentos/busca_astra_b34bad73d6cef1d10a97/publicacoes/tentativa_001",
+    "manifesto_sha256": "9463904c3ec8efc24f6a0d2ebe962cc5544ac8cdc94d7d9ae728ef395183af68",
+    "simulacoes": 408
+  },
+  "ancoras": {
+    "dados/experimentos/busca_astra_b34bad73d6cef1d10a97/congelamento.json": "406c6f7c26279ef894b82492f86b7d6630a6f411b7b7abd74b68ecc09e1960e4",
+    "dados/experimentos/busca_astra_b34bad73d6cef1d10a97/finalista.json": "7027d363af5d91a5bdf507cc018e7f93a5fe1f3368426a06848765eae994d5a6",
+    "dados/experimentos/busca_astra_b34bad73d6cef1d10a97/publicacao.json": "5c85bf558af51955557de9d9f2f914504e191514a2357d96d20facc0838a5a9d",
+    "dados/experimentos/busca_astra_b34bad73d6cef1d10a97/publicacoes/tentativa_001/manifesto.json": "9463904c3ec8efc24f6a0d2ebe962cc5544ac8cdc94d7d9ae728ef395183af68",
+    "dados/experimentos/busca_astra_b34bad73d6cef1d10a97/publicacoes/tentativa_001/resultados.json": "84c0d9614ed311afca6271ca0fa91196b27bf00e7f62deaffb05486094dc4ae2",
+    "dados/mercado/candles/93509a1b06b19103ac1c/manifesto.json": "d5db95722b2649ebefe360f3e8235762e373be3469d9d06ce442c31e45fc7908",
+    "dados/experimentos/backtest_carteira_8ec8a66648313caa48e3/congelamento.json": "a0fa959f80576d9ee421e5d51b0834377ecd918b310af228a1608a221eaaf7a7",
+    "dados/mercado/binance_spot/449aab6c79dbf88aa625/manifesto.json": "c400f234dee55aba0ea042d09a77018166502b516be54bdb27f1b6d3ed0ac3d3"
+  },
+  "preservacao_sha256": "7ccf8d47c2b4d84cc73cda50f058445883b8e40529c9fa3cbd46ae161046d0a4",
+  "qualificacao": {
+    "arquivo": "registros/comparacao_astra_crua/qualificacao.json",
+    "sha256": "28649766933bc7124bced6c715e3424d59503c9e4aff863d5ea2b02652ca762a"
+  },
+  "testes_sha256": "1ac6980de38e7db12ede3e3e8a54d75a138ed2dfd25b6613790d618284791084",
+  "id": "ce284eb4a489f604fb9c",
+  "utc": "2026-11-04T08:01:01.941097+00:00"
+}

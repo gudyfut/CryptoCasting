@@ -1,0 +1,17 @@
+{
+  "treinamento": false,
+  "ocorrencias": [
+    {
+      "fase": "testes antes da publicacao",
+      "problema": "DatetimeIndex.asi8 retornava unidade us enquanto comparacao usava ns; pandas3 expoe arrays somente leitura.",
+      "correcao": "Unidade ns explicita; operacao booleana sem mutacao inplace.",
+      "resultado": "30 testes passaram apos correcao; nenhum artefato real havia sido publicado."
+    },
+    {
+      "fase": "conferencia independente 01",
+      "problema": "Caminho incorreto de entradas fornecido na chamada.",
+      "evidencia": "falha_conferencia_01_caminho.json",
+      "resultado": "Falhou antes de comparar; segunda chamada usou o ID efetivo e passou."
+    }
+  ]
+}

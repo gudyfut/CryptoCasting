@@ -1,0 +1,85 @@
+{
+  "utc": "2026-11-05T03:20:17.264457+00:00",
+  "situacao": "preparacao_componentes_conferida_executor_integrado_pendente",
+  "objetivo": "Preparar base e prompt para goal noturno; nao iniciar treino.",
+  "testes": {
+    "quantidade": 24,
+    "falhas": 0,
+    "ignorados": 0,
+    "ambiente": "WSL Ubuntu; Python3.12.13; torch2.6.0+cu118; mamba2.2.6.post3; RTX4050 Laptop",
+    "log": "registros/operacional_futuros/preparacao_goal/testes_cuda.log",
+    "sha256": "c8227d522e912102892980ae027c9a6e972654d003fc0fac7e9782e4a2124c68"
+  },
+  "mercado": {
+    "id": "7535d44ba23eb371fe4d",
+    "pasta": "dados/mercado/futuros_operacional/tentativas/2026-11-05T030551.440830_0000",
+    "manifesto_sha256": "10b1cce07bea6c7c6119a280addca53131fd31aca2de236348bd6588effd079c"
+  },
+  "conferencia_dados": "registros/operacional_futuros/preparacao_goal/conferencia_dados.json",
+  "proposta": "registros/operacional_futuros/preparacao_goal/conferencia_proposta_final.json",
+  "arquivos_historicos_protegidos": 189,
+  "divergencias": [],
+  "catalogo_ciclos_historicos_preservado": true,
+  "regras_git_conferidas": {
+    "dados/mercado/futuros_operacional/tentativas/2026-11-05T030551.440830_0000/manifesto.json": false,
+    "dados/mercado/futuros_operacional/tentativas/2026-11-05T030551.440830_0000/fontes/mercado_futuros/historico_operacional.py": false,
+    "dados/mercado/futuros_operacional/tentativas/2026-11-05T030551.440830_0000/klines.parquet": true,
+    "dados/mercado/futuros_operacional/tentativas/2026-11-05T030551.440830_0000/brutos/klines/BTCUSDT-1m-2021-01.zip": true,
+    "dados/experimentos/operacional_futuros_EXEMPLO/congelamento.json": false,
+    "dados/experimentos/operacional_futuros_EXEMPLO/checkpoint.pt": true,
+    "registros/operacional_futuros/goal_noturno.txt": false
+  },
+  "links_novos_conferidos": 24,
+  "incidentes_coleta_preservados": [
+    {
+      "arquivo": "dados/mercado/futuros_operacional/tentativas/2026-11-05T025514.374383_0000/incidente.json",
+      "sha256": "cd9886c93ab2bb0d22d22174558c831bb1623368bfbbcd15717701b11d37d4ff",
+      "erro_final": "ValueError: Lacuna extensa; investigar sem interpolar."
+    },
+    {
+      "arquivo": "dados/mercado/futuros_operacional/tentativas/2026-11-05T025930.989501_0000/incidente.json",
+      "sha256": "04f0594aa2cf91be0125250644a1e06b2de0b714194e8d8a98d9fa8b141f8d93",
+      "erro_final": "ValueError: Primeiro funding ausente."
+    }
+  ],
+  "arquivos_preparados": {
+    "AGENTS.md": "1a1d2d20ca2dac8dd226305b7a776921c866be6b310021b850768c9cde4abbc7",
+    "plano.md": "9c7a62ebf524f3892cbf78ecbc9d715a17a2f9d37e9a63505d33e7f835cd878e",
+    "README.md": "2fbfb062308520bc6b6fac83a4acac68be301595fad6199c0e5ed64082f5f0c8",
+    "docs/README.md": "53c34568e8213cc26e49090ef4591dffc93128bd9adb57c0d294d1e2249db87a",
+    "docs/andamento.md": "828c858ba2bca0aefadac5244db563b50b5a44a92de28413faa141ef26d08b05",
+    "docs/desenho_operacional_futuros.md": "6df29673ff3127500232b568364719f0892550fc6847f0c7f6e06b36fee2ceac",
+    "docs/adr/0028-pesquisa-operacional-futuros.md": "44258e4063cca7f1e5e631f9ea7c0ba98f84cbf46dcd0f73e5ad27146ee88f74",
+    "registros/catalogo_estudos.json": "6ad874e4d687c4839a8bd677e3ac44de56ed7e13c3f1dbacbc7176f80cafcca5",
+    "registros/operacional_futuros/estado.json": "9ca18d6e2527e7b254de0e6389f9207ef0b5724b5ac2ab01bcb413628cec48f9",
+    "configuracoes/operacional_futuros_001_proposta.json": "fd18448cbf04fd640263dcd778c27b1cd83d1ccfb20145dfadd051cdf142a902",
+    ".gitignore": "c2d16b55d93de7a987aa659804a5afb68c56a823bb8bbf7c74d7da12f71b691d",
+    ".gitattributes": "a26c9b2d3d520c47b965d7a745614e9b4c6b18951305c37313cfda5d9326e164",
+    "registros/operacional_futuros/goal_noturno.txt": "bdebea1dae32e20aaea7df3ebe1837e83cc1f6466a12f05eb7c99b019511e38c",
+    "experimentos/operacional_futuros/contrato.py": "19166f09ae22533fe12eb380f211d7c87f8ba9f174017542d716a111d2474775",
+    "experimentos/operacional_futuros/__init__.py": "0aa5883e9867b61c4c7fe0d1c3406d691b063c99e2810e81e8d1e33e2739b494",
+    "experimentos/operacional_futuros/__main__.py": "d2a8b5965e8628fcbbac513e696308da5d50fdb953a134abea7e73674f56b0bd",
+    "tests_operacional_futuros/test_historico.py": "a4a74d509acc04e39ae012c472c42e0db5c74c1233dd997c943563260baf9a86",
+    "tests_operacional_futuros/test_metricas.py": "15636033df4ee10fbed2738ad51997ba768747496fc0a5b4d34e99f532093f84",
+    "tests_operacional_futuros/test_modelo.py": "b7ed2600e922505c2d24b23ee16aff526571685a700a9dae1a766a057723252e",
+    "tests_operacional_futuros/test_proposta.py": "8935c1945255a75aa6942f64e24269058fa01bb7ac05ba19b30d8d44534e0c8f",
+    "mercado_futuros/historico_operacional.py": "8ca79e04c95a622c77417f374243f3e0f54500849dc87a78f0934d3b995883b9",
+    "modelos/mamba_operacional.py": "357c0042a8fa2f365f3cd120d10f86178974917cc2f91fd9aae8ff10407d937e",
+    "avaliacao/metricas_operacionais.py": "4bd9b0ea0bb0a2285895ab14b44892b8740a8c6e9639d73e1fe68f98cbf99c2f"
+  },
+  "goal_ativado": false,
+  "treinamentos_mercado": 0,
+  "backtests": 0,
+  "consultas_astra": 0,
+  "pendencias": [
+    "adaptador_entradas_alvos_e_escalas",
+    "motor_barreiras_margem_e_filtros",
+    "treinador_do_novo_contrato",
+    "coordenador_e_isolamento_proponente",
+    "bootstrap_e_auditoria_independente",
+    "benchmark",
+    "qualificacao_integrada",
+    "identidade_congelamento_e_autorizacao_goal"
+  ],
+  "limites": "Nao e qualificacao integrada do executor, nao e benchmark de tempo dos185 ajustes, nao comprova backup remoto. Dados/checkpoints grandes continuam locais conforme politica."
+}

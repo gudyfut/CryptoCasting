@@ -1,0 +1,23 @@
+{
+  "acao": "experimentar",
+  "hipotese": "Reduzir somente o contexto da C09 de 168 para 72 horas pode melhorar a transferência ao limitar dependências sequenciais longas, preservando resumos explícitos de 24/168h nos indicadores.",
+  "justificativa": "Comparar diretamente com C09, mantendo taxa 0,0002 e ganho 0,5 aplicado após selecionar o checkpoint original. A candidata testa se três dias de trajetória, complementados pelos indicadores semanais, oferecem informação suficiente com menor exposição a padrões longos instáveis. Na representação relativa, encurtar o contexto não redefine a normalização local do volume como ocorreu em C05. Permanecem 20.417 parâmetros, com menor memória de ativações esperada; o precedente C02/C05 não mostrou economia clara de tempo total. Outra contração investigaria principalmente amplitude. Triar com seed42 nos dois recortes e, se promovida, verificar seeds17/2026.",
+  "diagnostico": "C10 apresentou razões MSE/Naive de aproximadamente 0,99928/0,99745, contra 1,00629/0,98498 da C09. A taxa menor melhorou D1, mas perdeu benefício em D2, piorando o score agregado de 0,99564 para 0,99837. Em D2, a dispersão prevista caiu de 0,00155 para 0,00064. Isso não demonstra que reduzir a taxa resolva a transferência. O encurtamento C02/C05 melhorou marginalmente o score de 0,99749 para 0,99698, fornecendo motivação limitada para investigar contexto no ramo relativo com indicadores.",
+  "riscos": "Os resultados não identificam o contexto longo como causa da instabilidade. Indicadores semanais não preservam toda a ordem temporal, e o histórico efetivo total também diminui porque são calculados em cada passo. O encurtamento pode perder relações úteis em D2. A união dos contextos usada nos scalers pode mudar, assim como gradientes e checkpoint selecionado. A contração mantida pode mascarar diferenças de aprendizagem; examinar se eventual melhora vem apenas da média prevista. As candidatas ainda dependem de uma seed, com validações reutilizadas adaptativamente e alvos sobrepostos; scores próximos de 1 não estabelecem sinal ou estabilidade.",
+  "receita": {
+    "representacao": "relativa",
+    "indicadores": true,
+    "contexto": 72,
+    "largura": 32,
+    "camadas": 2,
+    "estado": 16,
+    "dropout": 0.1,
+    "pooling": "ultimo",
+    "taxa": 0.0002,
+    "decay": 0.001,
+    "otimizador": "AdamW",
+    "perda": "huber",
+    "scheduler": "constante",
+    "ganho_saida": 0.5
+  }
+}

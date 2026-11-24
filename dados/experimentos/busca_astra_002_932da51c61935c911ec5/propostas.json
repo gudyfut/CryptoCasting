@@ -1,0 +1,170 @@
+[
+  {
+    "id": "N01",
+    "proposta": {
+      "acao": "experimentar",
+      "pai": "A0_C05",
+      "fator": "momentum",
+      "valor": true,
+      "mecanismo": "Ablação inicial predefinida no protocolo.",
+      "metrica_esperada": "MSE/Naive nos três S.",
+      "risco": "Informação extra pode sobreajustar.",
+      "custo": "Seis ajustes."
+    },
+    "utc": "2026-11-04T18:08:46.252297+00:00"
+  },
+  {
+    "id": "N02",
+    "proposta": {
+      "acao": "experimentar",
+      "pai": "A0_C05",
+      "fator": "volatilidade",
+      "valor": true,
+      "mecanismo": "Ablação inicial predefinida no protocolo.",
+      "metrica_esperada": "MSE/Naive nos três S.",
+      "risco": "Informação extra pode sobreajustar.",
+      "custo": "Seis ajustes."
+    },
+    "utc": "2026-11-04T18:19:14.511116+00:00"
+  },
+  {
+    "id": "N03",
+    "proposta": {
+      "acao": "experimentar",
+      "pai": "A0_C05",
+      "fator": "volume_relativo",
+      "valor": true,
+      "mecanismo": "Ablação inicial predefinida no protocolo.",
+      "metrica_esperada": "MSE/Naive nos três S.",
+      "risco": "Informação extra pode sobreajustar.",
+      "custo": "Seis ajustes."
+    },
+    "utc": "2026-11-04T18:28:00.889815+00:00"
+  },
+  {
+    "id": "N04",
+    "proposta": {
+      "acao": "experimentar",
+      "pai": "A0_C05",
+      "fator": "pooling",
+      "valor": "media",
+      "mecanismo": "Ablação inicial predefinida no protocolo.",
+      "metrica_esperada": "MSE/Naive nos três S.",
+      "risco": "Informação extra pode sobreajustar.",
+      "custo": "Seis ajustes."
+    },
+    "utc": "2026-11-04T18:38:12.930600+00:00"
+  },
+  {
+    "id": "N05",
+    "proposta": {
+      "acao": "experimentar",
+      "pai": "A0_C05",
+      "fator": "representacao",
+      "mecanismo": "Usar relativa torna o retorno horário do fechamento explícito no último token; em janela_relativa, esse componente é sempre zero. Isso pode facilitar a leitura da dinâmica recente pelo pooling ultimo. A hipótese prevê redução de Q frente ao pai na comparação completa; ausência dessa redução contraria o benefício proposto.",
+      "metrica_esperada": "Q médio após recarga inferior ao 1.015804 do pai nos seis pares seeds 42/17 × S1–S3, com melhora em pelo menos dois recortes e sem piora do MAE/Naive médio. Eventual finalista exige seed 2026 e todos os portões finais estabelecidos.",
+      "risco": "Retornos horários podem exigir mais integração pelos estados para reconstruir trajetórias acumuladas. A normalização de volume por T pode sofrer com mudanças de regime. Não há garantia de melhora.",
+      "custo": "Seis treinos de triagem, mais três se promovida; mesmos 20257 parâmetros e custo por época aproximadamente igual ao pai. Duração total depende da parada antecipada.",
+      "valor": "relativa"
+    },
+    "utc": "2026-11-04T18:47:52.127136+00:00"
+  },
+  {
+    "id": "N06",
+    "proposta": {
+      "acao": "experimentar",
+      "pai": "A0_C05",
+      "fator": "contexto",
+      "mecanismo": "Reduzir o contexto de 72 para 24 horas testa se trajetórias mais antigas acrescentam ruído ao estado usado para prever o retorno futuro de 24 horas. A hipótese é reduzir dependências temporais pouco transferíveis entre recortes; o benefício previsto é refutado se Q não diminuir frente ao pai.",
+      "metrica_esperada": "Q inferior ao aproximadamente 1.0158 do pai, comparando os seis pares completos de recorte e seed após recarga. Buscar melhora em pelo menos dois recortes. Uma eventual candidatura final continua sujeita à seed 2026 e a todos os portões estabelecidos, inclusive Q<=0.999 com as referências atuais.",
+      "risco": "Pode perder informação de tendências persistentes. Encurtar a janela também torna o zscore local de volume mais variável. A dispersão observada entre seeds pode persistir; melhora não é garantida.",
+      "custo": "Seis treinos na triagem e mais três se promovida. Mantém 20257 parâmetros; processamento sequencial e ativações por lote ficam aproximadamente em um terço, sem garantir redução proporcional do tempo total. Aquecimento comum de 336 horas preservado.",
+      "valor": 24
+    },
+    "utc": "2026-11-04T18:58:09.460387+00:00"
+  },
+  {
+    "id": "N07",
+    "proposta": {
+      "acao": "experimentar",
+      "pai": "N06",
+      "fator": "momentum",
+      "mecanismo": "N06 tem o menor Q na cobertura completa da triagem, aproximadamente 1.01083. Acrescentar logret24/168 retrospectivos permite representar tendência semanal mantendo contexto 24. A hipótese é que essa informação reduza o erro associado à omissão de história longa; será refutada nesta comparação se Q não diminuir frente ao pai.",
+      "metrica_esperada": "Q inferior a 1.01083 nas seis combinações de recorte e seed 42/17, pontuadas após recarga. Como diagnóstico, espera-se reduzir o Q médio de S3, atualmente 1.02328. Seleção pelo Q completo; eventual finalista depende da seed 2026 e de todos os portões estabelecidos.",
+      "risco": "Momentum em N01 piorou S1 nas duas seeds frente a A0_C05. A informação adicional pode aumentar sobreajuste e variância, anulando a vantagem do contexto curto. Melhorar frente a N06 pode ainda ser insuficiente para superar Naive e os portões finais.",
+      "custo": "Seis treinos na triagem e mais três se estiver entre as três melhores. Dois canais adicionais e 64 parâmetros extras, totalizando 20321. Custo por época próximo ao pai; as seis execuções de N06 somaram aproximadamente 552 segundos, apenas como referência.",
+      "valor": true
+    },
+    "utc": "2026-11-04T19:10:22.765264+00:00"
+  },
+  {
+    "id": "N08",
+    "proposta": {
+      "acao": "experimentar",
+      "pai": "N07",
+      "fator": "dropout",
+      "mecanismo": "Remover dropout de 0.1 para 0.0 testa se o mascaramento dificulta aprender sinais fracos numa rede de largura 32 com momentum. A hipótese prevê redução de Q distribuída entre recortes; Q igual ou superior ao pai não sustentará sua utilidade.",
+      "metrica_esperada": "Q inferior ao 1.00810 de N07 nos seis pares completos S1–S3 × seeds 42/17, após recarga, com melhora em pelo menos dois recortes. É uma expectativa, não garantia; eventual finalista depende da seed 2026 e de todos os portões finais estabelecidos.",
+      "risco": "Menor regularização pode aumentar sobreajuste aos alvos sobrepostos de 24h. O viés observado em S3 pode persistir, e diferenças entre seeds podem decorrer da seleção de checkpoints.",
+      "custo": "Mantém 20321 parâmetros e contexto 24. Seis treinos de triagem; três adicionais somente se estiver entre as três melhores. Custo por época próximo ao pai; duração total depende da parada antecipada.",
+      "valor": 0.0
+    },
+    "utc": "2026-11-04T19:23:38.366734+00:00"
+  },
+  {
+    "id": "N09",
+    "proposta": {
+      "acao": "experimentar",
+      "pai": "N07",
+      "fator": "dropout",
+      "mecanismo": "Aumentar dropout de 0.1 para 0.2 testa se maior regularização reduz coadaptação a padrões espúrios de momentum. N07 tem Q médio de 1.00810; retirar dropout em N08 elevou Q para 1.02426, piorando cinco dos seis pares. A hipótese será contrariada se o novo Q não diminuir. As reversões de momentum e contexto de N07 já existem como N06 e N01; esta receita é inédita.",
+      "metrica_esperada": "Hipótese: Q inferior a 1.00810, sem aumento do MAE/Naive médio frente a N07, comparando seeds 42/17 nos três recortes com cobertura completa e pontuação após recarga. Se estiver entre as três melhores, acrescentar seed 2026 e exigir todos os portões finais; melhorar frente ao pai ainda pode ser insuficiente.",
+      "risco": "O efeito do dropout pode não ser monotônico: 0.2 pode eliminar sinal útil e aumentar viés. N08 teve pequena vantagem média em S3, portanto a evidência não sustenta melhora uniforme.",
+      "custo": "Seis treinos, mantendo 20.321 parâmetros e contexto 24. Custo por época semelhante ao pai; referência histórica de aproximadamente 9,3 minutos para sua triagem, com duração total dependente da parada antecipada. Mais três treinos se promovida.",
+      "valor": 0.2
+    },
+    "utc": "2026-11-04T19:35:24.817594+00:00"
+  },
+  {
+    "id": "N10",
+    "proposta": {
+      "acao": "experimentar",
+      "pai": "N07",
+      "fator": "taxa",
+      "mecanismo": "Reduzir de 0.0002 para 0.0001, herdando os demais fatores. N07 tem o menor Q nos seis pares completos (~1.008103), mas apresenta variação entre seeds em S3. A hipótese é que passos menores reduzam a instabilidade da otimização, produzindo checkpoints com menor erro após recarga. Predições falsificáveis: menor Q agregado e menor diferença de Q entre seeds.",
+      "metrica_esperada": "Q inferior a 1.008103 nas seeds 42/17 dos três recortes, com cobertura completa e sem aumento da razão MAE/Naive média frente a N07. Se promovida, incluir 2026 e aplicar integralmente os portões finais; superar o pai não basta.",
+      "risco": "A taxa menor pode retardar a convergência e provocar parada prematura com paciência 10. A variação observada pode decorrer da mudança de regime, persistindo mesmo com passos menores. Não há garantia de melhora.",
+      "custo": "Mesmos 20321 parâmetros e custo por época aproximadamente igual ao pai; podem ser necessárias mais épocas. Seis treinos de triagem, mais três somente se ficar entre as três melhores receitas.",
+      "valor": 0.0001
+    },
+    "utc": "2026-11-04T19:47:49.563551+00:00"
+  },
+  {
+    "id": "N11",
+    "proposta": {
+      "acao": "experimentar",
+      "pai": "N09",
+      "fator": "momentum",
+      "mecanismo": "Remover logret24/168 testa se sua interação com dropout 0.2 favorece dependência de tendências pouco transferíveis. A hipótese prevê menor Q agregado e menor viés absoluto em S3; ausência dessas reduções a contraria. É uma ablação inédita; retirar momentum ou reverter contexto de N07 repetiria N06/N01.",
+      "metrica_esperada": "Q abaixo de 1.01756, média de N09 nos seis pares completos, sem aumento médio de MAE/Naive. Comparar S após recarga, com seeds 42/17 nos três recortes. Eventual aprovação exige seed 2026 e todos os portões finais.",
+      "risco": "Retirar momentum elimina informação semanal explícita além do contexto de 24h e pode piorar a previsão. N09 não demonstrou vantagem agregada sobre as âncoras; o contraste investiga uma interação, sem garantir melhora.",
+      "custo": "Seis treinamentos; mais três se ficar entre as três melhores. Parâmetros caem de 20321 para 20257. Custo por época semelhante; aproximadamente 9–10 minutos na triagem pelo histórico, sujeito à parada antecipada.",
+      "valor": false
+    },
+    "utc": "2026-11-04T20:03:03.950581+00:00"
+  },
+  {
+    "id": "N12",
+    "proposta": {
+      "acao": "experimentar",
+      "pai": "N09",
+      "fator": "contexto",
+      "mecanismo": "Reverter apenas o encurtamento do contexto, de 24 para 72 horas. Hipótese: a trajetória adicional permite distinguir movimentos persistentes de transitórios que os resumos de momentum não distinguem, compensando a perda de informação sob dropout 0,2. Com N01 e N07, este contraste inédito permite avaliar a interação entre contexto e dropout; remover momentum de N09 já produziria N11.",
+      "metrica_esperada": "Espero Q inferior ao 1,01756 de N09 nos seis pares completos, após recarga, sem aumento da razão MAE/Naive média. Q igual ou superior contraria a hipótese de benefício. Qualquer finalista continua dependendo da promoção para seed 2026 e de todos os portões predefinidos.",
+      "risco": "Com dropout 0,1, N01 apresentou Q maior que N07; portanto, o benefício depende de uma interação ainda não demonstrada. A história adicional pode introduzir ruído e piorar a generalização.",
+      "custo": "Seis treinos, mais três se estiver entre as três melhores receitas. Mantém 20.321 parâmetros e triplica as posições processadas por janela; memória de ativações aumenta, e o tempo total depende da parada antecipada.",
+      "valor": 72
+    },
+    "utc": "2026-11-04T20:14:43.026866+00:00"
+  }
+]

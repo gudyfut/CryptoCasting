@@ -1,0 +1,14 @@
+Traceback (most recent call last):
+  File "<frozen runpy>", line 203, in _run_module_as_main
+  File "<frozen runpy>", line 88, in _run_code
+  File "C:\Users\MuriloRFM\Documents\GitHub\CryptoCasting\experimentos\busca_astra\__main__.py", line 11, in <module>
+    elif a.acao=='executar':executar()
+                            ~~~~~~~~^^
+  File "C:\Users\MuriloRFM\Documents\GitHub\CryptoCasting\experimentos\busca_astra\ciclo.py", line 230, in executar
+    return Coordenador(p,ptr,f).executar()
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\MuriloRFM\Documents\GitHub\CryptoCasting\experimentos\busca_astra\ciclo.py", line 165, in executar
+    proposta=consultar(self.p/'agente'/f'{n:02}',contexto,versao_cli=self.f['ambiente_coordenador']['codex'])
+  File "C:\Users\MuriloRFM\Documents\GitHub\CryptoCasting\experimentos\busca_astra\agente.py", line 87, in consultar
+    raise RuntimeError(f'Astra encerrou codigo{proc.returncode}; verificar stderr/cota. Sem fallback.')
+RuntimeError: Astra encerrou codigo1; verificar stderr/cota. Sem fallback.

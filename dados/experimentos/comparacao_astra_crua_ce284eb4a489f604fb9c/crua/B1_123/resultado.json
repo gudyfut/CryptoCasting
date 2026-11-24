@@ -1,0 +1,69 @@
+{
+  "utc": "2026-11-04T08:19:21.163165+00:00",
+  "seed": 123,
+  "bloco": "B1",
+  "receita": {
+    "representacao": "crua",
+    "indicadores": false,
+    "contexto": 168,
+    "largura": 32,
+    "camadas": 2,
+    "estado": 16,
+    "dropout": 0.1,
+    "pooling": "ultimo",
+    "taxa": 0.0002,
+    "decay": 0.001,
+    "otimizador": "AdamW",
+    "perda": "huber",
+    "scheduler": "constante",
+    "ganho_saida": 1.0
+  },
+  "epoca": 36,
+  "epocas_executadas": 46,
+  "parametros": 20257,
+  "recarga_exata": true,
+  "segundos": 284.632789378,
+  "checkpoint_final_sha256": "d1cf5b69b1bebebf048edd5c464f73dec638c1f9b0499ef8b3a48d3b21f1f247",
+  "memoria_cuda_maxima_bytes": 167180800,
+  "treino_amostra_fixa": {
+    "n": 2048,
+    "mse": 0.0011830837568752933,
+    "rmse": 0.03439598460395186,
+    "mae": 0.023483798874374195,
+    "mse_naive": 0.0011857132237557987,
+    "vies": 0.0017872908076011602,
+    "sd_previsao": 0.002057128203133411,
+    "sd_alvo": 0.03442042509987141,
+    "acuracia_direcional": 0.5068359375,
+    "balanced_accuracy": 0.5102493518988696
+  },
+  "validacao": {
+    "n": 2184,
+    "mse": 0.00048523579472229094,
+    "rmse": 0.022028068338424297,
+    "mae": 0.015094159434463959,
+    "mse_naive": 0.00048677487682377503,
+    "vies": -0.004989575294362222,
+    "sd_previsao": 0.0003939441936788773,
+    "sd_alvo": 0.021510187860790026,
+    "acuracia_direcional": 0.5288461538461539,
+    "balanced_accuracy": 0.5458472962406067
+  },
+  "teste": {
+    "n": 4344,
+    "mse": 0.000731950578087862,
+    "rmse": 0.02705458515830287,
+    "mae": 0.019560575744579315,
+    "mse_naive": 0.0007274219044532415,
+    "vies": -0.003523870640723349,
+    "sd_previsao": 0.000592701472766109,
+    "sd_alvo": 0.026895935476635532,
+    "acuracia_direcional": 0.46028091181211145,
+    "balanced_accuracy": 0.5
+  },
+  "diagnostico": {
+    "sd_representacao_media": 0.012962560169398785,
+    "norma_pesos_saida": 0.4414587914943695,
+    "fracao_clipping_ultima_epoca": 0.2680722891566265
+  }
+}

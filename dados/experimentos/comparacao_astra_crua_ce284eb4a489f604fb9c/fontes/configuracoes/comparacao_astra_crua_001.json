@@ -1,0 +1,18 @@
+{
+  "versao": 1,
+  "ciclo": "comparacao_astra_crua_001",
+  "pergunta": "C05 Astra versus OHLCV cru + Huber no mesmo executor e populacao",
+  "orcamento": {"principais_novos": 32, "controle_crua": 1, "controle_heranca_astra": 1, "ajustes_novos_total": 34, "principais_herdados": 32, "simulacoes_novas": 192, "simulacoes_herdadas": 216},
+  "seeds": [42, 17, 2026, 7, 123, 31415, 271828, 161803],
+  "blocos": ["B1", "B2", "B3", "B4"],
+  "origem": "b34bad73d6cef1d10a97",
+  "executor_cientifico": "experimentos.busca_astra.dados.Dados + rede.Rede + treino.ajustar, importados sem alteracao",
+  "mudancas_entre_receitas": ["representacao: janela_relativa versus crua", "contexto: 72 versus 168"],
+  "fixos": "BTCUSDT; candle1h; alvo log-retorno24h; origens1h; elegibilidade336h; Huber2xdelta1; estado16; largura32; duas camadas; dropout0.1; AdamW0.0002constante; decay0.001; isencoesA_log/D; batch64/micro32; clipping1; epocas100; paciencia10; selecaoMSEvalidacao",
+  "contrastes": ["astra_menos_crua", "astra_menos_naive", "crua_menos_naive"],
+  "primario": "MSE teste, media com peso igual entre quatro blocos e oito seeds; contraste Astra menos crua",
+  "bootstrap": {"replicas": 2000, "dias": [7, 14, 28], "principal_dias": 14, "ic_descritivo": 0.95, "familia_bonferroni": 3},
+  "limites": {"ajuste_segundos": 2700, "inicio_novos_ajustes_ate_horas": 12},
+  "falhas": "Preservar e interromper sem repeticao ou retomada automatica; sem ampliar busca ou promover referencia.",
+  "exposicao": "2024/2025 e resultados das duas receitas ja consultados; avaliacao retrospectiva, nao confirmacao independente."
+}

@@ -1,0 +1,250 @@
+Objetivo: executar um complemento experimental delimitado do CryptoCasting, fortalecendo a comparação temporal entre modelos e a interpretação dos resultados operacionais. Nesta etapa, realizar desenvolvimento, treinamentos, testes, backtests, auditorias e documentação científica. A atualização do artigo será feita posteriormente, em outro pedido.
+
+Repositório:
+C:\Users\MuriloRFM\Documents\GitHub\CryptoCasting
+
+Tenho uma semana até a entrega. Planeje concluir o desenvolvimento e sua auditoria preferencialmente nos primeiros quatro dias, preservando pelo menos dois dias para a revisão do artigo. Isso é um limite de planejamento, não uma meta de consumo: conclua antes se o trabalho estiver completo.
+
+Este goal autoriza as implementações, treinamentos e simulações especificados abaixo, usando os recursos computacionais locais disponíveis. Prossiga autonomamente dentro desse escopo, sem pedir novamente autorização para cada etapa.
+
+Não iniciar busca ampla de configurações, adicionar arquiteturas ou moedas, contratar computação paga ou enviar ordens reais. Não modificar o PDF, o LaTeX ou os materiais editoriais de escrita_tcc nesta etapa.
+
+1. LEITURA, INVENTÁRIO E PLANEJAMENTO
+
+Siga o AGENTS.md do repositório e leia explicitamente as diretrizes, o plano, o procedimento de pesquisa, as instruções de ambiente e preservação e a documentação das camadas que serão alteradas.
+
+Consulte o catálogo de estudos e os protocolos, configurações, resultados, estados e auditorias referentes a:
+- LSTM diária nas quatro moedas;
+- walk-forward diário A/L em BTC;
+- ablação linear e fechamento dos ramos Mamba;
+- extensão A/L em 2026;
+- simulação com continuidade e referências sempre compradas/vendidas.
+
+A designa a receita Mamba diária consolidada; L designa sua ablação linear treinada sem os ramos Mamba.
+
+Confira os artefatos reais antes de considerar qualquer resultado reutilizável. Identifique dados, escalas, checkpoints, previsões, carteiras, fontes congeladas e controles necessários. Registre eventuais ausências ou divergências. Procure os originais preservados antes de solicitar informação ao usuário; não retreine modelos apenas para substituir artefatos ausentes.
+
+Verifique host, ambiente Python/CUDA, GPU, processos, locks, espaço disponível e progresso de possíveis execuções existentes. Não duplique processos vivos nem altere silenciosamente o backend científico.
+
+Antes de produzir novos resultados de mercado, registre e congele:
+- perguntas e hipóteses;
+- receitas e matrizes experimentais;
+- populações, métricas e contrastes principais;
+- controles e critérios de aprovação;
+- orçamento de ajustes e simulações;
+- regras para iniciar ou dispensar a etapa condicional;
+- exposição histórica dos períodos.
+
+2024–2025 e o recorte de 2026 já consultado continuam retrospectivos. Nenhuma reorganização desses dados os transforma em confirmação intocada.
+
+Use identidades novas para os complementos. Preserve configurações, checkpoints, fontes, recibos e resultados anteriores. Não atualize hashes para aceitar divergências.
+
+2. QUALIFICAÇÃO TÉCNICA
+
+Reutilize os componentes científicos existentes quando compatíveis. Implemente apenas as extensões necessárias, com identificadores novos em português.
+
+Antes das grades, verifique:
+- formação e alinhamento das janelas e alvos;
+- causalidade e ausência de acesso ao teste durante treinamento/seleção;
+- escalas calculadas exclusivamente no treino;
+- dimensões, transposições e organização dos canais;
+- inicialização, atualização dos pesos, seleção e recarga;
+- separação entre previsão, decisão operacional e mercado usado na contabilidade;
+- continuidade, inversões, caixa, custos, funding e encerramento final.
+
+Use testes sintéticos e controles reais proporcionais à alteração. A auditoria contábil deve recalcular os resultados por caminho independente, sem apenas chamar novamente a função que produziu os valores.
+
+Se um controle falhar, suspenda a parte dependente, investigue a causa e preserve a tentativa. Correções técnicas dentro do escopo estão autorizadas, mas não podem modificar silenciosamente o experimento ou afrouxar critérios após observar resultados. Continue as partes independentes que permanecerem válidas.
+
+3. COMPLEMENTO OBRIGATÓRIO: LSTM NO WALK-FORWARD DE BTC
+
+Pergunta: como a receita LSTM se compara a A, L e Naive quando é reestimada nos mesmos quatro blocos temporais já utilizados para A/L?
+
+Reutilize exatamente o calendário do protocolo walk-forward diário existente:
+- B1: teste no primeiro semestre de 2024;
+- B2: teste no segundo semestre de 2024;
+- B3: teste no primeiro semestre de 2025;
+- B4: teste no segundo semestre de 2025.
+
+Preserve os limites exatos de treino, validação e teste, o histórico expansivo, a purga, o aquecimento interno às partições e a exclusão da última janela prevista pelo contrato original. Confira as populações efetivas contra as publicações existentes. Não misture essas previsões com as da divisão fixa.
+
+Treine a LSTM do zero em cada bloco, com:
+- BTCUSDT perpétuo;
+- os mesmos seis canais e contexto de 14 dias;
+- retorno simples do dia seguinte como alvo;
+- escalas do treino de cada bloco;
+- duas camadas LSTM unidirecionais de 32 unidades, dropout zero e projeção escalar;
+- seeds 42, 17 e 2026;
+- Adam, taxa inicial 0,001 e penalização 0,001;
+- lote 32;
+- 200 épocas completas;
+- StepLR com redução pela metade a cada 100 épocas;
+- perda sqrt(MSE + 1e-8);
+- checkpoint escolhido pelo menor RMSE global da validação;
+- demais detalhes, desempates e inicialização conforme a receita LSTM preservada.
+
+São 12 ajustes científicos novos. Não alterar taxa, arquitetura, épocas, seeds ou política em resposta ao teste.
+
+Reserve dois ajustes adicionais de controle:
+a) reprodução da LSTM BTC/seed42 da divisão fixa anterior;
+b) repetição integral da nova LSTM B1/seed42.
+
+Aprove o controle da implementação antes de prosseguir e a repetição B1 antes de completar os demais blocos. Controles não integram médias científicas.
+
+Herde A/L e Naive dos mesmos blocos somente após conferir integridade, origens, alvos, escalas, políticas e comparabilidade. Não usar checkpoints da divisão fixa como substitutos.
+
+Avaliação:
+- MSE como medida principal, acompanhado de RMSE, MAE e habilidade relativa ao Naive;
+- acurácia balanceada, distribuição dos sinais e frequência de compra/venda/caixa;
+- resultados de cada seed, média das métricas individuais e ensemble separados;
+- contrastes LSTM−A, LSTM−L e LSTM−Naive por bloco;
+- bootstrap pareado em blocos de 14 dias, 2.000 réplicas, com sensibilidades de 7 e 28 dias;
+- tratamento da variação entre seeds consistente com os estudos existentes.
+
+Não concatenar blocos atravessando suas fronteiras na reamostragem. Não interpretar quatro blocos como mercados independentes ou intervalos isolados como prova de vencedor global. As diferenças de taxa e parametrização tornam o estudo uma comparação de receitas, não uma ablação exclusiva de arquitetura.
+
+Execute também os backtests da LSTM individual e ensemble, nos mesmos cenários de continuidade, custos e funding de A/L. Cada carteira de bloco permanece independente.
+
+Resultado ruim, próximo do Naive ou inconclusivo não interrompe a grade nem autoriza ampliar a busca.
+
+4. COMPLEMENTO OBRIGATÓRIO: SENSIBILIDADE OPERACIONAL AO FILTRO
+
+Pergunta: quanto as conclusões operacionais dependem do filtro ±0,20%?
+
+Esta etapa utiliza previsões congeladas e não envolve novos treinamentos.
+
+Populações:
+a) ensembles A, L e LSTM, nas quatro moedas, em 2025 e no recorte já avaliado de 2026;
+b) ensembles A, L e LSTM nos quatro blocos walk-forward de BTC, após aprovação da etapa anterior.
+
+Avalie os filtros simétricos:
+- ±0,15%;
+- ±0,20%, referência;
+- ±0,25%.
+
+Cruze esses filtros com slippage de 0,01%, 0,02% e 0,03% por lado. Preserve comissão de 0,05% por lado, funding histórico, latência, restrições, capital inicial e alvo de 95% do patrimônio conforme o simulador vigente.
+
+A matriz contém 324 combinações de população/modelo/filtro/custo, incluindo resultados de referência que podem ser herdados após conferência. Reproduza controles do cenário original antes de interpretar os novos cenários.
+
+Preserve a continuidade das posições. Não fechar e reabrir artificialmente todos os dias e não alterar previsões ou métricas preditivas quando mudar somente o filtro.
+
+Apresente:
+- retorno líquido e drawdown;
+- dias efetivamente comprados, vendidos e em caixa;
+- episódios de exposição, reversões e giro;
+- custos, funding e falhas prudenciais;
+- proporção de decisões alteradas frente ao filtro original;
+- resultados por semestre e concentração em episódios, reaproveitando análises existentes quando compatíveis.
+
+Distingua episódios, dias expostos e número de ordens. Recortes de uma mesma carteira não devem reiniciar o capital nem somar retornos percentuais.
+
+Não selecionar um filtro vencedor, promover uma política ou refinar a grade em torno do maior lucro. O produto é a análise completa de sensibilidade, incluindo casos desfavoráveis.
+
+5. COMPLEMENTO OBRIGATÓRIO: DIAGNÓSTICO DOS MOMENTOS DE EXPOSIÇÃO
+
+Pergunta: como o resultado observado se compara a sequências alternativas com composição semelhante de decisões compradas, vendidas e em caixa?
+
+Use somente os 24 ensembles da divisão fixa e extensão congelada: A/L/LSTM × quatro moedas × dois períodos. Mantenha filtro ±0,20% e slippage de 0,01% por lado.
+
+Reaproveite as referências existentes de caixa, comprar/manter e posições constantes. Não escolha retrospectivamente o lado mais lucrativo como se fosse uma estratégia previamente disponível.
+
+Implemente um diagnóstico de deslocamentos circulares da sequência de decisões −1/0/+1:
+- manter preços, funding, datas e regras de execução nas posições cronológicas reais;
+- deslocar somente a sequência de decisões;
+- usar 99 deslocamentos distintos, sem reposição, escolhidos deterministicamente antes de observar os resultados;
+- usar seed de diagnóstico fixa e registrada, separada das seeds de treinamento;
+- admitir deslocamentos k entre 14 e n−14, inclusive, para uma população de n origens;
+- usar os mesmos deslocamentos entre modelos e ativos com o mesmo tamanho de população;
+- reproduzir primeiro o deslocamento zero, exigindo concordância com a carteira original.
+
+Os deslocamentos conservam a contagem das decisões por lado, mas podem alterar episódios nas bordas, exposição executada, quantidades, giro e custos. Meça e publique essas diferenças; não alegue correspondência exata de risco ou exposição.
+
+Recalcule cada carteira com o simulador e a auditoria utilizados nos resultados reais. Não aproximar lucro simplesmente multiplicando sinais por retornos e ignorando custos, continuidade ou funding.
+
+Publique a distribuição de retorno, crescimento logarítmico diário e drawdown das sequências alternativas, junto à posição descritiva da carteira original nessa distribuição.
+
+Esse diagnóstico é retrospectivo e condicionado à sequência observada. Não representa uma estratégia causal negociável, um teste exato de significância ou correção da seleção histórica. Deslocamentos podem atravessar regimes; declare essa limitação.
+
+Se uma sequência for constante ou gerar alternativas idênticas, registre a degeneração. Não invente variação nem substitua o caso por outro mais favorável. Preserve multiplicidades decorrentes do método.
+
+Falhas prudenciais não podem ser descartadas ou substituídas silenciosamente. Se impedirem uma comparação válida, informe a cobertura e não produza um percentil baseado em exclusão favorável.
+
+Antes da grade, meça o custo de uma execução representativa por critério técnico. Reutilização de dados em memória e otimizações estão autorizadas se preservarem equivalência. Não simplificar o simulador para obter resultados mais rápidos sem nova qualificação.
+
+O orçamento é de até 2.376 carteiras deslocadas, além dos controles de deslocamento zero. Não ampliar a quantidade após observar percentis.
+
+6. ETAPA CONDICIONAL: ABLAÇÃO DA INFORMAÇÃO DE TIMESTAMP
+
+Execute esta etapa se:
+- os complementos obrigatórios estiverem concluídos e auditados;
+- não houver divergência científica pendente;
+- a estimativa baseada nos tempos medidos permitir concluir e auditar a etapa até o quinto dia, preservando pelo menos dois dias para o artigo.
+
+A decisão depende de validade e prazo, nunca de os resultados anteriores terem sido positivos ou significativos. Registre a decisão e sua justificativa. Se as condições não forem atendidas, encerre com os complementos obrigatórios e indique esta hipótese como não executada.
+
+Pergunta: qual é o efeito de retirar a informação cronológica do canal timestamp, mantendo a estrutura das receitas A e L?
+
+Use BTC, os mesmos quatro blocos walk-forward e seeds 42, 17 e 2026. Compare:
+- A original versus A com timestamp informacionalmente removido;
+- L original versus L com timestamp informacionalmente removido.
+
+Mantenha o canal e todas as dimensões da rede. Após a padronização prevista, substitua todo o canal timestamp por zero em treino, validação e teste. Preserve os demais canais, suas escalas, alvos, calendários e metadados necessários à execução.
+
+Não retirar timestamp apenas na inferência. Não remover datas dos registros nem modificar o alinhamento temporal.
+
+Preserve arquitetura, número de parâmetros, inicialização pareada, ordem dos lotes, otimizador, taxa, penalização, épocas, seleção e demais detalhes das receitas A/L originais. Confira que a intervenção não altera inadvertidamente outros fatores.
+
+São 24 ajustes científicos novos: duas variantes × quatro blocos × três seeds.
+
+Reserve quatro ajustes de controle:
+- reprodução de A/B1/seed42 original;
+- reprodução de L/B1/seed42 original;
+- repetição da nova A sem timestamp/B1/seed42;
+- repetição da nova L sem timestamp/B1/seed42.
+
+Herde as referências originais após qualificação. Não ampliar para outras moedas, retirar outros canais ou buscar hiperparâmetros.
+
+Avalie previsões, incerteza, sinais e operações pelo protocolo comum. No backtest, use somente o filtro original e os três custos já definidos; não repetir toda a grade de filtros ou os deslocamentos.
+
+Nos novos checkpoints A, meça também a contribuição dos ramos Mamba por intervenção na inferência, seguindo o diagnóstico existente. Diferencie efeito na previsão final de influência durante o aprendizado.
+
+Se houver melhora, piora ou ausência de diferença clara, conclua dentro desse contraste. Não promover automaticamente a variante nem interpretar o resultado como explicação completa da contração dos ramos.
+
+7. AUDITORIA, PRESERVAÇÃO E ENCERRAMENTO
+
+Ao longo da execução, registre estados e checkpoints de progresso que permitam retomada sem duplicar ajustes. Preserve tentativas técnicas, falhas e resultados negativos.
+
+O orçamento planejado é:
+- núcleo obrigatório: 12 ajustes científicos LSTM e dois controles;
+- etapa condicional: 24 ajustes científicos e quatro controles;
+- total máximo planejado: 36 ajustes científicos e seis controles, além das simulações delimitadas.
+
+Reexecuções por falha técnica devem ser justificadas e identificadas; nunca servir para trocar uma seed ou resultado desfavorável. Não aumentar o orçamento científico por falta de significância.
+
+Recalcule métricas a partir das previsões e confira a contabilidade a partir dos ledgers. Verifique seleção de checkpoints, população completa, cobertura de seeds, ensembles, causalidade, integridade e consistência das unidades.
+
+Diferencie:
+- média de métricas individuais e métrica do ensemble;
+- média de carteiras e carteira do ensemble;
+- intervalo de crescimento logarítmico diário e retorno acumulado;
+- resultado retrospectivo e evidência prospectiva;
+- ausência de diferença demonstrada e equivalência formal.
+
+Atualize os documentos de pesquisa que já cumprem a função, preservando suas versões anteriores quando vinculadas a fechamentos. Registre novos ciclos no catálogo e atualize plano, estados e resultados pertinentes. Não criar um relatório por conversa.
+
+Entregue:
+- configurações, fontes e ambiente identificados;
+- dados preparados, escalas e checkpoints necessários;
+- previsões e seleção por ajuste;
+- carteiras, ledgers e auditorias;
+- tabelas e figuras analíticas fora de escrita_tcc;
+- síntese das respostas às perguntas, com limites e resultados inconclusivos;
+- instruções de consulta/reprodução e lista precisa de pendências.
+
+Mantenha o usuário informado sobre marcos relevantes, falhas e mudanças justificadas de previsão de término.
+
+Não aguarde uma semana para fabricar uma avaliação prospectiva: poucos dias não resolvem a necessidade de confirmação futura. Não ampliar automaticamente os períodos existentes nem incorporar novas observações ao treino.
+
+Considere o objetivo concluído quando o núcleo obrigatório estiver integralmente executado e auditado e a etapa condicional estiver concluída ou formalmente dispensada pelos critérios prévios. Se alguma parte obrigatória permanecer bloqueada, informe exatamente o que falta e não apresente a entrega como completa.
+
+O sucesso deste goal é produzir evidência válida, rastreável e interpretável. Lucro, superioridade sobre o Naive e significância estatística não são condições para encerrar com sucesso.

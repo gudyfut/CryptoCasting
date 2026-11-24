@@ -1,0 +1,834 @@
+
+=== PAGINA PDF 1 ===
+C I Ê N C I A D A C O M P U T A Ç Ã O
+2026
+UNIVERSIDADE FEDERAL DE ITAJUBÁ
+PREVISIBILIDADE DECRIPTOMOEDAS COM A
+ARQUITETURAMAMBA:UMSISTEMA DE
+FORECASTINGTEMPORAL
+Murilo R. F . Monferrari
+T rabalho de Conclusão de Curso
+Bacharelado em Ciência da Computação
+=== PAGINA PDF 2 ===
+R. F. Monferrari, Murilo
+Previsibilidade de Criptomoedas com a Arquitetura Mamba: um Sistema de Forecas-
+ting Temporal / Murilo R. F. Monferrari. - Itajubá: UNIFEI, 2026.
+9 p.
+Trabalho de Conclusão de Curso (Ciência da Computação) - Universidade Federal
+de Itajubá, Itajubá, 2026
+Orientação: Laércio Augusto Baldochi Júnior
+1. Predição de Preços. 2. Séries Temporais. 3. Criptomoedas. 4. Aprendizado Pro-
+fundo. 5. Mamba. I. Augusto Baldochi Júnior, Laércio, orient. II. Título.
+=== PAGINA PDF 3 ===
+FOLHA DE APROV AÇÃO
+R. F. Monferrari, Murilo.Previsibilidade de Criptomoedas com a Arquitetura Mamba: um
+Sistema de Forecasting Temporal. 9 p. Trabalho de Conclusão de Curso (Ciência da Compu-
+tação), Universidade Federal de Itajubá, Itajubá, 2026.
+Defesa em indefinido.
+BANCA EXAMINADORA:
+Prof. Dr. AAAA
+Prof. Dr. BBBB
+Prof. Dr. CCCC
+Prof. Dr. DDDD
+Prof. Dr. EEEE
+=== PAGINA PDF 4 ===
+
+=== PAGINA PDF 5 ===
+UNIVERSIDADE FEDERAL DE ITAJUBÁ
+INSTITUTO DE MATEMÁTICA E COMPUTAÇÃO
+CURSO DE BACHARELADO EM CIÊNCIA DA COMPUTAÇÃO
+©IMC-UNIFEI - Julho de 2026
+Previsibilidade de Criptomoedas com a Arquitetura Mamba: um Sistema
+de Forecasting Temporal
+Murilo R. F. Monferrari
+murilorfm@gmail.com
+Orientador: Laércio Augusto Baldochi Júnior
+RESUMO
+O mercado de criptomoedas distingue-se dos ativos tradicionais por elevada volatilidade, não estacionariedade e forte sensi-
+bilidade a eventos externos, propriedades que tornam a previsão de preços um problema particularmente adverso, sobretudo
+quando restrita a dados históricos de mercado. Em paralelo, as arquiteturas de aprendizado profundo para séries temporais evo-
+luíram das redes recorrentes (LSTM) aos mecanismos de atenção (Transformer) e, mais recentemente, aosState Space Models
+seletivos sintetizados pela arquitetura Mamba, que combina complexidade linear, paralelização e seleção dependente do con-
+teúdo. Este trabalho propõe o desenvolvimento e a avaliação iterativa de um modelo de previsão baseado no Mamba, aplicado
+ao mercado de criptomoedas e restrito a dados históricos de mercado, com o objetivo de caracterizar o teto de previsibilidade
+alcançável e compreender como diferentes decisões de projeto afetam o desempenho. A fundamentação teórica, construída
+via levantamento bibliográfico em duas bases complementares (arXiv e Semantic Scholar), totaliza 24 trabalhos e organiza a
+literatura em quatro linhas arquiteturais, mostrando que apenas os SSMs seletivos concorrem, em tese, para as propriedades
+mais relevantes ao domínio, enquanto sua aplicação em criptomoedas permanece incipiente. Adota-se postura não competitiva
+entre famílias arquiteturais: em vez de ranquear arquiteturas, investigam-se configurações internas do Mamba sob protocolo
+walk-forward, cujos resultados serão analisados comparativamente. A análise da literatura revela ainda um paradigma de ava-
+liação fragilizado por comparações raramente justas e pela desconexão entre erro pontual e utilidade prática de negociação,
+fundamentando o recorte metodológico adotado.
+Palavras-chave:Predição de Preços; Séries Temporais; Criptomoedas; Aprendizado Profundo ; Mamba
+1 Introdução
+O mercado de criptomoedas consolidou-se, ao longo da úl-
+tima década, como uma das classes de ativos mais relevan-
+tes e voláteis da economia digital contemporânea, atraindo
+crescente interesse de investidores, pesquisadores e institu-
+ições financeiras. Operando de forma contínua, descentrali-
+zada e em escala global, esse mercado apresenta caracterís-
+ticas marcadamente distintas dos ativos financeiros tradicio-
+nais: elevada volatilidade, forte sensibilidade a eventos exter-
+nos e dinâmica temporal altamente não estacionária Herre-
+mans & Low (2022); Wu et al. (2024); Akbiyik et al. (2021).
+Tais propriedades tornam a previsão de preços de criptomoe-
+das um problema de alta complexidade, especialmente quando
+se busca identificar padrões previsíveis exclusivamente a par-
+tir do comportamento histórico do próprio mercado, sem de-
+pender de informações exógenas como notícias ou indicadores
+macroeconômicos Suárez-Cetrulo et al. (2025).
+Nesse cenário, técnicas de aprendizado profundo (deep
+learning) passaram a receber crescente atenção na literatura
+voltada à previsão de séries temporais financeiras. Arquite-
+turas recorrentes, como aLong Short-Term Memory(LSTM)
+Hochreiter & Schmidhuber (1997), tornaram-se referência ao
+longo da última década pela capacidade de capturar depen-
+dências temporais em sequências de dados Pilla & Mekonen
+(2025); Bilokon & Qiu (2023). A proposição da arquitetura
+TransformerVaswani et al. (2017) representou uma inflexão
+nesse campo, impulsionando modelos baseados em mecanis-
+mos de atenção capazes de capturar relações de longo alcance
+de forma paralelizável, ainda que ao custo de complexidade
+quadrática. Mais recentemente, osState Space Models(SSMs)
+emergem como alternativa promissora: o S4 Gu et al. (2022) e,
+sobretudo, a arquitetura Mamba Gu & Dao (2024) introduzem
+seleção adaptativa de estado para modelar sequências longas
+com complexidade linear — vantagem direta sobre a complexi-
+dade quadrática dosTransformersWang et al. (2024); Ahamed
+& Cheng (2024).
+Apesar desse avanço, a aplicação do Mamba ao mer-
+cado de criptomoedas permanece pouco investigada. Avalia-
+ções do Mamba em séries temporais gerais relatam desempe-
+nho competitivo frente aTransformersespecializados Wang
+et al. (2024), e a arquitetura já foi aplicada a mercados acioná-
+rios tradicionais Shuvo et al. (2026); Xiong et al. (2026); Mei
+et al. (2025). Contudo, estudos que o avaliem especificamente
+no domínio das criptomoedas — mais volátil, não estacionário
+e sujeito a mudanças de regime abruptas Passalis et al. (2020)
+— ainda são escassos, configurando uma lacuna relevante.
+Diante desse contexto, este trabalho propõe o desenvol-
+=== PAGINA PDF 6 ===
+2Previsibilidade de Criptomoedas com a Arquitetura Mamba: um Sistema de Forecasting Temporal
+vimento e a avaliação de um modelo de previsão baseado na
+arquitetura Mamba, aplicado ao mercado de criptomoedas e
+restrito a dados históricos de mercado. O modelo será configu-
+rado e testado iterativamente, com o objetivo de caracterizar o
+teto de previsibilidade alcançável a partir exclusivamente do
+histórico de preços e de compreender como diferentes deci-
+sões de projeto — desenho das entradas, comprimento das ja-
+nelas, esquema de normalização, variantes do bloco seletivo e
+horizonte de previsão — afetam o desempenho. Adota-se uma
+postura não competitiva entre famílias arquiteturais: em vez
+de posicionar o Mamba em umrankingfrente a outras arqui-
+teturas, investigam-se, de forma controlada, diferentes confi-
+gurações internas da própria arquitetura, avaliadas sob pro-
+tocolowalk-forward, de modo que os resultados obtidos sob
+essas abordagens distintas possam ser analisados comparati-
+vamente para identificar quais escolhas de projeto maximizam
+a previsibilidade extraível do histórico de preços.
+O restante deste trabalho está organizado da seguinte
+forma: a Seção 2 reúne a fundamentação teórica, cobrindo o
+problema de previsibilidade em criptomoedas, as arquiteturas
+dedeep learningrelevantes e suas aplicações, e estabelece o
+posicionamento metodológico que motiva o recorte adotado;
+a Seção 3 descreve o desenvolvimento e a avaliação iterativa
+do modelo proposto; e a Seção 4 sintetiza os resultados, discute
+as implicações e aponta limitações e desdobramentos.
+2 Fundamentação Teórica
+Esta seção reúne a fundamentação teórica do trabalho. A ex-
+posição segue uma linha progressiva: parte de como o levanta-
+mento bibliográfico foi conduzido, caracteriza as propriedades
+que tornam o mercado de criptomoedas particularmente difícil
+de prever, percorre as arquiteturas dedeep learningpropostas
+para esse problema — organizadas em quatro linhas arquite-
+turais contrastivas —, examina o estado atual das aplicações e
+as lacunas, e conclui com o posicionamento metodológico que
+motiva o desenvolvimento apresentado na Seção 3.
+2.1 Levantamento Bibliográfico
+A fundamentação teórica apresentada a seguir foi construída
+a partir de um levantamento bibliográfico que combina duas
+fontes complementares, de modo a cobrir tanto a produção
+recente quanto os trabalhos fundadores de cada conceito. A
+primeira foi o repositórioarXiv, com busca automatizada por
+stringsvia API oficial — o que permitiu aplicar filtros tempo-
+rais com precisão e organizar os resultados de forma reprodu-
+zível —, escolhido por concentrar a disseminação mais atua-
+lizada de pesquisas em aprendizado de máquina e séries tem-
+porais, frequentemente publicadas primeiro comopreprint. A
+segunda foi a baseSemantic Scholar, empregada para ras-
+treamento de citações (snowballing) a partir de trabalhos se-
+mente, técnica consagrada em revisões bibliográficas Wohlin
+(2014) e capaz de recuperar contribuições arbitradas recentes
+que não apareceriam nasstringsdo arXiv.
+Os critérios de inclusão adotados foram:
+•Publicações entre 2018 e 2026, admitindo-se trabalhos semi-
+nais anteriores incorporados como sementes;
+•Idioma inglês ou português, com acesso integral ao texto;
+•Aplicação dedeep learninga séries temporais financeiras ou
+de criptomoedas, com ênfase em arquiteturas recorrentes,
+atencionais ou baseadas em SSM/Mamba;
+•Presença de avaliação experimental com métricas quantita-
+tivas de desempenho.
+Foram excluídas duplicatas entre buscas ou bases, trabalhos
+fora do escopo (e.g., Mamba aplicado a visão computacional,
+processamento de linguagem natural ou sinais biomédicos),
+aqueles sem acesso ao texto completo e os desprovidos de aná-
+lise experimental ou discussão técnica relevante, como edito-
+riais e resumos.
+A busca no arXiv foi organizada em sete blocos
+temáticos, alinhados aos eixos da fundamentação — do
+problema de previsibilidade em criptomoedas à arquitetura
+Mamba — e detalhados na Tabela 1, com filtro tempo-
+ral entre janeiro de 2018 e dezembro de 2025 (parâmetro
+submittedDate:[201801010000 TO 202512312359]).
+Complementarmente, osnowballingpartiu de cinco trabalhos
+semente — Mamba Gu & Dao (2024), S4 Gu et al. (2022) e as
+variantes temporais TimeMachine Ahamed & Cheng (2024),
+Bi-Mamba+ Liang et al. (2024) e MambaTS Cai et al. (2024) —
+e coletou as citações diretas por eles recebidas, totalizando
+534 candidatos únicos publicados a partir de 2018. Como esse
+rastreamento não recupera os próprios trabalhos-semente,
+a LSTM Hochreiter & Schmidhuber (1997) e oTransformer
+Vaswani et al. (2017), junto a S4 e Mamba, foram incorporados
+por seleção intencional como ancoragem teórica da linhagem
+conceitual, totalizando quatro trabalhos fundadores.
+Tabela 1: Resultado da busca automatizada porstringsno arXiv e
+quantidade de trabalhos selecionados por bloco.
+Bloco Tema / String de Busca Resultados Sel.
+1 Crypto + volatility + forecasting
++ deep learning
+12 3
+2 Financial time series +
+non-stationary + forecasting
+9 2
+3 LSTM + financial + forecasting
++ limitations
+23 1
+4 Transformer + financial time
+series + forecasting
+37 1
+5 Mamba + time series +
+forecasting + long-term
+20 3
+6 Cryptocurrency + transformer +
+price prediction
+10 4
+7 Survey + time series forecasting
++ deep learning + architecture
+7 1
+Total (braço arXiv) 118 15
+O fluxo de seleção, adaptado do formato PRISMA, é apre-
+sentado na Tabela 2. No braço arXiv, os 118 registros foram
+triados por título e resumo, excluindo-se duplicatas, traba-
+lhos fora do escopo, sem avaliação empírica ou sem atendi-
+mento aos recortes de idioma e acesso, restando 15 selecio-
+nados. No braço Semantic Scholar, os 534 candidatos foram
+filtrados pela pertinência arquitetural (efetivamente baseados
+em Mamba/SSM) e, em seguida, temática, restando 64 elegí-
+veis; a leitura parcial destes resultou em 5 trabalhos selecio-
+nados, publicados em veículos arbitrados (Neurocomputing,
+ACM TIST, IEEE ICASSP, CIKM e FinTech), com papéis com-
+plementares: Wang et al. (2024) atesta a eficácia do Mamba em
+=== PAGINA PDF 7 ===
+Murilo R. F. Monferrari 3
+forecastingde séries gerais; Xiong et al. (2026), Mei et al. (2025)
+e Shuvo et al. (2026) evidenciam sua consolidação em merca-
+dos acionários; e Qu et al. (2024) ancora panoramicamente o
+ecossistema Mamba. Somados os quatro trabalhos fundadores,
+o corpus final totaliza 24 trabalhos.
+Tabela 2: Fluxo de seleção dos trabalhos (adaptado de PRISMA), por
+base de dados. Valores do braço arXiv referem-se à triagem por título
+e resumo; os do braço Semantic Scholar, ao rastreamento de citações.
+Etapa arXiv Sem. Scholar Total
+Registros identificados 118 534 652
+Excluídos na triagem por título e resumo:
+– duplicatas (entre blocos)−8 0−8
+– fora do escopo temático−54−470−524
+– sem avaliação empírica−26—−26
+Elegíveis para leitura 30 64 94
+Excluídos na leitura parcial:
+– baixa
+relevância/sobreposição
+−15−59−74
+Selecionados por busca 15 5 20
+Adicionados como
+fundadores (ancoragem)
+— — 4
+Total incluído na revisão 15 5 24
+2.2 Previsibilidade no Mercado de Criptomoe-
+das
+Antes de discutir quais técnicas computacionais a literatura
+propõe para prever preços de criptomoedas, é necessário com-
+preender por que esse problema é estruturalmente mais difí-
+cil do que o de outros ativos financeiros. Herremans & Low
+(2022) caracterizam o mercado de criptomoedas como signifi-
+cativamente mais volátil do que os mercados convencionais:
+ele opera de forma contínua, sem os mecanismos centraliza-
+dos de estabilização — como os circuitos disjuntores (circuit
+breakers) que suspendem negociações em bolsas tradicionais
+durante quedas abruptas — e é sensível a dinâmicas próprias
+e ausentes nos ativos tradicionais, como movimentações de
+grandes detentores (whale transactions) e dadoson-chain, in-
+formações registradas diretamente na redeblockchaincomo
+volume de transações e fluxo entre carteiras. Essa volatilidade
+não é uniforme ao longo do tempo: Wu et al. (2024) documen-
+tam sua intensificação durante a pandemia de COVID-19, evi-
+denciando a sensibilidade desse mercado a choques externos
+abruptos e a ausência de consenso, na literatura, sobre qual
+abordagem computacional é mais adequada para tratá-lo.
+A magnitude dessa volatilidade pode ser observada em-
+piricamente na Figura 1: enquanto o S&P 500 sustenta-se entre
+10% e 25% de volatilidade anualizada, o Bitcoin oscila tipica-
+mente entre 35% e 80%, superando 90% em momentos de tur-
+bulência. Em valores médios, a volatilidade do Bitcoin (apro-
+ximadamente 52%) é cerca de 3,3 vezes a do S&P 500 (aproxi-
+madamente 16%), diferença que as linhas tracejadas indicam
+manter-se consistente ao longo de todo o intervalo analisado
+— reforçando quantitativamente os achados de Herremans &
+Low (2022) e Wu et al. (2024). Tamanha desproporção de ruído
+sugere, já neste ponto, um teto baixo para a previsibilidade ex-
+traível exclusivamente do histórico de preços — hipótese reto-
+100
+200
+300Preco normalizado (base 100)
+(a)
+Tragetoria de preco normalizada - Bitcoin vs S&P 500 (2021-2026)
+Bitcoin (BTC)
+S&P 500
+2022 2023 2024 2025 2026
+20%
+40%
+60%
+80%
+100%Volatilidade anualizada
+(b)
+Volatilidade anualizada (janela movel de 30 dias)
+Bitcoin (BTC)
+S&P 500
+Figura 1: Comparação entre Bitcoin (BTC-USD) e o índice S&P 500 de
+junho de 2021 a junho de 2026. (a) Trajetórias de preço normalizadas
+(base 100 em junho de 2021), evidenciando as oscilações acentuadas
+do Bitcoin frente à evolução mais suave do índice acionário. (b) Vo-
+latilidade anualizada calculada em janela móvel de 30 dias sobre os
+retornos logarítmicos diários; as linhas tracejadas indicam a volatili-
+dade média de cada ativo no período. Fonte: elaboração própria, com
+dados do Yahoo Finance Yahoo! (2026) viayfinanceyfinance (2025).
+mada no Posicionamento do trabalho (Seção 2.7) e que a etapa
+de Desenvolvimento (Seção 3) buscará quantificar.
+A influência de agentes externos vai além de eventos ma-
+croeconômicos. Akbiyik et al. (2021) analisam mais de 30 mi-
+lhões de publicações em redes sociais e mostram que metain-
+formações sobre os autores das publicações — e não apenas o
+conteúdo semântico das mensagens — apresentam maior po-
+der preditivo sobre a volatilidade do Bitcoin, revelando que
+a identidade e o perfil dos agentes são fatores relevantes na
+formação de preços, dificilmente capturáveis por modelos ba-
+seados exclusivamente em dados históricos de negociação.
+Do ponto de vista técnico, o obstáculo mais fundamen-
+tal aoforecastingde criptomoedas é a não-estacionaridade das
+séries temporais. Uma série estacionária é aquela cuja distri-
+buição estatística — média, variância e autocorrelações — per-
+manece constante ao longo do tempo; a maioria das séries de
+preços financeiros não satisfaz essa condição, o que invalida a
+suposição implícita de que os padrões aprendidos no passado
+continuarão válidos no futuro. Passalis et al. (2020) demons-
+tram essa característica e como ela impõe desafios severos ao
+DL financeiro, e propõem normalização adaptativa treinada de
+ponta a ponta, evidenciando que ajustar a escala dos dados di-
+namicamente é indispensável quando sua distribuição muda
+ao longo do tempo.
+Essa mudança de distribuição é formalizada pelo conceito
+deconcept drift: as relações estatísticas aprendidas durante o
+treinamento se tornam gradualmente desatualizadas à medida
+que o mercado evolui. Quando essa evolução ocorre de forma
+abrupta — em resposta a uma crise, a uma mudança de polí-
+tica monetária ou a um choque geopolítico — a literatura de-
+nomina o fenômenoregime shift. Suárez-Cetrulo et al. (2025)
+descrevem os mercados financeiros como sistemas complexos
+sujeitos a essas mudanças contínuas de regime, tornando ex-
+plícito que os padrões aprendidos por um modelo se desatua-
+lizam à medida que o mercado evolui. Essa característica mo-
+tiva o uso de protocolos de validação temporalmente consci-
+=== PAGINA PDF 8 ===
+4Previsibilidade de Criptomoedas com a Arquitetura Mamba: um Sistema de Forecasting Temporal
+entes, como owalk-forward: em vez de dividir os dados ale-
+atoriamente entre treino e teste, esse protocolo garante que
+o modelo seja sempre avaliado sobre dados cronologicamente
+posteriores aos que usou para aprender, simulando com ho-
+nestidade as condições reais de uso — protocolo que estrutura
+o desenho empírico deste trabalho (Seção 3).
+Volatilidade estrutural elevada, sensibilidade a eventos
+externos, não-estacionaridade eregime shiftsformam, em con-
+junto, o cenário adverso sobre o qual qualquer sistema defo-
+recastingde criptomoedas deve operar. Compreender esse ce-
+nário é o pré-requisito para avaliar o que as arquiteturas de
+DL disponíveis são capazes de oferecer — e onde residem seus
+limites.
+2.3 Arquiteturas Recorrentes e o Mecanismo
+de Atenção
+A questão que se coloca a partir desse cenário é: que tipo de
+arquitetura computacional é capaz de extrair padrões úteis de
+séries tão ruidosas e não estacionárias? A resposta da litera-
+tura passou por uma sequência de avanços cujo encadeamento
+é importante para entender por que o Mamba emerge como
+candidato natural para esse domínio.
+O ponto de partida são as redes neurais recorrentes
+(RNNs), que processam sequências mantendo um estado
+ocultoℎ 𝑡 atualizado a cada passo a partir da entrada atual e do
+estado anterior. Essa memória implícita torna as RNNs concei-
+tualmente adequadas para séries temporais, mas ao retropro-
+pagar o erro ao longo de muitos passos, o gradiente tende a se
+anular antes de alcançar os passos mais distantes — o chamado
+vanishing gradient—, impedindo o aprendizado de dependên-
+cias de longo prazo.
+ALong Short-Term Memory(LSTM), proposta por Ho-
+chreiter & Schmidhuber (1997), resolve esse problema intro-
+duzindo umamemory cell𝑐 𝑡 separada, regulada por três por-
+tas multiplicativas que controlam o que deve ser descartado,
+incorporado e exposto como saída. Calculadas por funções
+sigmoide — que produzem valores entre 0 e 1, funcionando
+como controles proporcionais de fluxo — essas portas man-
+têm um caminho direto para o gradiente ao longo do tempo,
+permitindo aprender dependências que ultrapassam centenas
+de passos. Essa capacidade tornou o LSTM a arquitetura de
+referência paraforecastingfinanceiro: Pilla & Mekonen (2025)
+reportam, na previsão do S&P 500, acurácia de até 96,41% com
+LSTM contra 89,8% com ARIMA — um modelo estatístico li-
+near univariado entre os mais populares para séries temporais
+—, sendo essa acurácia derivada do erro absoluto médio (MAE)
+normalizado pela média dos preços, resultado que evidencia a
+vantagem do LSTM frente a abordagens lineares diante das
+não-linearidades dos mercados financeiros.
+Apesar desse desempenho, o LSTM herda uma limita-
+ção estrutural das RNNs: o cálculo deℎ 𝑡 depende deℎ 𝑡−1 ,
+impondo processamento estritamente sequencial que torna o
+treinamento lento para sequências longas e impede o acesso
+direto à relação entre dois instantes distantes.
+OTransformer, proposto por Vaswani et al. (2017), eli-
+mina essa dependência ao substituir a recorrência pelo me-
+canismo deself-attention, que pergunta, para cada elemento
+da sequência, o quanto cada outro elemento é relevante para
+interpretá-lo. Para isso, cada elemento é projetado em três ve-
+tores —query(𝑄),key(𝐾) evalue(𝑉) — e a relevância entre
+dois elementos é calculada pelo produto escalar𝑄𝐾⊤, que após
+normalização porsoftmaxpondera a contribuição dovalue
+correspondente. Como esse cálculo é realizado para todos os
+pares simultaneamente, toda a sequência é processada em pa-
+ralelo e quaisquer dois elementos distantes se influenciam di-
+retamente. O custo é que esse cálculo cresce quadraticamente
+com o comprimento da sequência, tornando oTransformerde-
+safiador para janelas históricas muito longas.
+A superioridade doTransformersobre o LSTM não é
+universal: Bilokon & Qiu (2023) mostram que, em dados de
+alta frequência delimit order book— o registro em tempo
+real de todas as ordens de compra e venda de um ativo —, o
+LSTM permanece mais robusto em sequências de diferenças
+de preço, advertindo contra qualquer arquitetura como solu-
+ção universal. Mais decisivo para o que segue é o acúmulo de
+limitações estruturais complementares: o processamento es-
+tritamente sequencial da recorrência e o custo quadrático da
+atenção. Ocupando extremos opostos do mesmotrade-off, es-
+sas duas famílias deixam em aberto um espaço de projeto que
+uma terceira via, osState Space Models, vem preencher.
+2.4 State Space Models e a Arquitetura Mamba
+OsState Space Models(SSMs) partem de uma tradição dife-
+rente: em vez de inspirar-se em atenção ou recorrência apren-
+dida, descrevem a evolução de um sistema por meio de equa-
+ções diferenciais derivadas da teoria de controle clássica. Um
+SSM define um estado latenteℎ(𝑡)— representação compacta
+de todo o histórico relevante da sequência — que evolui con-
+tinuamente no tempo segundo:
+ℎ′ (𝑡)=𝐴 ℎ(𝑡) +𝐵 𝑢(𝑡),(1)
+𝑦(𝑡)=𝐶 ℎ(𝑡) +𝐷 𝑢(𝑡),(2)
+em que𝑢(𝑡)é a entrada,𝑦(𝑡)é a saída, e as matrizes𝐴,𝐵,𝐶e
+𝐷controlam, respectivamente, a evolução interna do estado, a
+influência da entrada, a tradução do estado em saída e a contri-
+buição direta da entrada sobre a saída. Para uso computacional
+com séries temporais financeiras — amostradas em intervalos
+fixos — essas equações são discretizadas, produzindo uma re-
+corrência estruturalmente análoga à de uma RNN, mas com
+fundamentação em sistemas lineares.
+Gu et al. (2022) demonstram, na proposição doStructu-
+red State Space Sequence Model(S4), que parametrizações es-
+truturadas da matriz𝐴— que evitam instabilidade numérica
+durante o treinamento — permitem capturar dependências de
+longo alcance com complexidade linear no comprimento da
+sequência, em contraste direto com o custo quadrático doself-
+attention. Além disso, o S4 pode ser computado tanto na forma
+recorrente quanto na forma convolucional, viabilizando trei-
+namento eficiente em paralelo sem abandonar a interpretação
+como sistema dinâmico.
+Uma limitação relevante do S4, no entanto, é que suas
+matrizes são fixas após o treinamento: o mesmo conjunto de
+parâmetros rege a evolução do estado independentemente do
+que está sendo observado na entrada. O modelo é, portanto,
+incapaz de decidir dinamicamente o que é relevante e o que
+deve ser ignorado — propriedade fundamental em mercados
+financeiros, onde a importância de um sinal varia conforme o
+contexto.
+O Mamba, proposto por Gu & Dao (2024) — publicado
+originalmente como pré-print em dezembro de 2023 e aceito
+=== PAGINA PDF 9 ===
+Murilo R. F. Monferrari 5
+naFirst Conference on Language Modeling(COLM 2024) —,
+resolve essa limitação por meio de um mecanismo denomi-
+nadoselection: o passo de discretizaçãoΔe as matrizes𝐵e𝐶
+deixam de ser constantes e passam a ser funções da própria
+entrada𝑢 𝑡 em cada instante. Na prática, diante de um sinal
+ruidoso, o modelo ajustaΔpara que o estado mude pouco,
+efetivamente ignorando a entrada; diante de um evento in-
+formativo — como uma quebra abrupta de tendência —, pode
+incorporá-lo de forma decisiva. Esse comportamento é aná-
+logo ao das portas do LSTM, mas o Mamba o faz preservando
+a complexidade linear e a paralelização eficiente por meio de
+um algoritmo de varredura seletiva paralela (parallel selective
+scan). Gu & Dao (2024) relatam que esse desenho permite ao
+Mamba igualar ou superarTransformersequivalentes em tare-
+fas de modelagem de sequências longas, com inferência mais
+rápida e uso de memória linear — vantagens diretamente re-
+levantes para oforecastingfinanceiro.
+A adaptação do Mamba aoforecastingde séries tempo-
+rais tem impulsionado variantes que refinam o mecanismo se-
+letivo para o domínio. Ahamed & Cheng (2024) propõem o
+TimeMachine, combinando quatro instâncias do Mamba para
+capturar dependências multivariadas de longo prazo com es-
+calabilidade linear. Liang et al. (2024) propõem o Bi-Mamba+,
+que adiciona umforget gateexplícito e processamento bidire-
+cional — embora o uso bidirecional exija cautela em cenários
+estritamente causais, como owalk-forward, em que dados fu-
+turos não estão disponíveis no momento da previsão. Cai et al.
+(2024) propõem o MambaTS, voltado aoforecastingde longo
+prazo, com varredura temporal de variáveis,dropoutsobre os
+parâmetros seletivos e treinamento com permutação de variá-
+veis. Essas variantes demonstram que o mecanismo de seleção
+é maleável e pode ser combinado com princípios de arquitetu-
+ras anteriores sem perder a vantagem de complexidade linear,
+e levantamentos dedicados consolidam esse ecossistema em
+rápida expansão Qu et al. (2024).
+A eficácia do Mamba noforecastingde séries tempo-
+rais foi investigada por Wang et al. (2024), que propõem o
+S-Mamba e relatam desempenho superior ao deTransformers
+especializados em tarefas de previsão. O estudo, porém, avalia
+majoritariamente domínios gerais — tráfego, consumo elétrico
+e clima — e séries de câmbio de baixa frequência. O comporta-
+mento da arquitetura em criptomoedas, onde a relação sinal-
+ruído é marcadamente mais adversa e osregime shiftssão mais
+frequentes, permanece uma questão em aberto — e é precisa-
+mente esse espaço que a subseção seguinte examina.
+2.5 Aplicações em Criptomoedas e Lacunas de
+Pesquisa
+Com esse panorama arquitetural estabelecido, é possível ava-
+liar o que a literatura oferece especificamente para o mercado
+de criptomoedas e onde ela ainda deixa lacunas. Manifesta-
+ção da linha híbrida, Khaniki & Manthouri (2024) integram
+o Performer —Transformerque aproxima a atenção porran-
+dom features, reduzindo o custo quadrático para linear — com
+redes BiLSTM para previsão de Bitcoin, Ethereum e Litecoin,
+mostrando que o híbrido supera cada arquitetura isolada e que
+eficiência computacional e captura bidirecional são contribu-
+ições complementares, não substituíveis.
+Estudos mais recentes têm adotado procedimentos de
+avaliação mais rigorosos. Mahdi et al. (2025) propõem um mo-
+delo híbridoTransformer-GRU para previsão diária de Bitcoin
+e Ethereum, avaliado com MSE, RMSE, MAE e MAPE comple-
+mentados por validação estatística formal via testes de Fried-
+man e Wilcoxon — padrão de rigor ainda ausente em grande
+parte da literatura sobre criptomoedas. Uma contribuição es-
+pecialmente crítica vem de Tokajuk & Chudziak (2025), que
+aplicam oPartial-Multivariate Transformer(PMformer) à pre-
+visão de retornos de BTCUSDT e ETHUSDT e identificam uma
+desconexão com implicações importantes para toda a área:
+menor erro de previsão não se traduz consistentemente em
+maior retorno financeiro, questionando a suficiência exclusiva
+de métricas como MSE e MAE neste domínio — ponto reto-
+mado no Posicionamento do trabalho (Seção 2.7).
+O contraste mais revelador está na difusão do Mamba en-
+tre domínios. Em mercados acionários tradicionais, sua aplica-
+ção consolidou-se rapidamente: Shuvo et al. (2026) avaliam un
+Mamba aumentado porTransformer; Xiong et al. (2026) o com-
+binam com operadores de Koopman — que linearizam com-
+portamentos não lineares — em grafo dinâmico; e Mei et al.
+(2025) introduzem um modelo de espaço de estado dual com
+hipergrafos. Já no domínio mais adverso, o das criptomoedas,
+a aplicação é incipiente: restringe-se, no corpus revisado, ao
+Sepehri et al. (2025), CryptoMamba, voltada à previsão do fe-
+chamento do Bitcoin no dia seguinte a partir de dados OHLCV.
+Embora reporte ganhos simultâneos em acurácia e retorno so-
+bre LSTM, Bi-LSTM, GRU, iTransformer e S-Mamba, o estudo
+avalia um único ativo e uma tarefa de passo único, inserindo-
+se no paradigma competitivo de propor variante para superar
+baselines.
+Não se observa, na literatura disponível, uma caracteri-
+zação sistemática — e não competitiva entre famílias arqui-
+teturais — do teto de previsibilidade alcançável pelo Mamba
+em criptomoedas quando diversas decisões de projeto são
+exploradas (desenho das entradas, comprimento das janelas,
+esquema de normalização, variantes do bloco seletivo e ho-
+rizonte de previsão) sob protocolowalk-forward. Kim et al.
+(2024), em levantamento abrangente que cobre desde arqui-
+teturas fundamentais até modelos emergentes, reforçam essa
+perspectiva ao constatar que alternativas simples como cama-
+das lineares podem superarTransformersem determinados ce-
+nários — sinal de que complexidade arquitetural não garante
+superioridade preditiva e de que os desafios em aberto (de-
+pendência entre canais,distribution shifte extração defeatures
+robustas em séries ruidosas) permanecem sem solução satis-
+fatória. No mercado de criptomoedas, esses desafios são am-
+plificados pelas condições discutidas na Seção 2.2, tornando
+a lacuna identificada não apenas relevante, mas urgente do
+ponto de vista científico.
+2.6 Síntese Comparativa das Linhas Arquite-
+turais
+A leitura transversal dos trabalhos revisados permite
+organizá-los em quatro linhas arquiteturais cujos funda-
+mentos já foram apresentados — recorrente (RNN/LSTM),
+atencional (Transformer), híbrida e SSMs seletivos (Mamba)
+— e que ora se contrastam. O essencial não é redefini-las,
+mas notar que cada uma resolve parte do problema ao preço
+de outra: a recorrente oferece seleção contextual, mas é
+estritamente sequencial; a atencional entrega paralelização
+e alcance longo, mas a custo quadrático; a híbrida busca
+=== PAGINA PDF 10 ===
+6Previsibilidade de Criptomoedas com a Arquitetura Mamba: um Sistema de Forecasting Temporal
+o meio-termo, herdando parcialmente as limitações dos
+componentes que combina.
+A Tabela 3 contrasta essas linhas ao longo das proprie-
+dades mais relevantes para oforecastingfinanceiro. Nenhuma
+linha domina simultaneamente todos os critérios, e apenas os
+SSMs seletivos concorrem, em tese, para as quatro proprieda-
+des ao mesmo tempo — o que justifica seu estudo prioritário
+no contexto de séries financeiras longas, ruidosas e sujeitas a
+mudanças de regime.
+Tabela 3: Comparação das principais linhas arquiteturais parafore-
+castingde séries temporais financeiras.𝐿denota o comprimento da
+sequência de entrada.
+Linha Complex. Paralelizável Alcance
+longo
+Seleção
+contextual
+Recorrente
+(LSTM/GRU)
+O (𝐿)Não Limitado Sim (portas)
+Atencional
+(Transformer)
+O (𝐿2 )Sim Forte Indireta
+Híbrida Variável Parcial Forte Parcial
+SSM Seletiva
+(Mamba)
+O (𝐿)Sim Forte Sim
+(selection)
+Importa destacar que superioridade teórica não implica
+superioridade empírica. Bilokon & Qiu (2023) mostram que,
+em determinadas formulações, a LSTM supera oTransformer;
+Kim et al. (2024) registram que camadas lineares podem su-
+perar arquiteturas complexas; e Tokajuk & Chudziak (2025)
+evidenciam que reduzir o erro pontual não implica aumentar
+a utilidade de negociação. No domínio financeiro, o desem-
+penho efetivo depende fortemente da interação entre arqui-
+tetura, formulação do problema e protocolo de avaliação —
+interação explorada adiante, no Posicionamento do trabalho
+(Seção 2.7).
+2.7 Posicionamento do Trabalho
+Revisitados em conjunto, três dos achados anteriores ganham
+contorno novo e conduzem ao posicionamento metodológico
+deste trabalho.
+A primeira refere-se ao paradigma de avaliação predo-
+minante. Grande parte dos trabalhos organiza-se em torno de
+uma lógica debenchmarking: cada nova arquitetura é pro-
+posta para “superar” as anteriores em métricas de erro pon-
+tual — MAE, RMSE e MAPE. Essa estrutura competitiva en-
+cobre um problema metodológico fundamental: as compara-
+ções entre estudos raramente são justas, pois variam conjunto
+de dados, horizonte de previsão, particionamento treino/teste,
+pré-processamento e modelos de referência. O resultado é a
+ausência de um corpo consolidado de evidências sobre quais
+propriedades arquiteturais de fato importam para oforecas-
+tingfinanceiro, e um cenário em que “campeões” debench-
+marksucedem-se sem que isso se converta em compreensão
+acumulada.
+A segunda observação, mais incômoda, vem de Toka-
+juk & Chudziak (2025): menor erro de previsão não se con-
+verte consistentemente em maior retorno de negociação. Se a
+métrica mais usada para decretar “vitória” está desconectada
+da utilidade prática que motiva oforecasting, o próprio para-
+digma de avaliação precisa ser questionado. O erro pontual
+captura apenas parte do que importa: direção, momento e re-
+gime de mercado escapam-lhe, de modo que otimizar RMSE
+pode significar aperfeiçoar umproxycada vez mais distante
+do objetivo real.
+A terceira observação vem de Kim et al. (2024): em deter-
+minados cenários, camadas lineares simples superamTrans-
+formers. Se um modelo linear vence uma arquitetura sofisti-
+cada, o gargalo provavelmente não está na capacidade de re-
+presentação, mas na relação sinal-ruído dos dados. No mer-
+cado de criptomoedas — onde a volatilidade é cerca de 3,3 ve-
+zes a do mercado acionário no período analisado, conforme
+ilustrado na Figura 1 — essa hipótese ganha força adicional:
+tanto ruído e tantosregime shiftsestabelecem, por si sós, um
+teto baixo para a previsibilidade alcançável a partir apenas de
+dados históricos.
+Essas três observações convergem para uma hipó-
+tese de trabalho: o fator limitante noforecastingde crip-
+tomoedas pode ser predominantemente estrutural — não-
+estacionaridade, mudanças de regime e informação relevante
+fora do histórico de preços — mais do que arquitetural. Avaliá-
+la não significa decretar uma arquitetura vencedora, mas
+quantificar quanta previsibilidade existe, de fato, no histórico
+de preços e quanto dela uma arquitetura de fronteira consegue
+extrair — deslocando a pergunta de “qual arquitetura prevê
+melhor?” para “quanta previsibilidade o histórico contém, e
+até onde uma fronteira arquitetural consegue alcançá-la?”.
+É à luz dessa leitura que este trabalho adota uma pos-
+tura não competitiva entre famílias arquiteturais. O Mamba é
+tratado como instrumento representativo da fronteira atual de
+SSMs seletivos, e o desenvolvimento empírico proposto carac-
+teriza, com rigor sistemático, o teto de previsibilidade que essa
+arquitetura alcança quando restrita a dados históricos de mer-
+cado, avaliada sob protocolowalk-forward. Sem posicionar o
+Mamba em umrankingfrente a outras famílias, a investigação
+realiza comparações controladas entre configurações internas
+da própria arquitetura — entendidas como sondagens experi-
+mentais do limite de previsibilidade extraível —, variando o
+desenho das entradas (dados OHLCV versus indicadores téc-
+nicos), o comprimento das janelas históricas, o esquema de
+normalização (estático versus adaptativo, conforme Passalis
+et al. (2020)), as variantes do bloco seletivo e o horizonte de
+previsão.
+A escolha do Mamba não é arbitrária. No âmbito dos
+SSMs, o Mamba introduz um mecanismo de seleção depen-
+dente da entrada que habilita filtragemcontent-awarepreser-
+vando escalabilidade próxima da linear Qu et al. (2024) — supe-
+rando justamente a limitação dos SSMs lineares invariantes no
+tempo, incapazes de ajustar a dinâmica de estado ao conteúdo
+observado. Essas duas propriedades, que em outras famílias
+arquiteturais aparecem apenas isoladamente, são aqui concili-
+adas: seleção dependente de contexto é essencial para um mer-
+cado que muda de regime abruptamente; complexidade linear
+é essencial para explorar janelas históricas longas sem o custo
+quadrático da atenção. É essa combinação que torna o Mamba
+objeto natural de investigação para a fronteira doforecasting
+financeiro.
+Nesse sentido, a lacuna que motiva este trabalho não é a
+ausência de aplicações do Mamba a criptomoedas — que, em-
+bora incipientes, já existem —, mas a falta de uma caracteri-
+zação sistemática e não competitiva do que essa arquitetura
+consegue extrair do histórico de preços.
+=== PAGINA PDF 11 ===
+Murilo R. F. Monferrari 7
+A etapa de Desenvolvimento (Seção 3) operacionaliza
+esse posicionamento: desenvolver e registrar os resultados de
+diferentes configurações do Mamba na previsão do mercado
+de criptomoedas e, a partir deles, concluir tanto sobre o mer-
+cado — quanta previsibilidade existe em seu histórico de pre-
+ços — quanto sobre a arquitetura — como ela responde a dife-
+rentes decisões de projeto. Em qualquer caso, o esforço tem va-
+lor científico: evidenciar padrões exploráveis que o SSM sele-
+tivo consiga capturar contribui para a compreensão da arqui-
+tetura; evidenciar que, mesmo sob configuração sistemática, a
+qualidade preditiva não se sustenta contribui para a discussão
+sobre os limites fundamentais da previsibilidade em mercados
+altamente dinâmicos.
+3 Desenvolvimento
+4 Conclusão
+Agradecimentos
+Seção reservada para agradecimentos a pessoas, instituições
+ou empresas que viabilizaram ou auxiliaram de forma expres-
+siva o desenvolvimento do trabalho. Neste formato de artigo,
+esta seção deve ter no máximo um parágrafo e ser bem su-
+cinta (até 4 linhas). Edite o arquivo “elemtextuais > agradeci-
+mentos.tex”.
+Referências
+Ahamed, M. A. & Cheng, Q. (2024). Timemachine: A time se-
+ries is worth 4 mambas for long-term forecasting.arXiv
+preprint arXiv:2403.09898.
+Akbiyik, M. E., Erkul, M., Kaempf, K., Vasiliauskaite, V., &
+Antulov-Fantulin, N. (2021). Ask “who”, not “what”: Bitcoin
+volatility forecasting with twitter data.arXiv preprint ar-
+Xiv:2110.14317.
+Bilokon, P. & Qiu, Y. (2023). Transformers versus LSTMs for
+electronic trading.arXiv preprint arXiv:2309.11400.
+Cai, X., Zhu, Y., Wang, X., & Yao, Y. (2024). Mambats: Impro-
+ved selective state space models for long-term time series
+forecasting.arXiv preprint arXiv:2405.16440.
+Gu, A. & Dao, T. (2024). Mamba: Linear-time sequence mo-
+deling with selective state spaces. EmFirst Conference on
+Language Modeling (COLM).
+Gu, A., Goel, K., & Ré, C. (2022). Efficiently modeling long
+sequences with structured state spaces. EmInternational
+Conference on Learning Representations (ICLR).
+Herremans, D. & Low, K. W. (2022). Forecasting bitcoin vola-
+tility spikes from whale transactions and cryptoquant data
+using synthesizer transformer models.arXiv preprint ar-
+Xiv:2211.08281.
+Hochreiter, S. & Schmidhuber, J. (1997). Long short-term me-
+mory.Neural Computation, 9(8), 1735–1780.
+Khaniki, M. A. L. & Manthouri, M. (2024). Enhancing
+price prediction in cryptocurrency using transformer neu-
+ral network and technical indicators.arXiv preprint ar-
+Xiv:2403.03606.
+Kim, J., Kim, H., Kim, H., Lee, D., & Yoon, S. (2024). A com-
+prehensive survey of deep learning for time series forecas-
+ting: Architectural diversity and open challenges.arXiv pre-
+print arXiv:2411.05793.
+Liang, A., Jiang, X., Sun, Y., Shi, X., & Li, K. (2024). Bi-mamba+:
+Bidirectional mamba for time series forecasting.arXiv pre-
+print arXiv:2404.15772.
+Mahdi, E., Martin-Barreiro, C., & Cabezas, X. (2025). A no-
+vel hybrid approach using an attention-based transformer
++ gru model for predicting cryptocurrency prices.arXiv
+preprint arXiv:2504.17079.
+Mei, J., Tian, J., Xu, R., & Wei, H. (2025). FinD3: A
+dual 3d state space model with dynamic hypergraph
+for financial stock prediction. EmInternational Confe-
+rence on Information and Knowledge Management (CIKM).
+doi:10.1145/3746252.3761239.
+Passalis, N., Tefas, A., Kanniainen, J., Gabbouj, M., & Iosifidis,
+A. (2020). Deep adaptive input normalization for time se-
+ries forecasting.IEEE Transactions on Neural Networks and
+Learning Systems, 31(9), 3760–3765.
+Pilla, P. & Mekonen, R. (2025). Forecasting s&p 500 using lstm
+models.arXiv preprint arXiv:2501.17366.
+Qu, H., Ning, L.-b., An, R., & Fan, W. (2024). A survey of
+mamba.ACM Transactions on Intelligent Systems and Te-
+chnology. arXiv:2408.01129.
+Sepehri, M. S., Mehradfar, A., Soltanolkotabi, M., & Avesti-
+mehr, S. (2025). CryptoMamba: Leveraging state space mo-
+dels for accurate bitcoin price prediction. EmIEEE Interna-
+tional Conference on Blockchain and Cryptocurrency (ICBC).
+arXiv:2501.01010.
+Shuvo, M. S. S., Adib, A. T., Emon, M. E. A., & Rafi,
+A. (2026). How effective is mamba-augmented trans-
+former for stock market price forecasting?FinTech.
+doi:10.3390/fintech5010015.
+Suárez-Cetrulo, A. L., Cervantes, A., & Quintana, D. (2025).
+Proteus: A generative approach for simulating concept drift
+in financial markets.arXiv preprint arXiv:2509.11844.
+Tokajuk, A. & Chudziak, J. A. (2025). Partial multivariate
+transformer as a tool for cryptocurrencies time series pre-
+diction.arXiv preprint arXiv:2512.04099.
+Vaswani, A., Shazeer, N., Parmar, N., Uszkoreit, J., Jones, L.,
+Gomez, A. N., Kaiser, L., & Polosukhin, I. (2017). Attention is
+all you need. EmAdvances in Neural Information Processing
+Systems (NeurIPS), volume 30 (pp. 5998–6008).
+Wang, Z., Kong, F., Feng, S., & Wang, M. (2024). Is mamba
+effective for time series forecasting?Neurocomputing. ar-
+Xiv:2403.11144.
+=== PAGINA PDF 12 ===
+8Previsibilidade de Criptomoedas com a Arquitetura Mamba: um Sistema de Forecasting Temporal
+Wohlin, C. (2014). Guidelines for snowballing in systematic
+literature studies and replication in software engineering.
+Empirical Software Engineering, 19(1), 1–38.
+Wu, J., Zhang, X., Huang, F., Zhou, H., & Chandra, R. (2024).
+Review of deep learning models for crypto price predic-
+tion: Implementation and evaluation.arXiv preprint ar-
+Xiv:2405.11431.
+Xiong, S., Tang, C., Okubo, F., & Minematsu, T. (2026).
+KPMG: A graphical koopman-mamba approach for fi-
+nancial markets. EmIEEE International Conference
+on Acoustics, Speech and Signal Processing (ICASSP).
+doi:10.1109/icassp55912.2026.11461257.
+Yahoo! (2026). Yahoo finance. Disponível em:https://
+finance.yahoo.com. Acesso em: jun. 2026.
+yfinance (2025). yfinance: Yahoo finance market data down-
+loader. Software, Python. Acesso em: jun. 2026.
+=== PAGINA PDF 13 ===

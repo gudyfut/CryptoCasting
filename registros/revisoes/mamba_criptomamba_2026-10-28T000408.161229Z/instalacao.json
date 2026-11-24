@@ -1,0 +1,66 @@
+{
+  "consultado_utc": "2026-10-28T00:08:20.123985+00:00",
+  "escopo": "Instanciação CPU para inspecionar atributos; sem forward, treino ou inferência de mercado.",
+  "classe": "mamba_ssm.modules.mamba_simple.Mamba",
+  "assinatura": "(d_model, d_state=16, d_conv=4, expand=2, dt_rank='auto', dt_min=0.001, dt_max=0.1, dt_init='random', dt_scale=1.0, dt_init_floor=0.0001, conv_bias=True, bias=False, use_fast_path=True, layer_idx=None, device=None, dtype=None)",
+  "pacote": "2.2.6.post3",
+  "torch": "2.6.0+cu118",
+  "cuda_torch": "11.8",
+  "cuda_disponivel": true,
+  "fonte_instalada": "/home/murilorfm/.venvs/cc/lib/python3.12/site-packages/mamba_ssm/modules/mamba_simple.py",
+  "fonte_sha256": "a17e4c51b582dc0d4d690a649eba521cd0c1ee3dc8f0473a0967cdc9ec0874e3",
+  "url_oficial": "https://raw.githubusercontent.com/state-spaces/mamba/v2.2.6.post3/mamba_ssm/modules/mamba_simple.py",
+  "oficial_sha256": "a17e4c51b582dc0d4d690a649eba521cd0c1ee3dc8f0473a0967cdc9ec0874e3",
+  "instalado_identico_fonte_oficial": true,
+  "extensoes": {
+    "selective_scan_cuda": {
+      "arquivo": "/home/murilorfm/.venvs/cc/lib/python3.12/site-packages/selective_scan_cuda.cpython-312-x86_64-linux-gnu.so",
+      "sha256": "9ef2a8bad7534cfac451bfe312124cd1efb609ecfd65ce63262526d3113c87e1"
+    },
+    "causal_conv1d_cuda": {
+      "arquivo": "/home/murilorfm/.venvs/cc/lib/python3.12/site-packages/causal_conv1d_cuda.cpython-312-x86_64-linux-gnu.so",
+      "sha256": "72a06e63ea5a209ec95d5a7ecc7199750b6df4ddf5ecc9019cd2a5c5758e2aac"
+    }
+  },
+  "blocos": [
+    {
+      "d_model": 32,
+      "d_state": 16,
+      "d_conv": 4,
+      "expand": 2,
+      "d_inner": 64,
+      "dt_rank": 2,
+      "use_fast_path": true
+    },
+    {
+      "d_model": 32,
+      "d_state": 16,
+      "d_conv": 4,
+      "expand": 2,
+      "d_inner": 64,
+      "dt_rank": 2,
+      "use_fast_path": true
+    }
+  ],
+  "parametros_mamba": 20129,
+  "parametros_lstm": 12961,
+  "marcados_sem_penalizacao": {
+    "blocos.0.A_log": 1024,
+    "blocos.0.D": 64,
+    "blocos.1.A_log": 1024,
+    "blocos.1.D": 64
+  },
+  "marcados_sem_reinicializacao": [
+    "blocos.0.dt_proj.bias",
+    "blocos.1.dt_proj.bias"
+  ],
+  "qualificacao_chaves": [
+    "status",
+    "inicio_utc",
+    "ambiente",
+    "casos",
+    "agrupamento",
+    "grupos_corrigidos",
+    "fim_utc"
+  ]
+}

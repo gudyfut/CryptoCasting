@@ -1,0 +1,25 @@
+{
+  "receita": {
+    "representacao": "log_niveis",
+    "contexto_horas": 168,
+    "momentum": false,
+    "volatilidade": false,
+    "volume_relativo": false,
+    "d_state": 16,
+    "taxa": 0.0002,
+    "barreiras_payoff": [
+      1.0,
+      1.5
+    ],
+    "familia_alvo": "payoff"
+  },
+  "proposta": {
+    "acao": "propor",
+    "pai": "C01",
+    "campo": "representacao",
+    "valor_json": "\"log_niveis\"",
+    "hipotese": "Mantendo payoff/MSE e padronização ajustada só em T, log_niveis preservará informação de regime suficiente para gerar operações elegíveis onde C01 ficou inativa. Rejeitar a hipótese se não passar todos os gates S, incluindo frequência mínima, crescimento médio positivo na base e sob 2xslippage e Calmar mediano positivo.",
+    "risco": "Níveis de preço podem induzir dependência de regimes históricos, piorando generalização e drawdown. A inatividade pode persistir; os resultados disponíveis não demonstram vantagem desta representação."
+  },
+  "utc": "2026-11-05T08:36:17.046043+00:00"
+}

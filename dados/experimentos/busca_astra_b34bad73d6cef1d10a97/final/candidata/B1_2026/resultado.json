@@ -1,0 +1,69 @@
+{
+  "utc": "2026-11-04T04:44:49.724261+00:00",
+  "seed": 2026,
+  "bloco": "B1",
+  "receita": {
+    "representacao": "janela_relativa",
+    "indicadores": false,
+    "contexto": 72,
+    "largura": 32,
+    "camadas": 2,
+    "estado": 16,
+    "dropout": 0.1,
+    "pooling": "ultimo",
+    "taxa": 0.0002,
+    "decay": 0.001,
+    "otimizador": "AdamW",
+    "perda": "huber",
+    "scheduler": "constante",
+    "ganho_saida": 1
+  },
+  "epoca": 2,
+  "epocas_executadas": 12,
+  "parametros": 20257,
+  "recarga_exata": true,
+  "segundos": 68.66275663600027,
+  "checkpoint_final_sha256": "9e6b72090ea7a8fd3d02aaf4559de29d8b120e360e47b27d2351a3b087b0a112",
+  "memoria_cuda_maxima_bytes": 111557120,
+  "treino_amostra_fixa": {
+    "n": 2048,
+    "mse": 0.001185397354565577,
+    "rmse": 0.03442959997684517,
+    "mae": 0.023428970000741726,
+    "mse_naive": 0.0011857132237557987,
+    "vies": 0.001964342975586642,
+    "sd_previsao": 0.0009244225815519823,
+    "sd_alvo": 0.03442042509987141,
+    "acuracia_direcional": 0.4970703125,
+    "balanced_accuracy": 0.5082926400910205
+  },
+  "validacao": {
+    "n": 2184,
+    "mse": 0.00047769055942232386,
+    "rmse": 0.021856133222103214,
+    "mae": 0.01504971987283629,
+    "mse_naive": 0.00048677487682377503,
+    "vies": -0.003914118060328096,
+    "sd_previsao": 0.000912897145164463,
+    "sd_alvo": 0.021510187860790026,
+    "acuracia_direcional": 0.5531135531135531,
+    "balanced_accuracy": 0.5104722865829585
+  },
+  "teste": {
+    "n": 4344,
+    "mse": 0.0007256808890460306,
+    "rmse": 0.026938464860604635,
+    "mae": 0.019407621790414612,
+    "mse_naive": 0.0007274219044532415,
+    "vies": -0.0010205805592235875,
+    "sd_previsao": 0.0009107571627834941,
+    "sd_alvo": 0.026895935476635532,
+    "acuracia_direcional": 0.5259037531660142,
+    "balanced_accuracy": 0.4958159540521114
+  },
+  "diagnostico": {
+    "sd_representacao_media": 0.37536248564720154,
+    "norma_pesos_saida": 0.5826284289360046,
+    "fracao_clipping_ultima_epoca": 0.3313253012048193
+  }
+}

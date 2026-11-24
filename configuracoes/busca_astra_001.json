@@ -1,0 +1,53 @@
+{
+  "versao": 1,
+  "ciclo": "busca_astra_001",
+  "modelo_agente": "gpt-6-astra",
+  "esforco": "max",
+  "autenticacao": "assinatura ChatGPT pelo Codex CLI; sem API paga ou fallback de modelo",
+  "orcamento": {
+    "exploracao_horas_maximas": 12,
+    "triagem_horas_maximas": 8,
+    "candidatas_maximas": 12,
+    "promovidas_maximas": 3,
+    "referencia_desenvolvimento": 6,
+    "controle_referencia": 1,
+    "triagem_maxima": 24,
+    "complemento_promocao_maximo": 12,
+    "finalista_maxima": 32,
+    "referencia_final_maxima": 32,
+    "controle_finalista": 1,
+    "ajustes_reais_maximos": 108,
+    "ajuste_segundos_maximos": 2700,
+    "fase_final_treinamento_horas_maximas": 12,
+    "simulacoes_finais_maximas": 408,
+    "consultas_astra_maximas": 12,
+    "consulta_astra_segundos_maximos": 1800
+  },
+  "selecao": {
+    "score": "media igualmente ponderada de MSE/Naive em D1/D2 e seeds disponiveis",
+    "checkpoint": "menor MSE real da validacao; empate conserva primeira epoca",
+    "promocao": "ate3menores scores com uma seed; complementar17/2026 sem repetir42",
+    "elegibilidade_final": "seis ajustes completos, reducao score >=0,1% contra referencia, MSE medio menor nos dois recortes e >=4/6pares melhores",
+    "desempate": "menor pior razao MSE/Naive, menos parametros, ID",
+    "ausencia_de_ganho": "encerrar sem finalista; nao buscar ate vencer"
+  },
+  "fixos": {
+    "par": "BTCUSDT",
+    "candle_horas": 1,
+    "alvo_horas": 24,
+    "origens_horas": 1,
+    "indice_inicial_comum": 336,
+    "seeds_triagem": [42],
+    "seeds_promocao": [42, 17, 2026],
+    "seeds_final": [42, 17, 2026, 7, 123, 31415, 271828, 161803],
+    "batch": 64,
+    "microbatch": 32,
+    "epocas_maximas": 100,
+    "paciencia": 10,
+    "clipping": 1.0
+  },
+  "falhas": "Preservar e interromper; sem reduzir batch, substituir seed/modelo ou repetir automaticamente.",
+  "exposicao": "Exploracao2023; avaliacao2024/2025retrospectiva ja consultada; sem novo holdout.",
+  "edicao_pesos": "Somente regra fixa de contracao da cabeca em retorno real, em copia; nenhum codigo arbitrario executado pelo agente.",
+  "comparacao": "Referencia nova no mesmo aquecimento/implementacao; nao substituir referencias historicas. Final e comparacao de receitas selecionadas, nao ablacao."
+}

@@ -1,0 +1,39 @@
+{
+  "versao": 1,
+  "data_cliente": "2026-10-29",
+  "utc": "2026-10-29T05:59:45.957796+00:00",
+  "situacao": "consumo_modelos_conferido_sem_treinamento",
+  "identidade_revisao": "9755e5efda6608b79dd7",
+  "documentacao": "docs/arquitetura_modelos.md",
+  "decisao": "docs/adr/0008-consumo-de-dados-pelos-modelos.md",
+  "revisao": "registros/revisoes/consumo_modelos_2026-10-29T054622.136468+0000",
+  "configuracao_neural": "configuracoes/modelos_ohlcv24_001.json",
+  "entrada": "dados/entradas/0420879c2afc454c7754",
+  "conferencia_real": "registros/modelos/conferencias/daeb16b0af2440f4a49d85f82b948e07/resumo.json",
+  "testes": {
+    "total": 21,
+    "aprovados": 21,
+    "skips": 0,
+    "log": "registros/revisoes/consumo_modelos_2026-10-29T054622.136468+0000/testes_completos_02.log",
+    "ambiente": "registros/revisoes/consumo_modelos_2026-10-29T054622.136468+0000/ambiente.json"
+  },
+  "preservacao": "registros/revisoes/consumo_modelos_2026-10-29T054622.136468+0000/preservacao_depois.json",
+  "fontes": "registros/revisoes/consumo_modelos_2026-10-29T054622.136468+0000/fontes_entrega.json",
+  "resultados": {
+    "equivalencia_forward": "exata com arquitetura preservada e pesos iguais nao treinados",
+    "recarga": "exata para pesos nao treinados",
+    "atualizacoes_parametros": 0,
+    "fit_arima": 0,
+    "gradientes": "ausentes",
+    "parametros_mamba": 20257,
+    "parametros_lstm": 13473,
+    "ordens_arima_sinteticas_verificadas": 9
+  },
+  "limites": [
+    "Nao e qualificacao completa de treinamento: nenhum backward/otimizador/ajuste/seleção.",
+    "Redes apenas sobre fixtures sinteticas; dados reais conferidos sem inferencia neural ou metricas de mercado.",
+    "Executor R0 preservado e nao integrado; proxima etapa exige revisao de treinamento e nova identidade.",
+    "ARIMA recebe fechamento/historico filtrado; nao usa a mesma janela OHLCV das redes.",
+    "Proveniencia declarada de parametros precisa dos recibos do futuro ajuste."
+  ]
+}

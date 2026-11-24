@@ -1,0 +1,23 @@
+{
+  "acao": "experimentar",
+  "hipotese": "Trocar somente Huber por MSE na C05 pode melhorar a estimação da média condicional com janela_relativa de 72h, testando se a perda robusta ainda ajuda após as mudanças de representação e contexto.",
+  "justificativa": "A vantagem de Huber foi observada inicialmente na representação relativa; sua transferência para janela_relativa permanece sem comparação controlada. MSE preserva a influência dos erros grandes, que podem carregar informação relevante para a média condicional. Comparar diretamente com C05 mantém 20.257 parâmetros, memória e custo esperado por época semelhantes. Aumentar capacidade tem pouco apoio na transferência frágil da C04; contrair a saída investigaria principalmente amplitude. Triar nos dois recortes com seed42 e, se promovida, verificar seeds17/2026.",
+  "diagnostico": "C05 melhorou marginalmente o score de 0,99749 da C02 para 0,99698, com razões MSE/Naive de 1,00025 em D1 e 0,99372 em D2. Pela decomposição da MSE usando os resumos, Var(previsão)-2Cov(previsão,alvo) é aproximadamente +5,17e-6 e +7,24e-7, respectivamente. Portanto, nessa triagem, a componente temporal acrescenta erro nos dois recortes; o benefício em D2 vem do nível médio previsto. Isso motiva verificar a influência da perda sobre essa localização, sem presumir aprendizagem temporal.",
+  "riscos": "MSE pode voltar a enfatizar extremos do treino, mais volátil que a validação, e produzir previsões excessivas ou uma média mais negativa. A mudança de perda também altera gradientes e checkpoint selecionado; eventual diferença não identifica sozinha o mecanismo. O custo total depende da parada antecipada. A liderança atual depende de uma seed e de validações reutilizadas adaptativamente, com alvos sobrepostos. Melhorar apenas o nível médio ou obter score próximo de 1 não estabelece sinal nem significância.",
+  "receita": {
+    "representacao": "janela_relativa",
+    "indicadores": false,
+    "contexto": 72,
+    "largura": 32,
+    "camadas": 2,
+    "estado": 16,
+    "dropout": 0.1,
+    "pooling": "ultimo",
+    "taxa": 0.0002,
+    "decay": 0.001,
+    "otimizador": "AdamW",
+    "perda": "mse",
+    "scheduler": "constante",
+    "ganho_saida": 1
+  }
+}

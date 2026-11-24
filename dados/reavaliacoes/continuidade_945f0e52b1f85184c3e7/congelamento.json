@@ -1,0 +1,818 @@
+{
+  "utc": "2026-11-11T14:11:35.983041+00:00",
+  "configuracao": {
+    "ciclo": "continuidade_moedas_001",
+    "moedas": [
+      "BTCUSDT",
+      "ETHUSDT",
+      "BNBUSDT",
+      "XRPUSDT"
+    ],
+    "receita_mamba": "diaria_padronizada",
+    "seeds": [
+      42,
+      17,
+      2026
+    ],
+    "fases": [
+      "validacao",
+      "teste"
+    ],
+    "modos": [
+      "diaria",
+      "liquida"
+    ],
+    "slippage_por_lado": [
+      0.0001,
+      0.0002,
+      0.0003
+    ],
+    "comissao_por_lado": 0.0005,
+    "filtro_retorno_absoluto": 0.002,
+    "fracao_nocional": 0.95,
+    "unidades": [
+      "42",
+      "17",
+      "2026",
+      "ensemble",
+      "naive",
+      "arima",
+      "sempre_comprado",
+      "sempre_vendido"
+    ],
+    "referencia_passiva": "comprar_manter_futuro_quantidade_fixa_95pct_inicial_com_funding",
+    "carteiras_previstas": 408,
+    "novos_treinamentos_neurais": 0,
+    "arima": {
+      "ordens": [
+        [
+          0,
+          1,
+          0
+        ],
+        [
+          0,
+          1,
+          1
+        ],
+        [
+          0,
+          1,
+          2
+        ],
+        [
+          1,
+          1,
+          0
+        ],
+        [
+          1,
+          1,
+          1
+        ],
+        [
+          1,
+          1,
+          2
+        ],
+        [
+          2,
+          1,
+          0
+        ],
+        [
+          2,
+          1,
+          1
+        ],
+        [
+          2,
+          1,
+          2
+        ]
+      ],
+      "serie": "log_preco_diario_centralizado_treino_vezes_100",
+      "deriva": false,
+      "maxiter": 200,
+      "ajuste": "somente_treino_original_da_moeda",
+      "selecao": "menor_mse_retorno_simples_validacao",
+      "teste": "parametros_fixos_com_filtragem_causal_um_passo",
+      "ajustes_candidatos": 36,
+      "controles_repeticao": 4
+    },
+    "filtros_ordens": "minimo_nocional_para_abertura_aumento; reducoes_reduceOnly_isentas_de_minimo_nocional; lote_min_max_por_instrumento",
+    "confirmacao_btc_legado": true,
+    "bootstrap": {
+      "replicas": 2000,
+      "blocos": [
+        7,
+        14,
+        28
+      ],
+      "principal": 14,
+      "seed": 11112026
+    },
+    "exposicao": "2024 selecionou checkpoints;2025 ja consultado; resultados retrospectivos"
+  },
+  "moedas": {
+    "BTCUSDT": {
+      "base": "dados/experimentos/padronizacao_diaria_f3f8772670f244779ad7",
+      "configuracao": {
+        "ciclo": "padronizacao_diaria_001",
+        "versao": 1,
+        "simbolo": "BTCUSDT",
+        "mercado": "USD-M perpetuo",
+        "periodos": {
+          "treino": [
+            "2020-01-01",
+            "2024-01-01"
+          ],
+          "validacao": [
+            "2024-01-01",
+            "2025-01-01"
+          ],
+          "teste": [
+            "2025-01-01",
+            "2026-01-01"
+          ]
+        },
+        "contexto_dias": 14,
+        "canais": [
+          "Timestamp",
+          "Open",
+          "High",
+          "Low",
+          "Close",
+          "Volume"
+        ],
+        "volume_divisor": 1000000000,
+        "normalizar": true,
+        "auditoria_volume": "registros/cryptomamba_diario/incidentes/volumes_2026-11-05T150354.183547_0000",
+        "timestamp": "segundos Unix UTC do inicio do candle, float32 como fonte publica",
+        "alvo": "retorno_simples_fechamento_seguinte_decimal",
+        "arquitetura": {
+          "larguras": [
+            14,
+            16,
+            32,
+            1
+          ],
+          "densidade": 4,
+          "estado": 64,
+          "convolucao": 4,
+          "expansao": 2,
+          "eps_layernorm": 1e-05
+        },
+        "treinamento": {
+          "otimizador": "Adam",
+          "taxa": 0.01,
+          "weight_decay": 0.001,
+          "penalizacao": "todos_os_parametros_como_codigo_publico",
+          "lote": 32,
+          "epocas": 1000,
+          "scheduler_passo": 100,
+          "scheduler_gamma": 0.5,
+          "perda": "RMSE_por_lote",
+          "epsilon_raiz": 1e-08,
+          "clipping": null,
+          "parada_antecipada": false,
+          "selecao": "RMSE_global_validacao_retorno",
+          "limite_segundos_por_ajuste": 14400
+        },
+        "seeds": [
+          42,
+          17,
+          2026
+        ],
+        "controle_seed": 42,
+        "ajustes_principais": 3,
+        "ajustes_controle": 1,
+        "operacoes": {
+          "capital_inicial": 10000.0,
+          "fracao_nocional": 0.95,
+          "latencia_minutos": 1,
+          "prazo_horas": 24,
+          "comissao_por_lado": 0.0005,
+          "slippage_por_lado": 0.0005,
+          "filtro_retorno_absoluto": 0.002,
+          "passo_quantidade": 0.001,
+          "tick_preco": 0.1,
+          "nocional_minimo": 100.0,
+          "buffer_prudencial": 0.025,
+          "stop_take": false,
+          "politica": "sinal_de_previsao_preco_sobre_ultimo_close_acima_de_custo_base_fixo",
+          "funding": "historico_no_timestamp_real"
+        },
+        "cenarios": {
+          "base": {
+            "slippage_multiplicador": 1,
+            "lado": 0
+          },
+          "slippage2": {
+            "slippage_multiplicador": 2,
+            "lado": 0
+          },
+          "slippage3": {
+            "slippage_multiplicador": 3,
+            "lado": 0
+          },
+          "somente_compra": {
+            "slippage_multiplicador": 1,
+            "lado": 1
+          },
+          "somente_venda": {
+            "slippage_multiplicador": 1,
+            "lado": -1
+          }
+        },
+        "carteiras_previstas": 70,
+        "exposicao": "2024-2025 ja consultados; avaliacao retrospectiva, nao holdout intocado",
+        "codigo_publico_commit": "fef42727861a9c3a32241283ab981ef21a49e291",
+        "execucao_numerica": "mamba1_oficial_scan_ref_cuda",
+        "antecessora": "de09c2193737c2581261",
+        "padronizacao": {
+          "metodo": "zscore_por_canal",
+          "ajuste": "candles_unicos_janelas_treino",
+          "ddof": 0,
+          "aritmetica": "float64_sobre_entrada_float32_da_referencia",
+          "momentos": "math_fsum_float64",
+          "saida": "float32",
+          "canal_constante": "escala_um",
+          "clipping": null
+        }
+      },
+      "mercado": {
+        "id": "979c54995465216ea020",
+        "pasta": "dados/mercado/futuros_um/tentativas/2026-11-04T145414.524392_0000",
+        "manifesto_sha256": "00b6ff383dc4693a5f84982e2f4b0d01b04e666d441650f7d3b220468f089f52"
+      },
+      "diario": {
+        "id": "eff741a785826f1fdbe4",
+        "pasta": "dados/mercado/cryptomamba_diario/2026-11-05T144800.898686_0000",
+        "manifesto_sha256": "f4a7ea582970d4e0cc39a203e89918bec24a73f1fe5a9e5d1b42fbabde22a43d"
+      }
+    },
+    "ETHUSDT": {
+      "base": "dados/experimentos/generalizacao_moedas_1f2b005888361d23c111/ETHUSDT",
+      "configuracao": {
+        "ciclo": "generalizacao_moedas_001_ETHUSDT",
+        "versao": 1,
+        "simbolo": "ETHUSDT",
+        "mercado": "USD-M perpetuo",
+        "periodos": {
+          "treino": [
+            "2020-01-01",
+            "2024-01-01"
+          ],
+          "validacao": [
+            "2024-01-01",
+            "2025-01-01"
+          ],
+          "teste": [
+            "2025-01-01",
+            "2026-01-01"
+          ]
+        },
+        "contexto_dias": 14,
+        "canais": [
+          "Timestamp",
+          "Open",
+          "High",
+          "Low",
+          "Close",
+          "Volume"
+        ],
+        "volume_divisor": 1000000000,
+        "normalizar": true,
+        "auditoria_volume": "registros/cryptomamba_diario/incidentes/volumes_2026-11-05T150354.183547_0000",
+        "timestamp": "segundos Unix UTC do inicio do candle, float32 como fonte publica",
+        "alvo": "retorno_simples_fechamento_seguinte_decimal",
+        "arquitetura": {
+          "larguras": [
+            14,
+            16,
+            32,
+            1
+          ],
+          "densidade": 4,
+          "estado": 64,
+          "convolucao": 4,
+          "expansao": 2,
+          "eps_layernorm": 1e-05
+        },
+        "treinamento": {
+          "otimizador": "Adam",
+          "taxa": 0.01,
+          "weight_decay": 0.001,
+          "penalizacao": "todos_os_parametros_como_codigo_publico",
+          "lote": 32,
+          "epocas": 1000,
+          "scheduler_passo": 100,
+          "scheduler_gamma": 0.5,
+          "perda": "RMSE_por_lote",
+          "epsilon_raiz": 1e-08,
+          "clipping": null,
+          "parada_antecipada": false,
+          "selecao": "RMSE_global_validacao_retorno",
+          "limite_segundos_por_ajuste": 14400
+        },
+        "seeds": [
+          42,
+          17,
+          2026
+        ],
+        "controle_seed": 42,
+        "ajustes_principais": 3,
+        "ajustes_controle": 1,
+        "operacoes": {
+          "capital_inicial": 10000.0,
+          "fracao_nocional": 0.95,
+          "latencia_minutos": 1,
+          "prazo_horas": 24,
+          "comissao_por_lado": 0.0005,
+          "slippage_por_lado": 0.0005,
+          "filtro_retorno_absoluto": 0.002,
+          "passo_quantidade": 0.001,
+          "tick_preco": 0.01,
+          "nocional_minimo": 20.0,
+          "buffer_prudencial": 0.025,
+          "stop_take": false,
+          "politica": "sinal_de_previsao_preco_sobre_ultimo_close_acima_de_custo_base_fixo",
+          "funding": "historico_no_timestamp_real",
+          "quantidade_minima": 0.001,
+          "quantidade_maxima": 2000.0
+        },
+        "cenarios": {
+          "base": {
+            "slippage_multiplicador": 1,
+            "lado": 0
+          },
+          "slippage2": {
+            "slippage_multiplicador": 2,
+            "lado": 0
+          },
+          "slippage3": {
+            "slippage_multiplicador": 3,
+            "lado": 0
+          },
+          "somente_compra": {
+            "slippage_multiplicador": 1,
+            "lado": 1
+          },
+          "somente_venda": {
+            "slippage_multiplicador": 1,
+            "lado": -1
+          }
+        },
+        "carteiras_previstas": 70,
+        "exposicao": "Receita escolhida retrospectivamente em BTC; outras moedas já presentes em estudos antigos. Não afirmar holdout intocado.",
+        "codigo_publico_commit": "fef42727861a9c3a32241283ab981ef21a49e291",
+        "execucao_numerica": "mamba1_oficial_scan_ref_cuda",
+        "antecessora": "f3f8772670f244779ad7",
+        "padronizacao": {
+          "metodo": "zscore_por_canal",
+          "ajuste": "candles_unicos_janelas_treino",
+          "ddof": 0,
+          "aritmetica": "float64_sobre_entrada_float32_da_referencia",
+          "momentos": "math_fsum_float64",
+          "saida": "float32",
+          "canal_constante": "escala_um",
+          "clipping": null
+        }
+      },
+      "mercado": {
+        "id": "f8c7d9cadfdc9ad490a0",
+        "pasta": "dados/mercado/generalizacao_moedas/ETHUSDT/2026-11-09T122047.043450_0000",
+        "manifesto_sha256": "95b22df198c198cedec8121c647c4ed758c4ae904774899b0ce83a9865b41be9"
+      },
+      "diario": {
+        "id": "f8c7d9cadfdc9ad490a0",
+        "pasta": "dados/mercado/generalizacao_moedas/ETHUSDT/2026-11-09T122047.043450_0000",
+        "manifesto_sha256": "95b22df198c198cedec8121c647c4ed758c4ae904774899b0ce83a9865b41be9"
+      }
+    },
+    "BNBUSDT": {
+      "base": "dados/experimentos/generalizacao_moedas_1f2b005888361d23c111/BNBUSDT",
+      "configuracao": {
+        "ciclo": "generalizacao_moedas_001_BNBUSDT",
+        "versao": 1,
+        "simbolo": "BNBUSDT",
+        "mercado": "USD-M perpetuo",
+        "periodos": {
+          "treino": [
+            "2020-02-11",
+            "2024-01-01"
+          ],
+          "validacao": [
+            "2024-01-01",
+            "2025-01-01"
+          ],
+          "teste": [
+            "2025-01-01",
+            "2026-01-01"
+          ]
+        },
+        "contexto_dias": 14,
+        "canais": [
+          "Timestamp",
+          "Open",
+          "High",
+          "Low",
+          "Close",
+          "Volume"
+        ],
+        "volume_divisor": 1000000000,
+        "normalizar": true,
+        "auditoria_volume": "registros/cryptomamba_diario/incidentes/volumes_2026-11-05T150354.183547_0000",
+        "timestamp": "segundos Unix UTC do inicio do candle, float32 como fonte publica",
+        "alvo": "retorno_simples_fechamento_seguinte_decimal",
+        "arquitetura": {
+          "larguras": [
+            14,
+            16,
+            32,
+            1
+          ],
+          "densidade": 4,
+          "estado": 64,
+          "convolucao": 4,
+          "expansao": 2,
+          "eps_layernorm": 1e-05
+        },
+        "treinamento": {
+          "otimizador": "Adam",
+          "taxa": 0.01,
+          "weight_decay": 0.001,
+          "penalizacao": "todos_os_parametros_como_codigo_publico",
+          "lote": 32,
+          "epocas": 1000,
+          "scheduler_passo": 100,
+          "scheduler_gamma": 0.5,
+          "perda": "RMSE_por_lote",
+          "epsilon_raiz": 1e-08,
+          "clipping": null,
+          "parada_antecipada": false,
+          "selecao": "RMSE_global_validacao_retorno",
+          "limite_segundos_por_ajuste": 14400
+        },
+        "seeds": [
+          42,
+          17,
+          2026
+        ],
+        "controle_seed": 42,
+        "ajustes_principais": 3,
+        "ajustes_controle": 1,
+        "operacoes": {
+          "capital_inicial": 10000.0,
+          "fracao_nocional": 0.95,
+          "latencia_minutos": 1,
+          "prazo_horas": 24,
+          "comissao_por_lado": 0.0005,
+          "slippage_por_lado": 0.0005,
+          "filtro_retorno_absoluto": 0.002,
+          "passo_quantidade": 0.01,
+          "tick_preco": 0.01,
+          "nocional_minimo": 5.0,
+          "buffer_prudencial": 0.025,
+          "stop_take": false,
+          "politica": "sinal_de_previsao_preco_sobre_ultimo_close_acima_de_custo_base_fixo",
+          "funding": "historico_no_timestamp_real",
+          "quantidade_minima": 0.01,
+          "quantidade_maxima": 2000.0
+        },
+        "cenarios": {
+          "base": {
+            "slippage_multiplicador": 1,
+            "lado": 0
+          },
+          "slippage2": {
+            "slippage_multiplicador": 2,
+            "lado": 0
+          },
+          "slippage3": {
+            "slippage_multiplicador": 3,
+            "lado": 0
+          },
+          "somente_compra": {
+            "slippage_multiplicador": 1,
+            "lado": 1
+          },
+          "somente_venda": {
+            "slippage_multiplicador": 1,
+            "lado": -1
+          }
+        },
+        "carteiras_previstas": 70,
+        "exposicao": "Receita escolhida retrospectivamente em BTC; outras moedas já presentes em estudos antigos. Não afirmar holdout intocado.",
+        "codigo_publico_commit": "fef42727861a9c3a32241283ab981ef21a49e291",
+        "execucao_numerica": "mamba1_oficial_scan_ref_cuda",
+        "antecessora": "f3f8772670f244779ad7",
+        "padronizacao": {
+          "metodo": "zscore_por_canal",
+          "ajuste": "candles_unicos_janelas_treino",
+          "ddof": 0,
+          "aritmetica": "float64_sobre_entrada_float32_da_referencia",
+          "momentos": "math_fsum_float64",
+          "saida": "float32",
+          "canal_constante": "escala_um",
+          "clipping": null
+        }
+      },
+      "mercado": {
+        "id": "69762f32958b67d2baa7",
+        "pasta": "dados/mercado/generalizacao_moedas/BNBUSDT/2026-11-09T122206.199088_0000",
+        "manifesto_sha256": "ac75c9bfc58d35261cab604dde4707212ffe8d59d841f34a6e087d63d90cdc3e"
+      },
+      "diario": {
+        "id": "69762f32958b67d2baa7",
+        "pasta": "dados/mercado/generalizacao_moedas/BNBUSDT/2026-11-09T122206.199088_0000",
+        "manifesto_sha256": "ac75c9bfc58d35261cab604dde4707212ffe8d59d841f34a6e087d63d90cdc3e"
+      }
+    },
+    "XRPUSDT": {
+      "base": "dados/experimentos/generalizacao_moedas_1f2b005888361d23c111/XRPUSDT/continuacao_001",
+      "configuracao": {
+        "ciclo": "generalizacao_moedas_001_XRPUSDT",
+        "versao": 1,
+        "simbolo": "XRPUSDT",
+        "mercado": "USD-M perpetuo",
+        "periodos": {
+          "treino": [
+            "2020-01-07",
+            "2024-01-01"
+          ],
+          "validacao": [
+            "2024-01-01",
+            "2025-01-01"
+          ],
+          "teste": [
+            "2025-01-01",
+            "2026-01-01"
+          ]
+        },
+        "contexto_dias": 14,
+        "canais": [
+          "Timestamp",
+          "Open",
+          "High",
+          "Low",
+          "Close",
+          "Volume"
+        ],
+        "volume_divisor": 1000000000,
+        "normalizar": true,
+        "auditoria_volume": "registros/cryptomamba_diario/incidentes/volumes_2026-11-05T150354.183547_0000",
+        "timestamp": "segundos Unix UTC do inicio do candle, float32 como fonte publica",
+        "alvo": "retorno_simples_fechamento_seguinte_decimal",
+        "arquitetura": {
+          "larguras": [
+            14,
+            16,
+            32,
+            1
+          ],
+          "densidade": 4,
+          "estado": 64,
+          "convolucao": 4,
+          "expansao": 2,
+          "eps_layernorm": 1e-05
+        },
+        "treinamento": {
+          "otimizador": "Adam",
+          "taxa": 0.01,
+          "weight_decay": 0.001,
+          "penalizacao": "todos_os_parametros_como_codigo_publico",
+          "lote": 32,
+          "epocas": 1000,
+          "scheduler_passo": 100,
+          "scheduler_gamma": 0.5,
+          "perda": "RMSE_por_lote",
+          "epsilon_raiz": 1e-08,
+          "clipping": null,
+          "parada_antecipada": false,
+          "selecao": "RMSE_global_validacao_retorno",
+          "limite_segundos_por_ajuste": 14400
+        },
+        "seeds": [
+          42,
+          17,
+          2026
+        ],
+        "controle_seed": 42,
+        "ajustes_principais": 3,
+        "ajustes_controle": 1,
+        "operacoes": {
+          "capital_inicial": 10000.0,
+          "fracao_nocional": 0.95,
+          "latencia_minutos": 1,
+          "prazo_horas": 24,
+          "comissao_por_lado": 0.0005,
+          "slippage_por_lado": 0.0005,
+          "filtro_retorno_absoluto": 0.002,
+          "passo_quantidade": 0.1,
+          "tick_preco": 0.0001,
+          "nocional_minimo": 5.0,
+          "buffer_prudencial": 0.025,
+          "stop_take": false,
+          "politica": "sinal_de_previsao_preco_sobre_ultimo_close_acima_de_custo_base_fixo",
+          "funding": "historico_no_timestamp_real",
+          "quantidade_minima": 0.1,
+          "quantidade_maxima": 2000000.0
+        },
+        "cenarios": {
+          "base": {
+            "slippage_multiplicador": 1,
+            "lado": 0
+          },
+          "slippage2": {
+            "slippage_multiplicador": 2,
+            "lado": 0
+          },
+          "slippage3": {
+            "slippage_multiplicador": 3,
+            "lado": 0
+          },
+          "somente_compra": {
+            "slippage_multiplicador": 1,
+            "lado": 1
+          },
+          "somente_venda": {
+            "slippage_multiplicador": 1,
+            "lado": -1
+          }
+        },
+        "carteiras_previstas": 70,
+        "exposicao": "Receita escolhida retrospectivamente em BTC; outras moedas já presentes em estudos antigos. Não afirmar holdout intocado.",
+        "codigo_publico_commit": "fef42727861a9c3a32241283ab981ef21a49e291",
+        "execucao_numerica": "mamba1_oficial_scan_ref_cuda",
+        "antecessora": "f3f8772670f244779ad7",
+        "padronizacao": {
+          "metodo": "zscore_por_canal",
+          "ajuste": "candles_unicos_janelas_treino",
+          "ddof": 0,
+          "aritmetica": "float64_sobre_entrada_float32_da_referencia",
+          "momentos": "math_fsum_float64",
+          "saida": "float32",
+          "canal_constante": "escala_um",
+          "clipping": null
+        }
+      },
+      "mercado": {
+        "id": "f7fcfef043f4476b36d2",
+        "pasta": "dados/mercado/generalizacao_moedas/XRPUSDT/2026-11-09T123407.657738_0000",
+        "manifesto_sha256": "0f67f6adfc8e659bda301305cc460d0e48d89f58cdfc20ba5ac5a08f8f705508"
+      },
+      "diario": {
+        "id": "f7fcfef043f4476b36d2",
+        "pasta": "dados/mercado/generalizacao_moedas/XRPUSDT/2026-11-09T123407.657738_0000",
+        "manifesto_sha256": "0f67f6adfc8e659bda301305cc460d0e48d89f58cdfc20ba5ac5a08f8f705508"
+      }
+    }
+  },
+  "custos": {
+    "id": "9f7598f109962adc3d76",
+    "pasta": "dados/reavaliacoes/custos_9f7598f109962adc3d76",
+    "manifesto_sha256": "7af4b4427c32376a674d533b98af886c7cd80a3277df7eeff3375e6c1e0d6685"
+  },
+  "btc_legado": {
+    "id": "25516ee56ae224e583c6",
+    "pasta": "dados/diagnosticos/continuidade_diaria_20261111_001",
+    "manifesto_sha256": "7a3b1a92cc0afd7d2d5b809b8740b4863591f91258e179e8bfcb857bc403e96e",
+    "conferencia_posterior_sha256": "d6b8b5275925e84d185d3166b8b86d0fdb69ed5343a9dbaeb7f5ca0722b1cdd5",
+    "situacao": "concluido_conferido",
+    "novos_treinamentos": 0,
+    "publicacao_vigente_substituida": false
+  },
+  "fontes_entradas": {
+    "dados/experimentos/generalizacao_moedas_1f2b005888361d23c111/congelamento.json": "f385eadbdb4742ff298bacf42f2d57057c488530712eefdc3e4c15d454941074",
+    "dados/experimentos/padronizacao_diaria_f3f8772670f244779ad7/congelamento.json": "3ccc75d5ecf0028b1ec909c19bfb5c96a22e1af06a5fd9d5a0efd7cd9040c943",
+    "registros/generalizacao_moedas/retomadas/20261110/fechamento_geral.json": "d50fca64f77556a2c86994afc18be142bb6c07a53c8202a59a19f6c82373fc9e",
+    "dados/experimentos/padronizacao_diaria_f3f8772670f244779ad7/fechamento.json": "e09f750a95b79b3bfd87353389eb930994afe5f3e14deb27fe9b617dff9f9657",
+    "dados/mercado/futuros_um/tentativas/2026-11-04T145414.524392_0000/manifesto.json": "00b6ff383dc4693a5f84982e2f4b0d01b04e666d441650f7d3b220468f089f52",
+    "dados/mercado/futuros_um/tentativas/2026-11-04T145414.524392_0000/markPriceKlines.parquet": "767c24366ec10ea45d7df7480717e7e2bd9c8ddd93f027b3e404681ca2a18c9e",
+    "dados/mercado/futuros_um/tentativas/2026-11-04T145414.524392_0000/funding.parquet": "2fe39296fa9d8d7935e099b2b300483b54d51106347d22a36b7da7e1c807520c",
+    "dados/mercado/futuros_um/tentativas/2026-11-04T145414.524392_0000/klines.parquet": "a8c9f5b2a18f7833390db274fa6adb62f8deb81d4f271dcd352817ec2716b295",
+    "dados/mercado/cryptomamba_diario/2026-11-05T144800.898686_0000/manifesto.json": "f4a7ea582970d4e0cc39a203e89918bec24a73f1fe5a9e5d1b42fbabde22a43d",
+    "dados/mercado/cryptomamba_diario/2026-11-05T144800.898686_0000/diario.parquet": "579fddd39b3c8f1615c5d28c128840e625519c050115b04415d6981f03b442ac",
+    "dados/experimentos/padronizacao_diaria_f3f8772670f244779ad7/publicacao/previsoes/validacao_42.npz": "1289b0a043437ecb523213975688f12b2401b1699cba5a4de937a3ba945f7c5f",
+    "dados/experimentos/padronizacao_diaria_f3f8772670f244779ad7/publicacao/previsoes/validacao_17.npz": "158ad0068104c4b98f4ddeb4a597c9d14e745ced0a62f64178034ce34c433785",
+    "dados/experimentos/padronizacao_diaria_f3f8772670f244779ad7/publicacao/previsoes/validacao_2026.npz": "754f625a6c919f8c08d63e2fb714a1084abeab49951629ce2b23eff0e68ab6a2",
+    "dados/experimentos/padronizacao_diaria_f3f8772670f244779ad7/publicacao/previsoes/teste_42.npz": "25954e134246aeaf91d79a03de7655bd3e855eeabb1e4701c2e5644d29c31a13",
+    "dados/experimentos/padronizacao_diaria_f3f8772670f244779ad7/publicacao/previsoes/teste_17.npz": "93b47d9d430f4a90db8b55aa7de88ebcf393ae897d4bffd7cedb43aa36d527bb",
+    "dados/experimentos/padronizacao_diaria_f3f8772670f244779ad7/publicacao/previsoes/teste_2026.npz": "7619bcd79f3ca1462dc695d996b49e36e56efe5751be52f815cc0207c4492444",
+    "dados/experimentos/generalizacao_moedas_1f2b005888361d23c111/ETHUSDT/fechamento.json": "5d7d44b5de9a247b18ca5eb085b4e398bf8f1cf3ebe338d4c95ecad72a7353e9",
+    "dados/mercado/generalizacao_moedas/ETHUSDT/2026-11-09T122047.043450_0000/manifesto.json": "95b22df198c198cedec8121c647c4ed758c4ae904774899b0ce83a9865b41be9",
+    "dados/mercado/generalizacao_moedas/ETHUSDT/2026-11-09T122047.043450_0000/markPriceKlines.parquet": "d39f3f275e44351eebf1170f71a28964b0240dfa9390fbc6970d2c4574ca4829",
+    "dados/mercado/generalizacao_moedas/ETHUSDT/2026-11-09T122047.043450_0000/funding.parquet": "6f33afc95d39d3edf66d727b82d555ca6d635e04effed04f77f6ec1ecdcd46ab",
+    "dados/mercado/generalizacao_moedas/ETHUSDT/2026-11-09T122047.043450_0000/diario.parquet": "5936cb8e7ec2bfda95da2b411022fd6ca4d206b8bd874adefd11f8c799f3dca0",
+    "dados/mercado/generalizacao_moedas/ETHUSDT/2026-11-09T122047.043450_0000/klines.parquet": "8f2c6a99c171664ef19420e9503d11acf5a9210a073d959cf8b82c1c892f2d55",
+    "dados/experimentos/generalizacao_moedas_1f2b005888361d23c111/ETHUSDT/publicacao/previsoes/validacao_42.npz": "ebeee78201f607d6d33bac230a83a5db99d04c7aece220a54aa5f5be6ef83944",
+    "dados/experimentos/generalizacao_moedas_1f2b005888361d23c111/ETHUSDT/publicacao/previsoes/validacao_17.npz": "d9a6e0fcd778d8cdca969815024fbb38e48c24fb516165744e2d507132f82d8e",
+    "dados/experimentos/generalizacao_moedas_1f2b005888361d23c111/ETHUSDT/publicacao/previsoes/validacao_2026.npz": "8bb212a045b5d051a0cb4455c952e20d6dc0e1ceace12b4365b85eed21cbf43f",
+    "dados/experimentos/generalizacao_moedas_1f2b005888361d23c111/ETHUSDT/publicacao/previsoes/teste_42.npz": "3c818e49aee52128b0be6b7caf91bc3c28e7c37b11dca9d3d575fbf98313cc0c",
+    "dados/experimentos/generalizacao_moedas_1f2b005888361d23c111/ETHUSDT/publicacao/previsoes/teste_17.npz": "7f236ee1a00716822d345c300b72954d28595acc9a6c61a14547c28e583f2a70",
+    "dados/experimentos/generalizacao_moedas_1f2b005888361d23c111/ETHUSDT/publicacao/previsoes/teste_2026.npz": "8c14fe5ff7930605fb2eb3ec21be3952db6ac2c5fed81b84575d8d0581173ac4",
+    "dados/experimentos/generalizacao_moedas_1f2b005888361d23c111/BNBUSDT/fechamento.json": "71d40a45a0e8eeef5cdb08e845c525fe34b39262935c23f3f99b41517706a415",
+    "dados/mercado/generalizacao_moedas/BNBUSDT/2026-11-09T122206.199088_0000/manifesto.json": "ac75c9bfc58d35261cab604dde4707212ffe8d59d841f34a6e087d63d90cdc3e",
+    "dados/mercado/generalizacao_moedas/BNBUSDT/2026-11-09T122206.199088_0000/markPriceKlines.parquet": "f0fb86dc6a58c1601e1338d9731b7b976ec783aa839eca411914c4c64ef52dcc",
+    "dados/mercado/generalizacao_moedas/BNBUSDT/2026-11-09T122206.199088_0000/funding.parquet": "d80ec8c713760bcc2dc1ec815488b602befe937670929dd388fe13a0a5380b81",
+    "dados/mercado/generalizacao_moedas/BNBUSDT/2026-11-09T122206.199088_0000/diario.parquet": "e0f87f9a5cb60cf6a2b5838ac14658802bdddf9dcfbf3587e9b021078aba2cae",
+    "dados/mercado/generalizacao_moedas/BNBUSDT/2026-11-09T122206.199088_0000/klines.parquet": "ab6298d34fa94f56b073b2a8511a9955275078a3d0e4f2ab383f37e20c87c18c",
+    "dados/experimentos/generalizacao_moedas_1f2b005888361d23c111/BNBUSDT/publicacao/previsoes/validacao_42.npz": "744df5bc7d5ebe6e8218e843d3e836765ccbf217e3a7b2521f3620c73870a004",
+    "dados/experimentos/generalizacao_moedas_1f2b005888361d23c111/BNBUSDT/publicacao/previsoes/validacao_17.npz": "897d60c11a4a8873819ce9cc8b831ec18eb67831896769f4aed3a502e531f57d",
+    "dados/experimentos/generalizacao_moedas_1f2b005888361d23c111/BNBUSDT/publicacao/previsoes/validacao_2026.npz": "e7b80f224af7e47cac3cef840ffa3b08b5fe7de484d6f6e5fd881b1215351c3f",
+    "dados/experimentos/generalizacao_moedas_1f2b005888361d23c111/BNBUSDT/publicacao/previsoes/teste_42.npz": "d3bb3969460caee5b63c4ed6d2e60f67bf66f19b04035c5dc3b351f777b94a97",
+    "dados/experimentos/generalizacao_moedas_1f2b005888361d23c111/BNBUSDT/publicacao/previsoes/teste_17.npz": "da39aa0538864bc5a65de840ef0d39fec76aca49e1195dff20f6adb93054fc20",
+    "dados/experimentos/generalizacao_moedas_1f2b005888361d23c111/BNBUSDT/publicacao/previsoes/teste_2026.npz": "b354d5ec0373208be2ac3a3541cef2baed671fd85a291fee5fec0af8f88d7f30",
+    "dados/experimentos/generalizacao_moedas_1f2b005888361d23c111/XRPUSDT/continuacao_001/fechamento.json": "c584f377e5edbf94d26a03282084e5ef95fb26522c833fd10731975d02a60c93",
+    "dados/mercado/generalizacao_moedas/XRPUSDT/2026-11-09T123407.657738_0000/manifesto.json": "0f67f6adfc8e659bda301305cc460d0e48d89f58cdfc20ba5ac5a08f8f705508",
+    "dados/mercado/generalizacao_moedas/XRPUSDT/2026-11-09T123407.657738_0000/markPriceKlines.parquet": "aece26f180bf499f41d69fd562504581e4291bfbc8b60980bbfc20817a2be4e6",
+    "dados/mercado/generalizacao_moedas/XRPUSDT/2026-11-09T123407.657738_0000/diario.parquet": "36702295715d29ea8fc0e72841ab88ad2bc94a5df09db3da94da2ed9e6d3b432",
+    "dados/mercado/generalizacao_moedas/XRPUSDT/2026-11-09T123407.657738_0000/marca_envelopes.parquet": "6fd518f469915f5b741bc3d3f093eb5d06176e7f294e4634c9694f8a61226cdc",
+    "dados/mercado/generalizacao_moedas/XRPUSDT/2026-11-09T123407.657738_0000/funding.parquet": "90a7385a80d5333bca649a75ca9e5570ecea854acc0ba846ff5815b284ff71aa",
+    "dados/mercado/generalizacao_moedas/XRPUSDT/2026-11-09T123407.657738_0000/klines.parquet": "bed1fd161b05d2389813c2165936862663e5e2a1b1c532bef6b8dac33ab8671d",
+    "dados/experimentos/generalizacao_moedas_1f2b005888361d23c111/XRPUSDT/continuacao_001/publicacao/previsoes/validacao_42.npz": "bf5889c1078331fbde08b26569be3cb15d076bea2d61c93cbe5d6d53c06a88f8",
+    "dados/experimentos/generalizacao_moedas_1f2b005888361d23c111/XRPUSDT/continuacao_001/publicacao/previsoes/validacao_17.npz": "88699f0f08c5486618a48682243728e3f2b94a55c94a7f45fcc85559663b3e5d",
+    "dados/experimentos/generalizacao_moedas_1f2b005888361d23c111/XRPUSDT/continuacao_001/publicacao/previsoes/validacao_2026.npz": "7ed5a5a7d2de2a29d06ef6848a8ae8265f904b78ab88f2d2576ea51670568ad4",
+    "dados/experimentos/generalizacao_moedas_1f2b005888361d23c111/XRPUSDT/continuacao_001/publicacao/previsoes/teste_42.npz": "9f284d3acdc85cb84fd6e96edea4e76fb3d24a681a06273979f152c873ac5065",
+    "dados/experimentos/generalizacao_moedas_1f2b005888361d23c111/XRPUSDT/continuacao_001/publicacao/previsoes/teste_17.npz": "f0e983bfaba95258185105b035dae156e73fc928d78682183aad571b1f73c2d6",
+    "dados/experimentos/generalizacao_moedas_1f2b005888361d23c111/XRPUSDT/continuacao_001/publicacao/previsoes/teste_2026.npz": "747582edbdc440e48b5674f36a2462ce6bf7365bce4b443599e025d20fdfff1f",
+    "dados/reavaliacoes/custos_9f7598f109962adc3d76/publicacao_manifesto.json": "7af4b4427c32376a674d533b98af886c7cd80a3277df7eeff3375e6c1e0d6685",
+    "dados/reavaliacoes/custos_9f7598f109962adc3d76/publicacao/diarias.json": "030c38325541aabb1f29a22b5a734632cb430e4840b62532f5cefa6a283da417",
+    "registros/custos_vigentes/vigente.json": "b1d90c627df47aa9831ce71734a147b4faea4677a37054f48690cd1f7132cf1e",
+    "dados/diagnosticos/continuidade_diaria_20261111_001/resultados.json": "01ed4ec50956fcc5e7ca37255b86fde8c642fe92ea61a248196a88a50c45c477",
+    "dados/diagnosticos/continuidade_diaria_20261111_001/carteiras.zip": "34040155c8cb3e66b2cdd4bc92a9327a484b28ed31e92e4bd8641d77794e6aec",
+    "dados/diagnosticos/continuidade_diaria_20261111_001/manifesto.json": "7a3b1a92cc0afd7d2d5b809b8740b4863591f91258e179e8bfcb857bc403e96e",
+    "codigo/simulacao_operacoes/continuidade_diaria/auditoria.py": "34df32b9987e0aab8f1e59e084517430c5caddba8a9f3ff2f96d1586c284a816",
+    "codigo/simulacao_operacoes/continuidade_diaria/simulador.py": "fca5326cf9bd5cc54db7bfdc1f239afb95b1c84a37d1c6b7f3184ca1c1bfa8af",
+    "codigo/simulacao_operacoes/continuidade_diaria/__init__.py": "bcd1501f57c219b48020e784092c343ce8315904ae66acaf15741e42bc1a39a3",
+    "codigo/analises/etapas/continuidade_moedas/arima_diario.py": "605a2e203ed3613550a5aabe9d0f1b2d281dca63344446d8b67e2c6039f9d83e",
+    "codigo/analises/etapas/continuidade_moedas/ciclo.py": "673bd7b48fdc8ec9f348aa0acc9a71575656ee1326c8731b27ad1f583c5a63fc",
+    "codigo/analises/etapas/continuidade_moedas/__init__.py": "a69efbef9976bd97306cf8c48dc48587b4bc8febfa89fae1b2ec23a4543cc26c",
+    "codigo/analises/etapas/continuidade_moedas/__main__.py": "085cf359e14e7cfab5f29acad0916734b453b52be441089042ab0067c8d8ca08",
+    "codigo/modelos/arima.py": "df37e823342bff7d70833ea056ba24e6293f204b455f227a66c28bfff4654538",
+    "codigo/modelos/contratos.py": "cbcd7f912ce4615549300cee2f04974e59a7ecfb3eb836e035c634eddb620447",
+    "codigo/treinamento/selecao.py": "1671fb202499e547a032488ee51b3b0e214cea0f7e50c394b3b2a2e09591a8db",
+    "codigo/simulacao_operacoes/diaria_24h.py": "65e113c9f23f07c640fe7774b9bd3eadfdc93510f7138a01f6fa0710c552f999",
+    "codigo/simulacao_operacoes/revisada/conta.py": "ffa904f71720c67f83fe61e356ffef31f719c3081126431884c1817e26555eb0",
+    "codigo/experimentos/generalizacao_moedas/avaliacao.py": "59036dd50c12c73c0bed466882894d10ed781d39169bb1297f7b42ace95a48c9",
+    "codigo/simulacao_operacoes/envelopes_marcacao.py": "bdf54a554c774cb62cf131a5efca1e03b4450e42b9491cdf3e2bcb6a433edb03",
+    "codigo/infraestrutura/caminhos.py": "8e1717e5ed7c7f0a9cbd6f018f56b035293df911ca189178d0adcb23ec1dfa94",
+    "testes/simulacao_operacoes/test_continuidade_diaria.py": "7e64e60a5f36f27897042039ba8082f329b2c784421f26d17a0f721ef6d84c2b",
+    "testes/simulacao_operacoes/test_arima_diario_continuidade.py": "9d6ab526ea0bf2a387f70c21cdb819870603440029ee33b6780890aa0fb5e785",
+    "configuracoes/continuidade_moedas_001.json": "11ac412f1d81118a2ffe543c5a3e1ccb18ded5838e7bd6ba42989a841817119d",
+    "docs/protocolo_continuidade_moedas.md": "864821fdfc28a607ad8ca6e293042a45af9b7fb24fd3de055c8390bd85c6d566",
+    "codigo/simulacao_operacoes/continuidade_diaria/auditoria_grade.py": "29676e3b700a8dcc095eee216b0aac9979cb7eb956674b3264c01d04f5967056",
+    "codigo/analises/etapas/continuidade_moedas/continuacao.py": "32bdf26bd316bf66b9135074a0dec41232fb66932aa463e4b2b75ddefd099f67",
+    "testes/simulacao_operacoes/test_auditoria_grade_continuidade.py": "9ddded94529c798912ab1a9f851af109d74990efdf16ce1f738219d352015c4c",
+    "registros/continuidade_moedas/diagnostico_interrupcao.json": "b0458a9dab054e2370ddd2b6080abc0739ccec20f149c00ab3719af106c5dc8b"
+  },
+  "ambiente": {
+    "host": "MuriloRFM",
+    "python": "3.14.5 (tags/v3.14.5:5607950, May 10 2026, 10:43:50) [MSC v.1944 64 bit (AMD64)]",
+    "executavel": "C:\\Users\\MuriloRFM\\Documents\\GitHub\\CryptoCasting\\.venv\\Scripts\\python.exe",
+    "numpy": "2.4.6",
+    "pandas": "3.0.3",
+    "statsmodels": "0.14.6",
+    "scipy": "1.17.1"
+  },
+  "autorizacao": "Pesquisador solicitou registrar marco e ampliar continuidade para todos os casos completos da receita diária escolhida, com Naive, ARIMA e comprar/manter; sem retreinar redes.",
+  "continuidade_tecnica": {
+    "antecessora": {
+      "id": "91f782fe0392fff32549",
+      "pasta": "dados/reavaliacoes/continuidade_91f782fe0392fff32549",
+      "congelamento_sha256": "8af5074be8e5eaf4fd6889ca4136e7d4c54e1772428ca77115af0787f589d4a7"
+    },
+    "zip_sha256": "bd5914dbfa62369e392dd65d55f1ffc7031308278254edabb0d63ae9b6fe70e4",
+    "carteiras_herdadas": 307,
+    "mudanca": "Somente auditor: quantidade representada na grade inteira, eliminando resíduo fictício de2e-12XRP após fechamento. Mesmo simulador, hipóteses, filtros, dados, parâmetros e previsões; não refazer ARIMA."
+  },
+  "pais_artefatos": {
+    "dados/reavaliacoes/continuidade_91f782fe0392fff32549/carteiras.zip": "bd5914dbfa62369e392dd65d55f1ffc7031308278254edabb0d63ae9b6fe70e4",
+    "dados/reavaliacoes/continuidade_91f782fe0392fff32549/congelamento.json": "8af5074be8e5eaf4fd6889ca4136e7d4c54e1772428ca77115af0787f589d4a7",
+    "dados/reavaliacoes/continuidade_91f782fe0392fff32549/fontes_manifesto.json": "6c97c5741441fe8a1caeae6e48f746edc62ea4e070c5f09e8896f524292c30e8",
+    "dados/reavaliacoes/continuidade_91f782fe0392fff32549/incidente.json": "84f5d495b0bc2ee3fcc8595714fa7e15ee9746cb05df729cd31eaba4a317e838",
+    "dados/reavaliacoes/continuidade_91f782fe0392fff32549/arima_BNBUSDT/candidatos.json": "c1b90599148a786192fa2c4e4268f92869d239dc59e2919400159b16f7b013f6",
+    "dados/reavaliacoes/continuidade_91f782fe0392fff32549/arima_BNBUSDT/controle.json": "2576f5222e02f27c53cc452c7a632fde13d9ef68cc657557cc6bad0d58f097d4",
+    "dados/reavaliacoes/continuidade_91f782fe0392fff32549/arima_BNBUSDT/selecao.json": "50f1dc8405705c4a525c3153273d6ccddf87bbd4881d26996ce651cc0c3212d2",
+    "dados/reavaliacoes/continuidade_91f782fe0392fff32549/arima_BNBUSDT/teste.npz": "01a4e1adff8a8bf0dcad5c391238e4a9f05c3349905cd236021be17bdeb30621",
+    "dados/reavaliacoes/continuidade_91f782fe0392fff32549/arima_BNBUSDT/validacao.npz": "514d10284db51c086612ca14f0661ef9772f66c3ff6b07a0aabf03395f01ce46",
+    "dados/reavaliacoes/continuidade_91f782fe0392fff32549/arima_BTCUSDT/candidatos.json": "52371edbeb9f0500531e26290bce794d9d2480eab0b0f6510a98d84aaf2d2565",
+    "dados/reavaliacoes/continuidade_91f782fe0392fff32549/arima_BTCUSDT/controle.json": "362adef5157298bead89ade084ddc9e657148f6a8fc4d24be983201657db21de",
+    "dados/reavaliacoes/continuidade_91f782fe0392fff32549/arima_BTCUSDT/selecao.json": "1d54d53fec7ae740b36c2b199c5b57b6a9edc0f2de4ac9df74696df8fc833a3e",
+    "dados/reavaliacoes/continuidade_91f782fe0392fff32549/arima_BTCUSDT/teste.npz": "ccc2138f5b17bed44bc0d546a9de6fb39f185293f5a2d3a73965df64d7c1ed75",
+    "dados/reavaliacoes/continuidade_91f782fe0392fff32549/arima_BTCUSDT/validacao.npz": "4c4f406bae0cbcfc788698a5caf8bc5cbadc97747dabf052ee4bcfd42a092c9d",
+    "dados/reavaliacoes/continuidade_91f782fe0392fff32549/arima_ETHUSDT/candidatos.json": "9a4b6203000fe1453fa5a6b7a4375e7f4735e18aa523623b5074ef4e52055e43",
+    "dados/reavaliacoes/continuidade_91f782fe0392fff32549/arima_ETHUSDT/controle.json": "9fe9685be6e0003d9c72eae0cfa201e13930b76bd7fa56fa4097814e6012d82e",
+    "dados/reavaliacoes/continuidade_91f782fe0392fff32549/arima_ETHUSDT/selecao.json": "cb4826b1e77c447149b07fc4af0a280e83c3d1abfee19e70edd04dd99a80b951",
+    "dados/reavaliacoes/continuidade_91f782fe0392fff32549/arima_ETHUSDT/teste.npz": "837534137b17c0a1a6242810fd98e3f8e44cb13a609e96344fba7e47125b4fc0",
+    "dados/reavaliacoes/continuidade_91f782fe0392fff32549/arima_ETHUSDT/validacao.npz": "ad8b2e07d99419d3f6e42657267a792c0f54ae23ea19bbfeebc42b754a6ae917",
+    "dados/reavaliacoes/continuidade_91f782fe0392fff32549/arima_XRPUSDT/candidatos.json": "860e7aa4fa58d1e311590ab126c1b120a671ed203cc212a0a1d92f0207234fe2",
+    "dados/reavaliacoes/continuidade_91f782fe0392fff32549/arima_XRPUSDT/controle.json": "a5341cb6c86e5b0c85e7ef5dfa815aedcf0f3d0727501c01624c85454ce597c9",
+    "dados/reavaliacoes/continuidade_91f782fe0392fff32549/arima_XRPUSDT/selecao.json": "f8434ea7fbd6c7d2dad093abe40437a61aa73b79d2b2dee3dbbca3c15774610a",
+    "dados/reavaliacoes/continuidade_91f782fe0392fff32549/arima_XRPUSDT/teste.npz": "b3c6ad0a9e0a43657a7ef1a0d29b2392bd360851163304583d5a5248fed8cfaf",
+    "dados/reavaliacoes/continuidade_91f782fe0392fff32549/arima_XRPUSDT/validacao.npz": "531c4e3d7217cdce8eef3766c0795208392f7c33784a9f4f9920b950b943f5b8"
+  },
+  "id": "945f0e52b1f85184c3e7"
+}

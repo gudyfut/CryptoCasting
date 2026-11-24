@@ -1,0 +1,102 @@
+{
+  "versao": 1,
+  "utc": "2026-10-29T21:38:40.954149+00:00",
+  "chave": "mamba16_ohlcv24_001",
+  "natureza": "referência de trabalho selecionada entre resultados existentes; não nova execução ou campeão operacional",
+  "identidade_referencia": "62ac2f00c81596596782279889d6429d3fd35ca1608fc59638c8c36b9e49f877",
+  "situacao": "adotada_pelo_pesquisador",
+  "decisao": "docs/adr/0012-referencia16-e-proxima-hipotese.md",
+  "contrato": {
+    "arquitetura": {
+      "largura": 32,
+      "camadas": 2,
+      "estado": 16,
+      "convolucao": 4,
+      "expansao": 2,
+      "dropout": 0.1
+    },
+    "treino": {
+      "epocas": 100,
+      "paciencia": 10,
+      "batch": 64,
+      "microbatch": 32,
+      "taxa_aprendizado": 0.0002,
+      "weight_decay": 0.001,
+      "clipping": 1.0
+    },
+    "normalizacao_bloco": "pre_layernorm",
+    "dataset": "dados/entradas/0420879c2afc454c7754",
+    "manifesto_dataset_sha256": "0fa4dd361ff2c7a3fee4b1cb6ffcb3264a38d550024cef329b0d7b90cb5b8c1f",
+    "contrato_consumo": "8fcc08d64f197a43e68db65e674430ad26a5cbf8fd720c7511435b2a9336908d",
+    "configuracao_receita": {
+      "arquivo": "dados/experimentos/complemento_estado16_cc0b166fe42a3ed1678d/fontes/configuracoes/mamba_estado16_complemento_001.json",
+      "sha256": "6c5370aaed8cba7b34a18f72f347837e9743726ccf749739fc07932f235abbea"
+    },
+    "configuracao_arquitetura": {
+      "arquivo": "dados/experimentos/complemento_estado16_cc0b166fe42a3ed1678d/fontes/configuracoes/modelos_ohlcv24_001.json",
+      "sha256": "4311f1d1da59cc7b6bcb400d2539dc009d67f84ab570accee3b1a3b164b02c7d"
+    },
+    "seeds": [
+      17,
+      42,
+      2026,
+      7,
+      123,
+      31415
+    ],
+    "tentativas": {
+      "17": {
+        "tentativa": "dados/experimentos/ohlcv_modular_ab5baf3eab3a2e66d8b2/celulas/mamba_17/tentativa_001",
+        "conclusao_sha256": "b3fc8bb1b9fa2788b45612dbf0117127a9c99ea70460827f5762365f497cb63e",
+        "selecao_sha256": "da6c29e6eb84c12efd8f69a12a9a439eeda9cca98cff68dbe8a6458409be497a",
+        "checkpoint": "checkpoints/epoca_013.pt",
+        "checkpoint_sha256": "62edba8863bfa4dc2247b9155d458a6ba59e3a6afda98693e57a3dbd167ab4f9"
+      },
+      "42": {
+        "tentativa": "dados/experimentos/ohlcv_modular_ab5baf3eab3a2e66d8b2/celulas/mamba_42/tentativa_001",
+        "conclusao_sha256": "92c7ebee418dcc313554dfd699f1fa742cdd5ae256d14e603d876fcad0f29688",
+        "selecao_sha256": "22445f62dd20dd021c57fe7bbd171fd5dcb19f6a2d6f15d49864f7c0e3dfbe4c",
+        "checkpoint": "checkpoints/epoca_012.pt",
+        "checkpoint_sha256": "9110935aa3dbfd97e60fdf4e98229c1575e49c94626bd29815d90cd6decefe56"
+      },
+      "2026": {
+        "tentativa": "dados/experimentos/ohlcv_modular_ab5baf3eab3a2e66d8b2/celulas/mamba_2026/tentativa_001",
+        "conclusao_sha256": "065b5c1e9c613a9e149cc6e9c400d808517a43305a16737b6e949a599043f64a",
+        "selecao_sha256": "0d9ae1bb7b1a2bfbf2a7798872a201160c9896b0ce79c38a2ce7d04eda06af43",
+        "checkpoint": "checkpoints/epoca_009.pt",
+        "checkpoint_sha256": "99b0794e83863bcfeb2df5a6a1cf5ad3bcda02d984cb35a6481711b4f85428de"
+      },
+      "7": {
+        "tentativa": "dados/experimentos/complemento_estado16_cc0b166fe42a3ed1678d/celulas/mamba_7/tentativa_001",
+        "conclusao_sha256": "283061d0627c996b5c80d5047fbbcc3a6ea82cc38d06c67ed417d7a0dd222e71",
+        "selecao_sha256": "718134463df4b22dcbcbb38d2be275c256bd803fce16fdd74cc40e1d8ca44c8e",
+        "checkpoint": "checkpoints/epoca_012.pt",
+        "checkpoint_sha256": "408a57e992364fe328d770cbd841200e57e470b2f090a40a47640e5a0e57bb9b"
+      },
+      "123": {
+        "tentativa": "dados/experimentos/complemento_estado16_cc0b166fe42a3ed1678d/celulas/mamba_123/tentativa_001",
+        "conclusao_sha256": "37bfc4fc3d0a35b7bba57b0107f58ebcf4b97acf234371c6c0bb0d31eb8400a1",
+        "selecao_sha256": "23566103c56d943794d2c1639f577450bb312c99e5571d65916f0bae9a0e110f",
+        "checkpoint": "checkpoints/epoca_011.pt",
+        "checkpoint_sha256": "fe6c197afc6804c0f73dfbb36501b6357f6c307fbf0351a61bb9f12bddec0725"
+      },
+      "31415": {
+        "tentativa": "dados/experimentos/complemento_estado16_cc0b166fe42a3ed1678d/celulas/mamba_31415/tentativa_001",
+        "conclusao_sha256": "a5ef18ff3f46e1dfb02dd79699fb8db6771e74c8d00aca2cbe0c73d5eb682b6e",
+        "selecao_sha256": "c7812f18f59bd102c14f5ffcf13690c09ae298dd634d8c60a453f8e31e75d96c",
+        "checkpoint": "checkpoints/epoca_009.pt",
+        "checkpoint_sha256": "ec8f30f786ec963a2891d692fd4031e1d6f25d946f5cf7f44ee557e2650c0818"
+      }
+    },
+    "comparacao_origem": {
+      "arquivo": "registros/complemento_estado16/comparacoes/5d26dcadbceb4abcaec9e723967dbc3a/comparacao.json",
+      "sha256": "10a3eb7d494c72804107a43f169aed19b38eee2aaaa581773062c11b62968077"
+    }
+  },
+  "limites": [
+    "Seleção retrospectiva após consulta a2024/2025.",
+    "Vantagens16/8 e16/32 inconclusivas; nenhum ótimo universal.",
+    "Usar seis seeds, treinar do zero a candidata; não selecionar checkpoint/seed favorável.",
+    "Receita vigente lr0,0002; taxa0,0001 permanece hipótese proposta, sem autorização específica de execução."
+  ]
+}

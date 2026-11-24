@@ -1,0 +1,86 @@
+{
+  "utc": "2026-11-11T14:24:14.981863+00:00",
+  "situacao": "concluido_conferido",
+  "execucao": {
+    "id": "945f0e52b1f85184c3e7",
+    "pasta": "dados/reavaliacoes/continuidade_945f0e52b1f85184c3e7",
+    "congelamento_sha256": "19e253cb993bc08ba3e7f59fead292d0391079fc1e21545aaff040c7900f1ea3"
+  },
+  "escopo": "Receita diária padronizada completa BTC/ETH/BNB/XRP,2024/2025,3seeds e ensemble separado;Naive,ARIMA,sempre comprado/vendido e comprar/manter futuro.1/2/3bp.",
+  "novos_treinamentos_neurais": 0,
+  "ajustes_arima_candidatos": 36,
+  "controles_arima": 4,
+  "carteiras": 408,
+  "fontes_mercados_previsoes_pais_preservados": true,
+  "tentativa_inicial": {
+    "id": "91f782fe0392fff32549",
+    "pasta": "dados/reavaliacoes/continuidade_91f782fe0392fff32549",
+    "congelamento_sha256": "8af5074be8e5eaf4fd6889ca4136e7d4c54e1772428ca77115af0787f589d4a7"
+  },
+  "heranca_carteiras_bytes_exatos": 307,
+  "novas_carteiras_continuacao": 101,
+  "correcao_auditor": "Quantidade em lotes inteiros, evitando resíduo fictício de2e-12XRP;mesmo simulador e hipóteses.",
+  "controles": {
+    "reproducoes_diarias": 192,
+    "reproducoes_btc_legado": 42,
+    "auditorias": 408,
+    "ordens": 101849,
+    "fundings": 245340,
+    "residuo_maximo_usdt": 5.820766091346741e-11
+  },
+  "leitura_posterior": {
+    "medias": 48,
+    "intervalos": 288,
+    "reconciliacao_decimal_usdt": 6.184563972055912e-11,
+    "novas_simulacoes": 0
+  },
+  "testes": {
+    "comando": ".venv/Scripts/python.exe -B -X utf8 -m unittest testes.simulacao_operacoes.test_continuidade_diaria.Continuidade testes.simulacao_operacoes.test_arima_diario_continuidade.ARIMADiario testes.simulacao_operacoes.test_auditoria_grade_continuidade.GradeInteira -v",
+    "execucoes": 26,
+    "aprovadas": 26,
+    "observacao": "Inclui repetição dos onze casos herdados no auditor corrigido; não equivale a26cenários de mercado."
+  },
+  "inspecao_figura": "PNG inspecionado visualmente; legenda, rótulos, faixa de seeds e limites legíveis; PDF exportado da mesma figura.",
+  "evidencias": {
+    "dados/reavaliacoes/continuidade_945f0e52b1f85184c3e7/manifesto.json": "522603dd47bbef1277234720e1a95c1f6f50647e7b5d665aee8839e6e45d3943",
+    "dados/reavaliacoes/continuidade_945f0e52b1f85184c3e7/resultados.json": "5c079779efdcc3f5ea08691b4cdb24cee1baa1558253ef6d6b5ec317fe38020f",
+    "dados/reavaliacoes/continuidade_945f0e52b1f85184c3e7/conferencia.json": "34dab23622d05711a9a2e3a3188b57ae4b8ca5e0f4b4550f205fae6662c7cf23",
+    "dados/reavaliacoes/continuidade_945f0e52b1f85184c3e7/entrega_manifesto.json": "c2ed18dde155730d6cb349736c9fd86b46bdd6cdbab51ee29a1187a6abe39821",
+    "dados/reavaliacoes/continuidade_945f0e52b1f85184c3e7/publicacao/conferencia_posterior.json": "ddb45dcf8eeaa930d5755c45464f70aa2e8e36bb07154063a4d440796908185d",
+    "dados/reavaliacoes/continuidade_945f0e52b1f85184c3e7/publicacao/comparacao_referencias.csv": "b216f959eb1c6a68e3fae563ae7e8f2fd2519fccdea3c97a66fd6ef7fe8f8978",
+    "dados/reavaliacoes/continuidade_945f0e52b1f85184c3e7/publicacao/medias_tres_seeds.csv": "e413df1d6b3a4855d31ac2ca891d9b45b7794343b888090aa193dcb04a52c0ef",
+    "dados/reavaliacoes/continuidade_945f0e52b1f85184c3e7/publicacao/carteiras.csv": "eaf47c8b8f92be6a12f00f86189ff00d31db51d5349486cc240d06de7488a80d",
+    "dados/reavaliacoes/continuidade_945f0e52b1f85184c3e7/publicacao/contrastes_intervalos.csv": "a002a2b4dcf8eeaf704eeaf28f03123ea08a2841f9120dfbcbc945a6d680180c",
+    "dados/reavaliacoes/continuidade_945f0e52b1f85184c3e7/publicacao/comparacao_2025.png": "bfa8f507164e502014e83872c0cb518bdf91bcb22c5621096a5f1c03385ee9e7",
+    "dados/reavaliacoes/continuidade_945f0e52b1f85184c3e7/publicacao/comparacao_2025.pdf": "cd7af4b9485814e2196a6e741bfb700847a0af0778efcf5d2d327f35c40598d5"
+  },
+  "editoriais": {
+    "original": "registros/continuidade_moedas/editoriais_antes.zip",
+    "anterior_entrega": "registros/continuidade_moedas/editoriais_entrega_antes.zip",
+    "catalogo_entradas_anteriores_preservadas": true,
+    "apos": {
+      "README.md": "e09819d392eb0f84c3f5c3665a56e46eeabecbddd94cf788608eb12f36e973a6",
+      "plano.md": "cfb837527618c00d35e73ea125663c60b604d6cdfd23a8ebde4115d96aae5597",
+      "docs/andamento.md": "1b30c56346dd67d88448881f181cb6c30b4ad4b85ac11ea1d32005179d5a57bf",
+      "docs/arquitetura_operacoes.md": "8977f4fa5c1943c7972cb5ee5f3a15758567bd34d382f3a8151d04498419e30b",
+      "docs/roteiro_redacao_tcc.md": "370e64cd48cb4f6253c668f0b7b604cc9c2cd84eb0258b0b728157f069d15914",
+      "docs/README.md": "25e93c6baa3623ff5a4714e5ca2aa7c7b24dccdb2174de7774092df7b0a8d038",
+      "docs/adr/0037-continuidade-posicoes-diarias.md": "4429b3cc8f2de93c59c5a9e82ea764758ae1d254e71d651c4d85ea8404911d91",
+      "registros/catalogo_estudos.json": "b05b2ab089e048ade79008bdc20a7da82eb5ff158d9c1d7867d08bf8e30015a5",
+      "registros/README.md": "aff9b1b960d2119863a88c80a9595792aa846e9c9ef0427e5ea9d4241ba24f07",
+      "codigo/analises/README.md": "62c5876dc84f5c8c89fcd6ae79337db69ac218d35c55ff0a0b3e230e2702b46b",
+      "escrita_tcc/cronologia_narrativa/narrativa_desenvolvimento.md": "e4064849a968eb80044bf165cf38a10d994cd5709a3e4467b256c2893194ffba"
+    }
+  },
+  "limites": "Apenas família diária padronizada concluída, não todas as receitas históricas/grades horárias.2024 selecionou checkpoints;2025 retrospectivo já consultado. Custos provisórios;DD envelope conservador;referência passiva no mesmo futuro. A mudança melhora execução, não MSE nem demonstra superioridade robusta do Mamba sobre baselines.",
+  "interface": "Não alterada; apresentação anterior mantém a política diária identificada. Nova extensão separada nos artefatos.",
+  "distribuicao": "Preservação local conferida; não foi realizado backup externo ou publicação remota.",
+  "verificacao_organizacao": {
+    "links_locais_novos_conferidos": 35,
+    "links_ausentes": 0,
+    "fontes_python_sintaxe_conferida": 13,
+    "diff_check": "Sem erros de whitespace nos documentos/catálogo editados; avisos Git LF/CRLF apenas, sem normalizar fontes científicas.",
+    "manifestos_cientifico_e_entrega": "Hashes conferidos novamente após a documentação.",
+    "catalogo": "Entradas anteriores preservadas por comparação estrutural com o pacote editorial; acrescida somente a extensão e o horário de atualização."
+  }
+}

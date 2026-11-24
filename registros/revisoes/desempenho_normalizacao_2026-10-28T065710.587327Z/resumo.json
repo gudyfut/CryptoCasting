@@ -1,0 +1,57 @@
+{
+  "utc": "2026-10-28T07:00:15.234536+00:00",
+  "execucao": "9e03af2150cbb7b1068d",
+  "progresso_observado": {
+    "status": "executando",
+    "planejados_prenorm": 384,
+    "planejados_controles": 2,
+    "concluidos_prenorm": 90,
+    "concluidos_controles": 2,
+    "inicio_utc": "2026-10-28T05:02:09.554484+00:00",
+    "celula_em_execucao": {
+      "fold": "DB2",
+      "par": "XRPUSDT",
+      "contexto": 168,
+      "seed": 17,
+      "modelo": "mamba"
+    },
+    "controle_em_execucao": false,
+    "tentativa": "dados/experimentos/normalizacao_9e03af2150cbb7b1068d/celulas/42372f943d8b95d5af85/tentativa_001",
+    "atualizado_utc": "2026-10-28T06:58:06.990749+00:00",
+    "ultima_celula": {
+      "fold": "DB2",
+      "par": "XRPUSDT",
+      "contexto": 72,
+      "seed": 2026,
+      "modelo": "mamba"
+    }
+  },
+  "amostra_gpu": {
+    "n": 31,
+    "duracao_aproximada_s": 30,
+    "utilizacao_media_percentual": 34.96774193548387,
+    "minimo": 24.0,
+    "maximo": 44.0,
+    "memoria_mib": [
+      357.0,
+      357.0
+    ]
+  },
+  "gpu": "NVIDIA GeForce RTX 4050 Laptop GPU",
+  "pid_gpu_observado": 425,
+  "energia_observada": {
+    "alimentacao_externa": true,
+    "plano_windows": "Equilibrado",
+    "limite_gpu_w": 60,
+    "limitacao_termica_ativa": false,
+    "limitacao_potencia_ativa": false,
+    "temperatura_c": 47
+  },
+  "interpretacao": "GPU ativa, ocupacao parcial em janela curta; pequenas redes e sincronizacoes CPU/GPU no treinador sao candidatos a limitar throughput. Nao foi executado profiler nem medida causal do tempo de cada componente.",
+  "fontes_codigo": {
+    "experimento_normalizacao/treino.py": "05298d54fd95ed68edc1b3e3d337a2d7648043a829a7dee42bf57d7b8208bc7b",
+    "experimento_normalizacao/redes.py": "5e9153adbf31c3c128acf3dde682a11fa014d53e0181ef2324f16ee781488c4b",
+    "previsao24/redes.py": "348740604b13de71a0329c0351853758f79e46c1c3666233903d84b5a63fa232"
+  },
+  "mudancas_na_execucao": false
+}

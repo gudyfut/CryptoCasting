@@ -1,0 +1,1829 @@
+{
+  "utc": "2026-11-08T195927.199359Z",
+  "execucao": {
+    "id": "f3f8772670f244779ad7",
+    "pasta": "dados/experimentos/padronizacao_diaria_f3f8772670f244779ad7",
+    "congelamento_sha256": "3ccc75d5ecf0028b1ec909c19bfb5c96a22e1af06a5fd9d5a0efd7cd9040c943"
+  },
+  "codigo_sha256": "a1f135cb70fc0231e700bb8f13ce53091fd9c809ddbf48a6f37a1412579caee1",
+  "atualizacoes_de_pesos": 0,
+  "carteiras_novas": 0,
+  "seeds": {
+    "42": {
+      "epoca": 25,
+      "checkpoint_sha256": "226d2d190c08054a0ac20473dbd389dc2832ff03355d032abc116611877c0fc6",
+      "normas_iniciais": {
+        "lineares": {
+          "norma": 4.154550003523987,
+          "rms": 0.1447306073490259,
+          "n": 824,
+          "fracao_abs_menor_1e6": 0.0
+        },
+        "layernorm": {
+          "norma": 15.748015748023622,
+          "rms": 0.7071067811865476,
+          "n": 496,
+          "fracao_abs_menor_1e6": 0.5
+        },
+        "A_log": {
+          "norma": 593.129457597797,
+          "rms": 3.329037355400922,
+          "n": 31744,
+          "fracao_abs_menor_1e6": 0.015625
+        },
+        "D": {
+          "norma": 22.271057451320086,
+          "rms": 1.0,
+          "n": 496,
+          "fracao_abs_menor_1e6": 0.0
+        },
+        "outros_mamba": {
+          "norma": 114.29583805275027,
+          "rms": 0.35545689933207586,
+          "n": 103392,
+          "fracao_abs_menor_1e6": 0.0
+        }
+      },
+      "normas_selecionadas": {
+        "lineares": {
+          "norma": 0.4774682528313294,
+          "rms": 0.016633394751186217,
+          "n": 824,
+          "fracao_abs_menor_1e6": 0.0691747572815534
+        },
+        "layernorm": {
+          "norma": 9.223032972385822e-05,
+          "rms": 4.141264056520648e-06,
+          "n": 496,
+          "fracao_abs_menor_1e6": 0.9899193548387096
+        },
+        "A_log": {
+          "norma": 0.7156526602669573,
+          "rms": 0.0040167191310472436,
+          "n": 31744,
+          "fracao_abs_menor_1e6": 0.1697328629032258
+        },
+        "D": {
+          "norma": 3.913274595696853e-07,
+          "rms": 1.757112164184597e-08,
+          "n": 496,
+          "fracao_abs_menor_1e6": 1.0
+        },
+        "outros_mamba": {
+          "norma": 3.706711246653044,
+          "rms": 0.01152776959250722,
+          "n": 103392,
+          "fracao_abs_menor_1e6": 0.9941388115134633
+        }
+      },
+      "fases": {
+        "treino": {
+          "media": 0.005563036302931576,
+          "desvio": 0.0008273884837761397,
+          "min": 0.0040323734283447266,
+          "max": 0.007164291106164455,
+          "mse": 0.0012769931577422124,
+          "correlacao": 0.04046110157594553,
+          "compras": 1446,
+          "vendas": 0,
+          "sem_ramos_mamba": {
+            "max_diferenca": 0.0,
+            "rms_diferenca": 0.0,
+            "desvio": 0.0008273884837761397,
+            "media": 0.005563036302931576
+          },
+          "rms_perturbacao_canal_zero_zscore": {
+            "Timestamp": 0.0007232961184666148,
+            "Open": 0.0008777527068001737,
+            "High": 0.0008371607541381905,
+            "Low": 0.0010249963816497765,
+            "Close": 0.000799334439995971,
+            "Volume": 4.593412670095355e-06
+          }
+        },
+        "validacao": {
+          "media": 0.003305594954225752,
+          "desvio": 0.000402171050560357,
+          "min": 0.0023249471560120583,
+          "max": 0.004048971459269524,
+          "mse": 0.0007543188865603478,
+          "correlacao": 0.06325451452750366,
+          "compras": 351,
+          "vendas": 0,
+          "sem_ramos_mamba": {
+            "max_diferenca": 0.0,
+            "rms_diferenca": 0.0,
+            "desvio": 0.000402171050560357,
+            "media": 0.003305594954225752
+          },
+          "rms_perturbacao_canal_zero_zscore": {
+            "Timestamp": 0.0015442169572479883,
+            "Open": 0.0023160216673243166,
+            "High": 0.002192345189152324,
+            "Low": 0.0027775282045651496,
+            "Close": 0.0021296740471714536,
+            "Volume": 3.472416361506543e-06
+          }
+        },
+        "teste": {
+          "media": 0.0019211537364338125,
+          "desvio": 0.0003668900354620927,
+          "min": 0.0014005834236741066,
+          "max": 0.0026422105729579926,
+          "mse": 0.00047847645339442176,
+          "correlacao": 0.051677370475818184,
+          "compras": 127,
+          "vendas": 0,
+          "sem_ramos_mamba": {
+            "max_diferenca": 0.0,
+            "rms_diferenca": 0.0,
+            "desvio": 0.0003668900354620927,
+            "media": 0.0019211537364338125
+          },
+          "rms_perturbacao_canal_zero_zscore": {
+            "Timestamp": 0.0021555925218031944,
+            "Open": 0.004331159537430112,
+            "High": 0.004070446358680977,
+            "Low": 0.0052127515345257525,
+            "Close": 0.003971329523399759,
+            "Volume": 5.818743608168947e-06
+          }
+        }
+      },
+      "ativacoes": {
+        "treino": {
+          "nucleo.blocks.0.0.op": {
+            "forma": [
+              32,
+              6,
+              14
+            ],
+            "rms_entrada": 5.293955920339377e-23,
+            "rms_saida": 0.0
+          },
+          "nucleo.blocks.0.1.op": {
+            "forma": [
+              32,
+              6,
+              14
+            ],
+            "rms_entrada": 1.6090988548992193e-15,
+            "rms_saida": 0.0
+          },
+          "nucleo.blocks.0.2.op": {
+            "forma": [
+              32,
+              6,
+              14
+            ],
+            "rms_entrada": 0.0,
+            "rms_saida": 0.0
+          },
+          "nucleo.blocks.0.3.op": {
+            "forma": [
+              32,
+              6,
+              14
+            ],
+            "rms_entrada": 5.293955920339377e-23,
+            "rms_saida": 0.0
+          },
+          "nucleo.blocks.1.0.op": {
+            "forma": [
+              32,
+              6,
+              16
+            ],
+            "rms_entrada": 6.922745430341788e-22,
+            "rms_saida": 0.0
+          },
+          "nucleo.blocks.1.1.op": {
+            "forma": [
+              32,
+              6,
+              16
+            ],
+            "rms_entrada": 2.899619184764494e-22,
+            "rms_saida": 0.0
+          },
+          "nucleo.blocks.1.2.op": {
+            "forma": [
+              32,
+              6,
+              16
+            ],
+            "rms_entrada": 3.3067165372266696e-20,
+            "rms_saida": 0.0
+          },
+          "nucleo.blocks.1.3.op": {
+            "forma": [
+              32,
+              6,
+              16
+            ],
+            "rms_entrada": 5.329599326804743e-20,
+            "rms_saida": 0.0
+          },
+          "nucleo.blocks.2.0.op": {
+            "forma": [
+              32,
+              6,
+              32
+            ],
+            "rms_entrada": 1.5570798268527142e-06,
+            "rms_saida": 0.0
+          },
+          "nucleo.blocks.2.1.op": {
+            "forma": [
+              32,
+              6,
+              32
+            ],
+            "rms_entrada": 9.602306505485103e-08,
+            "rms_saida": 0.0
+          },
+          "nucleo.blocks.2.2.op": {
+            "forma": [
+              32,
+              6,
+              32
+            ],
+            "rms_entrada": 1.2046590200043283e-05,
+            "rms_saida": 0.0
+          },
+          "nucleo.blocks.2.3.op": {
+            "forma": [
+              32,
+              6,
+              32
+            ],
+            "rms_entrada": 5.7929378272092436e-06,
+            "rms_saida": 0.0
+          }
+        },
+        "validacao": {
+          "nucleo.blocks.0.0.op": {
+            "forma": [
+              32,
+              6,
+              14
+            ],
+            "rms_entrada": 6.483745598763743e-23,
+            "rms_saida": 0.0
+          },
+          "nucleo.blocks.0.1.op": {
+            "forma": [
+              32,
+              6,
+              14
+            ],
+            "rms_entrada": 1.703997779331631e-15,
+            "rms_saida": 0.0
+          },
+          "nucleo.blocks.0.2.op": {
+            "forma": [
+              32,
+              6,
+              14
+            ],
+            "rms_entrada": 0.0,
+            "rms_saida": 0.0
+          },
+          "nucleo.blocks.0.3.op": {
+            "forma": [
+              32,
+              6,
+              14
+            ],
+            "rms_entrada": 5.293955920339377e-23,
+            "rms_saida": 0.0
+          },
+          "nucleo.blocks.1.0.op": {
+            "forma": [
+              32,
+              6,
+              16
+            ],
+            "rms_entrada": 6.993233496993524e-22,
+            "rms_saida": 0.0
+          },
+          "nucleo.blocks.1.1.op": {
+            "forma": [
+              32,
+              6,
+              16
+            ],
+            "rms_entrada": 2.9475498684947433e-22,
+            "rms_saida": 0.0
+          },
+          "nucleo.blocks.1.2.op": {
+            "forma": [
+              32,
+              6,
+              16
+            ],
+            "rms_entrada": 3.341367003839545e-20,
+            "rms_saida": 0.0
+          },
+          "nucleo.blocks.1.3.op": {
+            "forma": [
+              32,
+              6,
+              16
+            ],
+            "rms_entrada": 5.282783165956229e-20,
+            "rms_saida": 0.0
+          },
+          "nucleo.blocks.2.0.op": {
+            "forma": [
+              32,
+              6,
+              32
+            ],
+            "rms_entrada": 1.0418260671940516e-06,
+            "rms_saida": 0.0
+          },
+          "nucleo.blocks.2.1.op": {
+            "forma": [
+              32,
+              6,
+              32
+            ],
+            "rms_entrada": 2.0402391953666665e-07,
+            "rms_saida": 0.0
+          },
+          "nucleo.blocks.2.2.op": {
+            "forma": [
+              32,
+              6,
+              32
+            ],
+            "rms_entrada": 2.5618977815611288e-05,
+            "rms_saida": 0.0
+          },
+          "nucleo.blocks.2.3.op": {
+            "forma": [
+              32,
+              6,
+              32
+            ],
+            "rms_entrada": 1.1760435882024467e-05,
+            "rms_saida": 0.0
+          }
+        },
+        "teste": {
+          "nucleo.blocks.0.0.op": {
+            "forma": [
+              32,
+              6,
+              14
+            ],
+            "rms_entrada": 6.483745598763743e-23,
+            "rms_saida": 0.0
+          },
+          "nucleo.blocks.0.1.op": {
+            "forma": [
+              32,
+              6,
+              14
+            ],
+            "rms_entrada": 1.6733745736730726e-15,
+            "rms_saida": 0.0
+          },
+          "nucleo.blocks.0.2.op": {
+            "forma": [
+              32,
+              6,
+              14
+            ],
+            "rms_entrada": 0.0,
+            "rms_saida": 0.0
+          },
+          "nucleo.blocks.0.3.op": {
+            "forma": [
+              32,
+              6,
+              14
+            ],
+            "rms_entrada": 5.293955920339377e-23,
+            "rms_saida": 0.0
+          },
+          "nucleo.blocks.1.0.op": {
+            "forma": [
+              32,
+              6,
+              16
+            ],
+            "rms_entrada": 7.043150090721013e-22,
+            "rms_saida": 0.0
+          },
+          "nucleo.blocks.1.1.op": {
+            "forma": [
+              32,
+              6,
+              16
+            ],
+            "rms_entrada": 2.971225288199981e-22,
+            "rms_saida": 0.0
+          },
+          "nucleo.blocks.1.2.op": {
+            "forma": [
+              32,
+              6,
+              16
+            ],
+            "rms_entrada": 3.3678610172482505e-20,
+            "rms_saida": 0.0
+          },
+          "nucleo.blocks.1.3.op": {
+            "forma": [
+              32,
+              6,
+              16
+            ],
+            "rms_entrada": 5.16373765864307e-20,
+            "rms_saida": 0.0
+          },
+          "nucleo.blocks.2.0.op": {
+            "forma": [
+              32,
+              6,
+              32
+            ],
+            "rms_entrada": 1.3656277815243811e-06,
+            "rms_saida": 0.0
+          },
+          "nucleo.blocks.2.1.op": {
+            "forma": [
+              32,
+              6,
+              32
+            ],
+            "rms_entrada": 2.318216019148167e-07,
+            "rms_saida": 0.0
+          },
+          "nucleo.blocks.2.2.op": {
+            "forma": [
+              32,
+              6,
+              32
+            ],
+            "rms_entrada": 2.9110986361047253e-05,
+            "rms_saida": 0.0
+          },
+          "nucleo.blocks.2.3.op": {
+            "forma": [
+              32,
+              6,
+              32
+            ],
+            "rms_entrada": 1.332656574959401e-05,
+            "rms_saida": 0.0
+          }
+        }
+      },
+      "gradientes_seis_lotes": {
+        "lineares": {
+          "norma_grad_rms": 0.1327498775357256,
+          "norma_l2": 0.0004774682528313293,
+          "sem_grad": 0,
+          "razao_l2_grad": 0.0035967509853471104
+        },
+        "layernorm": {
+          "norma_grad_rms": 7.29983014933419e-23,
+          "norma_l2": 9.223032972385821e-08,
+          "sem_grad": 0,
+          "razao_l2_grad": 1263458571461014.5
+        },
+        "A_log": {
+          "norma_grad_rms": 0.0,
+          "norma_l2": 0.0007156526602669573,
+          "sem_grad": 0,
+          "razao_l2_grad": null
+        },
+        "D": {
+          "norma_grad_rms": 1.2918182460029271e-22,
+          "norma_l2": 3.913274595696854e-10,
+          "sem_grad": 0,
+          "razao_l2_grad": 3029276454180.062
+        },
+        "outros_mamba": {
+          "norma_grad_rms": 6.250526882832768e-23,
+          "norma_l2": 0.003706711246653044,
+          "sem_grad": 0,
+          "razao_l2_grad": 5.930238068143698e+19
+        }
+      },
+      "historico": {
+        "selecionada": {
+          "epoca": 25,
+          "perda_treino_rmse_lotes": 0.034764320815025854,
+          "rmse_global_validacao_retorno": 0.027464866403468048,
+          "taxa": 0.01,
+          "segundos": 158.80632195
+        },
+        "primeira": {
+          "epoca": 1,
+          "perda_treino_rmse_lotes": 0.056430099988008436,
+          "rmse_global_validacao_retorno": 0.07401418483719147,
+          "taxa": 0.01,
+          "segundos": 7.797551632999998
+        },
+        "ultima": {
+          "epoca": 1000,
+          "perda_treino_rmse_lotes": 0.03424600664819919,
+          "rmse_global_validacao_retorno": 0.027492128033923542,
+          "taxa": 1.953125e-05,
+          "segundos": 6198.394194575
+        },
+        "blocos100": [
+          {
+            "inicio": 1,
+            "min_val": 0.027464866403468048,
+            "taxa": 0.01
+          },
+          {
+            "inicio": 101,
+            "min_val": 0.027479581863446276,
+            "taxa": 0.005
+          },
+          {
+            "inicio": 201,
+            "min_val": 0.027479582047965866,
+            "taxa": 0.0025
+          },
+          {
+            "inicio": 301,
+            "min_val": 0.027479583486703204,
+            "taxa": 0.00125
+          },
+          {
+            "inicio": 401,
+            "min_val": 0.02747958214957699,
+            "taxa": 0.000625
+          },
+          {
+            "inicio": 501,
+            "min_val": 0.02747960140159397,
+            "taxa": 0.0003125
+          },
+          {
+            "inicio": 601,
+            "min_val": 0.027479862148455728,
+            "taxa": 0.00015625
+          },
+          {
+            "inicio": 701,
+            "min_val": 0.027484336194086086,
+            "taxa": 7.8125e-05
+          },
+          {
+            "inicio": 801,
+            "min_val": 0.02748710314275695,
+            "taxa": 3.90625e-05
+          },
+          {
+            "inicio": 901,
+            "min_val": 0.02748666897407588,
+            "taxa": 1.953125e-05
+          }
+        ]
+      }
+    },
+    "17": {
+      "epoca": 14,
+      "checkpoint_sha256": "83967722e4b6e670376b6f506de23e8067c6fba85cf6780e167829bbc2e913b4",
+      "normas_iniciais": {
+        "lineares": {
+          "norma": 4.290675985260466,
+          "rms": 0.14947278062795907,
+          "n": 824,
+          "fracao_abs_menor_1e6": 0.0
+        },
+        "layernorm": {
+          "norma": 15.748015748023622,
+          "rms": 0.7071067811865476,
+          "n": 496,
+          "fracao_abs_menor_1e6": 0.5
+        },
+        "A_log": {
+          "norma": 593.129457597797,
+          "rms": 3.329037355400922,
+          "n": 31744,
+          "fracao_abs_menor_1e6": 0.015625
+        },
+        "D": {
+          "norma": 22.271057451320086,
+          "rms": 1.0,
+          "n": 496,
+          "fracao_abs_menor_1e6": 0.0
+        },
+        "outros_mamba": {
+          "norma": 111.04408648747507,
+          "rms": 0.3453440417820267,
+          "n": 103392,
+          "fracao_abs_menor_1e6": 9.671928195605076e-06
+        }
+      },
+      "normas_selecionadas": {
+        "lineares": {
+          "norma": 0.5987147306466334,
+          "rms": 0.020857215949211142,
+          "n": 824,
+          "fracao_abs_menor_1e6": 0.0
+        },
+        "layernorm": {
+          "norma": 0.001405324751362461,
+          "rms": 6.310094410353929e-05,
+          "n": 496,
+          "fracao_abs_menor_1e6": 0.9657258064516129
+        },
+        "A_log": {
+          "norma": 34.17975888017118,
+          "rms": 0.19183955990235893,
+          "n": 31744,
+          "fracao_abs_menor_1e6": 0.0625
+        },
+        "D": {
+          "norma": 0.0005058385511895556,
+          "rms": 2.271282144079659e-05,
+          "n": 496,
+          "fracao_abs_menor_1e6": 0.9879032258064516
+        },
+        "outros_mamba": {
+          "norma": 20.364782892607998,
+          "rms": 0.06333391229203343,
+          "n": 103392,
+          "fracao_abs_menor_1e6": 0.9917498452491489
+        }
+      },
+      "fases": {
+        "treino": {
+          "media": 0.004303050111691992,
+          "desvio": 0.0004298197325239677,
+          "min": 0.003074704436585307,
+          "max": 0.006025401409715414,
+          "mse": 0.0012681677907422138,
+          "correlacao": 0.08646503209991294,
+          "compras": 1446,
+          "vendas": 0,
+          "sem_ramos_mamba": {
+            "max_diferenca": 0.0,
+            "rms_diferenca": 0.0,
+            "desvio": 0.0004298197325239677,
+            "media": 0.004303050111691992
+          },
+          "rms_perturbacao_canal_zero_zscore": {
+            "Timestamp": 0.00011375316908959863,
+            "Open": 0.000944265618209098,
+            "High": 0.0029232284860132673,
+            "Low": 0.0017038726662925415,
+            "Close": 0.0023722615435834487,
+            "Volume": 0.00022542267388272203
+          }
+        },
+        "validacao": {
+          "media": 0.0030824468388856306,
+          "desvio": 0.0004202361510936703,
+          "min": 0.0016964366659522057,
+          "max": 0.004186979960650206,
+          "mse": 0.000753120158798892,
+          "correlacao": 0.10259724798809705,
+          "compras": 347,
+          "vendas": 0,
+          "sem_ramos_mamba": {
+            "max_diferenca": 0.0,
+            "rms_diferenca": 0.0,
+            "desvio": 0.0004202361510936703,
+            "media": 0.0030824468388856306
+          },
+          "rms_perturbacao_canal_zero_zscore": {
+            "Timestamp": 0.00024332500684882884,
+            "Open": 0.0025287675036698874,
+            "High": 0.007805426976814992,
+            "Low": 0.0047310447953256155,
+            "Close": 0.006481826563723082,
+            "Volume": 0.0001616280743388296
+          }
+        },
+        "teste": {
+          "media": 0.0019867937892143217,
+          "desvio": 0.0004960882526308415,
+          "min": 0.0008860337547957897,
+          "max": 0.003633609041571617,
+          "mse": 0.00047882353716245733,
+          "correlacao": 0.03925713866521138,
+          "compras": 162,
+          "vendas": 0,
+          "sem_ramos_mamba": {
+            "max_diferenca": 0.0,
+            "rms_diferenca": 0.0,
+            "desvio": 0.0004960882526308415,
+            "media": 0.0019867937892143217
+          },
+          "rms_perturbacao_canal_zero_zscore": {
+            "Timestamp": 0.0003394775470209925,
+            "Open": 0.0046617753770967,
+            "High": 0.014261989652359478,
+            "Low": 0.008764853539893522,
+            "Close": 0.011917379374656705,
+            "Volume": 0.00024937625004894666
+          }
+        }
+      },
+      "ativacoes": {
+        "treino": {
+          "nucleo.blocks.0.0.op": {
+            "forma": [
+              32,
+              6,
+              14
+            ],
+            "rms_entrada": 5.347739178568345e-12,
+            "rms_saida": 0.0
+          },
+          "nucleo.blocks.0.1.op": {
+            "forma": [
+              32,
+              6,
+              14
+            ],
+            "rms_entrada": 2.2851906131271527e-11,
+            "rms_saida": 0.0
+          },
+          "nucleo.blocks.0.2.op": {
+            "forma": [
+              32,
+              6,
+              14
+            ],
+            "rms_entrada": 5.759452376824514e-12,
+            "rms_saida": 0.0
+          },
+          "nucleo.blocks.0.3.op": {
+            "forma": [
+              32,
+              6,
+              14
+            ],
+            "rms_entrada": 3.283513391738602e-11,
+            "rms_saida": 0.0
+          },
+          "nucleo.blocks.1.0.op": {
+            "forma": [
+              32,
+              6,
+              16
+            ],
+            "rms_entrada": 1.2015595463044093e-10,
+            "rms_saida": 0.0
+          },
+          "nucleo.blocks.1.1.op": {
+            "forma": [
+              32,
+              6,
+              16
+            ],
+            "rms_entrada": 6.83680596580416e-08,
+            "rms_saida": 0.0
+          },
+          "nucleo.blocks.1.2.op": {
+            "forma": [
+              32,
+              6,
+              16
+            ],
+            "rms_entrada": 6.855360723534432e-11,
+            "rms_saida": 0.0
+          },
+          "nucleo.blocks.1.3.op": {
+            "forma": [
+              32,
+              6,
+              16
+            ],
+            "rms_entrada": 5.784387552276726e-11,
+            "rms_saida": 0.0
+          },
+          "nucleo.blocks.2.0.op": {
+            "forma": [
+              32,
+              6,
+              32
+            ],
+            "rms_entrada": 0.00018684369570109993,
+            "rms_saida": 7.091623208720039e-17
+          },
+          "nucleo.blocks.2.1.op": {
+            "forma": [
+              32,
+              6,
+              32
+            ],
+            "rms_entrada": 4.1860423038997396e-07,
+            "rms_saida": 0.0
+          },
+          "nucleo.blocks.2.2.op": {
+            "forma": [
+              32,
+              6,
+              32
+            ],
+            "rms_entrada": 5.4808674576634075e-06,
+            "rms_saida": 0.0
+          },
+          "nucleo.blocks.2.3.op": {
+            "forma": [
+              32,
+              6,
+              32
+            ],
+            "rms_entrada": 0.00024128011136781424,
+            "rms_saida": 7.486784133018432e-23
+          }
+        },
+        "validacao": {
+          "nucleo.blocks.0.0.op": {
+            "forma": [
+              32,
+              6,
+              14
+            ],
+            "rms_entrada": 5.6917404817058426e-12,
+            "rms_saida": 0.0
+          },
+          "nucleo.blocks.0.1.op": {
+            "forma": [
+              32,
+              6,
+              14
+            ],
+            "rms_entrada": 2.297188134159356e-11,
+            "rms_saida": 0.0
+          },
+          "nucleo.blocks.0.2.op": {
+            "forma": [
+              32,
+              6,
+              14
+            ],
+            "rms_entrada": 5.6699827125084035e-12,
+            "rms_saida": 0.0
+          },
+          "nucleo.blocks.0.3.op": {
+            "forma": [
+              32,
+              6,
+              14
+            ],
+            "rms_entrada": 3.232706463629498e-11,
+            "rms_saida": 0.0
+          },
+          "nucleo.blocks.1.0.op": {
+            "forma": [
+              32,
+              6,
+              16
+            ],
+            "rms_entrada": 1.1914384756561702e-10,
+            "rms_saida": 0.0
+          },
+          "nucleo.blocks.1.1.op": {
+            "forma": [
+              32,
+              6,
+              16
+            ],
+            "rms_entrada": 7.067853147191272e-08,
+            "rms_saida": 0.0
+          },
+          "nucleo.blocks.1.2.op": {
+            "forma": [
+              32,
+              6,
+              16
+            ],
+            "rms_entrada": 7.358342407615126e-11,
+            "rms_saida": 0.0
+          },
+          "nucleo.blocks.1.3.op": {
+            "forma": [
+              32,
+              6,
+              16
+            ],
+            "rms_entrada": 6.243196237765147e-11,
+            "rms_saida": 0.0
+          },
+          "nucleo.blocks.2.0.op": {
+            "forma": [
+              32,
+              6,
+              32
+            ],
+            "rms_entrada": 0.0001563274854561314,
+            "rms_saida": 5.939455906640238e-17
+          },
+          "nucleo.blocks.2.1.op": {
+            "forma": [
+              32,
+              6,
+              32
+            ],
+            "rms_entrada": 4.366510495401599e-07,
+            "rms_saida": 0.0
+          },
+          "nucleo.blocks.2.2.op": {
+            "forma": [
+              32,
+              6,
+              32
+            ],
+            "rms_entrada": 3.6516348700388335e-06,
+            "rms_saida": 0.0
+          },
+          "nucleo.blocks.2.3.op": {
+            "forma": [
+              32,
+              6,
+              32
+            ],
+            "rms_entrada": 0.0002571058867033571,
+            "rms_saida": 7.486784133018432e-23
+          }
+        },
+        "teste": {
+          "nucleo.blocks.0.0.op": {
+            "forma": [
+              32,
+              6,
+              14
+            ],
+            "rms_entrada": 5.410326266858112e-12,
+            "rms_saida": 0.0
+          },
+          "nucleo.blocks.0.1.op": {
+            "forma": [
+              32,
+              6,
+              14
+            ],
+            "rms_entrada": 2.3286348543871682e-11,
+            "rms_saida": 0.0
+          },
+          "nucleo.blocks.0.2.op": {
+            "forma": [
+              32,
+              6,
+              14
+            ],
+            "rms_entrada": 5.11505464720341e-12,
+            "rms_saida": 0.0
+          },
+          "nucleo.blocks.0.3.op": {
+            "forma": [
+              32,
+              6,
+              14
+            ],
+            "rms_entrada": 2.868391808796833e-11,
+            "rms_saida": 0.0
+          },
+          "nucleo.blocks.1.0.op": {
+            "forma": [
+              32,
+              6,
+              16
+            ],
+            "rms_entrada": 1.2263248749810884e-10,
+            "rms_saida": 0.0
+          },
+          "nucleo.blocks.1.1.op": {
+            "forma": [
+              32,
+              6,
+              16
+            ],
+            "rms_entrada": 7.175057703534549e-08,
+            "rms_saida": 0.0
+          },
+          "nucleo.blocks.1.2.op": {
+            "forma": [
+              32,
+              6,
+              16
+            ],
+            "rms_entrada": 7.167374332928134e-11,
+            "rms_saida": 0.0
+          },
+          "nucleo.blocks.1.3.op": {
+            "forma": [
+              32,
+              6,
+              16
+            ],
+            "rms_entrada": 6.175607247804749e-11,
+            "rms_saida": 0.0
+          },
+          "nucleo.blocks.2.0.op": {
+            "forma": [
+              32,
+              6,
+              32
+            ],
+            "rms_entrada": 0.00010050706623587757,
+            "rms_saida": 3.7981840783777034e-17
+          },
+          "nucleo.blocks.2.1.op": {
+            "forma": [
+              32,
+              6,
+              32
+            ],
+            "rms_entrada": 3.2866932997421827e-07,
+            "rms_saida": 0.0
+          },
+          "nucleo.blocks.2.2.op": {
+            "forma": [
+              32,
+              6,
+              32
+            ],
+            "rms_entrada": 6.303841473709326e-06,
+            "rms_saida": 0.0
+          },
+          "nucleo.blocks.2.3.op": {
+            "forma": [
+              32,
+              6,
+              32
+            ],
+            "rms_entrada": 0.00019222262199036777,
+            "rms_saida": 5.293955920339377e-23
+          }
+        }
+      },
+      "gradientes_seis_lotes": {
+        "lineares": {
+          "norma_grad_rms": 0.1283691257199433,
+          "norma_l2": 0.0005987147306466334,
+          "sem_grad": 0,
+          "razao_l2_grad": 0.004664008789409538
+        },
+        "layernorm": {
+          "norma_grad_rms": 2.409279896414972e-16,
+          "norma_l2": 1.405324751362461e-06,
+          "sem_grad": 0,
+          "razao_l2_grad": 5832965914.228545
+        },
+        "A_log": {
+          "norma_grad_rms": 0.0,
+          "norma_l2": 0.03417975888017118,
+          "sem_grad": 0,
+          "razao_l2_grad": null
+        },
+        "D": {
+          "norma_grad_rms": 2.022283223232002e-16,
+          "norma_l2": 5.058385511895556e-07,
+          "sem_grad": 0,
+          "razao_l2_grad": 2501323975.6849055
+        },
+        "outros_mamba": {
+          "norma_grad_rms": 4.121547251557236e-16,
+          "norma_l2": 0.020364782892608,
+          "sem_grad": 0,
+          "razao_l2_grad": 49410528739937.69
+        }
+      },
+      "historico": {
+        "selecionada": {
+          "epoca": 14,
+          "perda_treino_rmse_lotes": 0.03427553690073401,
+          "rmse_global_validacao_retorno": 0.027443034795716234,
+          "taxa": 0.01,
+          "segundos": 83.71826006400079
+        },
+        "primeira": {
+          "epoca": 1,
+          "perda_treino_rmse_lotes": 0.04647226569810844,
+          "rmse_global_validacao_retorno": 0.02757919092786697,
+          "taxa": 0.01,
+          "segundos": 6.202939668000909
+        },
+        "ultima": {
+          "epoca": 1000,
+          "perda_treino_rmse_lotes": 0.034295949005466446,
+          "rmse_global_validacao_retorno": 0.027488452935916105,
+          "taxa": 1.953125e-05,
+          "segundos": 6117.992474930999
+        },
+        "blocos100": [
+          {
+            "inicio": 1,
+            "min_val": 0.027443034795716234,
+            "taxa": 0.01
+          },
+          {
+            "inicio": 101,
+            "min_val": 0.027479608765379495,
+            "taxa": 0.005
+          },
+          {
+            "inicio": 201,
+            "min_val": 0.02747959221651393,
+            "taxa": 0.0025
+          },
+          {
+            "inicio": 301,
+            "min_val": 0.0274796019787919,
+            "taxa": 0.00125
+          },
+          {
+            "inicio": 401,
+            "min_val": 0.027479639985240265,
+            "taxa": 0.000625
+          },
+          {
+            "inicio": 501,
+            "min_val": 0.027479936932498457,
+            "taxa": 0.0003125
+          },
+          {
+            "inicio": 601,
+            "min_val": 0.027480224700783977,
+            "taxa": 0.00015625
+          },
+          {
+            "inicio": 701,
+            "min_val": 0.027484687930595497,
+            "taxa": 7.8125e-05
+          },
+          {
+            "inicio": 801,
+            "min_val": 0.02748776094547363,
+            "taxa": 3.90625e-05
+          },
+          {
+            "inicio": 901,
+            "min_val": 0.02748803874411678,
+            "taxa": 1.953125e-05
+          }
+        ]
+      }
+    },
+    "2026": {
+      "epoca": 44,
+      "checkpoint_sha256": "86f58bb619ce2b6e3d5c96827cf1337d4f5525f1dd6021c35766bc31a854afe3",
+      "normas_iniciais": {
+        "lineares": {
+          "norma": 4.244997920900725,
+          "rms": 0.14788150985454063,
+          "n": 824,
+          "fracao_abs_menor_1e6": 0.0
+        },
+        "layernorm": {
+          "norma": 15.748015748023622,
+          "rms": 0.7071067811865476,
+          "n": 496,
+          "fracao_abs_menor_1e6": 0.5
+        },
+        "A_log": {
+          "norma": 593.129457597797,
+          "rms": 3.329037355400922,
+          "n": 31744,
+          "fracao_abs_menor_1e6": 0.015625
+        },
+        "D": {
+          "norma": 22.271057451320086,
+          "rms": 1.0,
+          "n": 496,
+          "fracao_abs_menor_1e6": 0.0
+        },
+        "outros_mamba": {
+          "norma": 112.96331793938343,
+          "rms": 0.35131279858558667,
+          "n": 103392,
+          "fracao_abs_menor_1e6": 0.0
+        }
+      },
+      "normas_selecionadas": {
+        "lineares": {
+          "norma": 0.413234037508384,
+          "rms": 0.014395689828055589,
+          "n": 824,
+          "fracao_abs_menor_1e6": 0.17354368932038836
+        },
+        "layernorm": {
+          "norma": 2.516869324677418e-07,
+          "rms": 1.1301076880515317e-08,
+          "n": 496,
+          "fracao_abs_menor_1e6": 1.0
+        },
+        "A_log": {
+          "norma": 0.007316119335864039,
+          "rms": 4.106293196818089e-05,
+          "n": 31744,
+          "fracao_abs_menor_1e6": 0.9986139112903226
+        },
+        "D": {
+          "norma": 6.85071871555357e-08,
+          "rms": 3.0760635100186963e-09,
+          "n": 496,
+          "fracao_abs_menor_1e6": 1.0
+        },
+        "outros_mamba": {
+          "norma": 0.03308358827718198,
+          "rms": 0.00010288904572674548,
+          "n": 103392,
+          "fracao_abs_menor_1e6": 0.9935198081089446
+        }
+      },
+      "fases": {
+        "treino": {
+          "media": 0.007502507762165475,
+          "desvio": 0.001641947760923838,
+          "min": 0.0034097936004400253,
+          "max": 0.011392628774046898,
+          "mse": 0.0012927022771948992,
+          "correlacao": 0.0625230822330243,
+          "compras": 1446,
+          "vendas": 0,
+          "sem_ramos_mamba": {
+            "max_diferenca": 0.0,
+            "rms_diferenca": 0.0,
+            "desvio": 0.001641947760923838,
+            "media": 0.007502507762165475
+          },
+          "rms_perturbacao_canal_zero_zscore": {
+            "Timestamp": 0.00036161558096382276,
+            "Open": 0.00023482300847328997,
+            "High": 0.002130847320687355,
+            "Low": 0.0014675732496671407,
+            "Close": 0.0017380101014176452,
+            "Volume": 0.0008226517358942095
+          }
+        },
+        "validacao": {
+          "media": 0.002772689611250349,
+          "desvio": 0.0014239648519141516,
+          "min": -0.001182173378765583,
+          "max": 0.005772585980594158,
+          "mse": 0.0007497161224902008,
+          "correlacao": 0.09524220631344989,
+          "compras": 291,
+          "vendas": 0,
+          "sem_ramos_mamba": {
+            "max_diferenca": 0.0,
+            "rms_diferenca": 0.0,
+            "desvio": 0.0014239648519141516,
+            "media": 0.002772689611250349
+          },
+          "rms_perturbacao_canal_zero_zscore": {
+            "Timestamp": 0.0007729989344151095,
+            "Open": 0.0006277964740168531,
+            "High": 0.005653687306348172,
+            "Low": 0.004033050936905571,
+            "Close": 0.0046977184947381454,
+            "Volume": 0.0006089130289034786
+          }
+        },
+        "teste": {
+          "media": -0.0014254473375954798,
+          "desvio": 0.001333669099071495,
+          "min": -0.003426353447139263,
+          "max": 0.001678223256021738,
+          "mse": 0.0004757000155968351,
+          "correlacao": 0.0603547809775527,
+          "compras": 0,
+          "vendas": 138,
+          "sem_ramos_mamba": {
+            "max_diferenca": 0.0,
+            "rms_diferenca": 0.0,
+            "desvio": 0.001333669099071495,
+            "media": -0.0014254473375954798
+          },
+          "rms_perturbacao_canal_zero_zscore": {
+            "Timestamp": 0.0010786624090096605,
+            "Open": 0.0011645011719506094,
+            "High": 0.010394827067868298,
+            "Low": 0.007506008138297835,
+            "Close": 0.008677134036135698,
+            "Volume": 0.0009652607634368094
+          }
+        }
+      },
+      "ativacoes": {
+        "treino": {
+          "nucleo.blocks.0.0.op": {
+            "forma": [
+              32,
+              6,
+              14
+            ],
+            "rms_entrada": 0.0,
+            "rms_saida": 0.0
+          },
+          "nucleo.blocks.0.1.op": {
+            "forma": [
+              32,
+              6,
+              14
+            ],
+            "rms_entrada": 0.0,
+            "rms_saida": 0.0
+          },
+          "nucleo.blocks.0.2.op": {
+            "forma": [
+              32,
+              6,
+              14
+            ],
+            "rms_entrada": 0.0,
+            "rms_saida": 0.0
+          },
+          "nucleo.blocks.0.3.op": {
+            "forma": [
+              32,
+              6,
+              14
+            ],
+            "rms_entrada": 0.0,
+            "rms_saida": 0.0
+          },
+          "nucleo.blocks.1.0.op": {
+            "forma": [
+              32,
+              6,
+              16
+            ],
+            "rms_entrada": 8.722987105444637e-22,
+            "rms_saida": 0.0
+          },
+          "nucleo.blocks.1.1.op": {
+            "forma": [
+              32,
+              6,
+              16
+            ],
+            "rms_entrada": 7.396484924815643e-16,
+            "rms_saida": 0.0
+          },
+          "nucleo.blocks.1.2.op": {
+            "forma": [
+              32,
+              6,
+              16
+            ],
+            "rms_entrada": 0.0,
+            "rms_saida": 0.0
+          },
+          "nucleo.blocks.1.3.op": {
+            "forma": [
+              32,
+              6,
+              16
+            ],
+            "rms_entrada": 4.190929558944845e-08,
+            "rms_saida": 0.0
+          },
+          "nucleo.blocks.2.0.op": {
+            "forma": [
+              32,
+              6,
+              32
+            ],
+            "rms_entrada": 0.0,
+            "rms_saida": 0.0
+          },
+          "nucleo.blocks.2.1.op": {
+            "forma": [
+              32,
+              6,
+              32
+            ],
+            "rms_entrada": 0.0,
+            "rms_saida": 0.0
+          },
+          "nucleo.blocks.2.2.op": {
+            "forma": [
+              32,
+              6,
+              32
+            ],
+            "rms_entrada": 5.1797972133726944e-08,
+            "rms_saida": 0.0
+          },
+          "nucleo.blocks.2.3.op": {
+            "forma": [
+              32,
+              6,
+              32
+            ],
+            "rms_entrada": 5.67981946197893e-12,
+            "rms_saida": 0.0
+          }
+        },
+        "validacao": {
+          "nucleo.blocks.0.0.op": {
+            "forma": [
+              32,
+              6,
+              14
+            ],
+            "rms_entrada": 0.0,
+            "rms_saida": 0.0
+          },
+          "nucleo.blocks.0.1.op": {
+            "forma": [
+              32,
+              6,
+              14
+            ],
+            "rms_entrada": 0.0,
+            "rms_saida": 0.0
+          },
+          "nucleo.blocks.0.2.op": {
+            "forma": [
+              32,
+              6,
+              14
+            ],
+            "rms_entrada": 0.0,
+            "rms_saida": 0.0
+          },
+          "nucleo.blocks.0.3.op": {
+            "forma": [
+              32,
+              6,
+              14
+            ],
+            "rms_entrada": 0.0,
+            "rms_saida": 0.0
+          },
+          "nucleo.blocks.1.0.op": {
+            "forma": [
+              32,
+              6,
+              16
+            ],
+            "rms_entrada": 8.175691817709128e-22,
+            "rms_saida": 0.0
+          },
+          "nucleo.blocks.1.1.op": {
+            "forma": [
+              32,
+              6,
+              16
+            ],
+            "rms_entrada": 6.931219785405104e-16,
+            "rms_saida": 0.0
+          },
+          "nucleo.blocks.1.2.op": {
+            "forma": [
+              32,
+              6,
+              16
+            ],
+            "rms_entrada": 0.0,
+            "rms_saida": 0.0
+          },
+          "nucleo.blocks.1.3.op": {
+            "forma": [
+              32,
+              6,
+              16
+            ],
+            "rms_entrada": 3.927305414208604e-08,
+            "rms_saida": 0.0
+          },
+          "nucleo.blocks.2.0.op": {
+            "forma": [
+              32,
+              6,
+              32
+            ],
+            "rms_entrada": 0.0,
+            "rms_saida": 0.0
+          },
+          "nucleo.blocks.2.1.op": {
+            "forma": [
+              32,
+              6,
+              32
+            ],
+            "rms_entrada": 0.0,
+            "rms_saida": 0.0
+          },
+          "nucleo.blocks.2.2.op": {
+            "forma": [
+              32,
+              6,
+              32
+            ],
+            "rms_entrada": 5.402386449304686e-08,
+            "rms_saida": 0.0
+          },
+          "nucleo.blocks.2.3.op": {
+            "forma": [
+              32,
+              6,
+              32
+            ],
+            "rms_entrada": 4.42438924039279e-12,
+            "rms_saida": 0.0
+          }
+        },
+        "teste": {
+          "nucleo.blocks.0.0.op": {
+            "forma": [
+              32,
+              6,
+              14
+            ],
+            "rms_entrada": 0.0,
+            "rms_saida": 0.0
+          },
+          "nucleo.blocks.0.1.op": {
+            "forma": [
+              32,
+              6,
+              14
+            ],
+            "rms_entrada": 0.0,
+            "rms_saida": 0.0
+          },
+          "nucleo.blocks.0.2.op": {
+            "forma": [
+              32,
+              6,
+              14
+            ],
+            "rms_entrada": 0.0,
+            "rms_saida": 0.0
+          },
+          "nucleo.blocks.0.3.op": {
+            "forma": [
+              32,
+              6,
+              14
+            ],
+            "rms_entrada": 0.0,
+            "rms_saida": 0.0
+          },
+          "nucleo.blocks.1.0.op": {
+            "forma": [
+              32,
+              6,
+              16
+            ],
+            "rms_entrada": 8.209899855785387e-22,
+            "rms_saida": 0.0
+          },
+          "nucleo.blocks.1.1.op": {
+            "forma": [
+              32,
+              6,
+              16
+            ],
+            "rms_entrada": 6.960942171524258e-16,
+            "rms_saida": 0.0
+          },
+          "nucleo.blocks.1.2.op": {
+            "forma": [
+              32,
+              6,
+              16
+            ],
+            "rms_entrada": 0.0,
+            "rms_saida": 0.0
+          },
+          "nucleo.blocks.1.3.op": {
+            "forma": [
+              32,
+              6,
+              16
+            ],
+            "rms_entrada": 3.944146342860222e-08,
+            "rms_saida": 0.0
+          },
+          "nucleo.blocks.2.0.op": {
+            "forma": [
+              32,
+              6,
+              32
+            ],
+            "rms_entrada": 0.0,
+            "rms_saida": 0.0
+          },
+          "nucleo.blocks.2.1.op": {
+            "forma": [
+              32,
+              6,
+              32
+            ],
+            "rms_entrada": 0.0,
+            "rms_saida": 0.0
+          },
+          "nucleo.blocks.2.2.op": {
+            "forma": [
+              32,
+              6,
+              32
+            ],
+            "rms_entrada": 4.882243231918437e-08,
+            "rms_saida": 0.0
+          },
+          "nucleo.blocks.2.3.op": {
+            "forma": [
+              32,
+              6,
+              32
+            ],
+            "rms_entrada": 5.732924551749008e-12,
+            "rms_saida": 0.0
+          }
+        }
+      },
+      "gradientes_seis_lotes": {
+        "lineares": {
+          "norma_grad_rms": 0.16240830865837033,
+          "norma_l2": 0.00041323403750838405,
+          "sem_grad": 0,
+          "razao_l2_grad": 0.0025444143893994455
+        },
+        "layernorm": {
+          "norma_grad_rms": 3.7349651116431547e-25,
+          "norma_l2": 2.516869324677418e-10,
+          "sem_grad": 0,
+          "razao_l2_grad": 673866890170267.2
+        },
+        "A_log": {
+          "norma_grad_rms": 0.0,
+          "norma_l2": 7.3161193358640385e-06,
+          "sem_grad": 0,
+          "razao_l2_grad": null
+        },
+        "D": {
+          "norma_grad_rms": 9.70688613966311e-25,
+          "norma_l2": 6.85071871555357e-11,
+          "sem_grad": 0,
+          "razao_l2_grad": 70575863536309.42
+        },
+        "outros_mamba": {
+          "norma_grad_rms": 1.3998821776686433e-26,
+          "norma_l2": 3.3083588277181974e-05,
+          "sem_grad": 0,
+          "razao_l2_grad": 2.3633123419200333e+21
+        }
+      },
+      "historico": {
+        "selecionada": {
+          "epoca": 44,
+          "perda_treino_rmse_lotes": 0.03441315796870331,
+          "rmse_global_validacao_retorno": 0.027380944514209162,
+          "taxa": 0.01,
+          "segundos": 276.99481528699835
+        },
+        "primeira": {
+          "epoca": 1,
+          "perda_treino_rmse_lotes": 0.0641203083195833,
+          "rmse_global_validacao_retorno": 0.0289037283428024,
+          "taxa": 0.01,
+          "segundos": 6.529752743001154
+        },
+        "ultima": {
+          "epoca": 1000,
+          "perda_treino_rmse_lotes": 0.034444049601011585,
+          "rmse_global_validacao_retorno": 0.02749796108440861,
+          "taxa": 1.953125e-05,
+          "segundos": 6123.190551765001
+        },
+        "blocos100": [
+          {
+            "inicio": 1,
+            "min_val": 0.027380944514209162,
+            "taxa": 0.01
+          },
+          {
+            "inicio": 101,
+            "min_val": 0.027479803746100307,
+            "taxa": 0.005
+          },
+          {
+            "inicio": 201,
+            "min_val": 0.027479593355578837,
+            "taxa": 0.0025
+          },
+          {
+            "inicio": 301,
+            "min_val": 0.02747959054656255,
+            "taxa": 0.00125
+          },
+          {
+            "inicio": 401,
+            "min_val": 0.027479583248309205,
+            "taxa": 0.000625
+          },
+          {
+            "inicio": 501,
+            "min_val": 0.027479592286874202,
+            "taxa": 0.0003125
+          },
+          {
+            "inicio": 601,
+            "min_val": 0.027482310030238467,
+            "taxa": 0.00015625
+          },
+          {
+            "inicio": 701,
+            "min_val": 0.02748284422260383,
+            "taxa": 7.8125e-05
+          },
+          {
+            "inicio": 801,
+            "min_val": 0.027483476187190967,
+            "taxa": 3.90625e-05
+          },
+          {
+            "inicio": 901,
+            "min_val": 0.027488737250687695,
+            "taxa": 1.953125e-05
+          }
+        ]
+      }
+    }
+  },
+  "populacoes": {
+    "treino": {
+      "n": 1446,
+      "media_alvo": 0.001733266647003184,
+      "desvio_alvo": 0.03555308531216841,
+      "mse_zero": 0.0012670260884839386,
+      "mse_media_treino": 0.001264021875214325,
+      "min_canais": [
+        -1.7308640480041504,
+        -1.5926690101623535,
+        -1.5572772026062012,
+        -1.6710902452468872,
+        -1.5947949886322021,
+        -1.3926345109939575
+      ],
+      "max_canais": [
+        1.7308640480041504,
+        2.565589666366577,
+        2.5478458404541016,
+        2.6192169189453125,
+        2.56512713432312,
+        6.891584873199463
+      ]
+    },
+    "validacao": {
+      "n": 351,
+      "media_alvo": 0.002651489164893014,
+      "desvio_alvo": 0.027479581586517577,
+      "mse_zero": 0.0007621577989616209,
+      "mse_media_treino": 0.0007559705367624359,
+      "min_canais": [
+        1.7379869222640991,
+        0.7102697491645813,
+        0.6813030242919922,
+        0.7193938493728638,
+        0.7089883089065552,
+        -1.4144647121429443
+      ],
+      "max_canais": [
+        2.5998575687408447,
+        5.110887050628662,
+        5.066584587097168,
+        5.285472393035889,
+        5.111538410186768,
+        3.660860061645508
+      ]
+    },
+    "teste": {
+      "n": 350,
+      "media_alvo": -1.1679164083119785e-05,
+      "desvio_alvo": 0.02180442207293969,
+      "mse_zero": 0.00047543295833777326,
+      "mse_media_treino": 0.0004784776578185272,
+      "min_canais": [
+        2.606980562210083,
+        3.1406517028808594,
+        3.2959415912628174,
+        3.1775617599487305,
+        3.1404340267181396,
+        -1.5119644403457642
+      ],
+      "max_canais": [
+        3.4664766788482666,
+        6.3385539054870605,
+        6.213911056518555,
+        6.501585006713867,
+        6.339735984802246,
+        1.236083984375
+      ]
+    }
+  },
+  "integridade_antes_depois": true,
+  "limites": "Sondas condicionadas aos checkpoints; nenhum ajuste de pesos, seleção de política ou backtest. Perturbações de canais podem sair da distribuição e não estimam importância causal. Gradientes medidos no checkpoint não reconstituem trajetórias do Adam. Comparar norma de L2 e gradiente não equivale a medir passo Adam."
+}

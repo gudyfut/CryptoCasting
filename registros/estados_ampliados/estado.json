@@ -1,0 +1,64 @@
+{
+  "versao": 1,
+  "utc": "2026-10-29T19:18:46.205249+00:00",
+  "situacao": "concluido_conferido",
+  "ordem": [
+    32,
+    64
+  ],
+  "seeds": [
+    17,
+    42,
+    2026,
+    7,
+    123,
+    31415
+  ],
+  "ajustes_reais_total": 12,
+  "qualificacoes": "registros/estados_ampliados/qualificacoes_preparadas.json",
+  "protocolo": "docs/protocolo_estados32_64.md",
+  "decisao": "docs/adr/0011-estados32-64.md",
+  "referencias_preservadas": [
+    "ab5baf3eab3a2e66d8b2",
+    "dcf4b0ed9012f7247bce"
+  ],
+  "controle": "reprodução sintética antes de cada grade; recarga exata por ajuste; sem repetição completa real adicional",
+  "limites": [
+    "Quatro tamanhos comparáveis em três seeds;8/32/64 em seis.",
+    "Divisão fixa retrospectiva;2024/2025 já conhecidos.",
+    "Sem novas receitas, custos ou baselines; mesmo orçamento por ajuste."
+  ],
+  "execucoes": {
+    "32": {
+      "id": "23c2ba54349bcc1b0ee1",
+      "pasta": "dados/experimentos/estados_ampliados_32_23c2ba54349bcc1b0ee1",
+      "congelamento_sha256": "33fbd49bc170a6851b276ed8e4870ecf78b21cbc0eb49a26bf38e755a2c4d13e"
+    },
+    "64": {
+      "id": "42cb667ea43df563e3ac",
+      "pasta": "dados/experimentos/estados_ampliados_64_42cb667ea43df563e3ac",
+      "congelamento_sha256": "0d188c61973bc5bcf2294afb7ac7bb6b4d627e7bf1930e5051529cb4d32d8fe1"
+    }
+  },
+  "autorizacao": "registros/estados_ampliados/autorizacao.json",
+  "fila_congelada": "registros/estados_ampliados/fila/congelamento.json",
+  "progresso_atual": "registros/estados_ampliados/fila/progresso.json",
+  "processo_atual": "registros/estados_ampliados/fila/processo.json",
+  "nota_estado": "Este arquivo é índice; situação atual deriva da fila e dos progressos individuais. Não presumir execução/conclusão pelo índice.",
+  "concluido_utc": "2026-10-29T19:01:21.238682+00:00",
+  "ajustes_reais_concluidos": 12,
+  "comparacao_consolidada": {
+    "arquivo": "registros/estados_ampliados/comparacoes/308422d9179540cb974f62df962d0c93/comparacao.json",
+    "sha256": "fe636f18601e1844b6dcb5a2602e58ad4d5ec8fadb2d6cbc2497451b7cced0a6"
+  },
+  "relatorio": "docs/resultados_estados32_64.md",
+  "proxima_acao": "Sequência encerrada; manter estados e médias identificados; próxima hipótese exige novo ciclo delimitado.",
+  "complemento_posterior_estado16": {
+    "estado": "registros/complemento_estado16/estado.json",
+    "comparacao": {
+      "arquivo": "registros/complemento_estado16/comparacoes/5d26dcadbceb4abcaec9e723967dbc3a/comparacao.json",
+      "sha256": "10a3eb7d494c72804107a43f169aed19b38eee2aaaa581773062c11b62968077"
+    },
+    "nota": "Fila32/64 original permanece encerrada; comparação posterior dos quatro em seis seeds está no complemento16."
+  }
+}

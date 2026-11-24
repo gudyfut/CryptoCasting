@@ -1,0 +1,21 @@
+{
+  "situacao": "proposta_nao_executada",
+  "utc": "2026-11-03T01:37:34.102627+00:00",
+  "dataset": "0420879c2afc454c7754",
+  "particao": "treino",
+  "arquivo_sha256": "621e938a04bca4e2d1779b4f750c5299d3bb9e6d062c0fc83ff6240e6f782bc6",
+  "n": 24751,
+  "n_maiores_absolutos": 248,
+  "fracao_erro_quadrado_naive_zero_maiores_1pct": 0.18659938619449482,
+  "escala_alvo_treino": 0.03398183846299332,
+  "hipotese": "MSE de treino para 2*Huber(delta=1), no alvo padronizado; demais fatores e seleção por MSE mantidos.",
+  "limites": [
+    "Estatística do alvo com previsão zero; não são resíduos de treino do Mamba.",
+    "Origens horárias com horizontes sobrepostos; não são eventos independentes.",
+    "Extremos podem ser informativos; não se remove nenhum exemplo."
+  ],
+  "referencias": [
+    "https://github.com/pytorch/pytorch/blob/v2.6.0/torch/nn/modules/loss.py",
+    "https://arxiv.org/abs/0912.0902"
+  ]
+}

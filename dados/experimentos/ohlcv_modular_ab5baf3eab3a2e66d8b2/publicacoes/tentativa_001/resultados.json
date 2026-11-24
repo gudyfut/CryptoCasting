@@ -1,0 +1,1306 @@
+{
+  "por_ajuste": {
+    "mamba_42": {
+      "predicao": {
+        "validacao": {
+          "n": 8760,
+          "mse": 0.0007194874413031879,
+          "rmse": 0.02682326306218518,
+          "mae": 0.019461787313513928,
+          "mse_naive": 0.0007218624747170446,
+          "habilidade_mse": 0.0032901466651077405,
+          "vies": -0.0016318978926709595,
+          "acuracia_direcional": 0.5156392694063927,
+          "acerto_balanceado_direcional": 0.5127690891351453,
+          "recall_queda": 0.47335964479526393,
+          "recall_alta": 0.5521785334750265,
+          "reais_queda": 4054,
+          "reais_zero": 1,
+          "reais_alta": 4705,
+          "previsoes_queda": 4026,
+          "previsoes_zero": 0,
+          "previsoes_alta": 4734
+        },
+        "teste": {
+          "n": 8736,
+          "mse": 0.0004895808602377982,
+          "rmse": 0.022126474193549187,
+          "mae": 0.015799777108113627,
+          "mse_naive": 0.0004952210450734487,
+          "habilidade_mse": 0.01138922687506938,
+          "vies": 0.0011242111199953272,
+          "acuracia_direcional": 0.5187728937728938,
+          "acerto_balanceado_direcional": 0.5150935415185693,
+          "recall_queda": 0.38548539114043356,
+          "recall_alta": 0.6447016918967052,
+          "reais_queda": 4244,
+          "reais_zero": 0,
+          "reais_alta": 4492,
+          "previsoes_queda": 3232,
+          "previsoes_zero": 0,
+          "previsoes_alta": 5504
+        }
+      },
+      "spot": {
+        "base": {
+          "capital_inicial": 10000.0,
+          "capital_final": 9201.133527062737,
+          "retorno_liquido": -0.0798866472937263,
+          "drawdown": 0.21711271221621387,
+          "retorno_auditavel": true,
+          "risco_auditavel": true,
+          "entradas_planejadas": 33,
+          "minutos_expostos_planejados": 47520,
+          "custos_observados": 1012.8793041447499,
+          "cenario": "base",
+          "controle": false,
+          "distribuicao_operacoes_observadas": {
+            "n": 33,
+            "ganhos": 18,
+            "perdas": 15,
+            "zeros": 0,
+            "mediana": 0.0032483887811014522,
+            "minimo": -0.08954900927154286,
+            "maximo": 0.07816122390228109,
+            "limite": "somente operações com retorno observável; não estima resultado das indisponíveis"
+          }
+        },
+        "agravado": {
+          "capital_inicial": 10000.0,
+          "capital_final": 8333.858153843476,
+          "retorno_liquido": -0.16661418461565247,
+          "drawdown": 0.26315214118071617,
+          "retorno_auditavel": true,
+          "risco_auditavel": true,
+          "entradas_planejadas": 33,
+          "minutos_expostos_planejados": 47520,
+          "custos_observados": 1929.113214856189,
+          "cenario": "agravado_sinais_base",
+          "controle": false,
+          "distribuicao_operacoes_observadas": {
+            "n": 33,
+            "ganhos": 17,
+            "perdas": 16,
+            "zeros": 0,
+            "mediana": 0.0002431484699845221,
+            "minimo": -0.09227627407378958,
+            "maximo": 0.07493158146458812,
+            "limite": "somente operações com retorno observável; não estima resultado das indisponíveis"
+          }
+        },
+        "bruto_mesmos_sinais": {
+          "capital_inicial": 10000.0,
+          "capital_final": 10158.661696398272,
+          "retorno_liquido": 0.015866169639827232,
+          "drawdown": 0.19084641487038556,
+          "retorno_auditavel": true,
+          "risco_auditavel": true,
+          "entradas_planejadas": 33,
+          "minutos_expostos_planejados": 47520,
+          "custos_observados": 0.0,
+          "cenario": "base",
+          "controle": false
+        }
+      },
+      "diagnostico_trimestres": {
+        "1": {
+          "n": 2160,
+          "mse": 0.0007498814318496344,
+          "mse_naive": 0.0007688079084605501
+        },
+        "2": {
+          "n": 2184,
+          "mse": 0.0003910736253410597,
+          "mse_naive": 0.00040847073852783147
+        },
+        "3": {
+          "n": 2208,
+          "mse": 0.00023854995956805388,
+          "mse_naive": 0.0002401645000875775
+        },
+        "4": {
+          "n": 2184,
+          "mse": 0.0005844374513603744,
+          "mse_naive": 0.0005692503014417145
+        }
+      }
+    },
+    "lstm_42": {
+      "predicao": {
+        "validacao": {
+          "n": 8760,
+          "mse": 0.0007232011351156054,
+          "rmse": 0.026892399207129238,
+          "mae": 0.019550925416039137,
+          "mse_naive": 0.0007218624747170446,
+          "habilidade_mse": -0.0018544535080389224,
+          "vies": -0.002639687629563766,
+          "acuracia_direcional": 0.4743150684931507,
+          "acerto_balanceado_direcional": 0.5080540492930979,
+          "recall_queda": 0.961272816970893,
+          "recall_alta": 0.05483528161530287,
+          "reais_queda": 4054,
+          "reais_zero": 1,
+          "reais_alta": 4705,
+          "previsoes_queda": 8345,
+          "previsoes_zero": 0,
+          "previsoes_alta": 415
+        },
+        "teste": {
+          "n": 8736,
+          "mse": 0.0004947950186731558,
+          "rmse": 0.022243988371538854,
+          "mae": 0.01588267522051093,
+          "mse_naive": 0.0004952210450734487,
+          "habilidade_mse": 0.0008602752337184549,
+          "vies": -0.00039932058044242047,
+          "acuracia_direcional": 0.4906135531135531,
+          "acerto_balanceado_direcional": 0.5041546265515068,
+          "recall_queda": 0.9811498586239397,
+          "recall_alta": 0.02715939447907391,
+          "reais_queda": 4244,
+          "reais_zero": 0,
+          "reais_alta": 4492,
+          "previsoes_queda": 8534,
+          "previsoes_zero": 0,
+          "previsoes_alta": 202
+        }
+      },
+      "spot": {
+        "base": {
+          "capital_inicial": 10000.0,
+          "capital_final": 10000.0,
+          "retorno_liquido": 0.0,
+          "drawdown": 0.0,
+          "retorno_auditavel": true,
+          "risco_auditavel": true,
+          "entradas_planejadas": 0,
+          "minutos_expostos_planejados": 0,
+          "custos_observados": 0.0,
+          "cenario": "base",
+          "controle": false,
+          "distribuicao_operacoes_observadas": {
+            "n": 0,
+            "ganhos": 0,
+            "perdas": 0,
+            "zeros": 0,
+            "mediana": null,
+            "minimo": null,
+            "maximo": null,
+            "limite": "somente operações com retorno observável; não estima resultado das indisponíveis"
+          }
+        },
+        "agravado": {
+          "capital_inicial": 10000.0,
+          "capital_final": 10000.0,
+          "retorno_liquido": 0.0,
+          "drawdown": 0.0,
+          "retorno_auditavel": true,
+          "risco_auditavel": true,
+          "entradas_planejadas": 0,
+          "minutos_expostos_planejados": 0,
+          "custos_observados": 0.0,
+          "cenario": "agravado_sinais_base",
+          "controle": false,
+          "distribuicao_operacoes_observadas": {
+            "n": 0,
+            "ganhos": 0,
+            "perdas": 0,
+            "zeros": 0,
+            "mediana": null,
+            "minimo": null,
+            "maximo": null,
+            "limite": "somente operações com retorno observável; não estima resultado das indisponíveis"
+          }
+        },
+        "bruto_mesmos_sinais": {
+          "capital_inicial": 10000.0,
+          "capital_final": 10000.0,
+          "retorno_liquido": 0.0,
+          "drawdown": 0.0,
+          "retorno_auditavel": true,
+          "risco_auditavel": true,
+          "entradas_planejadas": 0,
+          "minutos_expostos_planejados": 0,
+          "custos_observados": 0.0,
+          "cenario": "base",
+          "controle": false
+        }
+      },
+      "diagnostico_trimestres": {
+        "1": {
+          "n": 2160,
+          "mse": 0.0007661200683939301,
+          "mse_naive": 0.0007688079084605501
+        },
+        "2": {
+          "n": 2184,
+          "mse": 0.00041075020292081577,
+          "mse_naive": 0.00040847073852783147
+        },
+        "3": {
+          "n": 2208,
+          "mse": 0.0002417389012680667,
+          "mse_naive": 0.0002401645000875775
+        },
+        "4": {
+          "n": 2184,
+          "mse": 0.0005663333325177873,
+          "mse_naive": 0.0005692503014417145
+        }
+      }
+    },
+    "mamba_17": {
+      "predicao": {
+        "validacao": {
+          "n": 8760,
+          "mse": 0.0007181885482571032,
+          "rmse": 0.026799040062231765,
+          "mae": 0.01946793280162885,
+          "mse_naive": 0.0007218624747170446,
+          "habilidade_mse": 0.005089510244152162,
+          "vies": -0.0008804657173481221,
+          "acuracia_direcional": 0.5192922374429224,
+          "acerto_balanceado_direcional": 0.49451417552729965,
+          "recall_queda": 0.1603354711396152,
+          "recall_alta": 0.8286928799149841,
+          "reais_queda": 4054,
+          "reais_zero": 1,
+          "reais_alta": 4705,
+          "previsoes_queda": 1456,
+          "previsoes_zero": 0,
+          "previsoes_alta": 7304
+        },
+        "teste": {
+          "n": 8736,
+          "mse": 0.0004962673657632178,
+          "rmse": 0.02227705918121191,
+          "mae": 0.01588790990105002,
+          "mse_naive": 0.0004952210450734487,
+          "habilidade_mse": -0.0021128356724298136,
+          "vies": 0.001606265414359813,
+          "acuracia_direcional": 0.5121336996336996,
+          "acerto_balanceado_direcional": 0.5007022642830106,
+          "recall_queda": 0.09802073515551367,
+          "recall_alta": 0.9033837934105076,
+          "reais_queda": 4244,
+          "reais_zero": 0,
+          "reais_alta": 4492,
+          "previsoes_queda": 850,
+          "previsoes_zero": 0,
+          "previsoes_alta": 7886
+        }
+      },
+      "spot": {
+        "base": {
+          "capital_inicial": 10000.0,
+          "capital_final": 8475.334790762896,
+          "retorno_liquido": -0.15246652092371038,
+          "drawdown": 0.2511505072445248,
+          "retorno_auditavel": true,
+          "risco_auditavel": true,
+          "entradas_planejadas": 37,
+          "minutos_expostos_planejados": 53280,
+          "custos_observados": 1112.7355193281307,
+          "cenario": "base",
+          "controle": false,
+          "distribuicao_operacoes_observadas": {
+            "n": 37,
+            "ganhos": 18,
+            "perdas": 19,
+            "zeros": 0,
+            "mediana": -0.002541547058450777,
+            "minimo": -0.05551103391679635,
+            "maximo": 0.0499091185020204,
+            "limite": "somente operações com retorno observável; não estima resultado das indisponíveis"
+          }
+        },
+        "agravado": {
+          "capital_inicial": 10000.0,
+          "capital_final": 7584.904041028651,
+          "retorno_liquido": -0.24150959589713494,
+          "drawdown": 0.31969729667149294,
+          "retorno_auditavel": true,
+          "risco_auditavel": true,
+          "entradas_planejadas": 37,
+          "minutos_expostos_planejados": 53280,
+          "custos_observados": 2109.476910225688,
+          "cenario": "agravado_sinais_base",
+          "controle": false,
+          "distribuicao_operacoes_observadas": {
+            "n": 37,
+            "ganhos": 15,
+            "perdas": 22,
+            "zeros": 0,
+            "mediana": -0.005529443560418845,
+            "minimo": -0.05834025980543889,
+            "maximo": 0.046764105520972654,
+            "limite": "somente operações com retorno observável; não estima resultado das indisponíveis"
+          }
+        },
+        "bruto_mesmos_sinais": {
+          "capital_inicial": 10000.0,
+          "capital_final": 9470.296191885633,
+          "retorno_liquido": -0.05297038081143679,
+          "drawdown": 0.2042604685389835,
+          "retorno_auditavel": true,
+          "risco_auditavel": true,
+          "entradas_planejadas": 37,
+          "minutos_expostos_planejados": 53280,
+          "custos_observados": 0.0,
+          "cenario": "base",
+          "controle": false
+        }
+      },
+      "diagnostico_trimestres": {
+        "1": {
+          "n": 2160,
+          "mse": 0.0007666718716101779,
+          "mse_naive": 0.0007688079084605501
+        },
+        "2": {
+          "n": 2184,
+          "mse": 0.0003963676164464437,
+          "mse_naive": 0.00040847073852783147
+        },
+        "3": {
+          "n": 2208,
+          "mse": 0.00024107677697844866,
+          "mse_naive": 0.0002401645000875775
+        },
+        "4": {
+          "n": 2184,
+          "mse": 0.0005867289682884792,
+          "mse_naive": 0.0005692503014417145
+        }
+      }
+    },
+    "mamba_2026": {
+      "predicao": {
+        "validacao": {
+          "n": 8760,
+          "mse": 0.0007198159052577625,
+          "rmse": 0.026829385107709092,
+          "mae": 0.019501752176854657,
+          "mse_naive": 0.0007218624747170446,
+          "habilidade_mse": 0.0028351237679785646,
+          "vies": -0.0007900652618575407,
+          "acuracia_direcional": 0.5176940639269406,
+          "acerto_balanceado_direcional": 0.4962516914324001,
+          "recall_queda": 0.2069560927479033,
+          "recall_alta": 0.785547290116897,
+          "reais_queda": 4054,
+          "reais_zero": 1,
+          "reais_alta": 4705,
+          "previsoes_queda": 1848,
+          "previsoes_zero": 0,
+          "previsoes_alta": 6912
+        },
+        "teste": {
+          "n": 8736,
+          "mse": 0.0005018220297746169,
+          "rmse": 0.022401384550393685,
+          "mae": 0.01597983681950207,
+          "mse_naive": 0.0004952210450734487,
+          "habilidade_mse": -0.013329370322275436,
+          "vies": 0.002938169143325966,
+          "acuracia_direcional": 0.5163690476190477,
+          "acerto_balanceado_direcional": 0.502810840593771,
+          "recall_queda": 0.025212064090480678,
+          "recall_alta": 0.9804096170970614,
+          "reais_queda": 4244,
+          "reais_zero": 0,
+          "reais_alta": 4492,
+          "previsoes_queda": 195,
+          "previsoes_zero": 0,
+          "previsoes_alta": 8541
+        }
+      },
+      "spot": {
+        "base": {
+          "capital_inicial": 10000.0,
+          "capital_final": 6667.892346040468,
+          "retorno_liquido": -0.3332107653959533,
+          "drawdown": 0.43929687908012716,
+          "retorno_auditavel": true,
+          "risco_auditavel": true,
+          "entradas_planejadas": 138,
+          "minutos_expostos_planejados": 198720,
+          "custos_observados": 4009.7034167964666,
+          "cenario": "base",
+          "controle": false,
+          "distribuicao_operacoes_observadas": {
+            "n": 138,
+            "ganhos": 61,
+            "perdas": 77,
+            "zeros": 0,
+            "mediana": -0.002154380585479898,
+            "minimo": -0.05551103391679635,
+            "maximo": 0.0499091185020204,
+            "limite": "somente operações com retorno observável; não estima resultado das indisponíveis"
+          }
+        },
+        "agravado": {
+          "capital_inicial": 10000.0,
+          "capital_final": 4407.479990443185,
+          "retorno_liquido": -0.5592520009556815,
+          "drawdown": 0.6215095348253692,
+          "retorno_auditavel": true,
+          "risco_auditavel": true,
+          "entradas_planejadas": 138,
+          "minutos_expostos_planejados": 198720,
+          "custos_observados": 6656.998306170731,
+          "cenario": "agravado_sinais_base",
+          "controle": false,
+          "distribuicao_operacoes_observadas": {
+            "n": 138,
+            "ganhos": 52,
+            "perdas": 86,
+            "zeros": 0,
+            "mediana": -0.005143436848385363,
+            "minimo": -0.05834025980543889,
+            "maximo": 0.046764105520972654,
+            "limite": "somente operações com retorno observável; não estima resultado das indisponíveis"
+          }
+        },
+        "bruto_mesmos_sinais": {
+          "capital_inicial": 10000.0,
+          "capital_final": 10087.569501068889,
+          "retorno_liquido": 0.008756950106888928,
+          "drawdown": 0.2580760176603242,
+          "retorno_auditavel": true,
+          "risco_auditavel": true,
+          "entradas_planejadas": 138,
+          "minutos_expostos_planejados": 198720,
+          "custos_observados": 0.0,
+          "cenario": "base",
+          "controle": false
+        }
+      },
+      "diagnostico_trimestres": {
+        "1": {
+          "n": 2160,
+          "mse": 0.0007754631210473655,
+          "mse_naive": 0.0007688079084605501
+        },
+        "2": {
+          "n": 2184,
+          "mse": 0.0003997791141666236,
+          "mse_naive": 0.00040847073852783147
+        },
+        "3": {
+          "n": 2208,
+          "mse": 0.0002420058321723815,
+          "mse_naive": 0.0002401645000875775
+        },
+        "4": {
+          "n": 2184,
+          "mse": 0.0005959022197217119,
+          "mse_naive": 0.0005692503014417145
+        }
+      }
+    },
+    "lstm_17": {
+      "predicao": {
+        "validacao": {
+          "n": 8760,
+          "mse": 0.0007139156541984493,
+          "rmse": 0.026719200104016013,
+          "mae": 0.019370001368859132,
+          "mse_naive": 0.0007218624747170446,
+          "habilidade_mse": 0.011008773550267081,
+          "vies": -0.0017356046279020968,
+          "acuracia_direcional": 0.5150684931506849,
+          "acerto_balanceado_direcional": 0.5058212798841568,
+          "recall_queda": 0.3806117414898865,
+          "recall_alta": 0.6310308182784272,
+          "reais_queda": 4054,
+          "reais_zero": 1,
+          "reais_alta": 4705,
+          "previsoes_queda": 3279,
+          "previsoes_zero": 0,
+          "previsoes_alta": 5481
+        },
+        "teste": {
+          "n": 8736,
+          "mse": 0.0004956268299389049,
+          "rmse": 0.02226267795973577,
+          "mae": 0.015856927751924516,
+          "mse_naive": 0.0004952210450734487,
+          "habilidade_mse": -0.0008194014965499097,
+          "vies": 0.0016764268861261475,
+          "acuracia_direcional": 0.5152243589743589,
+          "acerto_balanceado_direcional": 0.5046377348609278,
+          "recall_queda": 0.13171536286522148,
+          "recall_alta": 0.877560106856634,
+          "reais_queda": 4244,
+          "reais_zero": 0,
+          "reais_alta": 4492,
+          "previsoes_queda": 1109,
+          "previsoes_zero": 0,
+          "previsoes_alta": 7627
+        }
+      },
+      "spot": {
+        "base": {
+          "capital_inicial": 10000.0,
+          "capital_final": 8548.685412301596,
+          "retorno_liquido": -0.14513145876984035,
+          "drawdown": 0.2226552132194649,
+          "retorno_auditavel": true,
+          "risco_auditavel": true,
+          "entradas_planejadas": 45,
+          "minutos_expostos_planejados": 64800,
+          "custos_observados": 1287.2698431830313,
+          "cenario": "base",
+          "controle": false,
+          "distribuicao_operacoes_observadas": {
+            "n": 45,
+            "ganhos": 21,
+            "perdas": 24,
+            "zeros": 0,
+            "mediana": -0.002232764431580714,
+            "minimo": -0.08954900927154263,
+            "maximo": 0.0499091185020204,
+            "limite": "somente operações com retorno observável; não estima resultado das indisponíveis"
+          }
+        },
+        "agravado": {
+          "capital_inicial": 10000.0,
+          "capital_final": 7469.12070415897,
+          "retorno_liquido": -0.2530879295841031,
+          "drawdown": 0.30803859921506616,
+          "retorno_auditavel": true,
+          "risco_auditavel": true,
+          "entradas_planejadas": 45,
+          "minutos_expostos_planejados": 64800,
+          "custos_observados": 2412.5056016699214,
+          "cenario": "agravado_sinais_base",
+          "controle": false,
+          "distribuicao_operacoes_observadas": {
+            "n": 45,
+            "ganhos": 18,
+            "perdas": 27,
+            "zeros": 0,
+            "mediana": -0.005221585894912284,
+            "minimo": -0.09227627407378969,
+            "maximo": 0.046764105520972654,
+            "limite": "somente operações com retorno observável; não estima resultado das indisponíveis"
+          }
+        },
+        "bruto_mesmos_sinais": {
+          "capital_inicial": 10000.0,
+          "capital_final": 9784.28524244636,
+          "retorno_liquido": -0.021571475755364,
+          "drawdown": 0.15312059267268463,
+          "retorno_auditavel": true,
+          "risco_auditavel": true,
+          "entradas_planejadas": 45,
+          "minutos_expostos_planejados": 64800,
+          "custos_observados": 0.0,
+          "cenario": "base",
+          "controle": false
+        }
+      },
+      "diagnostico_trimestres": {
+        "1": {
+          "n": 2160,
+          "mse": 0.0007720354246305513,
+          "mse_naive": 0.0007688079084605501
+        },
+        "2": {
+          "n": 2184,
+          "mse": 0.000403910402601316,
+          "mse_naive": 0.00040847073852783147
+        },
+        "3": {
+          "n": 2208,
+          "mse": 0.00023665875306415286,
+          "mse_naive": 0.0002401645000875775
+        },
+        "4": {
+          "n": 2184,
+          "mse": 0.0005757859995867026,
+          "mse_naive": 0.0005692503014417145
+        }
+      }
+    },
+    "lstm_2026": {
+      "predicao": {
+        "validacao": {
+          "n": 8760,
+          "mse": 0.0007212215485795613,
+          "rmse": 0.026855568297460424,
+          "mae": 0.019510945304947475,
+          "mse_naive": 0.0007218624747170446,
+          "habilidade_mse": 0.000887878453211699,
+          "vies": -0.0016568204992904213,
+          "acuracia_direcional": 0.5144977168949771,
+          "acerto_balanceado_direcional": 0.5061602479177228,
+          "recall_queda": 0.3931919092254563,
+          "recall_alta": 0.6191285866099894,
+          "reais_queda": 4054,
+          "reais_zero": 1,
+          "reais_alta": 4705,
+          "previsoes_queda": 3387,
+          "previsoes_zero": 0,
+          "previsoes_alta": 5373
+        },
+        "teste": {
+          "n": 8736,
+          "mse": 0.000503607076083012,
+          "rmse": 0.022441191503193673,
+          "mae": 0.016053602247163845,
+          "mse_naive": 0.0004952210450734487,
+          "habilidade_mse": -0.016933914850729925,
+          "vies": 0.0032991808297467263,
+          "acuracia_direcional": 0.5217490842490843,
+          "acerto_balanceado_direcional": 0.5094993466235502,
+          "recall_queda": 0.07799245994344958,
+          "recall_alta": 0.941006233303651,
+          "reais_queda": 4244,
+          "reais_zero": 0,
+          "reais_alta": 4492,
+          "previsoes_queda": 596,
+          "previsoes_zero": 0,
+          "previsoes_alta": 8140
+        }
+      },
+      "spot": {
+        "base": {
+          "capital_inicial": 10000.0,
+          "capital_final": 6797.163450674603,
+          "retorno_liquido": -0.32028365493253963,
+          "drawdown": 0.4062370754003275,
+          "retorno_auditavel": true,
+          "risco_auditavel": true,
+          "entradas_planejadas": 178,
+          "minutos_expostos_planejados": 256320,
+          "custos_observados": 4541.0360342723425,
+          "cenario": "base",
+          "controle": false,
+          "distribuicao_operacoes_observadas": {
+            "n": 178,
+            "ganhos": 78,
+            "perdas": 100,
+            "zeros": 0,
+            "mediana": -0.002009399132443357,
+            "minimo": -0.08954900927154263,
+            "maximo": 0.05521173703319526,
+            "limite": "somente operações com retorno observável; não estima resultado das indisponíveis"
+          }
+        },
+        "agravado": {
+          "capital_inicial": 10000.0,
+          "capital_final": 3984.8690502854643,
+          "retorno_liquido": -0.6015130949714536,
+          "drawdown": 0.6434483071385658,
+          "retorno_auditavel": true,
+          "risco_auditavel": true,
+          "entradas_planejadas": 178,
+          "minutos_expostos_planejados": 256320,
+          "custos_observados": 7127.844888480598,
+          "cenario": "agravado_sinais_base",
+          "controle": false,
+          "distribuicao_operacoes_observadas": {
+            "n": 178,
+            "ganhos": 68,
+            "perdas": 110,
+            "zeros": 0,
+            "mediana": -0.004998889688702435,
+            "minimo": -0.09227627407378969,
+            "maximo": 0.0520508400067381,
+            "limite": "somente operações com retorno observável; não estima resultado das indisponíveis"
+          }
+        },
+        "bruto_mesmos_sinais": {
+          "capital_inicial": 10000.0,
+          "capital_final": 11594.206330178176,
+          "retorno_liquido": 0.15942063301781761,
+          "drawdown": 0.29414551215791407,
+          "retorno_auditavel": true,
+          "risco_auditavel": true,
+          "entradas_planejadas": 178,
+          "minutos_expostos_planejados": 256320,
+          "custos_observados": 0.0,
+          "cenario": "base",
+          "controle": false
+        }
+      },
+      "diagnostico_trimestres": {
+        "1": {
+          "n": 2160,
+          "mse": 0.000776232939094497,
+          "mse_naive": 0.0007688079084605501
+        },
+        "2": {
+          "n": 2184,
+          "mse": 0.0004114537848622464,
+          "mse_naive": 0.00040847073852783147
+        },
+        "3": {
+          "n": 2208,
+          "mse": 0.00024090773817314815,
+          "mse_naive": 0.0002401645000875775
+        },
+        "4": {
+          "n": 2184,
+          "mse": 0.0005917165367177754,
+          "mse_naive": 0.0005692503014417145
+        }
+      }
+    },
+    "naive": {
+      "predicao": {
+        "validacao": {
+          "n": 8760,
+          "mse": 0.0007218624747170446,
+          "rmse": 0.026867498482684327,
+          "mae": 0.019523173408818508,
+          "mse_naive": 0.0007218624747170446,
+          "habilidade_mse": 0.0,
+          "vies": -0.002149616983458815,
+          "acuracia_direcional": 0.00011415525114155251,
+          "acerto_balanceado_direcional": 0.0,
+          "recall_queda": 0.0,
+          "recall_alta": 0.0,
+          "reais_queda": 4054,
+          "reais_zero": 1,
+          "reais_alta": 4705,
+          "previsoes_queda": 0,
+          "previsoes_zero": 8760,
+          "previsoes_alta": 0
+        },
+        "teste": {
+          "n": 8736,
+          "mse": 0.0004952210450734487,
+          "rmse": 0.022253562525435082,
+          "mae": 0.015863957149945096,
+          "mse_naive": 0.0004952210450734487,
+          "habilidade_mse": 0.0,
+          "vies": 0.000171937479160412,
+          "acuracia_direcional": 0.0,
+          "acerto_balanceado_direcional": 0.0,
+          "recall_queda": 0.0,
+          "recall_alta": 0.0,
+          "reais_queda": 4244,
+          "reais_zero": 0,
+          "reais_alta": 4492,
+          "previsoes_queda": 0,
+          "previsoes_zero": 8736,
+          "previsoes_alta": 0
+        }
+      },
+      "spot": {
+        "base": {
+          "capital_inicial": 10000.0,
+          "capital_final": 10000.0,
+          "retorno_liquido": 0.0,
+          "drawdown": 0.0,
+          "retorno_auditavel": true,
+          "risco_auditavel": true,
+          "entradas_planejadas": 0,
+          "minutos_expostos_planejados": 0,
+          "custos_observados": 0.0,
+          "cenario": "base",
+          "controle": false,
+          "distribuicao_operacoes_observadas": {
+            "n": 0,
+            "ganhos": 0,
+            "perdas": 0,
+            "zeros": 0,
+            "mediana": null,
+            "minimo": null,
+            "maximo": null,
+            "limite": "somente operações com retorno observável; não estima resultado das indisponíveis"
+          }
+        },
+        "agravado": {
+          "capital_inicial": 10000.0,
+          "capital_final": 10000.0,
+          "retorno_liquido": 0.0,
+          "drawdown": 0.0,
+          "retorno_auditavel": true,
+          "risco_auditavel": true,
+          "entradas_planejadas": 0,
+          "minutos_expostos_planejados": 0,
+          "custos_observados": 0.0,
+          "cenario": "agravado_sinais_base",
+          "controle": false,
+          "distribuicao_operacoes_observadas": {
+            "n": 0,
+            "ganhos": 0,
+            "perdas": 0,
+            "zeros": 0,
+            "mediana": null,
+            "minimo": null,
+            "maximo": null,
+            "limite": "somente operações com retorno observável; não estima resultado das indisponíveis"
+          }
+        },
+        "bruto_mesmos_sinais": {
+          "capital_inicial": 10000.0,
+          "capital_final": 10000.0,
+          "retorno_liquido": 0.0,
+          "drawdown": 0.0,
+          "retorno_auditavel": true,
+          "risco_auditavel": true,
+          "entradas_planejadas": 0,
+          "minutos_expostos_planejados": 0,
+          "custos_observados": 0.0,
+          "cenario": "base",
+          "controle": false
+        }
+      },
+      "diagnostico_trimestres": {
+        "1": {
+          "n": 2160,
+          "mse": 0.0007688079084605501,
+          "mse_naive": 0.0007688079084605501
+        },
+        "2": {
+          "n": 2184,
+          "mse": 0.00040847073852783147,
+          "mse_naive": 0.00040847073852783147
+        },
+        "3": {
+          "n": 2208,
+          "mse": 0.0002401645000875775,
+          "mse_naive": 0.0002401645000875775
+        },
+        "4": {
+          "n": 2184,
+          "mse": 0.0005692503014417145,
+          "mse_naive": 0.0005692503014417145
+        }
+      }
+    },
+    "arima": {
+      "predicao": {
+        "validacao": {
+          "n": 8760,
+          "mse": 0.0007215880388459149,
+          "rmse": 0.026862390787975574,
+          "mae": 0.019514755535297384,
+          "mse_naive": 0.0007218624747170446,
+          "habilidade_mse": 0.0003801775002050256,
+          "vies": -0.002158087307562733,
+          "acuracia_direcional": 0.5179223744292237,
+          "acerto_balanceado_direcional": 0.5200822635127165,
+          "recall_queda": 0.5483473112974839,
+          "recall_alta": 0.491817215727949,
+          "reais_queda": 4054,
+          "reais_zero": 1,
+          "reais_alta": 4705,
+          "previsoes_queda": 4614,
+          "previsoes_zero": 0,
+          "previsoes_alta": 4146
+        },
+        "teste": {
+          "n": 8736,
+          "mse": 0.000494621670222033,
+          "rmse": 0.02224009150660206,
+          "mae": 0.015854094605724754,
+          "mse_naive": 0.0004952210450734487,
+          "habilidade_mse": 0.0012103178113659352,
+          "vies": 0.00017259239662203193,
+          "acuracia_direcional": 0.5154532967032966,
+          "acerto_balanceado_direcional": 0.5159243199555519,
+          "recall_queda": 0.532516493873704,
+          "recall_alta": 0.49933214603739984,
+          "reais_queda": 4244,
+          "reais_zero": 0,
+          "reais_alta": 4492,
+          "previsoes_queda": 4509,
+          "previsoes_zero": 0,
+          "previsoes_alta": 4227
+        }
+      },
+      "spot": {
+        "base": {
+          "capital_inicial": 10000.0,
+          "capital_final": 10000.0,
+          "retorno_liquido": 0.0,
+          "drawdown": 0.0,
+          "retorno_auditavel": true,
+          "risco_auditavel": true,
+          "entradas_planejadas": 0,
+          "minutos_expostos_planejados": 0,
+          "custos_observados": 0.0,
+          "cenario": "base",
+          "controle": false,
+          "distribuicao_operacoes_observadas": {
+            "n": 0,
+            "ganhos": 0,
+            "perdas": 0,
+            "zeros": 0,
+            "mediana": null,
+            "minimo": null,
+            "maximo": null,
+            "limite": "somente operações com retorno observável; não estima resultado das indisponíveis"
+          }
+        },
+        "agravado": {
+          "capital_inicial": 10000.0,
+          "capital_final": 10000.0,
+          "retorno_liquido": 0.0,
+          "drawdown": 0.0,
+          "retorno_auditavel": true,
+          "risco_auditavel": true,
+          "entradas_planejadas": 0,
+          "minutos_expostos_planejados": 0,
+          "custos_observados": 0.0,
+          "cenario": "agravado_sinais_base",
+          "controle": false,
+          "distribuicao_operacoes_observadas": {
+            "n": 0,
+            "ganhos": 0,
+            "perdas": 0,
+            "zeros": 0,
+            "mediana": null,
+            "minimo": null,
+            "maximo": null,
+            "limite": "somente operações com retorno observável; não estima resultado das indisponíveis"
+          }
+        },
+        "bruto_mesmos_sinais": {
+          "capital_inicial": 10000.0,
+          "capital_final": 10000.0,
+          "retorno_liquido": 0.0,
+          "drawdown": 0.0,
+          "retorno_auditavel": true,
+          "risco_auditavel": true,
+          "entradas_planejadas": 0,
+          "minutos_expostos_planejados": 0,
+          "custos_observados": 0.0,
+          "cenario": "base",
+          "controle": false
+        }
+      },
+      "diagnostico_trimestres": {
+        "1": {
+          "n": 2160,
+          "mse": 0.0007673783473605926,
+          "mse_naive": 0.0007688079084605501
+        },
+        "2": {
+          "n": 2184,
+          "mse": 0.0004078700404867089,
+          "mse_naive": 0.00040847073852783147
+        },
+        "3": {
+          "n": 2208,
+          "mse": 0.00024000149891353299,
+          "mse_naive": 0.0002401645000875775
+        },
+        "4": {
+          "n": 2184,
+          "mse": 0.0005690321441102322,
+          "mse_naive": 0.0005692503014417145
+        }
+      }
+    }
+  },
+  "medias": {
+    "validacao": {
+      "mamba": {
+        "mse_medio_seeds": 0.0007191639649393512,
+        "habilidade_mse": 0.0037382602257461928,
+        "mse_por_seed": {
+          "mamba_17": 0.0007181885482571032,
+          "mamba_42": 0.0007194874413031879,
+          "mamba_2026": 0.0007198159052577625
+        },
+        "desvio_padrao_mse_seeds": 8.60552392576703e-07
+      },
+      "lstm": {
+        "mse_medio_seeds": 0.0007194461126312054,
+        "habilidade_mse": 0.0033473994984798416,
+        "mse_por_seed": {
+          "lstm_17": 0.0007139156541984493,
+          "lstm_42": 0.0007232011351156054,
+          "lstm_2026": 0.0007212215485795613
+        },
+        "desvio_padrao_mse_seeds": 4.890722704340684e-06
+      },
+      "naive": {
+        "mse_medio_seeds": 0.0007218624747170446,
+        "habilidade_mse": 0.0,
+        "mse_por_seed": {
+          "naive": 0.0007218624747170446
+        },
+        "desvio_padrao_mse_seeds": null
+      },
+      "arima": {
+        "mse_medio_seeds": 0.0007215880388459149,
+        "habilidade_mse": 0.0003801775002050256,
+        "mse_por_seed": {
+          "arima": 0.0007215880388459149
+        },
+        "desvio_padrao_mse_seeds": null
+      }
+    },
+    "teste": {
+      "mamba": {
+        "mse_medio_seeds": 0.0004958900852585443,
+        "habilidade_mse": -0.001350993039878512,
+        "mse_por_seed": {
+          "mamba_17": 0.0004962673657632178,
+          "mamba_42": 0.0004895808602377982,
+          "mamba_2026": 0.0005018220297746169
+        },
+        "desvio_padrao_mse_seeds": 6.129299580024579e-06
+      },
+      "lstm": {
+        "mse_medio_seeds": 0.0004980096415650243,
+        "habilidade_mse": -0.005631013704520571,
+        "mse_por_seed": {
+          "lstm_17": 0.0004956268299389049,
+          "lstm_42": 0.0004947950186731558,
+          "lstm_2026": 0.000503607076083012
+        },
+        "desvio_padrao_mse_seeds": 4.865329627355903e-06
+      },
+      "naive": {
+        "mse_medio_seeds": 0.0004952210450734487,
+        "habilidade_mse": 0.0,
+        "mse_por_seed": {
+          "naive": 0.0004952210450734487
+        },
+        "desvio_padrao_mse_seeds": null
+      },
+      "arima": {
+        "mse_medio_seeds": 0.000494621670222033,
+        "habilidade_mse": 0.0012103178113659352,
+        "mse_por_seed": {
+          "arima": 0.000494621670222033
+        },
+        "desvio_padrao_mse_seeds": null
+      }
+    }
+  },
+  "contrastes": {
+    "validacao": {
+      "mamba_menos_naive": {
+        "diferenca_mse_a_menos_b": -2.6985097776934446e-06,
+        "ic95": {
+          "7": [
+            -1.079973093161975e-05,
+            6.135606046778138e-06
+          ],
+          "14": [
+            -1.1022792647180574e-05,
+            5.758618804777245e-06
+          ],
+          "28": [
+            -9.287393191768667e-06,
+            3.909602770274886e-06
+          ]
+        },
+        "principal_dias": 14,
+        "replicas": 2000,
+        "metodo": "blocos circulares de dias corridos; perdas médias entre seeds, não ensemble; condicional aos modelos ajustados"
+      },
+      "mamba_menos_lstm": {
+        "diferenca_mse_a_menos_b": -2.8214769185418107e-07,
+        "ic95": {
+          "7": [
+            -8.981004678466042e-06,
+            9.462061260046838e-06
+          ],
+          "14": [
+            -1.0449247565892372e-05,
+            8.708325909846152e-06
+          ],
+          "28": [
+            -1.0861808518134823e-05,
+            8.582714377257223e-06
+          ]
+        },
+        "principal_dias": 14,
+        "replicas": 2000,
+        "metodo": "blocos circulares de dias corridos; perdas médias entre seeds, não ensemble; condicional aos modelos ajustados"
+      },
+      "lstm_menos_naive": {
+        "diferenca_mse_a_menos_b": -2.416362085839264e-06,
+        "ic95": {
+          "7": [
+            -1.0745047095678854e-05,
+            5.122117533825715e-06
+          ],
+          "14": [
+            -9.956510210548446e-06,
+            5.277773775268951e-06
+          ],
+          "28": [
+            -1.0533414691975416e-05,
+            5.669024715759837e-06
+          ]
+        },
+        "principal_dias": 14,
+        "replicas": 2000,
+        "metodo": "blocos circulares de dias corridos; perdas médias entre seeds, não ensemble; condicional aos modelos ajustados"
+      },
+      "arima_menos_naive": {
+        "diferenca_mse_a_menos_b": -2.7443587112969834e-07,
+        "ic95": {
+          "7": [
+            -8.331203084907103e-07,
+            3.1184191987200506e-07
+          ],
+          "14": [
+            -7.91516679366991e-07,
+            2.5287029125016034e-07
+          ],
+          "28": [
+            -7.76213750188942e-07,
+            2.1473546441994995e-07
+          ]
+        },
+        "principal_dias": 14,
+        "replicas": 2000,
+        "metodo": "blocos circulares de dias corridos; perdas médias entre seeds, não ensemble; condicional aos modelos ajustados"
+      }
+    },
+    "teste": {
+      "mamba_menos_naive": {
+        "diferenca_mse_a_menos_b": 6.690401850956398e-07,
+        "ic95": {
+          "7": [
+            -8.240197648152958e-06,
+            9.905711648158569e-06
+          ],
+          "14": [
+            -9.090804257434206e-06,
+            1.0784379838703875e-05
+          ],
+          "28": [
+            -9.171184421149016e-06,
+            1.1540699904372409e-05
+          ]
+        },
+        "principal_dias": 14,
+        "replicas": 2000,
+        "metodo": "blocos circulares de dias corridos; perdas médias entre seeds, não ensemble; condicional aos modelos ajustados"
+      },
+      "mamba_menos_lstm": {
+        "diferenca_mse_a_menos_b": -2.119556306479924e-06,
+        "ic95": {
+          "7": [
+            -1.0658397008350865e-05,
+            6.030060556208271e-06
+          ],
+          "14": [
+            -1.0869923019137255e-05,
+            6.308650935679139e-06
+          ],
+          "28": [
+            -1.0010960333823452e-05,
+            6.665014919908298e-06
+          ]
+        },
+        "principal_dias": 14,
+        "replicas": 2000,
+        "metodo": "blocos circulares de dias corridos; perdas médias entre seeds, não ensemble; condicional aos modelos ajustados"
+      },
+      "lstm_menos_naive": {
+        "diferenca_mse_a_menos_b": 2.788596491575564e-06,
+        "ic95": {
+          "7": [
+            -2.8655359693322773e-06,
+            8.826647801609914e-06
+          ],
+          "14": [
+            -2.066068612038866e-06,
+            8.104032950886684e-06
+          ],
+          "28": [
+            -1.142867475939989e-06,
+            6.832431647909972e-06
+          ]
+        },
+        "principal_dias": 14,
+        "replicas": 2000,
+        "metodo": "blocos circulares de dias corridos; perdas médias entre seeds, não ensemble; condicional aos modelos ajustados"
+      },
+      "arima_menos_naive": {
+        "diferenca_mse_a_menos_b": -5.993748514156208e-07,
+        "ic95": {
+          "7": [
+            -1.0835050795546088e-06,
+            -1.694353942421771e-07
+          ],
+          "14": [
+            -1.0605579566501139e-06,
+            -1.3754600080105233e-07
+          ],
+          "28": [
+            -1.0703392544706077e-06,
+            -1.3897831810394045e-07
+          ]
+        },
+        "principal_dias": 14,
+        "replicas": 2000,
+        "metodo": "blocos circulares de dias corridos; perdas médias entre seeds, não ensemble; condicional aos modelos ajustados"
+      }
+    }
+  },
+  "referencias_economicas": {
+    "caixa": {
+      "retorno_liquido": 0.0,
+      "drawdown": 0.0
+    },
+    "compra_diaria_base": {
+      "capital_inicial": 10000.0,
+      "capital_final": 3170.287541408571,
+      "retorno_liquido": -0.6829712458591428,
+      "drawdown": 0.7166082815568994,
+      "retorno_auditavel": true,
+      "risco_auditavel": true,
+      "entradas_planejadas": 364,
+      "minutos_expostos_planejados": 524160,
+      "custos_observados": 7129.463349151891,
+      "cenario": "base",
+      "controle": true
+    },
+    "comprar_manter_base": {
+      "entrada_minuto": 28928161,
+      "saida_minuto": 29452321,
+      "capital_inicial": 10000.0,
+      "retorno_auditavel": true,
+      "risco_auditavel": true,
+      "capital_final": 9419.882010588297,
+      "retorno_liquido": -0.058011798941170256,
+      "drawdown": 0.35986218872532505,
+      "entradas_planejadas": 1,
+      "custos_observados": 29.128844220592924
+    },
+    "compra_diaria_agravado": {
+      "capital_inicial": 10000.0,
+      "capital_final": 1063.7712528037318,
+      "retorno_liquido": -0.8936228747196269,
+      "drawdown": 0.9010693505498011,
+      "retorno_auditavel": true,
+      "risco_auditavel": true,
+      "entradas_planejadas": 364,
+      "minutos_expostos_planejados": 524160,
+      "custos_observados": 9391.406374750217,
+      "cenario": "agravado_sinais_base",
+      "controle": true
+    },
+    "comprar_manter_agravado": {
+      "entrada_minuto": 28928161,
+      "saida_minuto": 29452321,
+      "capital_inicial": 10000.0,
+      "retorno_auditavel": true,
+      "risco_auditavel": true,
+      "capital_final": 9391.664662361523,
+      "retorno_liquido": -0.0608335337638477,
+      "drawdown": 0.35986218872532494,
+      "entradas_planejadas": 1,
+      "custos_observados": 58.171026497054264
+    }
+  },
+  "natureza": "retrospectiva_periodos_ja_consultados",
+  "utc": "2026-10-29T07:26:51.706135+00:00"
+}

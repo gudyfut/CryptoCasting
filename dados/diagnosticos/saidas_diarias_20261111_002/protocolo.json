@@ -1,0 +1,82 @@
+{
+  "versao": 1,
+  "utc": "2026-11-11T12:37:13.268616+00:00",
+  "natureza": "exploracao retrospectiva isolada, sem seleção por lucro",
+  "tentativa_tecnica_anterior": "dados/diagnosticos/saidas_diarias_20261111_001: interrompida na primeira reprodução, antes de publicar carteiras; divergência float de até1.64e-11USDT. Mantida asserção de saldos exatos; materialização inteiro*tick/lot alinhada ao original, sem mudar distâncias ou hipóteses.",
+  "autorizacao": "Pesquisador solicitou testar TP/SL 1:1 e somente SL, com melhor referência preditiva e sem treinamento; scripts e resultados separados.",
+  "referencia": {
+    "id": "f3f8772670f244779ad7",
+    "pasta": "dados/experimentos/padronizacao_diaria_f3f8772670f244779ad7",
+    "congelamento_sha256": "3ccc75d5ecf0028b1ec909c19bfb5c96a22e1af06a5fd9d5a0efd7cd9040c943"
+  },
+  "criterio_modelo": "Menor MSE médio de retorno entre receitas diárias completas de BTC discutidas; padronizada, três seeds, sem escolher seed.",
+  "novos_treinamentos": 0,
+  "politicas": [
+    "prazo",
+    "stop_take",
+    "stop"
+  ],
+  "seeds": [
+    42,
+    17,
+    2026
+  ],
+  "unidades": [
+    "42",
+    "17",
+    "2026",
+    "ensemble",
+    "naive",
+    "sempre_comprado",
+    "sempre_vendido"
+  ],
+  "fases": [
+    "validacao",
+    "teste"
+  ],
+  "slippage_por_lado": [
+    0.0001,
+    0.0002,
+    0.0003
+  ],
+  "distancia": {
+    "metodo": "media absoluta dos retornos simples close/close dos candles completos 2020-2023; sem retorno atravessando início do treino",
+    "valor": 0.02354707636686588,
+    "n": 1460,
+    "primeiro_candle_ms": 1577836800000,
+    "ultimo_candle_ms": 1703980800000,
+    "fixa": true,
+    "multiplicador": 1.0,
+    "sem_busca": true
+  },
+  "comparacoes": [
+    "stop_take menos prazo",
+    "stop menos prazo"
+  ],
+  "metrica_principal_operacional": "diferença pareada de crescimento log diário; retorno/drawdown/exposição complementares",
+  "incerteza": {
+    "replicas": 2000,
+    "blocos_dias": [
+      7,
+      14,
+      28
+    ],
+    "principal": 14,
+    "seed": 11112026,
+    "correcao_duas_comparacoes": "IC97.5% por contraste (Bonferroni), condicionado a busca anterior"
+  },
+  "ambiguidades": "abertura precede extremos; duplo toque intraminuto usa SL primeiro no principal, TP primeiro somente sensibilidade",
+  "execucao": "gatilho em high/low do contrato; ordens mercado aproximadas, slippage adverso e ticks; SL em gap usa abertura, TP em gap conserva barreira",
+  "tempo": "toque tem minuto conhecido, segundo desconhecido; saída fim desse minuto; funding no início do minuto incluído; prazo exato 24h após entrada",
+  "risco": "envelope conservador de mark inclui todo minuto do toque; pode incluir extremos posteriores à saída; não é drawdown de ticks nem limite de perda garantido",
+  "manter": "mesmos sinais/filtro0.2%/origens/latência1min/capital10000/nocional95%/lote/tick/comissão0.05%/funding; sem reentrada até próxima origem; tamanhos dependem do saldo",
+  "limites": [
+    "2024 selecionou checkpoints;2025 já consultado; referência escolhida retrospectivamente",
+    "1bp é provisório, não custo histórico certificado",
+    "previsão terminal não prevê primeiro toque; MSE não muda",
+    "simulação não certifica livro, liquidação ou preenchimento real",
+    "seeds não são mercados independentes",
+    "inclusão no artigo pode ser decidida depois; evidência de execução não será apagada por resultado ruim"
+  ],
+  "orcamento_carteiras": 168
+}

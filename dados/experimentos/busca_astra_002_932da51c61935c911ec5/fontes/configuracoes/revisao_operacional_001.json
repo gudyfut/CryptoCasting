@@ -1,0 +1,27 @@
+{
+  "ciclo": "revisao_operacional_001",
+  "capital": 10000.0,
+  "fracao_maxima": 0.95,
+  "escala_smart": 0.02,
+  "buffer_margem": 0.02,
+  "latencia_minutos": 1,
+  "limiar_entrada": 0.0030000007500004127,
+  "filtros": {
+    "spot": {"passo": 0.00001, "minimo": 10.0, "maximo_btc": 1.0},
+    "futuro": {"passo": 0.001, "minimo": 100.0, "maximo_btc": 1.0}
+  },
+  "politicas": ["smart", "direcional", "direcional_filtrada"],
+  "bracos": ["spot", "futuro", "futuro_bilateral"],
+  "custos": {
+    "base": {"spot": 0.001, "futuro": 0.0005, "slippage": 0.0005},
+    "estresse": {"spot": 0.001, "futuro": 0.0005, "slippage": 0.0015}
+  },
+  "blocos": ["B1", "B2", "B3", "B4"],
+  "seeds": [42,17,2026,7,123,31415,271828,161803],
+  "versoes": ["astra", "crua"],
+  "simulacoes_modelos": 1152,
+  "simulacoes_benchmarks": 48,
+  "simulacoes_total": 1200,
+  "novos_treinamentos": 0,
+  "limites": "Custos e filtros conservadores de pesquisa, nao tabela historica certificada da conta. Snapshot atual tem minimos5/50; usamos10/100. Mercado a1x de entrada, sem replica completa de liquidacao. Sem tuning pelo teste."
+}

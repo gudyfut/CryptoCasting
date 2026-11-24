@@ -1,0 +1,69 @@
+{
+  "utc": "2026-11-04T08:46:03.406286+00:00",
+  "seed": 31415,
+  "bloco": "B2",
+  "receita": {
+    "representacao": "crua",
+    "indicadores": false,
+    "contexto": 168,
+    "largura": 32,
+    "camadas": 2,
+    "estado": 16,
+    "dropout": 0.1,
+    "pooling": "ultimo",
+    "taxa": 0.0002,
+    "decay": 0.001,
+    "otimizador": "AdamW",
+    "perda": "huber",
+    "scheduler": "constante",
+    "ganho_saida": 1.0
+  },
+  "epoca": 2,
+  "epocas_executadas": 12,
+  "parametros": 20257,
+  "recarga_exata": true,
+  "segundos": 86.6620786579997,
+  "checkpoint_final_sha256": "80263024b00e65b86cad284daef4c9ffacfd773a8d5c5dbf2068d0a732918961",
+  "memoria_cuda_maxima_bytes": 182633984,
+  "treino_amostra_fixa": {
+    "n": 2048,
+    "mse": 0.0010806459921966502,
+    "rmse": 0.032873180439328506,
+    "mae": 0.022483766413378674,
+    "mse_naive": 0.0010804153835294685,
+    "vies": -0.0011690003459383074,
+    "sd_previsao": 0.0006592290925260369,
+    "sd_alvo": 0.03286701410288522,
+    "acuracia_direcional": 0.49853515625,
+    "balanced_accuracy": 0.5030273780273781
+  },
+  "validacao": {
+    "n": 2160,
+    "mse": 0.0005716757441355794,
+    "rmse": 0.02390974161582637,
+    "mae": 0.01774906039597854,
+    "mse_naive": 0.0005737635341431438,
+    "vies": 0.0002188713324849691,
+    "sd_previsao": 8.578179679812846e-05,
+    "sd_alvo": 0.023912761601148975,
+    "acuracia_direcional": 0.49559981472904124,
+    "balanced_accuracy": 0.5
+  },
+  "teste": {
+    "n": 4392,
+    "mse": 0.0007217879636418446,
+    "rmse": 0.026866111807290698,
+    "mae": 0.01967129551541935,
+    "mse_naive": 0.0007158615200008409,
+    "vies": -0.003332385836425262,
+    "sd_previsao": 8.646953982095806e-05,
+    "sd_alvo": 0.02666856927670914,
+    "acuracia_direcional": 0.46835154826958103,
+    "balanced_accuracy": 0.5004278990158323
+  },
+  "diagnostico": {
+    "sd_representacao_media": 0.007095906883478165,
+    "norma_pesos_saida": 0.4922593832015991,
+    "fracao_clipping_ultima_epoca": 0.2825
+  }
+}

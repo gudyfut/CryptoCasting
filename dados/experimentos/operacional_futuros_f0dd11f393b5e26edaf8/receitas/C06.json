@@ -1,0 +1,25 @@
+{
+  "receita": {
+    "representacao": "relativa",
+    "contexto_horas": 168,
+    "momentum": false,
+    "volatilidade": false,
+    "volume_relativo": true,
+    "d_state": 16,
+    "taxa": 0.0002,
+    "barreiras_payoff": [
+      1.0,
+      1.5
+    ],
+    "familia_alvo": "payoff"
+  },
+  "proposta": {
+    "acao": "propor",
+    "pai": "C01",
+    "campo": "volume_relativo",
+    "valor_json": "true",
+    "hipotese": "Adicionar volume relativo, padronizado somente em T, pode distinguir regimes com payoff líquido favorável. Após retreino e seleção conjunta da política em C, rejeitar a hipótese se não cumprir todos os gates S, incluindo atividade mínima, Calmar mediano positivo e crescimento médio positivo base/2x slippage.",
+    "risco": "A relação entre volume e payoff pode ser instável entre recortes e seeds. Sinais espúrios podem aumentar operações, custos e drawdown sem produzir crescimento sustentável."
+  },
+  "utc": "2026-11-05T08:57:11.873169+00:00"
+}

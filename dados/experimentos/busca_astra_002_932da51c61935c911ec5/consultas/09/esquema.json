@@ -1,0 +1,45 @@
+{
+  "type": "object",
+  "properties": {
+    "acao": {
+      "type": "string",
+      "enum": [
+        "experimentar",
+        "encerrar"
+      ]
+    },
+    "pai": {
+      "type": "string"
+    },
+    "fator": {
+      "type": "string"
+    },
+    "mecanismo": {
+      "type": "string"
+    },
+    "metrica_esperada": {
+      "type": "string"
+    },
+    "risco": {
+      "type": "string"
+    },
+    "custo": {
+      "type": "string"
+    },
+    "valor": {
+      "type": "string",
+      "description": "Valor JSON serializado: true, false, 72, 0.1 ou string entre aspas."
+    }
+  },
+  "required": [
+    "acao",
+    "pai",
+    "fator",
+    "mecanismo",
+    "metrica_esperada",
+    "risco",
+    "custo",
+    "valor"
+  ],
+  "additionalProperties": false
+}

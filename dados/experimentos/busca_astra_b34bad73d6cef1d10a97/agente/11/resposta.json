@@ -1,0 +1,23 @@
+{
+  "acao": "experimentar",
+  "hipotese": "Reduzir somente a taxa da C09 de 0,0002 para 0,0001 pode melhorar a transferência ao tornar a aprendizagem mais gradual, especialmente em D1, cujo checkpoint selecionado está na primeira época.",
+  "justificativa": "Comparar diretamente com C09, mantendo inclusive ganho_saida=0,5 aplicado após selecionar o checkpoint original. Passos menores permitem avaliar estágios menos avançados de aprendizagem nos checkpoints por época. Outra contração investigaria principalmente amplitude; esta mudança investiga o treinamento. Permanecem 20.417 parâmetros, com memória e custo esperado por época semelhantes, mas possível aumento das épocas executadas. Aplicar triagem seed42 nos dois recortes e, se promovida, verificar seeds17/2026 sem ajustes individuais.",
+  "diagnostico": "C09 lidera a triagem com 0,99564, porém combina MSE/Naive de 1,00629 em D1 e 0,98498 em D2. A contração melhorou principalmente D1 e preservou aproximadamente a MSE de D2, sem alterar a acurácia direcional. Os checkpoints continuam nas épocas 1 e 11, respectivamente. Essa diferença motiva investigar a trajetória de otimização, mas não demonstra taxa excessiva nem estabilidade entre seeds.",
+  "riscos": "Taxa menor pode atrasar ajustes úteis além da paciência de 10 épocas e não resolve mudanças de distribuição. O clipping informado corresponde à última época executada; não diagnostica o checkpoint nem necessariamente diminuirá com a taxa. No AdamW, também diminui o efeito do decay por passo, apesar de seu coeficiente permanecer fixo. Mudanças no checkpoint e no nível médio previsto podem explicar eventual melhora; examinar também a contribuição temporal das previsões. A contração mantida pode mascarar diferenças de aprendizagem. Validações reutilizadas adaptativamente, alvos sobrepostos e scores próximos de 1 limitam inferências sobre sinal.",
+  "receita": {
+    "representacao": "relativa",
+    "indicadores": true,
+    "contexto": 168,
+    "largura": 32,
+    "camadas": 2,
+    "estado": 16,
+    "dropout": 0.1,
+    "pooling": "ultimo",
+    "taxa": 0.0001,
+    "decay": 0.001,
+    "otimizador": "AdamW",
+    "perda": "huber",
+    "scheduler": "constante",
+    "ganho_saida": 0.5
+  }
+}

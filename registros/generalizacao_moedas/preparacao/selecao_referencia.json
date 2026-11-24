@@ -1,0 +1,958 @@
+{
+  "utc": "2026-11-09T12:25:58.776463+00:00",
+  "criterio": "Menor MSE de retorno médio entre receitas diárias comparáveis em BTC 2025; escolha retrospectiva explicitamente confirmada pelo pesquisador. Não é vencedor geral nem seleção intocada.",
+  "selecionada": "f3f8772670f244779ad7",
+  "alternativas": [
+    {
+      "estudo": "cryptomamba_reproducivel",
+      "execucao": {
+        "id": "ac8183e1ecfb91102b48",
+        "pasta": "dados/experimentos/cryptomamba_reproducivel_ac8183e1ecfb91102b48",
+        "congelamento_sha256": "adf75fa90e92220b63565d2918d40e5280feec5cac1a161391c5b10d1b79431a"
+      },
+      "resumo_sha256": "284203308e72ad4eff4473c0e3fe39be48281f15eb33d2f8b6221f650557b281",
+      "fases": {
+        "validacao": {
+          "previsao_media_seeds": {
+            "n": 351.0,
+            "mse_usdt2": 3804027.9697521366,
+            "rmse_usdt": 1949.5596572319298,
+            "mae_usdt": 1408.9929405567425,
+            "mape_pct": 2.097681654444273,
+            "mse_naive_usdt2": 3448486.291452991,
+            "habilidade_mse_naive": -0.10310079503008292,
+            "mae_retorno": 0.021116384985993098,
+            "acerto_sinal": 0.533713200379867,
+            "vies_retorno": -0.0016760626383510808,
+            "precos_previstos_nao_positivos": 0.0
+          },
+          "operacao_media_seeds_base": {
+            "capital_final": 8172.224077601473,
+            "retorno_liquido": -0.1827775922398526,
+            "drawdown_maximo": 0.513275076235047,
+            "crescimento_log_diario": -0.0007638210399892868,
+            "retorno_anualizado": -0.1873599837630886,
+            "calmar": -0.27591023078549265,
+            "sharpe_diario_rf_zero": -0.6500795020950018,
+            "operacoes": 297.3333333333333,
+            "compras": 167.33333333333334,
+            "vendas": 130.0,
+            "taxa_acerto_liquido": 0.49288873377131887,
+            "profit_factor": 0.9134308369082941,
+            "comissoes": 3177.349984383334,
+            "funding": -134.72450468186912,
+            "pnl_compras": 2680.0159604809573,
+            "pnl_vendas": -4507.791882879484,
+            "fracao_dias_posicionado": 0.8471035137701804,
+            "previsoes_nao_positivas": 0.0
+          },
+          "naive": {
+            "n": 351,
+            "mse_usdt2": 3448486.291452991,
+            "rmse_usdt": 1857.010040751797,
+            "mae_usdt": 1328.4843304843305,
+            "mape_pct": 1.9819886960282629,
+            "mse_naive_usdt2": 3448486.291452991,
+            "habilidade_mse_naive": 0.0,
+            "mae_retorno": 0.019973372091196977,
+            "acerto_sinal": 0.0,
+            "vies_retorno": -0.002651489164893014,
+            "precos_previstos_nao_positivos": 0
+          },
+          "ensemble": {
+            "n": 351,
+            "mse_usdt2": 3544125.423470697,
+            "rmse_usdt": 1882.5847719214921,
+            "mae_usdt": 1363.4965374228393,
+            "mape_pct": 2.030584914121942,
+            "mse_naive_usdt2": 3448486.291452991,
+            "habilidade_mse_naive": -0.027733655852060668,
+            "mae_retorno": 0.020445978905894155,
+            "acerto_sinal": 0.5384615384615384,
+            "vies_retorno": -0.001676062638351085,
+            "precos_previstos_nao_positivos": 0
+          },
+          "incerteza": {
+            "7": {
+              "bloco_dias": 7,
+              "replicas": 2000,
+              "ic95_delta_mse_vs_naive_usdt2": [
+                12314.376408680455,
+                742580.4392265155
+              ],
+              "ic95_crescimento_log_diario": [
+                -0.0029705526412735885,
+                0.001722549004177891
+              ],
+              "limite": "Exploratório; três seeds e um ano retrospectivo; não corrige buscas anteriores."
+            },
+            "14": {
+              "bloco_dias": 14,
+              "replicas": 2000,
+              "ic95_delta_mse_vs_naive_usdt2": [
+                -11394.601497518976,
+                753157.3096050423
+              ],
+              "ic95_crescimento_log_diario": [
+                -0.0029906409162553885,
+                0.002116053994198821
+              ],
+              "limite": "Exploratório; três seeds e um ano retrospectivo; não corrige buscas anteriores."
+            },
+            "28": {
+              "bloco_dias": 28,
+              "replicas": 2000,
+              "ic95_delta_mse_vs_naive_usdt2": [
+                -23729.035007048125,
+                773226.4746556734
+              ],
+              "ic95_crescimento_log_diario": [
+                -0.003019058442579102,
+                0.0022026986156124698
+              ],
+              "limite": "Exploratório; três seeds e um ano retrospectivo; não corrige buscas anteriores."
+            }
+          }
+        },
+        "teste": {
+          "previsao_media_seeds": {
+            "n": 350.0,
+            "mse_usdt2": 6298559.3864531545,
+            "rmse_usdt": 2476.445436177562,
+            "mae_usdt": 1919.5190729166661,
+            "mape_pct": 1.8956127579642434,
+            "mse_naive_usdt2": 4535942.830685715,
+            "habilidade_mse_naive": -0.38858879433914234,
+            "mae_retorno": 0.019017791438940918,
+            "acerto_sinal": 0.5114285714285715,
+            "vies_retorno": -0.005692422297766211,
+            "precos_previstos_nao_positivos": 0.0
+          },
+          "operacao_media_seeds_base": {
+            "capital_final": 9113.22054939153,
+            "retorno_liquido": -0.08867794506084707,
+            "drawdown_maximo": 0.4350089916466476,
+            "crescimento_log_diario": -0.0003519618105775601,
+            "retorno_anualizado": -0.09111977932808353,
+            "calmar": -0.08232989607984209,
+            "sharpe_diario_rf_zero": -0.31844614663506404,
+            "operacoes": 291.6666666666667,
+            "compras": 97.66666666666667,
+            "vendas": 194.0,
+            "taxa_acerto_liquido": 0.4736631695209592,
+            "profit_factor": 0.9566351191534529,
+            "comissoes": 2624.601493266667,
+            "funding": 94.72677599153424,
+            "pnl_compras": 733.1640530858143,
+            "pnl_vendas": -1619.943503694285,
+            "fracao_dias_posicionado": 0.8333333333333334,
+            "previsoes_nao_positivas": 0.0
+          },
+          "naive": {
+            "n": 350,
+            "mse_usdt2": 4535942.830685715,
+            "rmse_usdt": 2129.7753005154595,
+            "mae_usdt": 1558.1811428571425,
+            "mape_pct": 1.5642259237057878,
+            "mse_naive_usdt2": 4535942.830685715,
+            "habilidade_mse_naive": 0.0,
+            "mae_retorno": 0.015632704344314685,
+            "acerto_sinal": 0.0,
+            "vies_retorno": 1.1679164083119785e-05,
+            "precos_previstos_nao_positivos": 0
+          },
+          "ensemble": {
+            "n": 350,
+            "mse_usdt2": 4967349.66450685,
+            "rmse_usdt": 2228.7551827212537,
+            "mae_usdt": 1692.4738497023807,
+            "mape_pct": 1.6778153824552202,
+            "mse_naive_usdt2": 4535942.830685715,
+            "habilidade_mse_naive": -0.09510852537705317,
+            "mae_retorno": 0.01685132650888311,
+            "acerto_sinal": 0.5285714285714286,
+            "vies_retorno": -0.005692422297766217,
+            "precos_previstos_nao_positivos": 0
+          },
+          "incerteza": {
+            "7": {
+              "bloco_dias": 7,
+              "replicas": 2000,
+              "ic95_delta_mse_vs_naive_usdt2": [
+                4432.879351277901,
+                4530216.832163589
+              ],
+              "ic95_crescimento_log_diario": [
+                -0.0021304905149248255,
+                0.0014709991908290819
+              ],
+              "limite": "Exploratório; três seeds e um ano retrospectivo; não corrige buscas anteriores."
+            },
+            "14": {
+              "bloco_dias": 14,
+              "replicas": 2000,
+              "ic95_delta_mse_vs_naive_usdt2": [
+                37845.0366333712,
+                4601232.456492423
+              ],
+              "ic95_crescimento_log_diario": [
+                -0.0020886625826049164,
+                0.0014137759120462661
+              ],
+              "limite": "Exploratório; três seeds e um ano retrospectivo; não corrige buscas anteriores."
+            },
+            "28": {
+              "bloco_dias": 28,
+              "replicas": 2000,
+              "ic95_delta_mse_vs_naive_usdt2": [
+                71507.0996814802,
+                4836785.405154409
+              ],
+              "ic95_crescimento_log_diario": [
+                -0.0020545270434555473,
+                0.0012261010743828188
+              ],
+              "limite": "Exploratório; três seeds e um ano retrospectivo; não corrige buscas anteriores."
+            }
+          }
+        }
+      }
+    },
+    {
+      "estudo": "retomada_alvo_diario",
+      "execucao": {
+        "id": "de09c2193737c2581261",
+        "pasta": "dados/experimentos/retomada_alvo_diario_de09c2193737c2581261",
+        "congelamento_sha256": "de40a43cafe9d54a38165f44a8f9cc2a50ef691a4df1bedf2a8faee6ea7d73ab"
+      },
+      "resumo_sha256": "cc55acbf5ea3034ccb59cea70aa6fcae5fde8ab89776131704678e050024334b",
+      "fases": {
+        "validacao": {
+          "previsao_media_seeds": {
+            "n": 351.0,
+            "mse_usdt2": 3393379.151425892,
+            "rmse_usdt": 1842.0973042319708,
+            "mae_usdt": 1319.179018411079,
+            "mape_pct": 1.9697699810686766,
+            "mse_naive_usdt2": 3448486.291452991,
+            "habilidade_mse_naive": 0.0159800954301836,
+            "mae_retorno": 0.0198118528791052,
+            "acerto_sinal": 0.5527065527065527,
+            "vies_retorno": -0.0005971158500898496,
+            "precos_previstos_nao_positivos": 0.0,
+            "mse_retorno": 0.0007487484739635078,
+            "rmse_retorno": 0.027363132926974454,
+            "mse_naive_retorno": 0.0007621577989616208,
+            "habilidade_mse_retorno_naive": 0.017593895931239167,
+            "retornos_previstos_menores_igual_menos_um": 0.0
+          },
+          "operacao_media_seeds_base": {
+            "capital_final": 11775.319901655797,
+            "retorno_liquido": 0.17753199016557955,
+            "drawdown_maximo": 0.4754029653269303,
+            "crescimento_log_diario": 0.0004548263080644704,
+            "retorno_anualizado": 0.18542116689980415,
+            "calmar": 0.38345720317849286,
+            "sharpe_diario_rf_zero": 0.44998607797728357,
+            "operacoes": 187.33333333333334,
+            "compras": 173.33333333333334,
+            "vendas": 14.0,
+            "taxa_acerto_liquido": 0.506830986646528,
+            "profit_factor": 1.0942110328166015,
+            "comissoes": 1968.6880128,
+            "funding": -590.4327522108666,
+            "pnl_compras": 1977.083456350365,
+            "pnl_vendas": -201.7635546945694,
+            "fracao_dias_posicionado": 0.533713200379867,
+            "previsoes_nao_positivas": 0.0
+          },
+          "naive": {
+            "n": 351,
+            "mse_usdt2": 3448486.291452991,
+            "rmse_usdt": 1857.010040751797,
+            "mae_usdt": 1328.4843304843305,
+            "mape_pct": 1.9819886960282629,
+            "mse_naive_usdt2": 3448486.291452991,
+            "habilidade_mse_naive": 0.0,
+            "mae_retorno": 0.019973372091196977,
+            "acerto_sinal": 0.0,
+            "vies_retorno": -0.002651489164893014,
+            "precos_previstos_nao_positivos": 0,
+            "mse_retorno": 0.0007621577989616209,
+            "rmse_retorno": 0.027607205562345874,
+            "mse_naive_retorno": 0.0007621577989616209,
+            "habilidade_mse_retorno_naive": 0.0,
+            "retornos_previstos_menores_igual_menos_um": 0
+          },
+          "ensemble": {
+            "n": 351,
+            "mse_usdt2": 3379418.088691445,
+            "rmse_usdt": 1838.3193652604123,
+            "mae_usdt": 1314.0926995889254,
+            "mape_pct": 1.9630271674709636,
+            "mse_naive_usdt2": 3448486.291452991,
+            "habilidade_mse_naive": 0.02002855656777003,
+            "mae_retorno": 0.019744294575717004,
+            "acerto_sinal": 0.5470085470085471,
+            "vies_retorno": -0.0005971158500898456,
+            "precos_previstos_nao_positivos": 0,
+            "mse_retorno": 0.0007462013502065927,
+            "rmse_retorno": 0.027316686296229138,
+            "mse_naive_retorno": 0.0007621577989616209,
+            "habilidade_mse_retorno_naive": 0.020935885950084776,
+            "retornos_previstos_menores_igual_menos_um": 0
+          },
+          "incerteza": {
+            "7": {
+              "bloco_dias": 7,
+              "replicas": 2000,
+              "ic95_delta_mse_vs_naive_usdt2": [
+                -150400.4491209591,
+                25650.556168548927
+              ],
+              "ic95_crescimento_log_diario": [
+                -0.0014404695587623146,
+                0.002404662733740448
+              ],
+              "limite": "Exploratório; três seeds e um ano retrospectivo; não corrige buscas anteriores."
+            },
+            "14": {
+              "bloco_dias": 14,
+              "replicas": 2000,
+              "ic95_delta_mse_vs_naive_usdt2": [
+                -168548.8010305727,
+                28865.116286738878
+              ],
+              "ic95_crescimento_log_diario": [
+                -0.0016576351183845578,
+                0.002721130815438721
+              ],
+              "limite": "Exploratório; três seeds e um ano retrospectivo; não corrige buscas anteriores."
+            },
+            "28": {
+              "bloco_dias": 28,
+              "replicas": 2000,
+              "ic95_delta_mse_vs_naive_usdt2": [
+                -152627.99412883757,
+                32661.214311916872
+              ],
+              "ic95_crescimento_log_diario": [
+                -0.00172336122235757,
+                0.0026749070403233174
+              ],
+              "limite": "Exploratório; três seeds e um ano retrospectivo; não corrige buscas anteriores."
+            }
+          }
+        },
+        "teste": {
+          "previsao_media_seeds": {
+            "n": 350.0,
+            "mse_usdt2": 4666720.770124848,
+            "rmse_usdt": 2160.192260791468,
+            "mae_usdt": 1574.9718349642892,
+            "mape_pct": 1.5796626903243325,
+            "mse_naive_usdt2": 4535942.830685715,
+            "habilidade_mse_naive": -0.028831478773149028,
+            "mae_retorno": 0.015755088291640372,
+            "acerto_sinal": 0.5228571428571428,
+            "vies_retorno": 0.0020092971544603453,
+            "precos_previstos_nao_positivos": 0.0,
+            "mse_retorno": 0.0004829358183609539,
+            "rmse_retorno": 0.021975284761220192,
+            "mse_naive_retorno": 0.00047543295833777326,
+            "habilidade_mse_retorno_naive": -0.015781110441759078,
+            "retornos_previstos_menores_igual_menos_um": 0.0
+          },
+          "operacao_media_seeds_base": {
+            "capital_final": 6472.558820145011,
+            "retorno_liquido": -0.3527441179854989,
+            "drawdown_maximo": 0.4650857933282837,
+            "crescimento_log_diario": -0.0012634598935796048,
+            "retorno_anualizado": -0.36449645535975134,
+            "calmar": -0.7785733743179631,
+            "sharpe_diario_rf_zero": -1.5052281787635982,
+            "operacoes": 212.0,
+            "compras": 181.0,
+            "vendas": 31.0,
+            "taxa_acerto_liquido": 0.45980210025740775,
+            "profit_factor": 0.7711167026161455,
+            "comissoes": 1759.3768851333334,
+            "funding": -179.78856138831785,
+            "pnl_compras": -3925.421575395259,
+            "pnl_vendas": 397.9803955402701,
+            "fracao_dias_posicionado": 0.6057142857142858,
+            "previsoes_nao_positivas": 0.0
+          },
+          "naive": {
+            "n": 350,
+            "mse_usdt2": 4535942.830685715,
+            "rmse_usdt": 2129.7753005154595,
+            "mae_usdt": 1558.1811428571425,
+            "mape_pct": 1.5642259237057878,
+            "mse_naive_usdt2": 4535942.830685715,
+            "habilidade_mse_naive": 0.0,
+            "mae_retorno": 0.015632704344314685,
+            "acerto_sinal": 0.0,
+            "vies_retorno": 1.1679164083119785e-05,
+            "precos_previstos_nao_positivos": 0,
+            "mse_retorno": 0.00047543295833777326,
+            "rmse_retorno": 0.021804425200811262,
+            "mse_naive_retorno": 0.00047543295833777326,
+            "habilidade_mse_retorno_naive": 0.0,
+            "retornos_previstos_menores_igual_menos_um": 0
+          },
+          "ensemble": {
+            "n": 350,
+            "mse_usdt2": 4620427.759562697,
+            "rmse_usdt": 2149.51802959703,
+            "mae_usdt": 1562.8148616954036,
+            "mape_pct": 1.5678257147722479,
+            "mse_naive_usdt2": 4535942.830685715,
+            "habilidade_mse_naive": -0.018625659985271437,
+            "mae_retorno": 0.015636337938608406,
+            "acerto_sinal": 0.5457142857142857,
+            "vies_retorno": 0.0020092971544603483,
+            "precos_previstos_nao_positivos": 0,
+            "mse_retorno": 0.0004784575461826644,
+            "rmse_retorno": 0.02187367244389164,
+            "mse_naive_retorno": 0.00047543295833777326,
+            "habilidade_mse_retorno_naive": -0.006361754674025555,
+            "retornos_previstos_menores_igual_menos_um": 0
+          },
+          "incerteza": {
+            "7": {
+              "bloco_dias": 7,
+              "replicas": 2000,
+              "ic95_delta_mse_vs_naive_usdt2": [
+                -38582.31716965976,
+                342522.8737872349
+              ],
+              "ic95_crescimento_log_diario": [
+                -0.002906123783400369,
+                0.00018092782574477925
+              ],
+              "limite": "Exploratório; três seeds e um ano retrospectivo; não corrige buscas anteriores."
+            },
+            "14": {
+              "bloco_dias": 14,
+              "replicas": 2000,
+              "ic95_delta_mse_vs_naive_usdt2": [
+                -37672.3178352385,
+                359038.105617179
+              ],
+              "ic95_crescimento_log_diario": [
+                -0.0029224852411008093,
+                0.00019659512626336018
+              ],
+              "limite": "Exploratório; três seeds e um ano retrospectivo; não corrige buscas anteriores."
+            },
+            "28": {
+              "bloco_dias": 28,
+              "replicas": 2000,
+              "ic95_delta_mse_vs_naive_usdt2": [
+                -21438.361343734214,
+                378935.8507489633
+              ],
+              "ic95_crescimento_log_diario": [
+                -0.003001265450321922,
+                1.896501573779123e-05
+              ],
+              "limite": "Exploratório; três seeds e um ano retrospectivo; não corrige buscas anteriores."
+            }
+          }
+        }
+      }
+    },
+    {
+      "estudo": "padronizacao_diaria",
+      "execucao": {
+        "id": "f3f8772670f244779ad7",
+        "pasta": "dados/experimentos/padronizacao_diaria_f3f8772670f244779ad7",
+        "congelamento_sha256": "3ccc75d5ecf0028b1ec909c19bfb5c96a22e1af06a5fd9d5a0efd7cd9040c943"
+      },
+      "resumo_sha256": "c28751dda48ff2a46d81ecf22c37251d23c38c0dd5e2b930cc10756f19e6f971",
+      "fases": {
+        "validacao": {
+          "previsao_media_seeds": {
+            "n": 351.0,
+            "mse_usdt2": 3428307.8203515583,
+            "rmse_usdt": 1851.566783289758,
+            "mae_usdt": 1331.2202994278402,
+            "mape_pct": 1.9866367537726735,
+            "mse_naive_usdt2": 3448486.291452991,
+            "habilidade_mse_naive": 0.005851399540559095,
+            "mae_retorno": 0.01995886424288069,
+            "acerto_sinal": 0.5308641975308642,
+            "vies_retorno": 0.00040208796989423,
+            "precos_previstos_nao_positivos": 0.0,
+            "mse_retorno": 0.0007523850559498136,
+            "rmse_retorno": 0.027429615237797814,
+            "mse_naive_retorno": 0.0007621577989616208,
+            "habilidade_mse_retorno_naive": 0.012822466718994304,
+            "retornos_previstos_menores_igual_menos_um": 0.0
+          },
+          "operacao_media_seeds_base": {
+            "capital_final": 10528.760355841294,
+            "retorno_liquido": 0.052876035584129344,
+            "drawdown_maximo": 0.4923311137679461,
+            "crescimento_log_diario": 0.0001429175218865177,
+            "retorno_anualizado": 0.05510179505702259,
+            "calmar": 0.11531123058009245,
+            "sharpe_diario_rf_zero": 0.11160982620516564,
+            "operacoes": 329.6666666666667,
+            "compras": 329.6666666666667,
+            "vendas": 0.0,
+            "taxa_acerto_liquido": 0.48376980828925337,
+            "profit_factor": 1.017185301856068,
+            "comissoes": 3285.9806018833333,
+            "funding": -1152.513408942051,
+            "pnl_compras": 528.7603558412939,
+            "pnl_vendas": 0.0,
+            "fracao_dias_posicionado": 0.9392212725546059,
+            "previsoes_nao_positivas": 0.0
+          },
+          "naive": {
+            "n": 351,
+            "mse_usdt2": 3448486.291452991,
+            "rmse_usdt": 1857.010040751797,
+            "mae_usdt": 1328.4843304843305,
+            "mape_pct": 1.9819886960282629,
+            "mse_naive_usdt2": 3448486.291452991,
+            "habilidade_mse_naive": 0.0,
+            "mae_retorno": 0.019973372091196977,
+            "acerto_sinal": 0.0,
+            "vies_retorno": -0.002651489164893014,
+            "precos_previstos_nao_positivos": 0,
+            "mse_retorno": 0.0007621577989616209,
+            "rmse_retorno": 0.027607205562345874,
+            "mse_naive_retorno": 0.0007621577989616209,
+            "habilidade_mse_retorno_naive": 0.0,
+            "retornos_previstos_menores_igual_menos_um": 0
+          },
+          "ensemble": {
+            "n": 351,
+            "mse_usdt2": 3425987.2719248408,
+            "rmse_usdt": 1850.9422659620805,
+            "mae_usdt": 1330.174474731178,
+            "mape_pct": 1.9854292452643367,
+            "mse_naive_usdt2": 3448486.291452991,
+            "habilidade_mse_naive": 0.0065243175198096415,
+            "mae_retorno": 0.019946769738277192,
+            "acerto_sinal": 0.5327635327635327,
+            "vies_retorno": 0.0004020879698942335,
+            "precos_previstos_nao_positivos": 0,
+            "mse_retorno": 0.0007520785824908706,
+            "rmse_retorno": 0.02742405116847018,
+            "mse_naive_retorno": 0.0007621577989616209,
+            "habilidade_mse_retorno_naive": 0.013224579587694851,
+            "retornos_previstos_menores_igual_menos_um": 0
+          },
+          "incerteza": {
+            "7": {
+              "bloco_dias": 7,
+              "replicas": 2000,
+              "ic95_delta_mse_vs_naive_usdt2": [
+                -97248.15812495364,
+                51867.30793500685
+              ],
+              "ic95_crescimento_log_diario": [
+                -0.0023207044669663938,
+                0.002844996283876746
+              ],
+              "limite": "Exploratório; três seeds e um ano retrospectivo; não corrige buscas anteriores."
+            },
+            "14": {
+              "bloco_dias": 14,
+              "replicas": 2000,
+              "ic95_delta_mse_vs_naive_usdt2": [
+                -101144.95315019849,
+                47678.52594497952
+              ],
+              "ic95_crescimento_log_diario": [
+                -0.002162272092800498,
+                0.0029018393416798084
+              ],
+              "limite": "Exploratório; três seeds e um ano retrospectivo; não corrige buscas anteriores."
+            },
+            "28": {
+              "bloco_dias": 28,
+              "replicas": 2000,
+              "ic95_delta_mse_vs_naive_usdt2": [
+                -108761.84375548606,
+                46110.37686759528
+              ],
+              "ic95_crescimento_log_diario": [
+                -0.002138207090894471,
+                0.003097971345389462
+              ],
+              "limite": "Exploratório; três seeds e um ano retrospectivo; não corrige buscas anteriores."
+            }
+          }
+        },
+        "teste": {
+          "previsao_media_seeds": {
+            "n": 350.0,
+            "mse_usdt2": 4571657.846232412,
+            "rmse_usdt": 2138.137503498852,
+            "mae_usdt": 1567.471759150464,
+            "mape_pct": 1.573667737754601,
+            "mse_naive_usdt2": 4535942.830685715,
+            "habilidade_mse_naive": -0.007873779912984066,
+            "mae_retorno": 0.01571217738364476,
+            "acerto_sinal": 0.5038095238095238,
+            "vies_retorno": 0.0008391792267673386,
+            "precos_previstos_nao_positivos": 0.0,
+            "mse_retorno": 0.00047766666871790474,
+            "rmse_retorno": 0.021855563251873603,
+            "mse_naive_retorno": 0.00047543295833777326,
+            "habilidade_mse_retorno_naive": -0.004698265740644247,
+            "retornos_previstos_menores_igual_menos_um": 0.0
+          },
+          "operacao_media_seeds_base": {
+            "capital_final": 7706.93509052867,
+            "retorno_liquido": -0.22930649094713296,
+            "drawdown_maximo": 0.3779845720014217,
+            "crescimento_log_diario": -0.0007619497472370439,
+            "retorno_anualizado": -0.23765255423638512,
+            "calmar": -0.634511014139184,
+            "sharpe_diario_rf_zero": -1.0448051714815139,
+            "operacoes": 142.33333333333334,
+            "compras": 96.33333333333333,
+            "vendas": 46.0,
+            "taxa_acerto_liquido": 0.4284864955487649,
+            "profit_factor": 0.7826290797784173,
+            "comissoes": 1107.6325741500002,
+            "funding": -29.174368654661578,
+            "pnl_compras": -1559.2268636843094,
+            "pnl_vendas": -733.8380457870202,
+            "fracao_dias_posicionado": 0.4066666666666667,
+            "previsoes_nao_positivas": 0.0
+          },
+          "naive": {
+            "n": 350,
+            "mse_usdt2": 4535942.830685715,
+            "rmse_usdt": 2129.7753005154595,
+            "mae_usdt": 1558.1811428571425,
+            "mape_pct": 1.5642259237057878,
+            "mse_naive_usdt2": 4535942.830685715,
+            "habilidade_mse_naive": 0.0,
+            "mae_retorno": 0.015632704344314685,
+            "acerto_sinal": 0.0,
+            "vies_retorno": 1.1679164083119785e-05,
+            "precos_previstos_nao_positivos": 0,
+            "mse_retorno": 0.00047543295833777326,
+            "rmse_retorno": 0.021804425200811262,
+            "mse_naive_retorno": 0.00047543295833777326,
+            "habilidade_mse_retorno_naive": 0.0,
+            "retornos_previstos_menores_igual_menos_um": 0
+          },
+          "ensemble": {
+            "n": 350,
+            "mse_usdt2": 4539511.114675234,
+            "rmse_usdt": 2130.6128495517983,
+            "mae_usdt": 1559.231755077491,
+            "mape_pct": 1.5661510828602505,
+            "mse_naive_usdt2": 4535942.830685715,
+            "habilidade_mse_naive": -0.0007866686425983538,
+            "mae_retorno": 0.015637009179217898,
+            "acerto_sinal": 0.5142857142857142,
+            "vies_retorno": 0.0008391792267673437,
+            "precos_previstos_nao_positivos": 0,
+            "mse_retorno": 0.00047490670444169707,
+            "rmse_retorno": 0.02179235426569826,
+            "mse_naive_retorno": 0.00047543295833777326,
+            "habilidade_mse_retorno_naive": 0.001106894014912374,
+            "retornos_previstos_menores_igual_menos_um": 0
+          },
+          "incerteza": {
+            "7": {
+              "bloco_dias": 7,
+              "replicas": 2000,
+              "ic95_delta_mse_vs_naive_usdt2": [
+                -25111.581502349985,
+                116176.30741476832
+              ],
+              "ic95_crescimento_log_diario": [
+                -0.0019628222406475756,
+                0.00023463376006764566
+              ],
+              "limite": "Exploratório; três seeds e um ano retrospectivo; não corrige buscas anteriores."
+            },
+            "14": {
+              "bloco_dias": 14,
+              "replicas": 2000,
+              "ic95_delta_mse_vs_naive_usdt2": [
+                -19950.612921121457,
+                112063.62178995094
+              ],
+              "ic95_crescimento_log_diario": [
+                -0.0019944637238392005,
+                0.00017058253266477363
+              ],
+              "limite": "Exploratório; três seeds e um ano retrospectivo; não corrige buscas anteriores."
+            },
+            "28": {
+              "bloco_dias": 28,
+              "replicas": 2000,
+              "ic95_delta_mse_vs_naive_usdt2": [
+                -15784.729950776375,
+                117761.43567179257
+              ],
+              "ic95_crescimento_log_diario": [
+                -0.0020118299647932255,
+                0.00023477088298741463
+              ],
+              "limite": "Exploratório; três seeds e um ano retrospectivo; não corrige buscas anteriores."
+            }
+          }
+        }
+      }
+    },
+    {
+      "estudo": "sem_penalizacao_diaria",
+      "execucao": {
+        "id": "8a0aeee4d78503b7f50d",
+        "pasta": "dados/experimentos/sem_penalizacao_diaria_8a0aeee4d78503b7f50d",
+        "congelamento_sha256": "88ffec5d2a6d92484d969f4029c3da423a116778720ec2ad4e80a8abcaf04126"
+      },
+      "resumo_sha256": "54a17fa2b45ec9657dbc934789e6a68ffeb8106a716e65e082107da3c536d8a2",
+      "fases": {
+        "validacao": {
+          "previsao_media_seeds": {
+            "n": 351.0,
+            "mse_usdt2": 3483231.0940144784,
+            "rmse_usdt": 1866.2542706257773,
+            "mae_usdt": 1346.0370808609944,
+            "mape_pct": 2.0071614211704163,
+            "mse_naive_usdt2": 3448486.291452991,
+            "habilidade_mse_naive": -0.010075377897717508,
+            "mae_retorno": 0.020176798065692277,
+            "acerto_sinal": 0.5289648622981956,
+            "vies_retorno": 2.359086733724411e-05,
+            "precos_previstos_nao_positivos": 0.0,
+            "mse_retorno": 0.0007637184660850546,
+            "rmse_retorno": 0.027634521459048617,
+            "mse_naive_retorno": 0.0007621577989616208,
+            "habilidade_mse_retorno_naive": -0.0020476955370133756,
+            "retornos_previstos_menores_igual_menos_um": 0.0
+          },
+          "operacao_media_seeds_base": {
+            "capital_final": 11283.260761665282,
+            "retorno_liquido": 0.12832607616652822,
+            "drawdown_maximo": 0.3924413844362365,
+            "crescimento_log_diario": 0.00022441716503267012,
+            "retorno_anualizado": 0.13574820125466688,
+            "calmar": 0.7790243377557623,
+            "sharpe_diario_rf_zero": 0.2509514343711208,
+            "operacoes": 252.66666666666666,
+            "compras": 207.33333333333334,
+            "vendas": 45.333333333333336,
+            "taxa_acerto_liquido": 0.4972461848260061,
+            "profit_factor": 1.055340851935818,
+            "comissoes": 2685.963662933333,
+            "funding": -544.86044206805,
+            "pnl_compras": 2263.4437377717472,
+            "pnl_vendas": -980.1829761064655,
+            "fracao_dias_posicionado": 0.7198480531813866,
+            "previsoes_nao_positivas": 0.0
+          },
+          "naive": {
+            "n": 351,
+            "mse_usdt2": 3448486.291452991,
+            "rmse_usdt": 1857.010040751797,
+            "mae_usdt": 1328.4843304843305,
+            "mape_pct": 1.9819886960282629,
+            "mse_naive_usdt2": 3448486.291452991,
+            "habilidade_mse_naive": 0.0,
+            "mae_retorno": 0.019973372091196977,
+            "acerto_sinal": 0.0,
+            "vies_retorno": -0.002651489164893014,
+            "precos_previstos_nao_positivos": 0,
+            "mse_retorno": 0.0007621577989616209,
+            "rmse_retorno": 0.027607205562345874,
+            "mse_naive_retorno": 0.0007621577989616209,
+            "habilidade_mse_retorno_naive": 0.0,
+            "retornos_previstos_menores_igual_menos_um": 0
+          },
+          "ensemble": {
+            "n": 351,
+            "mse_usdt2": 3433110.2869136822,
+            "rmse_usdt": 1852.8654260128235,
+            "mae_usdt": 1337.4304155465768,
+            "mape_pct": 1.9941844735830678,
+            "mse_naive_usdt2": 3448486.291452991,
+            "habilidade_mse_naive": 0.004458769222141834,
+            "mae_retorno": 0.020046563324459643,
+            "acerto_sinal": 0.5185185185185185,
+            "vies_retorno": 2.359086733724244e-05,
+            "precos_previstos_nao_positivos": 0,
+            "mse_retorno": 0.0007525503004921013,
+            "rmse_retorno": 0.027432650263729555,
+            "mse_naive_retorno": 0.0007621577989616209,
+            "habilidade_mse_retorno_naive": 0.012605655262740934,
+            "retornos_previstos_menores_igual_menos_um": 0
+          },
+          "incerteza": {
+            "7": {
+              "bloco_dias": 7,
+              "replicas": 2000,
+              "ic95_delta_mse_vs_naive_usdt2": [
+                -86561.6511333656,
+                165518.09477597688
+              ],
+              "ic95_crescimento_log_diario": [
+                -0.0018324266335782192,
+                0.0023471216043153774
+              ],
+              "limite": "Exploratório; três seeds e um ano retrospectivo; não corrige buscas anteriores."
+            },
+            "14": {
+              "bloco_dias": 14,
+              "replicas": 2000,
+              "ic95_delta_mse_vs_naive_usdt2": [
+                -86516.46492719636,
+                167116.88424043028
+              ],
+              "ic95_crescimento_log_diario": [
+                -0.0016829352609532867,
+                0.002366877778579313
+              ],
+              "limite": "Exploratório; três seeds e um ano retrospectivo; não corrige buscas anteriores."
+            },
+            "28": {
+              "bloco_dias": 28,
+              "replicas": 2000,
+              "ic95_delta_mse_vs_naive_usdt2": [
+                -85133.47644391586,
+                165705.06707910445
+              ],
+              "ic95_crescimento_log_diario": [
+                -0.0017042874555264198,
+                0.002406816960423654
+              ],
+              "limite": "Exploratório; três seeds e um ano retrospectivo; não corrige buscas anteriores."
+            }
+          }
+        },
+        "teste": {
+          "previsao_media_seeds": {
+            "n": 350.0,
+            "mse_usdt2": 4812698.41985805,
+            "rmse_usdt": 2193.3756552536074,
+            "mae_usdt": 1621.3050905766042,
+            "mape_pct": 1.6281527746536975,
+            "mse_naive_usdt2": 4535942.830685715,
+            "habilidade_mse_naive": -0.06101390592934256,
+            "mae_retorno": 0.01626162452106502,
+            "acerto_sinal": 0.49523809523809526,
+            "vies_retorno": 0.0005840062138925385,
+            "precos_previstos_nao_positivos": 0.0,
+            "mse_retorno": 0.0005025831501380699,
+            "rmse_retorno": 0.022414459531382297,
+            "mse_naive_retorno": 0.00047543295833777326,
+            "habilidade_mse_retorno_naive": -0.05710624668348633,
+            "retornos_previstos_menores_igual_menos_um": 0.0
+          },
+          "operacao_media_seeds_base": {
+            "capital_final": 6821.5842447681,
+            "retorno_liquido": -0.3178415755231899,
+            "drawdown_maximo": 0.4356643062013091,
+            "crescimento_log_diario": -0.0011782871615232317,
+            "retorno_anualizado": -0.32801353369352876,
+            "calmar": -0.6781376966885042,
+            "sharpe_diario_rf_zero": -1.351218874034967,
+            "operacoes": 196.0,
+            "compras": 117.66666666666667,
+            "vendas": 78.33333333333333,
+            "taxa_acerto_liquido": 0.4299392065295133,
+            "profit_factor": 0.764578038951187,
+            "comissoes": 1391.5519009500001,
+            "funding": -45.0646209485613,
+            "pnl_compras": -1180.5428308075116,
+            "pnl_vendas": -1997.872924424388,
+            "fracao_dias_posicionado": 0.56,
+            "previsoes_nao_positivas": 0.0
+          },
+          "naive": {
+            "n": 350,
+            "mse_usdt2": 4535942.830685715,
+            "rmse_usdt": 2129.7753005154595,
+            "mae_usdt": 1558.1811428571425,
+            "mape_pct": 1.5642259237057878,
+            "mse_naive_usdt2": 4535942.830685715,
+            "habilidade_mse_naive": 0.0,
+            "mae_retorno": 0.015632704344314685,
+            "acerto_sinal": 0.0,
+            "vies_retorno": 1.1679164083119785e-05,
+            "precos_previstos_nao_positivos": 0,
+            "mse_retorno": 0.00047543295833777326,
+            "rmse_retorno": 0.021804425200811262,
+            "mse_naive_retorno": 0.00047543295833777326,
+            "habilidade_mse_retorno_naive": 0.0,
+            "retornos_previstos_menores_igual_menos_um": 0
+          },
+          "ensemble": {
+            "n": 350,
+            "mse_usdt2": 4701786.615551174,
+            "rmse_usdt": 2168.360351867552,
+            "mae_usdt": 1591.5130631201555,
+            "mape_pct": 1.598791335066306,
+            "mse_naive_usdt2": 4535942.830685715,
+            "habilidade_mse_naive": -0.03656214177646233,
+            "mae_retorno": 0.015968084355781325,
+            "acerto_sinal": 0.4857142857142857,
+            "vies_retorno": 0.0005840062138925307,
+            "precos_previstos_nao_positivos": 0,
+            "mse_retorno": 0.0004917420065680545,
+            "rmse_retorno": 0.022175256629136324,
+            "mse_naive_retorno": 0.00047543295833777326,
+            "habilidade_mse_retorno_naive": -0.03430357097518333,
+            "retornos_previstos_menores_igual_menos_um": 0
+          },
+          "incerteza": {
+            "7": {
+              "bloco_dias": 7,
+              "replicas": 2000,
+              "ic95_delta_mse_vs_naive_usdt2": [
+                27778.337576599264,
+                541422.7364193887
+              ],
+              "ic95_crescimento_log_diario": [
+                -0.002735071580938992,
+                0.00034351873052884815
+              ],
+              "limite": "Exploratório; três seeds e um ano retrospectivo; não corrige buscas anteriores."
+            },
+            "14": {
+              "bloco_dias": 14,
+              "replicas": 2000,
+              "ic95_delta_mse_vs_naive_usdt2": [
+                28494.890913398824,
+                545759.6750482285
+              ],
+              "ic95_crescimento_log_diario": [
+                -0.002762869266773294,
+                0.0003578541246317704
+              ],
+              "limite": "Exploratório; três seeds e um ano retrospectivo; não corrige buscas anteriores."
+            },
+            "28": {
+              "bloco_dias": 28,
+              "replicas": 2000,
+              "ic95_delta_mse_vs_naive_usdt2": [
+                26477.388469651385,
+                575768.5325657638
+              ],
+              "ic95_crescimento_log_diario": [
+                -0.0029383743790236815,
+                0.0003047604917869396
+              ],
+              "limite": "Exploratório; três seeds e um ano retrospectivo; não corrige buscas anteriores."
+            }
+          }
+        }
+      }
+    }
+  ],
+  "limites": "Resultados horários/Spot/Astra de populações diferentes não recebem ranking conjunto. Colapso funcional observado na referência permanece documentado; observar checkpoints novos sem mudar treinamento."
+}

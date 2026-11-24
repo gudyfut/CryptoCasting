@@ -1,0 +1,116 @@
+{
+  "utc": "2026-11-12T15:11:21.695026+00:00",
+  "situacao": "aprovado",
+  "ambiente": {
+    "torch": "2.6.0+cu118",
+    "cuda": "11.8",
+    "gpu": "NVIDIA GeForce RTX 4050 Laptop GPU",
+    "pacotes": {
+      "mamba-ssm": "2.2.6.post3",
+      "causal-conv1d": "1.6.2.post1",
+      "numpy": "2.2.6"
+    },
+    "fontes_backend": {
+      "/home/murilorfm/.venvs/cc/lib/python3.12/site-packages/mamba_ssm/modules/mamba_simple.py": "a17e4c51b582dc0d4d690a649eba521cd0c1ee3dc8f0473a0967cdc9ec0874e3",
+      "/home/murilorfm/.venvs/cc/lib/python3.12/site-packages/mamba_ssm/ops/selective_scan_interface.py": "543edd077f11c80cccd5c5e2f926420d9105fd238d9e8960e53660cfa234dce8",
+      "/home/murilorfm/.venvs/cc/lib/python3.12/site-packages/causal_conv1d/cpp_functions.py": "80e75c8f761c88ede2ff73d244b0e9c0d2a974a780e2d3d8befeec1bd8aac29e",
+      "/home/murilorfm/.venvs/cc/lib/python3.12/site-packages/selective_scan_cuda.cpython-312-x86_64-linux-gnu.so": "9ef2a8bad7534cfac451bfe312124cd1efb609ecfd65ce63262526d3113c87e1",
+      "/home/murilorfm/.venvs/cc/lib/python3.12/site-packages/causal_conv1d_cuda.cpython-312-x86_64-linux-gnu.so": "72a06e63ea5a209ec95d5a7ecc7199750b6df4ddf5ecc9019cd2a5c5758e2aac"
+    },
+    "cublas_workspace": ":4096:8"
+  },
+  "sondas": {
+    "A": {
+      "parametros": 136952,
+      "isentos": 0,
+      "grupos": 1,
+      "forward_backward_exatos": true
+    },
+    "S": {
+      "parametros": 136952,
+      "isentos": 33778,
+      "grupos": 2,
+      "forward_backward_exatos": true
+    }
+  },
+  "inicializacao_A_S_identica": true,
+  "treinador_uniforme_equivalente": true,
+  "treino_sintetico": {
+    "epocas": 6,
+    "exemplos": 65,
+    "repeticoes_exatas": 2,
+    "duracoes_segundos": {
+      "A": 13.690877168000952,
+      "S": 8.924604268999246
+    },
+    "teste_inacessivel": true
+  },
+  "reproducao_herdada": {
+    "42": {
+      "recarga_validacao_exata": true,
+      "prefixo200_comprovado": true,
+      "checkpoints_controle42": 7
+    },
+    "17": {
+      "recarga_validacao_exata": true,
+      "prefixo200_comprovado": true,
+      "checkpoints_controle42": 7
+    },
+    "2026": {
+      "recarga_validacao_exata": true,
+      "prefixo200_comprovado": true,
+      "checkpoints_controle42": 7
+    }
+  },
+  "referencias_arquivo": "registros/penalizacao_seletiva_diaria/qualificacoes/2026-11-12T151035.475759_0000/referencias.json",
+  "referencias_sha256": "b83ee8ec342b96a49a6d62780aa6336f2f54ed0e907487bc135a7cc81e33aa74",
+  "escalas": {
+    "receita": {
+      "metodo": "zscore_por_canal",
+      "ajuste": "candles_unicos_janelas_treino",
+      "ddof": 0,
+      "aritmetica": "float64_sobre_entrada_float32_da_referencia",
+      "momentos": "math_fsum_float64",
+      "saida": "float32",
+      "canal_constante": "escala_um",
+      "clipping": null
+    },
+    "media": [
+      1640822400.0,
+      28832.63821572192,
+      29577.97542529665,
+      28035.19260570168,
+      28856.59159339659,
+      0.00039402674550974596
+    ],
+    "desvio_observado": [
+      36389686.09922323,
+      15113.220465659073,
+      15550.677460649264,
+      14609.254309023978,
+      15106.607885741949,
+      0.000242553735078712
+    ],
+    "escala": [
+      36389686.09922323,
+      15113.220465659073,
+      15550.677460649264,
+      14609.254309023978,
+      15106.607885741949,
+      0.000242553735078712
+    ],
+    "candles_unicos": 1459,
+    "primeiro_candle_ms": 1577836800000,
+    "ultimo_candle_ms": 1703808000000,
+    "valores_ajuste_sha256": "4327f6e9a98b8cd7bc8a8b2a2ef73c76a7e9e6c30d4407a0a62d2696823cc62c"
+  },
+  "populacoes": {
+    "treino": 1446,
+    "validacao": 351,
+    "teste": 350
+  },
+  "dados_fatorial_exatos": true,
+  "novos_treinamentos_mercado": 0,
+  "segundos": 47.07165096400058,
+  "limite": "Controles reais A42 e S42 ainda devem passar no executor antes das demais seeds."
+}

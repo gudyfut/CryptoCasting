@@ -1,0 +1,175 @@
+{
+  "ciclo": "fechamento_ramos_diarios_001_BTCUSDT",
+  "versao": 1,
+  "simbolo": "BTCUSDT",
+  "mercado": "USD-M perpetuo",
+  "periodos": {
+    "treino": [
+      "2020-01-01",
+      "2024-01-01"
+    ],
+    "validacao": [
+      "2024-01-01",
+      "2025-01-01"
+    ],
+    "teste": [
+      "2025-01-01",
+      "2026-01-01"
+    ]
+  },
+  "contexto_dias": 14,
+  "canais": [
+    "Timestamp",
+    "Open",
+    "High",
+    "Low",
+    "Close",
+    "Volume"
+  ],
+  "volume_divisor": 1000000000,
+  "normalizar": true,
+  "auditoria_volume": "registros/cryptomamba_diario/incidentes/volumes_2026-11-05T150354.183547_0000",
+  "timestamp": "segundos Unix UTC do inicio do candle, float32 como fonte publica",
+  "alvo": "retorno_simples_fechamento_seguinte_decimal",
+  "arquitetura": {
+    "larguras": [
+      14,
+      16,
+      32,
+      1
+    ],
+    "densidade": 4,
+    "estado": 64,
+    "convolucao": 4,
+    "expansao": 2,
+    "eps_layernorm": 1e-05
+  },
+  "treinamento": {
+    "otimizador": "Adam",
+    "taxa": 0.01,
+    "weight_decay": 0.001,
+    "penalizacao": "todos_os_parametros_como_codigo_publico",
+    "lote": 32,
+    "epocas": 200,
+    "scheduler_passo": 100,
+    "scheduler_gamma": 0.5,
+    "perda": "RMSE_por_lote",
+    "epsilon_raiz": 1e-08,
+    "clipping": null,
+    "parada_antecipada": false,
+    "selecao": "RMSE_global_validacao_retorno",
+    "limite_segundos_por_ajuste": 14400
+  },
+  "seeds": [
+    42,
+    17,
+    2026
+  ],
+  "controle_seed": 42,
+  "operacoes": {
+    "capital_inicial": 10000.0,
+    "fracao_nocional": 0.95,
+    "latencia_minutos": 1,
+    "prazo_horas": 24,
+    "comissao_por_lado": 0.0005,
+    "slippage_por_lado": 0.0001,
+    "filtro_retorno_absoluto": 0.002,
+    "passo_quantidade": 0.001,
+    "tick_preco": 0.1,
+    "nocional_minimo": 100.0,
+    "buffer_prudencial": 0.025,
+    "stop_take": false,
+    "politica": "continuidade_liquida_alvo95_filtro002_sem_stop_take",
+    "funding": "historico_no_timestamp_real"
+  },
+  "carteiras_previstas": 108,
+  "exposicao": "2024 seleciona;2025 retrospectivo;2026 excluido desta execucao; nenhuma selecao por teste.",
+  "codigo_publico_commit": "fef42727861a9c3a32241283ab981ef21a49e291",
+  "execucao_numerica": "mamba1_oficial_scan_ref_cuda",
+  "padronizacao": {
+    "metodo": "zscore_por_canal",
+    "ajuste": "candles_unicos_janelas_treino",
+    "ddof": 0,
+    "aritmetica": "float64_sobre_entrada_float32_da_referencia",
+    "momentos": "math_fsum_float64",
+    "saida": "float32",
+    "canal_constante": "escala_um",
+    "clipping": null
+  },
+  "variantes": {
+    "A": {
+      "ramos_mamba": true,
+      "weight_decay": 0.001
+    },
+    "B": {
+      "ramos_mamba": true,
+      "weight_decay": 0.0
+    },
+    "L": {
+      "ramos_mamba": false,
+      "weight_decay": 0.001
+    },
+    "L0": {
+      "ramos_mamba": false,
+      "weight_decay": 0.0
+    }
+  },
+  "contrastes": {
+    "A_menos_L": {
+      "A": 1,
+      "L": -1
+    },
+    "B_menos_L0": {
+      "B": 1,
+      "L0": -1
+    },
+    "interacao": {
+      "B": 1,
+      "L0": -1,
+      "A": -1,
+      "L": 1
+    },
+    "L0_menos_L": {
+      "L0": 1,
+      "L": -1
+    }
+  },
+  "bootstrap": {
+    "blocos": [
+      7,
+      14,
+      28
+    ],
+    "principal": 14,
+    "replicas": 2000,
+    "seed": 12112026
+  },
+  "linear": {
+    "tipo": "Ridge84coordenadas",
+    "lambdas": [
+      0.01,
+      0.1,
+      1.0,
+      10.0,
+      100.0
+    ],
+    "objetivo": "MSE_medio+lambda_norma2",
+    "intercepto_penalizado": false,
+    "selecao": "menor_MSE_validacao_primeiro_empate"
+  },
+  "slippage_cenarios": [
+    0.0001,
+    0.0002,
+    0.0003
+  ],
+  "observacao_epocas": [
+    1,
+    5,
+    10,
+    25,
+    50,
+    100,
+    150,
+    200
+  ]
+}

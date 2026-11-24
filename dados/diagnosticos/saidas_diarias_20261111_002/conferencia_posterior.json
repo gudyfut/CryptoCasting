@@ -1,0 +1,72 @@
+{
+  "utc": "2026-11-11T12:39:37.022195+00:00",
+  "id": "0005ad18418451896172",
+  "situacao": "concluido_conferido",
+  "manifesto_original_sha256": "a7e36bee15405aa7e59074509a2a9af47715c8ecfa95456e716d6e92deef6a73",
+  "verificacao_arquivos_selados": 10,
+  "fontes_externas_antes_depois": 22,
+  "testes_sinteticos": {
+    "aprovados": 12,
+    "falhas": 0,
+    "avisos": 0,
+    "comando": ".venv/Scripts/python.exe -B -W error -m unittest discover -s dados/diagnosticos/saidas_diarias_20261111_002 -p testes.py -v"
+  },
+  "reproducao": {
+    "casos_prazo": 42,
+    "saldos_diarios_exatos": true,
+    "resumos_vigentes_reproduzidos": true
+  },
+  "auditoria": {
+    "carteiras": 168,
+    "operacoes_conferidas": 37848,
+    "residuo_maximo_usdt": 3.637978807091713e-12,
+    "ambiguidades": 0
+  },
+  "atribuicao_2025": {
+    "stop": {
+      "prazo": {
+        "operacoes": 304,
+        "prazo_teria_lucro": 176,
+        "melhor_que_prazo": 0,
+        "pior_que_prazo": 0,
+        "delta_medio_retorno_sobre_nocional_pp": 2.0973984646163095e-16
+      },
+      "stop": {
+        "operacoes": 123,
+        "prazo_teria_lucro": 19,
+        "melhor_que_prazo": 52,
+        "pior_que_prazo": 71,
+        "delta_medio_retorno_sobre_nocional_pp": -0.4649443516741681
+      }
+    },
+    "stop_take": {
+      "take": {
+        "operacoes": 98,
+        "prazo_teria_lucro": 84,
+        "melhor_que_prazo": 53,
+        "pior_que_prazo": 45,
+        "delta_medio_retorno_sobre_nocional_pp": 0.03757217053355601
+      },
+      "stop": {
+        "operacoes": 115,
+        "prazo_teria_lucro": 18,
+        "melhor_que_prazo": 48,
+        "pior_que_prazo": 67,
+        "delta_medio_retorno_sobre_nocional_pp": -0.4445459605008115
+      },
+      "prazo": {
+        "operacoes": 214,
+        "prazo_teria_lucro": 93,
+        "melhor_que_prazo": 0,
+        "pior_que_prazo": 0,
+        "delta_medio_retorno_sobre_nocional_pp": -1.5369927380654246e-16
+      }
+    }
+  },
+  "limite_atribuicao": "Retornos líquidos por nocional de cada operação; diagnóstico pareado, não soma de retornos de carteira nem novos backtests. Seeds usam datas comuns.",
+  "conclusao": "A distância fixa2.3547076% não melhorou retorno ou drawdown médio em2025 nas duas políticas. Todas as três seeds tiveram retorno pior. Em2024 somente stop perdeu vantagem frente ao prazo e stop_take ficou negativo. IC97.5% principal14dias do delta de crescimento inclui zero nos dois contrastes de2025; sem comprovar piora universal ou impossibilidade de outros limites.",
+  "tentativa_tecnica_preservada": "dados/diagnosticos/saidas_diarias_20261111_001/incidente.json",
+  "incorporacao_artigo": "Não promovida a modelo/política final; estudo exploratório isolado. Evidência preservada independentemente do sinal do resultado.",
+  "novos_treinamentos": 0,
+  "modificacoes_nucleo_ou_interface": 0
+}

@@ -3,7 +3,7 @@
 - Decisão: 20/10/2026.
 - Registro desta ADR: 27/10/2026, retrospectivo.
 - Situação: adotada.
-- Autorização: pesquisador; registrada em [decisões](../decisoes.md) e [plano](../../plano.md).
+- Autorização: pesquisador; registrada em [decisões](../../arquivo/estudos_preliminares_2026-10-28/documentacao/decisoes.md) e [plano](../../plano.md).
 
 ## Contexto e decisão
 
@@ -19,7 +19,7 @@ O arquivo de barreiras permanece imutável e separado. Protocolos e artefatos da
 
 - [Protocolo científico](../protocolo_experimental.md) e [configuração](../../configuracoes/retorno24_001.json).
 - [Ponteiro da referência](../../registros/execucao_atual.json).
-- [Resultados de desenvolvimento](../resultados_desenvolvimento.md) e [avaliação](../resultados_avaliacao.md).
+- [Resultados de desenvolvimento](../../arquivo/estudos_preliminares_2026-10-28/documentacao/resultados_desenvolvimento.md) e [avaliação](../../arquivo/estudos_preliminares_2026-10-28/documentacao/resultados_avaliacao.md).
 - [Fechamento auditado](../../registros/auditorias/1e7c5ed662fba55ddd25/fechamento.json).
 
 Esta ADR organiza decisões anteriores; não altera o contrato congelado nem comprova que os artefatos estão disponíveis em todas as máquinas.

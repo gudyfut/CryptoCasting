@@ -1,0 +1,543 @@
+{
+  "id": "35dd98141ee20d9b8885",
+  "utc": "2026-10-30T02:00:01.029424+00:00",
+  "contrato": {
+    "configuracao": {
+      "versao": "cryptomamba-adaptado-1.0",
+      "ciclo": "cryptomamba_adaptado_001",
+      "hipotese": "Comparar abordagem CryptoMamba adaptada com R16 nas mesmas entradas/saída/população; não ablação de fator único.",
+      "horizonte": 24,
+      "candle_minutos": 60,
+      "origem_minutos": 60,
+      "entradas": [
+        "abertura_relativa",
+        "maxima_relativa",
+        "minima_relativa",
+        "fechamento_relativo",
+        "volume_transformado"
+      ],
+      "seeds": [
+        17,
+        42,
+        2026,
+        7,
+        123,
+        31415
+      ],
+      "treino": {
+        "epocas": 100,
+        "paciencia": 10,
+        "batch": 32,
+        "microbatch": 32,
+        "taxa_aprendizado": 0.01,
+        "weight_decay": 0.001,
+        "clipping": 1.0
+      },
+      "arima": {
+        "ordens": [
+          [
+            0,
+            1,
+            0
+          ],
+          [
+            0,
+            1,
+            1
+          ],
+          [
+            0,
+            1,
+            2
+          ],
+          [
+            1,
+            1,
+            0
+          ],
+          [
+            1,
+            1,
+            1
+          ],
+          [
+            1,
+            1,
+            2
+          ],
+          [
+            2,
+            1,
+            0
+          ],
+          [
+            2,
+            1,
+            1
+          ],
+          [
+            2,
+            1,
+            2
+          ]
+        ],
+        "tendencia": "n",
+        "maxiter": 200
+      },
+      "dispositivo": "cuda",
+      "backend": "oficial",
+      "bootstrap": {
+        "dias": [
+          7,
+          14,
+          28
+        ],
+        "principal": 14,
+        "replicas": 2000,
+        "seed": 20261020
+      },
+      "operacao": {
+        "hora_utc": 0,
+        "latencia_minutos": 1,
+        "capital": 10000.0,
+        "taxa": 0.001,
+        "slippage": 0.0005,
+        "taxa_agravada": 0.002,
+        "slippage_agravado": 0.001
+      },
+      "par": "BTCUSDT",
+      "contexto": 168,
+      "representacao": "log_ohlc_relativo_close_anterior_e_log1p_volume_base",
+      "normalizacao": "padronizacao_estatica_por_canal_treino_horas_unicas",
+      "normalizacao_bloco": "pre_layernorm",
+      "divisao": {
+        "treino": [
+          "2021-01-01",
+          "2024-01-01"
+        ],
+        "validacao": [
+          "2024-01-01",
+          "2025-01-01"
+        ],
+        "teste": [
+          "2025-01-01",
+          "2026-01-01"
+        ]
+      },
+      "exposicao": "retrospectiva_periodos_ja_consultados",
+      "modelos": [
+        "cryptomamba_adaptado"
+      ],
+      "controles_reproducao": [],
+      "reproducao": {
+        "diferenca_absoluta_previsao": 1e-05,
+        "diferenca_relativa_mse": 0.0001,
+        "mesma_epoca": true,
+        "origem_limites": "mesmos limites dos controles dos ciclos preliminares; recarga do checkpoint permanece exata"
+      },
+      "entradas_pasta": "dados/entradas/0420879c2afc454c7754",
+      "mercado_pasta": "dados/mercado/binance_spot/449aab6c79dbf88aa625",
+      "origem_codigo": "fef42727861a9c3a32241283ab981ef21a49e291",
+      "parametros_esperados": 139317,
+      "arquitetura": {
+        "contexto_projetado": 14,
+        "larguras": [
+          14,
+          16,
+          32,
+          1
+        ],
+        "densidade": 4,
+        "estado": 64,
+        "convolucao": 4,
+        "expansao": 2,
+        "dropout": 0.0,
+        "eps_layernorm": 1e-05,
+        "varredura": "canais",
+        "canais": 5
+      },
+      "otimizador": {
+        "nome": "Adam",
+        "betas": [
+          0.9,
+          0.999
+        ],
+        "eps": 1e-08,
+        "isencoes_oficiais": true
+      },
+      "scheduler": {
+        "nome": "StepLR",
+        "passo_epocas": 10,
+        "gamma": 0.5
+      },
+      "perda": {
+        "nome": "rmse_por_lote",
+        "epsilon": 1e-08,
+        "escala": "alvo_padronizado_treino"
+      },
+      "orcamento_ajustes_reais": 6,
+      "controle": "Reprodução sintética e recarga exata; sem ajuste real extra.",
+      "comparacao_primaria": "cryptomamba6 versus estado16_6 lr0,0002; MSE de validação."
+    },
+    "fontes": {
+      "experimento_estado_mamba/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "experimento_estado_mamba/ciclo.py": "d2487894d1901d4854ddf7ce4fc1aa82cd89a2eba874f1f98c075becb9e3a1ab",
+      "experimento_estado_mamba/publicacao.py": "319660e2ce5e05927c56d45b2296319cc906d42fbedf13bf37109a9b33605759",
+      "treinamento/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "treinamento/ambiente.py": "9e0acf1c09537ea3259d6f02bb6f096cdb819a11c6b1670d95e292e793732bd6",
+      "treinamento/arima.py": "7d22218fac30a5a42921cfe7426d34132e836d400fda4e87c375c80919720ca0",
+      "treinamento/avaliar.py": "0ac89e31da797126b0a19c52444792f0eaee795240f87771b104ed16178b94f0",
+      "treinamento/checkpoints.py": "0f9ceb192473ec2f66245dee215bc63ba88b264beaa47153409ec95fcbc986d2",
+      "treinamento/ciclo.py": "f2438024b6cbfe050eb07ec0f74ab082b666fb23764dff0e1ec6b0aaf694ecf6",
+      "treinamento/configuracao.py": "e63e4131786d207a9e514e4d3c4b82b688c33213d20bb08850112cad04c81182",
+      "treinamento/neural.py": "05928af030bed5b12fe3904ee940f21a735c39e5aac568febbce8a7c4d3d2f08",
+      "treinamento/otimizacao.py": "96bf1dcad24de3cfd9beb1e0b76becfb68c1ff137b84a4eb66b9067f5b07a334",
+      "treinamento/preservacao.py": "0dbaefa24cad87ddadeaa727748bef5ff24a9f26e612497d0341399dc6db08e8",
+      "treinamento/qualificacao.py": "a7f760310cbef8c3d81900cf92b2ad2995d5e7ef0d1fec56f92a2cf2f7610cda",
+      "treinamento/selecao.py": "1671fb202499e547a032488ee51b3b0e214cea0f7e50c394b3b2a2e09591a8db",
+      "avaliacao/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "avaliacao/mercado.py": "c83fc429fda2642d9429fe546e167a4c6415b199c78f45befd71dcbb0e8a026b",
+      "avaliacao/metricas.py": "89016c0fba23691707fec66ec11a2e233cab108f27ff5dcd5872b547f9af4af4",
+      "avaliacao/publicacao.py": "b3bf2fb4ab48d757119f6e2079c4809b2d76d4bc77f0655faf909f544c87d7ce",
+      "avaliacao/spot.py": "e37d98a16580294a3b0c3c6a353df7ff8aaed176a32a3e0f1b9b07c0b6b80bf6",
+      "modelos/__init__.py": "9008c1d8057a95f0496b9d1237b06c59032143dbe0534ceed59cb83af38f05b8",
+      "modelos/arima.py": "df37e823342bff7d70833ea056ba24e6293f204b455f227a66c28bfff4654538",
+      "modelos/conferencia.py": "b553421f8ea9c18370695c9e41561384330a207dd5efb0906bcec308538d50bf",
+      "modelos/consumo.py": "45bc850a421175b72a2500b256d0e7b8563892a638ba1e572e4ca22527af6a40",
+      "modelos/contratos.py": "cbcd7f912ce4615549300cee2f04974e59a7ecfb3eb836e035c634eddb620447",
+      "modelos/lstm.py": "bff60cbcc12a185e666b8a511e5be2d5e0ab25c0764f7ecd93e876601dbc04dd",
+      "modelos/mamba.py": "0ca157f55f0f788beee09aa43768eccf0dae139fe969f5823a855cb1a755773a",
+      "modelos/naive.py": "bd12107c6e9311e68b2377c6417ff32d3de756f5150e3d4d9714fa630cfd045d",
+      "modelos/neurais.py": "4b6cb724313d3b5df83a79afc3291dc0d644110158f0e5c6f62bd6bab85d4c54",
+      "entradas_modelo/__init__.py": "a32efc5cc42d7d1b858e7dd9c01d39c0b7466ce593021169fbc8940795ade29c",
+      "entradas_modelo/alvos.py": "60cd54bc0bf9bfdefbf49271edb44110b46a8538f45a1d4d6ceb44df4e0a7e4d",
+      "entradas_modelo/amostras.py": "a2c20315d8bae37ad2b35dcae8aa7f01c515afaa7ff82984a5d62b2211c10bbc",
+      "entradas_modelo/conjunto.py": "9744fd6327ed74634660b42185e120e23a481b6187d0897d3042973be2e61610",
+      "entradas_modelo/pipeline.py": "e9a69438d603ad5ab3e8dde88a0445811f78947ef5552c4949258bca370c0e63",
+      "entradas_modelo/receitas.py": "f60a285ba54b89be78ec30fa0e5c3e88ae73152e7b98920c1d6b36451aad3d5c",
+      "mercado_binance/__init__.py": "1993613e6993a8af8ee69166f85eb809bea6f069829376487a40ee3fb544dcc8",
+      "mercado_binance/api.py": "b170c17c808da6f030f69531e8196033b22dbb1137cb950c77c8a4f8f7d586a3",
+      "mercado_binance/candles.py": "99d539cc682c8662b4f267f0c594b54a46c8da9fa5cdd8b7757a22bb0a2eee05",
+      "mercado_binance/contratos.py": "7dfc6f0c4739629a7ca98f4cecbfc49d939a90967ccdef7dad5012356e4d9ac5",
+      "mercado_binance/pipeline.py": "2fae3c6c7474e7a77735e2c34a0bf56f38cf4f03ca267dcaeb830e8100ce1ba1",
+      "mercado_binance/transporte.py": "ec0bd84e482ec957ba611c4af3b8f5f7dc60abafdba88211a531c954c9da589b",
+      "mercado_binance/validacao.py": "fdb47dcb5a66e984db584170e597f14dd636cbf55f087a382b03c04e43f78395",
+      "infraestrutura/__init__.py": "91c8cb2892c40d290684a1d0bd676b3278cdce4841696602d9e41805f1b062d5",
+      "infraestrutura/artefatos.py": "8a6b3cfeee815cdc3742ddf6b6fe7e972fa0757099f16212310515c49eb28a3e",
+      "tests_modelos/apoio.py": "19d5616bcc78550c38282016825f14ff7e985168ad60b39c3f08d29d7f61ba2f",
+      "tests_modelos/test_arima.py": "457f2c03864813cd8c5adff95aa8988efeff16e48f9282b28f7fb78e7b960090",
+      "tests_modelos/test_consumo.py": "af243c8458133075ece7c5037439e419cae57660cf3f7bc887ce178396f818a6",
+      "tests_modelos/test_neurais.py": "18c1781677834988de34b44daea9c442c626b68bee96609143508c6fc6dcfadc",
+      "tests_estado_mamba/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "tests_estado_mamba/test_ciclo.py": "1d0402282d5cdef6ef119e27e46a0ee7d3a71a4545e24df42affd01a5b25934c",
+      "configuracoes/mamba_estado8_001.json": "0afa359b15f298c0ff315c8d8e45e1c64f0a0dbcbf610a434ab677a187649227",
+      "configuracoes/modelos_mamba_estado8_001.json": "7c9818a6b226fd1f30c40c3bb72fdfed297aff3693c944cd5624b2f5cb48c351",
+      "configuracoes/modelos_ohlcv24_001.json": "4311f1d1da59cc7b6bcb400d2539dc009d67f84ab570accee3b1a3b164b02c7d",
+      "configuracoes/treinamento_ohlcv24_001.json": "25b4d7cb28efc723dc2390490c744366816390142354e060a6ae8421259c4724",
+      "run_estado_mamba.py": "f8c0759d4777cce3ee3d2b85ead595b2d53bcff27815a91c2fc19432883f7df3",
+      "experimento_estados_ampliados/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "experimento_estados_ampliados/ciclo.py": "c600d9c9362ca2c7cd62fd486376ddb545eee19f9cb714e3a648278c8d38a35a",
+      "experimento_estados_ampliados/publicacao.py": "94aaf338970e71815df8ece5d9e771377a2dce90db563a24d735a20d73518577",
+      "tests_estados_ampliados/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "tests_estados_ampliados/test_sequencia.py": "3a9fc9663d8d935d104b44b8be5c1ad624d68f2377ba988a5771164285389be2",
+      "configuracoes/mamba_estado32_001.json": "4683348fa4b7db23205cb0fe080274d147aed7750cef2c7e82692c25cde3e571",
+      "configuracoes/modelos_mamba_estado32_001.json": "15a1b86757ef0432b477c6ef7572eb937b0b9a12044d67b0f6af83b130cc1890",
+      "configuracoes/mamba_estado64_001.json": "1975f83c267a7054c753f2e4e34c378bd12504486ab8ffdf3e24b9c7bfa07c8c",
+      "configuracoes/modelos_mamba_estado64_001.json": "e944f38e0a8ad5b309b0cef99910e75b16e1e22fa5a027bbcc9ea4867a207e83",
+      "run_estados_ampliados.py": "3d9fce8862567fb6159080de0a884e3d62bbcbc71732a2c2dcee124a00531953",
+      "experimento_complemento16/__init__.py": "1adbb05965c0ee77f402f6cf37ad4e8a33a5c2f4c1b2d0cba5754636537cbba5",
+      "experimento_complemento16/ciclo.py": "401d82db6f5f5cdadc1622a5d08f2845783592d2f05d12a8263c098fd1780a12",
+      "experimento_complemento16/publicacao.py": "05a92a67f3b58d5150b601296cc8ffe34c4a992f7a52f6329296feb11f12a7cd",
+      "tests_complemento16/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "tests_complemento16/test_ciclo.py": "ed137b787daa9b46926f156277e76b8e000bc58c9bc702fcf2e6d636d9f21240",
+      "configuracoes/mamba_estado16_complemento_001.json": "6c5370aaed8cba7b34a18f72f347837e9743726ccf749739fc07932f235abbea",
+      "run_complemento16.py": "4a71cc1a6a445326c95ed76583864187495b6b3829af1f80b4e75daa786b0cbb",
+      "experimento_taxa_aprendizado/__init__.py": "981d9ece1f26e2c35810a5ffa599e3dd4c21849e1143cfd9c9f83f8d39a0423d",
+      "experimento_taxa_aprendizado/ciclo.py": "e1d0b93a6a4ad57085498604b3e4f95f953aaa85f51c6b8110577bb79239613e",
+      "experimento_taxa_aprendizado/finalizacao.py": "5d949cd6cd72359dbab7755067652ebb370a584f050a2ed0fece242788abec2b",
+      "experimento_taxa_aprendizado/publicacao.py": "b774b9c8fc2581548dae02c132989880a89c14c01a0b4c1c4ba0e6175b174228",
+      "tests_taxa_aprendizado/__init__.py": "851731a5ef1683ed77ce4b74eef506f03714203220c001376bd735454b3c0b24",
+      "tests_taxa_aprendizado/test_ciclo.py": "522b20ca8405a9b40a4a848021a849b4a2aaa95075603cbe76afc7a5c8100a74",
+      "configuracoes/taxa_aprendizado_mamba_001.json": "22bc074be7e2b09b8577e9a1608398526349e8cc86a52658ff40ddf4b7873ca3",
+      "run_taxa_aprendizado.py": "4a89787744e0285967e629391c7b4739119d33b7f65c69b4b76a4d6176256b61",
+      "configuracoes/mamba_taxa0001_estado8_001.json": "e0648f31849b3821bef60e67bd7a53d96520de3a3cecb436332e3a67ba5bb0aa",
+      "configuracoes/modelos_mamba_taxa0001_estado8_001.json": "7c9818a6b226fd1f30c40c3bb72fdfed297aff3693c944cd5624b2f5cb48c351",
+      "configuracoes/mamba_taxa0001_estado16_001.json": "c8c6218c3ed2e30b6013d10c82f82e5d62604650cd95eb607bdd0330200e55a2",
+      "configuracoes/modelos_mamba_taxa0001_estado16_001.json": "582653380aa5e49d348c271b59aed2102c7d62409eaf08a0ea79fe4cceab1732",
+      "configuracoes/mamba_taxa0001_estado32_001.json": "16118d1bc147316d035ce0b28892dada32aae3469de778dfe641d284b07d4124",
+      "configuracoes/modelos_mamba_taxa0001_estado32_001.json": "15a1b86757ef0432b477c6ef7572eb937b0b9a12044d67b0f6af83b130cc1890",
+      "configuracoes/mamba_taxa0001_estado64_001.json": "24a3ae2b39e978b11b70bc21c176d29d4a2ebac82620fdb07647c2cfc8822d6c",
+      "configuracoes/modelos_mamba_taxa0001_estado64_001.json": "e944f38e0a8ad5b309b0cef99910e75b16e1e22fa5a027bbcc9ea4867a207e83",
+      "experimento_cryptomamba/__init__.py": "b5e17bcc1c4ee843b4fda1e23139eaee225742bec6a2e4d191a033933d4495ad",
+      "experimento_cryptomamba/ciclo.py": "b07fc57c8a977877db1c029acc6ec62001b88707c209a5b145c3f81acb332437",
+      "experimento_cryptomamba/finalizacao.py": "2767d0aa533af0b7bf803facba8037027e2c938eca6456c0747e6fbd79cbe1fa",
+      "experimento_cryptomamba/modelo.py": "b8ab2e0f6b5db9a13db30c20b5d007b6a4d95079ad15e6f66454ed2aae155855",
+      "experimento_cryptomamba/publicacao.py": "e30b2e66a11cfbf33cd2505fa3b13317947a50a4db7e83a7a8ab09bdc3704aaa",
+      "experimento_cryptomamba/treino.py": "dfb2b978e4ce39cc4819f6e670ca96a4034029991c7d07f08e7f0e1595b28a85",
+      "tests_cryptomamba/__init__.py": "8aa62e31f3ccba670d8c5a885d19687a06ea7c1260146f941cc76ce0bef4eb07",
+      "tests_cryptomamba/test_adaptacao.py": "c328d01c94a08c82a6bdae5dc5df075b8cd449f4b40a451665728366b3a592eb",
+      "configuracoes/cryptomamba_adaptado_001.json": "3291902d7f206a3aa8e71258d2aec79de4ea43c2d978d06817ff404c642c9639",
+      "run_cryptomamba.py": "9ea7c9433f9ea127413e3bb2f9235906aefca8d503b4e815717bdb56e56fa294",
+      "registros/cryptomamba/fontes_externas/fef42727861a9c3a32241283ab981ef21a49e291/LICENSE": "1903d57dbabb004f056ae9433e12ee8847b44c2852f453ae9667abb030a8a8a8",
+      "registros/cryptomamba/fontes_externas/fef42727861a9c3a32241283ab981ef21a49e291/README.md": "947901b04ce960f63a031a03ffea0d41ac224b0f99724b794631896abb80218a",
+      "registros/cryptomamba/fontes_externas/fef42727861a9c3a32241283ab981ef21a49e291/models/cmamba.py": "0134d4159c67396c58211f670c15a121da0eadad0ab9cddad6ca546a7892a496",
+      "registros/cryptomamba/fontes_externas/fef42727861a9c3a32241283ab981ef21a49e291/pl_modules/cmamba_module.py": "2c760fa916a4c1f58cb14fb2525adb741f63aa974d6e89d034c692d69d22b475",
+      "registros/cryptomamba/fontes_externas/fef42727861a9c3a32241283ab981ef21a49e291/pl_modules/base_module.py": "304a5f4bae71aca5a52a673998764c189f878b936b9c5eaa5ef0241e185738a0",
+      "registros/cryptomamba/fontes_externas/fef42727861a9c3a32241283ab981ef21a49e291/pl_modules/data_module.py": "3ac9cf1d816d2b51b46a6f92ff680a4ca0cdda04a09f1928ae4bbf5f3dbf278e",
+      "registros/cryptomamba/fontes_externas/fef42727861a9c3a32241283ab981ef21a49e291/data_utils/data_transforms.py": "fadfb34308478f33021cae365b881c53932ab95cff131d4e133d3379d1b576f9",
+      "registros/cryptomamba/fontes_externas/fef42727861a9c3a32241283ab981ef21a49e291/data_utils/dataset.py": "1935155e55d55845aa6c0df3c68724007a1c02aee46a6b70ea3ffbfe9e0de3fe",
+      "registros/cryptomamba/fontes_externas/fef42727861a9c3a32241283ab981ef21a49e291/configs/training/cmamba_v.yaml": "2e439df16b4df6d7c816f08d013a55c54ac4b0d731889698688cf6b8f1ca2c20",
+      "registros/cryptomamba/fontes_externas/fef42727861a9c3a32241283ab981ef21a49e291/configs/training/cmamba_nv.yaml": "62c9abaa3135b7598f64e512045716048eac1b575e59ce81e8af68f67e00cd8f",
+      "registros/cryptomamba/fontes_externas/fef42727861a9c3a32241283ab981ef21a49e291/configs/models/CryptoMamba/v1.yaml": "e8bcb53140fe0df47a3bc5a396aeb356d95b89df97f5d626a55b41e9398991de",
+      "registros/cryptomamba/fontes_externas/fef42727861a9c3a32241283ab981ef21a49e291/configs/models/CryptoMamba/v2.yaml": "681cd57ddf7c9a3fa9868a5f574f0f0a006c76f4ec030e6973e2abd74ae1eb42",
+      "registros/cryptomamba/fontes_externas/fef42727861a9c3a32241283ab981ef21a49e291/configs/data_configs/mode_1.yaml": "41cbdc2204bbff07c3b3972eb3df5f5615ad4a97f73a768fe092f04d3fce80ae",
+      "registros/cryptomamba/fontes_externas/fef42727861a9c3a32241283ab981ef21a49e291/scripts/training.py": "04a1e2ef2e904a0d11fcd0124c0b12395648f43a4236a24ac48177eb77ca0ba8",
+      "registros/cryptomamba/fontes_externas/fef42727861a9c3a32241283ab981ef21a49e291/scripts/evaluation.py": "8b365309801707674b660ace909141869cbd9ebf6458850ed642dcd54f6077c1",
+      "registros/cryptomamba/fontes_externas/fef42727861a9c3a32241283ab981ef21a49e291/scripts/simulate_trade.py": "57ffbc1288b5a1102fd02f8f7125792aed8f4d45f2fee3a61d9ab92e0b0657e4",
+      "registros/cryptomamba/fontes_externas/fef42727861a9c3a32241283ab981ef21a49e291/utils/trade.py": "2ef7749cae1ca3e8e994f35b9112d3fa90448162d14404bf7ccb83964facc99e",
+      "registros/cryptomamba/fontes_externas/fef42727861a9c3a32241283ab981ef21a49e291/requirements.txt": "e67d77601f17508d4d46c20be4819fec2277bcadf0297b711fb1a0c2a8ea9090",
+      "registros/cryptomamba/fontes_externas/fef42727861a9c3a32241283ab981ef21a49e291/proveniencia.json": "c750c6dcb37eb9fa61fe5704b5021bd30e5920a3d9aac3b891aa4fdd2d7c4bf3"
+    },
+    "ambiente": {
+      "python": "3.12.13",
+      "torch": "2.6.0+cu118",
+      "cuda": "11.8",
+      "host": "MuriloRFM",
+      "gpu": "NVIDIA GeForce RTX 4050 Laptop GPU",
+      "implementacao_instalada": {
+        "mamba": "a17e4c51b582dc0d4d690a649eba521cd0c1ee3dc8f0473a0967cdc9ec0874e3",
+        "mamba_ssm.ops.selective_scan_interface": "543edd077f11c80cccd5c5e2f926420d9105fd238d9e8960e53660cfa234dce8",
+        "selective_scan_cuda": "9ef2a8bad7534cfac451bfe312124cd1efb609ecfd65ce63262526d3113c87e1",
+        "causal_conv1d_cuda": "72a06e63ea5a209ec95d5a7ecc7199750b6df4ddf5ecc9019cd2a5c5758e2aac"
+      },
+      "pacotes": {
+        "mamba_ssm": "2.2.6.post3",
+        "causal_conv1d": "1.6.2.post1",
+        "numpy": "2.2.6",
+        "pandas": "3.0.3",
+        "statsmodels": "0.14.6",
+        "pyarrow": "24.0.0"
+      }
+    },
+    "consumo": "8fcc08d64f197a43e68db65e674430ad26a5cbf8fd720c7511435b2a9336908d",
+    "referencias": {
+      "taxa0001_estado8_42": {
+        "pasta": "dados/experimentos/taxa_aprendizado_1af0a64e83d472ac533e/celulas/estado8_mamba_42/tentativa_001",
+        "conclusao_sha256": "cb640f1ada54a2f3078a25997aaa2e256abd6edeed3f7375f01635dfdeb97a2c"
+      },
+      "taxa0001_estado8_17": {
+        "pasta": "dados/experimentos/taxa_aprendizado_1af0a64e83d472ac533e/celulas/estado8_mamba_17/tentativa_001",
+        "conclusao_sha256": "41044455b37a9a81a1008fa0bb35ef92aeea31f1158262d940ad61f33ce4f371"
+      },
+      "taxa0001_estado8_2026": {
+        "pasta": "dados/experimentos/taxa_aprendizado_1af0a64e83d472ac533e/celulas/estado8_mamba_2026/tentativa_001",
+        "conclusao_sha256": "7425ee677b544aa1be93bf1102ea13863823a3a68ba456f2f56b16af71b2d45c"
+      },
+      "taxa0001_estado8_7": {
+        "pasta": "dados/experimentos/taxa_aprendizado_1af0a64e83d472ac533e/celulas/estado8_mamba_7/tentativa_001",
+        "conclusao_sha256": "7d8e0fdf7c93d27867e9a4ba2a36bbe9f2ca006f53e5668daa28ff6cd1ed12df"
+      },
+      "taxa0001_estado8_123": {
+        "pasta": "dados/experimentos/taxa_aprendizado_1af0a64e83d472ac533e/celulas/estado8_mamba_123/tentativa_001",
+        "conclusao_sha256": "c4c1771f3b0a6c458745b2781eec55e53b1f0302af92966c6afc96bbad7eda34"
+      },
+      "taxa0001_estado8_31415": {
+        "pasta": "dados/experimentos/taxa_aprendizado_1af0a64e83d472ac533e/celulas/estado8_mamba_31415/tentativa_001",
+        "conclusao_sha256": "46b96c1819afccf2563cba5da0b2346f3a82396c63b6adab495a4bd20d90340b"
+      },
+      "taxa0001_estado16_42": {
+        "pasta": "dados/experimentos/taxa_aprendizado_1af0a64e83d472ac533e/celulas/estado16_mamba_42/tentativa_001",
+        "conclusao_sha256": "43cf0c4f843fb5b59dcf954d343183d892eab9af12b55c2a8f46231912630596"
+      },
+      "taxa0001_estado16_17": {
+        "pasta": "dados/experimentos/taxa_aprendizado_1af0a64e83d472ac533e/celulas/estado16_mamba_17/tentativa_001",
+        "conclusao_sha256": "25f248640a7dd7e4bd226b81209d7211799e9fd0cbefd5a5755c3b2b2f1a7e15"
+      },
+      "taxa0001_estado16_2026": {
+        "pasta": "dados/experimentos/taxa_aprendizado_1af0a64e83d472ac533e/celulas/estado16_mamba_2026/tentativa_001",
+        "conclusao_sha256": "83564d1957a13aec69f3b99426ff8b656420cc788ffad42df5ea4116c1d8f280"
+      },
+      "taxa0001_estado16_7": {
+        "pasta": "dados/experimentos/taxa_aprendizado_1af0a64e83d472ac533e/celulas/estado16_mamba_7/tentativa_001",
+        "conclusao_sha256": "aa6b574335004377173cdbbab33b36664ab6fa51e9778d0cf8b3e08377661bec"
+      },
+      "taxa0001_estado16_123": {
+        "pasta": "dados/experimentos/taxa_aprendizado_1af0a64e83d472ac533e/celulas/estado16_mamba_123/tentativa_001",
+        "conclusao_sha256": "ca8555ed3a4e12e4a0838f6ff7f458dd33f6c3c528765e4b54abca2f95ef4000"
+      },
+      "taxa0001_estado16_31415": {
+        "pasta": "dados/experimentos/taxa_aprendizado_1af0a64e83d472ac533e/celulas/estado16_mamba_31415/tentativa_001",
+        "conclusao_sha256": "d7aa165ac0a5de29eb976f57b9870f77172660632d3016d36325005261388877"
+      },
+      "taxa0001_estado32_42": {
+        "pasta": "dados/experimentos/taxa_aprendizado_1af0a64e83d472ac533e/celulas/estado32_mamba_42/tentativa_001",
+        "conclusao_sha256": "d587ed184ebd5621a39461151b840d8e090e2f7227405071b179ee320b4db3e3"
+      },
+      "taxa0001_estado32_17": {
+        "pasta": "dados/experimentos/taxa_aprendizado_1af0a64e83d472ac533e/celulas/estado32_mamba_17/tentativa_001",
+        "conclusao_sha256": "2b26fc8e92920580931458fdea88ed1144875ea375bee1968385855cc8850174"
+      },
+      "taxa0001_estado32_2026": {
+        "pasta": "dados/experimentos/taxa_aprendizado_1af0a64e83d472ac533e/celulas/estado32_mamba_2026/tentativa_001",
+        "conclusao_sha256": "ade990a58cbb89cba5bfd160e861e8af21af89288eecd85592bb08c0e72755af"
+      },
+      "taxa0001_estado32_7": {
+        "pasta": "dados/experimentos/taxa_aprendizado_1af0a64e83d472ac533e/celulas/estado32_mamba_7/tentativa_001",
+        "conclusao_sha256": "a9e252145d90806c9c5b3c3a1a440e2da3a001c8f4f393d82777ad26e67ca26d"
+      },
+      "taxa0001_estado32_123": {
+        "pasta": "dados/experimentos/taxa_aprendizado_1af0a64e83d472ac533e/celulas/estado32_mamba_123/tentativa_001",
+        "conclusao_sha256": "2abcc69ef90ad8e9101b7e335185f1e0262458c81ff48b503bcb60f2e4682961"
+      },
+      "taxa0001_estado32_31415": {
+        "pasta": "dados/experimentos/taxa_aprendizado_1af0a64e83d472ac533e/celulas/estado32_mamba_31415/tentativa_001",
+        "conclusao_sha256": "ddaf287b19486523b3752a7c3f07ea721ece1e1366967da25537adc0059a3642"
+      },
+      "taxa0001_estado64_42": {
+        "pasta": "dados/experimentos/taxa_aprendizado_1af0a64e83d472ac533e/celulas/estado64_mamba_42/tentativa_001",
+        "conclusao_sha256": "247792184744d6b686babe332771d4ca95c72ff2491b8bee9802debc7382e00d"
+      },
+      "taxa0001_estado64_17": {
+        "pasta": "dados/experimentos/taxa_aprendizado_1af0a64e83d472ac533e/celulas/estado64_mamba_17/tentativa_001",
+        "conclusao_sha256": "b3c2d2e80dbadf44b82cc75b5cdf75d198857e60d53e8841f1530868e5734c9d"
+      },
+      "taxa0001_estado64_2026": {
+        "pasta": "dados/experimentos/taxa_aprendizado_1af0a64e83d472ac533e/celulas/estado64_mamba_2026/tentativa_001",
+        "conclusao_sha256": "48f352b1dab8b1d299e9e55e2c42ca62daac2cc374482dda3d18a95d6d523c70"
+      },
+      "taxa0001_estado64_7": {
+        "pasta": "dados/experimentos/taxa_aprendizado_1af0a64e83d472ac533e/celulas/estado64_mamba_7/tentativa_001",
+        "conclusao_sha256": "28de3a257b3bc57889ed7cb24b666ee2a825360e7caa4b5170cb08ad22721adb"
+      },
+      "taxa0001_estado64_123": {
+        "pasta": "dados/experimentos/taxa_aprendizado_1af0a64e83d472ac533e/celulas/estado64_mamba_123/tentativa_001",
+        "conclusao_sha256": "ed97980d8fd763f2b6f0b374f462c7686c415560f7afced0a76f8b581d2266bb"
+      },
+      "taxa0001_estado64_31415": {
+        "pasta": "dados/experimentos/taxa_aprendizado_1af0a64e83d472ac533e/celulas/estado64_mamba_31415/tentativa_001",
+        "conclusao_sha256": "c3215183dbc4b975c865339afb6a9d656a4823d07577f859192860fd146615bf"
+      },
+      "estado16_7": {
+        "pasta": "dados/experimentos/complemento_estado16_cc0b166fe42a3ed1678d/celulas/mamba_7/tentativa_001",
+        "conclusao_sha256": "283061d0627c996b5c80d5047fbbcc3a6ea82cc38d06c67ed417d7a0dd222e71"
+      },
+      "estado16_123": {
+        "pasta": "dados/experimentos/complemento_estado16_cc0b166fe42a3ed1678d/celulas/mamba_123/tentativa_001",
+        "conclusao_sha256": "37bfc4fc3d0a35b7bba57b0107f58ebcf4b97acf234371c6c0bb0d31eb8400a1"
+      },
+      "estado16_31415": {
+        "pasta": "dados/experimentos/complemento_estado16_cc0b166fe42a3ed1678d/celulas/mamba_31415/tentativa_001",
+        "conclusao_sha256": "a5ef18ff3f46e1dfb02dd79699fb8db6771e74c8d00aca2cbe0c73d5eb682b6e"
+      },
+      "estado16_17": {
+        "pasta": "dados/experimentos/ohlcv_modular_ab5baf3eab3a2e66d8b2/celulas/mamba_17/tentativa_001",
+        "conclusao_sha256": "b3fc8bb1b9fa2788b45612dbf0117127a9c99ea70460827f5762365f497cb63e"
+      },
+      "estado16_42": {
+        "pasta": "dados/experimentos/ohlcv_modular_ab5baf3eab3a2e66d8b2/celulas/mamba_42/tentativa_001",
+        "conclusao_sha256": "92c7ebee418dcc313554dfd699f1fa742cdd5ae256d14e603d876fcad0f29688"
+      },
+      "estado16_2026": {
+        "pasta": "dados/experimentos/ohlcv_modular_ab5baf3eab3a2e66d8b2/celulas/mamba_2026/tentativa_001",
+        "conclusao_sha256": "065b5c1e9c613a9e149cc6e9c400d808517a43305a16737b6e949a599043f64a"
+      },
+      "lstm_17": {
+        "pasta": "dados/experimentos/ohlcv_modular_ab5baf3eab3a2e66d8b2/celulas/lstm_17/tentativa_001",
+        "conclusao_sha256": "64e8aa41ba1854bdead0596b0511219565eee932593aa354475479edef305eb9"
+      },
+      "lstm_42": {
+        "pasta": "dados/experimentos/ohlcv_modular_ab5baf3eab3a2e66d8b2/celulas/lstm_42/tentativa_001",
+        "conclusao_sha256": "cd79420cecf8496f97b0d0db3bc48aa5a6ef3cf820db20b52a7fd2867313b02c"
+      },
+      "lstm_2026": {
+        "pasta": "dados/experimentos/ohlcv_modular_ab5baf3eab3a2e66d8b2/celulas/lstm_2026/tentativa_001",
+        "conclusao_sha256": "9fa4733d2d1acf5f2a1c6a36b7cf8aec15c825f163bbb265221896adda7c36fa"
+      },
+      "naive": {
+        "pasta": "dados/experimentos/ohlcv_modular_ab5baf3eab3a2e66d8b2/celulas/naive/tentativa_001",
+        "conclusao_sha256": "47728d6dfe7371555fe3e24087789fd795f5772007f0acc0302495ebba1d8b1d"
+      },
+      "arima": {
+        "pasta": "dados/experimentos/ohlcv_modular_ab5baf3eab3a2e66d8b2/celulas/arima/tentativa_001",
+        "conclusao_sha256": "b57695e9c63f77a71a68c45468ad2e537b2bed2957df520411debc4a82d7b302"
+      },
+      "estado8_17": {
+        "pasta": "dados/experimentos/estado_mamba_dcf4b0ed9012f7247bce/celulas/mamba_17/tentativa_001",
+        "conclusao_sha256": "cd25194a35d0d246ec4204385816bf79eb8d9e62fb5d708702ee7f8c2c958de7"
+      },
+      "estado8_42": {
+        "pasta": "dados/experimentos/estado_mamba_dcf4b0ed9012f7247bce/celulas/mamba_42/tentativa_001",
+        "conclusao_sha256": "4751d8555a9e4eea3a7b30e9943c65b3cb6455a9ebf1cb1faeeb207f362415e1"
+      },
+      "estado8_2026": {
+        "pasta": "dados/experimentos/estado_mamba_dcf4b0ed9012f7247bce/celulas/mamba_2026/tentativa_001",
+        "conclusao_sha256": "e3d4d5de1d62572bbdb3fe832ff62c27abe1d31254c500a197b058109bc60c1b"
+      },
+      "estado8_7": {
+        "pasta": "dados/experimentos/estado_mamba_dcf4b0ed9012f7247bce/celulas/mamba_7/tentativa_001",
+        "conclusao_sha256": "1e9328e4769ba395cb1435140d6353dd8eed92da88fb4e3758aaddaba266e692"
+      },
+      "estado8_123": {
+        "pasta": "dados/experimentos/estado_mamba_dcf4b0ed9012f7247bce/celulas/mamba_123/tentativa_001",
+        "conclusao_sha256": "501461a99c9af6dcf1a7facce3df41ea47bbeec94eb97b7a666155e3c5e25490"
+      },
+      "estado8_31415": {
+        "pasta": "dados/experimentos/estado_mamba_dcf4b0ed9012f7247bce/celulas/mamba_31415/tentativa_001",
+        "conclusao_sha256": "19b7f5e971c4f9c142b681d5aa04a07f25784dccf38cb8a22700e674f01b8e7f"
+      },
+      "estado32_17": {
+        "pasta": "dados/experimentos/estados_ampliados_32_23c2ba54349bcc1b0ee1/celulas/mamba_17/tentativa_001",
+        "conclusao_sha256": "1e592118d91a0e7070f5c84f1d710412aabcf98117e693d15b1fcbf2a6b33696"
+      },
+      "estado32_42": {
+        "pasta": "dados/experimentos/estados_ampliados_32_23c2ba54349bcc1b0ee1/celulas/mamba_42/tentativa_001",
+        "conclusao_sha256": "1dc5353b4ac20569ca6b9652494ace2f23cccb0c1f6494a126816e80b62d47a9"
+      },
+      "estado32_2026": {
+        "pasta": "dados/experimentos/estados_ampliados_32_23c2ba54349bcc1b0ee1/celulas/mamba_2026/tentativa_001",
+        "conclusao_sha256": "895000fc1956c484d198f2ef08611ab6fbfce38772341ab5d1e5907e2e797d50"
+      },
+      "estado32_7": {
+        "pasta": "dados/experimentos/estados_ampliados_32_23c2ba54349bcc1b0ee1/celulas/mamba_7/tentativa_001",
+        "conclusao_sha256": "445667e3783a75aa44d515cfcd11f0f1d76dc4c5dc107b67f8c92312e3badab4"
+      },
+      "estado32_123": {
+        "pasta": "dados/experimentos/estados_ampliados_32_23c2ba54349bcc1b0ee1/celulas/mamba_123/tentativa_001",
+        "conclusao_sha256": "3cb755382d512822ed75072a27752f6af8b6925499ccc47ef6fe73a1424358d1"
+      },
+      "estado32_31415": {
+        "pasta": "dados/experimentos/estados_ampliados_32_23c2ba54349bcc1b0ee1/celulas/mamba_31415/tentativa_001",
+        "conclusao_sha256": "5a2eb5f7249a2e10b27f5b5fcc520720d899292e07faf2b49d5b96b5986503c0"
+      },
+      "estado64_17": {
+        "pasta": "dados/experimentos/estados_ampliados_64_42cb667ea43df563e3ac/celulas/mamba_17/tentativa_001",
+        "conclusao_sha256": "443d0529f5712c7dca1aa4ad81e772e1b92a41166368bdbc2a3fd4d6591430ab"
+      },
+      "estado64_42": {
+        "pasta": "dados/experimentos/estados_ampliados_64_42cb667ea43df563e3ac/celulas/mamba_42/tentativa_001",
+        "conclusao_sha256": "6b701ee00dcb26dc67f196d5a2a4ea00db4285cd9c2294196e1c137b20a7213f"
+      },
+      "estado64_2026": {
+        "pasta": "dados/experimentos/estados_ampliados_64_42cb667ea43df563e3ac/celulas/mamba_2026/tentativa_001",
+        "conclusao_sha256": "cea300ae39cb7f29336b6279204cef708b7e4404734cd078493b81dc8531a4c0"
+      },
+      "estado64_7": {
+        "pasta": "dados/experimentos/estados_ampliados_64_42cb667ea43df563e3ac/celulas/mamba_7/tentativa_001",
+        "conclusao_sha256": "29e99b805df69d918f4a75eaad64c94a8d89255954a8fe1b75273f41e9a7c3a0"
+      },
+      "estado64_123": {
+        "pasta": "dados/experimentos/estados_ampliados_64_42cb667ea43df563e3ac/celulas/mamba_123/tentativa_001",
+        "conclusao_sha256": "cad80fa5f629ce68f871ffa85fe746af2a8c5f641b3b3ffe169ba65259d15acb"
+      },
+      "estado64_31415": {
+        "pasta": "dados/experimentos/estados_ampliados_64_42cb667ea43df563e3ac/celulas/mamba_31415/tentativa_001",
+        "conclusao_sha256": "74b521874e225da10ed5755f06ab8d87e9db95ccd58220f4b7b98c2a8c223d36"
+      }
+    },
+    "qualificacao": {
+      "arquivo": "registros/cryptomamba/qualificacoes/f4b7e83fff46441da095637058bce94c/qualificacao.json",
+      "sha256": "2fa3efe4e5b863e522313fa2a51d8e554c21e0cc3e0c4b41802d4f75ae3c50b5"
+    },
+    "protocolo_sha256": "1aa3c1029e4eb5adbd108938c533732a38e54c678b16d5203bd4df248dc76ef6"
+  }
+}

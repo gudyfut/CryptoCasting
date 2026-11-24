@@ -1,0 +1,69 @@
+{
+  "utc": "2026-11-04T04:30:58.265840+00:00",
+  "seed": 7,
+  "bloco": "B1",
+  "receita": {
+    "representacao": "relativa",
+    "indicadores": false,
+    "contexto": 168,
+    "largura": 32,
+    "camadas": 2,
+    "estado": 16,
+    "dropout": 0.1,
+    "pooling": "ultimo",
+    "taxa": 0.0002,
+    "decay": 0.001,
+    "otimizador": "AdamW",
+    "perda": "mse",
+    "scheduler": "constante",
+    "ganho_saida": 1.0
+  },
+  "epoca": 24,
+  "epocas_executadas": 34,
+  "parametros": 20257,
+  "recarga_exata": true,
+  "segundos": 221.09768253700008,
+  "checkpoint_final_sha256": "86f9ddf6976e9cc5518928994224b40d1170794e6eef74d4a17f9f24efc6c2e1",
+  "memoria_cuda_maxima_bytes": 167180800,
+  "treino_amostra_fixa": {
+    "n": 2048,
+    "mse": 0.0008847222858490342,
+    "rmse": 0.029744281565521703,
+    "mae": 0.02109836876991685,
+    "mse_naive": 0.0011857132237557987,
+    "vies": 0.0029790121486594342,
+    "sd_previsao": 0.016472890999264547,
+    "sd_alvo": 0.03442042509987141,
+    "acuracia_direcional": 0.5712890625,
+    "balanced_accuracy": 0.5735265482840115
+  },
+  "validacao": {
+    "n": 2184,
+    "mse": 0.0004980026530895477,
+    "rmse": 0.02231597304823493,
+    "mae": 0.015770547688480123,
+    "mse_naive": 0.00048677487682377503,
+    "vies": -0.005311940454323701,
+    "sd_previsao": 0.004995751953390972,
+    "sd_alvo": 0.021510187860790026,
+    "acuracia_direcional": 0.48305860805860806,
+    "balanced_accuracy": 0.48798461228894324
+  },
+  "teste": {
+    "n": 4344,
+    "mse": 0.0008210463450615402,
+    "rmse": 0.028653906279276133,
+    "mae": 0.020778894149030645,
+    "mse_naive": 0.0007274219044532415,
+    "vies": -0.004056476189801665,
+    "sd_previsao": 0.009172027673211075,
+    "sd_alvo": 0.026895935476635532,
+    "acuracia_direcional": 0.48606953718627677,
+    "balanced_accuracy": 0.5002927018116566
+  },
+  "diagnostico": {
+    "sd_representacao_media": 0.2957710027694702,
+    "norma_pesos_saida": 0.5425364375114441,
+    "fracao_clipping_ultima_epoca": 1.0
+  }
+}

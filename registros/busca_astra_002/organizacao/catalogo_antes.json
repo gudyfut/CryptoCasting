@@ -1,0 +1,1188 @@
+{
+  "versao": 1,
+  "registrado_em": "2026-10-27",
+  "natureza": "Indice retrospectivo de navegacao; nao substitui recibos, nao e pre-registro e nao declara disponibilidade em outra maquina.",
+  "cronologia": "docs/andamento.md",
+  "procedimento": "docs/registro_de_experimentos.md",
+  "estudos": [
+    {
+      "chave": "barreiras_001",
+      "tipo": "historico_arquivado",
+      "execucao": "4e232a796fcda0ea34c3",
+      "dataset": "9341610dbb329a858784",
+      "situacao_historica": "executado_e_arquivado",
+      "pergunta": "Primeiro limite atingido com barreiras; contextos e prazos variaveis.",
+      "comparabilidade": "Alvo, metrica e grade diferentes do retorno24; nao ordenar seus escores no mesmo placar.",
+      "raiz": "arquivo/estudo_barreiras_2026-10-20/projeto",
+      "fontes": {
+        "indice": "arquivo/estudo_barreiras_2026-10-20/README.md",
+        "protocolo": "arquivo/estudo_barreiras_2026-10-20/projeto/docs/protocolo_experimental.md",
+        "configuracao": "arquivo/estudo_barreiras_2026-10-20/projeto/configuracoes/ciclo_001.json",
+        "relatorio": "arquivo/estudo_barreiras_2026-10-20/projeto/historico/analises/ciclo_001_resultados.md",
+        "preservacao": "arquivo/estudo_barreiras_2026-10-20/verificacao.json",
+        "manifesto": "arquivo/estudo_barreiras_2026-10-20/manifesto_antes.json"
+      },
+      "exposicao": "Desenvolvimento 2023; consultar protocolo arquivado para limites.",
+      "distribuicao": "Sem recibo de pacote externo restaurado neste catalogo."
+    },
+    {
+      "chave": "retorno24_001",
+      "tipo": "referencia",
+      "execucao": "1e7c5ed662fba55ddd25",
+      "dataset": "d25f6a93a9900725f51e",
+      "situacao_historica": "concluido_auditado",
+      "decisao": "docs/adr/0001-estudo-retorno-24h.md",
+      "antecessor": "barreiras_001",
+      "relacao": "Substituicao do desenho ativo; resultados nao diretamente comparaveis ao alvo por barreiras.",
+      "pergunta": "Efeito de 24/72/168/336h de contexto no retorno terminal de 24h, Mamba versus LSTM com Naive e ARIMA.",
+      "raiz": "dados/experimentos/retorno24_1e7c5ed662fba55ddd25",
+      "fontes": {
+        "execucao": "dados/experimentos/retorno24_1e7c5ed662fba55ddd25/execucao.json",
+        "protocolo": "docs/protocolo_experimental.md",
+        "configuracao": "configuracoes/retorno24_001.json",
+        "congelamento": "dados/experimentos/retorno24_1e7c5ed662fba55ddd25/congelamento.json",
+        "dataset": "dados/processados/retorno24_d25f6a93a9900725f51e/dataset.json",
+        "fechamento": "registros/auditorias/1e7c5ed662fba55ddd25/fechamento.json",
+        "desenvolvimento": "arquivo/estudos_preliminares_2026-10-28/documentacao/resultados_desenvolvimento.md",
+        "avaliacao": "arquivo/estudos_preliminares_2026-10-28/documentacao/resultados_avaliacao.md",
+        "diagnostico_posterior_frequencia": "arquivo/estudos_preliminares_2026-10-28/documentacao/diagnostico_frequencia_e_configuracoes.md",
+        "revisao_posterior_frequencia": "registros/revisoes/frequencia_2026-10-27T230053.607585Z/resumo.json",
+        "pesquisa_mamba_criptomamba": "arquivo/estudos_preliminares_2026-10-28/documentacao/revisao_mamba_criptomamba.md",
+        "revisao_identidade_mamba": "registros/revisoes/mamba_criptomamba_2026-10-28T000408.161229Z/fechamento.json"
+      },
+      "publicacoes": {
+        "desenvolvimento": "registros/analises/1e7c5ed662fba55ddd25/desenvolvimento",
+        "avaliacao": "registros/analises/1e7c5ed662fba55ddd25/avaliacao"
+      },
+      "exposicao": "Declaracao previa preservada; B1-B4 abertos em 21/10/2026 e conhecidos para hipoteses posteriores.",
+      "distribuicao": "Pacotes externos e restauracao em outra maquina pendentes de recibo."
+    },
+    {
+      "chave": "penalizacao_mamba_001",
+      "tipo": "extensao_controlada",
+      "execucao": "7868a4d847c1410fc681",
+      "dataset": "d25f6a93a9900725f51e",
+      "situacao_historica": "concluido_auditado",
+      "decisao": "docs/adr/0002-penalizacao-mamba.md",
+      "antecessor": "retorno24_001",
+      "relacao": "Comparacao pareada: retirar weight decay somente dos parametros marcados; demais fatores iguais.",
+      "pergunta": "Respeitar _no_weight_decay altera o erro do Mamba e a simulacao Spot?",
+      "raiz": "dados/experimentos/penalizacao_7868a4d847c1410fc681",
+      "fontes": {
+        "execucao": "dados/experimentos/penalizacao_7868a4d847c1410fc681/execucao.json",
+        "protocolo": "docs/protocolo_penalizacao_mamba.md",
+        "configuracao": "configuracoes/penalizacao_mamba_001.json",
+        "congelamento": "dados/experimentos/penalizacao_7868a4d847c1410fc681/congelamento.json",
+        "dataset": "dados/processados/retorno24_d25f6a93a9900725f51e/dataset.json",
+        "fechamento": "registros/auditorias/7868a4d847c1410fc681/fechamento_extensao.json",
+        "relatorio": "arquivo/estudos_preliminares_2026-10-28/documentacao/resultados_penalizacao_mamba.md",
+        "revisao": "registros/revisoes/penalizacao_2026-10-27T210853.776756_0000/resumo.json",
+        "diagnostico_posterior_frequencia": "arquivo/estudos_preliminares_2026-10-28/documentacao/diagnostico_frequencia_e_configuracoes.md",
+        "revisao_posterior_frequencia": "registros/revisoes/frequencia_2026-10-27T230053.607585Z/resumo.json",
+        "pesquisa_mamba_criptomamba": "arquivo/estudos_preliminares_2026-10-28/documentacao/revisao_mamba_criptomamba.md",
+        "revisao_identidade_mamba": "registros/revisoes/mamba_criptomamba_2026-10-28T000408.161229Z/fechamento.json"
+      },
+      "publicacoes": {
+        "desenvolvimento": "dados/experimentos/penalizacao_7868a4d847c1410fc681/analises/desenvolvimento",
+        "avaliacao": "dados/experimentos/penalizacao_7868a4d847c1410fc681/analises/avaliacao"
+      },
+      "heranca": {
+        "execucao": "1e7c5ed662fba55ddd25",
+        "modelos": [
+          "mamba_original",
+          "lstm",
+          "naive",
+          "arima"
+        ]
+      },
+      "exposicao": "Desenvolvimento e avaliacao retrospectivos em periodos ja consultados; sem novo holdout intocado.",
+      "distribuicao": "Pacotes externos e restauracao em outra maquina pendentes de recibo."
+    },
+    {
+      "chave": "normalizacao_mamba_001",
+      "tipo": "extensao_controlada",
+      "execucao": "9e03af2150cbb7b1068d",
+      "dataset": "d25f6a93a9900725f51e",
+      "situacao_historica": "concluido_auditado",
+      "decisao": "docs/adr/0005-proposta-prenormalizacao-mamba.md",
+      "antecessor": "penalizacao_mamba_001",
+      "relacao": "Somente posicao da LayerNorm: pos para pre; manter penalizacao corrigida, dados e demais fatores.",
+      "pergunta": "Pre-normalizacao altera erro e politica Spot em relacao ao Mamba pos-normalizado corrigido?",
+      "raiz": "dados/experimentos/normalizacao_9e03af2150cbb7b1068d",
+      "fontes": {
+        "execucao": "dados/experimentos/normalizacao_9e03af2150cbb7b1068d/execucao.json",
+        "protocolo": "docs/protocolo_normalizacao_mamba.md",
+        "configuracao": "configuracoes/normalizacao_mamba_001.json",
+        "congelamento": "dados/experimentos/normalizacao_9e03af2150cbb7b1068d/congelamento.json",
+        "dataset": "dados/processados/retorno24_d25f6a93a9900725f51e/dataset.json",
+        "fechamento": "registros/auditorias/9e03af2150cbb7b1068d/fechamento_normalizacao.json",
+        "relatorio": "arquivo/estudos_preliminares_2026-10-28/documentacao/resultados_normalizacao_mamba.md",
+        "autorizacao": "registros/normalizacao/autorizacao.json",
+        "revisao": "registros/revisoes/normalizacao_2026-10-28T200441.557811_0000/resumo.json"
+      },
+      "publicacoes": {
+        "desenvolvimento": "dados/experimentos/normalizacao_9e03af2150cbb7b1068d/analises/desenvolvimento",
+        "avaliacao": "dados/experimentos/normalizacao_9e03af2150cbb7b1068d/analises/avaliacao"
+      },
+      "heranca": {
+        "execucao": "7868a4d847c1410fc681",
+        "modelos": [
+          "mamba_posnorm"
+        ]
+      },
+      "herancas_complementares": [
+        {
+          "execucao": "1e7c5ed662fba55ddd25",
+          "modelos": [
+            "lstm",
+            "arima",
+            "naive"
+          ]
+        }
+      ],
+      "exposicao": "DB1-DB4 desenvolvimento; B1-B4 retrospectivos ja consultados.",
+      "distribuicao": "Publicacoes e fechamento locais disponiveis; pacotes externos e restauracao em outra maquina pendentes de recibo."
+    },
+    {
+      "chave": "busca_astra_001",
+      "tipo": "busca_adaptativa_assistida_ia",
+      "situacao_historica": "concluido_conferido",
+      "retomada": "registros/busca_astra/retomadas/001/autorizacao.json",
+      "execucao": "b34bad73d6cef1d10a97",
+      "pergunta": "Busca limitada guiada por desenvolvimento encontra receita Mamba superior a referencia?",
+      "protocolo": "docs/protocolo_busca_astra.md",
+      "decisao": "docs/adr/0022-busca-adaptativa-astra.md",
+      "estado": "registros/busca_astra/estado.json",
+      "ponteiro": "registros/busca_astra/execucao.json",
+      "comparabilidade": "Referencia nova, mesmo aquecimento336; avaliacao retrospectiva, comparacao de receitas e nao ablacao.",
+      "fechamento": "registros/busca_astra/fechamento.json",
+      "relatorio": "docs/resultados_busca_astra.md",
+      "ajustes_concluidos": 106,
+      "simulacoes_concluidas": 408
+    },
+    {
+      "chave": "comparacao_astra_crua_001",
+      "tipo": "comparacao_receitas_executor_comum",
+      "situacao_historica": "concluido_conferido",
+      "protocolo": "docs/protocolo_comparacao_astra_crua.md",
+      "decisao": "docs/adr/0023-comparacao-astra-crua.md",
+      "estado": "registros/comparacao_astra_crua/estado.json",
+      "ponteiro": "registros/comparacao_astra_crua/execucao.json",
+      "origem_astra": "b34bad73d6cef1d10a97",
+      "novos_ajustes_planejados": 34,
+      "principais_herdados": 32,
+      "simulacoes_novas_planejadas": 192,
+      "simulacoes_herdadas": 216,
+      "execucao": "ce284eb4a489f604fb9c",
+      "fechamento": "registros/comparacao_astra_crua/fechamento.json",
+      "relatorio": "docs/resultados_comparacao_astra_crua.md",
+      "ajustes_concluidos": 34,
+      "simulacoes_novas_concluidas": 192
+    }
+  ],
+  "propostas_historicas_nao_executadas": [
+    {
+      "chave": "barreiras_002_proposto",
+      "fonte": "arquivo/estudo_barreiras_2026-10-20/projeto/historico/ciclos/ciclo_002_proposto.md",
+      "configuracao": "arquivo/estudo_barreiras_2026-10-20/projeto/configuracoes/ciclo_002_proposto.json",
+      "situacao": "proposto_no_estudo_arquivado; nao contar como treinamento e nao executar"
+    }
+  ],
+  "etapa_atual": {
+    "situacao": "comparacao_astra_crua_concluida_conferida",
+    "estado_busca_astra": "registros/busca_astra/estado.json",
+    "arquitetura_modelos": "docs/arquitetura_modelos.md",
+    "estado_modelos_modulares": "registros/modelos/estado.json",
+    "decisao_consumo_modelos": "docs/adr/0008-consumo-de-dados-pelos-modelos.md",
+    "situacao_preparacao_r0": "preparacao92e3eb82e3f6adf99994 preservada sem treino; referÃªncia modularab5baf3eab3a2e66d8b2 concluÃ­da",
+    "arquitetura_dados": "docs/arquitetura_dados.md",
+    "decisao_modularizacao": "docs/adr/0007-modulos-de-dados.md",
+    "estado_dados_modulares": "registros/dados/estado.json",
+    "integracao_novo_modulo_ao_executor": "implementada_qualificada_com_rodadas_concluidas",
+    "fonte_academica": "docs/TCC_1_MuriloRFM.pdf",
+    "indice_documentacao": "docs/README.md",
+    "proposta": "docs/desenho_ohlcv24.md",
+    "decisao": "docs/adr/0006-reorganizacao-e-desenho-ohlcv.md",
+    "arquivo_preliminar": "arquivo/estudos_preliminares_2026-10-28/README.md",
+    "execucao_nova": "ab5baf3eab3a2e66d8b2",
+    "limite": "Rodadas OHLCV e avaliaÃ§Ãµes operacionais concluÃ­das; divisÃ£o fixa retrospectiva, sem alegaÃ§Ã£o de walk-forward/holdout intocado. Nenhum novo treino ou busca automÃ¡tica.",
+    "configuracao": "configuracoes/treinamento_ohlcv24_001.json",
+    "implementacao": "treinamento/",
+    "ponteiro_execucao": "registros/treinamento/execucao.json",
+    "qualificacao": "registros/treinamento/qualificacoes/09524ec9434041e7805053d7c507987c/qualificacao.json",
+    "dataset": "dados/entradas/0420879c2afc454c7754/manifesto.json",
+    "conferencia_dados": "registros/treinamento/qualificacoes/09524ec9434041e7805053d7c507987c/conferencia_entradas.json",
+    "referencia_preparada_preservada": {
+      "execucao_nova": "92e3eb82e3f6adf99994",
+      "configuracao": "configuracoes/ohlcv24_001.json",
+      "implementacao": "estudo_ohlcv/",
+      "ponteiro_execucao": "registros/ohlcv/execucao.json",
+      "qualificacao": "registros/ohlcv/qualificacao.json",
+      "dataset": "registros/ohlcv/dataset.json",
+      "conferencia_dados": "registros/ohlcv/conferencias/2026-10-28T213844.690511_0000/resumo.json"
+    },
+    "arquitetura_treinamento": "docs/arquitetura_treinamento.md",
+    "estado_treinamento": "registros/treinamento/estado.json",
+    "decisao_treinamento": "docs/adr/0009-treinamento-modular.md",
+    "autorizacao": "registros/treinamento/autorizacao.json",
+    "conferencia_conclusao": "registros/treinamento/conferencias/bbe308fe56c54c2d879b85fc7f1b7105/conclusao.json",
+    "publicacao": "dados/experimentos/ohlcv_modular_ab5baf3eab3a2e66d8b2/publicacoes/tentativa_001",
+    "extensao_estado_mamba": {
+      "execucao": {
+        "id": "dcf4b0ed9012f7247bce",
+        "pasta": "dados/experimentos/estado_mamba_dcf4b0ed9012f7247bce",
+        "congelamento_sha256": "6da44066e695b7e8014a01d6dce3300ef3eac628ab6c1df8a861515bf1b881a2"
+      },
+      "estado": "registros/estado_mamba/estado.json",
+      "protocolo": "docs/protocolo_estado_mamba.md",
+      "alteracao": "d_state16 para8",
+      "ajustes_reais": 6,
+      "seeds_pareadas": [
+        17,
+        42,
+        2026
+      ],
+      "situacao": "concluido_conferido",
+      "configuracao": "configuracoes/mamba_estado8_001.json",
+      "configuracao_modelos": "configuracoes/modelos_mamba_estado8_001.json",
+      "conferencia_conclusao": "registros/estado_mamba/conferencias/c041b9a06cdc4a99a3d10f3faa6cf0e2/conclusao.json",
+      "publicacao": "dados/experimentos/estado_mamba_dcf4b0ed9012f7247bce/publicacoes/tentativa_001",
+      "relatorio": "docs/resultados_estado_mamba.md"
+    },
+    "relatorio_comparativo": "docs/resultados_estado_mamba.md",
+    "estados_ampliados": {
+      "indice": "registros/estados_ampliados/estado.json",
+      "fila": "registros/estados_ampliados/fila/progresso.json",
+      "ordem": [
+        32,
+        64
+      ],
+      "ajustes_reais_total": 12,
+      "execucoes": {
+        "32": {
+          "id": "23c2ba54349bcc1b0ee1",
+          "pasta": "dados/experimentos/estados_ampliados_32_23c2ba54349bcc1b0ee1",
+          "congelamento_sha256": "33fbd49bc170a6851b276ed8e4870ecf78b21cbc0eb49a26bf38e755a2c4d13e"
+        },
+        "64": {
+          "id": "42cb667ea43df563e3ac",
+          "pasta": "dados/experimentos/estados_ampliados_64_42cb667ea43df563e3ac",
+          "congelamento_sha256": "0d188c61973bc5bcf2294afb7ac7bb6b4d627e7bf1930e5051529cb4d32d8fe1"
+        }
+      },
+      "protocolo": "docs/protocolo_estados32_64.md",
+      "situacao": "concluido_conferido",
+      "comparacao_consolidada": {
+        "arquivo": "registros/estados_ampliados/comparacoes/308422d9179540cb974f62df962d0c93/comparacao.json",
+        "sha256": "fe636f18601e1844b6dcb5a2602e58ad4d5ec8fadb2d6cbc2497451b7cced0a6"
+      },
+      "relatorio": "docs/resultados_estados32_64.md"
+    },
+    "comparacao_quatro_estados_seis_seeds": {
+      "complemento16": {
+        "id": "cc0b166fe42a3ed1678d",
+        "pasta": "dados/experimentos/complemento_estado16_cc0b166fe42a3ed1678d",
+        "congelamento_sha256": "f72b443d23f6af7f6ee4d3d144877d1d58a820b8aff1827e76aeb1bc854ae0dd"
+      },
+      "estado": "registros/complemento_estado16/estado.json",
+      "comparacao": {
+        "arquivo": "registros/complemento_estado16/comparacoes/5d26dcadbceb4abcaec9e723967dbc3a/comparacao.json",
+        "sha256": "10a3eb7d494c72804107a43f169aed19b38eee2aaaa581773062c11b62968077"
+      },
+      "relatorio": "docs/resultados_estados32_64.md"
+    },
+    "referencia_para_proximas_hipoteses": {
+      "arquivo": "registros/referencias/mamba16_ohlcv24_001.json",
+      "sha256": "d09a1f74a118d249e61f1d539aae6919e7a195ff0dec9ade513db5955232ecc3",
+      "decisao": "docs/adr/0012-referencia16-e-proxima-hipotese.md"
+    },
+    "taxa_aprendizado": {
+      "situacao": "concluido_conferido",
+      "utc": "2026-10-29T23:51:48.209574+00:00",
+      "execucao": {
+        "id": "1af0a64e83d472ac533e",
+        "pasta": "dados/experimentos/taxa_aprendizado_1af0a64e83d472ac533e",
+        "congelamento_sha256": "847e1288e7673e85d3a9f050e85d3644af528d6c4a3fc5aa65cfd486dd3baa97"
+      },
+      "novos": 24,
+      "herdados": 29,
+      "auditoria": {
+        "arquivo": "registros/taxa_aprendizado/conferencias/82f988b3caf946cd9042e6ca4e9ef9a2/conclusao.json",
+        "sha256": "8ae425a836e9df020412e985069f2151b276cb441fc05fb44b86384b150cd521"
+      },
+      "comparacao": {
+        "arquivo": "registros/taxa_aprendizado/analises/d19f433a7aef4bf09dabf115288ab594/comparacao.json",
+        "sha256": "9d356abaefcc6ea84e4352134e43bae4671a1f039c103e8cec3179b30d93eac5"
+      },
+      "relatorio": "docs/resultados_taxa_aprendizado.md",
+      "preservados": 433,
+      "proxima_acao": "Sem promoÃ§Ã£o automÃ¡tica ou novos treinamentos autorizados.",
+      "analise_interpretativa": {
+        "arquivo": "registros/taxa_aprendizado/revisoes/85bd9dd338ac4ad0b83aec9f1d7d1e38/analise.json",
+        "sha256": "ae8f617fdb8ef8cf4e25a9929491ff37a8259a77d44aae017f640019cc6511e0"
+      },
+      "referencia_mantida": "registros/referencias/mamba16_ohlcv24_001.json"
+    },
+    "cryptomamba": {
+      "situacao": "concluido_conferido",
+      "utc": "2026-10-30T03:29:15.569947+00:00",
+      "execucao": {
+        "id": "35dd98141ee20d9b8885",
+        "pasta": "dados/experimentos/cryptomamba_adaptado_35dd98141ee20d9b8885",
+        "congelamento_sha256": "17a746f70f1ff610d4905a071994a98a249f071df3a4f3214b24a0ec19131625"
+      },
+      "novos": 6,
+      "herdados": 53,
+      "auditoria": {
+        "arquivo": "registros/cryptomamba/conferencias/2fe2252bc16e4e02946cc374a819a14e/conclusao.json",
+        "sha256": "0c747ce1c129de90a473c2144376f0a16bd5bd9f6da72f9f08b733add7c8024d"
+      },
+      "comparacao": {
+        "arquivo": "registros/cryptomamba/analises/4fe723b2a57b4690b6a26193c5cdc772/comparacao.json",
+        "sha256": "899865b3281ed795a896a592ad0af7af7b8a12040822a3fa8d044d7278740818"
+      },
+      "relatorio": "docs/resultados_cryptomamba_adaptado.md",
+      "preservados": 670,
+      "proxima_acao": "Revisar interpretaÃ§Ã£o; nenhuma promoÃ§Ã£o ou novo treinamento automÃ¡tico.",
+      "analise_interpretativa": {
+        "arquivo": "registros/cryptomamba/revisoes/3dbd58da46d148dfb6371934ed7f6acf/analise.json",
+        "sha256": "61627370cb6144bb03cf56185beaeed6ad2f73f251fc1b93b4d573b440b71d6f"
+      },
+      "sensibilidade": "registros/cryptomamba/sensibilidade_atual.json",
+      "entrega_revisada": {
+        "arquivo": "registros/cryptomamba/entrega/907a54b2c063464b9c7e8bfbcda3c525/conferencia.json",
+        "sha256": "6d5f962b70b6ad481b356b91dee4f75e3f052c3b9e1045f84fa982d949e9c1a4"
+      }
+    },
+    "backtest_carteira": {
+      "chave": "backtest_carteira_001",
+      "situacao": "concluido_conferido",
+      "execucao": "8ec8a66648313caa48e3",
+      "ponteiro": "registros/backtest_carteira/execucao_atual.json",
+      "estado": "registros/backtest_carteira/estado.json",
+      "tentativa_inicial": {
+        "id": "b9fce5ae0300ce91ba69",
+        "pasta": "dados/experimentos/backtest_carteira_b9fce5ae0300ce91ba69",
+        "congelamento_sha256": "08f2ae9773fed4679950a5c616632cc82179b796cdc79ed9b2ad694cf1a6ff34"
+      },
+      "protocolo": "docs/protocolo_backtest_carteira.md",
+      "configuracao": "configuracoes/backtest_carteira_001.json",
+      "pasta_execucao": "dados/experimentos/backtest_carteira_8ec8a66648313caa48e3",
+      "simulacoes_planejadas": 369,
+      "novos_treinamentos": 0,
+      "buscas_parametros": 0,
+      "exposicao": "retrospectivo2024/2025;2024participou da seleÃ§Ã£o de checkpoints",
+      "fontes_congeladas": "dados/experimentos/backtest_carteira_8ec8a66648313caa48e3/congelamento.json",
+      "simulacoes_concluidas": 369,
+      "fechamento": "registros/backtest_carteira/revisao_loader/fechamento.json",
+      "resultado": "dados/experimentos/backtest_carteira_8ec8a66648313caa48e3/resultados/comparacao.json",
+      "resultado_sha256": "57f711c538232f6ee085caa04e1d9ebf1672471cd21b2b31669264f5468a2782",
+      "relatorio": "docs/resultados_backtest_carteira.md",
+      "conferencia_posterior": {
+        "arquivo": "registros/backtest_carteira/entrega/fechamento_20261030/conferencia.json",
+        "sha256": "4ab12427a0c104744247cd09672387e8e45d0cef9d9c9506c0b5f7fb7908e2cb"
+      },
+      "encerramento_utc": "2026-10-30T05:44:15.790443+00:00"
+    },
+    "otimizador_cryptomamba": {
+      "situacao": "concluido_conferido",
+      "utc": "2026-10-30T07:53:04.406150+00:00",
+      "execucao": {
+        "id": "6829c5fa076dc8c0e0ac",
+        "pasta": "dados/experimentos/cryptomamba_adamw_6829c5fa076dc8c0e0ac",
+        "congelamento_sha256": "3edaab57aecc0d47cc7f07124e3564e767624fb2ded79c28fcb44a4e1ac38726"
+      },
+      "novos": 6,
+      "herdados": 59,
+      "simulacoes_smart": 54,
+      "preservados": 4405,
+      "publicacao": "dados/experimentos/cryptomamba_adamw_6829c5fa076dc8c0e0ac/publicacoes/tentativa_001",
+      "manifesto_sha256": "08749a888537074a9b0e61c5d8baf5bf2c6f805d0e4c59f1cfa82dccafe9b440",
+      "relatorio": "docs/resultados_otimizador_cryptomamba.md",
+      "criterio_primario": {
+        "media_mse_menor": false,
+        "ic95_principal_inteiramente_favoravel": false,
+        "promocao_automatica": false
+      },
+      "proxima_acao": "Interpretar; sem promoÃ§Ã£o ou novo treinamento automÃ¡tico."
+    },
+    "taxa_dinamica": {
+      "situacao": "concluido_conferido",
+      "utc": "2026-10-30T09:44:33.758737+00:00",
+      "execucao": {
+        "id": "99884456ac71fedfd9b0",
+        "pasta": "dados/experimentos/mamba16_taxa_dinamica_99884456ac71fedfd9b0",
+        "congelamento_sha256": "e493fae48829eca3c00e300b8f0833756381b039216af192ddf0cb546b1bf191"
+      },
+      "novos": 6,
+      "herdados": 53,
+      "simulacoes_smart": 54,
+      "preservados": 4998,
+      "publicacao": "dados/experimentos/mamba16_taxa_dinamica_99884456ac71fedfd9b0/publicacoes/tentativa_001",
+      "manifesto_sha256": "29e2fc61b22476c4705f0123c86521fd664728b1851601af76a102a25d1e6dce",
+      "relatorio": "docs/resultados_taxa_dinamica.md",
+      "criterio_primario": {
+        "media_mse_menor": false,
+        "ic95_principal_inteiramente_favoravel": false,
+        "promocao_automatica": false
+      },
+      "proxima_acao": "Interpretar; sem promoÃ§Ã£o ou novos treinos automÃ¡ticos."
+    },
+    "perda_huber": {
+      "situacao": "concluido_conferido",
+      "utc": "2026-11-03T02:52:36.430048+00:00",
+      "execucao": {
+        "id": "ed8e55ff978b2742c200",
+        "pasta": "dados/experimentos/mamba16_perda_huber_ed8e55ff978b2742c200",
+        "congelamento_sha256": "2fc72b492592bc0e78b8a9010c3869e73d5d0e4f684ea5750e6ec9462701867a"
+      },
+      "novos": 6,
+      "herdados": 53,
+      "simulacoes_smart": 54,
+      "preservados": 5533,
+      "publicacao": "dados/experimentos/mamba16_perda_huber_ed8e55ff978b2742c200/publicacoes/tentativa_001",
+      "manifesto_sha256": "1c9b84d7b70cbeb286e5418910b3d298cfc4c4c5769609a7318a9bb842e2678b",
+      "relatorio": "docs/resultados_perda_huber.md",
+      "criterio_primario": {
+        "media_mse_menor": true,
+        "ic95_principal_inteiramente_favoravel": false,
+        "promocao_automatica": false
+      },
+      "proxima_acao": "Interpretar; sem promoÃ§Ã£o ou novos treinos automÃ¡ticos."
+    },
+    "huber_blocos": {
+      "situacao": "concluido_conferido",
+      "utc": "2026-11-03T08:30:31.644960+00:00",
+      "execucao": {
+        "id": "10dac17ea9df2c540c57",
+        "pasta": "dados/experimentos/huber_blocos_10dac17ea9df2c540c57",
+        "congelamento_sha256": "705322f6fffaf6394fdc43417f4c888e0da1d2b155e77e24411eaea3afcb9eb9"
+      },
+      "principais": 64,
+      "controles_reais": 2,
+      "simulacoes": 408,
+      "preservados": 6082,
+      "publicacao": "dados/experimentos/huber_blocos_10dac17ea9df2c540c57/publicacoes/tentativa_001",
+      "manifesto_sha256": "a53c5b228765d3421955c92450a0513c50ec323fc8a12c516814dc72e80c582a",
+      "relatorio": "docs/resultados_huber_blocos.md",
+      "criterio_primario": {
+        "media_mse_menor": true,
+        "ic95_seeds_tempo_14_inteiramente_favoravel": false,
+        "promocao_automatica": false,
+        "natureza": "Avaliação retrospectiva ampliada; não substitui o fechamento da exploração anterior."
+      },
+      "proxima_acao": "Interpretar e redigir; sem busca, promoção ou treino automático."
+    },
+    "entradas_niveis": {
+      "plano": "4cb8d09f29e60463eac9",
+      "estado": "registros/entradas_niveis/estado.json",
+      "protocolo": "docs/protocolo_entradas_niveis.md",
+      "autorizacao": "registros/entradas_niveis/autorizacao_plano.json",
+      "referencias_herdadas": 32,
+      "ajustes_novos_autorizados": 66,
+      "observacao": "Ponteiro de plano autorizado; consultar estado para diferenciar fila,qualificação,execução e fechamento."
+    },
+    "crua_huber_estado": "registros/crua_huber/estado.json",
+    "crua_huber_execucao": "1781f557fdf2b45a3ae2",
+    "crua_huber": {
+      "situacao": "concluido_conferido",
+      "utc": "2026-11-03T21:46:48.281393+00:00",
+      "execucao": {
+        "id": "1781f557fdf2b45a3ae2",
+        "pasta": "dados/experimentos/crua_huber_1781f557fdf2b45a3ae2",
+        "congelamento_sha256": "aab12bbb2c9dc848652e21c525cc72c36a37541d8381ba4ebb8fd89e4c6cd2dd"
+      },
+      "principais_novos": 32,
+      "controles_reais": 1,
+      "referencias_herdadas": 96,
+      "simulacoes_novas": 192,
+      "simulacoes_herdadas": 600,
+      "publicacao": "dados/experimentos/crua_huber_1781f557fdf2b45a3ae2/publicacoes/tentativa_001",
+      "manifesto_sha256": "d6e55daf2b2b35415a5775afa071f25a75f397888308dbc3a2882d2fb7968527",
+      "relatorio": "docs/resultados_crua_huber.md",
+      "criterio_primario": {
+        "contraste": "huber_na_crua",
+        "decisao": "inconclusivo",
+        "familia": 4,
+        "ic_principal": "98,75% Bonferroni, seeds/dias14",
+        "melhora_clara_contra_tres_referencias": false,
+        "promocao_automatica": false
+      },
+      "promocao_automatica": false
+    },
+    "estado_comparacao_astra_crua": "registros/comparacao_astra_crua/estado.json"
+  },
+  "propostas_em_definicao": [
+    {
+      "chave": "ohlcv_extensoes_futuras",
+      "fonte": "docs/desenho_ohlcv24.md",
+      "situacao": "apos_R0_sem_execucao",
+      "origem": "AblaÃ§Ãµes/configuracoes uma por ciclo; walk-forward ampliado apos selecao limitada. Nao iniciar automaticamente."
+    },
+    {
+      "chave": "busca_astra_002",
+      "fonte": "docs/protocolo_busca_astra_002.md",
+      "configuracao": "configuracoes/busca_astra_002_proposta.json",
+      "registro": "registros/busca_astra_002/proposta.json",
+      "situacao": "planejada_sem_autorizacao_de_execucao",
+      "origem": "Pedido de planejar uma segunda busca de um dia, com melhoria do processo e das metricas. Nenhuma consulta ou treino iniciado.",
+      "execucao": null
+    }
+  ],
+  "rodadas_ohlcv": [
+    {
+      "nome": "ReferÃªncia OHLCV R0",
+      "execucao": "ab5baf3eab3a2e66d8b2",
+      "situacao": "concluido_conferido",
+      "ponteiro": "registros/treinamento/execucao.json",
+      "protocolo_congelado": "dados/experimentos/ohlcv_modular_ab5baf3eab3a2e66d8b2/protocolo.md",
+      "configuracao_congelada": "dados/experimentos/ohlcv_modular_ab5baf3eab3a2e66d8b2/fontes/configuracoes/treinamento_ohlcv24_001.json",
+      "modelos_configuracao_congelada": "dados/experimentos/ohlcv_modular_ab5baf3eab3a2e66d8b2/fontes/configuracoes/modelos_ohlcv24_001.json",
+      "pesos_tentativas": "dados/experimentos/ohlcv_modular_ab5baf3eab3a2e66d8b2/celulas",
+      "publicacao": "dados/experimentos/ohlcv_modular_ab5baf3eab3a2e66d8b2/publicacoes/tentativa_001",
+      "dataset": "dados/entradas/0420879c2afc454c7754",
+      "ajustes_neurais_novos": 8,
+      "ajustes_neurais_principais": 6,
+      "controles_neurais_reais": 2,
+      "estado_mamba": 16,
+      "seeds_principais": [
+        17,
+        42,
+        2026
+      ],
+      "conferencia": "registros/treinamento/conferencias/bbe308fe56c54c2d879b85fc7f1b7105/conclusao.json"
+    },
+    {
+      "nome": "ExtensÃ£o Mamba estado8",
+      "execucao": "dcf4b0ed9012f7247bce",
+      "antecessor": "ab5baf3eab3a2e66d8b2",
+      "situacao": "concluido_conferido",
+      "ponteiro": "registros/estado_mamba/execucao.json",
+      "protocolo_congelado": "dados/experimentos/estado_mamba_dcf4b0ed9012f7247bce/protocolo.md",
+      "configuracao_congelada": "dados/experimentos/estado_mamba_dcf4b0ed9012f7247bce/fontes/configuracoes/mamba_estado8_001.json",
+      "modelos_configuracao_congelada": "dados/experimentos/estado_mamba_dcf4b0ed9012f7247bce/fontes/configuracoes/modelos_mamba_estado8_001.json",
+      "pesos_tentativas": "dados/experimentos/estado_mamba_dcf4b0ed9012f7247bce/celulas",
+      "publicacao": "dados/experimentos/estado_mamba_dcf4b0ed9012f7247bce/publicacoes/tentativa_001",
+      "dataset": "dados/entradas/0420879c2afc454c7754",
+      "ajustes_neurais_novos": 6,
+      "referencias_herdadas": 8,
+      "controles_neurais_reais": 0,
+      "estado_mamba": 8,
+      "seeds_principais": [
+        17,
+        42,
+        2026,
+        7,
+        123,
+        31415
+      ],
+      "seeds_pareadas": [
+        17,
+        42,
+        2026
+      ],
+      "conferencia": "registros/estado_mamba/conferencias/c041b9a06cdc4a99a3d10f3faa6cf0e2/conclusao.json",
+      "relatorio": "docs/resultados_estado_mamba.md"
+    },
+    {
+      "nome": "ExtensÃ£o Mamba estado32",
+      "execucao": "23c2ba54349bcc1b0ee1",
+      "situacao": "concluido_conferido",
+      "progresso": "dados/experimentos/estados_ampliados_32_23c2ba54349bcc1b0ee1/progresso.json",
+      "antecessor": "dcf4b0ed9012f7247bce",
+      "ponteiro": "registros/estados_ampliados/estado32/execucao.json",
+      "protocolo_congelado": "dados/experimentos/estados_ampliados_32_23c2ba54349bcc1b0ee1/protocolo.md",
+      "configuracao_congelada": "dados/experimentos/estados_ampliados_32_23c2ba54349bcc1b0ee1/fontes/configuracoes/mamba_estado32_001.json",
+      "modelos_configuracao_congelada": "dados/experimentos/estados_ampliados_32_23c2ba54349bcc1b0ee1/fontes/configuracoes/modelos_mamba_estado32_001.json",
+      "pasta_execucao": "dados/experimentos/estados_ampliados_32_23c2ba54349bcc1b0ee1",
+      "pesos_tentativas_previstos": "dados/experimentos/estados_ampliados_32_23c2ba54349bcc1b0ee1/celulas",
+      "publicacao_ponteiro_previsto": "dados/experimentos/estados_ampliados_32_23c2ba54349bcc1b0ee1/publicacao.json",
+      "dataset": "dados/entradas/0420879c2afc454c7754",
+      "estado_mamba": 32,
+      "ajustes_neurais_novos_planejados": 6,
+      "seeds_principais": [
+        17,
+        42,
+        2026,
+        7,
+        123,
+        31415
+      ],
+      "seeds_comuns_quatro_estados": [
+        17,
+        42,
+        2026
+      ],
+      "seeds_comuns8_32_64": [
+        17,
+        42,
+        2026,
+        7,
+        123,
+        31415
+      ],
+      "dependencia32": null,
+      "limite": "Paths previstos de pesos/publicaÃ§Ã£o nÃ£o representam resultados jÃ¡ produzidos; resolver progresso/artefatos.",
+      "publicacao": "dados/experimentos/estados_ampliados_32_23c2ba54349bcc1b0ee1/publicacoes/tentativa_001",
+      "conferencia": "registros/estados_ampliados/estado32/conferencias/56cc98d1a9b4404c89e5f4e248f2227c/conclusao.json",
+      "ajustes_neurais_novos_concluidos": 6,
+      "relatorio": "docs/resultados_estados32_64.md"
+    },
+    {
+      "nome": "ExtensÃ£o Mamba estado64",
+      "execucao": "42cb667ea43df563e3ac",
+      "situacao": "concluido_conferido",
+      "progresso": "dados/experimentos/estados_ampliados_64_42cb667ea43df563e3ac/progresso.json",
+      "antecessor": "23c2ba54349bcc1b0ee1",
+      "ponteiro": "registros/estados_ampliados/estado64/execucao.json",
+      "protocolo_congelado": "dados/experimentos/estados_ampliados_64_42cb667ea43df563e3ac/protocolo.md",
+      "configuracao_congelada": "dados/experimentos/estados_ampliados_64_42cb667ea43df563e3ac/fontes/configuracoes/mamba_estado64_001.json",
+      "modelos_configuracao_congelada": "dados/experimentos/estados_ampliados_64_42cb667ea43df563e3ac/fontes/configuracoes/modelos_mamba_estado64_001.json",
+      "pasta_execucao": "dados/experimentos/estados_ampliados_64_42cb667ea43df563e3ac",
+      "pesos_tentativas_previstos": "dados/experimentos/estados_ampliados_64_42cb667ea43df563e3ac/celulas",
+      "publicacao_ponteiro_previsto": "dados/experimentos/estados_ampliados_64_42cb667ea43df563e3ac/publicacao.json",
+      "dataset": "dados/entradas/0420879c2afc454c7754",
+      "estado_mamba": 64,
+      "ajustes_neurais_novos_planejados": 6,
+      "seeds_principais": [
+        17,
+        42,
+        2026,
+        7,
+        123,
+        31415
+      ],
+      "seeds_comuns_quatro_estados": [
+        17,
+        42,
+        2026
+      ],
+      "seeds_comuns8_32_64": [
+        17,
+        42,
+        2026,
+        7,
+        123,
+        31415
+      ],
+      "dependencia32": "23c2ba54349bcc1b0ee1",
+      "limite": "Paths previstos de pesos/publicaÃ§Ã£o nÃ£o representam resultados jÃ¡ produzidos; resolver progresso/artefatos.",
+      "publicacao": "dados/experimentos/estados_ampliados_64_42cb667ea43df563e3ac/publicacoes/tentativa_001",
+      "conferencia": "registros/estados_ampliados/estado64/conferencias/414d92eead5844b68437b95065c1b9cd/conclusao.json",
+      "ajustes_neurais_novos_concluidos": 6,
+      "relatorio": "docs/resultados_estados32_64.md"
+    },
+    {
+      "nome": "Complemento Mamba estado16 para seis seeds",
+      "execucao": "cc0b166fe42a3ed1678d",
+      "antecessor": "ab5baf3eab3a2e66d8b2",
+      "situacao": "concluido_conferido",
+      "ponteiro": "registros/complemento_estado16/execucao.json",
+      "pasta_execucao": "dados/experimentos/complemento_estado16_cc0b166fe42a3ed1678d",
+      "protocolo_congelado": "dados/experimentos/complemento_estado16_cc0b166fe42a3ed1678d/protocolo.md",
+      "configuracao_congelada": "dados/experimentos/complemento_estado16_cc0b166fe42a3ed1678d/fontes/configuracoes/mamba_estado16_complemento_001.json",
+      "modelos_configuracao_congelada": "dados/experimentos/complemento_estado16_cc0b166fe42a3ed1678d/fontes/configuracoes/modelos_ohlcv24_001.json",
+      "dataset": "dados/entradas/0420879c2afc454c7754",
+      "ajustes_neurais_novos_planejados": 3,
+      "referencias_herdadas": 26,
+      "seeds_novas": [
+        7,
+        123,
+        31415
+      ],
+      "seeds_principais": [
+        17,
+        42,
+        2026,
+        7,
+        123,
+        31415
+      ],
+      "estado_mamba": 16,
+      "progresso": "dados/experimentos/complemento_estado16_cc0b166fe42a3ed1678d/progresso.json",
+      "ajustes_neurais_novos_concluidos": 3,
+      "conferencia": "registros/complemento_estado16/conferencias/4365008389e54ec992ebba57337141b4/conclusao.json",
+      "publicacao": "dados/experimentos/complemento_estado16_cc0b166fe42a3ed1678d/publicacoes/tentativa_001",
+      "pesos_tentativas": "dados/experimentos/complemento_estado16_cc0b166fe42a3ed1678d/celulas",
+      "relatorio": "docs/resultados_estados32_64.md",
+      "comparacao": {
+        "arquivo": "registros/complemento_estado16/comparacoes/5d26dcadbceb4abcaec9e723967dbc3a/comparacao.json",
+        "sha256": "10a3eb7d494c72804107a43f169aed19b38eee2aaaa581773062c11b62968077"
+      }
+    },
+    {
+      "nome": "Taxa AdamW0,0001 nos quatro estados",
+      "execucao": "1af0a64e83d472ac533e",
+      "situacao": "concluido_conferido",
+      "ponteiro": "registros/taxa_aprendizado/execucao.json",
+      "pasta_execucao": "dados/experimentos/taxa_aprendizado_1af0a64e83d472ac533e",
+      "protocolo_congelado": "dados/experimentos/taxa_aprendizado_1af0a64e83d472ac533e/protocolo.md",
+      "configuracoes_congeladas": {
+        "8": "dados/experimentos/taxa_aprendizado_1af0a64e83d472ac533e/fontes/configuracoes/mamba_taxa0001_estado8_001.json",
+        "16": "dados/experimentos/taxa_aprendizado_1af0a64e83d472ac533e/fontes/configuracoes/mamba_taxa0001_estado16_001.json",
+        "32": "dados/experimentos/taxa_aprendizado_1af0a64e83d472ac533e/fontes/configuracoes/mamba_taxa0001_estado32_001.json",
+        "64": "dados/experimentos/taxa_aprendizado_1af0a64e83d472ac533e/fontes/configuracoes/mamba_taxa0001_estado64_001.json"
+      },
+      "pesos_tentativas": "dados/experimentos/taxa_aprendizado_1af0a64e83d472ac533e/celulas",
+      "dataset": "dados/entradas/0420879c2afc454c7754",
+      "estados": [
+        8,
+        16,
+        32,
+        64
+      ],
+      "seeds_principais": [
+        17,
+        42,
+        2026,
+        7,
+        123,
+        31415
+      ],
+      "ajustes_neurais_novos_planejados": 24,
+      "referencias_herdadas": 29,
+      "progresso": "dados/experimentos/taxa_aprendizado_1af0a64e83d472ac533e/progresso.json",
+      "taxa_referencia": 0.0002,
+      "taxa_candidata": 0.0001,
+      "inicio_utc": "2026-10-29T22:23:02.619825+00:00",
+      "ajustes_neurais_novos_concluidos": 24,
+      "publicacao": "dados/experimentos/taxa_aprendizado_1af0a64e83d472ac533e/publicacoes/tentativa_001",
+      "conferencia": "registros/taxa_aprendizado/conferencias/82f988b3caf946cd9042e6ca4e9ef9a2/conclusao.json",
+      "relatorio": "docs/resultados_taxa_aprendizado.md",
+      "analise_interpretativa": {
+        "arquivo": "registros/taxa_aprendizado/revisoes/85bd9dd338ac4ad0b83aec9f1d7d1e38/analise.json",
+        "sha256": "ae8f617fdb8ef8cf4e25a9929491ff37a8259a77d44aae017f640019cc6511e0"
+      }
+    },
+    {
+      "nome": "CryptoMamba adaptado ao contrato OHLCV24",
+      "execucao": "35dd98141ee20d9b8885",
+      "situacao": "concluido_conferido",
+      "ponteiro": "registros/cryptomamba/execucao.json",
+      "pasta_execucao": "dados/experimentos/cryptomamba_adaptado_35dd98141ee20d9b8885",
+      "protocolo_congelado": "dados/experimentos/cryptomamba_adaptado_35dd98141ee20d9b8885/protocolo.md",
+      "configuracoes_congeladas": {
+        "cryptomamba": "dados/experimentos/cryptomamba_adaptado_35dd98141ee20d9b8885/fontes/configuracoes/cryptomamba_adaptado_001.json"
+      },
+      "pesos_tentativas": "dados/experimentos/cryptomamba_adaptado_35dd98141ee20d9b8885/celulas",
+      "dataset": "dados/entradas/0420879c2afc454c7754",
+      "seeds_principais": [
+        17,
+        42,
+        2026,
+        7,
+        123,
+        31415
+      ],
+      "ajustes_neurais_novos_planejados": 6,
+      "referencias_herdadas": 53,
+      "progresso": "dados/experimentos/cryptomamba_adaptado_35dd98141ee20d9b8885/progresso.json",
+      "codigo_publico_commit": "fef42727861a9c3a32241283ab981ef21a49e291",
+      "comparabilidade": "Dados/alvo/populaÃ§Ã£o/Spot iguais; abordagem de arquitetura/receita composta; nÃ£o rÃ©plica do artigo.",
+      "inicio_utc": "2026-10-30T02:03:20.074274+00:00",
+      "ajustes_neurais_novos_concluidos": 6,
+      "publicacao": "dados/experimentos/cryptomamba_adaptado_35dd98141ee20d9b8885/publicacoes/tentativa_001",
+      "conferencia": "registros/cryptomamba/conferencias/2fe2252bc16e4e02946cc374a819a14e/conclusao.json",
+      "relatorio": "docs/resultados_cryptomamba_adaptado.md",
+      "analise_interpretativa": {
+        "arquivo": "registros/cryptomamba/revisoes/3dbd58da46d148dfb6371934ed7f6acf/analise.json",
+        "sha256": "61627370cb6144bb03cf56185beaeed6ad2f73f251fc1b93b4d573b440b71d6f"
+      },
+      "entrega_revisada": {
+        "arquivo": "registros/cryptomamba/entrega/907a54b2c063464b9c7e8bfbcda3c525/conferencia.json",
+        "sha256": "6d5f962b70b6ad481b356b91dee4f75e3f052c3b9e1045f84fa982d949e9c1a4"
+      },
+      "referencia_mantida": "registros/referencias/mamba16_ohlcv24_001.json"
+    },
+    {
+      "nome": "CryptoMamba adaptado: somente Adamâ†’AdamW",
+      "execucao": "6829c5fa076dc8c0e0ac",
+      "antecessor": "35dd98141ee20d9b8885",
+      "situacao": "concluido_conferido",
+      "ponteiro": "registros/otimizador/execucao.json",
+      "estado": "registros/otimizador/estado.json",
+      "pasta_execucao": "dados/experimentos/cryptomamba_adamw_6829c5fa076dc8c0e0ac",
+      "protocolo_congelado": "dados/experimentos/cryptomamba_adamw_6829c5fa076dc8c0e0ac/protocolo.md",
+      "configuracoes_congeladas": {
+        "adamw": "dados/experimentos/cryptomamba_adamw_6829c5fa076dc8c0e0ac/fontes/configuracoes/cryptomamba_adamw_001.json"
+      },
+      "pesos_tentativas": "dados/experimentos/cryptomamba_adamw_6829c5fa076dc8c0e0ac/celulas",
+      "dataset": "dados/entradas/0420879c2afc454c7754",
+      "seeds_principais": [
+        17,
+        42,
+        2026,
+        7,
+        123,
+        31415
+      ],
+      "ajustes_neurais_novos_planejados": 6,
+      "referencias_herdadas": 59,
+      "simulacoes_smart_planejadas": 54,
+      "progresso": "dados/experimentos/cryptomamba_adamw_6829c5fa076dc8c0e0ac/progresso.json",
+      "qualificacao": "registros/otimizador/qualificacoes/6387060eed004f6799dcff945bc0cfdd/qualificacao.json",
+      "autorizacao": "registros/otimizador/autorizacao.json",
+      "comparabilidade": "Ãšnico fator: Adamâ†’AdamW na adaptaÃ§Ã£o; seis seeds pareadas. Mesmo decay nominal nÃ£o iguala regularizaÃ§Ã£o efetiva.2024/2025retrospectivos.",
+      "lancamento_utc": "2026-10-30T06:38:25.5451015Z",
+      "inicio_utc": "2026-10-30T06:44:09.390855+00:00",
+      "ajustes_neurais_novos_concluidos": 6,
+      "publicacao": "dados/experimentos/cryptomamba_adamw_6829c5fa076dc8c0e0ac/publicacoes/tentativa_001",
+      "relatorio": "docs/resultados_otimizador_cryptomamba.md"
+    },
+    {
+      "nome": "Mamba16: taxa constante versus ReduceLROnPlateau",
+      "execucao": "99884456ac71fedfd9b0",
+      "situacao": "concluido_conferido",
+      "ponteiro": "registros/taxa_dinamica/execucao.json",
+      "estado": "registros/taxa_dinamica/estado.json",
+      "pasta_execucao": "dados/experimentos/mamba16_taxa_dinamica_99884456ac71fedfd9b0",
+      "protocolo_congelado": "dados/experimentos/mamba16_taxa_dinamica_99884456ac71fedfd9b0/protocolo.md",
+      "configuracoes_congeladas": {
+        "scheduler": "dados/experimentos/mamba16_taxa_dinamica_99884456ac71fedfd9b0/fontes/configuracoes/mamba16_taxa_dinamica_001.json"
+      },
+      "pesos_tentativas": "dados/experimentos/mamba16_taxa_dinamica_99884456ac71fedfd9b0/celulas",
+      "dataset": "dados/entradas/0420879c2afc454c7754",
+      "seeds_principais": [
+        17,
+        42,
+        2026,
+        7,
+        123,
+        31415
+      ],
+      "ajustes_neurais_novos_planejados": 6,
+      "referencias_herdadas": 53,
+      "simulacoes_smart_planejadas": 54,
+      "progresso": "dados/experimentos/mamba16_taxa_dinamica_99884456ac71fedfd9b0/progresso.json",
+      "qualificacao": "registros/taxa_dinamica/qualificacoes/d306612501c34c04bee0bd11410aaf28/qualificacao.json",
+      "autorizacao": "registros/taxa_dinamica/autorizacao.json",
+      "comparabilidade": "Um fator: polÃ­tica da taxa; seis seeds pareadas contra referÃªncia16/0,0002.2024/2025 retrospectivos.",
+      "lancamento_utc": "2026-10-30T09:19:27.5667233Z",
+      "ajustes_neurais_novos_concluidos": 6,
+      "publicacao": "dados/experimentos/mamba16_taxa_dinamica_99884456ac71fedfd9b0/publicacoes/tentativa_001",
+      "relatorio": "docs/resultados_taxa_dinamica.md"
+    },
+    {
+      "nome": "Mamba16: MSE versus2*Huber(delta1 padronizado)",
+      "execucao": "ed8e55ff978b2742c200",
+      "situacao": "concluido_conferido",
+      "ponteiro": "registros/perda_huber/execucao.json",
+      "estado": "registros/perda_huber/estado.json",
+      "pasta_execucao": "dados/experimentos/mamba16_perda_huber_ed8e55ff978b2742c200",
+      "protocolo_congelado": "dados/experimentos/mamba16_perda_huber_ed8e55ff978b2742c200/protocolo.md",
+      "configuracoes_congeladas": {
+        "huber": "dados/experimentos/mamba16_perda_huber_ed8e55ff978b2742c200/fontes/configuracoes/mamba16_perda_huber_001.json"
+      },
+      "pesos_tentativas": "dados/experimentos/mamba16_perda_huber_ed8e55ff978b2742c200/celulas",
+      "dataset": "dados/entradas/0420879c2afc454c7754",
+      "seeds_principais": [
+        17,
+        42,
+        2026,
+        7,
+        123,
+        31415
+      ],
+      "ajustes_neurais_novos_planejados": 6,
+      "referencias_herdadas": 53,
+      "simulacoes_smart_planejadas": 54,
+      "progresso": "dados/experimentos/mamba16_perda_huber_ed8e55ff978b2742c200/progresso.json",
+      "qualificacao": "registros/perda_huber/qualificacoes/f3ce78930c9f471ba0458c9f2f65ebb3/qualificacao.json",
+      "autorizacao": "registros/perda_huber/autorizacao.json",
+      "entrada": "python -m experimentos.perda_huber",
+      "comparabilidade": "Um fator: perda supervisionada; seis seeds pareadas com referÃªncia16/AdamW/MSE/0,0002 constante. PrimÃ¡rio e checkpoint por MSE real;2024/2025 retrospectivos.",
+      "lancamento_utc": "2026-11-03T02:20:03.9076251Z",
+      "primeira_epoca_utc": "2026-11-03T02:29:33.032535+00:00",
+      "ajustes_neurais_novos_concluidos": 6,
+      "publicacao": "dados/experimentos/mamba16_perda_huber_ed8e55ff978b2742c200/publicacoes/tentativa_001",
+      "relatorio": "docs/resultados_perda_huber.md",
+      "conferencia_posterior": {
+        "arquivo": "registros/perda_huber/entrega/20261103/conferencia.json",
+        "sha256": "3fd174f5f71bd7ae69a90262d953f64f7b65c05a7f5af0d624573dfabf36493b"
+      },
+      "referencia_mantida": "registros/referencias/mamba16_ohlcv24_001.json"
+    },
+    {
+      "nome": "MSE versus Huber em quatro blocos e oito seeds",
+      "execucao": "10dac17ea9df2c540c57",
+      "situacao": "concluido_conferido",
+      "ponteiro": "registros/huber_blocos/execucao.json",
+      "estado": "registros/huber_blocos/estado.json",
+      "pasta_execucao": "dados/experimentos/huber_blocos_10dac17ea9df2c540c57",
+      "protocolo_congelado": "dados/experimentos/huber_blocos_10dac17ea9df2c540c57/protocolo.md",
+      "configuracoes_congeladas": {
+        "grade": "dados/experimentos/huber_blocos_10dac17ea9df2c540c57/fontes/configuracoes/huber_blocos_001.json"
+      },
+      "receitas_por_bloco_no_congelamento": true,
+      "pesos_tentativas": "dados/experimentos/huber_blocos_10dac17ea9df2c540c57/celulas",
+      "controles": "dados/experimentos/huber_blocos_10dac17ea9df2c540c57/controles",
+      "datasets_por_bloco": {
+        "B1": {
+          "pasta": "dados/entradas/03eef4c9ce12efb81741",
+          "manifesto_sha256": "517738d5054d690e0902dba89b54808f48c4808a9097f0b414139e9428f55fd6"
+        },
+        "B2": {
+          "pasta": "dados/entradas/20569241906f93905387",
+          "manifesto_sha256": "3d6baf0f60fefeb8bc6787988af60f183de3fd9185254e346eb0894d817051ed"
+        },
+        "B3": {
+          "pasta": "dados/entradas/3fb143ccbf6e346d07cf",
+          "manifesto_sha256": "82f4657329526cdada196afe3afcc8309ed651738afaada3e5857f4efbce3c98"
+        },
+        "B4": {
+          "pasta": "dados/entradas/e8e3e94fb5e58f609d23",
+          "manifesto_sha256": "f1df71c34b275d9f1f4a1c8c80a93cf297f756b18f81d039296b48ae753bde74"
+        }
+      },
+      "seeds_principais": [
+        17,
+        42,
+        2026,
+        7,
+        123,
+        31415,
+        271828,
+        161803
+      ],
+      "ajustes_neurais_novos_planejados": 66,
+      "ajustes_principais_planejados": 64,
+      "controles_reais_planejados": 2,
+      "simulacoes_planejadas": 408,
+      "progresso": "dados/experimentos/huber_blocos_10dac17ea9df2c540c57/progresso.json",
+      "qualificacao": "registros/huber_blocos/qualificacoes/a1048044401c4a6393ab66b8d071b5b8/qualificacao.json",
+      "autorizacao": "registros/huber_blocos/autorizacao.json",
+      "entrada": "python -m experimentos.huber_blocos",
+      "comparabilidade": "Perda MSE/2*Huber; pesos/scalers novos por bloco; oito seeds pareadas.2024/2025 retrospectivos. Sem LSTM/ARIMA novos.",
+      "lancamento_utc": "2026-11-03T05:15:58.8321975Z",
+      "primeira_epoca_utc": "2026-11-03T05:18:33.127027+00:00",
+      "ajustes_neurais_novos_concluidos": 66,
+      "publicacao": "dados/experimentos/huber_blocos_10dac17ea9df2c540c57/publicacoes/tentativa_001",
+      "relatorio": "docs/resultados_huber_blocos.md"
+    },
+    {
+      "chave": "entradas_niveis_001",
+      "situacao": "concluido_conferido",
+      "execucao": "76f6c437e70eaaa605ad",
+      "estado": "registros/entradas_niveis/estado.json",
+      "protocolo": "docs/protocolo_entradas_niveis.md",
+      "ajustes_neurais_novos_concluidos": 66,
+      "referencias_herdadas": 32,
+      "publicacao": "dados/experimentos/entradas_niveis_76f6c437e70eaaa605ad/publicacoes/tentativa_001",
+      "relatorio": "docs/resultados_entradas_niveis.md",
+      "conferencia_posterior": {
+        "arquivo": "registros/entradas_niveis/entrega/20261103/conferencia.json",
+        "sha256": "715cf22d90bf3af9399b55b10bdc7843b2dbc9806559e8106ccd95f102bdbd17",
+        "analise": "registros/entradas_niveis/entrega/20261103/analise.json",
+        "relatorio_sha256": "1a9dae33d9362fd79e78744a111ec96b3d4746af5384dd11ffde0477c7bd9713"
+      }
+    },
+    {
+      "chave": "crua_huber_001",
+      "situacao": "concluido_conferido",
+      "estado": "registros/crua_huber/estado.json",
+      "protocolo": "docs/protocolo_crua_huber.md",
+      "configuracao": "configuracoes/crua_huber_001.json",
+      "principais_novos": 32,
+      "controles_reais": 1,
+      "referencias_herdadas": 96,
+      "simulacoes_novas": 192,
+      "simulacoes_herdadas": 600,
+      "fontes_herdadas": {
+        "huber_blocos": {
+          "id": "10dac17ea9df2c540c57",
+          "pasta": "dados/experimentos/huber_blocos_10dac17ea9df2c540c57",
+          "congelamento_sha256": "705322f6fffaf6394fdc43417f4c888e0da1d2b155e77e24411eaea3afcb9eb9"
+        },
+        "entradas_niveis": {
+          "id": "76f6c437e70eaaa605ad",
+          "pasta": "dados/experimentos/entradas_niveis_76f6c437e70eaaa605ad",
+          "congelamento_sha256": "4e8064abe84d98db578679018afba0b755440a83fd5975fce2d1576635431881"
+        }
+      },
+      "exposicao": "Retrospectivo2024/2025;interação sem certeza ou promoção automática.",
+      "qualificacao": "registros/crua_huber/qualificacoes/8478e752dad34802b1c9ac6eea512559/qualificacao.json",
+      "execucao": "1781f557fdf2b45a3ae2",
+      "pasta_execucao": "dados/experimentos/crua_huber_1781f557fdf2b45a3ae2",
+      "ponteiro": "registros/crua_huber/execucao.json",
+      "lancador": "registros/crua_huber/lancador.json",
+      "ajustes_neurais_novos_concluidos": 33,
+      "publicacao": "dados/experimentos/crua_huber_1781f557fdf2b45a3ae2/publicacoes/tentativa_001",
+      "relatorio": "docs/resultados_crua_huber.md"
+    }
+  ],
+  "investigacoes_ohlcv": [
+    {
+      "chave": "estados_internos_001",
+      "situacao": "encerrada_com_referencia_escolhida",
+      "estados": [
+        8,
+        16,
+        32,
+        64
+      ],
+      "seeds": [
+        17,
+        42,
+        2026,
+        7,
+        123,
+        31415
+      ],
+      "fechamento": {
+        "arquivo": "registros/investigacoes/estados_internos_001/fechamento.json",
+        "sha256": "6cc2279a8791963c024ddc87e1ae9951db3f57c94cd0a5a8daf400d884c64db2"
+      },
+      "relatorio": "docs/resultados_estados32_64.md",
+      "referencia_escolhida": "registros/referencias/mamba16_ohlcv24_001.json",
+      "novos_ajustes_ao_indexar": 0
+    }
+  ],
+  "hipoteses_concluidas": [
+    {
+      "chave": "taxa_aprendizado_mamba_001",
+      "situacao": "concluida_conferida_sem_evidencia_favoravel_criterio",
+      "fonte": "docs/desenho_ohlcv24.md#11-referÃªncia-adotada-e-prÃ³xima-hipÃ³tese-proposta",
+      "referencia": "registros/referencias/mamba16_ohlcv24_001.json",
+      "fator": "treino.taxa_aprendizado",
+      "valor_referencia": 0.0002,
+      "valor_candidato": 0.0001,
+      "seeds": [
+        17,
+        42,
+        2026,
+        7,
+        123,
+        31415
+      ],
+      "orcamento_novos_ajustes_proposto": 24,
+      "ajustes_executados": 24,
+      "criterio_proposto": "Quatro efeitos de validaÃ§Ã£o com IC98,75% principal Bonferroni; teste/Spot secundÃ¡rios retrospectivos; sem promoÃ§Ã£o automÃ¡tica.",
+      "protocolo_execucao": "docs/protocolo_taxa_aprendizado.md",
+      "estados": [
+        8,
+        16,
+        32,
+        64
+      ],
+      "execucao": "1af0a64e83d472ac533e",
+      "estado_verificavel": "registros/taxa_aprendizado/estado.json",
+      "analise_interpretativa": {
+        "arquivo": "registros/taxa_aprendizado/revisoes/85bd9dd338ac4ad0b83aec9f1d7d1e38/analise.json",
+        "sha256": "ae8f617fdb8ef8cf4e25a9929491ff37a8259a77d44aae017f640019cc6511e0"
+      },
+      "relatorio": "docs/resultados_taxa_aprendizado.md",
+      "referencia_mantida": "registros/referencias/mamba16_ohlcv24_001.json"
+    }
+  ],
+  "avaliacoes_operacionais": [
+    {
+      "chave": "backtest_carteira_001",
+      "situacao": "concluido_conferido",
+      "execucao": "8ec8a66648313caa48e3",
+      "ponteiro": "registros/backtest_carteira/execucao_atual.json",
+      "estado": "registros/backtest_carteira/estado.json",
+      "tentativa_inicial": {
+        "id": "b9fce5ae0300ce91ba69",
+        "pasta": "dados/experimentos/backtest_carteira_b9fce5ae0300ce91ba69",
+        "congelamento_sha256": "08f2ae9773fed4679950a5c616632cc82179b796cdc79ed9b2ad694cf1a6ff34"
+      },
+      "protocolo": "docs/protocolo_backtest_carteira.md",
+      "configuracao": "configuracoes/backtest_carteira_001.json",
+      "pasta_execucao": "dados/experimentos/backtest_carteira_8ec8a66648313caa48e3",
+      "simulacoes_planejadas": 369,
+      "novos_treinamentos": 0,
+      "buscas_parametros": 0,
+      "exposicao": "retrospectivo2024/2025;2024participou da seleÃ§Ã£o de checkpoints",
+      "fontes_congeladas": "dados/experimentos/backtest_carteira_8ec8a66648313caa48e3/congelamento.json",
+      "simulacoes_concluidas": 369,
+      "fechamento": "registros/backtest_carteira/revisao_loader/fechamento.json",
+      "resultado": "dados/experimentos/backtest_carteira_8ec8a66648313caa48e3/resultados/comparacao.json",
+      "resultado_sha256": "57f711c538232f6ee085caa04e1d9ebf1672471cd21b2b31669264f5468a2782",
+      "relatorio": "docs/resultados_backtest_carteira.md",
+      "conferencia_posterior": {
+        "arquivo": "registros/backtest_carteira/entrega/fechamento_20261030/conferencia.json",
+        "sha256": "4ab12427a0c104744247cd09672387e8e45d0cef9d9c9506c0b5f7fb7908e2cb"
+      },
+      "encerramento_utc": "2026-10-30T05:44:15.790443+00:00"
+    },
+    {
+      "chave": "futuros_001",
+      "situacao": "concluido_conferido",
+      "execucao": "3e17e6fc15b66ca60313",
+      "ponteiro": "registros/futuros/execucao.json",
+      "estado": "registros/futuros/estado.json",
+      "protocolo": "docs/protocolo_futuros.md",
+      "configuracao": "configuracoes/futuros_001.json",
+      "pasta_execucao": "dados/experimentos/futuros_3e17e6fc15b66ca60313",
+      "simulacoes_planejadas": 804,
+      "novos_treinamentos": 0,
+      "buscas_parametros": 0,
+      "exposicao": "Zero treino; sinais Spot transferidos a perpétuos; médias retrospectivas; Spot anterior não é controle isolado de shorts.",
+      "fontes_congeladas": "dados/experimentos/futuros_3e17e6fc15b66ca60313/congelamento.json",
+      "simulacoes_concluidas": 804,
+      "fechamento": "dados/experimentos/futuros_3e17e6fc15b66ca60313/fechamento.json",
+      "resultado": "dados/experimentos/futuros_3e17e6fc15b66ca60313/publicacao/resultados.json",
+      "resultado_sha256": "d65eef47cb4f79a663d7c2f5484509accad8275a3fcd44009245bb7864e38280",
+      "relatorio": "docs/resultados_futuros.md",
+      "conferencia_posterior": {
+        "arquivo": "registros/futuros/conferencias/2026-11-04T151245.898509_0000/conferencia.json",
+        "sha256": "cffd8c8363b994ac6d9e761894b4715b9fef132571b09db89a00b9c4cd729dc3"
+      }
+    },
+    {
+      "chave": "smart_mercados_001",
+      "situacao": "concluido_conferido",
+      "execucao": "9e1d6c3686499c020389",
+      "ponteiro": "registros/smart_mercados/execucao.json",
+      "estado": "registros/smart_mercados/estado.json",
+      "protocolo": "docs/protocolo_smart_mercados.md",
+      "configuracao": "configuracoes/smart_mercados_001.json",
+      "pasta_execucao": "dados/experimentos/smart_mercados_9e1d6c3686499c020389",
+      "simulacoes_planejadas": 1632,
+      "novos_treinamentos": 0,
+      "buscas_parametros": 0,
+      "exposicao": "retrospectivo2024/2025;Smart95 comum;custos iguais e controle funding;nao replica exatamente Smart historica",
+      "fontes_congeladas": "dados/experimentos/smart_mercados_9e1d6c3686499c020389/congelamento.json",
+      "simulacoes_concluidas": 1632,
+      "fechamento": "dados/experimentos/smart_mercados_9e1d6c3686499c020389/fechamento.json",
+      "resultado": "dados/experimentos/smart_mercados_9e1d6c3686499c020389/publicacao/resultados.json",
+      "resultado_sha256": "de26d67aea1765c98c44f14491f2973fb5031830ab16e368d9546aa6caf6efe8",
+      "relatorio": "docs/resultados_smart_mercados.md",
+      "conferencia_posterior": {
+        "arquivo": "registros/smart_mercados/conferencias/2026-11-04T160336.944682_0000/conferencia.json",
+        "sha256": "84931d0f408a47544b5ee98a396285a9839e9193a85fa56d0b93d74df591c50e"
+      },
+      "encerramento_utc": "2026-11-04T16:02:55.613711+00:00",
+      "diagnostico_direcao": {
+        "arquivo": "registros/smart_mercados/diagnosticos/2026-11-04T161117.730616_0000/diagnostico.json",
+        "sha256": "bf8378052ccc10addaf315623e47b020554793558bd807145ca3cc23018392cc",
+        "natureza": "posterior de leitura; atribui PnL e qualifica limite do contraste bilateral, sem novo backtest"
+      }
+    },
+    {
+      "chave": "revisao_operacional_001",
+      "situacao": "concluido_conferido",
+      "execucao": "6c1a00a9967e2617b8b1",
+      "ponteiro": "registros/revisao_operacional/execucao.json",
+      "estado": "registros/revisao_operacional/estado.json",
+      "protocolo": "docs/protocolo_revisao_operacional.md",
+      "configuracao": "configuracoes/revisao_operacional_001.json",
+      "pasta_execucao": "dados/experimentos/revisao_operacional_6c1a00a9967e2617b8b1",
+      "fontes_congeladas": "dados/experimentos/revisao_operacional_6c1a00a9967e2617b8b1/congelamento.json",
+      "simulacoes_planejadas": 1200,
+      "novos_treinamentos": 0,
+      "buscas_parametros": 0,
+      "exposicao": "Retrospectivo; revisao tecnica separada de politicas predefinidas, sem selecao por lucro.",
+      "simulacoes_concluidas": 1200,
+      "fechamento": "dados/experimentos/revisao_operacional_6c1a00a9967e2617b8b1/fechamento.json",
+      "resultado": "dados/experimentos/revisao_operacional_6c1a00a9967e2617b8b1/publicacao/resultados.json",
+      "resultado_sha256": "c1e973b96311d1eac8e10eb9953c89b191256204f67fd5fcc98254ff4339e590",
+      "relatorio": "docs/resultados_revisao_operacional.md",
+      "conferencia_posterior": {
+        "arquivo": "registros/revisao_operacional/conferencias/2026-11-04T165017.695029_0000/conferencia.json",
+        "sha256": "357ede0e66d79fc4cca1cdd4cc8cc08749f2634c1586c25b5cf2d855aaafca85"
+      },
+      "encerramento_utc": "2026-11-04T16:49:04.359503+00:00"
+    }
+  ]
+}

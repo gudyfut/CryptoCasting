@@ -1,0 +1,212 @@
+{
+  "utc": "2026-10-28T21:27:16.150435+00:00",
+  "fontes": {
+    "configuracoes/ohlcv24_001.json": "0fbfaac69b08dd3076366250322ce066fe334ce0faf4bfb1f0592a29c54a485c",
+    "estudo_ohlcv/__init__.py": "5154f4a77a69320aaa947f55ba30c1557be47f59fa9448f986a1fb24208ebdfd",
+    "estudo_ohlcv/avaliacao.py": "1a7df4af19bff39940782b370a42c9c1e499abfce497b8095c6d53736f568261",
+    "estudo_ohlcv/ciclo.py": "28aed74fcf4f125f834b59a4a9b5074efd740391bafca40b150ae084d804cb64",
+    "estudo_ohlcv/dados.py": "8f960de60672bdcb8dc1a730b70b8d49234915d9eda35db3de5901f0274a60a8",
+    "estudo_ohlcv/qualificacao.py": "05f6d50116f3c34182d2cba47695490f88f9ee7a0e6415377fbdd7a621df8a2b",
+    "estudo_ohlcv/redes.py": "50d9a422db8f78c77b2ed4b04da190a46dff30dcd0221d8db5605521d111c7c3",
+    "estudo_ohlcv/treino.py": "8dbf330abb8a38d8d9b4f50b68a27321bd5610af1502362340e2fe3d70d88df0",
+    "experimento_penalizacao/__init__.py": "8fcc0ad8843531b2a5023a5022e5b9a8ce76bae0325084f8bfdcd397d02076c6",
+    "experimento_penalizacao/otimizador.py": "68f8cae6f23206378d5016e5a531867f785cf80ea15cecb762a1503600c39306",
+    "previsao24/__init__.py": "c129983e060ce36115341055ad9823c649aed6dde5c5bbfac2f3e4c78e1606c8",
+    "previsao24/arquivos.py": "71b40ab9628e4c3461ae2fadeb69bcb12ceea2d8331012168e1bd2a4dc9b1334",
+    "previsao24/baselines.py": "3aec448eb8974aec09af336e471cfece916e0e8c04f62d162b51d3b579f8e459",
+    "previsao24/financeiro.py": "e37d98a16580294a3b0c3c6a353df7ff8aaed176a32a3e0f1b9b07c0b6b80bf6",
+    "previsao24/metricas.py": "89016c0fba23691707fec66ec11a2e233cab108f27ff5dcd5872b547f9af4af4",
+    "run_ohlcv.py": "6a3f53a8c1b0b391b88c2676e6e641cd498c57c0d00580f5f414b5797cc81278",
+    "tests_ohlcv/test_contratos.py": "ade77713de6a377ef2b55ae753d8df3f2fa28012725638144613969c9275f1b8"
+  },
+  "natureza": "sintetico_sem_treinamento_de_mercado",
+  "ambiente": {
+    "python": "3.12.13",
+    "torch": "2.6.0+cu118",
+    "cuda": "11.8",
+    "gpu": "NVIDIA GeForce RTX 4050 Laptop GPU",
+    "host": "MuriloRFM",
+    "pacotes": {
+      "mamba_ssm": "2.2.6.post3",
+      "causal_conv1d": "1.6.2.post1",
+      "numpy": "2.2.6",
+      "pandas": "3.0.3",
+      "statsmodels": "0.14.6",
+      "pyarrow": "24.0.0"
+    }
+  },
+  "redes": {
+    "mamba": {
+      "parametros": 20257,
+      "gradiente_por_canal": [
+        0.07402515411376953,
+        0.09669940173625946,
+        0.07199710607528687,
+        0.11335726827383041,
+        0.062314778566360474
+      ],
+      "grupos": [
+        {
+          "nomes": [
+            "projecao.weight",
+            "projecao.bias"
+          ],
+          "weight_decay": 0.001,
+          "elementos": 192
+        },
+        {
+          "nomes": [
+            "blocos.0.A_log",
+            "blocos.0.D"
+          ],
+          "weight_decay": 0.0,
+          "elementos": 1088
+        },
+        {
+          "nomes": [
+            "blocos.0.in_proj.weight",
+            "blocos.0.conv1d.weight",
+            "blocos.0.conv1d.bias",
+            "blocos.0.x_proj.weight",
+            "blocos.0.dt_proj.weight",
+            "blocos.0.dt_proj.bias",
+            "blocos.0.out_proj.weight"
+          ],
+          "weight_decay": 0.001,
+          "elementos": 8832
+        },
+        {
+          "nomes": [
+            "blocos.1.A_log",
+            "blocos.1.D"
+          ],
+          "weight_decay": 0.0,
+          "elementos": 1088
+        },
+        {
+          "nomes": [
+            "blocos.1.in_proj.weight",
+            "blocos.1.conv1d.weight",
+            "blocos.1.conv1d.bias",
+            "blocos.1.x_proj.weight",
+            "blocos.1.dt_proj.weight",
+            "blocos.1.dt_proj.bias",
+            "blocos.1.out_proj.weight",
+            "normas.0.weight",
+            "normas.0.bias",
+            "normas.1.weight",
+            "normas.1.bias",
+            "norma_final.weight",
+            "norma_final.bias",
+            "saida.weight",
+            "saida.bias"
+          ],
+          "weight_decay": 0.001,
+          "elementos": 9057
+        }
+      ],
+      "reproducao": {
+        "maxima_diferenca_previsoes": {
+          "validacao": 8.940696720298458e-10,
+          "teste": 2.9802322393766845e-10,
+          "operacional": 2.9802322393766845e-10
+        },
+        "diferenca_relativa_mse_validacao": 7.97214387644591e-11,
+        "mesma_epoca": true,
+        "limites": {
+          "diferenca_absoluta_previsao": 1e-05,
+          "diferenca_relativa_mse": 0.0001,
+          "mesma_epoca": true,
+          "origem_limites": "mesmos limites dos controles dos ciclos preliminares; recarga do checkpoint permanece exata"
+        }
+      },
+      "recarga_exata": true
+    },
+    "lstm": {
+      "parametros": 13473,
+      "gradiente_por_canal": [
+        0.0002815925399772823,
+        0.00032053625909611583,
+        0.0004047017137054354,
+        0.0001651098282309249,
+        0.0002769215207081288
+      ],
+      "grupos": [
+        {
+          "nomes": [
+            "recorrente.weight_ih_l0",
+            "recorrente.weight_hh_l0",
+            "recorrente.bias_ih_l0",
+            "recorrente.bias_hh_l0",
+            "recorrente.weight_ih_l1",
+            "recorrente.weight_hh_l1",
+            "recorrente.bias_ih_l1",
+            "recorrente.bias_hh_l1",
+            "saida.weight",
+            "saida.bias"
+          ],
+          "weight_decay": 0.001,
+          "elementos": 13473
+        }
+      ],
+      "reproducao": {
+        "maxima_diferenca_previsoes": {
+          "validacao": 0.0,
+          "teste": 0.0,
+          "operacional": 0.0
+        },
+        "diferenca_relativa_mse_validacao": 0.0,
+        "mesma_epoca": true,
+        "limites": {
+          "diferenca_absoluta_previsao": 1e-05,
+          "diferenca_relativa_mse": 0.0001,
+          "mesma_epoca": true,
+          "origem_limites": "mesmos limites dos controles dos ciclos preliminares; recarga do checkpoint permanece exata"
+        }
+      },
+      "recarga_exata": true
+    }
+  },
+  "avisos": [
+    "The given NumPy array is not writable, and PyTorch does not support non-writable tensors. This means writing to this tensor will result in undefined behavior. You may want to copy the array to protect its data or make it writable before converting it to a tensor. This type of warning will be suppressed for the rest of this program. (Triggered internally at /pytorch/torch/csrc/utils/tensor_numpy.cpp:203.)"
+  ],
+  "status": "aprovado",
+  "artefatos": {
+    "lstm_1/checkpoint.pt": "61cba17a47ecb0034bb47eb63567c173ecae8afd6049a478498b66c794b33ff9",
+    "lstm_1/epocas.json": "2043361ed0b78f4b24cc62e8199eab990fb0331c3bedc4c72b0d936d9b00e810",
+    "lstm_1/grupos_otimizador.json": "4231c181ebdf6d6e89e3b63fe31e22cc298891c1cdd84de29536dccad9feed12",
+    "lstm_1/previsoes_operacional.parquet": "363d653d5cd4e980a1bf4c9be04f2168528bdc2dd8fecc1bc90ca42c619dee0c",
+    "lstm_1/previsoes_teste.parquet": "a1a5d559eeaacd88b2bdc8b832eafbbd3aaa4aba29ef3660fba32f84940d9a7e",
+    "lstm_1/previsoes_validacao.parquet": "b392606c07ee04b26d581804f5a9eb3d71e9a9145168759cf69932174ee855ab",
+    "lstm_1/resultado.json": "86544d565fefa0b76b2b9af4bd31d350fc7cd2927efd739a3168b65447858bd5",
+    "lstm_1.log": "7fc9daa44feba8244074a16fb370bdd9aa2cd36694b0190651c2a79416032959",
+    "lstm_2/checkpoint.pt": "61cba17a47ecb0034bb47eb63567c173ecae8afd6049a478498b66c794b33ff9",
+    "lstm_2/epocas.json": "11e802fef79bde633211969d209c28c980dc48e791b748bf5bec25254daed1cb",
+    "lstm_2/grupos_otimizador.json": "4231c181ebdf6d6e89e3b63fe31e22cc298891c1cdd84de29536dccad9feed12",
+    "lstm_2/previsoes_operacional.parquet": "363d653d5cd4e980a1bf4c9be04f2168528bdc2dd8fecc1bc90ca42c619dee0c",
+    "lstm_2/previsoes_teste.parquet": "a1a5d559eeaacd88b2bdc8b832eafbbd3aaa4aba29ef3660fba32f84940d9a7e",
+    "lstm_2/previsoes_validacao.parquet": "b392606c07ee04b26d581804f5a9eb3d71e9a9145168759cf69932174ee855ab",
+    "lstm_2/reproducao.json": "345a9e5c877952e6e1534f6ca5c2f34a4f359d701d935c4aa002e6ceed67978c",
+    "lstm_2/resultado.json": "17ddd7333df73c68fbc9b4b6fb4d9f7d0ac348f5ceb64c45aeb51d07f5663d8f",
+    "lstm_2.log": "7fc9daa44feba8244074a16fb370bdd9aa2cd36694b0190651c2a79416032959",
+    "mamba_1/checkpoint.pt": "6cc51896e392553d737a3e931d013beda540e34375eef3be3d0ef01709388e82",
+    "mamba_1/epocas.json": "79ef84553f08ac507e509d98be119099152657ec3749a767735be8c5370fb228",
+    "mamba_1/grupos_otimizador.json": "01195ad600c9cd306e5552e1baf3efe0e448e6f4d39b45f3bf498e56f983ccab",
+    "mamba_1/previsoes_operacional.parquet": "51b986ff30d74acc8fb7a59ba92bc45c32a5834c91dc1ef06daf7f8ab1a3e686",
+    "mamba_1/previsoes_teste.parquet": "fb92e074113918b2cff4e10e60fc79874b9a831c3aee0bed3c87ae1e5da02e2a",
+    "mamba_1/previsoes_validacao.parquet": "c4dfa1199229c80152f0fddd3096f2a1625c8de773cfc4a8e62286b01a2f51ab",
+    "mamba_1/resultado.json": "29d97f83d786c402d036fffef642dc72a68ea5195064a16c15d181583f3b8d24",
+    "mamba_1.log": "1b331ebd71a44bbd8c35477bd717d7f4140bd0b742a1ea37fa19f9bb234d9020",
+    "mamba_2/checkpoint.pt": "abe0c164f6df8370b1c73fa849c064e9a689402141c656ca7f785367df2f31c2",
+    "mamba_2/epocas.json": "eccfc9ceae29143d403c17872db406e2933babfbfcacc867ea752cb59e4fbfcd",
+    "mamba_2/grupos_otimizador.json": "01195ad600c9cd306e5552e1baf3efe0e448e6f4d39b45f3bf498e56f983ccab",
+    "mamba_2/previsoes_operacional.parquet": "06213ada74049c6f539a43cace508630099996b61848d4d4aa7f878965a47810",
+    "mamba_2/previsoes_teste.parquet": "64b7f6c3a55994e30acb804fcb121874ad14be99bbcfbf62370668e350701866",
+    "mamba_2/previsoes_validacao.parquet": "58eb92265addf383a426a16ac26e326adcc0149273b4f2f035e7f19cd3776086",
+    "mamba_2/reproducao.json": "8817934b311440a3dd03bff592ad272b09339525f5dc92c07629488bdea9440b",
+    "mamba_2/resultado.json": "44baf6b514b00163caccfb3d95f4a70e23070ec883c3dce1d3dafe373a65a23d",
+    "mamba_2.log": "1b331ebd71a44bbd8c35477bd717d7f4140bd0b742a1ea37fa19f9bb234d9020",
+    "tests.log": "6bdc0ceaa4f7b9660256bd286cfc38e5b11bdec48acbb561f837d5de7b6d5bfb",
+    "tests_ohlcv.log": "907bab3c2bea1088254504f2e2d82fb82fc8b8cdb95c0b6639046663d71906ea"
+  }
+}

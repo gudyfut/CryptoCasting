@@ -1,0 +1,53 @@
+{
+  "versao": 1,
+  "utc": "2026-10-29T15:05:28.177679+00:00",
+  "situacao": "concluido_conferido",
+  "execucao": {
+    "id": "ab5baf3eab3a2e66d8b2",
+    "pasta": "dados/experimentos/ohlcv_modular_ab5baf3eab3a2e66d8b2",
+    "congelamento_sha256": "9adbabc79b1f9dc711d6bbbc9d5935e54a215a7a5cf4ce2fc6637894bae9997c"
+  },
+  "autorizacao_mercado": true,
+  "treinamentos_mercado": 8,
+  "documentacao": "docs/arquitetura_treinamento.md",
+  "decisao": "docs/adr/0009-treinamento-modular.md",
+  "configuracao": "configuracoes/treinamento_ohlcv24_001.json",
+  "entrada": "run_treinamento.py",
+  "qualificacao": {
+    "recibo": "registros/treinamento/qualificacoes/09524ec9434041e7805053d7c507987c/qualificacao.json",
+    "sha256": "1e1a51a87264191c0511f8e5063663e30f9da81e70768667c2b0d6bf877ec956",
+    "testes": 68,
+    "skips": 0,
+    "natureza": "somente ajustes sintéticos; conferência de dados reais sem ajustes"
+  },
+  "revisao": "registros/revisoes/treinamento_modular_2026-10-29",
+  "preservacao": "registros/revisoes/treinamento_modular_2026-10-29/preservacao_depois.json",
+  "auditoria_historica": "registros/revisoes/catalogo_2026-10-29T064426.996705Z/resumo.json",
+  "preparacao_anterior_preservada": "92e3eb82e3f6adf99994",
+  "dados": "dados/entradas/0420879c2afc454c7754",
+  "orcamento": {
+    "neurais_principais": 6,
+    "controles_neurais": 2,
+    "naive": 1,
+    "arima_candidatos": 9,
+    "arima_selecionados": 1
+  },
+  "proxima_acao": "Interpretar resultados preditivos e simulação Spot; usar apenas conferências posteriores de leitura, sem reexecutar ciclo encerrado.",
+  "limites": [
+    "Rodada OHLCV concluída; conferência posterior de cobertura, integridade, seleção e métricas aprovada. Recarga CUDA registrada pelo executor, sem repetição nesta conferência.",
+    "Divisão fixa retrospectiva, não walk-forward nem holdout intocado.",
+    "Backup externo e aceite acadêmico não comprovados por esta revisão.",
+    "Ensaios técnicos não garantem lucro nem superioridade do Mamba."
+  ],
+  "conferencia_final": "registros/revisoes/treinamento_modular_2026-10-29/conferencia_final.json",
+  "links_documentais": "registros/revisoes/treinamento_modular_2026-10-29/links_documentais.json",
+  "autorizacao": "registros/treinamento/autorizacao.json",
+  "lancamento": "registros/treinamento/lancamento_2026-10-29.json",
+  "treinamentos_mercado_iniciados": 8,
+  "treinamentos_mercado_concluidos": 8,
+  "inicio_confirmado": "registros/treinamento/inicio_confirmado_2026-10-29.json",
+  "concluido_utc": "2026-10-29T07:26:53.373130+00:00",
+  "celulas_concluidas": 10,
+  "conferencia_conclusao": "registros/treinamento/conferencias/bbe308fe56c54c2d879b85fc7f1b7105/conclusao.json",
+  "publicacao": "dados/experimentos/ohlcv_modular_ab5baf3eab3a2e66d8b2/publicacoes/tentativa_001"
+}

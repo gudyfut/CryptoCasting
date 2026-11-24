@@ -1,0 +1,31 @@
+{
+  "utc": "2026-11-13T03:54:10.692000+00:00",
+  "etapa": "antes_da_qualificacao",
+  "incidente": "WSL/Service/0x80072747 ao iniciar comandos; nenhum novo treino iniciado",
+  "evidencias": [
+    {
+      "comando": [
+        "wsl",
+        "-d",
+        "Ubuntu",
+        "--exec",
+        "/bin/true"
+      ],
+      "retorno": 4294967295,
+      "stdout": "Uma operação em um soquete não pôde ser executada porque o sistema não tinha espaço suficiente no buffer ou porque uma fila estava cheia. \r\nCódigo de erro: Wsl/Service/0x80072747\r\n",
+      "stderr": ""
+    },
+    {
+      "comando": [
+        "wsl",
+        "--list",
+        "--verbose"
+      ],
+      "retorno": 0,
+      "stdout": "  NAME              STATE           VERSION\r\n* Ubuntu            Running         2\r\n  docker-desktop    Stopped         2\r\n",
+      "stderr": ""
+    }
+  ],
+  "gpu_windows": "Apenas Codex e Brave listados; não comprova ausência de outros processos Linux não GPU.",
+  "procedimento": "Tentar reinício somente de Ubuntu no WSL, autorizado anteriormente pelo pesquisador para recuperação do ambiente; preservar estado e verificar novamente."
+}

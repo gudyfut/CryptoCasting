@@ -1,21 +1,57 @@
-# Portal do estudo de retorno em 24 horas
+# Evolução da pesquisa CryptoCasting
 
-Executar npm neste diretório. `npm run dev`, `npm run build`, `npm run lint`, `npm test`.
+Os números financeiros vigentes vêm de `registros/custos_vigentes/vigente.json` quando a reavaliação está concluída. `custos-servidor.ts` confere manifesto, pais e publicações antes de combinar finanças revisadas com métricas de previsão preservadas. O cenário é slippage provisório de0,01% por lado, com estresses proporcionais; as fontes históricas originais continuam acessíveis e identificadas. Sem publicação completa, o painel informa custo histórico; divergência bloqueia a apresentação como vigente.
 
-O servidor lê a configuração e os registros reais da raiz do projeto. Previsões do explorador são exportadas por `python manutencao/exportar_portal.py`, a partir de tentativas auditadas. O exportador confere os hashes científicos e o endpoint verifica SHA-256 dos JSONs comprimidos. `dados/portal` fica fora do Git.
+Interface local com dez fases da pesquisa, das primeiras tentativas à generalização para ETH, BNB e XRP. A visão geral começa pelo estágio atual; cada fase explica a pergunta, a alteração, a conclusão e seus limites. **Resultados e conclusões** compara as receitas diárias de BTC, separa carteiras individuais de ensemble e permite imprimir. **Como avaliamos** explica o método atual e mantém o desenho histórico em uma seção recolhida.
 
-`npm test` verifica todas as séries exportadas: hashes, alinhamento dos preços de origem/destino, horizonte de 24h e recálculo das métricas contra os registros. Não gera previsões fictícias quando faltam resultados. Dados parciais recebem aviso explícito.
+Os 14 testes detalhados do panorama OHLCV de 03/11, seus gráficos e 205 séries permanecem acessíveis na terceira fase. O modo **Apresentar** usa ←/→ e Esc. Links antigos com `?etapa=` continuam funcionando.
 
-Gráficos usam TradingView Lightweight Charts™; atribuição permanece visível. A linha entre origem e previsão representa apenas a ligação gráfica ao valor terminal, não trajetória prevista. Candles identificados pelo instante de fechamento exclusivo UTC.
+Todas as fases e os 14 testes históricos separam **Resumo**, **Configuração** e **Fontes**; avaliações publicadas têm sua área de resultados. O resumo apresenta a mudança, a conclusão e apenas as características essenciais. A configuração mostra uma categoria por vez — dados, rede, treino, avaliação ou operação — com colunas de antes/depois e alterações em dourado. É possível selecionar a receita, comparar com a etapa anterior ou com a referência científica, filtrar alterações e consultar todos os parâmetros. Cada valor pode ser expandido para revelar sua definição integral. A categoria e a base da comparação permanecem ao navegar entre etapas.
 
-Percentuais de retorno menores que 0,01% usam precisão adicional; abaixo de 0,0001%, usam notação científica. Isso evita confundir um retorno pequeno com zero exato. A regra é compartilhada pelo gráfico, cartões e tabela de origens. Modelos ainda ausentes na publicação parcial são identificados pelo nome, sem preenchimento artificial.
+## Executar
 
-O painel agregado lê `registros/analises/<execucao>/<fase>/resumo.json` apenas depois de conferir o manifesto e o recibo de auditoria da publicação. `python manutencao/consolidar_resultados.py --fase desenvolvimento` (ou `avaliacao`) exige a fase inteira, revalida as fontes, consolida médias, bootstrap e simulações e executa uma auditoria independente. Não gera um placar completo com tentativas faltantes. Os controles permitem comparar contextos, moedas, blocos e seeds; os intervalos publicados referem-se à fase completa e têm esse escopo explicitado.
+Executar npm neste diretório:
 
-As curvas financeiras e CSVs são servidos por uma lista de arquivos auditados, com hashes e identidade da execução. Séries do explorador usam nomes imutáveis por conteúdo para permitir atualização da exportação sem invalidar leitores antigos. O laboratório interativo é um exemplo didático identificado, não dado de mercado.
+```sh
+npm run dev
+```
 
-Ao concluir e auditar a consolidação de desenvolvimento, a CLI também exporta as séries dessa fase. Assim os resultados completos de 2023 ficam disponíveis antes de terminar a avaliação posterior. Reabrir/atualizar a página consulta os registros mais recentes; a interface não trata ausência temporária de exportação como previsão zero.
+Abrir http://localhost:3000. Para a versão de produção: `npm run build` e `npm start`. A interface requer o repositório e os artefatos locais; não foi publicada em serviço externo.
 
-## Verificação final concluída — 21/10/2026
+## Dados e rastreabilidade
 
-Publicação completa de ambas as fases: 832 resultados em 384 séries com os quatro modelos. Build/lint, dois testes de todas as séries e dois da API aprovados. Downloads JSON/CSV e operações foram comparados por hash com os manifestos. Placar, intervalos, simulações e exemplos reais foram conferidos em desktop/celular, incluindo filtros, origem compartilhável, seleção do modelo, busca por data e recarga. Recibo `../registros/interface/aceite_final.json`, com hashes das fontes e imagens. O aceite depende também da auditoria científica global, não apenas da compilação.
+`scripts/exportar_panorama.py` exporta resultados existentes. Executado a partir da raiz do repositório, requer Python, pandas, NumPy e o leitor Parquet já disponíveis no ambiente científico:
+
+```sh
+python dataview/scripts/exportar_panorama.py
+```
+
+Ele confere manifestos, hashes das previsões e históricos de épocas, alinhamento de 24h, preço/alvo e o MSE de todas as origens horárias. Não importa treinadores e não inicia treinamento, inferência ou backtest. Escreve apenas o snapshot da apresentação (`src/data/panorama.json`), as séries em `dados/portal_panorama/series/` e o recibo em `registros/interface/panorama_20261103/exportacao.json`.
+
+O snapshot atual reúne 205 séries de previsões salvas. O explorador mostra uma origem diária às 00h UTC para facilitar a leitura; as métricas publicadas usam a população horária completa. O gráfico liga previsões terminais independentes, sem representar uma trajetória prevista dentro do dia. O CSV contém os exemplos diários da série selecionada. O primeiro exemplo usa a seed 42 por convenção, sem seleção por resultado.
+
+O servidor confere a disponibilidade e a integridade das fontes originais. Os endpoints `/api/panorama/serie` e `/api/panorama/fonte` aceitam somente identidades e caminhos da exportação e verificam SHA-256 antes da entrega. Ausência local recebe aviso explícito; nunca gera resultado artificial. Para usar em outra máquina, preservar/restaurar as fontes e as séries conforme a política de armazenamento do projeto.
+
+Os resultados posteriores são lidos por `src/lib/evolucao-servidor.ts`, sem chamar executores científicos. Resumos e carteiras são verificados contra os hashes dos fechamentos. Fontes narrativas também têm uma lista explícita de caminhos e hashes. Ausências ou divergências não são preenchidas com zero. O snapshot histórico e seu recibo não são regenerados para incluir fases novas.
+
+`src/lib/fichas-servidor.ts` lê configurações, receitas efetivamente ajustadas e protocolos por uma lista fixa de fontes com SHA-256. Não chama treinamento nem regenera resultados. `src/lib/fichas.ts` mantém os campos comparáveis; `FichaTecnica.tsx` exibe seus valores e diferenças. Uma fonte ausente ou alterada impede exibir a ficha dependente, em vez de presumir parâmetros. As fontes originais completas ficam acessíveis no rodapé da ficha.
+
+O estágio atual apresenta a rodada concluída e conferida em 10/11/2026: nove treinos novos, três controles e 210 carteiras, com BTC herdado sem retreino. XRP usa a publicação de `continuacao_001`. O servidor verifica o fechamento conjunto, a conferência das quatro moedas e os fechamentos individuais por SHA-256 antes de afirmar a conclusão. A área de resultados permite alternar 2024/2025 e média das três seeds/ensemble; cada carteira e o erro relativo ao Naive ficam disponíveis sob demanda. Fontes ausentes ou divergentes não recebem números presumidos.
+
+Controles não entram nas médias. Carteiras são independentes; ensemble combina previsões antes da operação. 2024 selecionou checkpoints e 2025 já foi consultado. Não há ranking único entre populações, moedas e políticas diferentes.
+
+## Verificação
+
+```sh
+npm test
+node --test tests/panorama.integration.mjs
+npm run build
+```
+
+O teste de integração exige o servidor ativo em `http://127.0.0.1:3000`. Os testes verificam as 205 séries, pareamentos, médias, incerteza, custos, cronologia, resultados recentes e entrega pela API. A revisão visual inclui desktop/celular, navegação entre fases, conclusões e detalhes históricos.
+
+A interface anterior foi substituída na navegação. Os componentes históricos sem uso estão preservados em `arquivo/fontes_referencia/fontes.zip`. Os endpoints históricos e seus testes continuam disponíveis, com os artefatos anteriores preservados. O aceite antigo está em `registros/interface/aceite_final.json`; a evidência desta entrega fica em `registros/interface/panorama_20261103/`.
+
+## Fontes da trajetória
+
+A fase de busca com IA está consolidada em [Exploração do processo de melhoria com IA](../docs/exploracao_ia.md). A [cronologia do projeto](../docs/andamento.md), o catálogo e as publicações científicas sustentam as etapas posteriores. A interface é uma leitura desses resultados; não inicia, retoma ou altera treinamentos.

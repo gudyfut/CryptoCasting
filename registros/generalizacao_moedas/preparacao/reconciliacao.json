@@ -1,0 +1,227 @@
+{
+  "utc": "2026-11-09T12:36:50.192891+00:00",
+  "moedas": {
+    "ETHUSDT": {
+      "mercado": {
+        "id": "f8c7d9cadfdc9ad490a0",
+        "pasta": "dados/mercado/generalizacao_moedas/ETHUSDT/2026-11-09T122047.043450_0000",
+        "manifesto_sha256": "95b22df198c198cedec8121c647c4ed758c4ae904774899b0ce83a9865b41be9"
+      },
+      "reconciliacao": {
+        "dias": 731,
+        "ohlc_concordante": true,
+        "volume_concordante": false,
+        "divergencias_volume": [
+          {
+            "dia_ms": 1736812800000,
+            "diario_oficial": 2688757.613,
+            "soma_minutos": 2669270.394,
+            "delta_relativo": -0.007247666694007782
+          },
+          {
+            "dia_ms": 1738108800000,
+            "diario_oficial": 2863466.609,
+            "soma_minutos": 2845655.825,
+            "delta_relativo": -0.006220007575440167
+          }
+        ],
+        "decisao": "Preservar volume do arquivo diário oficial como na referência, sem mesclar revisões API ou substituir por soma de minutos. Divergências conhecidas 14/29 janeiro2025 registradas antes de treinar.",
+        "limite": "Duas granularidades da mesma fonte; não constitui fonte independente nem concordância integral de volume."
+      },
+      "populacoes": {
+        "treino": 1446,
+        "validacao": 351,
+        "teste": 350
+      },
+      "inicio_treino": "2020-01-01",
+      "escalas": {
+        "receita": {
+          "metodo": "zscore_por_canal",
+          "ajuste": "candles_unicos_janelas_treino",
+          "ddof": 0,
+          "aritmetica": "float64_sobre_entrada_float32_da_referencia",
+          "momentos": "math_fsum_float64",
+          "saida": "float32",
+          "canal_constante": "escala_um",
+          "clipping": null
+        },
+        "media": [
+          1640822400.0,
+          1713.2633381582762,
+          1766.4928233648016,
+          1653.847349332897,
+          1714.7481772126687,
+          0.0031994981816712885
+        ],
+        "desvio_observado": [
+          36389686.09922323,
+          1109.0997332738527,
+          1143.0498421232203,
+          1067.9437903270905,
+          1108.427777283077,
+          0.002330937526571848
+        ],
+        "escala": [
+          36389686.09922323,
+          1109.0997332738527,
+          1143.0498421232203,
+          1067.9437903270905,
+          1108.427777283077,
+          0.002330937526571848
+        ],
+        "candles_unicos": 1459,
+        "primeiro_candle_ms": 1577836800000,
+        "ultimo_candle_ms": 1703808000000,
+        "valores_ajuste_sha256": "43346c286f4a55a4a178a22d6a9fbc3b2e501e6c94b4fd192d70370bd6ced6f2"
+      }
+    },
+    "BNBUSDT": {
+      "mercado": {
+        "id": "69762f32958b67d2baa7",
+        "pasta": "dados/mercado/generalizacao_moedas/BNBUSDT/2026-11-09T122206.199088_0000",
+        "manifesto_sha256": "ac75c9bfc58d35261cab604dde4707212ffe8d59d841f34a6e087d63d90cdc3e"
+      },
+      "reconciliacao": {
+        "dias": 731,
+        "ohlc_concordante": true,
+        "volume_concordante": false,
+        "divergencias_volume": [
+          {
+            "dia_ms": 1736812800000,
+            "diario_oficial": 479721.59,
+            "soma_minutos": 472746.82,
+            "delta_relativo": -0.0145392038744806
+          },
+          {
+            "dia_ms": 1738108800000,
+            "diario_oficial": 593069.9,
+            "soma_minutos": 588120.83,
+            "delta_relativo": -0.008344834226117426
+          }
+        ],
+        "decisao": "Preservar volume do arquivo diário oficial como na referência, sem mesclar revisões API ou substituir por soma de minutos. Divergências conhecidas 14/29 janeiro2025 registradas antes de treinar.",
+        "limite": "Duas granularidades da mesma fonte; não constitui fonte independente nem concordância integral de volume."
+      },
+      "populacoes": {
+        "treino": 1405,
+        "validacao": 351,
+        "teste": 350
+      },
+      "inicio_treino": "2020-02-11",
+      "escalas": {
+        "receita": {
+          "metodo": "zscore_por_canal",
+          "ajuste": "candles_unicos_janelas_treino",
+          "ddof": 0,
+          "aritmetica": "float64_sobre_entrada_float32_da_referencia",
+          "momentos": "math_fsum_float64",
+          "saida": "float32",
+          "canal_constante": "escala_um",
+          "clipping": null
+        },
+        "media": [
+          1642593600.0,
+          253.7625762390653,
+          261.59886380613943,
+          245.12096969499575,
+          253.96445828398797,
+          0.0024749715591454746
+        ],
+        "desvio_observado": [
+          35367083.0552931,
+          163.671750415229,
+          169.1358111671665,
+          157.3465558665282,
+          163.56578142074272,
+          0.002567708119362671
+        ],
+        "escala": [
+          35367083.0552931,
+          163.671750415229,
+          169.1358111671665,
+          157.3465558665282,
+          163.56578142074272,
+          0.002567708119362671
+        ],
+        "candles_unicos": 1418,
+        "primeiro_candle_ms": 1581379200000,
+        "ultimo_candle_ms": 1703808000000,
+        "valores_ajuste_sha256": "af3e2b52eeb536404f9c72fc23a20f02c874196e058a7a03ba6d0b293ec989ab"
+      }
+    },
+    "XRPUSDT": {
+      "mercado": {
+        "id": "f7fcfef043f4476b36d2",
+        "pasta": "dados/mercado/generalizacao_moedas/XRPUSDT/2026-11-09T123407.657738_0000",
+        "manifesto_sha256": "0f67f6adfc8e659bda301305cc460d0e48d89f58cdfc20ba5ac5a08f8f705508"
+      },
+      "reconciliacao": {
+        "dias": 731,
+        "ohlc_concordante": true,
+        "volume_concordante": false,
+        "divergencias_volume": [
+          {
+            "dia_ms": 1736812800000,
+            "diario_oficial": 1225223088.3,
+            "soma_minutos": 1219212453.0,
+            "delta_relativo": -0.004905747661301141
+          },
+          {
+            "dia_ms": 1738108800000,
+            "diario_oficial": 861947599.0,
+            "soma_minutos": 857735110.4,
+            "delta_relativo": -0.004887174817688633
+          }
+        ],
+        "decisao": "Preservar volume do arquivo diário oficial como na referência, sem mesclar revisões API ou substituir por soma de minutos. Divergências conhecidas 14/29 janeiro2025 registradas antes de treinar.",
+        "limite": "Duas granularidades da mesma fonte; não constitui fonte independente nem concordância integral de volume."
+      },
+      "populacoes": {
+        "treino": 1440,
+        "validacao": 351,
+        "teste": 350
+      },
+      "inicio_treino": "2020-01-07",
+      "escalas": {
+        "receita": {
+          "metodo": "zscore_por_canal",
+          "ajuste": "candles_unicos_janelas_treino",
+          "ddof": 0,
+          "aritmetica": "float64_sobre_entrada_float32_da_referencia",
+          "momentos": "math_fsum_float64",
+          "saida": "float32",
+          "canal_constante": "escala_um",
+          "clipping": null
+        },
+        "media": [
+          1641081600.0,
+          0.5383475572896348,
+          0.5603279424222354,
+          0.5134683414903987,
+          0.5386136961512458,
+          1.365087489662237
+        ],
+        "desvio_observado": [
+          36240036.87415343,
+          0.3016566331253733,
+          0.3199134635278186,
+          0.28120182751815803,
+          0.3015551891855835,
+          1.5958196281323884
+        ],
+        "escala": [
+          36240036.87415343,
+          0.3016566331253733,
+          0.3199134635278186,
+          0.28120182751815803,
+          0.3015551891855835,
+          1.5958196281323884
+        ],
+        "candles_unicos": 1453,
+        "primeiro_candle_ms": 1578355200000,
+        "ultimo_candle_ms": 1703808000000,
+        "valores_ajuste_sha256": "8698e97670b31de60f44e3ab3ea6c0b8a90fda9908b4d7b2efdfe85a7a24e60d"
+      }
+    }
+  }
+}

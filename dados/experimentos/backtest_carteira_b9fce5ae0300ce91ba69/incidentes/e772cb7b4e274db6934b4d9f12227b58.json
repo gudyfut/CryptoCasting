@@ -1,0 +1,4 @@
+{
+  "utc": "2026-10-30T05:37:26.668668+00:00",
+  "erro": "Traceback (most recent call last):\n  File \"C:\\Users\\MuriloRFM\\Documents\\GitHub\\CryptoCasting\\backtest_carteira\\ciclo.py\", line 135, in executar\n    minutos,primeiro=carregar_mercado(p,ct);pred={(k,b):pd.read_parquet(RAIZ/t/f'previsoes_{b}.parquet')[COLUNAS] for k,t in c['series'].items() for b in c['partes']};res={}\n                     ~~~~~~~~~~~~~~~~^^^^^^\n  File \"C:\\Users\\MuriloRFM\\Documents\\GitHub\\CryptoCasting\\backtest_carteira\\ciclo.py\", line 118, in carregar_mercado\n    x=m[['open','high','low','close','volume','negocios']].to_numpy(float);x[~m.completo.to_numpy()]=np.nan\n                                                                           ~^^^^^^^^^^^^^^^^^^^^^^^^\nValueError: assignment destination is read-only\n"
+}

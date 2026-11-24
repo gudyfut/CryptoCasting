@@ -1,0 +1,49 @@
+{
+  "status": "concluido_revisado",
+  "utc": "2026-10-30T03:32:36.886266+00:00",
+  "execucao": "35dd98141ee20d9b8885",
+  "ajustes_reais_novos": 6,
+  "tentativas_reais": 6,
+  "epocas_executadas": 107,
+  "series_herdadas": 53,
+  "series_publicadas": 59,
+  "metricas_herdadas_e_spot_iguais": 53,
+  "arquivos_anteriores_preservados": 670,
+  "fontes_congeladas_conferidas": 117,
+  "analise": {
+    "arquivo": "registros/cryptomamba/revisoes/3dbd58da46d148dfb6371934ed7f6acf/analise.json",
+    "sha256": "61627370cb6144bb03cf56185beaeed6ad2f73f251fc1b93b4d573b440b71d6f"
+  },
+  "auditoria": {
+    "arquivo": "registros/cryptomamba/conferencias/2fe2252bc16e4e02946cc374a819a14e/conclusao.json",
+    "sha256": "0c747ce1c129de90a473c2144376f0a16bd5bd9f6da72f9f08b733add7c8024d"
+  },
+  "criterio_primario": {
+    "media_mse_menor": true,
+    "ic95_principal_inteiramente_favoravel": false,
+    "promocao_automatica": false
+  },
+  "variacao_mse_percentual": {
+    "validacao_vs_mamba16": -0.2788400316064088,
+    "teste_vs_mamba16": 0.2797241471331535,
+    "teste_vs_naive": 0.5528916388418237
+  },
+  "checkpoints_com_retorno_constante_no_teste": 5,
+  "operacoes_candidatas_total": 0,
+  "figuras_inspecionadas_visualmente": [
+    "docs/figuras/cryptomamba_35dd98141ee20d9b8885/comparacao_abordagens.png",
+    "docs/figuras/cryptomamba_35dd98141ee20d9b8885/comparacao_abordagens.pdf"
+  ],
+  "resultado_inspecao_visual": "Legíveis, sem cortes/sobreposições relevantes; dados preservados.",
+  "relatorio": {
+    "arquivo": "docs/resultados_cryptomamba_adaptado.md",
+    "sha256": "4a9ce5947fd50c53b64ba49473d3695bf0e0ed2f6eee87027e1722c138a7e29c",
+    "versao_anterior_sha256": "2b06dd3c74f76ac6bdd6441bbdd4a1e9142b8a04626bb5a1eeff980c8250fd7a"
+  },
+  "limites": [
+    "Sem promoção automática ou novo treinamento.",
+    "Adaptação composta, não reprodução literal.",
+    "2024/2025 retrospectivos; split fixo, não walk-forward.",
+    "Mecanismo causal do colapso permanece hipótese."
+  ]
+}

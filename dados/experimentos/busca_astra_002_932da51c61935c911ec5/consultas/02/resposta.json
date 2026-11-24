@@ -1,0 +1,10 @@
+{
+  "acao": "experimentar",
+  "pai": "A0_C05",
+  "fator": "representacao",
+  "mecanismo": "Usar relativa torna o retorno horário do fechamento explícito no último token; em janela_relativa, esse componente é sempre zero. Isso pode facilitar a leitura da dinâmica recente pelo pooling ultimo. A hipótese prevê redução de Q frente ao pai na comparação completa; ausência dessa redução contraria o benefício proposto.",
+  "metrica_esperada": "Q médio após recarga inferior ao 1.015804 do pai nos seis pares seeds 42/17 × S1–S3, com melhora em pelo menos dois recortes e sem piora do MAE/Naive médio. Eventual finalista exige seed 2026 e todos os portões finais estabelecidos.",
+  "risco": "Retornos horários podem exigir mais integração pelos estados para reconstruir trajetórias acumuladas. A normalização de volume por T pode sofrer com mudanças de regime. Não há garantia de melhora.",
+  "custo": "Seis treinos de triagem, mais três se promovida; mesmos 20257 parâmetros e custo por época aproximadamente igual ao pai. Duração total depende da parada antecipada.",
+  "valor": "\"relativa\""
+}

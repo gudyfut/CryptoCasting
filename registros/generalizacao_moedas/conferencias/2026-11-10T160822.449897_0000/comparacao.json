@@ -1,0 +1,2901 @@
+{
+  "utc": "2026-11-10T16:08:49.678904+00:00",
+  "situacao": "conferido",
+  "referencias": {
+    "BTC": {
+      "pasta": "dados/experimentos/padronizacao_diaria_f3f8772670f244779ad7",
+      "fechamento_sha256": "e09f750a95b79b3bfd87353389eb930994afe5f3e14deb27fe9b617dff9f9657"
+    },
+    "ETH": {
+      "pasta": "dados/experimentos/generalizacao_moedas_1f2b005888361d23c111/ETHUSDT",
+      "fechamento_sha256": "5d7d44b5de9a247b18ca5eb085b4e398bf8f1cf3ebe338d4c95ecad72a7353e9"
+    },
+    "BNB": {
+      "pasta": "dados/experimentos/generalizacao_moedas_1f2b005888361d23c111/BNBUSDT",
+      "fechamento_sha256": "71d40a45a0e8eeef5cdb08e845c525fe34b39262935c23f3f99b41517706a415"
+    },
+    "XRP": {
+      "pasta": "dados/experimentos/generalizacao_moedas_1f2b005888361d23c111/XRPUSDT/continuacao_001",
+      "fechamento_sha256": "c584f377e5edbf94d26a03282084e5ef95fb26522c833fd10731975d02a60c93"
+    }
+  },
+  "arquivos_manifestados_conferidos": 945,
+  "carteiras": 280,
+  "operacoes_conferidas": 47860,
+  "residuo_maximo_usdt": 1.9326762412674725e-12,
+  "resultados": {
+    "BTC": {
+      "validacao": {
+        "previsao_media_seeds": {
+          "mse_retorno": 0.0007523850559498136,
+          "rmse_retorno": 0.027429615237797814,
+          "mae_retorno": 0.01995886424288069,
+          "acerto_sinal": 0.5308641975308642,
+          "vies_retorno": 0.00040208796989423,
+          "mse_usdt2": 3428307.8203515583,
+          "rmse_usdt": 1851.566783289758,
+          "mae_usdt": 1331.2202994278402,
+          "mse_naive_retorno": 0.0007621577989616209,
+          "habilidade_mse_retorno_naive": 0.01282246671899423
+        },
+        "diagnosticos": [
+          {
+            "seed": 42,
+            "previsao_media_pct": 0.3305594954225752,
+            "desvio_previsao_pct": 0.0402171050560357,
+            "correlacao": 0.06325451452750366,
+            "fracao_preve_alta": 1.0,
+            "min_pct": 0.23249471560120583,
+            "max_pct": 0.40489714592695236,
+            "real_desvio_pct": 2.7479581586517576
+          },
+          {
+            "seed": 17,
+            "previsao_media_pct": 0.3082446838885631,
+            "desvio_previsao_pct": 0.04202361510936703,
+            "correlacao": 0.10259724798809708,
+            "fracao_preve_alta": 1.0,
+            "min_pct": 0.16964366659522057,
+            "max_pct": 0.41869799606502056,
+            "real_desvio_pct": 2.7479581586517576
+          },
+          {
+            "seed": 2026,
+            "previsao_media_pct": 0.27726896112503496,
+            "desvio_previsao_pct": 0.14239648519141507,
+            "correlacao": 0.09524220631345015,
+            "fracao_preve_alta": 0.9088319088319088,
+            "min_pct": -0.1182173378765472,
+            "max_pct": 0.5772585980594158,
+            "real_desvio_pct": 2.7479581586517576
+          }
+        ],
+        "operacoes_por_seed": [
+          {
+            "seed": 42,
+            "capital_final": 9895.878287050766,
+            "retorno_liquido": -0.010412171294923445,
+            "drawdown_maximo": 0.5028559690472337,
+            "crescimento_log_diario": -2.9819821043216417e-05,
+            "retorno_anualizado": -0.010825215717969721,
+            "calmar": -0.021527467872123236,
+            "sharpe_diario_rf_zero": -0.022109086432407242,
+            "operacoes": 351,
+            "compras": 351,
+            "vendas": 0,
+            "taxa_acerto_liquido": 0.47863247863247865,
+            "profit_factor": 0.9970309083522276,
+            "comissoes": 3475.4138365500003,
+            "funding": -1237.9633763992524,
+            "pnl_compras": -104.12171294923428,
+            "pnl_vendas": 0,
+            "fracao_dias_posicionado": 1.0,
+            "previsoes_nao_positivas": 0
+          },
+          {
+            "seed": 17,
+            "capital_final": 10451.852612302275,
+            "retorno_liquido": 0.04518526123022748,
+            "drawdown_maximo": 0.5028559690472337,
+            "crescimento_log_diario": 0.00012590926831287195,
+            "retorno_anualizado": 0.04702926515394491,
+            "calmar": 0.09352432515229309,
+            "sharpe_diario_rf_zero": 0.0941567725867784,
+            "operacoes": 347,
+            "compras": 347,
+            "vendas": 0,
+            "taxa_acerto_liquido": 0.4812680115273775,
+            "profit_factor": 1.0131797211044067,
+            "comissoes": 3439.5999134500003,
+            "funding": -1211.2565742477452,
+            "pnl_compras": 451.8526123022748,
+            "pnl_vendas": 0,
+            "fracao_dias_posicionado": 0.9886039886039886,
+            "previsoes_nao_positivas": 0
+          },
+          {
+            "seed": 2026,
+            "capital_final": 11238.550168170841,
+            "retorno_liquido": 0.123855016817084,
+            "drawdown_maximo": 0.47128140320937084,
+            "crescimento_log_diario": 0.0003326631183898975,
+            "retorno_anualizado": 0.12910133573509258,
+            "calmar": 0.27393683446010747,
+            "sharpe_diario_rf_zero": 0.26278179246112576,
+            "operacoes": 291,
+            "compras": 291,
+            "vendas": 0,
+            "taxa_acerto_liquido": 0.49140893470790376,
+            "profit_factor": 1.0413452761115698,
+            "comissoes": 2942.9280556500003,
+            "funding": -1008.3202761791548,
+            "pnl_compras": 1238.550168170841,
+            "pnl_vendas": 0,
+            "fracao_dias_posicionado": 0.8290598290598291,
+            "previsoes_nao_positivas": 0
+          }
+        ],
+        "cenarios": {
+          "base": {
+            "capital_final": 10528.760355841294,
+            "retorno_liquido": 0.052876035584129344,
+            "drawdown_maximo": 0.4923311137679461,
+            "crescimento_log_diario": 0.0001429175218865177,
+            "retorno_anualizado": 0.05510179505702259,
+            "calmar": 0.11531123058009245,
+            "sharpe_diario_rf_zero": 0.11160982620516564,
+            "operacoes": 329.6666666666667,
+            "compras": 329.6666666666667,
+            "vendas": 0.0,
+            "taxa_acerto_liquido": 0.48376980828925337,
+            "profit_factor": 1.017185301856068,
+            "comissoes": 3285.9806018833333,
+            "funding": -1152.513408942051,
+            "pnl_compras": 528.7603558412939,
+            "pnl_vendas": 0.0,
+            "fracao_dias_posicionado": 0.9392212725546059,
+            "previsoes_nao_positivas": 0.0
+          },
+          "slippage2": {
+            "capital_final": 7728.554011727174,
+            "retorno_liquido": -0.22714459882728263,
+            "drawdown_maximo": 0.5671645005068244,
+            "crescimento_log_diario": -0.0007425098631806914,
+            "retorno_anualizado": -0.234951963524583,
+            "calmar": -0.41178315853449327,
+            "sharpe_diario_rf_zero": -0.5597050017020685,
+            "operacoes": 329.6666666666667,
+            "compras": 329.6666666666667,
+            "vendas": 0.0,
+            "taxa_acerto_liquido": 0.45359289880319426,
+            "profit_factor": 0.9257119052425198,
+            "comissoes": 2841.06448235,
+            "funding": -1028.1413392561606,
+            "pnl_compras": -2271.4459882728265,
+            "pnl_vendas": 0.0,
+            "fracao_dias_posicionado": 0.9392212725546059,
+            "previsoes_nao_positivas": 0.0
+          },
+          "slippage3": {
+            "capital_final": 5662.538663038703,
+            "retorno_liquido": -0.43374613369612974,
+            "drawdown_maximo": 0.6407157565359171,
+            "crescimento_log_diario": -0.001635299089583474,
+            "retorno_anualizado": -0.4463232342927272,
+            "calmar": -0.6949692898770298,
+            "sharpe_diario_rf_zero": -1.2377820700846869,
+            "operacoes": 329.6666666666667,
+            "compras": 329.6666666666667,
+            "vendas": 0.0,
+            "taxa_acerto_liquido": 0.4444256254569494,
+            "profit_factor": 0.8440522715638031,
+            "comissoes": 2474.5352325,
+            "funding": -924.4208377946256,
+            "pnl_compras": -4337.461336961297,
+            "pnl_vendas": 0.0,
+            "fracao_dias_posicionado": 0.9392212725546059,
+            "previsoes_nao_positivas": 0.0
+          },
+          "somente_compra": {
+            "capital_final": 10528.760355841294,
+            "retorno_liquido": 0.052876035584129344,
+            "drawdown_maximo": 0.4923311137679461,
+            "crescimento_log_diario": 0.0001429175218865177,
+            "retorno_anualizado": 0.05510179505702259,
+            "calmar": 0.11531123058009245,
+            "sharpe_diario_rf_zero": 0.11160982620516564,
+            "operacoes": 329.6666666666667,
+            "compras": 329.6666666666667,
+            "vendas": 0.0,
+            "taxa_acerto_liquido": 0.48376980828925337,
+            "profit_factor": 1.017185301856068,
+            "comissoes": 3285.9806018833333,
+            "funding": -1152.513408942051,
+            "pnl_compras": 528.7603558412939,
+            "pnl_vendas": 0.0,
+            "fracao_dias_posicionado": 0.9392212725546059,
+            "previsoes_nao_positivas": 0.0
+          },
+          "somente_venda": {
+            "capital_final": 10000.0,
+            "retorno_liquido": 0.0,
+            "drawdown_maximo": 0.0,
+            "crescimento_log_diario": 0.0,
+            "retorno_anualizado": 0.0,
+            "operacoes": 0.0,
+            "compras": 0.0,
+            "vendas": 0.0,
+            "comissoes": 0.0,
+            "funding": 0.0,
+            "pnl_compras": 0.0,
+            "pnl_vendas": 0.0,
+            "fracao_dias_posicionado": 0.0,
+            "previsoes_nao_positivas": 0.0
+          }
+        },
+        "ensemble_operacoes": {
+          "capital_final": 10874.422275748297,
+          "retorno_liquido": 0.08744222757482967,
+          "drawdown_maximo": 0.5028559690472337,
+          "crescimento_log_diario": 0.00023882723219500223,
+          "retorno_anualizado": 0.09108426434811219,
+          "calmar": 0.18113390305516403,
+          "sharpe_diario_rf_zero": 0.1854643810346609,
+          "operacoes": 312,
+          "compras": 312,
+          "vendas": 0,
+          "taxa_acerto_liquido": 0.48717948717948717,
+          "profit_factor": 1.0283632877819757,
+          "comissoes": 3073.40531985,
+          "funding": -1077.2523044017128,
+          "pnl_compras": 874.4222757482967,
+          "pnl_vendas": 0,
+          "fracao_dias_posicionado": 0.8888888888888888,
+          "previsoes_nao_positivas": 0
+        },
+        "naive_operacoes": {
+          "capital_final": 10000.0,
+          "retorno_liquido": 0.0,
+          "drawdown_maximo": 0.0,
+          "crescimento_log_diario": 0.0,
+          "retorno_anualizado": 0.0,
+          "calmar": null,
+          "sharpe_diario_rf_zero": null,
+          "operacoes": 0,
+          "compras": 0,
+          "vendas": 0,
+          "taxa_acerto_liquido": null,
+          "profit_factor": null,
+          "comissoes": 0,
+          "funding": 0,
+          "pnl_compras": 0,
+          "pnl_vendas": 0,
+          "fracao_dias_posicionado": 0.0,
+          "previsoes_nao_positivas": 0
+        },
+        "sempre_comprado_operacoes": {
+          "capital_final": 9895.878287050766,
+          "retorno_liquido": -0.010412171294923445,
+          "drawdown_maximo": 0.5028559690472337,
+          "crescimento_log_diario": -2.9819821043216417e-05,
+          "retorno_anualizado": -0.010825215717969721,
+          "calmar": -0.021527467872123236,
+          "sharpe_diario_rf_zero": -0.022109086432407242,
+          "operacoes": 351,
+          "compras": 351,
+          "vendas": 0,
+          "taxa_acerto_liquido": 0.47863247863247865,
+          "profit_factor": 0.9970309083522276,
+          "comissoes": 3475.4138365500003,
+          "funding": -1237.9633763992524,
+          "pnl_compras": -104.12171294923428,
+          "pnl_vendas": 0,
+          "fracao_dias_posicionado": 1.0,
+          "previsoes_nao_positivas": 0
+        },
+        "sempre_vendido_operacoes": {
+          "capital_final": 2120.233201261749,
+          "retorno_liquido": -0.7879766798738251,
+          "drawdown_maximo": 0.8218817188999271,
+          "crescimento_log_diario": -0.004418971537790833,
+          "retorno_anualizado": -0.8006961254767209,
+          "calmar": -0.9742230628373597,
+          "sharpe_diario_rf_zero": -3.2262929647095504,
+          "operacoes": 351,
+          "compras": 0,
+          "vendas": 351,
+          "taxa_acerto_liquido": 0.4444444444444444,
+          "profit_factor": 0.6034515360585003,
+          "comissoes": 1579.9564407000003,
+          "funding": 529.3528419617533,
+          "pnl_compras": 0,
+          "pnl_vendas": -7879.766798738251,
+          "fracao_dias_posicionado": 1.0,
+          "previsoes_nao_positivas": 0
+        },
+        "operacao_media_seeds_base": {
+          "capital_final": 10528.760355841294,
+          "retorno_liquido": 0.052876035584129344,
+          "drawdown_maximo": 0.4923311137679461,
+          "crescimento_log_diario": 0.0001429175218865177,
+          "retorno_anualizado": 0.05510179505702259,
+          "calmar": 0.11531123058009245,
+          "sharpe_diario_rf_zero": 0.11160982620516564,
+          "operacoes": 329.6666666666667,
+          "compras": 329.6666666666667,
+          "vendas": 0.0,
+          "taxa_acerto_liquido": 0.48376980828925337,
+          "profit_factor": 1.017185301856068,
+          "comissoes": 3285.9806018833333,
+          "funding": -1152.513408942051,
+          "pnl_compras": 528.7603558412939,
+          "pnl_vendas": 0.0,
+          "fracao_dias_posicionado": 0.9392212725546059,
+          "previsoes_nao_positivas": 0.0
+        },
+        "incerteza": {
+          "7": {
+            "delta_mse_retorno_vs_naive_ic95": [
+              -2.8737999842470315e-05,
+              8.295207919606255e-06
+            ],
+            "crescimento_log_diario_ic95": [
+              -0.0023207044669663938,
+              0.002844996283876746
+            ]
+          },
+          "14": {
+            "delta_mse_retorno_vs_naive_ic95": [
+              -2.9989396474823174e-05,
+              6.227099327571452e-06
+            ],
+            "crescimento_log_diario_ic95": [
+              -0.002162272092800498,
+              0.0029018393416798084
+            ]
+          },
+          "28": {
+            "delta_mse_retorno_vs_naive_ic95": [
+              -3.104773856753568e-05,
+              6.1917091417585514e-06
+            ],
+            "crescimento_log_diario_ic95": [
+              -0.002138207090894471,
+              0.003097971345389462
+            ]
+          }
+        },
+        "sondas_ramos": {},
+        "origens_ms": [
+          1705276800000,
+          1735516800000
+        ]
+      },
+      "teste": {
+        "previsao_media_seeds": {
+          "mse_retorno": 0.00047766666871790474,
+          "rmse_retorno": 0.021855563251873603,
+          "mae_retorno": 0.01571217738364476,
+          "acerto_sinal": 0.5038095238095238,
+          "vies_retorno": 0.0008391792267673386,
+          "mse_usdt2": 4571657.846232412,
+          "rmse_usdt": 2138.137503498852,
+          "mae_usdt": 1567.471759150464,
+          "mse_naive_retorno": 0.00047543295833777326,
+          "habilidade_mse_retorno_naive": -0.004698265740644247
+        },
+        "diagnosticos": [
+          {
+            "seed": 42,
+            "previsao_media_pct": 0.19211537364338124,
+            "desvio_previsao_pct": 0.03668900354620927,
+            "correlacao": 0.051677370475818205,
+            "fracao_preve_alta": 1.0,
+            "min_pct": 0.14005834236741066,
+            "max_pct": 0.26422105729579926,
+            "real_desvio_pct": 2.180442207293969
+          },
+          {
+            "seed": 17,
+            "previsao_media_pct": 0.19867937892143217,
+            "desvio_previsao_pct": 0.04960882526308415,
+            "correlacao": 0.03925713866521143,
+            "fracao_preve_alta": 1.0,
+            "min_pct": 0.08860337547957897,
+            "max_pct": 0.3633609041571617,
+            "real_desvio_pct": 2.180442207293969
+          },
+          {
+            "seed": 2026,
+            "previsao_media_pct": -0.14254473375954776,
+            "desvio_previsao_pct": 0.1333669099071496,
+            "correlacao": 0.060354780977552064,
+            "fracao_preve_alta": 0.15428571428571428,
+            "min_pct": -0.3426353447139263,
+            "max_pct": 0.1678223256021738,
+            "real_desvio_pct": 2.180442207293969
+          }
+        ],
+        "operacoes_por_seed": [
+          {
+            "seed": 42,
+            "capital_final": 8699.729551982324,
+            "retorno_liquido": -0.13002704480176763,
+            "drawdown_maximo": 0.4064256048970176,
+            "crescimento_log_diario": -0.0003979804394163722,
+            "retorno_anualizado": -0.13520505710197703,
+            "calmar": -0.3326686494967167,
+            "sharpe_diario_rf_zero": -0.5013508375451045,
+            "operacoes": 127,
+            "compras": 127,
+            "vendas": 0,
+            "taxa_acerto_liquido": 0.4330708661417323,
+            "profit_factor": 0.8713539193263253,
+            "comissoes": 1021.4871788,
+            "funding": -122.01426921767187,
+            "pnl_compras": -1300.2704480176762,
+            "pnl_vendas": 0,
+            "fracao_dias_posicionado": 0.3628571428571429,
+            "previsoes_nao_positivas": 0
+          },
+          {
+            "seed": 17,
+            "capital_final": 6622.589856964748,
+            "retorno_liquido": -0.3377410143035252,
+            "drawdown_maximo": 0.406222133596582,
+            "crescimento_log_diario": -0.001177424521389747,
+            "retorno_anualizado": -0.34933473202444837,
+            "calmar": -0.8599598671089933,
+            "sharpe_diario_rf_zero": -1.3676568695468245,
+            "operacoes": 162,
+            "compras": 162,
+            "vendas": 0,
+            "taxa_acerto_liquido": 0.43209876543209874,
+            "profit_factor": 0.741298988707215,
+            "comissoes": 1245.88885445,
+            "funding": -142.55958858525182,
+            "pnl_compras": -3377.410143035252,
+            "pnl_vendas": 0,
+            "fracao_dias_posicionado": 0.46285714285714286,
+            "previsoes_nao_positivas": 0
+          },
+          {
+            "seed": 2026,
+            "capital_final": 7798.48586263894,
+            "retorno_liquido": -0.22015141373610603,
+            "drawdown_maximo": 0.3213059775106656,
+            "crescimento_log_diario": -0.0007104442809050125,
+            "retorno_anualizado": -0.22841787358273002,
+            "calmar": -0.7109045258118418,
+            "sharpe_diario_rf_zero": -1.2654078073526132,
+            "operacoes": 138,
+            "compras": 0,
+            "vendas": 138,
+            "taxa_acerto_liquido": 0.42028985507246375,
+            "profit_factor": 0.7352343313017117,
+            "comissoes": 1055.5216892,
+            "funding": 177.05075183893894,
+            "pnl_compras": 0,
+            "pnl_vendas": -2201.5141373610604,
+            "fracao_dias_posicionado": 0.3942857142857143,
+            "previsoes_nao_positivas": 0
+          }
+        ],
+        "cenarios": {
+          "base": {
+            "capital_final": 7706.93509052867,
+            "retorno_liquido": -0.22930649094713296,
+            "drawdown_maximo": 0.3779845720014217,
+            "crescimento_log_diario": -0.0007619497472370439,
+            "retorno_anualizado": -0.23765255423638512,
+            "calmar": -0.634511014139184,
+            "sharpe_diario_rf_zero": -1.0448051714815139,
+            "operacoes": 142.33333333333334,
+            "compras": 96.33333333333333,
+            "vendas": 46.0,
+            "taxa_acerto_liquido": 0.4284864955487649,
+            "profit_factor": 0.7826290797784173,
+            "comissoes": 1107.6325741500002,
+            "funding": -29.174368654661578,
+            "pnl_compras": -1559.2268636843094,
+            "pnl_vendas": -733.8380457870202,
+            "fracao_dias_posicionado": 0.4066666666666667,
+            "previsoes_nao_positivas": 0.0
+          },
+          "slippage2": {
+            "capital_final": 6743.775454656301,
+            "retorno_liquido": -0.3256224545343699,
+            "drawdown_maximo": 0.43867756805378216,
+            "crescimento_log_diario": -0.001147886230505002,
+            "retorno_anualizado": -0.3366855653401781,
+            "calmar": -0.7675573275775384,
+            "sharpe_diario_rf_zero": -1.5771370314863997,
+            "operacoes": 142.33333333333334,
+            "compras": 96.33333333333333,
+            "vendas": 46.0,
+            "taxa_acerto_liquido": 0.4193311383581078,
+            "profit_factor": 0.6877637481127935,
+            "comissoes": 1038.6843866666668,
+            "funding": -27.569225343692835,
+            "pnl_compras": -2200.0056307773916,
+            "pnl_vendas": -1056.218914566307,
+            "fracao_dias_posicionado": 0.4066666666666667,
+            "previsoes_nao_positivas": 0.0
+          },
+          "slippage3": {
+            "capital_final": 5910.350269377931,
+            "retorno_liquido": -0.4089649730622069,
+            "drawdown_maximo": 0.49778473752426966,
+            "crescimento_log_diario": -0.001529427814372937,
+            "retorno_anualizado": -0.4218974286970747,
+            "calmar": -0.8446315340692094,
+            "sharpe_diario_rf_zero": -2.0966135437512032,
+            "operacoes": 142.33333333333334,
+            "compras": 96.33333333333333,
+            "vendas": 46.0,
+            "taxa_acerto_liquido": 0.39129800803885023,
+            "profit_factor": 0.6061343490781925,
+            "comissoes": 977.4334948333335,
+            "funding": -26.17356912208272,
+            "pnl_compras": -2755.234915492285,
+            "pnl_vendas": -1334.414815129784,
+            "fracao_dias_posicionado": 0.4066666666666667,
+            "previsoes_nao_positivas": 0.0
+          },
+          "somente_compra": {
+            "capital_final": 8440.77313631569,
+            "retorno_liquido": -0.15592268636843096,
+            "drawdown_maximo": 0.27088257949786654,
+            "crescimento_log_diario": -0.0005251349869353731,
+            "retorno_anualizado": -0.16151326304214178,
+            "operacoes": 96.33333333333333,
+            "compras": 96.33333333333333,
+            "vendas": 0.0,
+            "comissoes": 755.7920110833334,
+            "funding": -88.19128593430788,
+            "pnl_compras": -1559.2268636843094,
+            "pnl_vendas": 0.0,
+            "fracao_dias_posicionado": 0.2752380952380952,
+            "previsoes_nao_positivas": 0.0
+          },
+          "somente_venda": {
+            "capital_final": 9266.16195421298,
+            "retorno_liquido": -0.07338380457870201,
+            "drawdown_maximo": 0.10710199250355519,
+            "crescimento_log_diario": -0.00023681476030167084,
+            "retorno_anualizado": -0.07613929119424334,
+            "operacoes": 46.0,
+            "compras": 0.0,
+            "vendas": 46.0,
+            "comissoes": 351.8405630666667,
+            "funding": 59.016917279646314,
+            "pnl_compras": 0.0,
+            "pnl_vendas": -733.8380457870202,
+            "fracao_dias_posicionado": 0.13142857142857142,
+            "previsoes_nao_positivas": 0.0
+          }
+        },
+        "ensemble_operacoes": {
+          "capital_final": 10858.916933607887,
+          "retorno_liquido": 0.08589169336078872,
+          "drawdown_maximo": 0.08892955418461812,
+          "crescimento_log_diario": 0.00023543281905150744,
+          "retorno_anualizado": 0.0897332907924031,
+          "calmar": 1.0090379021367455,
+          "sharpe_diario_rf_zero": 0.6238769292086604,
+          "operacoes": 24,
+          "compras": 24,
+          "vendas": 0,
+          "taxa_acerto_liquido": 0.5416666666666666,
+          "profit_factor": 1.377820149606854,
+          "comissoes": 240.11048010000002,
+          "funding": -21.821386292118444,
+          "pnl_compras": 858.9169336078867,
+          "pnl_vendas": 0,
+          "fracao_dias_posicionado": 0.06857142857142857,
+          "previsoes_nao_positivas": 0
+        },
+        "naive_operacoes": {
+          "capital_final": 10000.0,
+          "retorno_liquido": 0.0,
+          "drawdown_maximo": 0.0,
+          "crescimento_log_diario": 0.0,
+          "retorno_anualizado": 0.0,
+          "calmar": null,
+          "sharpe_diario_rf_zero": null,
+          "operacoes": 0,
+          "compras": 0,
+          "vendas": 0,
+          "taxa_acerto_liquido": null,
+          "profit_factor": null,
+          "comissoes": 0,
+          "funding": 0,
+          "pnl_compras": 0,
+          "pnl_vendas": 0,
+          "fracao_dias_posicionado": 0.0,
+          "previsoes_nao_positivas": 0
+        },
+        "sempre_comprado_operacoes": {
+          "capital_final": 4569.036956214172,
+          "retorno_liquido": -0.5430963043785828,
+          "drawdown_maximo": 0.5978765913692294,
+          "crescimento_log_diario": -0.0022379504056479252,
+          "retorno_anualizado": -0.5581796369976204,
+          "calmar": -0.9336034309677572,
+          "sharpe_diario_rf_zero": -2.073374554294127,
+          "operacoes": 350,
+          "compras": 350,
+          "vendas": 0,
+          "taxa_acerto_liquido": 0.43714285714285717,
+          "profit_factor": 0.7551028124778101,
+          "comissoes": 2480.5144238000003,
+          "funding": -347.0846199858177,
+          "pnl_compras": -5430.963043785828,
+          "pnl_vendas": 0,
+          "fracao_dias_posicionado": 1.0,
+          "previsoes_nao_positivas": 0
+        },
+        "sempre_vendido_operacoes": {
+          "capital_final": 5025.741127930552,
+          "retorno_liquido": -0.4974258872069448,
+          "drawdown_maximo": 0.6058778731887218,
+          "crescimento_log_diario": -0.0019657490336538025,
+          "retorno_anualizado": -0.5120285589517659,
+          "calmar": -0.8451019283093654,
+          "sharpe_diario_rf_zero": -1.8095157896111986,
+          "operacoes": 350,
+          "compras": 0,
+          "vendas": 350,
+          "taxa_acerto_liquido": 0.44,
+          "profit_factor": 0.7606245406962129,
+          "comissoes": 2204.2007622,
+          "funding": 289.50509013055614,
+          "pnl_compras": 0,
+          "pnl_vendas": -4974.258872069448,
+          "fracao_dias_posicionado": 1.0,
+          "previsoes_nao_positivas": 0
+        },
+        "operacao_media_seeds_base": {
+          "capital_final": 7706.93509052867,
+          "retorno_liquido": -0.22930649094713296,
+          "drawdown_maximo": 0.3779845720014217,
+          "crescimento_log_diario": -0.0007619497472370439,
+          "retorno_anualizado": -0.23765255423638512,
+          "calmar": -0.634511014139184,
+          "sharpe_diario_rf_zero": -1.0448051714815139,
+          "operacoes": 142.33333333333334,
+          "compras": 96.33333333333333,
+          "vendas": 46.0,
+          "taxa_acerto_liquido": 0.4284864955487649,
+          "profit_factor": 0.7826290797784173,
+          "comissoes": 1107.6325741500002,
+          "funding": -29.174368654661578,
+          "pnl_compras": -1559.2268636843094,
+          "pnl_vendas": -733.8380457870202,
+          "fracao_dias_posicionado": 0.4066666666666667,
+          "previsoes_nao_positivas": 0.0
+        },
+        "incerteza": {
+          "7": {
+            "delta_mse_retorno_vs_naive_ic95": [
+              -3.083031968693553e-06,
+              9.951104876625884e-06
+            ],
+            "crescimento_log_diario_ic95": [
+              -0.0019628222406475756,
+              0.00023463376006764566
+            ]
+          },
+          "14": {
+            "delta_mse_retorno_vs_naive_ic95": [
+              -3.1571173949076953e-06,
+              9.650168497247734e-06
+            ],
+            "crescimento_log_diario_ic95": [
+              -0.0019944637238392005,
+              0.00017058253266477363
+            ]
+          },
+          "28": {
+            "delta_mse_retorno_vs_naive_ic95": [
+              -3.1981011783858656e-06,
+              1.0265518077435406e-05
+            ],
+            "crescimento_log_diario_ic95": [
+              -0.0020118299647932255,
+              0.00023477088298741463
+            ]
+          }
+        },
+        "sondas_ramos": {},
+        "origens_ms": [
+          1736899200000,
+          1767052800000
+        ]
+      }
+    },
+    "ETH": {
+      "validacao": {
+        "previsao_media_seeds": {
+          "mse_retorno": 0.0011317042020715883,
+          "rmse_retorno": 0.03364080605919076,
+          "mae_retorno": 0.02391586142001507,
+          "acerto_sinal": 0.5289648622981956,
+          "vies_retorno": -9.493757396599313e-05,
+          "mse_usdt2": 10755.147234995387,
+          "rmse_usdt": 103.70701259395396,
+          "mae_usdt": 73.44354663120794,
+          "mse_naive_retorno": 0.0011416902761771765,
+          "habilidade_mse_retorno_naive": 0.008746745342375628
+        },
+        "diagnosticos": [
+          {
+            "seed": 42,
+            "previsao_media_pct": 0.07101050863291894,
+            "desvio_previsao_pct": 0.1030115908393558,
+            "correlacao": 0.13029995433595165,
+            "fracao_preve_alta": 0.7464387464387464,
+            "min_pct": -0.19022785127162933,
+            "max_pct": 0.3313651541247964,
+            "real_desvio_pct": 3.3758486382756754
+          },
+          {
+            "seed": 17,
+            "previsao_media_pct": 0.19182675396041823,
+            "desvio_previsao_pct": 0.1540552541838675,
+            "correlacao": 0.11826407736372037,
+            "fracao_preve_alta": 0.8746438746438746,
+            "min_pct": -0.18410282209515572,
+            "max_pct": 0.6982536055147648,
+            "real_desvio_pct": 3.3758486382756754
+          },
+          {
+            "seed": 2026,
+            "previsao_media_pct": 0.13872634545180879,
+            "desvio_previsao_pct": 0.0977395532566798,
+            "correlacao": 0.11486932540534676,
+            "fracao_preve_alta": 0.9088319088319088,
+            "min_pct": -0.09132851846516132,
+            "max_pct": 0.41724126785993576,
+            "real_desvio_pct": 3.3758486382756754
+          }
+        ],
+        "operacoes_por_seed": [
+          {
+            "seed": 42,
+            "capital_final": 7814.131480792861,
+            "retorno_liquido": -0.21858685192071392,
+            "drawdown_maximo": 0.26340363596787053,
+            "crescimento_log_diario": -0.0007027101714868766,
+            "retorno_anualizado": -0.2262366585852382,
+            "calmar": -0.8588972500472017,
+            "sharpe_diario_rf_zero": -1.8951982635395377,
+            "operacoes": 29,
+            "compras": 29,
+            "vendas": 0,
+            "taxa_acerto_liquido": 0.3793103448275862,
+            "profit_factor": 0.39056860384769193,
+            "comissoes": 249.459851815,
+            "funding": -63.79093739213965,
+            "pnl_compras": -2185.868519207139,
+            "pnl_vendas": 0,
+            "fracao_dias_posicionado": 0.08262108262108261,
+            "previsoes_nao_positivas": 0
+          },
+          {
+            "seed": 17,
+            "capital_final": 11979.847455840294,
+            "retorno_liquido": 0.19798474558402934,
+            "drawdown_maximo": 0.2523893015072901,
+            "crescimento_log_diario": 0.0005146460580536187,
+            "retorno_anualizado": 0.2066474494704944,
+            "calmar": 0.8187646950024366,
+            "sharpe_diario_rf_zero": 0.4436856285814663,
+            "operacoes": 187,
+            "compras": 187,
+            "vendas": 0,
+            "taxa_acerto_liquido": 0.49732620320855614,
+            "profit_factor": 1.0873514409335,
+            "comissoes": 2009.0259689400002,
+            "funding": -531.3234352197026,
+            "pnl_compras": 1979.847455840294,
+            "pnl_vendas": 0,
+            "fracao_dias_posicionado": 0.5327635327635327,
+            "previsoes_nao_positivas": 0
+          },
+          {
+            "seed": 2026,
+            "capital_final": 13985.015955896695,
+            "retorno_liquido": 0.3985015955896696,
+            "drawdown_maximo": 0.1775152949356038,
+            "crescimento_log_diario": 0.0009555594717622697,
+            "retorno_anualizado": 0.4173362181505088,
+            "calmar": 2.350987379999585,
+            "sharpe_diario_rf_zero": 1.2927878129477461,
+            "operacoes": 81,
+            "compras": 81,
+            "vendas": 0,
+            "taxa_acerto_liquido": 0.5308641975308642,
+            "profit_factor": 1.4761868910956626,
+            "comissoes": 876.84599419,
+            "funding": -391.69766991329317,
+            "pnl_compras": 3985.0159558966952,
+            "pnl_vendas": 0,
+            "fracao_dias_posicionado": 0.23076923076923078,
+            "previsoes_nao_positivas": 0
+          }
+        ],
+        "cenarios": {
+          "base": {
+            "capital_final": 11259.664964176618,
+            "retorno_liquido": 0.12596649641766167,
+            "drawdown_maximo": 0.23110274413692147,
+            "crescimento_log_diario": 0.00025583178610967056,
+            "retorno_anualizado": 0.132582336345255,
+            "calmar": 0.7702849416516067,
+            "sharpe_diario_rf_zero": -0.052908274003441745,
+            "operacoes": 99.0,
+            "compras": 99.0,
+            "vendas": 0.0,
+            "taxa_acerto_liquido": 0.46916691518900216,
+            "profit_factor": 0.9847023119589515,
+            "comissoes": 1045.1106049816667,
+            "funding": -328.9373475083785,
+            "pnl_compras": 1259.6649641766169,
+            "pnl_vendas": 0.0,
+            "fracao_dias_posicionado": 0.282051282051282,
+            "previsoes_nao_positivas": 0.0
+          },
+          "slippage2": {
+            "capital_final": 10192.89091682722,
+            "retorno_liquido": 0.019289091682722043,
+            "drawdown_maximo": 0.25612704363966693,
+            "crescimento_log_diario": -1.2314586325469436e-05,
+            "retorno_anualizado": 0.021041989554767132,
+            "calmar": 0.2669482559612232,
+            "sharpe_diario_rf_zero": -0.3580315385828683,
+            "operacoes": 99.0,
+            "compras": 99.0,
+            "vendas": 0.0,
+            "taxa_acerto_liquido": 0.4597040952686659,
+            "profit_factor": 0.9007944670556371,
+            "comissoes": 974.2164387366669,
+            "funding": -307.6244844361194,
+            "pnl_compras": 192.89091682722028,
+            "pnl_vendas": 0.0,
+            "fracao_dias_posicionado": 0.282051282051282,
+            "previsoes_nao_positivas": 0.0
+          },
+          "slippage3": {
+            "capital_final": 9259.521705500687,
+            "retorno_liquido": -0.07404782944993131,
+            "drawdown_maximo": 0.2844191868373714,
+            "crescimento_log_diario": -0.0002804923923018402,
+            "retorno_anualizado": -0.07604171409058885,
+            "calmar": -0.09702467585488177,
+            "sharpe_diario_rf_zero": -0.6616765937943834,
+            "operacoes": 99.0,
+            "compras": 99.0,
+            "vendas": 0.0,
+            "taxa_acerto_liquido": 0.4597040952686659,
+            "profit_factor": 0.8234297591143168,
+            "comissoes": 910.4108247166668,
+            "funding": -288.45902311597865,
+            "pnl_compras": -740.478294499313,
+            "pnl_vendas": 0.0,
+            "fracao_dias_posicionado": 0.282051282051282,
+            "previsoes_nao_positivas": 0.0
+          },
+          "somente_compra": {
+            "capital_final": 11259.664964176618,
+            "retorno_liquido": 0.12596649641766167,
+            "drawdown_maximo": 0.23110274413692147,
+            "crescimento_log_diario": 0.00025583178610967056,
+            "retorno_anualizado": 0.132582336345255,
+            "calmar": 0.7702849416516067,
+            "sharpe_diario_rf_zero": -0.052908274003441745,
+            "operacoes": 99.0,
+            "compras": 99.0,
+            "vendas": 0.0,
+            "taxa_acerto_liquido": 0.46916691518900216,
+            "profit_factor": 0.9847023119589515,
+            "comissoes": 1045.1106049816667,
+            "funding": -328.9373475083785,
+            "pnl_compras": 1259.6649641766169,
+            "pnl_vendas": 0.0,
+            "fracao_dias_posicionado": 0.282051282051282,
+            "previsoes_nao_positivas": 0.0
+          },
+          "somente_venda": {
+            "capital_final": 10000.0,
+            "retorno_liquido": 0.0,
+            "drawdown_maximo": 0.0,
+            "crescimento_log_diario": 0.0,
+            "retorno_anualizado": 0.0,
+            "operacoes": 0.0,
+            "compras": 0.0,
+            "vendas": 0.0,
+            "comissoes": 0.0,
+            "funding": 0.0,
+            "pnl_compras": 0.0,
+            "pnl_vendas": 0.0,
+            "fracao_dias_posicionado": 0.0,
+            "previsoes_nao_positivas": 0.0
+          }
+        },
+        "ensemble_operacoes": {
+          "capital_final": 11882.816330171283,
+          "retorno_liquido": 0.1882816330171282,
+          "drawdown_maximo": 0.25877348997484817,
+          "crescimento_log_diario": 0.0004914765175904774,
+          "retorno_anualizado": 0.1964860016950265,
+          "calmar": 0.7592972592135471,
+          "sharpe_diario_rf_zero": 0.6705902635152503,
+          "operacoes": 102,
+          "compras": 102,
+          "vendas": 0,
+          "taxa_acerto_liquido": 0.5490196078431373,
+          "profit_factor": 1.173705746930649,
+          "comissoes": 1059.19395873,
+          "funding": -324.60757109871497,
+          "pnl_compras": 1882.816330171283,
+          "pnl_vendas": 0,
+          "fracao_dias_posicionado": 0.2905982905982906,
+          "previsoes_nao_positivas": 0
+        },
+        "naive_operacoes": {
+          "capital_final": 10000.0,
+          "retorno_liquido": 0.0,
+          "drawdown_maximo": 0.0,
+          "crescimento_log_diario": 0.0,
+          "retorno_anualizado": 0.0,
+          "calmar": null,
+          "sharpe_diario_rf_zero": null,
+          "operacoes": 0,
+          "compras": 0,
+          "vendas": 0,
+          "taxa_acerto_liquido": null,
+          "profit_factor": null,
+          "comissoes": 0,
+          "funding": 0,
+          "pnl_compras": 0,
+          "pnl_vendas": 0,
+          "fracao_dias_posicionado": 0.0,
+          "previsoes_nao_positivas": 0
+        },
+        "sempre_comprado_operacoes": {
+          "capital_final": 6144.38574951078,
+          "retorno_liquido": -0.385561425048922,
+          "drawdown_maximo": 0.6433637023889237,
+          "crescimento_log_diario": -0.0013875963372320583,
+          "retorno_anualizado": -0.39738253085714187,
+          "calmar": -0.6176638958361964,
+          "sharpe_diario_rf_zero": -0.8363587955762809,
+          "operacoes": 351,
+          "compras": 351,
+          "vendas": 0,
+          "taxa_acerto_liquido": 0.47863247863247865,
+          "profit_factor": 0.890453285222935,
+          "comissoes": 2815.778954285,
+          "funding": -1118.5071862042237,
+          "pnl_compras": -3855.6142504892196,
+          "pnl_vendas": 0,
+          "fracao_dias_posicionado": 1.0,
+          "previsoes_nao_positivas": 0
+        },
+        "sempre_vendido_operacoes": {
+          "capital_final": 2971.626478679027,
+          "retorno_liquido": -0.7028373521320973,
+          "drawdown_maximo": 0.7705430339144733,
+          "crescimento_log_diario": -0.003457195595892878,
+          "retorno_anualizado": -0.7168777207491122,
+          "calmar": -0.9303539052287146,
+          "sharpe_diario_rf_zero": -2.0202218380488866,
+          "operacoes": 351,
+          "compras": 0,
+          "vendas": 351,
+          "taxa_acerto_liquido": 0.4472934472934473,
+          "profit_factor": 0.7238361031118231,
+          "comissoes": 1857.08188468,
+          "funding": 651.55048335904,
+          "pnl_compras": 0,
+          "pnl_vendas": -7028.373521320973,
+          "fracao_dias_posicionado": 1.0,
+          "previsoes_nao_positivas": 0
+        },
+        "operacao_media_seeds_base": {
+          "capital_final": 11259.664964176618,
+          "retorno_liquido": 0.12596649641766167,
+          "drawdown_maximo": 0.23110274413692147,
+          "crescimento_log_diario": 0.00025583178610967056,
+          "retorno_anualizado": 0.132582336345255,
+          "calmar": 0.7702849416516067,
+          "sharpe_diario_rf_zero": -0.052908274003441745,
+          "operacoes": 99.0,
+          "compras": 99.0,
+          "vendas": 0.0,
+          "taxa_acerto_liquido": 0.46916691518900216,
+          "profit_factor": 0.9847023119589515,
+          "comissoes": 1045.1106049816667,
+          "funding": -328.9373475083785,
+          "pnl_compras": 1259.6649641766169,
+          "pnl_vendas": 0.0,
+          "fracao_dias_posicionado": 0.282051282051282,
+          "previsoes_nao_positivas": 0.0
+        },
+        "incerteza": {
+          "7": {
+            "delta_mse_retorno_vs_naive_ic95": [
+              -2.1615314530262308e-05,
+              9.959541243116752e-07
+            ],
+            "crescimento_log_diario_ic95": [
+              -0.0011985754672149136,
+              0.001954468566217958
+            ]
+          },
+          "14": {
+            "delta_mse_retorno_vs_naive_ic95": [
+              -2.2840023940617932e-05,
+              -4.0003992499117706e-07
+            ],
+            "crescimento_log_diario_ic95": [
+              -0.001038066452876165,
+              0.002119616464331684
+            ]
+          },
+          "28": {
+            "delta_mse_retorno_vs_naive_ic95": [
+              -2.4547588043955967e-05,
+              -2.0876054924002245e-06
+            ],
+            "crescimento_log_diario_ic95": [
+              -0.0006613026182242603,
+              0.002201952346053537
+            ]
+          }
+        },
+        "sondas_ramos": {
+          "42": {
+            "max_abs": 0.0,
+            "rms": 0.0,
+            "previsao_media": 0.006851490630651824,
+            "previsao_desvio": 0.0032034268061890327
+          },
+          "17": {
+            "max_abs": 7.450580596923828e-09,
+            "rms": 3.927184220737079e-09,
+            "previsao_media": 0.007048609157209285,
+            "previsao_desvio": 0.002778979268335949
+          },
+          "2026": {
+            "max_abs": 0.0,
+            "rms": 0.0,
+            "previsao_media": 0.009351260348921642,
+            "previsao_desvio": 0.003613451499919219
+          }
+        },
+        "origens_ms": [
+          1705276800000,
+          1735516800000
+        ]
+      },
+      "teste": {
+        "previsao_media_seeds": {
+          "mse_retorno": 0.0015566106689049407,
+          "rmse_retorno": 0.039453886531119704,
+          "mae_retorno": 0.02752592981849565,
+          "acerto_sinal": 0.5085714285714286,
+          "vies_retorno": 0.0012382085405681865,
+          "mse_usdt2": 14278.141265958531,
+          "rmse_usdt": 119.49110799914952,
+          "mae_usdt": 82.86147776319149,
+          "mse_naive_retorno": 0.0015635597149664692,
+          "habilidade_mse_retorno_naive": 0.004444375225974406
+        },
+        "diagnosticos": [
+          {
+            "seed": 42,
+            "previsao_media_pct": 0.16593416088393775,
+            "desvio_previsao_pct": 0.2538674649155937,
+            "correlacao": 0.08172825278013479,
+            "fracao_preve_alta": 0.7542857142857143,
+            "min_pct": -0.350684206932772,
+            "max_pct": 0.7821187376976013,
+            "real_desvio_pct": 3.9538173502026477
+          },
+          {
+            "seed": 17,
+            "previsao_media_pct": 0.2164061744032162,
+            "desvio_previsao_pct": 0.2890189604614062,
+            "correlacao": 0.05825313371550416,
+            "fracao_preve_alta": 0.7542857142857143,
+            "min_pct": -0.494146253913641,
+            "max_pct": 0.8395390585064888,
+            "real_desvio_pct": 3.9538173502026477
+          },
+          {
+            "seed": 2026,
+            "previsao_media_pct": 0.15138620351042079,
+            "desvio_previsao_pct": 0.24318022483765037,
+            "correlacao": 0.08212880374923062,
+            "fracao_preve_alta": 0.7142857142857143,
+            "min_pct": -0.35636317916214466,
+            "max_pct": 0.8000003173947334,
+            "real_desvio_pct": 3.9538173502026477
+          }
+        ],
+        "operacoes_por_seed": [
+          {
+            "seed": 42,
+            "capital_final": 13027.801001377875,
+            "retorno_liquido": 0.30278010013778744,
+            "drawdown_maximo": 0.47889158812837584,
+            "crescimento_log_diario": 0.0007557157703322558,
+            "retorno_anualizado": 0.3176320922384998,
+            "calmar": 0.6632651316342449,
+            "sharpe_diario_rf_zero": 0.5075937740620573,
+            "operacoes": 186,
+            "compras": 151,
+            "vendas": 35,
+            "taxa_acerto_liquido": 0.510752688172043,
+            "profit_factor": 1.1488649240773225,
+            "comissoes": 1625.6598557000002,
+            "funding": -124.22442292212443,
+            "pnl_compras": 2066.9542114539618,
+            "pnl_vendas": 960.8467899239131,
+            "fracao_dias_posicionado": 0.5314285714285715,
+            "previsoes_nao_positivas": 0
+          },
+          {
+            "seed": 17,
+            "capital_final": 9157.146817974608,
+            "retorno_liquido": -0.08428531820253915,
+            "drawdown_maximo": 0.5714320108869556,
+            "crescimento_log_diario": -0.0002515727016648585,
+            "retorno_anualizado": -0.0877343387608674,
+            "calmar": -0.1535341687013463,
+            "sharpe_diario_rf_zero": -0.15455073865540864,
+            "operacoes": 240,
+            "compras": 201,
+            "vendas": 39,
+            "taxa_acerto_liquido": 0.4875,
+            "profit_factor": 0.9640820995381771,
+            "comissoes": 1707.0136240600002,
+            "funding": -138.0806779653854,
+            "pnl_compras": -2604.8894856320985,
+            "pnl_vendas": 1762.0363036067065,
+            "fracao_dias_posicionado": 0.6857142857142857,
+            "previsoes_nao_positivas": 0
+          },
+          {
+            "seed": 2026,
+            "capital_final": 11770.146981989745,
+            "retorno_liquido": 0.17701469819897442,
+            "drawdown_maximo": 0.47022228966124435,
+            "crescimento_log_diario": 0.0004656609029993218,
+            "retorno_anualizado": 0.18526482377107165,
+            "calmar": 0.3939941339329945,
+            "sharpe_diario_rf_zero": 0.3194362501846711,
+            "operacoes": 173,
+            "compras": 146,
+            "vendas": 27,
+            "taxa_acerto_liquido": 0.5028901734104047,
+            "profit_factor": 1.1027892062752325,
+            "comissoes": 1328.621012735,
+            "funding": -112.25911527525712,
+            "pnl_compras": -968.6153939955439,
+            "pnl_vendas": 2738.7623759852886,
+            "fracao_dias_posicionado": 0.4942857142857143,
+            "previsoes_nao_positivas": 0
+          }
+        ],
+        "cenarios": {
+          "base": {
+            "capital_final": 11318.364933780744,
+            "retorno_liquido": 0.13183649337807424,
+            "drawdown_maximo": 0.5068486295588586,
+            "crescimento_log_diario": 0.000323267990555573,
+            "retorno_anualizado": 0.13838752574956803,
+            "calmar": 0.30124169895529773,
+            "sharpe_diario_rf_zero": 0.22415976186377326,
+            "operacoes": 199.66666666666666,
+            "compras": 166.0,
+            "vendas": 33.666666666666664,
+            "taxa_acerto_liquido": 0.5003809538608159,
+            "profit_factor": 1.0719120766302441,
+            "comissoes": 1553.7648308316668,
+            "funding": -124.85473872092233,
+            "pnl_compras": -502.18355605789355,
+            "pnl_vendas": 1820.548489838636,
+            "fracao_dias_posicionado": 0.5704761904761905,
+            "previsoes_nao_positivas": 0.0
+          },
+          "slippage2": {
+            "capital_final": 9400.66647560015,
+            "retorno_liquido": -0.05993335243998491,
+            "drawdown_maximo": 0.5292082003414014,
+            "crescimento_log_diario": -0.0002178795324215648,
+            "retorno_anualizado": -0.061840057440758316,
+            "calmar": -0.09283441175884012,
+            "sharpe_diario_rf_zero": -0.12904117086325861,
+            "operacoes": 199.66666666666666,
+            "compras": 166.0,
+            "vendas": 33.666666666666664,
+            "taxa_acerto_liquido": 0.4679421240184805,
+            "profit_factor": 0.9744363038976949,
+            "comissoes": 1407.479108915,
+            "funding": -115.6638921515201,
+            "pnl_compras": -1866.1470245772862,
+            "pnl_vendas": 1266.8135001774372,
+            "fracao_dias_posicionado": 0.5704761904761905,
+            "previsoes_nao_positivas": 0.0
+          },
+          "slippage3": {
+            "capital_final": 7812.201727022955,
+            "retorno_liquido": -0.21877982729770448,
+            "drawdown_maximo": 0.5507870534972524,
+            "crescimento_log_diario": -0.0007593366135601443,
+            "retorno_anualizado": -0.22638603104449154,
+            "calmar": -0.3912306415291546,
+            "sharpe_diario_rf_zero": -0.4822740352751705,
+            "operacoes": 199.66666666666666,
+            "compras": 166.0,
+            "vendas": 33.666666666666664,
+            "taxa_acerto_liquido": 0.4480488739718648,
+            "profit_factor": 0.8867587342296863,
+            "comissoes": 1279.390133031667,
+            "funding": -107.34242994537478,
+            "pnl_compras": -3026.217494111421,
+            "pnl_vendas": 838.4192211343761,
+            "fracao_dias_posicionado": 0.5704761904761905,
+            "previsoes_nao_positivas": 0.0
+          },
+          "somente_compra": {
+            "capital_final": 9525.287278503392,
+            "retorno_liquido": -0.04747127214966066,
+            "drawdown_maximo": 0.5068486295588586,
+            "crescimento_log_diario": -0.0001943285700055445,
+            "retorno_anualizado": -0.04862572773735511,
+            "calmar": -0.07348083720619035,
+            "sharpe_diario_rf_zero": -0.12248009841020678,
+            "operacoes": 166.0,
+            "compras": 166.0,
+            "vendas": 0.0,
+            "taxa_acerto_liquido": 0.49514824197678636,
+            "profit_factor": 0.9790745560126796,
+            "comissoes": 1221.1335594433333,
+            "funding": -158.71599538659902,
+            "pnl_compras": -474.71272149660643,
+            "pnl_vendas": 0.0,
+            "fracao_dias_posicionado": 0.47428571428571437,
+            "previsoes_nao_positivas": 0.0
+          },
+          "somente_venda": {
+            "capital_final": 12021.841869694064,
+            "retorno_liquido": 0.2021841869694064,
+            "drawdown_maximo": 0.15958525711278138,
+            "crescimento_log_diario": 0.0005176054164547816,
+            "retorno_anualizado": 0.2118684444579421,
+            "calmar": 1.5078731924713473,
+            "sharpe_diario_rf_zero": 0.968976267336703,
+            "operacoes": 33.666666666666664,
+            "compras": 0.0,
+            "vendas": 33.666666666666664,
+            "taxa_acerto_liquido": 0.5303757970424637,
+            "profit_factor": 1.7508864017300372,
+            "comissoes": 331.2617845,
+            "funding": 37.07611419405908,
+            "pnl_compras": 0.0,
+            "pnl_vendas": 2021.8418696940637,
+            "fracao_dias_posicionado": 0.0961904761904762,
+            "previsoes_nao_positivas": 0.0
+          }
+        },
+        "ensemble_operacoes": {
+          "capital_final": 9853.553370566482,
+          "retorno_liquido": -0.01464466294335176,
+          "drawdown_maximo": 0.5336465506730086,
+          "crescimento_log_diario": -4.2151298809152135e-05,
+          "retorno_anualizado": -0.015267476138397504,
+          "calmar": -0.02860971577375122,
+          "sharpe_diario_rf_zero": -0.027719511070599404,
+          "operacoes": 195,
+          "compras": 163,
+          "vendas": 32,
+          "taxa_acerto_liquido": 0.48205128205128206,
+          "profit_factor": 0.9922484771789695,
+          "comissoes": 1374.4685909250002,
+          "funding": -114.25684850852474,
+          "pnl_compras": -621.27355474467,
+          "pnl_vendas": 474.8269253111521,
+          "fracao_dias_posicionado": 0.5571428571428572,
+          "previsoes_nao_positivas": 0
+        },
+        "naive_operacoes": {
+          "capital_final": 10000.0,
+          "retorno_liquido": 0.0,
+          "drawdown_maximo": 0.0,
+          "crescimento_log_diario": 0.0,
+          "retorno_anualizado": 0.0,
+          "calmar": null,
+          "sharpe_diario_rf_zero": null,
+          "operacoes": 0,
+          "compras": 0,
+          "vendas": 0,
+          "taxa_acerto_liquido": null,
+          "profit_factor": null,
+          "comissoes": 0,
+          "funding": 0,
+          "pnl_compras": 0,
+          "pnl_vendas": 0,
+          "fracao_dias_posicionado": 0.0,
+          "previsoes_nao_positivas": 0
+        },
+        "sempre_comprado_operacoes": {
+          "capital_final": 4605.5987564435545,
+          "retorno_liquido": -0.5394401243556446,
+          "drawdown_maximo": 0.6493244309820165,
+          "crescimento_log_diario": -0.002215178310355057,
+          "retorno_anualizado": -0.5544920037415464,
+          "calmar": -0.8539521651802802,
+          "sharpe_diario_rf_zero": -1.1380015650141488,
+          "operacoes": 350,
+          "compras": 350,
+          "vendas": 0,
+          "taxa_acerto_liquido": 0.4685714285714286,
+          "profit_factor": 0.8369450936705399,
+          "comissoes": 2199.547896645,
+          "funding": -302.7068569114489,
+          "pnl_compras": -5394.4012435564455,
+          "pnl_vendas": 0,
+          "fracao_dias_posicionado": 1.0,
+          "previsoes_nao_positivas": 0
+        },
+        "sempre_vendido_operacoes": {
+          "capital_final": 3491.778313312003,
+          "retorno_liquido": -0.6508221686687997,
+          "drawdown_maximo": 0.8264158004820059,
+          "crescimento_log_diario": -0.003006211260549319,
+          "retorno_anualizado": -0.6662179720912937,
+          "calmar": -0.806153478312882,
+          "sharpe_diario_rf_zero": -1.5058309007971054,
+          "operacoes": 350,
+          "compras": 0,
+          "vendas": 350,
+          "taxa_acerto_liquido": 0.4685714285714286,
+          "profit_factor": 0.8240884325677115,
+          "comissoes": 2337.79532513,
+          "funding": 280.0190384420026,
+          "pnl_compras": 0,
+          "pnl_vendas": -6508.221686687997,
+          "fracao_dias_posicionado": 1.0,
+          "previsoes_nao_positivas": 0
+        },
+        "operacao_media_seeds_base": {
+          "capital_final": 11318.364933780744,
+          "retorno_liquido": 0.13183649337807424,
+          "drawdown_maximo": 0.5068486295588586,
+          "crescimento_log_diario": 0.000323267990555573,
+          "retorno_anualizado": 0.13838752574956803,
+          "calmar": 0.30124169895529773,
+          "sharpe_diario_rf_zero": 0.22415976186377326,
+          "operacoes": 199.66666666666666,
+          "compras": 166.0,
+          "vendas": 33.666666666666664,
+          "taxa_acerto_liquido": 0.5003809538608159,
+          "profit_factor": 1.0719120766302441,
+          "comissoes": 1553.7648308316668,
+          "funding": -124.85473872092233,
+          "pnl_compras": -502.18355605789355,
+          "pnl_vendas": 1820.548489838636,
+          "fracao_dias_posicionado": 0.5704761904761905,
+          "previsoes_nao_positivas": 0.0
+        },
+        "incerteza": {
+          "7": {
+            "delta_mse_retorno_vs_naive_ic95": [
+              -3.348232953761146e-05,
+              1.7448500775253143e-05
+            ],
+            "crescimento_log_diario_ic95": [
+              -0.0024983588868055244,
+              0.0032787325300750016
+            ]
+          },
+          "14": {
+            "delta_mse_retorno_vs_naive_ic95": [
+              -3.368775556536107e-05,
+              1.868089789181501e-05
+            ],
+            "crescimento_log_diario_ic95": [
+              -0.002669394246191296,
+              0.0033570811000485567
+            ]
+          },
+          "28": {
+            "delta_mse_retorno_vs_naive_ic95": [
+              -3.515911380498212e-05,
+              1.997868780069503e-05
+            ],
+            "crescimento_log_diario_ic95": [
+              -0.0026897550991392977,
+              0.003615550608400267
+            ]
+          }
+        },
+        "sondas_ramos": {
+          "42": {
+            "max_abs": 0.0,
+            "rms": 0.0,
+            "previsao_media": 0.006851490630651824,
+            "previsao_desvio": 0.0032034268061890327
+          },
+          "17": {
+            "max_abs": 7.450580596923828e-09,
+            "rms": 3.927184220737079e-09,
+            "previsao_media": 0.007048609157209285,
+            "previsao_desvio": 0.002778979268335949
+          },
+          "2026": {
+            "max_abs": 0.0,
+            "rms": 0.0,
+            "previsao_media": 0.009351260348921642,
+            "previsao_desvio": 0.003613451499919219
+          }
+        },
+        "origens_ms": [
+          1736899200000,
+          1767052800000
+        ]
+      }
+    },
+    "BNB": {
+      "validacao": {
+        "previsao_media_seeds": {
+          "mse_retorno": 0.0009334897690627649,
+          "rmse_retorno": 0.030552902201612792,
+          "mae_retorno": 0.0216977037865692,
+          "acerto_sinal": 0.54320987654321,
+          "vies_retorno": -0.0012329169087479791,
+          "mse_usdt2": 291.93935645698446,
+          "rmse_usdt": 17.086164077869114,
+          "mae_usdt": 11.954786571127196,
+          "mse_naive_retorno": 0.0009566127572313638,
+          "habilidade_mse_retorno_naive": 0.024171733017152808
+        },
+        "diagnosticos": [
+          {
+            "seed": 42,
+            "previsao_media_pct": 0.2343823913049664,
+            "desvio_previsao_pct": 0.18502403216675462,
+            "correlacao": 0.13400311666338952,
+            "fracao_preve_alta": 0.98005698005698,
+            "min_pct": -0.04256581887601696,
+            "max_pct": 0.6882335525006056,
+            "real_desvio_pct": 3.0792363719524944
+          },
+          {
+            "seed": 17,
+            "previsao_media_pct": 0.027239886364578615,
+            "desvio_previsao_pct": 0.1950972984958659,
+            "correlacao": 0.16696076337698396,
+            "fracao_preve_alta": 0.4444444444444444,
+            "min_pct": -0.49883159808814526,
+            "max_pct": 0.5396174266934395,
+            "real_desvio_pct": 3.0792363719524944
+          },
+          {
+            "seed": 2026,
+            "previsao_media_pct": 0.2402127171174071,
+            "desvio_previsao_pct": 0.32534749335177443,
+            "correlacao": 0.1698330056106989,
+            "fracao_preve_alta": 0.7635327635327636,
+            "min_pct": -0.5006720311939716,
+            "max_pct": 1.0431180708110332,
+            "real_desvio_pct": 3.0792363719524944
+          }
+        ],
+        "operacoes_por_seed": [
+          {
+            "seed": 42,
+            "capital_final": 22939.76316241981,
+            "retorno_liquido": 1.2939763162419813,
+            "drawdown_maximo": 0.2222430977670089,
+            "crescimento_log_diario": 0.002365489157934598,
+            "retorno_anualizado": 1.3712175149963182,
+            "calmar": 6.169899217449937,
+            "sharpe_diario_rf_zero": 2.3286508519134537,
+            "operacoes": 129,
+            "compras": 129,
+            "vendas": 0,
+            "taxa_acerto_liquido": 0.5891472868217055,
+            "profit_factor": 1.807888346729671,
+            "comissoes": 1878.45993485,
+            "funding": 169.11739726980062,
+            "pnl_compras": 12939.763162419811,
+            "pnl_vendas": 0,
+            "fracao_dias_posicionado": 0.36752136752136755,
+            "previsoes_nao_positivas": 0
+          },
+          {
+            "seed": 17,
+            "capital_final": 20687.627166091617,
+            "retorno_liquido": 1.0687627166091618,
+            "drawdown_maximo": 0.17599263713522106,
+            "crescimento_log_diario": 0.0020710846356858984,
+            "retorno_anualizado": 1.1296249662279463,
+            "calmar": 6.418592190081323,
+            "sharpe_diario_rf_zero": 2.1542059040093076,
+            "operacoes": 90,
+            "compras": 72,
+            "vendas": 18,
+            "taxa_acerto_liquido": 0.5888888888888889,
+            "profit_factor": 1.8590823398385443,
+            "comissoes": 1264.9017583000002,
+            "funding": 77.31092439162516,
+            "pnl_compras": 11817.641762208888,
+            "pnl_vendas": -1130.0145961172711,
+            "fracao_dias_posicionado": 0.2564102564102564,
+            "previsoes_nao_positivas": 0
+          },
+          {
+            "seed": 2026,
+            "capital_final": 26794.71556652717,
+            "retorno_liquido": 1.6794715566527172,
+            "drawdown_maximo": 0.23366585781350702,
+            "crescimento_log_diario": 0.002808033033409401,
+            "retorno_anualizado": 1.7869061039136562,
+            "calmar": 7.647270853492933,
+            "sharpe_diario_rf_zero": 2.3568956367501075,
+            "operacoes": 161,
+            "compras": 150,
+            "vendas": 11,
+            "taxa_acerto_liquido": 0.5838509316770186,
+            "profit_factor": 1.6462482454043694,
+            "comissoes": 2670.2063511,
+            "funding": -46.42568237283768,
+            "pnl_compras": 18766.400290985483,
+            "pnl_vendas": -1971.6847244583114,
+            "fracao_dias_posicionado": 0.4586894586894587,
+            "previsoes_nao_positivas": 0
+          }
+        ],
+        "cenarios": {
+          "base": {
+            "capital_final": 23474.035298346203,
+            "retorno_liquido": 1.3474035298346199,
+            "drawdown_maximo": 0.210633864238579,
+            "crescimento_log_diario": 0.002414868942343299,
+            "retorno_anualizado": 1.429249528379307,
+            "calmar": 6.745254087008065,
+            "sharpe_diario_rf_zero": 2.2799174642242894,
+            "operacoes": 126.66666666666667,
+            "compras": 117.0,
+            "vendas": 9.666666666666666,
+            "taxa_acerto_liquido": 0.5872957024625377,
+            "profit_factor": 1.7710729773241949,
+            "comissoes": 1937.85601475,
+            "funding": 66.66754642952937,
+            "pnl_compras": 14507.935071871392,
+            "pnl_vendas": -1033.8997735251942,
+            "fracao_dias_posicionado": 0.3608736942070276,
+            "previsoes_nao_positivas": 0.0
+          },
+          "slippage2": {
+            "capital_final": 20755.62830792807,
+            "retorno_liquido": 1.075562830792807,
+            "drawdown_maximo": 0.21796764495967655,
+            "crescimento_log_diario": 0.002071421204352169,
+            "retorno_anualizado": 1.1371874645109947,
+            "calmar": 5.209766894925431,
+            "sharpe_diario_rf_zero": 1.9648060144436854,
+            "operacoes": 126.66666666666667,
+            "compras": 117.0,
+            "vendas": 9.666666666666666,
+            "taxa_acerto_liquido": 0.5872957024625377,
+            "profit_factor": 1.6372423717516897,
+            "comissoes": 1798.3146151666667,
+            "funding": 74.33672309473542,
+            "pnl_compras": 11841.519717212745,
+            "pnl_vendas": -1085.8914092846742,
+            "fracao_dias_posicionado": 0.3608736942070276,
+            "previsoes_nao_positivas": 0.0
+          },
+          "slippage3": {
+            "capital_final": 18365.338070768266,
+            "retorno_liquido": 0.8365338070768266,
+            "drawdown_maximo": 0.22525660080457358,
+            "crescimento_log_diario": 0.0017278569417648615,
+            "retorno_anualizado": 0.8817169118591707,
+            "calmar": 3.9382370019769053,
+            "sharpe_diario_rf_zero": 1.6467932277203474,
+            "operacoes": 126.66666666666667,
+            "compras": 117.0,
+            "vendas": 9.666666666666666,
+            "taxa_acerto_liquido": 0.5696288806501141,
+            "profit_factor": 1.513614391483561,
+            "comissoes": 1671.4989337333334,
+            "funding": 81.0740045016003,
+            "pnl_compras": 9486.675724839546,
+            "pnl_vendas": -1121.3376540712798,
+            "fracao_dias_posicionado": 0.3608736942070276,
+            "previsoes_nao_positivas": 0.0
+          },
+          "somente_compra": {
+            "capital_final": 24286.820935632815,
+            "retorno_liquido": 1.4286820935632818,
+            "drawdown_maximo": 0.210633864238579,
+            "crescimento_log_diario": 0.0025080095559705477,
+            "retorno_anualizado": 1.5169274089018687,
+            "calmar": 7.164054206392875,
+            "sharpe_diario_rf_zero": 2.4967838874057153,
+            "operacoes": 117.0,
+            "compras": 117.0,
+            "vendas": 0.0,
+            "taxa_acerto_liquido": 0.59786391042205,
+            "profit_factor": 2.124131742662815,
+            "comissoes": 1720.8522195166668,
+            "funding": 88.49398848280656,
+            "pnl_compras": 14286.820935632815,
+            "pnl_vendas": 0.0,
+            "fracao_dias_posicionado": 0.3333333333333333,
+            "previsoes_nao_positivas": 0.0
+          },
+          "somente_venda": {
+            "capital_final": 9681.210480666365,
+            "retorno_liquido": -0.03187895193336354,
+            "drawdown_maximo": 0.11334397912062082,
+            "crescimento_log_diario": -9.312465533060326e-05,
+            "retorno_anualizado": -0.03311756389211042,
+            "operacoes": 9.666666666666666,
+            "compras": 0.0,
+            "vendas": 9.666666666666666,
+            "comissoes": 94.01641213333335,
+            "funding": -12.707840533632904,
+            "pnl_compras": 0.0,
+            "pnl_vendas": -318.7895193336353,
+            "fracao_dias_posicionado": 0.027540360873694204,
+            "previsoes_nao_positivas": 0.0
+          }
+        },
+        "ensemble_operacoes": {
+          "capital_final": 20790.512361584664,
+          "retorno_liquido": 1.0790512361584663,
+          "drawdown_maximo": 0.22396101346495811,
+          "crescimento_log_diario": 0.0020852183851540434,
+          "retorno_anualizado": 1.1406397021043921,
+          "calmar": 5.093027953648109,
+          "sharpe_diario_rf_zero": 1.9894867997022052,
+          "operacoes": 111,
+          "compras": 105,
+          "vendas": 6,
+          "taxa_acerto_liquido": 0.5945945945945946,
+          "profit_factor": 1.678270399694493,
+          "comissoes": 1534.7921907500001,
+          "funding": 72.80305233466345,
+          "pnl_compras": 13034.868073341371,
+          "pnl_vendas": -2244.355711756707,
+          "fracao_dias_posicionado": 0.3162393162393162,
+          "previsoes_nao_positivas": 0
+        },
+        "naive_operacoes": {
+          "capital_final": 10000.0,
+          "retorno_liquido": 0.0,
+          "drawdown_maximo": 0.0,
+          "crescimento_log_diario": 0.0,
+          "retorno_anualizado": 0.0,
+          "calmar": null,
+          "sharpe_diario_rf_zero": null,
+          "operacoes": 0,
+          "compras": 0,
+          "vendas": 0,
+          "taxa_acerto_liquido": null,
+          "profit_factor": null,
+          "comissoes": 0,
+          "funding": 0,
+          "pnl_compras": 0,
+          "pnl_vendas": 0,
+          "fracao_dias_posicionado": 0.0,
+          "previsoes_nao_positivas": 0
+        },
+        "sempre_comprado_operacoes": {
+          "capital_final": 11790.346074487918,
+          "retorno_liquido": 0.17903460744879185,
+          "drawdown_maximo": 0.5047367634102555,
+          "crescimento_log_diario": 0.0004692193001324241,
+          "retorno_anualizado": 0.18680526360473623,
+          "calmar": 0.37010433387610975,
+          "sharpe_diario_rf_zero": 0.3089050746421127,
+          "operacoes": 351,
+          "compras": 351,
+          "vendas": 0,
+          "taxa_acerto_liquido": 0.4928774928774929,
+          "profit_factor": 1.037819857206941,
+          "comissoes": 4351.0133499,
+          "funding": 233.46862438792863,
+          "pnl_compras": 1790.3460744879176,
+          "pnl_vendas": 0,
+          "fracao_dias_posicionado": 1.0,
+          "previsoes_nao_positivas": 0
+        },
+        "sempre_vendido_operacoes": {
+          "capital_final": 1618.6217272625074,
+          "retorno_liquido": -0.8381378272737492,
+          "drawdown_maximo": 0.8467572208130076,
+          "crescimento_log_diario": -0.005188062938785447,
+          "retorno_anualizado": -0.8494775403927604,
+          "calmar": -1.0032126322786368,
+          "sharpe_diario_rf_zero": -3.309278372183166,
+          "operacoes": 351,
+          "compras": 0,
+          "vendas": 351,
+          "taxa_acerto_liquido": 0.43304843304843305,
+          "profit_factor": 0.5413091200456929,
+          "comissoes": 1259.3650805,
+          "funding": -211.7719922374961,
+          "pnl_compras": 0,
+          "pnl_vendas": -8381.378272737493,
+          "fracao_dias_posicionado": 1.0,
+          "previsoes_nao_positivas": 0
+        },
+        "operacao_media_seeds_base": {
+          "capital_final": 23474.035298346203,
+          "retorno_liquido": 1.3474035298346199,
+          "drawdown_maximo": 0.210633864238579,
+          "crescimento_log_diario": 0.002414868942343299,
+          "retorno_anualizado": 1.429249528379307,
+          "calmar": 6.745254087008065,
+          "sharpe_diario_rf_zero": 2.2799174642242894,
+          "operacoes": 126.66666666666667,
+          "compras": 117.0,
+          "vendas": 9.666666666666666,
+          "taxa_acerto_liquido": 0.5872957024625377,
+          "profit_factor": 1.7710729773241949,
+          "comissoes": 1937.85601475,
+          "funding": 66.66754642952937,
+          "pnl_compras": 14507.935071871392,
+          "pnl_vendas": -1033.8997735251942,
+          "fracao_dias_posicionado": 0.3608736942070276,
+          "previsoes_nao_positivas": 0.0
+        },
+        "incerteza": {
+          "7": {
+            "delta_mse_retorno_vs_naive_ic95": [
+              -4.826882689238167e-05,
+              -2.1338714745875864e-06
+            ],
+            "crescimento_log_diario_ic95": [
+              0.0005382128711761132,
+              0.004467325521156684
+            ]
+          },
+          "14": {
+            "delta_mse_retorno_vs_naive_ic95": [
+              -5.4074753099145306e-05,
+              -4.629162101666816e-06
+            ],
+            "crescimento_log_diario_ic95": [
+              0.0007526554485923984,
+              0.004696455508699016
+            ]
+          },
+          "28": {
+            "delta_mse_retorno_vs_naive_ic95": [
+              -5.633599184095177e-05,
+              -5.721736314361322e-06
+            ],
+            "crescimento_log_diario_ic95": [
+              0.000788285540001614,
+              0.0051532896166777845
+            ]
+          }
+        },
+        "sondas_ramos": {
+          "42": {
+            "max_abs": 0.0,
+            "rms": 0.0,
+            "previsao_media": 0.008422866041655652,
+            "previsao_desvio": 0.003455478509849124
+          },
+          "17": {
+            "max_abs": 0.0,
+            "rms": 0.0,
+            "previsao_media": 0.005861444311449304,
+            "previsao_desvio": 0.003582561544340349
+          },
+          "2026": {
+            "max_abs": 0.0,
+            "rms": 0.0,
+            "previsao_media": 0.011963101962464862,
+            "previsao_desvio": 0.00697878151303019
+          }
+        },
+        "origens_ms": [
+          1705276800000,
+          1735516800000
+        ]
+      },
+      "teste": {
+        "previsao_media_seeds": {
+          "mse_retorno": 0.0007852464141473468,
+          "rmse_retorno": 0.028021684534118102,
+          "mae_retorno": 0.01986577354789481,
+          "acerto_sinal": 0.47714285714285715,
+          "vies_retorno": -0.0038872813369509457,
+          "mse_usdt2": 639.4943098951214,
+          "rmse_usdt": 25.287645370757474,
+          "mae_usdt": 16.249301325087885,
+          "mse_naive_retorno": 0.0007638756454807392,
+          "habilidade_mse_retorno_naive": -0.027976764010008592
+        },
+        "diagnosticos": [
+          {
+            "seed": 42,
+            "previsao_media_pct": -0.17026458308100667,
+            "desvio_previsao_pct": 0.26411333983869273,
+            "correlacao": 0.03600865861439982,
+            "fracao_preve_alta": 0.3314285714285714,
+            "min_pct": -0.7414302788674831,
+            "max_pct": 0.19521815702319145,
+            "real_desvio_pct": 2.762087943575414
+          },
+          {
+            "seed": 17,
+            "previsao_media_pct": -0.3452630362340382,
+            "desvio_previsao_pct": 0.2826945737443821,
+            "correlacao": 0.014792265843667631,
+            "fracao_preve_alta": 0.06857142857142857,
+            "min_pct": -1.924840547144413,
+            "max_pct": 0.2748343627899885,
+            "real_desvio_pct": 2.762087943575414
+          },
+          {
+            "seed": 2026,
+            "previsao_media_pct": -0.35631035175174425,
+            "desvio_previsao_pct": 0.42277920549199516,
+            "correlacao": 0.024786561622357598,
+            "fracao_preve_alta": 0.14857142857142858,
+            "min_pct": -2.5782514363527187,
+            "max_pct": 0.6193276029080153,
+            "real_desvio_pct": 2.762087943575414
+          }
+        ],
+        "operacoes_por_seed": [
+          {
+            "seed": 42,
+            "capital_final": 6667.877429571139,
+            "retorno_liquido": -0.33321225704288604,
+            "drawdown_maximo": 0.5020417268373598,
+            "crescimento_log_diario": -0.0011579528861782862,
+            "retorno_anualizado": -0.34469388636218157,
+            "calmar": -0.6865841382022171,
+            "sharpe_diario_rf_zero": -1.1086433418322061,
+            "operacoes": 140,
+            "compras": 0,
+            "vendas": 140,
+            "taxa_acerto_liquido": 0.45714285714285713,
+            "profit_factor": 0.7443877543692844,
+            "comissoes": 1000.8516286,
+            "funding": 30.370058171139508,
+            "pnl_compras": 0,
+            "pnl_vendas": -3332.122570428861,
+            "fracao_dias_posicionado": 0.4,
+            "previsoes_nao_positivas": 0
+          },
+          {
+            "seed": 17,
+            "capital_final": 4420.75331913877,
+            "retorno_liquido": -0.557924668086123,
+            "drawdown_maximo": 0.6352240092293653,
+            "crescimento_log_diario": -0.002332214220664015,
+            "retorno_anualizado": -0.5731224993099555,
+            "calmar": -0.902236834538497,
+            "sharpe_diario_rf_zero": -2.0621042730631047,
+            "operacoes": 228,
+            "compras": 2,
+            "vendas": 226,
+            "taxa_acerto_liquido": 0.42543859649122806,
+            "profit_factor": 0.6490743873318372,
+            "comissoes": 1448.756041,
+            "funding": 23.940960138754214,
+            "pnl_compras": -160.1610312546636,
+            "pnl_vendas": -5419.085649606566,
+            "fracao_dias_posicionado": 0.6514285714285715,
+            "previsoes_nao_positivas": 0
+          },
+          {
+            "seed": 2026,
+            "capital_final": 4816.957711119555,
+            "retorno_liquido": -0.5183042288880445,
+            "drawdown_maximo": 0.6475464467587326,
+            "crescimento_log_diario": -0.002086978698500894,
+            "retorno_anualizado": -0.5331499780116559,
+            "calmar": -0.8233385893480172,
+            "sharpe_diario_rf_zero": -1.8194096378633857,
+            "operacoes": 227,
+            "compras": 21,
+            "vendas": 206,
+            "taxa_acerto_liquido": 0.44052863436123346,
+            "profit_factor": 0.7127764544230667,
+            "comissoes": 1655.3493597000002,
+            "funding": 80.49927081953987,
+            "pnl_compras": 402.66180259018256,
+            "pnl_vendas": -5585.704091470628,
+            "fracao_dias_posicionado": 0.6485714285714286,
+            "previsoes_nao_positivas": 0
+          }
+        ],
+        "cenarios": {
+          "base": {
+            "capital_final": 5301.862819943155,
+            "retorno_liquido": -0.4698137180056845,
+            "drawdown_maximo": 0.5949373942751526,
+            "crescimento_log_diario": -0.0018590486017810652,
+            "retorno_anualizado": -0.48365545456126435,
+            "calmar": -0.8040531873629103,
+            "sharpe_diario_rf_zero": -1.6633857509195655,
+            "operacoes": 198.33333333333334,
+            "compras": 7.666666666666667,
+            "vendas": 190.66666666666666,
+            "taxa_acerto_liquido": 0.4410366959984396,
+            "profit_factor": 0.7020795320413961,
+            "comissoes": 1368.3190097666666,
+            "funding": 44.93676304314454,
+            "pnl_compras": 80.83359044517299,
+            "pnl_vendas": -4778.970770502018,
+            "fracao_dias_posicionado": 0.5666666666666668,
+            "previsoes_nao_positivas": 0.0
+          },
+          "slippage2": {
+            "capital_final": 4421.574896456755,
+            "retorno_liquido": -0.5578425103543244,
+            "drawdown_maximo": 0.6355242995547865,
+            "crescimento_log_diario": -0.002400780231282301,
+            "retorno_anualizado": -0.5725637854154706,
+            "calmar": -0.8942518790435289,
+            "sharpe_diario_rf_zero": -2.1418584945473973,
+            "operacoes": 198.33333333333334,
+            "compras": 7.666666666666667,
+            "vendas": 190.66666666666666,
+            "taxa_acerto_liquido": 0.42601511119943763,
+            "profit_factor": 0.6325431792975212,
+            "comissoes": 1262.7451037666667,
+            "funding": 41.950666890090496,
+            "pnl_compras": 9.232303566336364,
+            "pnl_vendas": -5587.657407109582,
+            "fracao_dias_posicionado": 0.5666666666666668,
+            "previsoes_nao_positivas": 0.0
+          },
+          "slippage3": {
+            "capital_final": 3692.7543414333663,
+            "retorno_liquido": -0.6307245658566634,
+            "drawdown_maximo": 0.6720802321341806,
+            "crescimento_log_diario": -0.0029433582301291884,
+            "retorno_anualizado": -0.6456028593477162,
+            "calmar": -0.9564499668578855,
+            "sharpe_diario_rf_zero": -2.615762875336354,
+            "operacoes": 198.33333333333334,
+            "compras": 7.666666666666667,
+            "vendas": 190.66666666666666,
+            "taxa_acerto_liquido": 0.410450502173201,
+            "profit_factor": 0.5699814120831327,
+            "comissoes": 1168.8605242833335,
+            "funding": 39.248232383362996,
+            "pnl_compras": -59.6874998236702,
+            "pnl_vendas": -6247.558158742963,
+            "fracao_dias_posicionado": 0.5666666666666668,
+            "previsoes_nao_positivas": 0.0
+          },
+          "somente_compra": {
+            "capital_final": 9990.424610970098,
+            "retorno_liquido": -0.0009575389029902922,
+            "drawdown_maximo": 0.07360725457672057,
+            "crescimento_log_diario": -2.956353242617687e-06,
+            "retorno_anualizado": -0.0009951320052844256,
+            "operacoes": 7.666666666666667,
+            "compras": 7.666666666666667,
+            "vendas": 0.0,
+            "comissoes": 73.09415353333334,
+            "funding": 13.284697836765169,
+            "pnl_compras": -9.575389029902604,
+            "pnl_vendas": 0.0,
+            "fracao_dias_posicionado": 0.021904761904761903,
+            "previsoes_nao_positivas": 0.0
+          },
+          "somente_venda": {
+            "capital_final": 5305.223241835463,
+            "retorno_liquido": -0.46947767581645367,
+            "drawdown_maximo": 0.5897738749954305,
+            "crescimento_log_diario": -0.0018559415198935707,
+            "retorno_anualizado": -0.4833235980527489,
+            "calmar": -0.8104348856776347,
+            "sharpe_diario_rf_zero": -1.6836504889645703,
+            "operacoes": 190.66666666666666,
+            "compras": 0.0,
+            "vendas": 190.66666666666666,
+            "taxa_acerto_liquido": 0.4378436209950945,
+            "profit_factor": 0.6881191490336205,
+            "comissoes": 1280.99526205,
+            "funding": 29.906070552127346,
+            "pnl_compras": 0.0,
+            "pnl_vendas": -4694.776758164537,
+            "fracao_dias_posicionado": 0.5447619047619048,
+            "previsoes_nao_positivas": 0.0
+          }
+        },
+        "ensemble_operacoes": {
+          "capital_final": 5758.730125134844,
+          "retorno_liquido": -0.42412698748651567,
+          "drawdown_maximo": 0.6143269584195639,
+          "crescimento_log_diario": -0.0015767660199382963,
+          "retorno_anualizado": -0.43758743516414994,
+          "calmar": -0.7123038134121619,
+          "sharpe_diario_rf_zero": -1.4138512267071717,
+          "operacoes": 186,
+          "compras": 7,
+          "vendas": 179,
+          "taxa_acerto_liquido": 0.45161290322580644,
+          "profit_factor": 0.7390535488891532,
+          "comissoes": 1355.6349852,
+          "funding": 76.96731033484774,
+          "pnl_compras": 464.63236744806636,
+          "pnl_vendas": -4705.902242313223,
+          "fracao_dias_posicionado": 0.5314285714285715,
+          "previsoes_nao_positivas": 0
+        },
+        "naive_operacoes": {
+          "capital_final": 10000.0,
+          "retorno_liquido": 0.0,
+          "drawdown_maximo": 0.0,
+          "crescimento_log_diario": 0.0,
+          "retorno_anualizado": 0.0,
+          "calmar": null,
+          "sharpe_diario_rf_zero": null,
+          "operacoes": 0,
+          "compras": 0,
+          "vendas": 0,
+          "taxa_acerto_liquido": null,
+          "profit_factor": null,
+          "comissoes": 0,
+          "funding": 0,
+          "pnl_compras": 0,
+          "pnl_vendas": 0,
+          "fracao_dias_posicionado": 0.0,
+          "previsoes_nao_positivas": 0
+        },
+        "sempre_comprado_operacoes": {
+          "capital_final": 6395.44303150811,
+          "retorno_liquido": -0.360455696849189,
+          "drawdown_maximo": 0.46541299686324,
+          "crescimento_log_diario": -0.0012771410930469023,
+          "retorno_anualizado": -0.37259091250730514,
+          "calmar": -0.80055975019707,
+          "sharpe_diario_rf_zero": -0.9330028374345996,
+          "operacoes": 350,
+          "compras": 350,
+          "vendas": 0,
+          "taxa_acerto_liquido": 0.49714285714285716,
+          "profit_factor": 0.8715393175473576,
+          "comissoes": 2626.81734175,
+          "funding": 132.62887325810323,
+          "pnl_compras": -3604.55696849189,
+          "pnl_vendas": 0,
+          "fracao_dias_posicionado": 1.0,
+          "previsoes_nao_positivas": 0
+        },
+        "sempre_vendido_operacoes": {
+          "capital_final": 3219.2747801999576,
+          "retorno_liquido": -0.6780725219800042,
+          "drawdown_maximo": 0.7998528266946426,
+          "crescimento_log_diario": -0.0032383685209849897,
+          "retorno_anualizado": -0.6933365878321212,
+          "calmar": -0.8668302026227809,
+          "sharpe_diario_rf_zero": -2.3490208413971656,
+          "operacoes": 350,
+          "compras": 0,
+          "vendas": 350,
+          "taxa_acerto_liquido": 0.4228571428571429,
+          "profit_factor": 0.7125648687518505,
+          "comissoes": 2137.1800709,
+          "funding": -168.39754890004875,
+          "pnl_compras": 0,
+          "pnl_vendas": -6780.725219800042,
+          "fracao_dias_posicionado": 1.0,
+          "previsoes_nao_positivas": 0
+        },
+        "operacao_media_seeds_base": {
+          "capital_final": 5301.862819943155,
+          "retorno_liquido": -0.4698137180056845,
+          "drawdown_maximo": 0.5949373942751526,
+          "crescimento_log_diario": -0.0018590486017810652,
+          "retorno_anualizado": -0.48365545456126435,
+          "calmar": -0.8040531873629103,
+          "sharpe_diario_rf_zero": -1.6633857509195655,
+          "operacoes": 198.33333333333334,
+          "compras": 7.666666666666667,
+          "vendas": 190.66666666666666,
+          "taxa_acerto_liquido": 0.4410366959984396,
+          "profit_factor": 0.7020795320413961,
+          "comissoes": 1368.3190097666666,
+          "funding": 44.93676304314454,
+          "pnl_compras": 80.83359044517299,
+          "pnl_vendas": -4778.970770502018,
+          "fracao_dias_posicionado": 0.5666666666666668,
+          "previsoes_nao_positivas": 0.0
+        },
+        "incerteza": {
+          "7": {
+            "delta_mse_retorno_vs_naive_ic95": [
+              -6.476673897090758e-06,
+              5.341279453241035e-05
+            ],
+            "crescimento_log_diario_ic95": [
+              -0.003912590975446595,
+              8.336365564704293e-05
+            ]
+          },
+          "14": {
+            "delta_mse_retorno_vs_naive_ic95": [
+              -3.2491798916010636e-06,
+              5.133546395155405e-05
+            ],
+            "crescimento_log_diario_ic95": [
+              -0.003990949533431339,
+              4.1030552953832636e-05
+            ]
+          },
+          "28": {
+            "delta_mse_retorno_vs_naive_ic95": [
+              -3.850753992102439e-06,
+              5.786872942272248e-05
+            ],
+            "crescimento_log_diario_ic95": [
+              -0.004491196946749226,
+              0.0001128549372070936
+            ]
+          }
+        },
+        "sondas_ramos": {
+          "42": {
+            "max_abs": 0.0,
+            "rms": 0.0,
+            "previsao_media": 0.008422866041655652,
+            "previsao_desvio": 0.003455478509849124
+          },
+          "17": {
+            "max_abs": 0.0,
+            "rms": 0.0,
+            "previsao_media": 0.005861444311449304,
+            "previsao_desvio": 0.003582561544340349
+          },
+          "2026": {
+            "max_abs": 0.0,
+            "rms": 0.0,
+            "previsao_media": 0.011963101962464862,
+            "previsao_desvio": 0.00697878151303019
+          }
+        },
+        "origens_ms": [
+          1736899200000,
+          1767052800000
+        ]
+      }
+    },
+    "XRP": {
+      "validacao": {
+        "previsao_media_seeds": {
+          "mse_retorno": 0.001977394924510906,
+          "rmse_retorno": 0.044467908277254165,
+          "mae_retorno": 0.028344758559084655,
+          "acerto_sinal": 0.5213675213675214,
+          "vies_retorno": -0.0001097052435375657,
+          "mse_usdt2": 0.0031740819739526755,
+          "rmse_usdt": 0.05633891610609912,
+          "mae_usdt": 0.02558744058512041,
+          "mse_naive_retorno": 0.002007614274258368,
+          "habilidade_mse_retorno_naive": 0.01505236844294977
+        },
+        "diagnosticos": [
+          {
+            "seed": 42,
+            "previsao_media_pct": 0.5080497963619326,
+            "desvio_previsao_pct": 0.2999416867026118,
+            "correlacao": 0.06731473115331144,
+            "fracao_preve_alta": 0.9344729344729344,
+            "min_pct": -0.76161646284163,
+            "max_pct": 0.8873690851032734,
+            "real_desvio_pct": 4.457121053797376
+          },
+          {
+            "seed": 17,
+            "previsao_media_pct": 0.4399771051895287,
+            "desvio_previsao_pct": 0.09465367660437884,
+            "correlacao": 0.11393286707123947,
+            "fracao_preve_alta": 1.0,
+            "min_pct": 0.06750230677425861,
+            "max_pct": 0.6655101664364338,
+            "real_desvio_pct": 4.457121053797376
+          },
+          {
+            "seed": 2026,
+            "previsao_media_pct": 0.3945366758057195,
+            "desvio_previsao_pct": 0.25196835767733156,
+            "correlacao": 0.07529576939617585,
+            "fracao_preve_alta": 0.9772079772079773,
+            "min_pct": -1.384541206061829,
+            "max_pct": 1.779804565012455,
+            "real_desvio_pct": 4.457121053797376
+          }
+        ],
+        "operacoes_por_seed": [
+          {
+            "seed": 42,
+            "capital_final": 17611.154907196273,
+            "retorno_liquido": 0.7611154907196274,
+            "drawdown_maximo": 0.609732666604008,
+            "crescimento_log_diario": 0.0016123857829855536,
+            "retorno_anualizado": 0.801321947789587,
+            "calmar": 1.3142184955460274,
+            "sharpe_diario_rf_zero": 0.7717671451304668,
+            "operacoes": 346,
+            "compras": 325,
+            "vendas": 21,
+            "taxa_acerto_liquido": 0.4682080924855491,
+            "profit_factor": 1.2274536528002586,
+            "comissoes": 2487.1116801350004,
+            "funding": -904.6419626687149,
+            "pnl_compras": 7514.282813523929,
+            "pnl_vendas": 96.87209367234391,
+            "fracao_dias_posicionado": 0.9857549857549858,
+            "previsoes_nao_positivas": 0
+          },
+          {
+            "seed": 17,
+            "capital_final": 17420.45120130937,
+            "retorno_liquido": 0.742045120130937,
+            "drawdown_maximo": 0.609732666604008,
+            "crescimento_log_diario": 0.001581366892971388,
+            "retorno_anualizado": 0.7810425871169057,
+            "calmar": 1.2809590659903993,
+            "sharpe_diario_rf_zero": 0.7469795442198429,
+            "operacoes": 331,
+            "compras": 331,
+            "vendas": 0,
+            "taxa_acerto_liquido": 0.4652567975830816,
+            "profit_factor": 1.2285658856266015,
+            "comissoes": 2262.812135865,
+            "funding": -1046.691712825616,
+            "pnl_compras": 7420.45120130937,
+            "pnl_vendas": 0,
+            "fracao_dias_posicionado": 0.9430199430199431,
+            "previsoes_nao_positivas": 0
+          },
+          {
+            "seed": 2026,
+            "capital_final": 18605.365384919714,
+            "retorno_liquido": 0.8605365384919714,
+            "drawdown_maximo": 0.592765854577689,
+            "crescimento_log_diario": 0.0017688458908344641,
+            "retorno_anualizado": 0.9071857957340109,
+            "calmar": 1.5304285642099402,
+            "sharpe_diario_rf_zero": 0.8679763643791718,
+            "operacoes": 330,
+            "compras": 325,
+            "vendas": 5,
+            "taxa_acerto_liquido": 0.4727272727272727,
+            "profit_factor": 1.2496229605852756,
+            "comissoes": 2582.4763195000005,
+            "funding": -1030.6424755802993,
+            "pnl_compras": 9264.561412958414,
+            "pnl_vendas": -659.1960280386993,
+            "fracao_dias_posicionado": 0.9401709401709402,
+            "previsoes_nao_positivas": 0
+          }
+        ],
+        "cenarios": {
+          "base": {
+            "capital_final": 17878.990497808452,
+            "retorno_liquido": 0.7878990497808452,
+            "drawdown_maximo": 0.6040770625952351,
+            "crescimento_log_diario": 0.001654199522263802,
+            "retorno_anualizado": 0.8298501102135011,
+            "calmar": 1.3752020419154558,
+            "sharpe_diario_rf_zero": 0.7955743512431606,
+            "operacoes": 335.6666666666667,
+            "compras": 327.0,
+            "vendas": 8.666666666666666,
+            "taxa_acerto_liquido": 0.46873072093196777,
+            "profit_factor": 1.2352141663373786,
+            "comissoes": 2444.1333785,
+            "funding": -993.9920503582101,
+            "pnl_compras": 8066.431809263904,
+            "pnl_vendas": -187.4413114554518,
+            "fracao_dias_posicionado": 0.956315289648623,
+            "previsoes_nao_positivas": 0.0
+          },
+          "slippage2": {
+            "capital_final": 12823.337357228955,
+            "retorno_liquido": 0.28233373572289544,
+            "drawdown_maximo": 0.6851838291141722,
+            "crescimento_log_diario": 0.0007069897203042028,
+            "retorno_anualizado": 0.2951449903735075,
+            "calmar": 0.43156607350198845,
+            "sharpe_diario_rf_zero": 0.34041614249786606,
+            "operacoes": 335.6666666666667,
+            "compras": 327.0,
+            "vendas": 8.666666666666666,
+            "taxa_acerto_liquido": 0.45781865597278687,
+            "profit_factor": 1.0958761164004949,
+            "comissoes": 2074.71955168,
+            "funding": -881.8416444243886,
+            "pnl_compras": 3070.9456243086447,
+            "pnl_vendas": -247.60826707969014,
+            "fracao_dias_posicionado": 0.956315289648623,
+            "previsoes_nao_positivas": 0.0
+          },
+          "slippage3": {
+            "capital_final": 9391.115660631549,
+            "retorno_liquido": -0.0608884339368451,
+            "drawdown_maximo": 0.7560973000545689,
+            "crescimento_log_diario": -0.00018090170453043117,
+            "retorno_anualizado": -0.06321217156440716,
+            "calmar": -0.08312449226416543,
+            "sharpe_diario_rf_zero": -0.0862534331015195,
+            "operacoes": 335.6666666666667,
+            "compras": 327.0,
+            "vendas": 8.666666666666666,
+            "taxa_acerto_liquido": 0.445896490003505,
+            "profit_factor": 0.9766606814091668,
+            "comissoes": 1801.7541154983335,
+            "funding": -797.8538805367767,
+            "pnl_compras": -343.56571191064296,
+            "pnl_vendas": -265.3186274578081,
+            "fracao_dias_posicionado": 0.956315289648623,
+            "previsoes_nao_positivas": 0.0
+          },
+          "somente_compra": {
+            "capital_final": 18102.05812749163,
+            "retorno_liquido": 0.8102058127491629,
+            "drawdown_maximo": 0.6040770625952351,
+            "crescimento_log_diario": 0.001687280282686497,
+            "retorno_anualizado": 0.8536581795202429,
+            "calmar": 1.4155276273283206,
+            "sharpe_diario_rf_zero": 0.8224583782684314,
+            "operacoes": 327.0,
+            "compras": 327.0,
+            "vendas": 0.0,
+            "taxa_acerto_liquido": 0.4679061120148733,
+            "profit_factor": 1.2608785519656838,
+            "comissoes": 2309.5953356783334,
+            "funding": -1030.192680163362,
+            "pnl_compras": 8102.058127491629,
+            "pnl_vendas": 0.0,
+            "fracao_dias_posicionado": 0.9316239316239318,
+            "previsoes_nao_positivas": 0.0
+          },
+          "somente_venda": {
+            "capital_final": 9886.617152349203,
+            "retorno_liquido": -0.011338284765079734,
+            "drawdown_maximo": 0.14509053796704915,
+            "crescimento_log_diario": -3.308003647456863e-05,
+            "retorno_anualizado": -0.0117793626049217,
+            "operacoes": 8.666666666666666,
+            "compras": 0.0,
+            "vendas": 8.666666666666666,
+            "comissoes": 77.19983919500001,
+            "funding": 18.94514821086908,
+            "pnl_compras": 0.0,
+            "pnl_vendas": -113.38284765079698,
+            "fracao_dias_posicionado": 0.024691358024691357,
+            "previsoes_nao_positivas": 0.0
+          }
+        },
+        "ensemble_operacoes": {
+          "capital_final": 17707.35667458554,
+          "retorno_liquido": 0.7707356674585539,
+          "drawdown_maximo": 0.609732666604008,
+          "crescimento_log_diario": 0.0016279062437819832,
+          "retorno_anualizado": 0.8115553378723037,
+          "calmar": 1.3310019002137043,
+          "sharpe_diario_rf_zero": 0.777647526599602,
+          "operacoes": 336,
+          "compras": 331,
+          "vendas": 5,
+          "taxa_acerto_liquido": 0.46130952380952384,
+          "profit_factor": 1.2356494300290124,
+          "comissoes": 2343.8093667700005,
+          "funding": -1002.6502786444474,
+          "pnl_compras": 8386.762687537142,
+          "pnl_vendas": -679.4060129516038,
+          "fracao_dias_posicionado": 0.9572649572649573,
+          "previsoes_nao_positivas": 0
+        },
+        "naive_operacoes": {
+          "capital_final": 10000.0,
+          "retorno_liquido": 0.0,
+          "drawdown_maximo": 0.0,
+          "crescimento_log_diario": 0.0,
+          "retorno_anualizado": 0.0,
+          "calmar": null,
+          "sharpe_diario_rf_zero": null,
+          "operacoes": 0,
+          "compras": 0,
+          "vendas": 0,
+          "taxa_acerto_liquido": null,
+          "profit_factor": null,
+          "comissoes": 0,
+          "funding": 0,
+          "pnl_compras": 0,
+          "pnl_vendas": 0,
+          "fracao_dias_posicionado": 0.0,
+          "previsoes_nao_positivas": 0
+        },
+        "sempre_comprado_operacoes": {
+          "capital_final": 14587.993264519228,
+          "retorno_liquido": 0.4587993264519228,
+          "drawdown_maximo": 0.609732666604008,
+          "crescimento_log_diario": 0.0010758225590840203,
+          "retorno_anualizado": 0.4809373532182154,
+          "calmar": 0.7887675690673811,
+          "sharpe_diario_rf_zero": 0.4984315838324783,
+          "operacoes": 351,
+          "compras": 351,
+          "vendas": 0,
+          "taxa_acerto_liquido": 0.46438746438746437,
+          "profit_factor": 1.120195253800911,
+          "comissoes": 2577.9474783650003,
+          "funding": -1113.6963671157685,
+          "pnl_compras": 4587.9932645192275,
+          "pnl_vendas": 0,
+          "fracao_dias_posicionado": 1.0,
+          "previsoes_nao_positivas": 0
+        },
+        "sempre_vendido_operacoes": {
+          "capital_final": 855.7908875047308,
+          "retorno_liquido": -0.914420911249527,
+          "drawdown_maximo": 0.9403833151483147,
+          "crescimento_log_diario": -0.007003744489961221,
+          "retorno_anualizado": -0.9224138803929793,
+          "calmar": -0.9808913722033644,
+          "sharpe_diario_rf_zero": -3.007435771145794,
+          "operacoes": 351,
+          "compras": 0,
+          "vendas": 351,
+          "taxa_acerto_liquido": 0.45584045584045585,
+          "profit_factor": 0.7002260975268578,
+          "comissoes": 2151.635137,
+          "funding": 888.0973445047448,
+          "pnl_compras": 0,
+          "pnl_vendas": -9144.20911249527,
+          "fracao_dias_posicionado": 1.0,
+          "previsoes_nao_positivas": 0
+        },
+        "operacao_media_seeds_base": {
+          "capital_final": 17878.990497808452,
+          "retorno_liquido": 0.7878990497808452,
+          "drawdown_maximo": 0.6040770625952351,
+          "crescimento_log_diario": 0.001654199522263802,
+          "retorno_anualizado": 0.8298501102135011,
+          "calmar": 1.3752020419154558,
+          "sharpe_diario_rf_zero": 0.7955743512431606,
+          "operacoes": 335.6666666666667,
+          "compras": 327.0,
+          "vendas": 8.666666666666666,
+          "taxa_acerto_liquido": 0.46873072093196777,
+          "profit_factor": 1.2352141663373786,
+          "comissoes": 2444.1333785,
+          "funding": -993.9920503582101,
+          "pnl_compras": 8066.431809263904,
+          "pnl_vendas": -187.4413114554518,
+          "fracao_dias_posicionado": 0.956315289648623,
+          "previsoes_nao_positivas": 0.0
+        },
+        "incerteza": {
+          "7": {
+            "delta_mse_retorno_vs_naive_ic95": [
+              -9.573859334104636e-05,
+              2.5753834384672404e-05
+            ],
+            "crescimento_log_diario_ic95": [
+              -0.0032162062168329623,
+              0.007237737687360719
+            ]
+          },
+          "14": {
+            "delta_mse_retorno_vs_naive_ic95": [
+              -0.00010702821872270045,
+              2.534792813066003e-05
+            ],
+            "crescimento_log_diario_ic95": [
+              -0.0031582983380558684,
+              0.008131095432969013
+            ]
+          },
+          "28": {
+            "delta_mse_retorno_vs_naive_ic95": [
+              -0.00012992720675060067,
+              2.9211207107176388e-05
+            ],
+            "crescimento_log_diario_ic95": [
+              -0.00341110599745546,
+              0.010224791451176492
+            ]
+          }
+        },
+        "sondas_ramos": {
+          "42": {
+            "max_abs": 0.0,
+            "rms": 0.0,
+            "previsao_media": 0.007093147090927232,
+            "previsao_desvio": 0.0019301947464899607
+          },
+          "17": {
+            "max_abs": 0.0,
+            "rms": 0.0,
+            "previsao_media": 0.0053114443144295365,
+            "previsao_desvio": 0.0005508114207815758
+          },
+          "2026": {
+            "max_abs": 0.0,
+            "rms": 0.0,
+            "previsao_media": 0.003743867047887761,
+            "previsao_desvio": 0.0021500876230622495
+          }
+        },
+        "origens_ms": [
+          1705276800000,
+          1735516800000
+        ]
+      },
+      "teste": {
+        "previsao_media_seeds": {
+          "mse_retorno": 0.001941940861673459,
+          "rmse_retorno": 0.04406484079303169,
+          "mae_retorno": 0.02938557705835815,
+          "acerto_sinal": 0.5009523809523809,
+          "vies_retorno": -0.0016362576169928944,
+          "mse_usdt2": 0.01238901789967565,
+          "rmse_usdt": 0.11129932238076916,
+          "mae_usdt": 0.07355616822917342,
+          "mse_naive_retorno": 0.001887154818391689,
+          "habilidade_mse_retorno_naive": -0.029031027421725142
+        },
+        "diagnosticos": [
+          {
+            "seed": 42,
+            "previsao_media_pct": -1.034772187471389,
+            "desvio_previsao_pct": 0.2992427266479133,
+            "correlacao": 0.08029342997942814,
+            "fracao_preve_alta": 0.0,
+            "min_pct": -1.6261773183941841,
+            "max_pct": -0.45214579440654434,
+            "real_desvio_pct": 4.344130962596871
+          },
+          {
+            "seed": 17,
+            "previsao_media_pct": 0.019208571740559104,
+            "desvio_previsao_pct": 0.07629312698714318,
+            "correlacao": 0.06888650033352023,
+            "fracao_preve_alta": 0.6371428571428571,
+            "min_pct": -0.18379255197941147,
+            "max_pct": 0.16794507391750813,
+            "real_desvio_pct": 4.344130962596871
+          },
+          {
+            "seed": 2026,
+            "previsao_media_pct": 0.498816009477845,
+            "desvio_previsao_pct": 0.694807354793918,
+            "correlacao": -0.0014654065508277363,
+            "fracao_preve_alta": 0.8514285714285714,
+            "min_pct": -2.2900648415088765,
+            "max_pct": 3.8890518248081207,
+            "real_desvio_pct": 4.344130962596871
+          }
+        ],
+        "operacoes_por_seed": [
+          {
+            "seed": 42,
+            "capital_final": 3864.893859612238,
+            "retorno_liquido": -0.6135106140387763,
+            "drawdown_maximo": 0.7382673289969245,
+            "crescimento_log_diario": -0.0027161453521973504,
+            "retorno_anualizado": -0.6289405748340657,
+            "calmar": -0.8519144084143615,
+            "sharpe_diario_rf_zero": -1.184063620398075,
+            "operacoes": 350,
+            "compras": 0,
+            "vendas": 350,
+            "taxa_acerto_liquido": 0.4942857142857143,
+            "profit_factor": 0.8034029579033183,
+            "comissoes": 1838.3763794900003,
+            "funding": 136.33565910223376,
+            "pnl_compras": 0,
+            "pnl_vendas": -6135.106140387762,
+            "fracao_dias_posicionado": 1.0,
+            "previsoes_nao_positivas": 0
+          },
+          {
+            "seed": 17,
+            "capital_final": 10000.0,
+            "retorno_liquido": 0.0,
+            "drawdown_maximo": 0.0,
+            "crescimento_log_diario": 0.0,
+            "retorno_anualizado": 0.0,
+            "calmar": null,
+            "sharpe_diario_rf_zero": null,
+            "operacoes": 0,
+            "compras": 0,
+            "vendas": 0,
+            "taxa_acerto_liquido": null,
+            "profit_factor": null,
+            "comissoes": 0,
+            "funding": 0,
+            "pnl_compras": 0,
+            "pnl_vendas": 0,
+            "fracao_dias_posicionado": 0.0,
+            "previsoes_nao_positivas": 0
+          },
+          {
+            "seed": 2026,
+            "capital_final": 4367.340613872249,
+            "retorno_liquido": -0.5632659386127751,
+            "drawdown_maximo": 0.7323307830184305,
+            "crescimento_log_diario": -0.0023669452123125214,
+            "retorno_anualizado": -0.5784997896519926,
+            "calmar": -0.7899432921112556,
+            "sharpe_diario_rf_zero": -1.1422128096771669,
+            "operacoes": 289,
+            "compras": 259,
+            "vendas": 30,
+            "taxa_acerto_liquido": 0.4602076124567474,
+            "profit_factor": 0.8491743180218301,
+            "comissoes": 2370.385706465,
+            "funding": -214.65594966276416,
+            "pnl_compras": -1022.0551557934632,
+            "pnl_vendas": -4610.604230334287,
+            "fracao_dias_posicionado": 0.8257142857142857,
+            "previsoes_nao_positivas": 0
+          }
+        ],
+        "cenarios": {
+          "base": {
+            "capital_final": 6077.411491161496,
+            "retorno_liquido": -0.3922588508838505,
+            "drawdown_maximo": 0.49019937067178504,
+            "crescimento_log_diario": -0.0016943635215032904,
+            "retorno_anualizado": -0.4024801214953528,
+            "operacoes": 213.0,
+            "compras": 86.33333333333333,
+            "vendas": 126.66666666666667,
+            "comissoes": 1402.9206953183336,
+            "funding": -26.1067635201768,
+            "pnl_compras": -340.6850519311544,
+            "pnl_vendas": -3581.9034569073497,
+            "fracao_dias_posicionado": 0.6085714285714285,
+            "previsoes_nao_positivas": 0.0
+          },
+          "slippage2": {
+            "capital_final": 5358.525260669458,
+            "retorno_liquido": -0.4641474739330542,
+            "drawdown_maximo": 0.5240876003569946,
+            "crescimento_log_diario": -0.0022772879121854103,
+            "retorno_anualizado": -0.47419366137820257,
+            "operacoes": 213.0,
+            "compras": 86.33333333333333,
+            "vendas": 126.66666666666667,
+            "comissoes": 1238.5337286816668,
+            "funding": -23.15522731554095,
+            "pnl_compras": -712.2900205630677,
+            "pnl_vendas": -3929.1847187674744,
+            "fracao_dias_posicionado": 0.6085714285714285,
+            "previsoes_nao_positivas": 0.0
+          },
+          "slippage3": {
+            "capital_final": 4829.908859371741,
+            "retorno_liquido": -0.517009114062826,
+            "drawdown_maximo": 0.5530886575411736,
+            "crescimento_log_diario": -0.0028594863924432273,
+            "retorno_anualizado": -0.5262452790466202,
+            "operacoes": 213.0,
+            "compras": 86.33333333333333,
+            "vendas": 126.66666666666667,
+            "comissoes": 1101.1689029650001,
+            "funding": -20.477067663263043,
+            "pnl_compras": -1001.1577079467196,
+            "pnl_vendas": -4168.93343268154,
+            "fracao_dias_posicionado": 0.6085714285714285,
+            "previsoes_nao_positivas": 0.0
+          },
+          "somente_compra": {
+            "capital_final": 9036.631072577826,
+            "retorno_liquido": -0.09633689274221746,
+            "drawdown_maximo": 0.23139590392802334,
+            "crescimento_log_diario": -0.00032485511228053777,
+            "retorno_anualizado": -0.09977622036197721,
+            "operacoes": 86.33333333333333,
+            "compras": 86.33333333333333,
+            "vendas": 0.0,
+            "comissoes": 989.1013687216669,
+            "funding": -115.08402870050696,
+            "pnl_compras": -963.3689274221746,
+            "pnl_vendas": 0.0,
+            "fracao_dias_posicionado": 0.24666666666666667,
+            "previsoes_nao_positivas": 0.0
+          },
+          "somente_venda": {
+            "capital_final": 6669.154768938098,
+            "retorno_liquido": -0.33308452310619024,
+            "drawdown_maximo": 0.3975391001053996,
+            "crescimento_log_diario": -0.0013695168305711662,
+            "retorno_anualizado": -0.34245996662872535,
+            "operacoes": 126.66666666666667,
+            "compras": 0.0,
+            "vendas": 126.66666666666667,
+            "comissoes": 684.4547454233334,
+            "funding": 51.127181028095606,
+            "pnl_compras": 0.0,
+            "pnl_vendas": -3330.845231061902,
+            "fracao_dias_posicionado": 0.3619047619047619,
+            "previsoes_nao_positivas": 0.0
+          }
+        },
+        "ensemble_operacoes": {
+          "capital_final": 11463.052976881467,
+          "retorno_liquido": 0.1463052976881467,
+          "drawdown_maximo": 0.46046241448720415,
+          "crescimento_log_diario": 0.00039012567337954755,
+          "retorno_anualizado": 0.1530330102821263,
+          "calmar": 0.3323463663208041,
+          "sharpe_diario_rf_zero": 0.22133867470944865,
+          "operacoes": 158,
+          "compras": 14,
+          "vendas": 144,
+          "taxa_acerto_liquido": 0.5063291139240507,
+          "profit_factor": 1.0536747469291743,
+          "comissoes": 1783.2301890350002,
+          "funding": 193.33989591644783,
+          "pnl_compras": 86.46847386390436,
+          "pnl_vendas": 1376.5845030175624,
+          "fracao_dias_posicionado": 0.4514285714285714,
+          "previsoes_nao_positivas": 0
+        },
+        "naive_operacoes": {
+          "capital_final": 10000.0,
+          "retorno_liquido": 0.0,
+          "drawdown_maximo": 0.0,
+          "crescimento_log_diario": 0.0,
+          "retorno_anualizado": 0.0,
+          "calmar": null,
+          "sharpe_diario_rf_zero": null,
+          "operacoes": 0,
+          "compras": 0,
+          "vendas": 0,
+          "taxa_acerto_liquido": null,
+          "profit_factor": null,
+          "comissoes": 0,
+          "funding": 0,
+          "pnl_compras": 0,
+          "pnl_vendas": 0,
+          "fracao_dias_posicionado": 0.0,
+          "previsoes_nao_positivas": 0
+        },
+        "sempre_comprado_operacoes": {
+          "capital_final": 3581.4186190280357,
+          "retorno_liquido": -0.6418581380971964,
+          "drawdown_maximo": 0.7785162817443443,
+          "crescimento_log_diario": -0.0029337888822122083,
+          "retorno_anualizado": -0.6572770698290473,
+          "calmar": -0.8442688807437035,
+          "sharpe_diario_rf_zero": -1.3693268253416888,
+          "operacoes": 350,
+          "compras": 350,
+          "vendas": 0,
+          "taxa_acerto_liquido": 0.44571428571428573,
+          "profit_factor": 0.825915234134208,
+          "comissoes": 2268.1206759550005,
+          "funding": -228.0591150169633,
+          "pnl_compras": -6418.581380971964,
+          "pnl_vendas": 0,
+          "fracao_dias_posicionado": 1.0,
+          "previsoes_nao_positivas": 0
+        },
+        "sempre_vendido_operacoes": {
+          "capital_final": 3864.893859612238,
+          "retorno_liquido": -0.6135106140387763,
+          "drawdown_maximo": 0.7382673289969245,
+          "crescimento_log_diario": -0.0027161453521973504,
+          "retorno_anualizado": -0.6289405748340657,
+          "calmar": -0.8519144084143615,
+          "sharpe_diario_rf_zero": -1.184063620398075,
+          "operacoes": 350,
+          "compras": 0,
+          "vendas": 350,
+          "taxa_acerto_liquido": 0.4942857142857143,
+          "profit_factor": 0.8034029579033183,
+          "comissoes": 1838.3763794900003,
+          "funding": 136.33565910223376,
+          "pnl_compras": 0,
+          "pnl_vendas": -6135.106140387762,
+          "fracao_dias_posicionado": 1.0,
+          "previsoes_nao_positivas": 0
+        },
+        "operacao_media_seeds_base": {
+          "capital_final": 6077.411491161496,
+          "retorno_liquido": -0.3922588508838505,
+          "drawdown_maximo": 0.49019937067178504,
+          "crescimento_log_diario": -0.0016943635215032904,
+          "retorno_anualizado": -0.4024801214953528,
+          "operacoes": 213.0,
+          "compras": 86.33333333333333,
+          "vendas": 126.66666666666667,
+          "comissoes": 1402.9206953183336,
+          "funding": -26.1067635201768,
+          "pnl_compras": -340.6850519311544,
+          "pnl_vendas": -3581.9034569073497,
+          "fracao_dias_posicionado": 0.6085714285714285,
+          "previsoes_nao_positivas": 0.0
+        },
+        "incerteza": {
+          "7": {
+            "delta_mse_retorno_vs_naive_ic95": [
+              -3.0774019699412796e-06,
+              0.00012300138580696745
+            ],
+            "crescimento_log_diario_ic95": [
+              -0.0044600009838066295,
+              0.0004137478751497571
+            ]
+          },
+          "14": {
+            "delta_mse_retorno_vs_naive_ic95": [
+              -1.919802956864112e-06,
+              0.00012431641626073117
+            ],
+            "crescimento_log_diario_ic95": [
+              -0.004559703783793952,
+              0.00018545000197687107
+            ]
+          },
+          "28": {
+            "delta_mse_retorno_vs_naive_ic95": [
+              -2.3938328066051056e-06,
+              0.00012691909502389294
+            ],
+            "crescimento_log_diario_ic95": [
+              -0.0044184271157520685,
+              0.0
+            ]
+          }
+        },
+        "sondas_ramos": {
+          "42": {
+            "max_abs": 0.0,
+            "rms": 0.0,
+            "previsao_media": 0.007093147090927232,
+            "previsao_desvio": 0.0019301947464899607
+          },
+          "17": {
+            "max_abs": 0.0,
+            "rms": 0.0,
+            "previsao_media": 0.0053114443144295365,
+            "previsao_desvio": 0.0005508114207815758
+          },
+          "2026": {
+            "max_abs": 0.0,
+            "rms": 0.0,
+            "previsao_media": 0.003743867047887761,
+            "previsao_desvio": 0.0021500876230622495
+          }
+        },
+        "origens_ms": [
+          1736899200000,
+          1767052800000
+        ]
+      }
+    }
+  },
+  "media_tres_seeds_controles_excluidos": true,
+  "fonte_sha256": "0427d3b8f4880cbbc3eb0273d517433df78c38f30287e11ab2d5ec8cefbbfdb8",
+  "limites": "Leitura independente, sem treinos/backtests novos. BTC herdado; quatro moedas distintas e mesmo calendário, não ablação entre moedas. Validação2024 seleciona; teste2025 retrospectivo já consultado. IC exploratório de seeds/blocos7/14/28 não corrige busca prévia. Drawdown confere envelope de risco publicado, não ticks reais nem liquidação certificada. Média de retornos é média de carteiras independentes, não ensemble ou portfólio combinado."
+}

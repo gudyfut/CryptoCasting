@@ -1,0 +1,224 @@
+{
+  "id": "92e3eb82e3f6adf99994",
+  "utc": "2026-10-28T21:38:55.023570+00:00",
+  "contrato": {
+    "configuracao": {
+      "versao": "ohlcv24-1.0",
+      "ciclo": "ohlcv24_001",
+      "hipotese": "Referencia exploratoria OHLCV de BTC; futuras mudancas isoladas contra esta referencia.",
+      "horizonte": 24,
+      "candle_minutos": 60,
+      "origem_minutos": 60,
+      "entradas": [
+        "abertura_relativa",
+        "maxima_relativa",
+        "minima_relativa",
+        "fechamento_relativo",
+        "volume_transformado"
+      ],
+      "seeds": [
+        17,
+        42,
+        2026
+      ],
+      "mamba": {
+        "largura": 32,
+        "camadas": 2,
+        "estado": 16,
+        "convolucao": 4,
+        "expansao": 2,
+        "dropout": 0.1
+      },
+      "lstm": {
+        "largura": 32,
+        "camadas": 2,
+        "dropout": 0.1
+      },
+      "treino": {
+        "epocas": 100,
+        "paciencia": 10,
+        "batch": 64,
+        "microbatch": 32,
+        "taxa_aprendizado": 0.0002,
+        "weight_decay": 0.001,
+        "clipping": 1.0
+      },
+      "arima": {
+        "ordens": [
+          [
+            0,
+            1,
+            0
+          ],
+          [
+            0,
+            1,
+            1
+          ],
+          [
+            0,
+            1,
+            2
+          ],
+          [
+            1,
+            1,
+            0
+          ],
+          [
+            1,
+            1,
+            1
+          ],
+          [
+            1,
+            1,
+            2
+          ],
+          [
+            2,
+            1,
+            0
+          ],
+          [
+            2,
+            1,
+            1
+          ],
+          [
+            2,
+            1,
+            2
+          ]
+        ],
+        "tendencia": "n",
+        "maxiter": 200
+      },
+      "dispositivo": "cuda",
+      "backend": "oficial",
+      "bootstrap": {
+        "dias": [
+          7,
+          14,
+          28
+        ],
+        "principal": 14,
+        "replicas": 2000,
+        "seed": 20261020
+      },
+      "operacao": {
+        "hora_utc": 0,
+        "latencia_minutos": 1,
+        "capital": 10000.0,
+        "taxa": 0.001,
+        "slippage": 0.0005,
+        "taxa_agravada": 0.002,
+        "slippage_agravado": 0.001
+      },
+      "par": "BTCUSDT",
+      "contexto": 168,
+      "representacao": "log_ohlc_relativo_close_anterior_e_log1p_volume_base",
+      "normalizacao": "padronizacao_estatica_por_canal_treino_horas_unicas",
+      "normalizacao_bloco": "pre_layernorm",
+      "divisao": {
+        "treino": [
+          "2021-01-01",
+          "2024-01-01"
+        ],
+        "validacao": [
+          "2024-01-01",
+          "2025-01-01"
+        ],
+        "teste": [
+          "2025-01-01",
+          "2026-01-01"
+        ]
+      },
+      "exposicao": "retrospectiva_periodos_ja_consultados",
+      "dataset_origem": "dados/processados/retorno24_d25f6a93a9900725f51e",
+      "modelos": [
+        "mamba",
+        "lstm",
+        "naive",
+        "arima"
+      ],
+      "controles_reproducao": [
+        {
+          "modelo": "mamba",
+          "seed": 42
+        },
+        {
+          "modelo": "lstm",
+          "seed": 42
+        }
+      ],
+      "reproducao": {
+        "diferenca_absoluta_previsao": 1e-05,
+        "diferenca_relativa_mse": 0.0001,
+        "mesma_epoca": true,
+        "origem_limites": "mesmos limites dos controles dos ciclos preliminares; recarga do checkpoint permanece exata"
+      }
+    },
+    "fontes": {
+      "configuracoes/ohlcv24_001.json": "0fbfaac69b08dd3076366250322ce066fe334ce0faf4bfb1f0592a29c54a485c",
+      "estudo_ohlcv/__init__.py": "5154f4a77a69320aaa947f55ba30c1557be47f59fa9448f986a1fb24208ebdfd",
+      "estudo_ohlcv/avaliacao.py": "77cdf7ddd54b152e0187bd3e66fa9381d7230f1d3127b88e6f22083f5bee3b4b",
+      "estudo_ohlcv/ciclo.py": "d4a9f3108aefc2b593b0e0c189c29fb37bfa2b19cf7e21646b60821e62b333a8",
+      "estudo_ohlcv/dados.py": "9677b9d42f2b82a4c401d1bde7a05d43a89ca57622c40a133c45fc447b49d6b5",
+      "estudo_ohlcv/qualificacao.py": "05f6d50116f3c34182d2cba47695490f88f9ee7a0e6415377fbdd7a621df8a2b",
+      "estudo_ohlcv/redes.py": "50d9a422db8f78c77b2ed4b04da190a46dff30dcd0221d8db5605521d111c7c3",
+      "estudo_ohlcv/treino.py": "8dbf330abb8a38d8d9b4f50b68a27321bd5610af1502362340e2fe3d70d88df0",
+      "experimento_penalizacao/__init__.py": "8fcc0ad8843531b2a5023a5022e5b9a8ce76bae0325084f8bfdcd397d02076c6",
+      "experimento_penalizacao/otimizador.py": "68f8cae6f23206378d5016e5a531867f785cf80ea15cecb762a1503600c39306",
+      "previsao24/__init__.py": "c129983e060ce36115341055ad9823c649aed6dde5c5bbfac2f3e4c78e1606c8",
+      "previsao24/arquivos.py": "71b40ab9628e4c3461ae2fadeb69bcb12ceea2d8331012168e1bd2a4dc9b1334",
+      "previsao24/baselines.py": "3aec448eb8974aec09af336e471cfece916e0e8c04f62d162b51d3b579f8e459",
+      "previsao24/financeiro.py": "e37d98a16580294a3b0c3c6a353df7ff8aaed176a32a3e0f1b9b07c0b6b80bf6",
+      "previsao24/metricas.py": "89016c0fba23691707fec66ec11a2e233cab108f27ff5dcd5872b547f9af4af4",
+      "run_ohlcv.py": "6a3f53a8c1b0b391b88c2676e6e641cd498c57c0d00580f5f414b5797cc81278",
+      "tests_ohlcv/test_contratos.py": "e9d3f9f42ce8dad8158cd12defba0a8b8838d944b2e5f86d998dd888a5887977",
+      "tests_ohlcv/test_publicacao.py": "48c9604653721e2165b373d853573d019bedd9a331961e15b22246c5df4049cb"
+    },
+    "dataset": "00c15349ce0e28a543a6",
+    "dataset_pasta": "dados/processados/ohlcv24_00c15349ce0e28a543a6",
+    "dataset_sha256": "6e72f15fd13fbc54eef6b7b28aad4a248a34339fa930f4e9725e3973ced35a87",
+    "ambiente": {
+      "python": "3.12.13",
+      "torch": "2.6.0+cu118",
+      "cuda": "11.8",
+      "gpu": "NVIDIA GeForce RTX 4050 Laptop GPU",
+      "host": "MuriloRFM",
+      "implementacao_instalada": {
+        "mamba": {
+          "arquivo": "/home/murilorfm/.venvs/cc/lib/python3.12/site-packages/mamba_ssm/modules/mamba_simple.py",
+          "sha256": "a17e4c51b582dc0d4d690a649eba521cd0c1ee3dc8f0473a0967cdc9ec0874e3"
+        },
+        "mamba_ssm.ops.selective_scan_interface": {
+          "arquivo": "/home/murilorfm/.venvs/cc/lib/python3.12/site-packages/mamba_ssm/ops/selective_scan_interface.py",
+          "sha256": "543edd077f11c80cccd5c5e2f926420d9105fd238d9e8960e53660cfa234dce8"
+        },
+        "selective_scan_cuda": {
+          "arquivo": "/home/murilorfm/.venvs/cc/lib/python3.12/site-packages/selective_scan_cuda.cpython-312-x86_64-linux-gnu.so",
+          "sha256": "9ef2a8bad7534cfac451bfe312124cd1efb609ecfd65ce63262526d3113c87e1"
+        },
+        "causal_conv1d_cuda": {
+          "arquivo": "/home/murilorfm/.venvs/cc/lib/python3.12/site-packages/causal_conv1d_cuda.cpython-312-x86_64-linux-gnu.so",
+          "sha256": "72a06e63ea5a209ec95d5a7ecc7199750b6df4ddf5ecc9019cd2a5c5758e2aac"
+        }
+      },
+      "pacotes": {
+        "mamba_ssm": "2.2.6.post3",
+        "causal_conv1d": "1.6.2.post1",
+        "numpy": "2.2.6",
+        "pandas": "3.0.3",
+        "statsmodels": "0.14.6",
+        "pyarrow": "24.0.0"
+      }
+    },
+    "qualificacao": {
+      "recibo": "registros/ohlcv/qualificacoes/2026-10-28T213745.525127_0000/qualificacao.json",
+      "sha256": "cc7d9054a67afbef52289011f10b680f5e61efec0ed100ffe8ddbe0a86c553bc"
+    }
+  },
+  "protocolo_sha256": "a0a6f376b6bc0d5707594db583e116d2c73f9fac0937c719406acb83d28557ec"
+}

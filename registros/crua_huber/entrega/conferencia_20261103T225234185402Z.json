@@ -1,0 +1,138 @@
+{
+  "utc": "2026-11-03T22:52:34.185402+00:00",
+  "situacao": "conferido",
+  "execucao": {
+    "id": "1781f557fdf2b45a3ae2",
+    "pasta": "dados/experimentos/crua_huber_1781f557fdf2b45a3ae2",
+    "congelamento_sha256": "aab12bbb2c9dc848652e21c525cc72c36a37541d8381ba4ebb8fd89e4c6cd2dd"
+  },
+  "verificador_sha256": "7419cce4621ed623eb1b1326be76938d43bd4c107aaab9bd52dc3969cf20c583",
+  "contagens": {
+    "fontes_checkout": 105,
+    "fontes_congeladas": 105,
+    "preservados": 13049,
+    "publicados": 1153,
+    "artefatos_ajustes": 1795,
+    "artefatos_controle": 12
+  },
+  "metricas_recalculadas": "MSE/MAE de validacao/teste dos 128 ajustes e medias das quatro variantes",
+  "mesmas_origens_alvos": true,
+  "controle_reproducao_conferido": true,
+  "novos_treinamentos": 0,
+  "novas_simulacoes": 0,
+  "medias_globais": {
+    "validacao": {
+      "relativa_mse": {
+        "mse": 0.0005150618258163799,
+        "rmse": 0.022620669537280286,
+        "mae": 0.016340560204842022,
+        "vies": -0.0021333424722921393,
+        "acuracia_direcional": 0.516271272130647,
+        "acerto_balanceado_direcional": 0.5065756852582034,
+        "mse_naive": 0.0005212455166139822,
+        "habilidade_mse": 0.01186329781361306,
+        "blocos": 4,
+        "seeds_por_bloco": 8
+      },
+      "relativa_huber": {
+        "mse": 0.0005122427821364655,
+        "rmse": 0.022556230955029285,
+        "mae": 0.016295208859659373,
+        "vies": -0.0021328959061820236,
+        "acuracia_direcional": 0.5228961576617827,
+        "acerto_balanceado_direcional": 0.5095422163373795,
+        "mse_naive": 0.0005212455166139822,
+        "habilidade_mse": 0.017271581607067987,
+        "blocos": 4,
+        "seeds_por_bloco": 8
+      },
+      "crua_mse": {
+        "mse": 0.0005183066684455859,
+        "rmse": 0.022699300006504285,
+        "mae": 0.016351330677225117,
+        "vies": -0.002948113341353868,
+        "acuracia_direcional": 0.5200260098697599,
+        "acerto_balanceado_direcional": 0.514923095084858,
+        "mse_naive": 0.0005212455166139822,
+        "habilidade_mse": 0.005638126515671638,
+        "blocos": 4,
+        "seeds_por_bloco": 8
+      },
+      "crua_huber": {
+        "mse": 0.0005161536617130232,
+        "rmse": 0.022652100449494367,
+        "mae": 0.016323140089338564,
+        "vies": -0.0024101646050195555,
+        "acuracia_direcional": 0.5381112955331706,
+        "acerto_balanceado_direcional": 0.5094177063360129,
+        "mse_naive": 0.0005212455166139822,
+        "habilidade_mse": 0.009768630594725769,
+        "blocos": 4,
+        "seeds_por_bloco": 8
+      }
+    },
+    "teste": {
+      "relativa_mse": {
+        "mse": 0.00061854463895571,
+        "rmse": 0.024739367241447596,
+        "mae": 0.01788656101342148,
+        "vies": -0.0006396689012413077,
+        "acuracia_direcional": 0.49455371270319887,
+        "acerto_balanceado_direcional": 0.4928184341673261,
+        "mse_naive": 0.0006092954253215988,
+        "habilidade_mse": -0.015180179022728169,
+        "blocos": 4,
+        "seeds_por_bloco": 8
+      },
+      "relativa_huber": {
+        "mse": 0.000616750540113389,
+        "rmse": 0.024699569197388208,
+        "mae": 0.017850068987956283,
+        "vies": -0.0006159587564789289,
+        "acuracia_direcional": 0.5027716918495289,
+        "acerto_balanceado_direcional": 0.5012222805616244,
+        "mse_naive": 0.0006092954253215988,
+        "habilidade_mse": -0.012235632308998934,
+        "blocos": 4,
+        "seeds_por_bloco": 8
+      },
+      "crua_mse": {
+        "mse": 0.0006146982139810679,
+        "rmse": 0.02463001096089914,
+        "mae": 0.01780457275690766,
+        "vies": -0.0019780816413242676,
+        "acuracia_direcional": 0.48437365426885315,
+        "acerto_balanceado_direcional": 0.5022466344702607,
+        "mse_naive": 0.0006092954253215988,
+        "habilidade_mse": -0.008867272647939739,
+        "blocos": 4,
+        "seeds_por_bloco": 8
+      },
+      "crua_huber": {
+        "mse": 0.0006116980403944888,
+        "rmse": 0.024577032507303944,
+        "mae": 0.01772928294755561,
+        "vies": -0.0010631030372651557,
+        "acuracia_direcional": 0.49593014407892966,
+        "acerto_balanceado_direcional": 0.5044868539542481,
+        "mse_naive": 0.0006092954253215988,
+        "habilidade_mse": -0.003943267868163902,
+        "blocos": 4,
+        "seeds_por_bloco": 8
+      }
+    }
+  },
+  "criterio_primario": {
+    "contraste": "huber_na_crua",
+    "decisao": "inconclusivo",
+    "familia": 4,
+    "ic_principal": "98,75% Bonferroni, seeds/dias14",
+    "melhora_clara_contra_tres_referencias": false,
+    "promocao_automatica": false
+  },
+  "limites": [
+    "Conferencia local de integridade, nao backup externo.",
+    "Sem nova inferencia CUDA, bootstrap ou reconstrucao de carteiras; recibos originais preservados.",
+    "2024/2025 retrospectivos; nenhuma promocao ou novo ciclo autorizado por este recibo."
+  ]
+}

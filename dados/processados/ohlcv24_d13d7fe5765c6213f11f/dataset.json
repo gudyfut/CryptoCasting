@@ -1,0 +1,81 @@
+{
+  "id": "d13d7fe5765c6213f11f",
+  "criado_utc": "2026-10-28T21:28:01.436351+00:00",
+  "assinatura": {
+    "configuracao_dados": {
+      "par": "BTCUSDT",
+      "contexto": 168,
+      "divisao": {
+        "treino": [
+          "2021-01-01",
+          "2024-01-01"
+        ],
+        "validacao": [
+          "2024-01-01",
+          "2025-01-01"
+        ],
+        "teste": [
+          "2025-01-01",
+          "2026-01-01"
+        ]
+      },
+      "horizonte": 24,
+      "entradas": [
+        "abertura_relativa",
+        "maxima_relativa",
+        "minima_relativa",
+        "fechamento_relativo",
+        "volume_transformado"
+      ],
+      "representacao": "log_ohlc_relativo_close_anterior_e_log1p_volume_base",
+      "normalizacao": "padronizacao_estatica_por_canal_treino_horas_unicas"
+    },
+    "fontes_dados": {
+      "BTCUSDT/horas.parquet": "18171cf908a94a29c8f52ec227e2909f4e5f0fc30fa910075d5bf5911ffa2c02",
+      "BTCUSDT/minutos.npy": "c7f9f4914460df37dcfe1c5707b4cfa00328801b2db62376f01b815398955395"
+    },
+    "manifesto_origem": "26288d31bd63748c17843079aaa0829792e584c7d9dc4b297a8068588cd8363e",
+    "implementacao": "8f960de60672bdcb8dc1a730b70b8d49234915d9eda35db3de5901f0274a60a8"
+  },
+  "origem": "dados/processados/retorno24_d25f6a93a9900725f51e",
+  "primeiro_minuto": 26824320,
+  "minutos": "dados/processados/retorno24_d25f6a93a9900725f51e/BTCUSDT/minutos.npy",
+  "minutos_sha256": "c7f9f4914460df37dcfe1c5707b4cfa00328801b2db62376f01b815398955395",
+  "populacoes": {
+    "treino": {
+      "n": 24751,
+      "primeira_origem": "2021-01-08T01:00:00+00:00",
+      "ultima_origem": "2023-12-30T23:00:00+00:00",
+      "ultimo_destino": "2023-12-31T23:00:00+00:00"
+    },
+    "validacao": {
+      "n": 8760,
+      "primeira_origem": "2024-01-01T00:00:00+00:00",
+      "ultima_origem": "2024-12-30T23:00:00+00:00",
+      "ultimo_destino": "2024-12-31T23:00:00+00:00"
+    },
+    "teste": {
+      "n": 8736,
+      "primeira_origem": "2025-01-01T00:00:00+00:00",
+      "ultima_origem": "2025-12-30T23:00:00+00:00",
+      "ultimo_destino": "2025-12-31T23:00:00+00:00"
+    },
+    "operacional": {
+      "n": 8760,
+      "primeira_origem": "2025-01-01T00:00:00+00:00",
+      "ultima_origem": "2025-12-31T23:00:00+00:00",
+      "ultimo_destino": "2026-01-01T23:00:00+00:00"
+    }
+  },
+  "horas_totais": 43824,
+  "horas_ohlcv_ausentes": 23,
+  "arquivos": {
+    "entradas.npy": "94f90f72a9eb0b03ea732618dddf26303d921eee38f9d8560f04761964ad96bf",
+    "escalas.json": "9fc1e4f1a6a3cc91771367a26a3e8f4d635a86f1560817e642694b6cb79aec6d",
+    "horas.parquet": "04d4b39f75a7fa452bc16f1362a6874a106d57907613968938458e5e8e7d522a",
+    "operacional.parquet": "bbe28e9b870af96cf720c6b23e869bd7fed2ee60755741be12ca0d99e4380a49",
+    "teste.parquet": "d6ba49abd58b6b06e50294d43cf193fca438fa7a28a81a8eb8725f09b9dd459c",
+    "treino.parquet": "5f124aca2832ed1867c78f256769bab25fe4042ca4fa9a6bd32229075ba82b19",
+    "validacao.parquet": "786b4d1e5b1f8e351d322c149dfb2022c1083886e69eb59f8bbc8040e53a6471"
+  }
+}

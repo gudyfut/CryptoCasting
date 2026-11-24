@@ -1,0 +1,10 @@
+{
+  "acao": "experimentar",
+  "pai": "A0_C05",
+  "fator": "contexto",
+  "mecanismo": "Reduzir o contexto de 72 para 24 horas testa se trajetórias mais antigas acrescentam ruído ao estado usado para prever o retorno futuro de 24 horas. A hipótese é reduzir dependências temporais pouco transferíveis entre recortes; o benefício previsto é refutado se Q não diminuir frente ao pai.",
+  "metrica_esperada": "Q inferior ao aproximadamente 1.0158 do pai, comparando os seis pares completos de recorte e seed após recarga. Buscar melhora em pelo menos dois recortes. Uma eventual candidatura final continua sujeita à seed 2026 e a todos os portões estabelecidos, inclusive Q<=0.999 com as referências atuais.",
+  "risco": "Pode perder informação de tendências persistentes. Encurtar a janela também torna o zscore local de volume mais variável. A dispersão observada entre seeds pode persistir; melhora não é garantida.",
+  "custo": "Seis treinos na triagem e mais três se promovida. Mantém 20257 parâmetros; processamento sequencial e ativações por lote ficam aproximadamente em um terço, sem garantir redução proporcional do tempo total. Aquecimento comum de 336 horas preservado.",
+  "valor": "24"
+}

@@ -1,0 +1,34 @@
+{
+  "utc": "2026-11-04T04:20:32.974532+00:00",
+  "id": "C05_bb6004b56a2ab40f1ca2",
+  "receita": {
+    "representacao": "janela_relativa",
+    "indicadores": false,
+    "contexto": 72,
+    "largura": 32,
+    "camadas": 2,
+    "estado": 16,
+    "dropout": 0.1,
+    "pooling": "ultimo",
+    "taxa": 0.0002,
+    "decay": 0.001,
+    "otimizador": "AdamW",
+    "perda": "huber",
+    "scheduler": "constante",
+    "ganho_saida": 1
+  },
+  "score": [
+    0.9957617654391995,
+    0.002393433494210955,
+    1.0002476275733936
+  ],
+  "selecionada_sem_testes": true,
+  "criterio": {
+    "score": "media igualmente ponderada de MSE/Naive em D1/D2 e seeds disponiveis",
+    "checkpoint": "menor MSE real da validacao; empate conserva primeira epoca",
+    "promocao": "ate3menores scores com uma seed; complementar17/2026 sem repetir42",
+    "elegibilidade_final": "seis ajustes completos, reducao score >=0,1% contra referencia, MSE medio menor nos dois recortes e >=4/6pares melhores",
+    "desempate": "menor pior razao MSE/Naive, menos parametros, ID",
+    "ausencia_de_ganho": "encerrar sem finalista; nao buscar ate vencer"
+  }
+}

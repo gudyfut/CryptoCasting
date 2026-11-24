@@ -20,7 +20,7 @@ A extensão tem código, protocolo, configuração e identidade próprios. Os pe
 ## Evidências
 
 - [Parecer da revisão](../../registros/revisoes/parecer_2026-10-24.json).
-- [Auditoria das configurações](../auditoria_configuracao_penalizacao.md).
+- [Auditoria das configurações](../../arquivo/estudos_preliminares_2026-10-28/documentacao/auditoria_configuracao_penalizacao.md).
 - [Configuração da extensão](../../configuracoes/penalizacao_mamba_001.json).
 - [Ponteiro da execução](../../registros/penalizacao/execucao.json), que indica onde consultar `progresso.json` na máquina executora.
 - [Andamento e incidentes](../andamento.md).

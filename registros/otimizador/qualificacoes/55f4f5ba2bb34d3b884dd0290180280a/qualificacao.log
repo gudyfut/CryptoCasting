@@ -1,0 +1,31 @@
+test_adam_sem_decay_equivale_e_com_decay_difere (tests_otimizador.test_ablação.Ablacao.test_adam_sem_decay_equivale_e_com_decay_difere) ... FAIL
+test_autorizacao_nao_amplia_orcamento (tests_otimizador.test_ablação.Ablacao.test_autorizacao_nao_amplia_orcamento) ... ok
+test_executor_para_em_falha_e_nao_repete_encerrado (tests_otimizador.test_ablação.Ablacao.test_executor_para_em_falha_e_nao_repete_encerrado) ... ok
+test_fator_unico_e_rejeicao_de_taxa (tests_otimizador.test_ablação.Ablacao.test_fator_unico_e_rejeicao_de_taxa) ... ok
+test_inicializacao_dimensoes_decay_e_atualizacao (tests_otimizador.test_ablação.Ablacao.test_inicializacao_dimensoes_decay_e_atualizacao) ... ok
+test_auditor_detecta_fraude_no_saldo (tests_backtest_carteira.test_carteira.Carteira.test_auditor_detecta_fraude_no_saldo) ... ok
+test_causalidade_e_proibir_coluna_futura (tests_backtest_carteira.test_carteira.Carteira.test_causalidade_e_proibir_coluna_futura) ... ok
+test_compra_manter_e_caixa_controles (tests_backtest_carteira.test_carteira.Carteira.test_compra_manter_e_caixa_controles) ... ok
+test_fee_recebido_e_caixa_conservado (tests_backtest_carteira.test_carteira.Carteira.test_fee_recebido_e_caixa_conservado) ... ok
+test_filtro_e_poeira_real (tests_backtest_carteira.test_carteira.Carteira.test_filtro_e_poeira_real) ... ok
+test_fracoes_equivalem_codigo_publico (tests_backtest_carteira.test_carteira.Carteira.test_fracoes_equivalem_codigo_publico) ... ok
+test_precos_ausentes_e_origens_deslocadas (tests_backtest_carteira.test_carteira.Carteira.test_precos_ausentes_e_origens_deslocadas) ... ok
+test_reter_evitar_roundtrip_diario (tests_backtest_carteira.test_carteira.Carteira.test_reter_evitar_roundtrip_diario) ... ok
+test_risco_inclui_ultimo_preco_e_saida (tests_backtest_carteira.test_carteira.Carteira.test_risco_inclui_ultimo_preco_e_saida) ... ok
+test_smart_acumula_caixa_nao_peso_alvo (tests_backtest_carteira.test_carteira.Carteira.test_smart_acumula_caixa_nao_peso_alvo) ... ok
+test_matriz_propria_e_preservacao_da_origem (tests_backtest_carteira.test_mercado.Mercado.test_matriz_propria_e_preservacao_da_origem) ... ok
+test_recusa_lacuna_em_vez_de_interpolar (tests_backtest_carteira.test_mercado.Mercado.test_recusa_lacuna_em_vez_de_interpolar) ... ok
+
+======================================================================
+FAIL: test_adam_sem_decay_equivale_e_com_decay_difere (tests_otimizador.test_ablação.Ablacao.test_adam_sem_decay_equivale_e_com_decay_difere)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/mnt/c/Users/MuriloRFM/Documents/GitHub/CryptoCasting/tests_otimizador/test_ablação.py", line 32, in test_adam_sem_decay_equivale_e_com_decay_difere
+    else:self.assertGreater(float((a-b).detach().abs().max()),1e-4)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: 6.278979662210915e-05 not greater than 0.0001
+
+----------------------------------------------------------------------
+Ran 17 tests in 5.629s
+
+FAILED (failures=1)

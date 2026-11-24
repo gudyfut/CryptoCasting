@@ -1,0 +1,69 @@
+{
+  "utc": "2026-11-04T05:57:24.127898+00:00",
+  "seed": 161803,
+  "bloco": "B3",
+  "receita": {
+    "representacao": "relativa",
+    "indicadores": false,
+    "contexto": 168,
+    "largura": 32,
+    "camadas": 2,
+    "estado": 16,
+    "dropout": 0.1,
+    "pooling": "ultimo",
+    "taxa": 0.0002,
+    "decay": 0.001,
+    "otimizador": "AdamW",
+    "perda": "mse",
+    "scheduler": "constante",
+    "ganho_saida": 1.0
+  },
+  "epoca": 17,
+  "epocas_executadas": 27,
+  "parametros": 20257,
+  "recarga_exata": true,
+  "segundos": 234.97675734800032,
+  "checkpoint_final_sha256": "c7fd648940aebb9b642f9e9ed1d09fe1937bfeea0f720cefe6dd48b81d90493c",
+  "memoria_cuda_maxima_bytes": 197367296,
+  "treino_amostra_fixa": {
+    "n": 2048,
+    "mse": 0.0008635241619466882,
+    "rmse": 0.029385781628990033,
+    "mae": 0.020879925103421012,
+    "mse_naive": 0.0010505126024746077,
+    "vies": 0.0030862808972809443,
+    "sd_previsao": 0.011701422498535981,
+    "sd_alvo": 0.032409768087787345,
+    "acuracia_direcional": 0.5625,
+    "balanced_accuracy": 0.5599307947916786
+  },
+  "validacao": {
+    "n": 2184,
+    "mse": 0.0006038228170218657,
+    "rmse": 0.024572806453921084,
+    "mae": 0.018460141587538798,
+    "mse_naive": 0.0006130715287467168,
+    "vies": -0.0027900739409794967,
+    "sd_previsao": 0.006821760084912782,
+    "sd_alvo": 0.02437207051743923,
+    "acuracia_direcional": 0.5054945054945055,
+    "balanced_accuracy": 0.49261911480218923
+  },
+  "teste": {
+    "n": 4320,
+    "mse": 0.0006160863530020568,
+    "rmse": 0.024821086861820874,
+    "mae": 0.01803441610259625,
+    "mse_naive": 0.0005900900176014218,
+    "vies": -0.002268294075620335,
+    "sd_previsao": 0.008755137259174949,
+    "sd_alvo": 0.0242799385262664,
+    "acuracia_direcional": 0.5138888888888888,
+    "balanced_accuracy": 0.520421234649731
+  },
+  "diagnostico": {
+    "sd_representacao_media": 0.17079252004623413,
+    "norma_pesos_saida": 0.5730849504470825,
+    "fracao_clipping_ultima_epoca": 1.0
+  }
+}

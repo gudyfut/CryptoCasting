@@ -1,0 +1,69 @@
+{
+  "utc": "2026-11-04T07:17:30.344998+00:00",
+  "seed": 271828,
+  "bloco": "B4",
+  "receita": {
+    "representacao": "janela_relativa",
+    "indicadores": false,
+    "contexto": 72,
+    "largura": 32,
+    "camadas": 2,
+    "estado": 16,
+    "dropout": 0.1,
+    "pooling": "ultimo",
+    "taxa": 0.0002,
+    "decay": 0.001,
+    "otimizador": "AdamW",
+    "perda": "huber",
+    "scheduler": "constante",
+    "ganho_saida": 1
+  },
+  "epoca": 10,
+  "epocas_executadas": 20,
+  "parametros": 20257,
+  "recarga_exata": true,
+  "segundos": 200.64258898299886,
+  "checkpoint_final_sha256": "29359f6fc334d33b44834a5cd86bcb1f84926275313b85b5557391a6087496ac",
+  "memoria_cuda_maxima_bytes": 130589184,
+  "treino_amostra_fixa": {
+    "n": 2048,
+    "mse": 0.001004704562479295,
+    "rmse": 0.03169707498302162,
+    "mae": 0.021621708100774788,
+    "mse_naive": 0.001007153315789526,
+    "vies": 0.0007160801897071736,
+    "sd_previsao": 0.0024321802778989234,
+    "sd_alvo": 0.031732292810460166,
+    "acuracia_direcional": 0.51416015625,
+    "balanced_accuracy": 0.5072862595419847
+  },
+  "validacao": {
+    "n": 2160,
+    "mse": 0.0003990258019103751,
+    "rmse": 0.019975630200581285,
+    "mae": 0.01421417248598246,
+    "mse_naive": 0.0004113721267422935,
+    "vies": -0.002032357526337045,
+    "sd_previsao": 0.0015283356086371591,
+    "sd_alvo": 0.02009276302169721,
+    "acuracia_direcional": 0.5324074074074074,
+    "balanced_accuracy": 0.502799053709039
+  },
+  "teste": {
+    "n": 4392,
+    "mse": 0.0004046002947780708,
+    "rmse": 0.020114678589976794,
+    "mae": 0.01445957098147697,
+    "mse_naive": 0.0004038082592308915,
+    "vies": 0.0020925601068775305,
+    "sd_previsao": 0.0018308503691576636,
+    "sd_alvo": 0.020068859493126073,
+    "acuracia_direcional": 0.5095628415300546,
+    "balanced_accuracy": 0.5021288515406163
+  },
+  "diagnostico": {
+    "sd_representacao_media": 0.26953038573265076,
+    "norma_pesos_saida": 0.4644375145435333,
+    "fracao_clipping_ultima_epoca": 0.36685288640595903
+  }
+}

@@ -1,0 +1,213 @@
+{
+  "utc": "2026-10-28T21:35:07.044705+00:00",
+  "fontes": {
+    "configuracoes/ohlcv24_001.json": "0fbfaac69b08dd3076366250322ce066fe334ce0faf4bfb1f0592a29c54a485c",
+    "estudo_ohlcv/__init__.py": "5154f4a77a69320aaa947f55ba30c1557be47f59fa9448f986a1fb24208ebdfd",
+    "estudo_ohlcv/avaliacao.py": "77cdf7ddd54b152e0187bd3e66fa9381d7230f1d3127b88e6f22083f5bee3b4b",
+    "estudo_ohlcv/ciclo.py": "6489fb390f7799fc7c0c064332c45d31fb9d1fa379746904474860489f1e6bc9",
+    "estudo_ohlcv/dados.py": "9677b9d42f2b82a4c401d1bde7a05d43a89ca57622c40a133c45fc447b49d6b5",
+    "estudo_ohlcv/qualificacao.py": "05f6d50116f3c34182d2cba47695490f88f9ee7a0e6415377fbdd7a621df8a2b",
+    "estudo_ohlcv/redes.py": "50d9a422db8f78c77b2ed4b04da190a46dff30dcd0221d8db5605521d111c7c3",
+    "estudo_ohlcv/treino.py": "8dbf330abb8a38d8d9b4f50b68a27321bd5610af1502362340e2fe3d70d88df0",
+    "experimento_penalizacao/__init__.py": "8fcc0ad8843531b2a5023a5022e5b9a8ce76bae0325084f8bfdcd397d02076c6",
+    "experimento_penalizacao/otimizador.py": "68f8cae6f23206378d5016e5a531867f785cf80ea15cecb762a1503600c39306",
+    "previsao24/__init__.py": "c129983e060ce36115341055ad9823c649aed6dde5c5bbfac2f3e4c78e1606c8",
+    "previsao24/arquivos.py": "71b40ab9628e4c3461ae2fadeb69bcb12ceea2d8331012168e1bd2a4dc9b1334",
+    "previsao24/baselines.py": "3aec448eb8974aec09af336e471cfece916e0e8c04f62d162b51d3b579f8e459",
+    "previsao24/financeiro.py": "e37d98a16580294a3b0c3c6a353df7ff8aaed176a32a3e0f1b9b07c0b6b80bf6",
+    "previsao24/metricas.py": "89016c0fba23691707fec66ec11a2e233cab108f27ff5dcd5872b547f9af4af4",
+    "run_ohlcv.py": "6a3f53a8c1b0b391b88c2676e6e641cd498c57c0d00580f5f414b5797cc81278",
+    "tests_ohlcv/test_contratos.py": "e9d3f9f42ce8dad8158cd12defba0a8b8838d944b2e5f86d998dd888a5887977",
+    "tests_ohlcv/test_publicacao.py": "48c9604653721e2165b373d853573d019bedd9a331961e15b22246c5df4049cb"
+  },
+  "natureza": "sintetico_sem_treinamento_de_mercado",
+  "ambiente": {
+    "python": "3.12.13",
+    "torch": "2.6.0+cu118",
+    "cuda": "11.8",
+    "gpu": "NVIDIA GeForce RTX 4050 Laptop GPU",
+    "host": "MuriloRFM",
+    "pacotes": {
+      "mamba_ssm": "2.2.6.post3",
+      "causal_conv1d": "1.6.2.post1",
+      "numpy": "2.2.6",
+      "pandas": "3.0.3",
+      "statsmodels": "0.14.6",
+      "pyarrow": "24.0.0"
+    }
+  },
+  "redes": {
+    "mamba": {
+      "parametros": 20257,
+      "gradiente_por_canal": [
+        0.07402515411376953,
+        0.09669940173625946,
+        0.07199710607528687,
+        0.11335726827383041,
+        0.062314778566360474
+      ],
+      "grupos": [
+        {
+          "nomes": [
+            "projecao.weight",
+            "projecao.bias"
+          ],
+          "weight_decay": 0.001,
+          "elementos": 192
+        },
+        {
+          "nomes": [
+            "blocos.0.A_log",
+            "blocos.0.D"
+          ],
+          "weight_decay": 0.0,
+          "elementos": 1088
+        },
+        {
+          "nomes": [
+            "blocos.0.in_proj.weight",
+            "blocos.0.conv1d.weight",
+            "blocos.0.conv1d.bias",
+            "blocos.0.x_proj.weight",
+            "blocos.0.dt_proj.weight",
+            "blocos.0.dt_proj.bias",
+            "blocos.0.out_proj.weight"
+          ],
+          "weight_decay": 0.001,
+          "elementos": 8832
+        },
+        {
+          "nomes": [
+            "blocos.1.A_log",
+            "blocos.1.D"
+          ],
+          "weight_decay": 0.0,
+          "elementos": 1088
+        },
+        {
+          "nomes": [
+            "blocos.1.in_proj.weight",
+            "blocos.1.conv1d.weight",
+            "blocos.1.conv1d.bias",
+            "blocos.1.x_proj.weight",
+            "blocos.1.dt_proj.weight",
+            "blocos.1.dt_proj.bias",
+            "blocos.1.out_proj.weight",
+            "normas.0.weight",
+            "normas.0.bias",
+            "normas.1.weight",
+            "normas.1.bias",
+            "norma_final.weight",
+            "norma_final.bias",
+            "saida.weight",
+            "saida.bias"
+          ],
+          "weight_decay": 0.001,
+          "elementos": 9057
+        }
+      ],
+      "reproducao": {
+        "maxima_diferenca_previsoes": {
+          "validacao": 3.7252902975945523e-10,
+          "teste": 5.960464477669167e-10,
+          "operacional": 5.960464477669167e-10
+        },
+        "diferenca_relativa_mse_validacao": 1.4782689032309712e-09,
+        "mesma_epoca": true,
+        "limites": {
+          "diferenca_absoluta_previsao": 1e-05,
+          "diferenca_relativa_mse": 0.0001,
+          "mesma_epoca": true,
+          "origem_limites": "mesmos limites dos controles dos ciclos preliminares; recarga do checkpoint permanece exata"
+        }
+      },
+      "recarga_exata": true
+    },
+    "lstm": {
+      "parametros": 13473,
+      "gradiente_por_canal": [
+        0.0002815925399772823,
+        0.00032053625909611583,
+        0.0004047017137054354,
+        0.0001651098282309249,
+        0.0002769215207081288
+      ],
+      "grupos": [
+        {
+          "nomes": [
+            "recorrente.weight_ih_l0",
+            "recorrente.weight_hh_l0",
+            "recorrente.bias_ih_l0",
+            "recorrente.bias_hh_l0",
+            "recorrente.weight_ih_l1",
+            "recorrente.weight_hh_l1",
+            "recorrente.bias_ih_l1",
+            "recorrente.bias_hh_l1",
+            "saida.weight",
+            "saida.bias"
+          ],
+          "weight_decay": 0.001,
+          "elementos": 13473
+        }
+      ],
+      "reproducao": {
+        "maxima_diferenca_previsoes": {
+          "validacao": 0.0,
+          "teste": 0.0,
+          "operacional": 0.0
+        },
+        "diferenca_relativa_mse_validacao": 0.0,
+        "mesma_epoca": true,
+        "limites": {
+          "diferenca_absoluta_previsao": 1e-05,
+          "diferenca_relativa_mse": 0.0001,
+          "mesma_epoca": true,
+          "origem_limites": "mesmos limites dos controles dos ciclos preliminares; recarga do checkpoint permanece exata"
+        }
+      },
+      "recarga_exata": true
+    }
+  },
+  "avisos": [
+    "The given NumPy array is not writable, and PyTorch does not support non-writable tensors. This means writing to this tensor will result in undefined behavior. You may want to copy the array to protect its data or make it writable before converting it to a tensor. This type of warning will be suppressed for the rest of this program. (Triggered internally at /pytorch/torch/csrc/utils/tensor_numpy.cpp:203.)"
+  ],
+  "status": "aprovado",
+  "artefatos": {
+    "lstm_1/checkpoint.pt": "61cba17a47ecb0034bb47eb63567c173ecae8afd6049a478498b66c794b33ff9",
+    "lstm_1/epocas.json": "49a4f5be89c9abc219e32d2d1cd1c68b6ae22c35d8452a0ea44c86f3e014a858",
+    "lstm_1/grupos_otimizador.json": "4231c181ebdf6d6e89e3b63fe31e22cc298891c1cdd84de29536dccad9feed12",
+    "lstm_1/previsoes_operacional.parquet": "363d653d5cd4e980a1bf4c9be04f2168528bdc2dd8fecc1bc90ca42c619dee0c",
+    "lstm_1/previsoes_teste.parquet": "a1a5d559eeaacd88b2bdc8b832eafbbd3aaa4aba29ef3660fba32f84940d9a7e",
+    "lstm_1/previsoes_validacao.parquet": "b392606c07ee04b26d581804f5a9eb3d71e9a9145168759cf69932174ee855ab",
+    "lstm_1/resultado.json": "f337cf3958f7c356ea4434f44b5389a622d8e382a0bbd25475aed01833e602ad",
+    "lstm_1.log": "7fc9daa44feba8244074a16fb370bdd9aa2cd36694b0190651c2a79416032959",
+    "lstm_2/checkpoint.pt": "61cba17a47ecb0034bb47eb63567c173ecae8afd6049a478498b66c794b33ff9",
+    "lstm_2/epocas.json": "a69151c0f6039d4352caa5630326f4f36e9d1143ac7307cf837774a453dd8331",
+    "lstm_2/grupos_otimizador.json": "4231c181ebdf6d6e89e3b63fe31e22cc298891c1cdd84de29536dccad9feed12",
+    "lstm_2/previsoes_operacional.parquet": "363d653d5cd4e980a1bf4c9be04f2168528bdc2dd8fecc1bc90ca42c619dee0c",
+    "lstm_2/previsoes_teste.parquet": "a1a5d559eeaacd88b2bdc8b832eafbbd3aaa4aba29ef3660fba32f84940d9a7e",
+    "lstm_2/previsoes_validacao.parquet": "b392606c07ee04b26d581804f5a9eb3d71e9a9145168759cf69932174ee855ab",
+    "lstm_2/reproducao.json": "345a9e5c877952e6e1534f6ca5c2f34a4f359d701d935c4aa002e6ceed67978c",
+    "lstm_2/resultado.json": "966b5bc612ccd33aa2ed6b6a53242550aa9a6a4b61860dba3da5bdcdc37463ba",
+    "lstm_2.log": "7fc9daa44feba8244074a16fb370bdd9aa2cd36694b0190651c2a79416032959",
+    "mamba_1/checkpoint.pt": "d4bf1908e1dd7d6c788f7c18842ee2962613b138f7b1abd151f76f8d3ff6cb74",
+    "mamba_1/epocas.json": "33cc6dec83ff1325d55d147c457442c848a2ef874b72eacf77571df7cb652f92",
+    "mamba_1/grupos_otimizador.json": "01195ad600c9cd306e5552e1baf3efe0e448e6f4d39b45f3bf498e56f983ccab",
+    "mamba_1/previsoes_operacional.parquet": "e221d53f067216ed403a4b915dbdcfc555762b3ad746173568aee74d089cf0cb",
+    "mamba_1/previsoes_teste.parquet": "fbb64a580f4c217d4f5a910a35504bdb4ca50c3b7a4a2ffb12623b7761bc12e3",
+    "mamba_1/previsoes_validacao.parquet": "cd0e30b45e97ddb15f8237f35c2cb565e34039b32e58000aa434b3e543a09610",
+    "mamba_1/resultado.json": "1b8bcefff944f4de77567b3537dcff064167b9254743e73cfec73140373f02e3",
+    "mamba_1.log": "1b331ebd71a44bbd8c35477bd717d7f4140bd0b742a1ea37fa19f9bb234d9020",
+    "mamba_2/checkpoint.pt": "1156abeae3c1d6a9ed61fe2836b028c11f5b9d960e0cb443edaacaee0712343b",
+    "mamba_2/epocas.json": "77b6e106a1e549c2dbd5d922a185dcc8edc148539c73d04a8adf01965e1ca528",
+    "mamba_2/grupos_otimizador.json": "01195ad600c9cd306e5552e1baf3efe0e448e6f4d39b45f3bf498e56f983ccab",
+    "mamba_2/previsoes_operacional.parquet": "06213ada74049c6f539a43cace508630099996b61848d4d4aa7f878965a47810",
+    "mamba_2/previsoes_teste.parquet": "64b7f6c3a55994e30acb804fcb121874ad14be99bbcfbf62370668e350701866",
+    "mamba_2/previsoes_validacao.parquet": "c54fccc9273527b6085ff4d0cb28c2a7dbbbae89b9ccff81d7df4d5b91729d7f",
+    "mamba_2/reproducao.json": "0e0708fe4af68e3cd686cff75474c488093b37e5a016b1173ffa1846e007ec35",
+    "mamba_2/resultado.json": "603af4433c32d41a4175e913a74449101712b4da01e06d4e5920821b8d6f64b4",
+    "mamba_2.log": "1b331ebd71a44bbd8c35477bd717d7f4140bd0b742a1ea37fa19f9bb234d9020",
+    "tests.log": "9faafbfd4dd5e00a88f285a63c2761f3aaf2071847dda55dd164493b1e8e6fb4",
+    "tests_ohlcv.log": "7f6f2c143f536bbc161bf3462569b8911e01772877d4290fff8abaedf81caddd"
+  }
+}

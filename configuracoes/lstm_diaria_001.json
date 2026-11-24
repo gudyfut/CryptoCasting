@@ -1,0 +1,15 @@
+{
+  "ciclo": "lstm_diaria_001",
+  "moedas": ["BTCUSDT", "ETHUSDT", "BNBUSDT", "XRPUSDT"],
+  "seeds": [42, 17, 2026],
+  "arquitetura": {"entrada": 6, "largura": 32, "camadas": 2, "dropout": 0.0, "bidirecional": false},
+  "treinamento": {"otimizador": "Adam", "taxa": 0.001, "weight_decay": 0.001, "lote": 32, "epocas": 200, "scheduler_passo": 100, "scheduler_gamma": 0.5, "epsilon_raiz": 1e-8, "selecao": "RMSE_global_validacao_retorno", "limite_segundos_por_ajuste": 14400},
+  "bootstrap": {"blocos": [7, 14, 28], "principal": 14, "replicas": 2000, "seed": 20261113},
+  "slippage_cenarios": [0.0001, 0.0002, 0.0003],
+  "referencia_2025": "registros/fechamento_ramos_diarios/execucao.json",
+  "referencia_2026": "registros/ablacao_linear_2026/execucao.json",
+  "referencia_continuidade": "registros/continuidade_moedas/execucao.json",
+  "epocas_completas": true,
+  "max_ajustes_cientificos": 12,
+  "controles": 4
+}

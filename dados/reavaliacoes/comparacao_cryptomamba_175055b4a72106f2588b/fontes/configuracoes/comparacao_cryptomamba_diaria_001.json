@@ -1,0 +1,23 @@
+{
+  "ciclo": "comparacao_cryptomamba_diaria_001",
+  "pergunta": "Comparar operacionalmente o ensemble atual com uma receita local proxima do CryptoMamba publico, no mesmo mercado e executor, sem novos treinos.",
+  "autorizacao": "Pesquisador solicitou comparar os ganhos com CryptoMamba de forma justa, em11/11/2026; reusar previsoes e dados preservados, sem treino ou busca.",
+  "moeda": "BTCUSDT",
+  "seeds": [42,17,2026],
+  "fases": ["validacao","teste"],
+  "referencia_preco": "ac8183e1ecfb91102b48",
+  "referencia_operacional": "945f0e52b1f85184c3e7",
+  "comparacao": "Dois ensembles de3seeds com pesos iguais: preco sem padronizacao versus retorno padronizado. Comparacao de receitas compostas, nao efeito isolado de alvo ou padronizacao.",
+  "populacao": "Mesmas351origens2024 e350origens2025;treino2020-2023;validacao2024;teste2025retrospectivo.",
+  "politica": "Mesmo motor de continuidade, alvo95%, filtro0.002,latencia1min,capital10000,comissao0.0005,funding e filtros BTC preservados.",
+  "slippage_por_lado": [0.0001,0.0002,0.0003],
+  "carteiras_novas": 6,
+  "carteiras_herdadas": 18,
+  "referencias_herdadas": ["ensemble_retorno_padronizado","comprar_manter_futuro","naive_caixa"],
+  "controles_diarios_preco": 6,
+  "bootstrap": {"blocos":[7,14,28],"principal":14,"replicas":2000,"seed":11112026},
+  "novos_treinamentos": 0,
+  "novas_inferencias": 0,
+  "fontes_publicadas": {"artigo":"https://arxiv.org/html/2501.01010v2","commit_codigo":"fef42727861a9c3a32241283ab981ef21a49e291","resultados_sao_contexto":"Nao comparar como ranking direto com2025/2026:datas,fonte,instrumento,custos,politica e avaliacao de risco diferentes."},
+  "limites": "A receita local de preco nao e o checkpoint do artigo. Nao chamar a comparacao de reproducao literal. Nao aplicar o modelo local a2023/2024 do artigo como holdout:treino/validacao locais se sobrepoem. Nao promover vencedor por teste conhecido. Sem2026novo nesta analise."
+}

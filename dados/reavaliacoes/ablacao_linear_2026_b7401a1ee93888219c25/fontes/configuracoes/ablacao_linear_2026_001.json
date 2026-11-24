@@ -1,0 +1,23 @@
+{
+  "ciclo": "ablacao_linear_2026_001",
+  "autorizacao": "Pedido de 13/11/2026: avaliar L contra A em 2026, se ainda não realizado, e explicar a comparação.",
+  "referencia_modelos": "registros/fechamento_ramos_diarios/execucao.json",
+  "referencia_periodo": "registros/ensemble_2026/execucao.json",
+  "moedas": ["BTCUSDT", "ETHUSDT", "BNBUSDT", "XRPUSDT"],
+  "seeds": [42, 17, 2026],
+  "variantes": ["A", "L"],
+  "inicio": "2026-01-01",
+  "fim_exclusivo": "2026-11-11",
+  "origens_por_moeda": 314,
+  "novos_treinamentos": 0,
+  "referencias": ["naive", "linear", "comprar_manter"],
+  "slippage_cenarios": [0.0001, 0.0002, 0.0003],
+  "carteiras_previstas": 132,
+  "contrastes": {"L_menos_A": {"L": 1, "A": -1}},
+  "bootstrap": {"blocos": [7, 14, 28], "principal": 14, "replicas": 2000, "seed": 13112026},
+  "exposicao": "2026 parcial já consultado para A; L formulado após 2025 e A/2026. Comparação retrospectiva, sem seleção, reestimação, novo holdout ou ajuste da política.",
+  "congelar": "24 checkpoints, escalas, receitas e linear Ridge já selecionados em 2024; entradas e mercado 2026 preservados. Nenhum novo dado, treino ou ajuste de escala.",
+  "primarios": "Diferença L-A no MSE e crescimento log diário líquido; médias individuais e ensemble separados, com IC em blocos. Não escolher vencedor pelo teste.",
+  "secundarios": "RMSE, MAE, direção, dispersão entre seeds, lucro, drawdown, exposição/lados, custos, estresse de slippage e contribuição dos ramos A.",
+  "controles": "Reproduzir exatamente validação/teste de 24 redes; A/2026 exatamente; repetir inferência, verificar pesos intactos e causalidade. Auditar todas as carteiras e reproduzir A ensemble/comprar-manter nos três custos. Conferência posterior independente."
+}

@@ -1,0 +1,33 @@
+{
+  "versao": 1,
+  "ciclo": "futuros_001",
+  "simbolo": "BTCUSDT",
+  "contrato": "perpetuo linear USDT-M",
+  "capital": 10000.0,
+  "alavancagem_maxima": 1,
+  "fracao_capital": 0.95,
+  "nocional_maximo": 50000.0,
+  "buffer_margem": 0.02,
+  "passo_btc": 0.001,
+  "minimo_usdt": 100.0,
+  "latencia_minutos": 1,
+  "politicas": ["sinal24", "filtrada24"],
+  "modos": ["comprada", "bilateral"],
+  "custos": {
+    "ideal": {"taxa": 0.0, "slippage": 0.0},
+    "base": {"taxa": 0.0005, "slippage": 0.0005},
+    "agravado": {"taxa": 0.001, "slippage": 0.001}
+  },
+  "primario": "sinal24/bilateral/base; contraste bilateral versus comprada no mesmo mercado e custos",
+  "fontes_modelos": "registros/comparacao_astra_crua/execucao.json",
+  "versoes": ["astra", "crua"],
+  "seeds": [42, 17, 2026, 7, 123, 31415, 271828, 161803],
+  "blocos": ["B1", "B2", "B3", "B4"],
+  "simulacoes_modelos": 768,
+  "simulacoes_benchmarks": 36,
+  "simulacoes_total": 804,
+  "novos_treinamentos": 0,
+  "regra_funding": "historico real e markPrice API; t_entrada < fundingTime <= t_saida; nao participa do sinal",
+  "regra_margem": "buffer prudencial2% do nocional marcado; se violado, bloquear e preservar incidente, nao inventar liquidacao Binance",
+  "limites": "Simulacao de pesquisa1x na abertura,95%capital alvo com reserva5%; taxas/filtros parametrizados, nao reconstituicao de tabela historica VIP/margem; sinais treinados emSpot transferidos a futuros; periodos retrospectivos."
+}

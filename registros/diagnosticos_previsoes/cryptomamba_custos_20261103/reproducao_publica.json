@@ -1,0 +1,118 @@
+{
+  "ambiente": {
+    "python": "3.12.13",
+    "torch": "2.6.0+cu118",
+    "gpu": "NVIDIA GeForce RTX 4050 Laptop GPU"
+  },
+  "treinamentos": 0,
+  "series": {
+    "cmamba_nv_val": {
+      "n": 350,
+      "inicio_alvo_utc": "2022-10-01T07:00:00+00:00",
+      "fim_alvo_utc": "2023-09-15T07:00:00+00:00",
+      "rmse": 656.877386449426,
+      "mape": 1.866730530988236,
+      "recarga_exata": true,
+      "epoca_checkpoint": 1082,
+      "politicas": {
+        "vanilla": {
+          "saldo": 113.23808556891417,
+          "mdd_curva_publica": 0.24111592531762382
+        },
+        "smart": {
+          "saldo": 106.80435924301152,
+          "mdd_curva_publica": 0.22824551344542188
+        },
+        "smart_w_short": {
+          "saldo": 102.9892497141678,
+          "mdd_curva_publica": 0.22864943845306096
+        },
+        "no_strategy": {
+          "saldo": 136.93380513645423,
+          "mdd_curva_publica": 0.2582103108206716
+        }
+      }
+    },
+    "cmamba_nv_test": {
+      "n": 350,
+      "inicio_alvo_utc": "2023-10-01T07:00:00+00:00",
+      "fim_alvo_utc": "2024-09-14T07:00:00+00:00",
+      "rmse": 1712.9839111601218,
+      "mape": 2.1711060909100652,
+      "recarga_exata": true,
+      "epoca_checkpoint": 1082,
+      "politicas": {
+        "vanilla": {
+          "saldo": 175.05303904189705,
+          "mdd_curva_publica": 0.2332591791481976
+        },
+        "smart": {
+          "saldo": 184.56021772740246,
+          "mdd_curva_publica": 0.16012707875763066
+        },
+        "smart_w_short": {
+          "saldo": 204.0390836974144,
+          "mdd_curva_publica": 0.1794933557062588
+        },
+        "no_strategy": {
+          "saldo": 222.50555880375646,
+          "mdd_curva_publica": 0.261820383533903
+        }
+      }
+    },
+    "cmamba_v_val": {
+      "n": 350,
+      "inicio_alvo_utc": "2022-10-01T07:00:00+00:00",
+      "fim_alvo_utc": "2023-09-15T07:00:00+00:00",
+      "rmse": 599.1854784090759,
+      "mape": 1.6859344011512079,
+      "recarga_exata": true,
+      "epoca_checkpoint": 825,
+      "politicas": {
+        "vanilla": {
+          "saldo": 124.90358532669583,
+          "mdd_curva_publica": 0.2538170691768755
+        },
+        "smart": {
+          "saldo": 127.11988369129676,
+          "mdd_curva_publica": 0.23400434190658037
+        },
+        "smart_w_short": {
+          "saldo": 127.46642675678758,
+          "mdd_curva_publica": 0.23400434190658037
+        },
+        "no_strategy": {
+          "saldo": 136.93380513645423,
+          "mdd_curva_publica": 0.2582103108206716
+        }
+      }
+    },
+    "cmamba_v_test": {
+      "n": 350,
+      "inicio_alvo_utc": "2023-10-01T07:00:00+00:00",
+      "fim_alvo_utc": "2024-09-14T07:00:00+00:00",
+      "rmse": 1598.0925797411226,
+      "mape": 2.03432779371745,
+      "recarga_exata": true,
+      "epoca_checkpoint": 825,
+      "politicas": {
+        "vanilla": {
+          "saldo": 246.5845966283899,
+          "mdd_curva_publica": 0.23481158913221412
+        },
+        "smart": {
+          "saldo": 213.1970333849791,
+          "mdd_curva_publica": 0.1337101644686045
+        },
+        "smart_w_short": {
+          "saldo": 262.77765925150374,
+          "mdd_curva_publica": 0.11091408633694133
+        },
+        "no_strategy": {
+          "saldo": 222.50555880375646,
+          "mdd_curva_publica": 0.261820383533903
+        }
+      }
+    }
+  }
+}

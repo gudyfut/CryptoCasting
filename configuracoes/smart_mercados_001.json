@@ -1,0 +1,28 @@
+{
+  "ciclo": "smart_mercados_001",
+  "capital": 10000.0,
+  "fracao_maxima": 0.95,
+  "passo_btc": 0.001,
+  "minimo_usdt": 100.0,
+  "escala_smart": 0.02,
+  "buffer_margem": 0.02,
+  "latencia_minutos": 1,
+  "filtro_taxa": 0.001,
+  "filtro_slippage": 0.0005,
+  "politicas": ["smart", "smart_filtrada"],
+  "bracos": ["spot", "futuro_sem_funding", "futuro", "futuro_bilateral"],
+  "custos": {
+    "ideal": {"spot": 0.0, "futuro": 0.0, "slippage": 0.0},
+    "iguais": {"spot": 0.0005, "futuro": 0.0005, "slippage": 0.0005},
+    "por_mercado": {"spot": 0.001, "futuro": 0.0005, "slippage": 0.0005}
+  },
+  "blocos": ["B1", "B2", "B3", "B4"],
+  "seeds": [42,17,2026,7,123,31415,271828,161803],
+  "versoes": ["astra", "crua"],
+  "simulacoes_modelos": 1536,
+  "simulacoes_benchmarks": 96,
+  "simulacoes_total": 1632,
+  "novos_treinamentos": 0,
+  "primario": "smart/custos_iguais: spot versus futuro comprado; sem_funding separa componente; bilateral e filtro sao extensoes fixadas",
+  "limites": "Smart compartilhada com reserva5%, filtro/quantizacao iguais e comissao equivalente emUSDT; nao reproduz exatamente carteira Spot antiga; sem liquidacao Binance completa; retrospectivo; nao buscar limiar por lucro."
+}

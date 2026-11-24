@@ -1,0 +1,23 @@
+{
+  "acao": "experimentar",
+  "hipotese": "Trocar somente a representação da C01 para janela_relativa pode melhorar a transferência entre períodos ao remover o nível local do volume e expor diretamente a trajetória acumulada dos preços.",
+  "justificativa": "Comparar com C01 mantendo Huber e os demais fatores. A normalização do volume dentro das 168h adapta a entrada ao passado recente; a ancoragem dos preços no último fechamento conhecido facilita representar movimentos acumulados. Permanecem 20.257 parâmetros, com custo esperado por época semelhante e algum processamento adicional. A contração da saída seria uma alternativa barata, mas responderia principalmente à questão da amplitude. Avaliar consistência entre D1/D2 e, se promovida, nas seeds17/2026.",
+  "diagnostico": "C01 alcançou score de triagem 1,00154: aproximadamente 1,00105 em D1 e 1,00203 em D2, ainda acima de Naive e somente na seed42. As previsões ficaram menos dispersas e menos negativamente enviesadas, portanto a melhora não demonstra informação preditiva adicional. A mediana de ln1pV sobe de 7,965 para 8,432 em D1 e cai de 8,019 para 6,883 em D2; essa mudança de distribuição motiva testar normalização local.",
+  "riscos": "A representação altera conjuntamente a geometria dos preços, a escala entre canais e a normalização do volume; eventual ganho não identifica qual componente ajudou. A normalização pode descartar informação útil de volume e amplificar pequenas flutuações em janelas pouco variáveis. Também não resolve automaticamente a mudança de média do alvo. A escolha de Huber ainda depende de uma seed, e a busca adaptativa reutiliza validações. Resultados próximos de 1 ou previsões ainda mais próximas de zero continuam inconclusivos.",
+  "receita": {
+    "representacao": "janela_relativa",
+    "indicadores": false,
+    "contexto": 168,
+    "largura": 32,
+    "camadas": 2,
+    "estado": 16,
+    "dropout": 0.1,
+    "pooling": "ultimo",
+    "taxa": 0.0002,
+    "decay": 0.001,
+    "otimizador": "AdamW",
+    "perda": "huber",
+    "scheduler": "constante",
+    "ganho_saida": 1
+  }
+}

@@ -1,0 +1,52 @@
+{
+  "utc": "2026-11-08T20:04:04.700962+00:00",
+  "natureza": "diagnostico_posterior_sem_treino",
+  "autorizacao": "Investigar previsões pouco variáveis e operação por um só lado; recomendar próxima alteração sem iniciar treinamento.",
+  "referencias": [
+    "f3f8772670f244779ad7",
+    "de09c2193737c2581261"
+  ],
+  "arquivos": {
+    "registros/padronizacao_diaria/diagnosticos/2026-11-08T195927.199359Z/diagnostico.json": "d53ccbb02a64f6d2a3b5c3643a196f61bfb20fb5f1ef4a3b551d9ce2ced049d8",
+    "registros/padronizacao_diaria/diagnosticos/2026-11-08T195927.199359Z/fonte_sondas.py": "a1f135cb70fc0231e700bb8f13ce53091fd9c809ddbf48a6f37a1412579caee1",
+    "registros/padronizacao_diaria/diagnosticos/2026-11-08T195927.199359Z/series.npz": "83b0faadd557420efb8d405644c3a45908c8d081cda1a139de6432c89c0fcca3",
+    "registros/padronizacao_diaria/diagnosticos/2026-11-08T200124.658529Z/trajetoria.json": "55174b9220122064b1699302692c0f0966b0ff51914f0cf648f2bb62becac8ee",
+    "registros/padronizacao_diaria/diagnosticos/2026-11-08T200124.658529Z/fonte_sondas.py": "99b941bd0fca8268ab303cfd38dbda8e61ae3f046cd8c5d6eaa58b631401dd4f",
+    "registros/padronizacao_diaria/diagnosticos/2026-11-08T200124.658529Z/diagnostico.png": "311a7661f2243ef452279456240e3129f361fec0607e8a4eaacad1bcd193cbc9"
+  },
+  "fontes_preservadas": true,
+  "atualizacoes_de_pesos": 0,
+  "carteiras_novas": 0,
+  "fatos": [
+    "Três checkpoints padronizados: zerar 12 ramos Mamba não muda nenhuma previsão em treino/validação/teste, igualdade exata float32.",
+    "Referência sem padronização: ramos igualmente inoperantes nas sondas de treino dos checkpoints finais; decomposição residual reproduz todas as previsões até arredondamento numérico.",
+    "Parâmetros LayerNorm/D/projeções encolhem; ramos ativos na inicialização padronizada e praticamente nulos nos checkpoints selecionados.",
+    "Adam inclui penalização L2 em todos os parâmetros, conforme receita pública; marcadores _no_weight_decay não são tratados automaticamente.",
+    "Checkpoint selecionado reconferido como mínimo global V; não há ativação de saída que impeça retornos negativos."
+  ],
+  "hipotese_principal": "Penalização global no Adam interage com otimização/escala e favorece supressão dos ramos SSM; causalidade exclusiva ainda não comprovada.",
+  "proxima_proposta": {
+    "mudanca_unica": "weight_decay de 0.001 para 0.0",
+    "referencia": "f3f8772670f244779ad7",
+    "manter": "dados/escalas/alvo/arquitetura/Adam/taxa 0.01/scheduler/lote/1000 épocas/seleção/seeds/políticas/custos",
+    "seeds": [
+      42,
+      17,
+      2026
+    ],
+    "controle": 42,
+    "executar": false,
+    "instrumentacao": "Contribuição dos ramos, normas LayerNorm/A_log/D/projeções e gradientes em checkpoints predefinidos; não selecionar por lucro de teste."
+  },
+  "limites": [
+    "Não prova que retirar L2 melhorará lucro ou erro; exige ablação futura.",
+    "Gradiente do checkpoint não reconstrói estado do Adam; sondas de ativação em float32 podem subfluir, por isso trajetória mede saídas em float64.",
+    "Checkpoints intermediários existem apenas em épocas que melhoraram V.",
+    "2024 selecionou checkpoints;2025 já consultado, retrospectivo."
+  ],
+  "fontes_primarias": [
+    "https://docs.pytorch.org/docs/main/generated/torch.optim.adam.Adam_class.html",
+    "https://raw.githubusercontent.com/state-spaces/mamba/main/mamba_ssm/modules/mamba_simple.py",
+    "https://raw.githubusercontent.com/MShahabSepehri/CryptoMamba/fef42727861a9c3a32241283ab981ef21a49e291/models/cmamba.py"
+  ]
+}

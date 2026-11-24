@@ -1,0 +1,188 @@
+{
+  "arquivo": "checkpoints/epoca_004.pt",
+  "sha256": "91f31dd54c190b310eb84107b5dd73e1844aee7e7131d69b44b5a32bca57ee69",
+  "epoca": 4,
+  "mse_validacao": 0.000476021019987615,
+  "vinculo": {
+    "execucao": "1781f557fdf2b45a3ae2",
+    "bloco": "B1",
+    "variante": "crua_huber",
+    "controle": false,
+    "seed": 31415,
+    "familia": "mamba",
+    "identidade_consumo": "ee26b8c7da482f97cde889ada5ae62118532869a8ee1cde8c19a3c5249e53348",
+    "configuracao": {
+      "versao": "crua-huber-1",
+      "ciclo": "crua_huber_001",
+      "hipotese": "2*Huber(delta1) na mesma entrada OHLCV crua; complemento fatorial.",
+      "horizonte": 24,
+      "candle_minutos": 60,
+      "origem_minutos": 60,
+      "entradas": [
+        "abertura_usdt",
+        "maxima_usdt",
+        "minima_usdt",
+        "fechamento_usdt",
+        "volume_btc"
+      ],
+      "seeds": [
+        17,
+        42,
+        2026,
+        7,
+        123,
+        31415,
+        271828,
+        161803
+      ],
+      "mamba": {
+        "largura": 32,
+        "camadas": 2,
+        "estado": 16,
+        "convolucao": 4,
+        "expansao": 2,
+        "dropout": 0.1
+      },
+      "lstm": {
+        "largura": 32,
+        "camadas": 2,
+        "dropout": 0.1
+      },
+      "treino": {
+        "epocas": 100,
+        "paciencia": 10,
+        "batch": 64,
+        "microbatch": 32,
+        "taxa_aprendizado": 0.0002,
+        "weight_decay": 0.001,
+        "clipping": 1.0
+      },
+      "arima": {
+        "ordens": [
+          [
+            0,
+            1,
+            0
+          ],
+          [
+            0,
+            1,
+            1
+          ],
+          [
+            0,
+            1,
+            2
+          ],
+          [
+            1,
+            1,
+            0
+          ],
+          [
+            1,
+            1,
+            1
+          ],
+          [
+            1,
+            1,
+            2
+          ],
+          [
+            2,
+            1,
+            0
+          ],
+          [
+            2,
+            1,
+            1
+          ],
+          [
+            2,
+            1,
+            2
+          ]
+        ],
+        "tendencia": "n",
+        "maxiter": 200
+      },
+      "dispositivo": "cuda",
+      "backend": "oficial",
+      "bootstrap": {
+        "dias": [
+          7,
+          14,
+          28
+        ],
+        "principal": 14,
+        "replicas": 2000,
+        "seed": 20261020
+      },
+      "operacao": {
+        "hora_utc": 0,
+        "latencia_minutos": 1,
+        "capital": 10000.0,
+        "taxa": 0.001,
+        "slippage": 0.0005,
+        "taxa_agravada": 0.002,
+        "slippage_agravado": 0.001
+      },
+      "par": "BTCUSDT",
+      "contexto": 168,
+      "representacao": "OHLCV em nível, sem log ou timestamp",
+      "normalizacao": "identidade",
+      "normalizacao_bloco": "pre_layernorm",
+      "divisao": {
+        "treino": [
+          "2021-01-01T00:00:00Z",
+          "2023-10-01T00:00:00Z"
+        ],
+        "validacao": [
+          "2023-10-01T00:00:00Z",
+          "2024-01-01T00:00:00Z"
+        ],
+        "teste": [
+          "2024-01-01T00:00:00Z",
+          "2024-07-01T00:00:00Z"
+        ]
+      },
+      "exposicao": "retrospectiva_periodos_ja_consultados",
+      "modelos": [
+        "mamba"
+      ],
+      "controles_reproducao": [],
+      "reproducao": {
+        "diferenca_absoluta_previsao": 1e-05,
+        "diferenca_relativa_mse": 0.0001,
+        "mesma_epoca": true,
+        "origem_limites": "mesmos limites dos controles dos ciclos preliminares; recarga do checkpoint permanece exata"
+      },
+      "entradas_pasta": "dados/entradas/niveis_352cb43f8472cf3916f6",
+      "mercado_pasta": "dados/mercado/binance_spot/449aab6c79dbf88aa625",
+      "configuracao_modelos": "configuracoes/modelos_ohlcv24_001.json",
+      "referencia_execucao": "76f6c437e70eaaa605ad",
+      "seeds_pareadas": [
+        17,
+        42,
+        2026,
+        7,
+        123,
+        31415,
+        271828,
+        161803
+      ],
+      "controle": "Um controle real B1/42 precede demais seeds.",
+      "perda": {
+        "nome": "HuberLoss",
+        "delta": 1.0,
+        "multiplicador": 2.0,
+        "reducao": "sum_por_lote_real",
+        "alvo": "padronizado_treino"
+      },
+      "bloco": "B1",
+      "variante": "huber"
+    }
+  }
+}

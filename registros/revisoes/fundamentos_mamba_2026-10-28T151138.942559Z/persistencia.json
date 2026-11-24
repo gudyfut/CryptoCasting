@@ -1,0 +1,61 @@
+{
+  "natureza": "Conferencia independente posterior; apenas Naive, sem inferencia neural.",
+  "linhas_test_csv": 365,
+  "resultados": [
+    {
+      "populacao": "indices_codigo_publicado",
+      "precisao": "float32",
+      "n": 350,
+      "mse": 2460191.7344440026,
+      "rmse": 1568.4998356531642,
+      "mae": 1091.8993024553572,
+      "mape_percentual": 1.9732266118279236,
+      "primeiro_timestamp_alvo": 1696143600,
+      "ultimo_timestamp_alvo": 1726297200
+    },
+    {
+      "populacao": "indices_codigo_publicado",
+      "precisao": "float64",
+      "n": 350,
+      "mse": 2460191.905104001,
+      "rmse": 1568.4998900554635,
+      "mae": 1091.8994285714286,
+      "mape_percentual": 1.9732268677678733,
+      "primeiro_timestamp_alvo": 1696143600,
+      "ultimo_timestamp_alvo": 1726297200
+    },
+    {
+      "populacao": "todos_pares_diarios",
+      "precisao": "float32",
+      "n": 364,
+      "mse": 2370655.5097557004,
+      "rmse": 1539.6933167860736,
+      "mae": 1059.7124881953985,
+      "mape_percentual": 1.9293520028965079,
+      "primeiro_timestamp_alvo": 1695020400,
+      "ultimo_timestamp_alvo": 1726383600
+    },
+    {
+      "populacao": "todos_pares_diarios",
+      "precisao": "float64",
+      "n": 364,
+      "mse": 2370655.670600825,
+      "rmse": 1539.6933690189176,
+      "mae": 1059.71260989011,
+      "mape_percentual": 1.9293522574632935,
+      "primeiro_timestamp_alvo": 1695020400,
+      "ultimo_timestamp_alvo": 1726383600
+    }
+  ],
+  "reducoes_rmse_tabela_artigo_percentual": {
+    "cmamba_vs_lstm_sem_volume": 35.90750926029857,
+    "cmamba_vs_lstm_com_volume": 27.428363834521598,
+    "cmamba_com_vs_sem_volume": 6.707530647985993
+  },
+  "limites": [
+    "Populacao reconstruida do codigo/dados publicados, nao de predicoes dos autores.",
+    "Metricas neurais citadas sao da tabela do artigo, nao recalculadas.",
+    "Nao demonstra reproducao nem significancia estatistica do contraste.",
+    "Timestamps preservados; diferenca constante de fuso nao foi corrigida."
+  ]
+}

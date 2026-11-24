@@ -1,0 +1,67 @@
+{
+  "utc": "2026-10-29T06:43:23.795145+00:00",
+  "status": "aprovado",
+  "treinamento": false,
+  "fit_arima": false,
+  "inferencia_neural_mercado": false,
+  "avaliacao_desempenho": false,
+  "dados": "dados/entradas/0420879c2afc454c7754",
+  "manifesto_dados_sha256": "0fa4dd361ff2c7a3fee4b1cb6ffcb3264a38d550024cef329b0d7b90cb5b8c1f",
+  "identidade_contrato_modelos": "8fcc08d64f197a43e68db65e674430ad26a5cbf8fd720c7511435b2a9336908d",
+  "canais": [
+    "abertura_relativa",
+    "maxima_relativa",
+    "minima_relativa",
+    "fechamento_relativo",
+    "volume_transformado"
+  ],
+  "janela": [
+    168,
+    5
+  ],
+  "horizonte_passos": 24,
+  "populacoes": {
+    "treino": {
+      "origens": 24751,
+      "janelas_conferidas": 24751,
+      "primeira": "2021-01-08T01:00:00+00:00",
+      "ultima": "2023-12-30T23:00:00+00:00",
+      "comprimento_prefixo_arima": 26255
+    },
+    "validacao": {
+      "origens": 8760,
+      "janelas_conferidas": 8760,
+      "primeira": "2024-01-01T00:00:00+00:00",
+      "ultima": "2024-12-30T23:00:00+00:00",
+      "comprimento_prefixo_arima": 35039
+    },
+    "teste": {
+      "origens": 8736,
+      "janelas_conferidas": 8736,
+      "primeira": "2025-01-01T00:00:00+00:00",
+      "ultima": "2025-12-30T23:00:00+00:00",
+      "comprimento_prefixo_arima": 43799
+    },
+    "operacional": {
+      "origens": 8760,
+      "janelas_conferidas": 8760,
+      "primeira": "2025-01-01T00:00:00+00:00",
+      "ultima": "2025-12-31T23:00:00+00:00",
+      "comprimento_prefixo_arima": 43823
+    }
+  },
+  "indice_fim_ajuste_arima_permitido": 26278,
+  "lacunas_prefixo_ajuste_arima": 23,
+  "fontes": {
+    "modelos/__init__.py": "9008c1d8057a95f0496b9d1237b06c59032143dbe0534ceed59cb83af38f05b8",
+    "modelos/arima.py": "df37e823342bff7d70833ea056ba24e6293f204b455f227a66c28bfff4654538",
+    "modelos/conferencia.py": "b553421f8ea9c18370695c9e41561384330a207dd5efb0906bcec308538d50bf",
+    "modelos/consumo.py": "45bc850a421175b72a2500b256d0e7b8563892a638ba1e572e4ca22527af6a40",
+    "modelos/contratos.py": "cbcd7f912ce4615549300cee2f04974e59a7ecfb3eb836e035c634eddb620447",
+    "modelos/lstm.py": "bff60cbcc12a185e666b8a511e5be2d5e0ab25c0764f7ecd93e876601dbc04dd",
+    "modelos/mamba.py": "0ca157f55f0f788beee09aa43768eccf0dae139fe969f5823a855cb1a755773a",
+    "modelos/naive.py": "bd12107c6e9311e68b2377c6417ff32d3de756f5150e3d4d9714fa630cfd045d",
+    "modelos/neurais.py": "4b6cb724313d3b5df83a79afc3291dc0d644110158f0e5c6f62bd6bab85d4c54"
+  },
+  "limite": "Contratos reais conferidos; nenhuma rede aplicada ao mercado, nenhum ajuste ARIMA ou seleção de ordem."
+}

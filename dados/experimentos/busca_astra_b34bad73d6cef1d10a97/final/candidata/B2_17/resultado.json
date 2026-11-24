@@ -1,0 +1,69 @@
+{
+  "utc": "2026-11-04T05:12:07.576913+00:00",
+  "seed": 17,
+  "bloco": "B2",
+  "receita": {
+    "representacao": "janela_relativa",
+    "indicadores": false,
+    "contexto": 72,
+    "largura": 32,
+    "camadas": 2,
+    "estado": 16,
+    "dropout": 0.1,
+    "pooling": "ultimo",
+    "taxa": 0.0002,
+    "decay": 0.001,
+    "otimizador": "AdamW",
+    "perda": "huber",
+    "scheduler": "constante",
+    "ganho_saida": 1
+  },
+  "epoca": 4,
+  "epocas_executadas": 14,
+  "parametros": 20257,
+  "recarga_exata": true,
+  "segundos": 108.66423194799972,
+  "checkpoint_final_sha256": "76313831a094a490e46b2f4d0999a089c5447787f8d6b6d6618a7bca26135f99",
+  "memoria_cuda_maxima_bytes": 117900800,
+  "treino_amostra_fixa": {
+    "n": 2048,
+    "mse": 0.0010832070856915913,
+    "rmse": 0.03291211153498954,
+    "mae": 0.022533004578703587,
+    "mse_naive": 0.0010804153835294685,
+    "vies": -0.0021516740089609285,
+    "sd_previsao": 0.0007086899145155358,
+    "sd_alvo": 0.03286701410288522,
+    "acuracia_direcional": 0.4951171875,
+    "balanced_accuracy": 0.5008507943290552
+  },
+  "validacao": {
+    "n": 2160,
+    "mse": 0.0005739154794642585,
+    "rmse": 0.023956533126983513,
+    "mae": 0.017818423508588643,
+    "mse_naive": 0.0005737635341431438,
+    "vies": -0.00031804406720571166,
+    "sd_previsao": 0.0007401250033166187,
+    "sd_alvo": 0.023912761601148975,
+    "acuracia_direcional": 0.49559981472904124,
+    "balanced_accuracy": 0.49994292972202914
+  },
+  "teste": {
+    "n": 4392,
+    "mse": 0.000724639632607902,
+    "rmse": 0.026919131349430685,
+    "mae": 0.019731425123007258,
+    "mse_naive": 0.0007158615200008409,
+    "vies": -0.0038385032490523296,
+    "sd_previsao": 0.0007221610906495238,
+    "sd_alvo": 0.02666856927670914,
+    "acuracia_direcional": 0.46994535519125685,
+    "balanced_accuracy": 0.5016906696151096
+  },
+  "diagnostico": {
+    "sd_representacao_media": 0.3608516454696655,
+    "norma_pesos_saida": 0.45920345187187195,
+    "fracao_clipping_ultima_epoca": 0.345
+  }
+}

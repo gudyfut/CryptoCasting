@@ -1,0 +1,20 @@
+{
+  "ciclo": "generalizacao_moedas_001",
+  "versao": 1,
+  "referencia": "f3f8772670f244779ad7",
+  "simbolos": ["ETHUSDT", "BNBUSDT", "XRPUSDT"],
+  "seeds": [42, 17, 2026],
+  "controle_seed_por_moeda": 42,
+  "ajustes_principais": 9,
+  "ajustes_controle": 3,
+  "carteiras_previstas": 210,
+  "criterio_receita": "Menor MSE medio de retorno no teste BTC 2025 entre as receitas diarias comparaveis; escolha retrospectiva confirmada pelo pesquisador",
+  "mudancas_permitidas": ["simbolo", "inicio_de_treino_por_disponibilidade", "escalas_ajustadas_na_moeda", "filtros_de_execucao_do_instrumento"],
+  "treino": "inicio completo disponivel em 2020 ate 2024-01-01 exclusivo",
+  "validacao": ["2024-01-01", "2025-01-01"],
+  "teste": ["2025-01-01", "2026-01-01"],
+  "exposicao": "Receita selecionada retrospectivamente; moedas e anos ja presentes em outros estudos. Nao declarar holdout intocado.",
+  "marcacao_incompleta": "XRP: dois minutos de 2024-08-12 sem observacao 1m; envelope oficial 5m separado somente para risco, com campos open/close ausentes preservados. Nao interpolar nem eliminar operacoes.",
+  "ordens_reais": false,
+  "busca_adicional": false
+}

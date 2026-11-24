@@ -1,0 +1,41 @@
+{
+  "utc": "2026-11-03T19:05:34.311631+00:00",
+  "seeds": [
+    17,
+    42,
+    2026,
+    7,
+    123,
+    31415,
+    271828,
+    161803
+  ],
+  "blocos": [
+    "B1",
+    "B2",
+    "B3",
+    "B4"
+  ],
+  "combinacoes": {
+    "relativa_mse": {
+      "origem": "10dac17ea9df2c540c57",
+      "ajustes_herdados": 32
+    },
+    "relativa_huber": {
+      "origem": "10dac17ea9df2c540c57",
+      "ajustes_herdados": 32
+    },
+    "crua_mse": {
+      "origem": "76f6c437e70eaaa605ad",
+      "ajustes_herdados": 32
+    },
+    "crua_huber": {
+      "ajustes_principais_novos": 32,
+      "controle_real_adicional": 1
+    }
+  },
+  "alvo": "log-retorno24h,escala do alvo ajustada somente no treino",
+  "criterio": "MSE de teste,igual peso entre blocos,media das oito seeds por bloco",
+  "interacao": "(crua_huber-crua_mse)-(relativa_huber-relativa_mse)",
+  "treinos_herdados_repetidos": 0
+}

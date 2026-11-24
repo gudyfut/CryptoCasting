@@ -1,0 +1,23 @@
+Traceback (most recent call last):
+  File "<frozen runpy>", line 198, in _run_module_as_main
+  File "<frozen runpy>", line 88, in _run_code
+  File "/mnt/c/Users/MuriloRFM/Documents/GitHub/CryptoCasting/experimentos/cryptomamba_diario/__main__.py", line 10, in <module>
+    {'qualificar':ciclo.qualificar,'preparar':ciclo.preparar,'executar':ciclo.executar,'conferir-preservacao':ciclo.conferir_preservacao}[args.acao]()
+  File "/mnt/c/Users/MuriloRFM/Documents/GitHub/CryptoCasting/experimentos/cryptomamba_diario/ciclo.py", line 147, in executar
+    np.testing.assert_allclose(a,b,rtol=1e-5,atol=.01)
+  File "/home/murilorfm/.venvs/cc/lib/python3.12/site-packages/numpy/testing/_private/utils.py", line 1715, in assert_allclose
+    assert_array_compare(compare, actual, desired, err_msg=str(err_msg),
+  File "/home/murilorfm/.venvs/cc/lib/python3.12/site-packages/numpy/testing/_private/utils.py", line 921, in assert_array_compare
+    raise AssertionError(msg)
+AssertionError: 
+Not equal to tolerance rtol=1e-05, atol=0.01
+
+Mismatched elements: 347 / 351 (98.9%)
+Max absolute difference among violations: 540.87890625
+Max relative difference among violations: 0.00908442
+ ACTUAL: array([ 42485.492188,  42311.375   ,  43380.351562,  42838.320312,
+        42117.953125,  41728.6875  ,  41922.371094,  41735.21875 ,
+        40248.199219,  39744.      ,  40616.726562,  40080.71875 ,...
+ DESIRED: array([ 42766.5625  ,  42172.792969,  43395.488281,  42967.585938,
+        41902.128906,  42059.148438,  41722.355469,  42052.503906,
+        40170.425781,  39869.035156,  40620.277344,  40072.558594,...

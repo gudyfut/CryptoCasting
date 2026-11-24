@@ -1,0 +1,516 @@
+{
+  "proposta": "operacional_futuros_001",
+  "versao": 2,
+  "data_local": "2026-11-04",
+  "fuso": "America/Sao_Paulo",
+  "situacao": "preparacao_tecnica_goal_sem_treino",
+  "executavel": false,
+  "desenho": "docs/desenho_operacional_futuros.md",
+  "decisao": "docs/adr/0028-pesquisa-operacional-futuros.md",
+  "objetivo": "Comparar Mamba + politica no proprio mercado futuro, por crescimento liquido e compromisso retorno/drawdown.",
+  "autorizacao": {
+    "organizacao_e_desenho": true,
+    "treinamento": false,
+    "busca": false,
+    "backtest_novo": false,
+    "conta_real": false,
+    "api_paga": false,
+    "preparacao_tecnica": true
+  },
+  "mercado": {
+    "simbolo": "BTCUSDT",
+    "instrumento": "USD-M perpetuo linear",
+    "lados": [
+      "compra",
+      "venda",
+      "caixa"
+    ],
+    "candles_horas": 1,
+    "execucao_minutos": 1,
+    "prazo_maximo_horas": 24,
+    "contexto_inicial_horas": 168,
+    "contextos_permitidos_horas": [
+      24,
+      72,
+      168
+    ],
+    "aquecimento_comum_horas": 336,
+    "dados_atuais": "registros/mercado_futuros/estado.json",
+    "cobertura_necessaria_inicio": "2021-01-01",
+    "coleta_desenvolvimento_pendente": true
+  },
+  "familias_iniciais": [
+    {
+      "id": "R0",
+      "entrada": "ohlcv_cru",
+      "alvo": "log_retorno_terminal_24h_futuro",
+      "perda": "2_huber_delta1_alvo_padronizado",
+      "selecao_epoca": "mse_real_validacao",
+      "herdar_pesos": false
+    },
+    {
+      "id": "P0",
+      "entrada": "ohlcv_cru",
+      "alvo": "payoff_liquido_unitario_compra_venda",
+      "perda": "mse_dois_alvos_padronizados",
+      "selecao_epoca": "mse_real_medio_dois_canais_validacao",
+      "herdar_pesos": false
+    }
+  ],
+  "rede_inicial": {
+    "familia": "Mamba1_oficial_CUDA",
+    "d_state": 16,
+    "otimizador": "AdamW",
+    "taxa": 0.0002,
+    "receita_ancestral": "configuracoes/busca_astra_002.json",
+    "largura": 32,
+    "camadas": 2,
+    "convolucao": 4,
+    "expansao": 2,
+    "dropout": 0.1,
+    "pooling": "ultimo",
+    "normalizacao_bloco": "pre_layernorm",
+    "weight_decay": 0.001
+  },
+  "barreiras_iniciais": {
+    "volatilidade": "std(log_retornos_horarios_168h,ddof=1)*sqrt(24)",
+    "distancia_stop_log": "max(k_stop*volatilidade,0.005)",
+    "multiplicador_take": 1.5,
+    "fixas_na_entrada": true,
+    "mudanca_exige_novo_alvo_payoff": true,
+    "k_stop": 1.0,
+    "semantica_par": "[k_stop, razao_take_stop]. Take=razao*distancia_stop. Variacao apenas em receitas payoff; alvo e politica mudam juntos, nova identidade."
+  },
+  "carteira": {
+    "capital_usdt": 10000,
+    "fracao_maxima_nocional_entrada": 0.95,
+    "posicoes_simultaneas": 1,
+    "busca_alavancagem": false,
+    "risco_nominal_stop": [
+      0.005,
+      0.01
+    ],
+    "aportes_saques": false,
+    "tributos_incluidos": false,
+    "nocional_maximo_usdt": 50000
+  },
+  "politicas_calibracao": {
+    "margem_adicional_entrada": [
+      0.0,
+      0.001,
+      0.002
+    ],
+    "risco_nominal_stop": [
+      0.005,
+      0.01
+    ],
+    "cadencia_horas_utc": [
+      1,
+      4
+    ],
+    "total": 12,
+    "calibracao": "Uma politica por receita/recorte selecionada em C, conjunta para as seeds daquela fase. Nunca por S."
+  },
+  "execucao_proposta": {
+    "latencia_minutos": 1,
+    "comissao_taker_por_lado": 0.0005,
+    "deslizamentos_por_preenchimento": [
+      0.0005,
+      0.001,
+      0.0015
+    ],
+    "funding": "historico_real",
+    "tarifa_conta_verificada": false,
+    "ambiguidades_stop_take": "stop_primeiro",
+    "margem_liquidacao": "Fechamento prudencial se patrimonio/nocional<=0.02, custo taker+slippage, rejeita promocao. Nao e liquidacao oficial Binance; reportar proxy e ausencia de certificacao historica.",
+    "passo_quantidade_btc": 0.001,
+    "tick_preco_usdt": 0.1,
+    "nocional_minimo_usdt": 100,
+    "filtros_historicos_certificados": false,
+    "ordem_stop": "Stop/take protetivos ativos apos fill; gap executa pior preco disponivel; ambas barreiras no mesmo minuto: stop primeiro.",
+    "funding_marca_ausente": "Preservar NaN. Em todos os cenarios, usar high do minuto se paga e low se recebe; origem intervalar explicitamente marcada. Nunca chamar isto de markPrice exato.",
+    "funding_estimado_R0": "Ultima taxa de settlement ja publicada, com atraso conservador1min; multiplicar por24/intervalo_horas e pelo sinal do lado. Preco de referencia causal, sem taxa realizada futura.",
+    "limiar_margem_prudencial": 0.02,
+    "saida_prudencial_reprova": true,
+    "fim_bloco": "Sem entradas cujo horizonte maximo atravesse fim; fechar qualquer residuo com custos.",
+    "ordem_funding_ambiguo": "Se saida protetiva no mesmo minuto de settlement sem ordem conhecida, pagar se debito e nao creditar receita ambigua; registrar ocorrencia. Entradas em minuto de funding conservadoras ou bloqueadas por regra fixa."
+  },
+  "criterio": {
+    "primario": "mediana_calmar_periodo_blocos_seeds",
+    "crescimento_diario": "log(patrimonio_final/patrimonio_inicial)/dias",
+    "calmar": "(exp(365*crescimento_diario)-1)/drawdown_maximo_mesmo_periodo",
+    "drawdown_zero": "indefinido_sem_infinito_ou_promocao",
+    "desempate": [
+      "crescimento_log_medio",
+      "menor_giro"
+    ],
+    "teto_drawdown_aprovado": null,
+    "resposta_usuario": "Solicitou metrica de equilibrio entre crescimento e risco; nao escolheu 25%.",
+    "fronteira": [
+      "crescimento_composto",
+      "drawdown_maximo"
+    ],
+    "mse_e_gate_economico": false,
+    "tolerancia_empate_calmar": 1e-10,
+    "referencia_inelegivel": "Candidata ainda deve cumprir todos os gates positivos. R0 sem Calmar nao bloqueia comparacao; reportar ausencia, nao substituir por infinito ou ocultar seed."
+  },
+  "elegibilidade_proposta": {
+    "cobertura_completa": true,
+    "insolvencia_liquidacao_permitida": false,
+    "crescimento_medio_base_positivo": true,
+    "crescimento_medio_deslizamento_2x_positivo": true,
+    "recortes_com_crescimento_medio_positivo_minimo": 2,
+    "operacoes_encerradas_minimo_por_carteira_S": 20,
+    "seeds_positivas_reforco_minimo": 6,
+    "seeds_reforco_total": 8,
+    "provar_habilidade_vendida": "Diagnostico separado; lucro total nao basta.",
+    "score_calmar_positivo": true,
+    "fechamento_prudencial_permitido": false
+  },
+  "calendario": {
+    "utc": true,
+    "fim_exclusivo": true,
+    "desenvolvimento": [
+      {
+        "id": "D1",
+        "treino": [
+          "2021-01-01",
+          "2022-10-01"
+        ],
+        "validacao": [
+          "2022-10-01",
+          "2023-01-01"
+        ],
+        "calibracao": [
+          "2023-01-01",
+          "2023-04-01"
+        ],
+        "comparacao": [
+          "2023-04-01",
+          "2023-07-01"
+        ]
+      },
+      {
+        "id": "D2",
+        "treino": [
+          "2021-01-01",
+          "2023-01-01"
+        ],
+        "validacao": [
+          "2023-01-01",
+          "2023-04-01"
+        ],
+        "calibracao": [
+          "2023-04-01",
+          "2023-07-01"
+        ],
+        "comparacao": [
+          "2023-07-01",
+          "2023-10-01"
+        ]
+      },
+      {
+        "id": "D3",
+        "treino": [
+          "2021-01-01",
+          "2023-04-01"
+        ],
+        "validacao": [
+          "2023-04-01",
+          "2023-07-01"
+        ],
+        "calibracao": [
+          "2023-07-01",
+          "2023-10-01"
+        ],
+        "comparacao": [
+          "2023-10-01",
+          "2024-01-01"
+        ]
+      }
+    ],
+    "final_retrospectiva": [
+      {
+        "id": "B1",
+        "treino": [
+          "2021-01-01",
+          "2023-07-01"
+        ],
+        "validacao": [
+          "2023-07-01",
+          "2023-10-01"
+        ],
+        "calibracao": [
+          "2023-10-01",
+          "2024-01-01"
+        ],
+        "avaliacao": [
+          "2024-01-01",
+          "2024-07-01"
+        ]
+      },
+      {
+        "id": "B2",
+        "treino": [
+          "2021-01-01",
+          "2024-01-01"
+        ],
+        "validacao": [
+          "2024-01-01",
+          "2024-04-01"
+        ],
+        "calibracao": [
+          "2024-04-01",
+          "2024-07-01"
+        ],
+        "avaliacao": [
+          "2024-07-01",
+          "2025-01-01"
+        ]
+      },
+      {
+        "id": "B3",
+        "treino": [
+          "2021-01-01",
+          "2024-07-01"
+        ],
+        "validacao": [
+          "2024-07-01",
+          "2024-10-01"
+        ],
+        "calibracao": [
+          "2024-10-01",
+          "2025-01-01"
+        ],
+        "avaliacao": [
+          "2025-01-01",
+          "2025-07-01"
+        ]
+      },
+      {
+        "id": "B4",
+        "treino": [
+          "2021-01-01",
+          "2025-01-01"
+        ],
+        "validacao": [
+          "2025-01-01",
+          "2025-04-01"
+        ],
+        "calibracao": [
+          "2025-04-01",
+          "2025-07-01"
+        ],
+        "avaliacao": [
+          "2025-07-01",
+          "2026-01-01"
+        ]
+      }
+    ],
+    "purga": "Tempo maximo de realizacao do alvo, incluindo latencia/entrada/saida. Testar por timestamps.",
+    "periodos_ja_consultados": true,
+    "politica_global_entre_recortes": false,
+    "purga_minima_minutos": 1442
+  },
+  "seeds": {
+    "exploracao": [
+      42,
+      17,
+      2026
+    ],
+    "reforco_e_final": [
+      42,
+      17,
+      2026,
+      7,
+      123,
+      31415,
+      271828,
+      161803
+    ]
+  },
+  "busca_proposta": {
+    "receitas_maximo_incluindo_iniciais": 8,
+    "propostas_astra_maximo": 6,
+    "candidatas_reforcadas_maximo": 2,
+    "referencia_adicional_reforco": "R0",
+    "finalistas_maximo": 1,
+    "consultas_proponente_maximo": 8,
+    "horas_exploracao_reforco_maximo": 24,
+    "horas_final": "Estimar apos benchmark; nao incluida na promessa de um dia.",
+    "campos_locais": [
+      "representacao",
+      "contexto_horas",
+      "momentum",
+      "volatilidade",
+      "volume_relativo",
+      "d_state",
+      "taxa",
+      "barreiras_payoff"
+    ],
+    "grade_detalhada_congelada": false,
+    "fora_primeira_rodada": [
+      "candle_15min_4h",
+      "horizonte_6h",
+      "alavancagem",
+      "saidas_adaptativas",
+      "edicao_manual_pesos"
+    ],
+    "grade_enumerada_pre_resultados": true,
+    "limite_uma_alteracao_por_proposta": true
+  },
+  "orcamento_proposto": {
+    "ajustes_exploracao": 72,
+    "controles_iniciais": 2,
+    "ajustes_reforco_novos": 45,
+    "ajustes_finais": 64,
+    "controles_finais": 2,
+    "ajustes_novos_maximo": 185,
+    "carteiras_logicas_exploracao": 1224,
+    "carteiras_logicas_reforco": 1224,
+    "carteiras_logicas_final": 1088,
+    "carteiras_baselines": 84,
+    "carteiras_logicas_maximo": 3620,
+    "carteiras_fisicas": "Pode ser menor com heranca auditada; nenhuma executada nesta proposta."
+  },
+  "baselines": [
+    "caixa_naive_zero",
+    "sempre_comprado",
+    "sempre_vendido",
+    "tendencia_causal_fixa"
+  ],
+  "qualificacao_pendente": [
+    "publicacao_dados_futuros_2021_2023_em_andamento",
+    "adaptador_entradas_alvos_e_escalas",
+    "motor_barreiras_margem_e_filtros",
+    "treinador_do_novo_contrato",
+    "coordenador_e_isolamento_proponente",
+    "bootstrap_e_auditoria_independente",
+    "benchmark",
+    "qualificacao_integrada",
+    "identidade_congelamento_e_autorizacao_goal"
+  ],
+  "treinamento": {
+    "epocas_maximas": 100,
+    "paciencia": 10,
+    "batch": 64,
+    "microbatch": 32,
+    "clipping": 1.0,
+    "limite_ajuste_segundos": 2700,
+    "dtype": "float32",
+    "amp": false,
+    "scheduler": "constante",
+    "adam_betas": [
+      0.9,
+      0.999
+    ],
+    "adam_eps": 1e-08,
+    "isentar_no_weight_decay": true,
+    "checkpoint": "Menor MSE real em V; perda de treino normalizada, por elemento, sem broadcasting."
+  },
+  "espaco_receitas": {
+    "representacao": [
+      "crua",
+      "relativa",
+      "log_niveis"
+    ],
+    "contexto_horas": [
+      24,
+      72,
+      168
+    ],
+    "momentum": [
+      false,
+      true
+    ],
+    "volatilidade": [
+      false,
+      true
+    ],
+    "volume_relativo": [
+      false,
+      true
+    ],
+    "d_state": [
+      16,
+      32
+    ],
+    "taxa": [
+      0.0001,
+      0.0002
+    ],
+    "barreiras_payoff": [
+      [
+        1.0,
+        1.0
+      ],
+      [
+        1.0,
+        1.5
+      ],
+      [
+        1.0,
+        2.0
+      ],
+      [
+        1.5,
+        1.5
+      ]
+    ]
+  },
+  "formulas_entradas": {
+    "crua": [
+      "O",
+      "H",
+      "L",
+      "C",
+      "V"
+    ],
+    "relativa": [
+      "log(O/C_anterior)",
+      "log(H/C_anterior)",
+      "log(L/C_anterior)",
+      "log(C/C_anterior)",
+      "log1p(V)"
+    ],
+    "log_niveis": [
+      "log(O)",
+      "log(H)",
+      "log(L)",
+      "log(C)",
+      "log1p(V)"
+    ],
+    "momentum": [
+      "log(C/C_lag24)",
+      "log(C/C_lag72)",
+      "log(C/C_lag168)"
+    ],
+    "volatilidade": [
+      "std(log(C/C_anterior),24,ddof=1)",
+      "std(log(C/C_anterior),168,ddof=1)"
+    ],
+    "volume_relativo": [
+      "log1p(V)-media(log1p(V),24)",
+      "log1p(V)-media(log1p(V),168)"
+    ],
+    "escala": "Bases relativa/log_niveis e todos os canais extras: z-score ddof0 de T; crua base sem escala. Escala zero vira1, nao NaN. Alvos: escala propria por canal somente em T.",
+    "janelas": "Todos os rolling incluem somente candles completos disponiveis. Aquecimento comum336h, inclusive crua24h."
+  },
+  "baselines_detalhes": {
+    "caixa_naive_zero": "Patrimonio fixo; Calmar indefinido; sem treino.",
+    "sempre_comprado": "Abrir95% do patrimonio inicial no primeiro instante elegivel e reter ate fim, sujeito a limites e margem, sem realavancar.",
+    "sempre_vendido": "Mesmo procedimento comprado, quantidade negativa.",
+    "tendencia_causal_fixa": "EMA24 versus EMA168 de closes completos, adjust=False e min_periods168; maior compra, menor vende, empate caixa; decisao1h, retida, inverter somente ao mudar sinal, alvo95% na abertura. Sem recalibracao por S."
+  },
+  "operacao_noturna": {
+    "prompt": "registros/operacional_futuros/goal_noturno.txt",
+    "ativado": false,
+    "janela_horas_proposta": 12,
+    "inicio_relativo": "Registrar UTC ao receber o goal; inclui preparo restante, qualificacao, treino e fechamento.",
+    "reserva_minutos_fechamento": 30,
+    "nao_iniciar_ajuste_sem_reserva": true,
+    "prazo_total_nao_reinicia_apos_reboot": true,
+    "politica_prazo": "Parar novos ajustes antes do prazo, preservar coortes parciais sem pontuar/promover e entregar estado auditavel. Nao prometer concluir185 ajustes.",
+    "novo_treino_agora": false
+  }
+}

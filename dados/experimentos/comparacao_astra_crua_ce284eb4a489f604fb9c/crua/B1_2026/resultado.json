@@ -1,0 +1,69 @@
+{
+  "utc": "2026-11-04T08:12:54.913457+00:00",
+  "seed": 2026,
+  "bloco": "B1",
+  "receita": {
+    "representacao": "crua",
+    "indicadores": false,
+    "contexto": 168,
+    "largura": 32,
+    "camadas": 2,
+    "estado": 16,
+    "dropout": 0.1,
+    "pooling": "ultimo",
+    "taxa": 0.0002,
+    "decay": 0.001,
+    "otimizador": "AdamW",
+    "perda": "huber",
+    "scheduler": "constante",
+    "ganho_saida": 1.0
+  },
+  "epoca": 40,
+  "epocas_executadas": 50,
+  "parametros": 20257,
+  "recarga_exata": true,
+  "segundos": 309.22814289799993,
+  "checkpoint_final_sha256": "1a01571bcada7ec4ccc30fd20216d0d076629fc41b5c6b2e9ca655f3d837b943",
+  "memoria_cuda_maxima_bytes": 167180800,
+  "treino_amostra_fixa": {
+    "n": 2048,
+    "mse": 0.0011817983328852226,
+    "rmse": 0.03437729385634103,
+    "mae": 0.023435406273742652,
+    "mse_naive": 0.0011857132237557987,
+    "vies": 0.0017543054763295338,
+    "sd_previsao": 0.0018984282105188007,
+    "sd_alvo": 0.03442042509987141,
+    "acuracia_direcional": 0.5166015625,
+    "balanced_accuracy": 0.5213978367357848
+  },
+  "validacao": {
+    "n": 2184,
+    "mse": 0.0004821764577462583,
+    "rmse": 0.021958516747409382,
+    "mae": 0.015059583604835938,
+    "mse_naive": 0.00048677487682377503,
+    "vies": -0.004733694081133016,
+    "sd_previsao": 0.0005252891120514978,
+    "sd_alvo": 0.021510187860790026,
+    "acuracia_direcional": 0.5663919413919414,
+    "balanced_accuracy": 0.5511910533246507
+  },
+  "teste": {
+    "n": 4344,
+    "mse": 0.0007321494125207857,
+    "rmse": 0.027058259598887465,
+    "mae": 0.019571000002295332,
+    "mse_naive": 0.0007274219044532415,
+    "vies": -0.0036394812069043057,
+    "sd_previsao": 0.0007209173775108233,
+    "sd_alvo": 0.026895935476635532,
+    "acuracia_direcional": 0.46028091181211145,
+    "balanced_accuracy": 0.5
+  },
+  "diagnostico": {
+    "sd_representacao_media": 0.01650078222155571,
+    "norma_pesos_saida": 0.46647822856903076,
+    "fracao_clipping_ultima_epoca": 0.2469879518072289
+  }
+}

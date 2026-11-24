@@ -1,0 +1,132 @@
+{
+  "ciclo": "historico_treino_001",
+  "versao": 1,
+  "ancestral": {
+    "id": "f0dd11f393b5e26edaf8",
+    "pasta": "dados/experimentos/operacional_futuros_f0dd11f393b5e26edaf8",
+    "congelamento_sha256": "aa27a70c539e39953dc391e2685a778b606f6506cbc302c1fca2031e34946554"
+  },
+  "receita_ancestral": "C06",
+  "receita": {
+    "representacao": "relativa",
+    "contexto_horas": 168,
+    "momentum": false,
+    "volatilidade": false,
+    "volume_relativo": true,
+    "d_state": 16,
+    "taxa": 0.0002,
+    "barreiras_payoff": [
+      1.0,
+      1.5
+    ],
+    "familia_alvo": "payoff"
+  },
+  "recortes": [
+    {
+      "id": "D1",
+      "treino": [
+        "2021-01-01",
+        "2022-10-01"
+      ],
+      "validacao": [
+        "2022-10-01",
+        "2023-01-01"
+      ],
+      "calibracao": [
+        "2023-01-01",
+        "2023-04-01"
+      ],
+      "comparacao": [
+        "2023-04-01",
+        "2023-07-01"
+      ]
+    },
+    {
+      "id": "D2",
+      "treino": [
+        "2021-01-01",
+        "2023-01-01"
+      ],
+      "validacao": [
+        "2023-01-01",
+        "2023-04-01"
+      ],
+      "calibracao": [
+        "2023-04-01",
+        "2023-07-01"
+      ],
+      "comparacao": [
+        "2023-07-01",
+        "2023-10-01"
+      ]
+    },
+    {
+      "id": "D3",
+      "treino": [
+        "2021-01-01",
+        "2023-04-01"
+      ],
+      "validacao": [
+        "2023-04-01",
+        "2023-07-01"
+      ],
+      "calibracao": [
+        "2023-07-01",
+        "2023-10-01"
+      ],
+      "comparacao": [
+        "2023-10-01",
+        "2024-01-01"
+      ]
+    }
+  ],
+  "seeds": [
+    42,
+    17,
+    2026
+  ],
+  "bracos": [
+    "acumulado",
+    "movel12"
+  ],
+  "ajustes_principais": 18,
+  "controles_reais": 2,
+  "carteiras_previstas": 456,
+  "prazo_horas": 12,
+  "limite_ajuste_segundos": 2700,
+  "politica_fixa": {
+    "limiar": 0.0,
+    "risco": 0.005,
+    "cadencia": 4
+  },
+  "cenarios": [
+    "base",
+    "custo2x",
+    "custo3x",
+    "comprado",
+    "vendido"
+  ],
+  "bootstrap": {
+    "replicas": 2000,
+    "dias": [
+      7,
+      14,
+      28
+    ],
+    "seed": 2605
+  },
+  "autorizacao": {
+    "texto": "Entendi, então arrume tudo corretamente e pode prosseguir com essa primeira etapa de averiguação, vou sair e deixar o notebook rodando",
+    "treinamento": true,
+    "backtest": true,
+    "busca_astra": false,
+    "seis_meses": false,
+    "final_2024_2025": false,
+    "conta_real": false,
+    "api_paga": false
+  },
+  "fator": "somente inicio do historico de treino; escalas e numero de atualizacoes por epoca sao consequencias",
+  "calendario": "ancestral preservado, sem novo V/C de um mes",
+  "alvos": "mesmos payoffs bilaterais24h do motor congelado",
+  "conclusao": "diagnostico pareado, sem promocao automatica"
+}

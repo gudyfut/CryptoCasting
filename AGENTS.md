@@ -1,42 +1,27 @@
-# Orientações para trabalhar no CryptoCasting
+# Guia base do CryptoCasting
 
-## Contexto e objetivo
+Este é um repositório de pesquisa e produção do TCC: reúne código, dados, experimentos, análises, referências e materiais de escrita. O objetivo é investigar configurações de entrada, pesos, hiperparâmetros, estruturas e tipos de previsão, registrando conclusões fundamentadas para um bom artigo. A contribuição acadêmica pode incluir resultados negativos ou inconclusivos; obter um modelo lucrativo não é condição de sucesso.
 
-Este repositório contém um TCC sobre previsão do retorno de criptomoedas em 24 horas. A pergunta principal é como o tamanho do contexto histórico afeta Mamba e LSTM, com Naive e ARIMA como referências. Uma conclusão negativa é válida: não condicionar o sucesso do trabalho à vitória do Mamba ou a lucro simulado.
+## Leitura e orientação
 
-O estudo ativo usa BTCUSDT, ETHUSDT, BNBUSDT e XRPUSDT da Binance Spot; retornos horários como única entrada; contextos de 24/72/168/336 horas; origem horária e alvo terminal `ln(P[t+24h]/P[t])`. É regressão, avaliada principalmente por MSE. Direção é um diagnóstico secundário; previsão e utilidade econômica são eixos distintos.
+Antes de agir, ler as [diretrizes de pesquisa](docs/diretrizes_pesquisa.md) e o [plano atual](plano.md). Depois, abrir os documentos pertinentes à tarefa na tabela abaixo. Esses links indicam instruções a consultar explicitamente; não presumir que seu conteúdo foi carregado com este arquivo.
 
-## Leitura inicial e fontes de informação
+| Trabalho | Consultar antes de executar |
+|---|---|
+| Propor, treinar, validar, testar ou analisar | [Procedimento de pesquisa e registro](docs/registro_de_experimentos.md); protocolo/configuração e estado do ciclo no [catálogo](registros/catalogo_estudos.json) |
+| Alterar código, ambiente, comandos ou interface | [Ambiente e execução](docs/ambiente_e_execucao.md); arquitetura da camada no [índice documental](docs/README.md) |
+| Organizar, limpar, preservar ou transferir | [Armazenamento e reprodução](docs/armazenamento_e_reproducao.md) |
+| Interpretar evidências e escrever o TCC | Roteiro de redação (local: `docs/roteiro_redacao_tcc.md`) e espaço de escrita (local: `escrita_tcc/README.md`) |
+| Retomar contexto histórico | [Cronologia](docs/andamento.md), [síntese da exploração com IA](docs/exploracao_ia.md) e [decisões históricas](docs/adr/README.md) |
 
-1. Ler [plano.md](plano.md) e [protocolo experimental](docs/protocolo_experimental.md) para entender o contrato científico.
-2. Ler o [índice de decisões (ADRs)](docs/adr/README.md) e as decisões pertinentes à tarefa. Para a extensão de penalização, ler também [seu protocolo](docs/protocolo_penalizacao_mamba.md) e a [auditoria de configuração](docs/auditoria_configuracao_penalizacao.md).
-3. Consultar [andamento](docs/andamento.md) e o [mapa de registros](registros/README.md). Confirmar o estado pelos artefatos da máquina responsável; um snapshot no Git não informa se o processo remoto continua ativo.
-4. Antes de transferir ou publicar resultados, seguir a [política de preservação](docs/armazenamento_e_reproducao.md). Para escrever o TCC, usar o [roteiro de redação](docs/roteiro_redacao_tcc.md).
+Usar o [README](README.md) para localizar materiais. Ler o necessário para a tarefa, sem carregar todos os protocolos ou restaurar o legado por rotina. Receitas, resultados e autorizações antigas valem para suas identidades; não são regras gerais para novos estudos. Havendo divergência de estado, conferir os artefatos e o computador executor antes de agir.
 
-## Regras científicas permanentes
+## Regras gerais
 
-- Aplicar scalers somente no treino, purga temporal de 24h e mesmas origens entre modelos/contextos. Não interpolar lacunas nem selecionar exemplos pela magnitude do retorno futuro.
-- Usar Mamba oficial CUDA, sem fallback silencioso. Preservar seeds 17/42/2026, Naive de retorno zero e ARIMA(p,1,q) sem deriva, p/q em 0..2 selecionados na validação, conforme o protocolo.
-- DB1–DB4 são desenvolvimento. B1–B4 já foram consultados: novas hipóteses nesses períodos são retrospectivas, sem alegação de holdout intocado. Não selecionar seed favorável nem alterar modelos durante uma avaliação congelada.
-- Preservar toda tentativa, falha, interrupção e revisão. Recarga de checkpoint e métricas recalculadas são requisitos de auditoria. Planejamento e aprovação de testes sintéticos não comprovam conclusão de treinamento.
-- Fontes, configurações, protocolos e recibos congelados são imutáveis sob a identidade da execução. Não regenerar hashes para aceitar divergências. Uma nova mudança científica exige ciclo identificado, registro da decisão e autorização compatível.
-- Indicadores, candles menores, horizontes diferentes e busca adicional de parâmetros são extensões futuras; não iniciá-las automaticamente.
-
-## Escopo autorizado e preservação
-
-As autorizações de 20/10 e 26/10/2026 estão contextualizadas nas ADRs 0001 e 0002. Elas permitem executar os ciclos definidos, sem pedir novamente autorização para suas etapas necessárias; não autorizam buscas indefinidas.
-
-- Referência: código `previsao24/`, entrada `run_previsao.py`, configuração `configuracoes/retorno24_001.json` e ponteiro `registros/execucao_atual.json`. Preservar integralmente a execução `1e7c5ed662fba55ddd25`.
-- Extensão: código `experimento_penalizacao/`, entrada `run_penalizacao.py`, ponteiro `registros/penalizacao/execucao.json`; identidade congelada `7868a4d847c1410fc681`. Respeitar o escopo de 384 Mamba corrigidos e dois controles reexecutados; LSTM/Naive/ARIMA são referências herdadas. Não alterar suas fontes congeladas.
-- `arquivo/estudo_barreiras_2026-10-20/` é histórico imutável. Não importar seu código na aplicação ativa nem misturar seus resultados com os atuais. Não reescrever o histórico Git.
-
-## Operação, interface e trabalho entre máquinas
-
-- Antes de treinar, inspecionar hardware/ambiente e exigir qualificação de dimensões, forward/backward, atualização, repetição e recarga. Não comprar computação paga.
-- Antes de retomar, conferir host, PID, lock e logs no computador executor. Nunca duplicar um treinamento por timeout, falta de arquivos em outra máquina ou snapshot antigo. Não iniciar cópia concorrente de um ciclo que segue no notebook.
-- A interface Next.js está em `dataview/`; executar npm nesse diretório. Exibir contagens e resultados derivados de evidências reais, distinguir ciclos e informar artefatos indisponíveis. Ausência local não significa zero treinamentos no estudo.
-- Identificadores novos em português; preservar nomes dos argumentos oficiais da API Mamba. Registrar verificações realizadas e limitações do ambiente.
-
-## Manutenção da documentação
-
-Manter este arquivo como guia estável. Atualizá-lo quando mudarem objetivo, regras permanentes ou caminhos de referência; não usá-lo como diário de treinamento ou placar. Registrar decisões e motivos em `docs/adr/`, evolução factual em `docs/andamento.md`, evidências em `registros/` e artefatos por tentativa em `dados/experimentos/`. Seguir os formatos existentes sem mover artefatos congelados. Distinguir claramente proposto, autorizado, executado e auditado.
+- Respeitar o pedido atual e o escopo já autorizado. Separar proposta, autorização, qualificação, execução e auditoria; não iniciar ou retomar treino/busca por inferência de um documento histórico. Não pedir novamente uma autorização que já cobre a ação.
+- Preservar causalidade, seleção independente do teste e rastreabilidade. Distinguir observação, interpretação e hipótese; não inventar resultados, referências ou aprovação acadêmica.
+- Manter fontes, dados, configurações e artefatos congelados intactos. Alterações científicas precisam de identidade própria; nunca atualizar hashes para aceitar divergências nem apagar tentativas por desempenho ruim.
+- Antes de iniciar ou retomar processos, conferir ambiente, host, PID, locks, logs e progresso. Não duplicar processo vivo, substituir implementação silenciosamente ou treinar para compensar artefatos ausentes.
+- Não enviar ordens reais. Uso de conta de negociação, alavancagem real ou computação paga exige autorização específica; tarefas de simulação e pesquisa não a concedem.
+- Atualizar o documento que já cumpre a função. Não criar um relatório por conversa nem duplicar resultados nos guias; registrar achados relevantes com vínculo às evidências.
+- Usar identificadores novos em português, preservando nomes oficiais das APIs. Conferir o que mudou com verificações pertinentes e informar limites, falhas e testes não executados.

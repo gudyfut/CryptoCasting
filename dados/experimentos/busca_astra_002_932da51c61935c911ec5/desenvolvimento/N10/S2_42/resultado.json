@@ -1,0 +1,72 @@
+{
+  "utc": "2026-11-04T19:53:34.298513+00:00",
+  "seed": 42,
+  "bloco": "S2",
+  "receita": {
+    "representacao": "janela_relativa",
+    "indicadores": false,
+    "contexto": 24,
+    "largura": 32,
+    "camadas": 2,
+    "estado": 16,
+    "dropout": 0.1,
+    "pooling": "ultimo",
+    "taxa": 0.0001,
+    "decay": 0.001,
+    "otimizador": "AdamW",
+    "perda": "huber",
+    "scheduler": "constante",
+    "ganho_saida": 1,
+    "momentum": true,
+    "volatilidade": false,
+    "volume_relativo": false
+  },
+  "epoca": 12,
+  "epocas_executadas": 22,
+  "parametros": 20321,
+  "recarga_exata": true,
+  "segundos": 105.96227163200001,
+  "checkpoint_final_sha256": "02ce8d4391f4cdb4d46ce755037f93505959ea1a0bde643907291cc924ad2d97",
+  "memoria_cuda_maxima_bytes": 83594240,
+  "treino_amostra_fixa": {
+    "n": 2048,
+    "mse": 0.0013151989313604205,
+    "rmse": 0.03626567152777432,
+    "mae": 0.025422095522379288,
+    "mse_naive": 0.0013454916043799086,
+    "vies": 0.0018473517610869987,
+    "sd_previsao": 0.006113581545721544,
+    "sd_alvo": 0.036662815025905404,
+    "acuracia_direcional": 0.529296875,
+    "balanced_accuracy": 0.5256063867136817
+  },
+  "validacao": {
+    "n": 2002,
+    "mse": 0.00049564389128187,
+    "rmse": 0.02226306113906778,
+    "mae": 0.016227755370450663,
+    "mse_naive": 0.0005020511335558228,
+    "vies": -0.0012585887194201603,
+    "sd_previsao": 0.0023155814819487788,
+    "sd_alvo": 0.02238130521061072,
+    "acuracia_direcional": 0.5339660339660339,
+    "balanced_accuracy": 0.543102690346404
+  },
+  "comparacao": {
+    "n": 2184,
+    "mse": 0.0002510876803709088,
+    "rmse": 0.015845746444106343,
+    "mae": 0.009752661105349688,
+    "mse_naive": 0.0002466425882382225,
+    "vies": 0.001054747099820924,
+    "sd_previsao": 0.0026234469173828027,
+    "sd_alvo": 0.01564601235837812,
+    "acuracia_direcional": 0.5302197802197802,
+    "balanced_accuracy": 0.506766793200198
+  },
+  "diagnostico": {
+    "sd_representacao_media": 0.3609786331653595,
+    "norma_pesos_saida": 0.5201849341392517,
+    "fracao_clipping_ultima_epoca": 0.47368421052631576
+  }
+}

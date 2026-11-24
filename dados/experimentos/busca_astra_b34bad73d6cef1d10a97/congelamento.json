@@ -1,0 +1,170 @@
+{
+  "configuracao": {
+    "versao": 1,
+    "ciclo": "busca_astra_001",
+    "modelo_agente": "gpt-6-astra",
+    "esforco": "max",
+    "autenticacao": "assinatura ChatGPT pelo Codex CLI; sem API paga ou fallback de modelo",
+    "orcamento": {
+      "exploracao_horas_maximas": 12,
+      "triagem_horas_maximas": 8,
+      "candidatas_maximas": 12,
+      "promovidas_maximas": 3,
+      "referencia_desenvolvimento": 6,
+      "controle_referencia": 1,
+      "triagem_maxima": 24,
+      "complemento_promocao_maximo": 12,
+      "finalista_maxima": 32,
+      "referencia_final_maxima": 32,
+      "controle_finalista": 1,
+      "ajustes_reais_maximos": 108,
+      "ajuste_segundos_maximos": 2700,
+      "fase_final_treinamento_horas_maximas": 12,
+      "simulacoes_finais_maximas": 408,
+      "consultas_astra_maximas": 12,
+      "consulta_astra_segundos_maximos": 1800
+    },
+    "selecao": {
+      "score": "media igualmente ponderada de MSE/Naive em D1/D2 e seeds disponiveis",
+      "checkpoint": "menor MSE real da validacao; empate conserva primeira epoca",
+      "promocao": "ate3menores scores com uma seed; complementar17/2026 sem repetir42",
+      "elegibilidade_final": "seis ajustes completos, reducao score >=0,1% contra referencia, MSE medio menor nos dois recortes e >=4/6pares melhores",
+      "desempate": "menor pior razao MSE/Naive, menos parametros, ID",
+      "ausencia_de_ganho": "encerrar sem finalista; nao buscar ate vencer"
+    },
+    "fixos": {
+      "par": "BTCUSDT",
+      "candle_horas": 1,
+      "alvo_horas": 24,
+      "origens_horas": 1,
+      "indice_inicial_comum": 336,
+      "seeds_triagem": [
+        42
+      ],
+      "seeds_promocao": [
+        42,
+        17,
+        2026
+      ],
+      "seeds_final": [
+        42,
+        17,
+        2026,
+        7,
+        123,
+        31415,
+        271828,
+        161803
+      ],
+      "batch": 64,
+      "microbatch": 32,
+      "epocas_maximas": 100,
+      "paciencia": 10,
+      "clipping": 1.0
+    },
+    "falhas": "Preservar e interromper; sem reduzir batch, substituir seed/modelo ou repetir automaticamente.",
+    "exposicao": "Exploracao2023; avaliacao2024/2025retrospectiva ja consultada; sem novo holdout.",
+    "edicao_pesos": "Somente regra fixa de contracao da cabeca em retorno real, em copia; nenhum codigo arbitrario executado pelo agente.",
+    "comparacao": "Referencia nova no mesmo aquecimento/implementacao; nao substituir referencias historicas. Final e comparacao de receitas selecionadas, nao ablacao."
+  },
+  "fontes": {
+    "experimentos/busca_astra/agente.py": "57f00107973e1307669e7719ee31e1cd353c4428034bc98155dc16c55362f80f",
+    "experimentos/busca_astra/ciclo.py": "32f625e634565c31894a51d2942b95c7ead2f530a5692c4ebeab3fb9800cf267",
+    "experimentos/busca_astra/contrato.py": "80c31abde18710ee637795a2abb2d6abbb9789b3b210b802c3f824a77baabc1c",
+    "experimentos/busca_astra/dados.py": "34fdfff67f19a54ee2c3d7abacee6743aea78108d6a750b0d26c90badb79a248",
+    "experimentos/busca_astra/publicacao.py": "72baec7480908394cc682bad0ede0adc87bac7020e692de9ac65bc5aa8e68268",
+    "experimentos/busca_astra/qualificar.py": "81bd59b378dc5ea175daea5b43bee2442b457bb045a6d4d5852544b373009bfb",
+    "experimentos/busca_astra/rede.py": "173891f3c6536154f6933ad878b95dc74b1feecdc033df0426dc2085f3363d84",
+    "experimentos/busca_astra/treino.py": "10d21d050e5b55dd1b0f5096b0bcaa9ff74c53cb9beea37c94d27322721100a6",
+    "experimentos/busca_astra/worker.py": "5cf6dd0966c7912996f1fed96217888fac0cdf18957b670fd12b8abdd9e71f23",
+    "experimentos/busca_astra/__init__.py": "80f36454f7f79193110b36dd87aba774d7fd61fbeb6fad83c744b4d3581b67a1",
+    "experimentos/busca_astra/__main__.py": "cca829957c2c8bf81e1f8f165e20e88e1f8648999418b58092e43a5f33e59b40",
+    "tests_busca_astra/test_contrato_dados.py": "74ca17703309f9cc4f55f37f300aea3cb02af3ea1f383dc9d111a735ea154ff6",
+    "tests_busca_astra/test_orquestracao.py": "079211db0e17897a97cfc7b480d4a707713f1db8b89e9fec08539e0351848b53",
+    "tests_busca_astra/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "infraestrutura/artefatos.py": "8a6b3cfeee815cdc3742ddf6b6fe7e972fa0757099f16212310515c49eb28a3e",
+    "infraestrutura/__init__.py": "91c8cb2892c40d290684a1d0bd676b3278cdce4841696602d9e41805f1b062d5",
+    "modelos/arima.py": "df37e823342bff7d70833ea056ba24e6293f204b455f227a66c28bfff4654538",
+    "modelos/conferencia.py": "b553421f8ea9c18370695c9e41561384330a207dd5efb0906bcec308538d50bf",
+    "modelos/consumo.py": "45bc850a421175b72a2500b256d0e7b8563892a638ba1e572e4ca22527af6a40",
+    "modelos/contratos.py": "cbcd7f912ce4615549300cee2f04974e59a7ecfb3eb836e035c634eddb620447",
+    "modelos/lstm.py": "bff60cbcc12a185e666b8a511e5be2d5e0ab25c0764f7ecd93e876601dbc04dd",
+    "modelos/mamba.py": "0ca157f55f0f788beee09aa43768eccf0dae139fe969f5823a855cb1a755773a",
+    "modelos/naive.py": "bd12107c6e9311e68b2377c6417ff32d3de756f5150e3d4d9714fa630cfd045d",
+    "modelos/neurais.py": "4b6cb724313d3b5df83a79afc3291dc0d644110158f0e5c6f62bd6bab85d4c54",
+    "modelos/__init__.py": "9008c1d8057a95f0496b9d1237b06c59032143dbe0534ceed59cb83af38f05b8",
+    "treinamento/ambiente.py": "9e0acf1c09537ea3259d6f02bb6f096cdb819a11c6b1670d95e292e793732bd6",
+    "treinamento/arima.py": "7d22218fac30a5a42921cfe7426d34132e836d400fda4e87c375c80919720ca0",
+    "treinamento/avaliar.py": "0ac89e31da797126b0a19c52444792f0eaee795240f87771b104ed16178b94f0",
+    "treinamento/checkpoints.py": "0f9ceb192473ec2f66245dee215bc63ba88b264beaa47153409ec95fcbc986d2",
+    "treinamento/ciclo.py": "f2438024b6cbfe050eb07ec0f74ab082b666fb23764dff0e1ec6b0aaf694ecf6",
+    "treinamento/configuracao.py": "e63e4131786d207a9e514e4d3c4b82b688c33213d20bb08850112cad04c81182",
+    "treinamento/neural.py": "05928af030bed5b12fe3904ee940f21a735c39e5aac568febbce8a7c4d3d2f08",
+    "treinamento/otimizacao.py": "96bf1dcad24de3cfd9beb1e0b76becfb68c1ff137b84a4eb66b9067f5b07a334",
+    "treinamento/preservacao.py": "0dbaefa24cad87ddadeaa727748bef5ff24a9f26e612497d0341399dc6db08e8",
+    "treinamento/qualificacao.py": "a7f760310cbef8c3d81900cf92b2ad2995d5e7ef0d1fec56f92a2cf2f7610cda",
+    "treinamento/selecao.py": "1671fb202499e547a032488ee51b3b0e214cea0f7e50c394b3b2a2e09591a8db",
+    "treinamento/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "backtest_carteira/auditoria.py": "ad439a8d6e2bfe8367ff6d2e96da7e53cd2ca9f86f20ec8d25b4b6a64297bcd9",
+    "backtest_carteira/ciclo.py": "c5ce171fc8298a9e104eb57a2720418bf234425e9b3800df5c62c0a47ad45747",
+    "backtest_carteira/mercado.py": "fb85e0bdac113a4fd57af4332e6ef3fd9ebb31ffb7ba007011648dce505d6f37",
+    "backtest_carteira/politicas.py": "0ab300634f73d4cd34d23bb6a3d48d4bd5f838e23201cf8327a3712eed7a6b79",
+    "backtest_carteira/relatorio.py": "ac0724e405cf6d08280567ca43446f2deb4826a61896b09eff60f4303e9dd54e",
+    "backtest_carteira/simulador.py": "d7fa1748b0e92d23ceb5e1289790977eee351dd86b442f8ab3d18d127be020ec",
+    "backtest_carteira/__init__.py": "935fcaa3336cd1f24f27457418b2cc6abd9d5b24f85f3fdc8dbb69dae8553d27",
+    "docs/protocolo_busca_astra.md": "3b657576a124437a61c2ecb34f76c760ac72f3dd86416bef542c8aac888e80f6",
+    "configuracoes/busca_astra_001.json": "03dbc1df353330e20ccfbb25038fd3caeef065a8525642f7c704505ae773861e",
+    "experimentos/__init__.py": "a14e911bc32033a54926e3b27386c9f3f4b04efeb02cf5aceda53f68d1856b3a"
+  },
+  "referencia": {
+    "representacao": "relativa",
+    "indicadores": false,
+    "contexto": 168,
+    "largura": 32,
+    "camadas": 2,
+    "estado": 16,
+    "dropout": 0.1,
+    "pooling": "ultimo",
+    "taxa": 0.0002,
+    "decay": 0.001,
+    "otimizador": "AdamW",
+    "perda": "mse",
+    "scheduler": "constante",
+    "ganho_saida": 1.0
+  },
+  "ambiente_cuda": {
+    "python": "3.12.13",
+    "torch": "2.6.0+cu118",
+    "cuda": "11.8",
+    "gpu": "NVIDIA GeForce RTX 4050 Laptop GPU",
+    "pacotes": {
+      "mamba-ssm": "2.2.6.post3",
+      "causal-conv1d": "1.6.2.post1",
+      "numpy": "2.2.6",
+      "pandas": "3.0.3",
+      "pyarrow": "24.0.0"
+    }
+  },
+  "ambiente_coordenador": {
+    "python": "3.14.5",
+    "codex": "codex-cli 0.160.0",
+    "pacotes": {
+      "numpy": "2.4.6",
+      "pandas": "3.0.3",
+      "pyarrow": "24.0.0"
+    }
+  },
+  "qualificacao": {
+    "arquivo": "registros\\busca_astra\\qualificacao_final.json",
+    "sha256": "7eecb162212b955a4bd2b6393451a174e0ea1494669e9ed20aafb86654418c63"
+  },
+  "candles": {
+    "pasta": "dados/mercado/candles/93509a1b06b19103ac1c",
+    "manifesto_sha256": "d5db95722b2649ebefe360f3e8235762e373be3469d9d06ce442c31e45fc7908"
+  },
+  "backtest_congelamento_sha256": "a0fa959f80576d9ee421e5d51b0834377ecd918b310af228a1608a221eaaf7a7",
+  "minutos_manifesto_sha256": "c400f234dee55aba0ea042d09a77018166502b516be54bdb27f1b6d3ed0ac3d3",
+  "preservacao_sha256": "0f81b526d7ad3457a09b3a2d18485fe239c787a5aa197e865f351896ffec83d0",
+  "id": "b34bad73d6cef1d10a97",
+  "utc": "2026-11-04T02:31:01.008819+00:00"
+}

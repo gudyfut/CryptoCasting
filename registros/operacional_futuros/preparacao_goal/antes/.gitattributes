@@ -1,0 +1,140 @@
+# Novos artefatos científicos precisam conservar os bytes usados nos hashes.
+/dados/brutos/binance_spot_1m/** -text
+/dados/processados/retorno24_*/** -text
+/dados/experimentos/retorno24_*/** -text
+/dados/experimentos/penalizacao_*/** -text
+/dados/experimentos/normalizacao_*/** -text
+/experimento_normalizacao/** -text
+/run_normalizacao.py -text
+/docs/protocolo_normalizacao_mamba.md -text
+/tests_normalizacao/*.py -text
+
+# Recibos/snapshots e fontes congeladas podem conter LF ou CRLF originais.
+# Conservar bytes; não normalizar o checkout nem reescrever blobs antigos.
+/registros/** -text
+/arquivo/** -text
+/previsao24/** -text
+/experimento_penalizacao/** -text
+/run_previsao.py -text
+/run_penalizacao.py -text
+/configuracoes/*.json -text
+/docs/protocolo_experimental.md -text
+/docs/protocolo_penalizacao_mamba.md -text
+/tests/*.py -text
+/tests_penalizacao/*.py -text
+/manutencao/consolidar_resultados.py -text
+
+/AGENTS.md text eol=lf
+/docs/adr/** text eol=lf
+/docs/armazenamento_e_reproducao.md text eol=lf
+
+/estudo_ohlcv/** -text
+/run_ohlcv.py -text
+/tests_ohlcv/** -text
+/dados/processados/ohlcv24_*/** -text
+/dados/experimentos/ohlcv24_*/** -text
+/infraestrutura/** -text
+/mercado_binance/** -text
+/entradas_modelo/** -text
+/dados/mercado/** -text
+/dados/entradas/** -text
+/dados/coletas_binance/** -text
+/modelos/** -text
+/tests_modelos/** -text
+/run_modelos.py -text
+
+/treinamento/** -text
+/avaliacao/** -text
+/tests_treinamento/** -text
+/run_treinamento.py -text
+/dados/experimentos/ohlcv_modular_*/** -text
+
+/experimento_estado_mamba/** -text
+/tests_estado_mamba/** -text
+/run_estado_mamba.py -text
+/dados/experimentos/estado_mamba_*/** -text
+
+/experimento_estados_ampliados/** -text
+/tests_estados_ampliados/** -text
+/run_estados_ampliados.py -text
+/dados/experimentos/estados_ampliados_*/** -text
+
+/docs/protocolo_estado_mamba.md -text
+/docs/protocolo_estados32_64.md -text
+
+/experimento_complemento16/** -text
+/tests_complemento16/** -text
+/run_complemento16.py -text
+/dados/experimentos/complemento_estado16_*/** -text
+/docs/protocolo_complemento_estado16.md -text
+
+/experimento_taxa_aprendizado/** -text
+/tests_taxa_aprendizado/** -text
+/run_taxa_aprendizado.py -text
+/dados/experimentos/taxa_aprendizado_*/** -text
+/docs/protocolo_taxa_aprendizado.md -text
+
+/experimento_cryptomamba/** -text
+/tests_cryptomamba/** -text
+/run_cryptomamba.py -text
+/dados/experimentos/cryptomamba_adaptado_*/** -text
+/docs/protocolo_cryptomamba_adaptado.md -text
+
+/backtest_carteira/** -text
+/tests_backtest_carteira/** -text
+/run_backtest.py -text
+/run_backtest_revisado.py -text
+/docs/protocolo_backtest_carteira.md -text
+/dados/experimentos/backtest_carteira_*/** -text
+
+/experimento_otimizador/** -text
+/tests_otimizador/** -text
+/run_otimizador.py -text
+/docs/protocolo_otimizador_cryptomamba.md -text
+/dados/experimentos/cryptomamba_adamw_*/** -text
+
+/experimentos/** -text
+/analises/** -text
+/tests_scheduler/** -text
+/run_experimento.py -text
+/docs/protocolo_taxa_dinamica.md -text
+/dados/experimentos/mamba16_taxa_dinamica_*/** -text
+/tests_huber/** -text
+/docs/protocolo_perda_huber.md -text
+/dados/experimentos/mamba16_perda_huber_*/** -text
+/tests_huber_blocos/** -text
+/docs/protocolo_huber_blocos.md -text
+/dados/experimentos/huber_blocos_*/** -text
+/tests_entradas_niveis/** -text
+/docs/protocolo_entradas_niveis.md -text
+/dados/experimentos/entradas_niveis_*/** -text
+
+/tests_crua_huber/** -text
+/docs/protocolo_crua_huber.md -text
+/dados/experimentos/crua_huber_*/** -text
+
+/tests_busca_astra/** -text
+/docs/protocolo_busca_astra.md -text
+/dados/experimentos/busca_astra_*/** -text
+
+experimentos/comparacao_astra_crua/** -text
+tests_comparacao_astra_crua/** -text
+configuracoes/comparacao_astra_crua_001.json -text
+docs/protocolo_comparacao_astra_crua.md -text
+dados/experimentos/comparacao_astra_crua_*/** -text
+
+mercado_futuros/** -text
+simulacao_operacoes/** -text
+experimentos/futuros/** -text
+tests_simulacao_operacoes/** -text
+configuracoes/futuros_001.json -text
+docs/protocolo_futuros.md -text
+dados/experimentos/futuros_*/** -text
+dados/mercado/futuros_um/** -text
+
+simulacao_operacoes/smart/** -text
+experimentos/smart_mercados/** -text
+tests_smart_mercados/** -text
+configuracoes/smart_mercados_001.json -text
+docs/protocolo_smart_mercados.md -text
+dados/experimentos/smart_mercados_*/** -text

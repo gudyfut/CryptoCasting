@@ -1,0 +1,10 @@
+{
+  "acao": "experimentar",
+  "pai": "N09",
+  "fator": "contexto",
+  "mecanismo": "Reverter apenas o encurtamento do contexto, de 24 para 72 horas. Hipótese: a trajetória adicional permite distinguir movimentos persistentes de transitórios que os resumos de momentum não distinguem, compensando a perda de informação sob dropout 0,2. Com N01 e N07, este contraste inédito permite avaliar a interação entre contexto e dropout; remover momentum de N09 já produziria N11.",
+  "metrica_esperada": "Espero Q inferior ao 1,01756 de N09 nos seis pares completos, após recarga, sem aumento da razão MAE/Naive média. Q igual ou superior contraria a hipótese de benefício. Qualquer finalista continua dependendo da promoção para seed 2026 e de todos os portões predefinidos.",
+  "risco": "Com dropout 0,1, N01 apresentou Q maior que N07; portanto, o benefício depende de uma interação ainda não demonstrada. A história adicional pode introduzir ruído e piorar a generalização.",
+  "custo": "Seis treinos, mais três se estiver entre as três melhores receitas. Mantém 20.321 parâmetros e triplica as posições processadas por janela; memória de ativações aumenta, e o tempo total depende da parada antecipada.",
+  "valor": "72"
+}

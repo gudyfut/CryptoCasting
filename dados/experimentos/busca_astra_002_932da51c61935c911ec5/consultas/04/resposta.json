@@ -1,0 +1,10 @@
+{
+  "acao": "experimentar",
+  "pai": "N06",
+  "fator": "momentum",
+  "mecanismo": "N06 tem o menor Q na cobertura completa da triagem, aproximadamente 1.01083. Acrescentar logret24/168 retrospectivos permite representar tendência semanal mantendo contexto 24. A hipótese é que essa informação reduza o erro associado à omissão de história longa; será refutada nesta comparação se Q não diminuir frente ao pai.",
+  "metrica_esperada": "Q inferior a 1.01083 nas seis combinações de recorte e seed 42/17, pontuadas após recarga. Como diagnóstico, espera-se reduzir o Q médio de S3, atualmente 1.02328. Seleção pelo Q completo; eventual finalista depende da seed 2026 e de todos os portões estabelecidos.",
+  "risco": "Momentum em N01 piorou S1 nas duas seeds frente a A0_C05. A informação adicional pode aumentar sobreajuste e variância, anulando a vantagem do contexto curto. Melhorar frente a N06 pode ainda ser insuficiente para superar Naive e os portões finais.",
+  "custo": "Seis treinos na triagem e mais três se estiver entre as três melhores. Dois canais adicionais e 64 parâmetros extras, totalizando 20321. Custo por época próximo ao pai; as seis execuções de N06 somaram aproximadamente 552 segundos, apenas como referência.",
+  "valor": "true"
+}

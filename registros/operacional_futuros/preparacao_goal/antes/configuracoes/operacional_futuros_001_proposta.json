@@ -1,0 +1,363 @@
+{
+  "proposta": "operacional_futuros_001",
+  "versao": 1,
+  "data_local": "2026-11-04",
+  "fuso": "America/Sao_Paulo",
+  "situacao": "desenho_proposto_nao_executavel",
+  "executavel": false,
+  "desenho": "docs/desenho_operacional_futuros.md",
+  "decisao": "docs/adr/0028-pesquisa-operacional-futuros.md",
+  "objetivo": "Comparar Mamba + politica no proprio mercado futuro, por crescimento liquido e compromisso retorno/drawdown.",
+  "autorizacao": {
+    "organizacao_e_desenho": true,
+    "treinamento": false,
+    "busca": false,
+    "backtest_novo": false,
+    "conta_real": false,
+    "api_paga": false
+  },
+  "mercado": {
+    "simbolo": "BTCUSDT",
+    "instrumento": "USD-M perpetuo linear",
+    "lados": [
+      "compra",
+      "venda",
+      "caixa"
+    ],
+    "candles_horas": 1,
+    "execucao_minutos": 1,
+    "prazo_maximo_horas": 24,
+    "contexto_inicial_horas": 168,
+    "contextos_permitidos_horas": [
+      24,
+      72,
+      168
+    ],
+    "aquecimento_comum_horas": 336,
+    "dados_atuais": "registros/mercado_futuros/estado.json",
+    "cobertura_necessaria_inicio": "2021-01-01",
+    "coleta_desenvolvimento_pendente": true
+  },
+  "familias_iniciais": [
+    {
+      "id": "R0",
+      "entrada": "ohlcv_cru",
+      "alvo": "log_retorno_terminal_24h_futuro",
+      "perda": "2_huber_delta1_alvo_padronizado",
+      "selecao_epoca": "mse_real_validacao",
+      "herdar_pesos": false
+    },
+    {
+      "id": "P0",
+      "entrada": "ohlcv_cru",
+      "alvo": "payoff_liquido_unitario_compra_venda",
+      "perda": "mse_dois_alvos_padronizados",
+      "selecao_epoca": "mse_real_medio_dois_canais_validacao",
+      "herdar_pesos": false
+    }
+  ],
+  "rede_inicial": {
+    "familia": "Mamba1_oficial_CUDA",
+    "d_state": 16,
+    "otimizador": "AdamW",
+    "taxa": 0.0002,
+    "receita_ancestral": "configuracoes/busca_astra_002.json",
+    "demais_argumentos": "Copiar receita crua/Huber por hash e qualificar a adaptacao; ainda nao congelados nesta proposta."
+  },
+  "barreiras_iniciais": {
+    "volatilidade": "std(log_retornos_horarios_168h,ddof=1)*sqrt(24)",
+    "distancia_stop_log": "max(volatilidade,0.005)",
+    "multiplicador_take": 1.5,
+    "fixas_na_entrada": true,
+    "mudanca_exige_novo_alvo_payoff": true
+  },
+  "carteira": {
+    "capital_usdt": 10000,
+    "fracao_maxima_nocional_entrada": 0.95,
+    "posicoes_simultaneas": 1,
+    "busca_alavancagem": false,
+    "risco_nominal_stop": [
+      0.005,
+      0.01
+    ],
+    "aportes_saques": false,
+    "tributos_incluidos": false
+  },
+  "politicas_calibracao": {
+    "margem_adicional_entrada": [
+      0.0,
+      0.001,
+      0.002
+    ],
+    "risco_nominal_stop": [
+      0.005,
+      0.01
+    ],
+    "cadencia_horas_utc": [
+      1,
+      4
+    ],
+    "total": 12,
+    "calibracao": "Uma politica por receita/recorte selecionada em C, conjunta para as seeds daquela fase. Nunca por S."
+  },
+  "execucao_proposta": {
+    "latencia_minutos": 1,
+    "comissao_taker_por_lado": 0.0005,
+    "deslizamentos_por_preenchimento": [
+      0.0005,
+      0.001,
+      0.0015
+    ],
+    "funding": "historico_real",
+    "tarifa_conta_verificada": false,
+    "ambiguidades_stop_take": "stop_primeiro",
+    "margem_liquidacao": "Novo motor requer qualificacao; F03 nao certifica liquidacao Binance."
+  },
+  "criterio": {
+    "primario": "mediana_calmar_periodo_blocos_seeds",
+    "crescimento_diario": "log(patrimonio_final/patrimonio_inicial)/dias",
+    "calmar": "(exp(365*crescimento_diario)-1)/drawdown_maximo_mesmo_periodo",
+    "drawdown_zero": "indefinido_sem_infinito_ou_promocao",
+    "desempate": [
+      "crescimento_log_medio",
+      "menor_giro"
+    ],
+    "teto_drawdown_aprovado": null,
+    "resposta_usuario": "Solicitou metrica de equilibrio entre crescimento e risco; nao escolheu 25%.",
+    "fronteira": [
+      "crescimento_composto",
+      "drawdown_maximo"
+    ],
+    "mse_e_gate_economico": false
+  },
+  "elegibilidade_proposta": {
+    "cobertura_completa": true,
+    "insolvencia_liquidacao_permitida": false,
+    "crescimento_medio_base_positivo": true,
+    "crescimento_medio_deslizamento_2x_positivo": true,
+    "recortes_com_crescimento_medio_positivo_minimo": 2,
+    "operacoes_encerradas_minimo_por_carteira_S": 20,
+    "seeds_positivas_reforco_minimo": 6,
+    "seeds_reforco_total": 8,
+    "provar_habilidade_vendida": "Diagnostico separado; lucro total nao basta."
+  },
+  "calendario": {
+    "utc": true,
+    "fim_exclusivo": true,
+    "desenvolvimento": [
+      {
+        "id": "D1",
+        "treino": [
+          "2021-01-01",
+          "2022-10-01"
+        ],
+        "validacao": [
+          "2022-10-01",
+          "2023-01-01"
+        ],
+        "calibracao": [
+          "2023-01-01",
+          "2023-04-01"
+        ],
+        "comparacao": [
+          "2023-04-01",
+          "2023-07-01"
+        ]
+      },
+      {
+        "id": "D2",
+        "treino": [
+          "2021-01-01",
+          "2023-01-01"
+        ],
+        "validacao": [
+          "2023-01-01",
+          "2023-04-01"
+        ],
+        "calibracao": [
+          "2023-04-01",
+          "2023-07-01"
+        ],
+        "comparacao": [
+          "2023-07-01",
+          "2023-10-01"
+        ]
+      },
+      {
+        "id": "D3",
+        "treino": [
+          "2021-01-01",
+          "2023-04-01"
+        ],
+        "validacao": [
+          "2023-04-01",
+          "2023-07-01"
+        ],
+        "calibracao": [
+          "2023-07-01",
+          "2023-10-01"
+        ],
+        "comparacao": [
+          "2023-10-01",
+          "2024-01-01"
+        ]
+      }
+    ],
+    "final_retrospectiva": [
+      {
+        "id": "B1",
+        "treino": [
+          "2021-01-01",
+          "2023-07-01"
+        ],
+        "validacao": [
+          "2023-07-01",
+          "2023-10-01"
+        ],
+        "calibracao": [
+          "2023-10-01",
+          "2024-01-01"
+        ],
+        "avaliacao": [
+          "2024-01-01",
+          "2024-07-01"
+        ]
+      },
+      {
+        "id": "B2",
+        "treino": [
+          "2021-01-01",
+          "2024-01-01"
+        ],
+        "validacao": [
+          "2024-01-01",
+          "2024-04-01"
+        ],
+        "calibracao": [
+          "2024-04-01",
+          "2024-07-01"
+        ],
+        "avaliacao": [
+          "2024-07-01",
+          "2025-01-01"
+        ]
+      },
+      {
+        "id": "B3",
+        "treino": [
+          "2021-01-01",
+          "2024-07-01"
+        ],
+        "validacao": [
+          "2024-07-01",
+          "2024-10-01"
+        ],
+        "calibracao": [
+          "2024-10-01",
+          "2025-01-01"
+        ],
+        "avaliacao": [
+          "2025-01-01",
+          "2025-07-01"
+        ]
+      },
+      {
+        "id": "B4",
+        "treino": [
+          "2021-01-01",
+          "2025-01-01"
+        ],
+        "validacao": [
+          "2025-01-01",
+          "2025-04-01"
+        ],
+        "calibracao": [
+          "2025-04-01",
+          "2025-07-01"
+        ],
+        "avaliacao": [
+          "2025-07-01",
+          "2026-01-01"
+        ]
+      }
+    ],
+    "purga": "Tempo maximo de realizacao do alvo, incluindo latencia/entrada/saida. Testar por timestamps.",
+    "periodos_ja_consultados": true,
+    "politica_global_entre_recortes": false
+  },
+  "seeds": {
+    "exploracao": [
+      42,
+      17,
+      2026
+    ],
+    "reforco_e_final": [
+      42,
+      17,
+      2026,
+      7,
+      123,
+      31415,
+      271828,
+      161803
+    ]
+  },
+  "busca_proposta": {
+    "receitas_maximo_incluindo_iniciais": 8,
+    "propostas_astra_maximo": 6,
+    "candidatas_reforcadas_maximo": 2,
+    "referencia_adicional_reforco": "R0",
+    "finalistas_maximo": 1,
+    "consultas_proponente_maximo": 8,
+    "horas_exploracao_reforco_maximo": 24,
+    "horas_final": "Estimar apos benchmark; nao incluida na promessa de um dia.",
+    "campos_locais": [
+      "contexto",
+      "representacao_ohlcv",
+      "grupo_indicadores_causais",
+      "d_state_16_32",
+      "taxa_0001_0002",
+      "barreiras_identificadas"
+    ],
+    "grade_detalhada_congelada": false,
+    "fora_primeira_rodada": [
+      "candle_15min_4h",
+      "horizonte_6h",
+      "alavancagem",
+      "saidas_adaptativas",
+      "edicao_manual_pesos"
+    ]
+  },
+  "orcamento_proposto": {
+    "ajustes_exploracao": 72,
+    "controles_iniciais": 2,
+    "ajustes_reforco_novos": 45,
+    "ajustes_finais": 64,
+    "controles_finais": 2,
+    "ajustes_novos_maximo": 185,
+    "carteiras_logicas_exploracao": 1224,
+    "carteiras_logicas_reforco": 1224,
+    "carteiras_logicas_final": 1088,
+    "carteiras_baselines": 84,
+    "carteiras_logicas_maximo": 3620,
+    "carteiras_fisicas": "Pode ser menor com heranca auditada; nenhuma executada nesta proposta."
+  },
+  "baselines": [
+    "caixa_naive_zero",
+    "sempre_comprado",
+    "sempre_vendido",
+    "tendencia_causal_fixa"
+  ],
+  "qualificacao_pendente": [
+    "dados_futuros_2021_2023",
+    "formulas_canais_e_grade_finitas",
+    "estimador_causal_funding",
+    "regra_baseline_tendencia",
+    "receita_completa_rede_e_treinador",
+    "motor_barreiras_margem_e_filtros",
+    "calmar_empates_e_bootstrap",
+    "benchmark",
+    "testes_causais_contabeis_cuda",
+    "identidade_congelamento_e_autorizacao"
+  ]
+}

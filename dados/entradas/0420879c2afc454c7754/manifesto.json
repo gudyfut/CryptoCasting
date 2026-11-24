@@ -1,0 +1,91 @@
+{
+  "id": "0420879c2afc454c7754",
+  "tipo": "entradas_modelo",
+  "criado_utc": "2026-10-28T22:44:53.671278+00:00",
+  "assinatura": {
+    "contrato": "entradas-1",
+    "configuracao": {
+      "versao": 1,
+      "par": "BTCUSDT",
+      "receita": "ohlcv_relativo_v1",
+      "canais": [
+        "abertura_relativa",
+        "maxima_relativa",
+        "minima_relativa",
+        "fechamento_relativo",
+        "volume_transformado"
+      ],
+      "alvo": "log_retorno_terminal",
+      "horizonte_minutos": 1440,
+      "contexto_passos": 168,
+      "passo_origens": 1,
+      "divisao": {
+        "treino": [
+          "2021-01-01T00:00:00Z",
+          "2024-01-01T00:00:00Z"
+        ],
+        "validacao": [
+          "2024-01-01T00:00:00Z",
+          "2025-01-01T00:00:00Z"
+        ],
+        "teste": [
+          "2025-01-01T00:00:00Z",
+          "2026-01-01T00:00:00Z"
+        ]
+      },
+      "normalizacao": "zscore_treino"
+    },
+    "candles": "dados/mercado/candles/93509a1b06b19103ac1c",
+    "manifesto_candles_sha256": "d5db95722b2649ebefe360f3e8235762e373be3469d9d06ce442c31e45fc7908",
+    "dependencias": [
+      {
+        "pasta": "dados/mercado/candles/93509a1b06b19103ac1c",
+        "manifesto_sha256": "d5db95722b2649ebefe360f3e8235762e373be3469d9d06ce442c31e45fc7908"
+      }
+    ],
+    "fontes": {
+      "infraestrutura/__init__.py": "91c8cb2892c40d290684a1d0bd676b3278cdce4841696602d9e41805f1b062d5",
+      "infraestrutura/artefatos.py": "8a6b3cfeee815cdc3742ddf6b6fe7e972fa0757099f16212310515c49eb28a3e",
+      "mercado_binance/__init__.py": "1993613e6993a8af8ee69166f85eb809bea6f069829376487a40ee3fb544dcc8",
+      "mercado_binance/api.py": "b170c17c808da6f030f69531e8196033b22dbb1137cb950c77c8a4f8f7d586a3",
+      "mercado_binance/candles.py": "99d539cc682c8662b4f267f0c594b54a46c8da9fa5cdd8b7757a22bb0a2eee05",
+      "mercado_binance/contratos.py": "7dfc6f0c4739629a7ca98f4cecbfc49d939a90967ccdef7dad5012356e4d9ac5",
+      "mercado_binance/pipeline.py": "2fae3c6c7474e7a77735e2c34a0bf56f38cf4f03ca267dcaeb830e8100ce1ba1",
+      "mercado_binance/transporte.py": "ec0bd84e482ec957ba611c4af3b8f5f7dc60abafdba88211a531c954c9da589b",
+      "mercado_binance/validacao.py": "fdb47dcb5a66e984db584170e597f14dd636cbf55f087a382b03c04e43f78395",
+      "entradas_modelo/__init__.py": "a32efc5cc42d7d1b858e7dd9c01d39c0b7466ce593021169fbc8940795ade29c",
+      "entradas_modelo/alvos.py": "60cd54bc0bf9bfdefbf49271edb44110b46a8538f45a1d4d6ceb44df4e0a7e4d",
+      "entradas_modelo/amostras.py": "a2c20315d8bae37ad2b35dcae8aa7f01c515afaa7ff82984a5d62b2211c10bbc",
+      "entradas_modelo/conjunto.py": "9744fd6327ed74634660b42185e120e23a481b6187d0897d3042973be2e61610",
+      "entradas_modelo/pipeline.py": "e9a69438d603ad5ab3e8dde88a0445811f78947ef5552c4949258bca370c0e63",
+      "entradas_modelo/receitas.py": "f60a285ba54b89be78ec30fa0e5c3e88ae73152e7b98920c1d6b36451aad3d5c"
+    }
+  },
+  "arquivos": {
+    "contrato.json": "6ba18c8b9fc1e499422a945ba1799e45b98e2eb963e1162ae06d6ad55d28b08c",
+    "entradas.npy": "94f90f72a9eb0b03ea732618dddf26303d921eee38f9d8560f04761964ad96bf",
+    "escalas.json": "42312a134ccd15032f4d9b7a59eba05630e9917d73800852162717d3d1262800",
+    "fontes/entradas_modelo/__init__.py": "a32efc5cc42d7d1b858e7dd9c01d39c0b7466ce593021169fbc8940795ade29c",
+    "fontes/entradas_modelo/alvos.py": "60cd54bc0bf9bfdefbf49271edb44110b46a8538f45a1d4d6ceb44df4e0a7e4d",
+    "fontes/entradas_modelo/amostras.py": "a2c20315d8bae37ad2b35dcae8aa7f01c515afaa7ff82984a5d62b2211c10bbc",
+    "fontes/entradas_modelo/conjunto.py": "9744fd6327ed74634660b42185e120e23a481b6187d0897d3042973be2e61610",
+    "fontes/entradas_modelo/pipeline.py": "e9a69438d603ad5ab3e8dde88a0445811f78947ef5552c4949258bca370c0e63",
+    "fontes/entradas_modelo/receitas.py": "f60a285ba54b89be78ec30fa0e5c3e88ae73152e7b98920c1d6b36451aad3d5c",
+    "fontes/infraestrutura/__init__.py": "91c8cb2892c40d290684a1d0bd676b3278cdce4841696602d9e41805f1b062d5",
+    "fontes/infraestrutura/artefatos.py": "8a6b3cfeee815cdc3742ddf6b6fe7e972fa0757099f16212310515c49eb28a3e",
+    "fontes/mercado_binance/__init__.py": "1993613e6993a8af8ee69166f85eb809bea6f069829376487a40ee3fb544dcc8",
+    "fontes/mercado_binance/api.py": "b170c17c808da6f030f69531e8196033b22dbb1137cb950c77c8a4f8f7d586a3",
+    "fontes/mercado_binance/candles.py": "99d539cc682c8662b4f267f0c594b54a46c8da9fa5cdd8b7757a22bb0a2eee05",
+    "fontes/mercado_binance/contratos.py": "7dfc6f0c4739629a7ca98f4cecbfc49d939a90967ccdef7dad5012356e4d9ac5",
+    "fontes/mercado_binance/pipeline.py": "2fae3c6c7474e7a77735e2c34a0bf56f38cf4f03ca267dcaeb830e8100ce1ba1",
+    "fontes/mercado_binance/transporte.py": "ec0bd84e482ec957ba611c4af3b8f5f7dc60abafdba88211a531c954c9da589b",
+    "fontes/mercado_binance/validacao.py": "fdb47dcb5a66e984db584170e597f14dd636cbf55f087a382b03c04e43f78395",
+    "operacional.parquet": "6cfec2a74af972a216948bfc7b7fe01a0e665f25ec0a186d8b3541ccd866150a",
+    "origens.parquet": "7b05fc3d99ddd65ac64fc29ed5c15a6296143c4706c2bbbf1e85a7a60f5cfbfe",
+    "populacoes.json": "095142284ac077db81a22a0dff5fa93a1477aaa323b48d338d262a35f766261c",
+    "tentativa.json": "f93b95d48d949d981f8243ae1dab20c04cb1a26d523eb4be032560d9f4d5f17e",
+    "teste.parquet": "27a46e0f572508950a64cd230b0cb0b266a1f2ff8a54fb95688663c844b1d390",
+    "treino.parquet": "621e938a04bca4e2d1779b4f750c5299d3bb9e6d062c0fc83ff6240e6f782bc6",
+    "validacao.parquet": "544a3327218e8201aea6b8dbd0003042ccfa7a15a0931ab4191a19091e752e9f"
+  }
+}

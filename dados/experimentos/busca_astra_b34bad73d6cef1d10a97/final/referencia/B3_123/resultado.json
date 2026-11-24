@@ -1,0 +1,69 @@
+{
+  "utc": "2026-11-04T05:46:12.285008+00:00",
+  "seed": 123,
+  "bloco": "B3",
+  "receita": {
+    "representacao": "relativa",
+    "indicadores": false,
+    "contexto": 168,
+    "largura": 32,
+    "camadas": 2,
+    "estado": 16,
+    "dropout": 0.1,
+    "pooling": "ultimo",
+    "taxa": 0.0002,
+    "decay": 0.001,
+    "otimizador": "AdamW",
+    "perda": "mse",
+    "scheduler": "constante",
+    "ganho_saida": 1.0
+  },
+  "epoca": 26,
+  "epocas_executadas": 36,
+  "parametros": 20257,
+  "recarga_exata": true,
+  "segundos": 292.5790239380003,
+  "checkpoint_final_sha256": "7e03eea392cd7230d13c185a62cc91c68dde06c36745cf13ba3ad95b4decb08c",
+  "memoria_cuda_maxima_bytes": 197367296,
+  "treino_amostra_fixa": {
+    "n": 2048,
+    "mse": 0.0007346900951812088,
+    "rmse": 0.027105167315130317,
+    "mae": 0.019550279844858322,
+    "mse_naive": 0.0010505126024746077,
+    "vies": 0.003408146543865502,
+    "sd_previsao": 0.016650299080487495,
+    "sd_alvo": 0.032409768087787345,
+    "acuracia_direcional": 0.60595703125,
+    "balanced_accuracy": 0.6041502142156806
+  },
+  "validacao": {
+    "n": 2184,
+    "mse": 0.0005892643741028877,
+    "rmse": 0.024274768260539332,
+    "mae": 0.018207648350725705,
+    "mse_naive": 0.0006130715287467168,
+    "vies": -0.0007486956723952564,
+    "sd_previsao": 0.007671884876776406,
+    "sd_alvo": 0.02437207051743923,
+    "acuracia_direcional": 0.5210622710622711,
+    "balanced_accuracy": 0.5059039455388034
+  },
+  "teste": {
+    "n": 4320,
+    "mse": 0.0005874330157285848,
+    "rmse": 0.024237017467679162,
+    "mae": 0.01735407693984466,
+    "mse_naive": 0.0005900900176014218,
+    "vies": -0.0013736882510069761,
+    "sd_previsao": 0.008478894725270554,
+    "sd_alvo": 0.0242799385262664,
+    "acuracia_direcional": 0.5289351851851852,
+    "balanced_accuracy": 0.534987623624239
+  },
+  "diagnostico": {
+    "sd_representacao_media": 0.13278241455554962,
+    "norma_pesos_saida": 0.7165326476097107,
+    "fracao_clipping_ultima_epoca": 1.0
+  }
+}

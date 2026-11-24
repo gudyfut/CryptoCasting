@@ -1,0 +1,72 @@
+{
+  "utc": "2026-11-11T10:00:41.231879+00:00",
+  "situacao": "aprovado",
+  "ambiente": {
+    "torch": "2.6.0+cu118",
+    "cuda": "11.8",
+    "gpu": "NVIDIA GeForce RTX 4050 Laptop GPU",
+    "pacotes": {
+      "mamba-ssm": "2.2.6.post3",
+      "causal-conv1d": "1.6.2.post1",
+      "numpy": "2.2.6"
+    },
+    "fontes_backend": {
+      "/home/murilorfm/.venvs/cc/lib/python3.12/site-packages/mamba_ssm/modules/mamba_simple.py": "a17e4c51b582dc0d4d690a649eba521cd0c1ee3dc8f0473a0967cdc9ec0874e3",
+      "/home/murilorfm/.venvs/cc/lib/python3.12/site-packages/mamba_ssm/ops/selective_scan_interface.py": "543edd077f11c80cccd5c5e2f926420d9105fd238d9e8960e53660cfa234dce8",
+      "/home/murilorfm/.venvs/cc/lib/python3.12/site-packages/causal_conv1d/cpp_functions.py": "80e75c8f761c88ede2ff73d244b0e9c0d2a974a780e2d3d8befeec1bd8aac29e",
+      "/home/murilorfm/.venvs/cc/lib/python3.12/site-packages/selective_scan_cuda.cpython-312-x86_64-linux-gnu.so": "9ef2a8bad7534cfac451bfe312124cd1efb609ecfd65ce63262526d3113c87e1",
+      "/home/murilorfm/.venvs/cc/lib/python3.12/site-packages/causal_conv1d_cuda.cpython-312-x86_64-linux-gnu.so": "72a06e63ea5a209ec95d5a7ecc7199750b6df4ddf5ecc9019cd2a5c5758e2aac"
+    },
+    "cublas_workspace": ":4096:8"
+  },
+  "sondas": [
+    {
+      "seed": 42,
+      "lote": 32,
+      "repeticoes": 20,
+      "forward_exato": true,
+      "gradientes_exatos": true,
+      "equivalencia_forward_gradiente_original": true,
+      "max_delta_forward": 5.960464477539063e-08,
+      "segundos": 3.937227296000003
+    },
+    {
+      "seed": 17,
+      "lote": 6,
+      "repeticoes": 20,
+      "forward_exato": true,
+      "gradientes_exatos": true,
+      "equivalencia_forward_gradiente_original": true,
+      "max_delta_forward": 1.862645149230957e-08,
+      "segundos": 2.8659447999999657
+    },
+    {
+      "seed": 2026,
+      "lote": 1,
+      "repeticoes": 20,
+      "forward_exato": true,
+      "gradientes_exatos": true,
+      "equivalencia_forward_gradiente_original": true,
+      "max_delta_forward": 0.0,
+      "segundos": 2.064479957000003
+    }
+  ],
+  "historico_pesos_previsoes_base_exatos": true,
+  "teste_inacessivel": true,
+  "benchmark": {
+    "ordem": "ABBA",
+    "epocas": 50,
+    "exemplos": 192,
+    "duracoes": {
+      "base_1": 49.11215747099999,
+      "cache_1": 47.07856034400004,
+      "cache_2": 51.256627538999965,
+      "base_2": 49.92429499600007
+    },
+    "ganho_fracao": 0.007080873421165035,
+    "cache_exatamente_equivalente": true
+  },
+  "cache_validacao_aprovado": false,
+  "novos_treinamentos_mercado": 0,
+  "limite": "Estimativa sintética; controle de mercado ainda obrigatório; CUDA/receita não alterados."
+}

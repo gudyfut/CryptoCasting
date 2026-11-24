@@ -1,0 +1,254 @@
+{
+  "utc": "2026-11-12T01:19:55.616102+00:00",
+  "configuracao": {
+    "ciclo": "comparacao_cryptomamba_diaria_001",
+    "pergunta": "Comparar operacionalmente o ensemble atual com uma receita local proxima do CryptoMamba publico, no mesmo mercado e executor, sem novos treinos.",
+    "autorizacao": "Pesquisador solicitou comparar os ganhos com CryptoMamba de forma justa, em11/11/2026; reusar previsoes e dados preservados, sem treino ou busca.",
+    "moeda": "BTCUSDT",
+    "seeds": [
+      42,
+      17,
+      2026
+    ],
+    "fases": [
+      "validacao",
+      "teste"
+    ],
+    "referencia_preco": "ac8183e1ecfb91102b48",
+    "referencia_operacional": "945f0e52b1f85184c3e7",
+    "comparacao": "Dois ensembles de3seeds com pesos iguais: preco sem padronizacao versus retorno padronizado. Comparacao de receitas compostas, nao efeito isolado de alvo ou padronizacao.",
+    "populacao": "Mesmas351origens2024 e350origens2025;treino2020-2023;validacao2024;teste2025retrospectivo.",
+    "politica": "Mesmo motor de continuidade, alvo95%, filtro0.002,latencia1min,capital10000,comissao0.0005,funding e filtros BTC preservados.",
+    "slippage_por_lado": [
+      0.0001,
+      0.0002,
+      0.0003
+    ],
+    "carteiras_novas": 6,
+    "carteiras_herdadas": 18,
+    "referencias_herdadas": [
+      "ensemble_retorno_padronizado",
+      "comprar_manter_futuro",
+      "naive_caixa"
+    ],
+    "controles_diarios_preco": 6,
+    "bootstrap": {
+      "blocos": [
+        7,
+        14,
+        28
+      ],
+      "principal": 14,
+      "replicas": 2000,
+      "seed": 11112026
+    },
+    "novos_treinamentos": 0,
+    "novas_inferencias": 0,
+    "fontes_publicadas": {
+      "artigo": "https://arxiv.org/html/2501.01010v2",
+      "commit_codigo": "fef42727861a9c3a32241283ab981ef21a49e291",
+      "resultados_sao_contexto": "Nao comparar como ranking direto com2025/2026:datas,fonte,instrumento,custos,politica e avaliacao de risco diferentes."
+    },
+    "limites": "A receita local de preco nao e o checkpoint do artigo. Nao chamar a comparacao de reproducao literal. Nao aplicar o modelo local a2023/2024 do artigo como holdout:treino/validacao locais se sobrepoem. Nao promover vencedor por teste conhecido. Sem2026novo nesta analise."
+  },
+  "preco": {
+    "id": "ac8183e1ecfb91102b48",
+    "pasta": "dados/experimentos/cryptomamba_reproducivel_ac8183e1ecfb91102b48",
+    "congelamento_sha256": "adf75fa90e92220b63565d2918d40e5280feec5cac1a161391c5b10d1b79431a"
+  },
+  "referencia": {
+    "id": "945f0e52b1f85184c3e7",
+    "pasta": "dados/reavaliacoes/continuidade_945f0e52b1f85184c3e7",
+    "congelamento_sha256": "19e253cb993bc08ba3e7f59fead292d0391079fc1e21545aaff040c7900f1ea3"
+  },
+  "custos": {
+    "id": "9f7598f109962adc3d76",
+    "pasta": "dados/reavaliacoes/custos_9f7598f109962adc3d76",
+    "manifesto_sha256": "7af4b4427c32376a674d533b98af886c7cd80a3277df7eeff3375e6c1e0d6685"
+  },
+  "info_btc": {
+    "base": "dados/experimentos/padronizacao_diaria_f3f8772670f244779ad7",
+    "configuracao": {
+      "ciclo": "padronizacao_diaria_001",
+      "versao": 1,
+      "simbolo": "BTCUSDT",
+      "mercado": "USD-M perpetuo",
+      "periodos": {
+        "treino": [
+          "2020-01-01",
+          "2024-01-01"
+        ],
+        "validacao": [
+          "2024-01-01",
+          "2025-01-01"
+        ],
+        "teste": [
+          "2025-01-01",
+          "2026-01-01"
+        ]
+      },
+      "contexto_dias": 14,
+      "canais": [
+        "Timestamp",
+        "Open",
+        "High",
+        "Low",
+        "Close",
+        "Volume"
+      ],
+      "volume_divisor": 1000000000,
+      "normalizar": true,
+      "auditoria_volume": "registros/cryptomamba_diario/incidentes/volumes_2026-11-05T150354.183547_0000",
+      "timestamp": "segundos Unix UTC do inicio do candle, float32 como fonte publica",
+      "alvo": "retorno_simples_fechamento_seguinte_decimal",
+      "arquitetura": {
+        "larguras": [
+          14,
+          16,
+          32,
+          1
+        ],
+        "densidade": 4,
+        "estado": 64,
+        "convolucao": 4,
+        "expansao": 2,
+        "eps_layernorm": 1e-05
+      },
+      "treinamento": {
+        "otimizador": "Adam",
+        "taxa": 0.01,
+        "weight_decay": 0.001,
+        "penalizacao": "todos_os_parametros_como_codigo_publico",
+        "lote": 32,
+        "epocas": 1000,
+        "scheduler_passo": 100,
+        "scheduler_gamma": 0.5,
+        "perda": "RMSE_por_lote",
+        "epsilon_raiz": 1e-08,
+        "clipping": null,
+        "parada_antecipada": false,
+        "selecao": "RMSE_global_validacao_retorno",
+        "limite_segundos_por_ajuste": 14400
+      },
+      "seeds": [
+        42,
+        17,
+        2026
+      ],
+      "controle_seed": 42,
+      "ajustes_principais": 3,
+      "ajustes_controle": 1,
+      "operacoes": {
+        "capital_inicial": 10000.0,
+        "fracao_nocional": 0.95,
+        "latencia_minutos": 1,
+        "prazo_horas": 24,
+        "comissao_por_lado": 0.0005,
+        "slippage_por_lado": 0.0005,
+        "filtro_retorno_absoluto": 0.002,
+        "passo_quantidade": 0.001,
+        "tick_preco": 0.1,
+        "nocional_minimo": 100.0,
+        "buffer_prudencial": 0.025,
+        "stop_take": false,
+        "politica": "sinal_de_previsao_preco_sobre_ultimo_close_acima_de_custo_base_fixo",
+        "funding": "historico_no_timestamp_real"
+      },
+      "cenarios": {
+        "base": {
+          "slippage_multiplicador": 1,
+          "lado": 0
+        },
+        "slippage2": {
+          "slippage_multiplicador": 2,
+          "lado": 0
+        },
+        "slippage3": {
+          "slippage_multiplicador": 3,
+          "lado": 0
+        },
+        "somente_compra": {
+          "slippage_multiplicador": 1,
+          "lado": 1
+        },
+        "somente_venda": {
+          "slippage_multiplicador": 1,
+          "lado": -1
+        }
+      },
+      "carteiras_previstas": 70,
+      "exposicao": "2024-2025 ja consultados; avaliacao retrospectiva, nao holdout intocado",
+      "codigo_publico_commit": "fef42727861a9c3a32241283ab981ef21a49e291",
+      "execucao_numerica": "mamba1_oficial_scan_ref_cuda",
+      "antecessora": "de09c2193737c2581261",
+      "padronizacao": {
+        "metodo": "zscore_por_canal",
+        "ajuste": "candles_unicos_janelas_treino",
+        "ddof": 0,
+        "aritmetica": "float64_sobre_entrada_float32_da_referencia",
+        "momentos": "math_fsum_float64",
+        "saida": "float32",
+        "canal_constante": "escala_um",
+        "clipping": null
+      }
+    },
+    "mercado": {
+      "id": "979c54995465216ea020",
+      "pasta": "dados/mercado/futuros_um/tentativas/2026-11-04T145414.524392_0000",
+      "manifesto_sha256": "00b6ff383dc4693a5f84982e2f4b0d01b04e666d441650f7d3b220468f089f52"
+    },
+    "diario": {
+      "id": "eff741a785826f1fdbe4",
+      "pasta": "dados/mercado/cryptomamba_diario/2026-11-05T144800.898686_0000",
+      "manifesto_sha256": "f4a7ea582970d4e0cc39a203e89918bec24a73f1fe5a9e5d1b42fbabde22a43d"
+    }
+  },
+  "fontes": {
+    "codigo/analises/etapas/cryptomamba_diario/comparar_ensemble.py": "9a55bdfc518949792464d83719a4dd2a26afef295ef417dbab3116bddb4812a0",
+    "configuracoes/comparacao_cryptomamba_diaria_001.json": "207ff45965efaebb2e47487ccfe7676bc1ac8a9f8821eab2d531af21e61527f1",
+    "codigo/simulacao_operacoes/continuidade_diaria/simulador.py": "fca5326cf9bd5cc54db7bfdc1f239afb95b1c84a37d1c6b7f3184ca1c1bfa8af",
+    "codigo/simulacao_operacoes/continuidade_diaria/auditoria_grade.py": "29676e3b700a8dcc095eee216b0aac9979cb7eb956674b3264c01d04f5967056",
+    "codigo/simulacao_operacoes/revisada/conta.py": "ffa904f71720c67f83fe61e356ffef31f719c3081126431884c1817e26555eb0",
+    "codigo/simulacao_operacoes/diaria_24h.py": "65e113c9f23f07c640fe7774b9bd3eadfdc93510f7138a01f6fa0710c552f999",
+    "codigo/simulacao_operacoes/envelopes_marcacao.py": "bdf54a554c774cb62cf131a5efca1e03b4450e42b9491cdf3e2bcb6a433edb03",
+    "codigo/experimentos/generalizacao_moedas/avaliacao.py": "59036dd50c12c73c0bed466882894d10ed781d39169bb1297f7b42ace95a48c9",
+    "codigo/analises/etapas/ensemble_2026/ciclo.py": "b858f78eee7a60f2c623e37cec973343171fc9b3cba8151c2bcf694389967c20",
+    "codigo/infraestrutura/artefatos.py": "39fdc3769dcfba58e533df30086acc9974ad01df87f0def3a0e2cc2844181674"
+  },
+  "pais": {
+    "dados/experimentos/cryptomamba_reproducivel_ac8183e1ecfb91102b48/congelamento.json": "adf75fa90e92220b63565d2918d40e5280feec5cac1a161391c5b10d1b79431a",
+    "dados/reavaliacoes/continuidade_945f0e52b1f85184c3e7/congelamento.json": "19e253cb993bc08ba3e7f59fead292d0391079fc1e21545aaff040c7900f1ea3",
+    "dados/reavaliacoes/continuidade_945f0e52b1f85184c3e7/manifesto.json": "522603dd47bbef1277234720e1a95c1f6f50647e7b5d665aee8839e6e45d3943",
+    "dados/reavaliacoes/custos_9f7598f109962adc3d76/congelamento.json": "a89dbccbc1b09af4f33da23776c129bd7c18b68679e8c0ba992e8af528c1d35e",
+    "dados/experimentos/cryptomamba_reproducivel_ac8183e1ecfb91102b48/fechamento.json": "ff91bf4dd5c71b4c973422d37175ac948711eee8c27daf43b370056e28400628",
+    "dados/experimentos/cryptomamba_reproducivel_ac8183e1ecfb91102b48/controle.json": "9342e8a11a8460e1f10b6338b115d1b40e0c96c52d29bc12d8da8ae85b9bd1de",
+    "dados/reavaliacoes/continuidade_945f0e52b1f85184c3e7/resultados.json": "5c079779efdcc3f5ea08691b4cdb24cee1baa1558253ef6d6b5ec317fe38020f",
+    "dados/reavaliacoes/continuidade_945f0e52b1f85184c3e7/carteiras.zip": "2273ca1e9e6f539bd016085c88977ff773c712b6914df256b6f2c786a5b0e70a",
+    "dados/reavaliacoes/custos_9f7598f109962adc3d76/publicacao/diarias.json": "030c38325541aabb1f29a22b5a734632cb430e4840b62532f5cefa6a283da417",
+    "dados/reavaliacoes/custos_9f7598f109962adc3d76/publicacao_manifesto.json": "7af4b4427c32376a674d533b98af886c7cd80a3277df7eeff3375e6c1e0d6685",
+    "dados/experimentos/cryptomamba_reproducivel_ac8183e1ecfb91102b48/publicacao/previsoes/validacao_42.npz": "9dbd09836b146cc19b4edfaf33e8ff894e1cadbf52b14ac1e168bd6dbbcc046f",
+    "dados/experimentos/cryptomamba_reproducivel_ac8183e1ecfb91102b48/publicacao/previsoes/validacao_17.npz": "9fab9a05d4183bef85539507c0681db8e99514fd9c304aa93576766cf19a32b0",
+    "dados/experimentos/cryptomamba_reproducivel_ac8183e1ecfb91102b48/publicacao/previsoes/validacao_2026.npz": "ed24d36c0851036620047fc6a29bd01e675c01b43743362b936d4f1c2e1c8b4e",
+    "dados/experimentos/cryptomamba_reproducivel_ac8183e1ecfb91102b48/publicacao/previsoes/teste_42.npz": "cc81a763f24049dd9bb5f799d9d0b4b70fd620fc59eff3fe8019bc98d479670a",
+    "dados/experimentos/cryptomamba_reproducivel_ac8183e1ecfb91102b48/publicacao/previsoes/teste_17.npz": "66b644cf7d18bbdb70417e4d4203dff5132f325a070e2f37ce120c1e1e9051c3",
+    "dados/experimentos/cryptomamba_reproducivel_ac8183e1ecfb91102b48/publicacao/previsoes/teste_2026.npz": "dbd7551814a60fbfb9e38717021396f8f644ddfc685f95977e9df3034d6556ca",
+    "dados/experimentos/cryptomamba_reproducivel_ac8183e1ecfb91102b48/ajustes/seed_42/selecao.json": "8e9aa96dadabab46069302e5ffed8471d8bcf732a041f54cfc0169df03e4ed73",
+    "dados/experimentos/cryptomamba_reproducivel_ac8183e1ecfb91102b48/ajustes/seed_42/checkpoints/epoca_0874.pt": "39b88d1df8871659f0aa9831f96164a365196cf77d8e56fecbb77359a9310ea7",
+    "dados/experimentos/cryptomamba_reproducivel_ac8183e1ecfb91102b48/ajustes/seed_17/selecao.json": "2564f2585d27c1e2b821ca54858ca658f4d628b19c6d1d8fb691f4b421d6a9a4",
+    "dados/experimentos/cryptomamba_reproducivel_ac8183e1ecfb91102b48/ajustes/seed_17/checkpoints/epoca_0983.pt": "c56ce38eb575f6c7297d3e015203d9657cfefc17a55964a7081cfc2959d49e8f",
+    "dados/experimentos/cryptomamba_reproducivel_ac8183e1ecfb91102b48/ajustes/seed_2026/selecao.json": "25667ba75cbcb484e4568bd7c5da65af5c749510890ba415a5aea1de510e2c8a",
+    "dados/experimentos/cryptomamba_reproducivel_ac8183e1ecfb91102b48/ajustes/seed_2026/checkpoints/epoca_0144.pt": "5e9c64b7e3d87a29ff4450d26104cdabc2eae818214695091f6b935a810120d1",
+    "dados/experimentos/padronizacao_diaria_f3f8772670f244779ad7/publicacao/previsoes/validacao_42.npz": "1289b0a043437ecb523213975688f12b2401b1699cba5a4de937a3ba945f7c5f",
+    "dados/experimentos/padronizacao_diaria_f3f8772670f244779ad7/publicacao/previsoes/validacao_17.npz": "158ad0068104c4b98f4ddeb4a597c9d14e745ced0a62f64178034ce34c433785",
+    "dados/experimentos/padronizacao_diaria_f3f8772670f244779ad7/publicacao/previsoes/validacao_2026.npz": "754f625a6c919f8c08d63e2fb714a1084abeab49951629ce2b23eff0e68ab6a2",
+    "dados/experimentos/padronizacao_diaria_f3f8772670f244779ad7/publicacao/previsoes/teste_42.npz": "25954e134246aeaf91d79a03de7655bd3e855eeabb1e4701c2e5644d29c31a13",
+    "dados/experimentos/padronizacao_diaria_f3f8772670f244779ad7/publicacao/previsoes/teste_17.npz": "93b47d9d430f4a90db8b55aa7de88ebcf393ae897d4bffd7cedb43aa36d527bb",
+    "dados/experimentos/padronizacao_diaria_f3f8772670f244779ad7/publicacao/previsoes/teste_2026.npz": "7619bcd79f3ca1462dc695d996b49e36e56efe5751be52f815cc0207c4492444",
+    "dados/experimentos/padronizacao_diaria_f3f8772670f244779ad7/ajustes/seed_42/selecao.json": "af973f19eb0643f4ca44dc7a8cfa13433c5b51a87dcdce83961821c07928e626",
+    "dados/experimentos/padronizacao_diaria_f3f8772670f244779ad7/ajustes/seed_42/checkpoints/epoca_0025.pt": "226d2d190c08054a0ac20473dbd389dc2832ff03355d032abc116611877c0fc6",
+    "dados/experimentos/padronizacao_diaria_f3f8772670f244779ad7/ajustes/seed_17/selecao.json": "57671d5be3d9ed7d3116105dfa899cd76245cbb7a07f004c2d5ec0244f3c3017",
+    "dados/experimentos/padronizacao_diaria_f3f8772670f244779ad7/ajustes/seed_17/checkpoints/epoca_0014.pt": "83967722e4b6e670376b6f506de23e8067c6fba85cf6780e167829bbc2e913b4",
+    "dados/experimentos/padronizacao_diaria_f3f8772670f244779ad7/ajustes/seed_2026/selecao.json": "0c64b1d35c6a0236f6423d2360d4324ae6dffbeb852567ba10b7ea955ae1281c",
+    "dados/experimentos/padronizacao_diaria_f3f8772670f244779ad7/ajustes/seed_2026/checkpoints/epoca_0044.pt": "86f58bb619ce2b6e3d5c96827cf1337d4f5525f1dd6021c35766bc31a854afe3"
+  }
+}

@@ -1,71 +1,56 @@
-# Preservação e reprodução entre máquinas
+# Preservação, organização e reprodução
 
-Política de 27/10/2026, registrada na [ADR 0003](adr/0003-preservacao-e-organizacao.md). O objetivo é que o TCC possa ser consultado e reproduzido sem depender de um único notebook. Um manifesto ou ponteiro não substitui o arquivo que descreve.
+O catálogo em `registros/catalogo_estudos.json` identifica os ciclos, suas heranças e as evidências. Um índice ou manifesto não substitui os arquivos descritos. Organização local e presença no Git não comprovam backup externo. Este guia complementa as [diretrizes de pesquisa](diretrizes_pesquisa.md) nas tarefas de preservação, limpeza e transferência.
 
-## O que guardar e onde
+## Separação dos materiais
 
-| Material | Git comum | Pacote completo no GitHub Releases |
-|---|---|---|
-| Código, configurações, protocolos, ADRs e documentação | Sim | Cópias congeladas junto da execução |
-| Métricas, épocas, configuração do otimizador, auditorias e descrição de cada tentativa | Sim, para os ciclos ativos | Sim |
-| Logs científicos, falhas e revisões | Sim, quando de tamanho adequado | Completos, inclusive tentativas interrompidas |
-| Checkpoints treinados e previsões individuais Parquet | Fora do histórico Git por padrão | Sim, todas as células e seeds, não só vencedoras |
-| Dataset processado, máscaras e escalas | Manifestos e recibos JSON | Arquivos completos para evitar nova preparação |
-| Portal de previsões | Código no Git | Exportação completa `dados/portal/` |
-| Brutos Binance | URLs, checksums e auditorias do estudo ativo | Opcional; manter também cópia externa verificada |
-| Cache, ambientes, dependências e locks de processo | Não | Não; registrar versões do ambiente |
+| Material | Local |
+|---|---|
+| Núcleo reutilizável | `codigo/`: módulos de mercado, entradas, modelos, treinamento, avaliação, simulação e infraestrutura |
+| Receitas e decisões | `configuracoes/`, `docs/adr/` e protocolos identificados |
+| Modelos, previsões e resultados | `dados/experimentos/<identidade>/`, com os layouts originais de cada ciclo |
+| Recibos, controles, logs e incidentes | `registros/` e as próprias execuções |
+| Leitores posteriores úteis | `codigo/analises/`, agrupados em `codigo/analises/etapas/` |
+| Executores e ferramentas encerrados, testes específicos antigos e versões editoriais anteriores | `arquivo/desenvolvimento_encerrado/fontes.zip`, com índice de caminhos e hashes |
+| Redação futura | `escrita_tcc/`, com narrativa e LaTeX em redação |
 
-Pequenos binários já versionados, como checkpoints sintéticos de qualificação, permanecem preservados. Não reescrever o histórico para removê-los. O tamanho por arquivo e o volume total devem ser medidos no notebook antes da publicação; não assumir que os modelos treinados são grandes apenas pela extensão `.pt`.
+Os snapshots em `dados/**/fontes/` fazem parte da evidência científica. Checkpoints, dados, controles e tentativas malsucedidas não são caches. Os ciclos concluídos mantêm suas fontes originais nos snapshots e pacotes; a versão de trabalho em `codigo/` não substitui a identidade congelada.
 
-O GitHub bloqueia arquivos maiores que 100 MiB no Git comum e recomenda repositórios pequenos. Releases distribuem binários vinculados a uma versão do projeto. Git LFS é uma alternativa para acompanhar binários diretamente pelos caminhos do repositório, mas envolve armazenamento/download de objetos e cotas próprias. Nesta organização, adotam-se pacotes por ciclo em Releases; LFS não foi ativado e nenhum serviço pago foi contratado. Fontes oficiais: [arquivos grandes](https://docs.github.com/en/repositories/working-with-files/managing-large-files/about-large-files-on-github), [Releases](https://docs.github.com/en/repositories/releasing-projects-on-github/about-releases) e [Git LFS](https://docs.github.com/en/repositories/working-with-files/managing-large-files/about-git-large-file-storage).
+## Fontes históricas e verificação
 
-## Organização dos pacotes
+A reorganização física não altera identidades científicas. Os índices em `arquivo/fontes_referencia/indice.json`, `arquivo/fontes_referencia/editoriais.json` e `arquivo/desenvolvimento_encerrado/indice.json` identificam seus pacotes, caminhos e SHA-256 dos originais. Os ZIPs contêm os bytes originais, incluindo finais de linha. Não modificar esses índices para aceitar alterações nas fontes.
 
-Publicar separadamente o dataset `d25f6a93a9900725f51e`, a referência `1e7c5ed662fba55ddd25`, a extensão `7868a4d847c1410fc681` e a exportação do portal. Preservar a estrutura relativa à raiz do repositório. Incluir fontes congeladas, ambiente, previsões, checkpoints, métricas, logs, tentativas malsucedidas e recibos. O pacote da extensão não deve omitir seus dois controles reexecutados.
+As versões editoriais anteriores à revisão das orientações de 11/11/2026 estão no [pacote de orientações](../arquivo/orientacoes_2026-11-11/fontes.zip), com [manifesto próprio](../arquivo/orientacoes_2026-11-11/manifesto.json). Esse snapshot editorial é conferido pelo seu manifesto e não integra o índice de resolução das fontes científicas. Uma revisão de guia vigente não muda o conteúdo que um fechamento histórico descreve.
 
-Cada publicação deve ter um índice versionado em `registros/distribuicao/`, a criar quando os pacotes estiverem disponíveis, contendo:
+Usar `python -m manutencao.auditar_repositorio --integridade --exigir-completo` para conferir o catálogo organizado. Ele reutiliza os critérios do auditor original e acrescenta a localização explícita das fontes históricas. Um arquivo local divergente continua sendo divergência; o pacote não encobre alterações. O recibo distingue arquivos locais e originais localizados no arquivo histórico.
 
-- ID do dataset/ciclo, commit usado para distribuição e identidade científica original (não são a mesma coisa).
-- Data UTC, máquina de origem, escopo e classificação: parcial ou completo.
-- Nome e tamanho em bytes de cada pacote, URL real de download e SHA-256.
-- Inventário dos caminhos originais com tamanho e SHA-256 de cada arquivo.
-- Resultado da conferência após download/restauração e pendências conhecidas.
+Usar `python -m manutencao.arquivo_fontes conferir` para conferir o pacote, seus membros e os leitores realocados. Para recuperar fontes, `python -m manutencao.arquivo_fontes extrair --destino <pasta_nova>`. O destino precisa ser novo; não há sobrescrita nem execução automática. Para reproduzir um executor encerrado, preparar uma área isolada com os caminhos originais, as fontes congeladas, o ambiente e os dados daquele ciclo, conforme seu protocolo. Não usar a extração como autorização para retreinar.
 
-O índice não deve conter URLs inventadas nem declarar upload concluído antes da verificação. Dividir pacotes grandes em volumes menores que o limite vigente dos anexos de Releases; não anexar milhares de checkpoints individualmente. Não sobrescrever uma publicação concluída para ocultar falhas; usar nova versão e vínculo com a anterior. Manter cópia de segurança independente do GitHub.
+## Transporte e backup
 
-## Procedimento no notebook
+1. Identificar a execução e distinguir materiais estáveis de arquivos ainda sendo escritos. Conferir processo, locks e logs antes de qualquer retomada.
+2. Verificar os manifestos e congelamentos existentes. Não regenerar hashes para aceitar divergências.
+3. Preparar pacotes por ciclo com fontes, ambiente, configurações, dados preparados, escalas, todos os modelos/seeds, previsões, logs, controles, incidentes e publicações necessários à reprodução.
+4. Registrar commit de distribuição, identidade científica, caminhos, tamanhos, SHA-256 e escopo parcial ou completo. O código versionado e os pacotes de artefatos são materiais complementares.
+5. Transferir para armazenamento externo e registrar URLs reais quando existirem. Um commit local, `git push` de código ou arquivo ignorado pelo Git não demonstra preservação dos binários.
+6. Baixar ou restaurar em área separada e comparar os hashes antes de declarar o backup externo conferido. Um `git pull` não baixa automaticamente anexos de Releases.
 
-1. Identificar a execução e conferir PID, lock e logs. Não iniciar outro treinamento para produzir arquivos ausentes no desktop.
-2. Inventariar os arquivos e medir tamanhos. A referência concluída pode ser empacotada; a extensão em andamento só pode gerar um snapshot identificado como parcial, contendo arquivos estáveis. Não arquivar um checkpoint enquanto ele está sendo escrito. O pacote final exige grade e auditorias concluídas.
-3. Conferir fontes e artefatos contra os manifestos existentes. Se houver divergência, registrar e investigar antes de publicar como reprodução íntegra. Não recalcular recibos antigos para acomodar alterações.
-4. Copiar para uma área de empacotamento, preservando bytes e caminhos; produzir inventário e pacotes sem editar os originais. Conferir os arquivos copiados contra a origem.
-5. Revisar os arquivos leves elegíveis no Git, incluindo tamanhos e possíveis informações privadas nos logs. Nunca executar `git add dados` sem revisar o inventário. Não incluir caches ou credenciais.
-6. Publicar os pacotes no Release correspondente e registrar seus links/hashes. Baixar novamente e conferir em área separada, antes de considerar a preservação externa concluída.
+A política de distribuição por ciclo foi definida na [ADR0003](adr/0003-preservacao-e-organizacao.md). Nenhuma publicação externa é presumida nesta organização. As observações antigas de disponibilidade entre desktop e notebook estão preservadas na versão anterior deste guia, dentro do pacote histórico; não representam o estado atual.
 
-O `.gitignore` agora permite JSON/CSV/Markdown/fontes Python/logs dos ciclos `retorno24_*` e `penalizacao_*`, JSON dos datasets `retorno24_*` e auditorias/checksums da coleta `binance_spot_1m`. Binários, portal e dados antigos continuam excluídos do Git comum. Essas regras não impõem limite de tamanho: logs ou CSVs muito grandes devem entrar no pacote e ter índice leve. Arquivos de PID ativo, locks e escritas parciais não são sincronizados como estado atual; suas cópias históricas nos incidentes continuam preservadas.
+## Limpeza e manutenção documental
 
-## Procedimento na máquina de destino
+Antes de editar documentos vinculados a fechamentos, conservar os bytes anteriores em versão recuperável. Protocolos, configurações, fontes e recibos congelados são anexos científicos imutáveis; a atualização editorial não autoriza reescrevê-los. Não editar o PDF acadêmico original nem reescrever o histórico Git.
 
-1. Obter código, documentação e índice de distribuição da versão desejada.
-2. Baixar os pacotes relacionados e conferir SHA-256 antes de extrair.
-3. Extrair em área separada; validar caminhos, inventário e hashes individuais. Não sobrescrever arquivos locais diferentes nem a execução ativa.
-4. Colocar os artefatos nos caminhos originais após a conferência. Verificar os ponteiros, dataset e recibos. Guardar um registro de restauração com data, host, escopo e resultado.
-5. A interface deve distinguir resultados históricos disponíveis, artefatos ausentes e progresso observado em outra máquina. Para reproduzir inferência CUDA, qualificar o ambiente local; um download íntegro não certifica o hardware.
+Excluir apenas caches, builds e temporários comprovadamente regeneráveis, ou conteúdo editorial redundante após verificar dependências e preservação. Checkpoints, previsões, dados, controles, incidentes e tentativas malsucedidas não são lixo por terem resultado ruim ou terem sido produzidos com IA. Conferir caminhos de destino, dependências e hashes antes de mover ou excluir; não substituir arquivos em uso por processo ativo.
 
-Um `git pull` não baixa anexos de Releases. O download dos pacotes é uma etapa explícita. Treinar novamente ou recoletar não substitui recuperar os modelos e previsões que sustentam os resultados já publicados.
+Depois da manutenção, conferir vínculos, catálogo e integridade pertinente. Declarar o que foi preservado, movido ou eliminado, o alcance da auditoria e eventuais limitações. Para comandos e ambientes, consultar [ambiente e execução](ambiente_e_execucao.md).
 
-## Finais de linha e hashes
+## Finais de linha e ambiente
 
-Os hashes científicos conferem bytes. LF e CRLF podem produzir o mesmo texto visível e hashes diferentes. `.gitattributes` preserva bytes dos novos artefatos em `dados/` e fixa LF nos textos de `registros/` em futuros checkouts; binários `.pt` não são convertidos. Essa regra não reescreve os arquivos já existentes nem corrige divergências históricas.
+Os hashes científicos conferem bytes. LF e CRLF podem representar texto visível equivalente e ainda assim produzir hashes diferentes. Preservar `.gitattributes`, fontes congeladas, configurações, protocolos e recibos. Não fazer renormalização em massa nem checkout que substitua fontes durante uma execução ativa.
 
-Não usar renormalização em massa ou regeneração de manifestos em um ciclo congelado. Restaurar os bytes originais a partir de uma cópia conferida, por arquivo, preservando a evidência da divergência. No notebook que está treinando, não fazer checkout que substitua fontes científicas enquanto o processo está ativo.
+Restaurar dados e checkpoints não qualifica automaticamente CUDA, bibliotecas ou hardware. Qualificação, reprodução numérica e recuperação de artefatos são verificações distintas. As auditorias locais não recalculam todas as métricas nem certificam toda fonte bruta ou execução real de mercado; seus recibos delimitam o escopo.
 
-## Situação verificada no desktop em 27/10/2026
+## Distribuição pelo Git
 
-- Código sincronizado com o commit `8f30f5478852c8a41983e2579e98c7f6773b47da`; dataset e diretórios das duas execuções ausentes nesta máquina.
-- Dos 7.082 arquivos do manifesto de preservação da referência, 6.615 estavam ausentes, todos dentro da pasta da execução original. Isso não inventaria todos os dados que devem ser transferidos.
-- As duas publicações, com 432 arquivos no total, apresentaram diferenças de hash explicáveis por CRLF. Os manifestos armazenados no Git conferiram com os recibos; o checkout local não foi restaurado nesta organização.
-- `previsao24/coleta.py` apresentou hash diferente do congelado, além da conversão comum LF/CRLF. Comparação com a cópia congelada do notebook continua pendente; não atribuir a diferença ao treinamento sem investigação.
-- O registro recebido do notebook confirma 299 ajustes corrigidos e dois controles na auditoria de retomada de 27/10. Não é progresso em tempo real.
-
-Esta mudança organiza preservação e documentação. Não transferiu os arquivos ausentes, não publicou Releases e não alterou fontes científicas ou recibos congelados. A publicação completa deve ser feita a partir dos artefatos do notebook, com as verificações acima.
+O clone inclui código, configurações, recibos e tabelas de síntese. A redação e os pacotes que contêm cópias dela ficam no acervo local. Em `arquivo/fontes_referencia/` e `arquivo/desenvolvimento_encerrado/`, o índice público `pesquisa.json` identifica as fontes técnicas e seus hashes. O executor local também pode ler o índice integral preservado. Dados completos, checkpoints e históricos detalhados de operações são distribuídos separadamente conforme a ADR0003.

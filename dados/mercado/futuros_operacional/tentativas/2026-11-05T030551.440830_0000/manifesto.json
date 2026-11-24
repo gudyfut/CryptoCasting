@@ -1,0 +1,951 @@
+{
+  "id": "7535d44ba23eb371fe4d",
+  "utc": "2026-11-05T03:07:49.751023+00:00",
+  "contrato": {
+    "simbolo": "BTCUSDT",
+    "mercado": "USD-M perpetuo",
+    "inicio": "2021-01-01",
+    "fim_exclusivo": "2024-01-01",
+    "unidade_temporal": "milissegundos",
+    "fontes": {
+      "mercado_futuros/historico_operacional.py": "8ca79e04c95a622c77417f374243f3e0f54500849dc87a78f0934d3b995883b9",
+      "mercado_futuros/pipeline.py": "324b0d9f6a0e00162be11e78fb4dea85352b01263e17f2aaf826150360ec751c",
+      "infraestrutura/artefatos.py": "8a6b3cfeee815cdc3742ddf6b6fe7e972fa0757099f16212310515c49eb28a3e"
+    },
+    "origens": [
+      {
+        "url": "https://data.binance.vision/data/futures/um/monthly/klines/BTCUSDT/1m/BTCUSDT-1m-2021-01.zip",
+        "checksum": "ba7aeda6a99e0828b39da1b0605aaefcb40882fe9d44034598c4404f8a07783f",
+        "arquivo": "brutos/klines/BTCUSDT-1m-2021-01.zip",
+        "linhas": 44640
+      },
+      {
+        "url": "https://data.binance.vision/data/futures/um/monthly/markPriceKlines/BTCUSDT/1m/BTCUSDT-1m-2021-01.zip",
+        "checksum": "883021211d84d5d0996bb6c946e82163b508d02f7e7d53e50c399f4622f4a3dc",
+        "arquivo": "brutos/markPriceKlines/BTCUSDT-1m-2021-01.zip",
+        "linhas": 44640
+      },
+      {
+        "url": "https://data.binance.vision/data/futures/um/monthly/fundingRate/BTCUSDT/BTCUSDT-fundingRate-2021-01.zip",
+        "checksum": "cff916dc4b638ec3de97828e8911cd91cf7d7a3d0836ec0175869c374e66823d",
+        "arquivo": "brutos/fundingRate/BTCUSDT-fundingRate-2021-01.zip",
+        "linhas": 93
+      },
+      {
+        "url": "https://data.binance.vision/data/futures/um/monthly/klines/BTCUSDT/1m/BTCUSDT-1m-2021-02.zip",
+        "checksum": "0a270f354b15b053824a7bb87c652aa95acb4a255fc968fe0a24bdc9e785223e",
+        "arquivo": "brutos/klines/BTCUSDT-1m-2021-02.zip",
+        "linhas": 40320
+      },
+      {
+        "url": "https://data.binance.vision/data/futures/um/monthly/markPriceKlines/BTCUSDT/1m/BTCUSDT-1m-2021-02.zip",
+        "checksum": "b090f44eb2b24486e89c387db83533f309800aa44931d73964bfc211846205bf",
+        "arquivo": "brutos/markPriceKlines/BTCUSDT-1m-2021-02.zip",
+        "linhas": 40320
+      },
+      {
+        "url": "https://data.binance.vision/data/futures/um/monthly/fundingRate/BTCUSDT/BTCUSDT-fundingRate-2021-02.zip",
+        "checksum": "819a7b107443686adb313fc5fc223302a29f3981e1d1bd9828ad0ade65a8a8af",
+        "arquivo": "brutos/fundingRate/BTCUSDT-fundingRate-2021-02.zip",
+        "linhas": 84
+      },
+      {
+        "url": "https://data.binance.vision/data/futures/um/monthly/klines/BTCUSDT/1m/BTCUSDT-1m-2021-03.zip",
+        "checksum": "15a2676410d5104fac1ea15f7302addbf4d0de14f6db8ce10a4930c3f5d5e7fa",
+        "arquivo": "brutos/klines/BTCUSDT-1m-2021-03.zip",
+        "linhas": 44640
+      },
+      {
+        "url": "https://data.binance.vision/data/futures/um/monthly/markPriceKlines/BTCUSDT/1m/BTCUSDT-1m-2021-03.zip",
+        "checksum": "6e25031ed12e52dbd7ddc854e829e9c53df4c1fd621eda00db18ad3cc6c4b439",
+        "arquivo": "brutos/markPriceKlines/BTCUSDT-1m-2021-03.zip",
+        "linhas": 44640
+      },
+      {
+        "url": "https://data.binance.vision/data/futures/um/monthly/fundingRate/BTCUSDT/BTCUSDT-fundingRate-2021-03.zip",
+        "checksum": "2125fd300848938c7b992b8f7b7b5007d5b277a4ff1ebda7da083b40242729da",
+        "arquivo": "brutos/fundingRate/BTCUSDT-fundingRate-2021-03.zip",
+        "linhas": 93
+      },
+      {
+        "url": "https://data.binance.vision/data/futures/um/monthly/klines/BTCUSDT/1m/BTCUSDT-1m-2021-04.zip",
+        "checksum": "d957fcde82f9b5a9a05264a9602e5deae03472aa0d424ddb0f27a04e58723217",
+        "arquivo": "brutos/klines/BTCUSDT-1m-2021-04.zip",
+        "linhas": 43200
+      },
+      {
+        "url": "https://data.binance.vision/data/futures/um/monthly/markPriceKlines/BTCUSDT/1m/BTCUSDT-1m-2021-04.zip",
+        "checksum": "8f8067c9b653c09fad49545daf1e3438190ec59ad8582b9f52f8395cee038c6a",
+        "arquivo": "brutos/markPriceKlines/BTCUSDT-1m-2021-04.zip",
+        "linhas": 43200
+      },
+      {
+        "url": "https://data.binance.vision/data/futures/um/monthly/fundingRate/BTCUSDT/BTCUSDT-fundingRate-2021-04.zip",
+        "checksum": "9cd888e3b0a1954813d0062c2e60426fdc8e34a7f258f6838371ec67f535b028",
+        "arquivo": "brutos/fundingRate/BTCUSDT-fundingRate-2021-04.zip",
+        "linhas": 90
+      },
+      {
+        "url": "https://data.binance.vision/data/futures/um/monthly/klines/BTCUSDT/1m/BTCUSDT-1m-2021-05.zip",
+        "checksum": "dcf7c567cbde49a5e564b29f01be95e28d32f12cb68c40b2a14da75930187dc8",
+        "arquivo": "brutos/klines/BTCUSDT-1m-2021-05.zip",
+        "linhas": 44640
+      },
+      {
+        "url": "https://data.binance.vision/data/futures/um/monthly/markPriceKlines/BTCUSDT/1m/BTCUSDT-1m-2021-05.zip",
+        "checksum": "9f5a9515e9ee59519cdce2d8b6ea2a81a21fe377ad524214a292cc51a1d55482",
+        "arquivo": "brutos/markPriceKlines/BTCUSDT-1m-2021-05.zip",
+        "linhas": 44640
+      },
+      {
+        "url": "https://data.binance.vision/data/futures/um/monthly/fundingRate/BTCUSDT/BTCUSDT-fundingRate-2021-05.zip",
+        "checksum": "ed934afb9cf84df6ecae742e755147333a84244836a66b51523abc66dd5f63af",
+        "arquivo": "brutos/fundingRate/BTCUSDT-fundingRate-2021-05.zip",
+        "linhas": 93
+      },
+      {
+        "url": "https://data.binance.vision/data/futures/um/monthly/klines/BTCUSDT/1m/BTCUSDT-1m-2021-06.zip",
+        "checksum": "a640c7f935a1136d2f65f28f9606f0e063185c500f982aec273bb2ed3f61bfc5",
+        "arquivo": "brutos/klines/BTCUSDT-1m-2021-06.zip",
+        "linhas": 43200
+      },
+      {
+        "url": "https://data.binance.vision/data/futures/um/monthly/markPriceKlines/BTCUSDT/1m/BTCUSDT-1m-2021-06.zip",
+        "checksum": "0bb4c8f4bfb11d662095277164bd6dbf645d8ef4470786f07be8342f4ccc52fd",
+        "arquivo": "brutos/markPriceKlines/BTCUSDT-1m-2021-06.zip",
+        "linhas": 43200
+      },
+      {
+        "url": "https://data.binance.vision/data/futures/um/monthly/fundingRate/BTCUSDT/BTCUSDT-fundingRate-2021-06.zip",
+        "checksum": "7b8d9bfb8816636b800764dafb2aa2307d19166c695bfa245adbf7d01d61f766",
+        "arquivo": "brutos/fundingRate/BTCUSDT-fundingRate-2021-06.zip",
+        "linhas": 90
+      },
+      {
+        "url": "https://data.binance.vision/data/futures/um/monthly/klines/BTCUSDT/1m/BTCUSDT-1m-2021-07.zip",
+        "checksum": "1367b5cd230474b0ecc6031b9e18cffe66e011c8fdd01c3325985a39c5d5ed48",
+        "arquivo": "brutos/klines/BTCUSDT-1m-2021-07.zip",
+        "linhas": 44640
+      },
+      {
+        "url": "https://data.binance.vision/data/futures/um/monthly/markPriceKlines/BTCUSDT/1m/BTCUSDT-1m-2021-07.zip",
+        "checksum": "f803d5e91d9a932bee0b816abc7c6fdedcd9cf9c327474b195ef72d0c9693a06",
+        "arquivo": "brutos/markPriceKlines/BTCUSDT-1m-2021-07.zip",
+        "linhas": 44640
+      },
+      {
+        "url": "https://data.binance.vision/data/futures/um/monthly/fundingRate/BTCUSDT/BTCUSDT-fundingRate-2021-07.zip",
+        "checksum": "8ab3df641d3bcf40527491f8e26d046ad2b662d1950ead9555ad32975571b7fe",
+        "arquivo": "brutos/fundingRate/BTCUSDT-fundingRate-2021-07.zip",
+        "linhas": 93
+      },
+      {
+        "url": "https://data.binance.vision/data/futures/um/monthly/klines/BTCUSDT/1m/BTCUSDT-1m-2021-08.zip",
+        "checksum": "a864bdf38c9d06b7a6a1dc07c5593bbe7387cec3b869e9ebee020da053d94f37",
+        "arquivo": "brutos/klines/BTCUSDT-1m-2021-08.zip",
+        "linhas": 44640
+      },
+      {
+        "url": "https://data.binance.vision/data/futures/um/monthly/markPriceKlines/BTCUSDT/1m/BTCUSDT-1m-2021-08.zip",
+        "checksum": "a4dd146ec0ef0f17f63940e3f32a22433fa9e093856f4ebfb8b9c12f0dccdec0",
+        "arquivo": "brutos/markPriceKlines/BTCUSDT-1m-2021-08.zip",
+        "linhas": 44640
+      },
+      {
+        "url": "https://data.binance.vision/data/futures/um/monthly/fundingRate/BTCUSDT/BTCUSDT-fundingRate-2021-08.zip",
+        "checksum": "7eb681cc45b94176f4b9192a62c3a1925d79031ba001cea2d8dec6ff6e5b9c35",
+        "arquivo": "brutos/fundingRate/BTCUSDT-fundingRate-2021-08.zip",
+        "linhas": 93
+      },
+      {
+        "url": "https://data.binance.vision/data/futures/um/monthly/klines/BTCUSDT/1m/BTCUSDT-1m-2021-09.zip",
+        "checksum": "6e7bbfe650e6c56e189e78d521b3714feffd38468d1268b706a6626737326676",
+        "arquivo": "brutos/klines/BTCUSDT-1m-2021-09.zip",
+        "linhas": 43200
+      },
+      {
+        "url": "https://data.binance.vision/data/futures/um/monthly/markPriceKlines/BTCUSDT/1m/BTCUSDT-1m-2021-09.zip",
+        "checksum": "70167cdb73095e89095038631e94f0629c453abb45a6e9f8f6de0f7429ec4723",
+        "arquivo": "brutos/markPriceKlines/BTCUSDT-1m-2021-09.zip",
+        "linhas": 43200
+      },
+      {
+        "url": "https://data.binance.vision/data/futures/um/monthly/fundingRate/BTCUSDT/BTCUSDT-fundingRate-2021-09.zip",
+        "checksum": "03f25a7c25eef18d5f5b5b7bb0b664cab7a210b409f37e95a54e141808a0752d",
+        "arquivo": "brutos/fundingRate/BTCUSDT-fundingRate-2021-09.zip",
+        "linhas": 90
+      },
+      {
+        "url": "https://data.binance.vision/data/futures/um/monthly/klines/BTCUSDT/1m/BTCUSDT-1m-2021-10.zip",
+        "checksum": "4b78dd0174890c975effca2ed078163d6e9b4f7437f692e2c430c724b7eafc24",
+        "arquivo": "brutos/klines/BTCUSDT-1m-2021-10.zip",
+        "linhas": 44640
+      },
+      {
+        "url": "https://data.binance.vision/data/futures/um/monthly/markPriceKlines/BTCUSDT/1m/BTCUSDT-1m-2021-10.zip",
+        "checksum": "4301f4ae15eec9c9ae241b973ddda311e964fb3c87eeb2f8c4d8c26e7b10c507",
+        "arquivo": "brutos/markPriceKlines/BTCUSDT-1m-2021-10.zip",
+        "linhas": 44640
+      },
+      {
+        "url": "https://data.binance.vision/data/futures/um/monthly/fundingRate/BTCUSDT/BTCUSDT-fundingRate-2021-10.zip",
+        "checksum": "f25820d6add687addbca3ef43bee58f70853a6da53832a0c1bc22d00dc8ec64a",
+        "arquivo": "brutos/fundingRate/BTCUSDT-fundingRate-2021-10.zip",
+        "linhas": 93
+      },
+      {
+        "url": "https://data.binance.vision/data/futures/um/monthly/klines/BTCUSDT/1m/BTCUSDT-1m-2021-11.zip",
+        "checksum": "67da3342f014166d2af97321599e0011453c4bd5a9282ef12c1a6131efd12993",
+        "arquivo": "brutos/klines/BTCUSDT-1m-2021-11.zip",
+        "linhas": 43200
+      },
+      {
+        "url": "https://data.binance.vision/data/futures/um/monthly/markPriceKlines/BTCUSDT/1m/BTCUSDT-1m-2021-11.zip",
+        "checksum": "48b6337e60328c2a48c8664198b0ce01700a7aa3208d86c7eb0035edb06faa53",
+        "arquivo": "brutos/markPriceKlines/BTCUSDT-1m-2021-11.zip",
+        "linhas": 43200
+      },
+      {
+        "url": "https://data.binance.vision/data/futures/um/monthly/fundingRate/BTCUSDT/BTCUSDT-fundingRate-2021-11.zip",
+        "checksum": "e2e6b2d7218607e7e4a38137d50f553c2cfb901275c19edf567024c1cc6de85f",
+        "arquivo": "brutos/fundingRate/BTCUSDT-fundingRate-2021-11.zip",
+        "linhas": 90
+      },
+      {
+        "url": "https://data.binance.vision/data/futures/um/monthly/klines/BTCUSDT/1m/BTCUSDT-1m-2021-12.zip",
+        "checksum": "c905c5c8ff36d0dfac3a0581225ab305f72d1e11e634953d8d3a136161d10956",
+        "arquivo": "brutos/klines/BTCUSDT-1m-2021-12.zip",
+        "linhas": 44640
+      },
+      {
+        "url": "https://data.binance.vision/data/futures/um/monthly/markPriceKlines/BTCUSDT/1m/BTCUSDT-1m-2021-12.zip",
+        "checksum": "b7d4014d14c149012c7b64423f1a683ab0364269945e02c1789dcdbe44ebce61",
+        "arquivo": "brutos/markPriceKlines/BTCUSDT-1m-2021-12.zip",
+        "linhas": 44640
+      },
+      {
+        "url": "https://data.binance.vision/data/futures/um/monthly/fundingRate/BTCUSDT/BTCUSDT-fundingRate-2021-12.zip",
+        "checksum": "bf3ce484faf41d7dccfd38c5cc3d8de34d8297df30ab10784e874cc10fd1b310",
+        "arquivo": "brutos/fundingRate/BTCUSDT-fundingRate-2021-12.zip",
+        "linhas": 93
+      },
+      {
+        "url": "https://data.binance.vision/data/futures/um/monthly/klines/BTCUSDT/1m/BTCUSDT-1m-2022-01.zip",
+        "checksum": "9cdbcf68903434c850f9bec60d8174c2cfd105dd24a7566965b442ec15124e04",
+        "arquivo": "brutos/klines/BTCUSDT-1m-2022-01.zip",
+        "linhas": 44640
+      },
+      {
+        "url": "https://data.binance.vision/data/futures/um/monthly/markPriceKlines/BTCUSDT/1m/BTCUSDT-1m-2022-01.zip",
+        "checksum": "620ec2bfdaed255236b7daa113488a4b2eada7bf3384b1fe640d40dd85d9c4bb",
+        "arquivo": "brutos/markPriceKlines/BTCUSDT-1m-2022-01.zip",
+        "linhas": 44640
+      },
+      {
+        "url": "https://data.binance.vision/data/futures/um/monthly/fundingRate/BTCUSDT/BTCUSDT-fundingRate-2022-01.zip",
+        "checksum": "22ee19079b620f5c6d820e7d7f8bafa7fde866d89bd664863b8bd527749c12cb",
+        "arquivo": "brutos/fundingRate/BTCUSDT-fundingRate-2022-01.zip",
+        "linhas": 93
+      },
+      {
+        "url": "https://data.binance.vision/data/futures/um/monthly/klines/BTCUSDT/1m/BTCUSDT-1m-2022-02.zip",
+        "checksum": "63672d552f98ec125ac4d90d82154313fb9832b7e1aaed196101816bd61bfb89",
+        "arquivo": "brutos/klines/BTCUSDT-1m-2022-02.zip",
+        "linhas": 40320
+      },
+      {
+        "url": "https://data.binance.vision/data/futures/um/monthly/markPriceKlines/BTCUSDT/1m/BTCUSDT-1m-2022-02.zip",
+        "checksum": "9554d65c02469ef76ba92b7e8646d2ab606238ca83f23b73957a44c78c7674fd",
+        "arquivo": "brutos/markPriceKlines/BTCUSDT-1m-2022-02.zip",
+        "linhas": 40320
+      },
+      {
+        "url": "https://data.binance.vision/data/futures/um/monthly/fundingRate/BTCUSDT/BTCUSDT-fundingRate-2022-02.zip",
+        "checksum": "fa95088258a905c79ab79e8984d2f6f66933ec2e814dbab4ef9da89b01ab484a",
+        "arquivo": "brutos/fundingRate/BTCUSDT-fundingRate-2022-02.zip",
+        "linhas": 84
+      },
+      {
+        "url": "https://data.binance.vision/data/futures/um/monthly/klines/BTCUSDT/1m/BTCUSDT-1m-2022-03.zip",
+        "checksum": "4532faf2f92d205fac79b7d25327d2045843b60a4494e00b0962e6b7f028bc06",
+        "arquivo": "brutos/klines/BTCUSDT-1m-2022-03.zip",
+        "linhas": 44640
+      },
+      {
+        "url": "https://data.binance.vision/data/futures/um/monthly/markPriceKlines/BTCUSDT/1m/BTCUSDT-1m-2022-03.zip",
+        "checksum": "8cc7cd5451a9c9eaef4a82cb80ef96cabda957fb64943b3620e19bb467d71f49",
+        "arquivo": "brutos/markPriceKlines/BTCUSDT-1m-2022-03.zip",
+        "linhas": 44640
+      },
+      {
+        "url": "https://data.binance.vision/data/futures/um/monthly/fundingRate/BTCUSDT/BTCUSDT-fundingRate-2022-03.zip",
+        "checksum": "4cf0883bc07f4ed4cdd3b0d8c0d166b4d15d21e666ab752f9f44401af4d6172f",
+        "arquivo": "brutos/fundingRate/BTCUSDT-fundingRate-2022-03.zip",
+        "linhas": 93
+      },
+      {
+        "url": "https://data.binance.vision/data/futures/um/monthly/klines/BTCUSDT/1m/BTCUSDT-1m-2022-04.zip",
+        "checksum": "0f509e296da62eed5f4e903507ced0de9738ea96a7a885e76dd2394b8049e689",
+        "arquivo": "brutos/klines/BTCUSDT-1m-2022-04.zip",
+        "linhas": 43200
+      },
+      {
+        "url": "https://data.binance.vision/data/futures/um/monthly/markPriceKlines/BTCUSDT/1m/BTCUSDT-1m-2022-04.zip",
+        "checksum": "89d70dc94e4336f71380497008dd3de4831c8eb2b0cf25aa139c042204efb67c",
+        "arquivo": "brutos/markPriceKlines/BTCUSDT-1m-2022-04.zip",
+        "linhas": 43200
+      },
+      {
+        "url": "https://data.binance.vision/data/futures/um/monthly/fundingRate/BTCUSDT/BTCUSDT-fundingRate-2022-04.zip",
+        "checksum": "57e2776cc68b3169fc9f8632dad67278f470cd453407a8ebe6c87963c8a31357",
+        "arquivo": "brutos/fundingRate/BTCUSDT-fundingRate-2022-04.zip",
+        "linhas": 90
+      },
+      {
+        "url": "https://data.binance.vision/data/futures/um/monthly/klines/BTCUSDT/1m/BTCUSDT-1m-2022-05.zip",
+        "checksum": "768bdbbd11b08d935b3753ecfee7f1e351a346c71b11cf68a4a51296d694f368",
+        "arquivo": "brutos/klines/BTCUSDT-1m-2022-05.zip",
+        "linhas": 44640
+      },
+      {
+        "url": "https://data.binance.vision/data/futures/um/monthly/markPriceKlines/BTCUSDT/1m/BTCUSDT-1m-2022-05.zip",
+        "checksum": "589544c8c2971e42d7b54d3d42c3dee01474b5bb8f03fe6884304b86af194e68",
+        "arquivo": "brutos/markPriceKlines/BTCUSDT-1m-2022-05.zip",
+        "linhas": 44640
+      },
+      {
+        "url": "https://data.binance.vision/data/futures/um/monthly/fundingRate/BTCUSDT/BTCUSDT-fundingRate-2022-05.zip",
+        "checksum": "bced8a5013d09742b96682e6fd01ad4456213515a03d7586ec2b1f2689af5255",
+        "arquivo": "brutos/fundingRate/BTCUSDT-fundingRate-2022-05.zip",
+        "linhas": 93
+      },
+      {
+        "url": "https://data.binance.vision/data/futures/um/monthly/klines/BTCUSDT/1m/BTCUSDT-1m-2022-06.zip",
+        "checksum": "8587319eaf1b1f6d73fd34446acdecdc72c47b23ecfd2d88e2a6dd2a35470565",
+        "arquivo": "brutos/klines/BTCUSDT-1m-2022-06.zip",
+        "linhas": 43200
+      },
+      {
+        "url": "https://data.binance.vision/data/futures/um/monthly/markPriceKlines/BTCUSDT/1m/BTCUSDT-1m-2022-06.zip",
+        "checksum": "7a4aadc8beebd88105f564c1e4c6db4d2ba3d768638926429aa0b109643b440a",
+        "arquivo": "brutos/markPriceKlines/BTCUSDT-1m-2022-06.zip",
+        "linhas": 43200
+      },
+      {
+        "url": "https://data.binance.vision/data/futures/um/monthly/fundingRate/BTCUSDT/BTCUSDT-fundingRate-2022-06.zip",
+        "checksum": "0cd0708f8903829eb46f98cf60f4b2516c986e1ccddf6620a5912b48e16baf93",
+        "arquivo": "brutos/fundingRate/BTCUSDT-fundingRate-2022-06.zip",
+        "linhas": 90
+      },
+      {
+        "url": "https://data.binance.vision/data/futures/um/monthly/klines/BTCUSDT/1m/BTCUSDT-1m-2022-07.zip",
+        "checksum": "6fc45fa135a6be85679a6ab0b1268fbd1f8258079295cd134b9a4c535c6b6b65",
+        "arquivo": "brutos/klines/BTCUSDT-1m-2022-07.zip",
+        "linhas": 44640
+      },
+      {
+        "url": "https://data.binance.vision/data/futures/um/monthly/markPriceKlines/BTCUSDT/1m/BTCUSDT-1m-2022-07.zip",
+        "checksum": "35d2afc48289d0c9e75b311672aae21c6d635f62bb3836eb63694f554d39f1c6",
+        "arquivo": "brutos/markPriceKlines/BTCUSDT-1m-2022-07.zip",
+        "linhas": 44640
+      },
+      {
+        "url": "https://data.binance.vision/data/futures/um/monthly/fundingRate/BTCUSDT/BTCUSDT-fundingRate-2022-07.zip",
+        "checksum": "29d58cce0cd45f74c6a112039835c6d9ee5a7e60e7c38c2503beb7930453a4fe",
+        "arquivo": "brutos/fundingRate/BTCUSDT-fundingRate-2022-07.zip",
+        "linhas": 93
+      },
+      {
+        "url": "https://data.binance.vision/data/futures/um/monthly/klines/BTCUSDT/1m/BTCUSDT-1m-2022-08.zip",
+        "checksum": "806ee1d6efa856984fe79453d17f04c0fb5e447413fe828cbd3ec2df9a1f5fc4",
+        "arquivo": "brutos/klines/BTCUSDT-1m-2022-08.zip",
+        "linhas": 44640
+      },
+      {
+        "url": "https://data.binance.vision/data/futures/um/monthly/markPriceKlines/BTCUSDT/1m/BTCUSDT-1m-2022-08.zip",
+        "checksum": "fc15588d80e2fea766ce86906c5b7f1975f00a03637483f6606e26f1769a3675",
+        "arquivo": "brutos/markPriceKlines/BTCUSDT-1m-2022-08.zip",
+        "linhas": 44640
+      },
+      {
+        "url": "https://data.binance.vision/data/futures/um/monthly/fundingRate/BTCUSDT/BTCUSDT-fundingRate-2022-08.zip",
+        "checksum": "6f4f0c6c84c05694b4b4a5c085776730fd4059723eecd98ee6ffeb3fde4da811",
+        "arquivo": "brutos/fundingRate/BTCUSDT-fundingRate-2022-08.zip",
+        "linhas": 93
+      },
+      {
+        "url": "https://data.binance.vision/data/futures/um/monthly/klines/BTCUSDT/1m/BTCUSDT-1m-2022-09.zip",
+        "checksum": "fa1adecbe41b530c12f481882115511297ac7b78a9a7ae9d9d21b11c745649a4",
+        "arquivo": "brutos/klines/BTCUSDT-1m-2022-09.zip",
+        "linhas": 43200
+      },
+      {
+        "url": "https://data.binance.vision/data/futures/um/monthly/markPriceKlines/BTCUSDT/1m/BTCUSDT-1m-2022-09.zip",
+        "checksum": "cceb950dfd6858865cd76f0ccf2637a930f274e75ae031e17bb4575b4e681427",
+        "arquivo": "brutos/markPriceKlines/BTCUSDT-1m-2022-09.zip",
+        "linhas": 43200
+      },
+      {
+        "url": "https://data.binance.vision/data/futures/um/monthly/fundingRate/BTCUSDT/BTCUSDT-fundingRate-2022-09.zip",
+        "checksum": "d62cd4e13009de37add446dc4f63ead4c56dcc4955a1e60f6726bcadc5a68fa9",
+        "arquivo": "brutos/fundingRate/BTCUSDT-fundingRate-2022-09.zip",
+        "linhas": 90
+      },
+      {
+        "url": "https://data.binance.vision/data/futures/um/monthly/klines/BTCUSDT/1m/BTCUSDT-1m-2022-10.zip",
+        "checksum": "0f2d2cd67b30ab186bf3db5a07acfe835f1d74335c6493c80e9e4f0598e29b2c",
+        "arquivo": "brutos/klines/BTCUSDT-1m-2022-10.zip",
+        "linhas": 44640
+      },
+      {
+        "url": "https://data.binance.vision/data/futures/um/monthly/markPriceKlines/BTCUSDT/1m/BTCUSDT-1m-2022-10.zip",
+        "checksum": "e6bba74c7ccb41dcd8a7ea1a65f40dc01de05e3128a265d77cd882898037780f",
+        "arquivo": "brutos/markPriceKlines/BTCUSDT-1m-2022-10.zip",
+        "linhas": 44640
+      },
+      {
+        "url": "https://data.binance.vision/data/futures/um/monthly/fundingRate/BTCUSDT/BTCUSDT-fundingRate-2022-10.zip",
+        "checksum": "ad9efed10d4ca1567b865d7a158790977cec1b925395634217069df6696c8bc9",
+        "arquivo": "brutos/fundingRate/BTCUSDT-fundingRate-2022-10.zip",
+        "linhas": 93
+      },
+      {
+        "url": "https://data.binance.vision/data/futures/um/monthly/klines/BTCUSDT/1m/BTCUSDT-1m-2022-11.zip",
+        "checksum": "96916aba47f230a9bc68cd3fd98d0d352e1fd8f23c16c515107c4d965a2067a3",
+        "arquivo": "brutos/klines/BTCUSDT-1m-2022-11.zip",
+        "linhas": 43200
+      },
+      {
+        "url": "https://data.binance.vision/data/futures/um/monthly/markPriceKlines/BTCUSDT/1m/BTCUSDT-1m-2022-11.zip",
+        "checksum": "da02544e804f995ad34dfd84f4cda4a8c62200fc465329817f2881d772689806",
+        "arquivo": "brutos/markPriceKlines/BTCUSDT-1m-2022-11.zip",
+        "linhas": 43200
+      },
+      {
+        "url": "https://data.binance.vision/data/futures/um/monthly/fundingRate/BTCUSDT/BTCUSDT-fundingRate-2022-11.zip",
+        "checksum": "8febe5bec1a029e993bbf27490761f8c47c32849bf7dd13441b2b2f6ec1ffb51",
+        "arquivo": "brutos/fundingRate/BTCUSDT-fundingRate-2022-11.zip",
+        "linhas": 90
+      },
+      {
+        "url": "https://data.binance.vision/data/futures/um/monthly/klines/BTCUSDT/1m/BTCUSDT-1m-2022-12.zip",
+        "checksum": "0f4788019cdb29f4db7b03d9efefce099d7adf49c0daf70a144b814b292bf577",
+        "arquivo": "brutos/klines/BTCUSDT-1m-2022-12.zip",
+        "linhas": 44640
+      },
+      {
+        "url": "https://data.binance.vision/data/futures/um/monthly/markPriceKlines/BTCUSDT/1m/BTCUSDT-1m-2022-12.zip",
+        "checksum": "03fe4fa0293236aba29e603e4bafcb128c3703f82bc7ef59bb385eb165f0b58a",
+        "arquivo": "brutos/markPriceKlines/BTCUSDT-1m-2022-12.zip",
+        "linhas": 44640
+      },
+      {
+        "url": "https://data.binance.vision/data/futures/um/monthly/fundingRate/BTCUSDT/BTCUSDT-fundingRate-2022-12.zip",
+        "checksum": "4218c78331bcc4dbeb5768fa112242a880971c1f2cfd1d3f32aaa26ca34069af",
+        "arquivo": "brutos/fundingRate/BTCUSDT-fundingRate-2022-12.zip",
+        "linhas": 93
+      },
+      {
+        "url": "https://data.binance.vision/data/futures/um/monthly/klines/BTCUSDT/1m/BTCUSDT-1m-2023-01.zip",
+        "checksum": "b7b04483464b36c89f519bf35d6461d278c709577562108b6a00fb786b92e6a6",
+        "arquivo": "brutos/klines/BTCUSDT-1m-2023-01.zip",
+        "linhas": 44640
+      },
+      {
+        "url": "https://data.binance.vision/data/futures/um/monthly/markPriceKlines/BTCUSDT/1m/BTCUSDT-1m-2023-01.zip",
+        "checksum": "18abe5d64d97bf153d1d8f7f9b39f51c37454add602b6af8d51f267dd0f19094",
+        "arquivo": "brutos/markPriceKlines/BTCUSDT-1m-2023-01.zip",
+        "linhas": 44640
+      },
+      {
+        "url": "https://data.binance.vision/data/futures/um/monthly/fundingRate/BTCUSDT/BTCUSDT-fundingRate-2023-01.zip",
+        "checksum": "05e3df32f28d0d50f4c5a280adee9368b4a66fc68c6ddca1b3277087ac0d19f5",
+        "arquivo": "brutos/fundingRate/BTCUSDT-fundingRate-2023-01.zip",
+        "linhas": 93
+      },
+      {
+        "url": "https://data.binance.vision/data/futures/um/monthly/klines/BTCUSDT/1m/BTCUSDT-1m-2023-02.zip",
+        "checksum": "b62ca5df57b1715109cb1fd57097529b28410fb36b0db5bd41dbefe7e070db68",
+        "arquivo": "brutos/klines/BTCUSDT-1m-2023-02.zip",
+        "linhas": 40320
+      },
+      {
+        "url": "https://data.binance.vision/data/futures/um/monthly/markPriceKlines/BTCUSDT/1m/BTCUSDT-1m-2023-02.zip",
+        "checksum": "f84b1b0c1524f381fadaaee37b7be4912cb21fe947106cf01d6a9f0248e38d78",
+        "arquivo": "brutos/markPriceKlines/BTCUSDT-1m-2023-02.zip",
+        "linhas": 40320
+      },
+      {
+        "url": "https://data.binance.vision/data/futures/um/monthly/fundingRate/BTCUSDT/BTCUSDT-fundingRate-2023-02.zip",
+        "checksum": "5227accd9aaa59f71f5e682abffb58be5f99573ed208ab968b1704c81ac11345",
+        "arquivo": "brutos/fundingRate/BTCUSDT-fundingRate-2023-02.zip",
+        "linhas": 84
+      },
+      {
+        "url": "https://data.binance.vision/data/futures/um/monthly/klines/BTCUSDT/1m/BTCUSDT-1m-2023-03.zip",
+        "checksum": "1cb47aae71e941d3e9d333f9c96723eb35c8b4a7ec90e819c59a7c02f89b03bb",
+        "arquivo": "brutos/klines/BTCUSDT-1m-2023-03.zip",
+        "linhas": 44640
+      },
+      {
+        "url": "https://data.binance.vision/data/futures/um/monthly/markPriceKlines/BTCUSDT/1m/BTCUSDT-1m-2023-03.zip",
+        "checksum": "1debe8c9ac4d0e21ffb0715157bdb543577eff49ce0adf88793572ea48e4da65",
+        "arquivo": "brutos/markPriceKlines/BTCUSDT-1m-2023-03.zip",
+        "linhas": 44640
+      },
+      {
+        "url": "https://data.binance.vision/data/futures/um/monthly/fundingRate/BTCUSDT/BTCUSDT-fundingRate-2023-03.zip",
+        "checksum": "ab022adff9b853d2f33cf80154e77c770f57c3392f0bbc36564b2e2cdbd0e872",
+        "arquivo": "brutos/fundingRate/BTCUSDT-fundingRate-2023-03.zip",
+        "linhas": 93
+      },
+      {
+        "url": "https://data.binance.vision/data/futures/um/monthly/klines/BTCUSDT/1m/BTCUSDT-1m-2023-04.zip",
+        "checksum": "2c22e2e460bf0e41884bf71031eebf60224ba470b25777a4d17ddc9298390650",
+        "arquivo": "brutos/klines/BTCUSDT-1m-2023-04.zip",
+        "linhas": 43200
+      },
+      {
+        "url": "https://data.binance.vision/data/futures/um/monthly/markPriceKlines/BTCUSDT/1m/BTCUSDT-1m-2023-04.zip",
+        "checksum": "f5a84258e4f0f62715f0c671b4807cee77ae21c7f2a42a45238728567762db00",
+        "arquivo": "brutos/markPriceKlines/BTCUSDT-1m-2023-04.zip",
+        "linhas": 43200
+      },
+      {
+        "url": "https://data.binance.vision/data/futures/um/monthly/fundingRate/BTCUSDT/BTCUSDT-fundingRate-2023-04.zip",
+        "checksum": "2931039d26818edc65d4faefba84945fd1ba52989dd58fb127dc3cd7a12c7fbf",
+        "arquivo": "brutos/fundingRate/BTCUSDT-fundingRate-2023-04.zip",
+        "linhas": 90
+      },
+      {
+        "url": "https://data.binance.vision/data/futures/um/monthly/klines/BTCUSDT/1m/BTCUSDT-1m-2023-05.zip",
+        "checksum": "cf9e0ab390e3872ddb9d807ad161933a28e374e09dbee2b9addf659856d1e656",
+        "arquivo": "brutos/klines/BTCUSDT-1m-2023-05.zip",
+        "linhas": 44640
+      },
+      {
+        "url": "https://data.binance.vision/data/futures/um/monthly/markPriceKlines/BTCUSDT/1m/BTCUSDT-1m-2023-05.zip",
+        "checksum": "fa5ad18ee67b48ffde94a57c674900a7129c1f5078a3d82c02f4cd8ec3411e42",
+        "arquivo": "brutos/markPriceKlines/BTCUSDT-1m-2023-05.zip",
+        "linhas": 44640
+      },
+      {
+        "url": "https://data.binance.vision/data/futures/um/monthly/fundingRate/BTCUSDT/BTCUSDT-fundingRate-2023-05.zip",
+        "checksum": "5d026fece46df86293054c8c56c2c8de575d30161b82979b11831831217a246e",
+        "arquivo": "brutos/fundingRate/BTCUSDT-fundingRate-2023-05.zip",
+        "linhas": 93
+      },
+      {
+        "url": "https://data.binance.vision/data/futures/um/monthly/klines/BTCUSDT/1m/BTCUSDT-1m-2023-06.zip",
+        "checksum": "8dac3fe301198e752b257817542a7ded393dbe00b604f67aba6bc0090778ae95",
+        "arquivo": "brutos/klines/BTCUSDT-1m-2023-06.zip",
+        "linhas": 43200
+      },
+      {
+        "url": "https://data.binance.vision/data/futures/um/monthly/markPriceKlines/BTCUSDT/1m/BTCUSDT-1m-2023-06.zip",
+        "checksum": "9e888715d55dc099083916b35e386f5d1002a1daedc62c5ac489b789f709cc28",
+        "arquivo": "brutos/markPriceKlines/BTCUSDT-1m-2023-06.zip",
+        "linhas": 43200
+      },
+      {
+        "url": "https://data.binance.vision/data/futures/um/monthly/fundingRate/BTCUSDT/BTCUSDT-fundingRate-2023-06.zip",
+        "checksum": "3ffdde6f1dc9c3c065d77ae43f3ba64d19d4cb76512d4bc1d541933d4fb2e6f7",
+        "arquivo": "brutos/fundingRate/BTCUSDT-fundingRate-2023-06.zip",
+        "linhas": 90
+      },
+      {
+        "url": "https://data.binance.vision/data/futures/um/monthly/klines/BTCUSDT/1m/BTCUSDT-1m-2023-07.zip",
+        "checksum": "5cc84c767c9f4d1fa3cb3d33bd009a0b5e3a445e9c89ad2ef259c90b0365cbc3",
+        "arquivo": "brutos/klines/BTCUSDT-1m-2023-07.zip",
+        "linhas": 44640
+      },
+      {
+        "url": "https://data.binance.vision/data/futures/um/monthly/markPriceKlines/BTCUSDT/1m/BTCUSDT-1m-2023-07.zip",
+        "checksum": "0335045b48bb1409cafe0a2f01fb78f11537e7ac54ccc386bd674b1a5b0c857d",
+        "arquivo": "brutos/markPriceKlines/BTCUSDT-1m-2023-07.zip",
+        "linhas": 44640
+      },
+      {
+        "url": "https://data.binance.vision/data/futures/um/monthly/fundingRate/BTCUSDT/BTCUSDT-fundingRate-2023-07.zip",
+        "checksum": "0304baed9fd407293a8a8040b30a1b68bd344803b630d33530375b421733a930",
+        "arquivo": "brutos/fundingRate/BTCUSDT-fundingRate-2023-07.zip",
+        "linhas": 93
+      },
+      {
+        "url": "https://data.binance.vision/data/futures/um/monthly/klines/BTCUSDT/1m/BTCUSDT-1m-2023-08.zip",
+        "checksum": "8d77e6f898fba3aa5bf643d128e0aaa1b722ea6881cd26a3d19088705117a1d7",
+        "arquivo": "brutos/klines/BTCUSDT-1m-2023-08.zip",
+        "linhas": 44640
+      },
+      {
+        "url": "https://data.binance.vision/data/futures/um/monthly/markPriceKlines/BTCUSDT/1m/BTCUSDT-1m-2023-08.zip",
+        "checksum": "f1724cafea417a0c5915d060428bf51ee1f5dd7c7db1b22dedbaf1649775f69d",
+        "arquivo": "brutos/markPriceKlines/BTCUSDT-1m-2023-08.zip",
+        "linhas": 44640
+      },
+      {
+        "url": "https://data.binance.vision/data/futures/um/monthly/fundingRate/BTCUSDT/BTCUSDT-fundingRate-2023-08.zip",
+        "checksum": "516a8f50631c6ede6a9642f6d1590b6a22c33ba09935501d2ace8dc1396501fd",
+        "arquivo": "brutos/fundingRate/BTCUSDT-fundingRate-2023-08.zip",
+        "linhas": 93
+      },
+      {
+        "url": "https://data.binance.vision/data/futures/um/monthly/klines/BTCUSDT/1m/BTCUSDT-1m-2023-09.zip",
+        "checksum": "ea43f6e612b54e165c47ea30955b8d9e825b1d3ad1846f12c03ad0f0fced9029",
+        "arquivo": "brutos/klines/BTCUSDT-1m-2023-09.zip",
+        "linhas": 43200
+      },
+      {
+        "url": "https://data.binance.vision/data/futures/um/monthly/markPriceKlines/BTCUSDT/1m/BTCUSDT-1m-2023-09.zip",
+        "checksum": "230cfd0e4356a816a4190428509ae938c47598985a39a55bc8f6149280304bc9",
+        "arquivo": "brutos/markPriceKlines/BTCUSDT-1m-2023-09.zip",
+        "linhas": 43200
+      },
+      {
+        "url": "https://data.binance.vision/data/futures/um/monthly/fundingRate/BTCUSDT/BTCUSDT-fundingRate-2023-09.zip",
+        "checksum": "3fd9df6fd1eef33cf5fe625c27012359bc6d64a68c109305d7b44a0354f533c2",
+        "arquivo": "brutos/fundingRate/BTCUSDT-fundingRate-2023-09.zip",
+        "linhas": 90
+      },
+      {
+        "url": "https://data.binance.vision/data/futures/um/monthly/klines/BTCUSDT/1m/BTCUSDT-1m-2023-10.zip",
+        "checksum": "153f1322695d16a12cab261b7798045323d9f893b19d35d95ffe94a62530b4de",
+        "arquivo": "brutos/klines/BTCUSDT-1m-2023-10.zip",
+        "linhas": 44640
+      },
+      {
+        "url": "https://data.binance.vision/data/futures/um/monthly/markPriceKlines/BTCUSDT/1m/BTCUSDT-1m-2023-10.zip",
+        "checksum": "515848caafbd72c51e60fada274af8fff339f74fb80fa9ca22e28e2837e2aaee",
+        "arquivo": "brutos/markPriceKlines/BTCUSDT-1m-2023-10.zip",
+        "linhas": 44640
+      },
+      {
+        "url": "https://data.binance.vision/data/futures/um/monthly/fundingRate/BTCUSDT/BTCUSDT-fundingRate-2023-10.zip",
+        "checksum": "03105cc140150bffca834bcccbddc6cfee245e079d2df1759653243bd6e92448",
+        "arquivo": "brutos/fundingRate/BTCUSDT-fundingRate-2023-10.zip",
+        "linhas": 93
+      },
+      {
+        "url": "https://data.binance.vision/data/futures/um/monthly/klines/BTCUSDT/1m/BTCUSDT-1m-2023-11.zip",
+        "checksum": "63aa156170b2316927ae4c4928cc78866934a02b4bbc14c730b5fe4790383a80",
+        "arquivo": "brutos/klines/BTCUSDT-1m-2023-11.zip",
+        "linhas": 43200
+      },
+      {
+        "url": "https://data.binance.vision/data/futures/um/monthly/markPriceKlines/BTCUSDT/1m/BTCUSDT-1m-2023-11.zip",
+        "checksum": "15297e53a960de47f6880ad76f895b9c59573a546d1017c0c288b10434b2b01c",
+        "arquivo": "brutos/markPriceKlines/BTCUSDT-1m-2023-11.zip",
+        "linhas": 43200
+      },
+      {
+        "url": "https://data.binance.vision/data/futures/um/monthly/fundingRate/BTCUSDT/BTCUSDT-fundingRate-2023-11.zip",
+        "checksum": "8015d2997f8d5e757ff3707ee87800ca30a74da0129daa747b64117f07bcc186",
+        "arquivo": "brutos/fundingRate/BTCUSDT-fundingRate-2023-11.zip",
+        "linhas": 90
+      },
+      {
+        "url": "https://data.binance.vision/data/futures/um/monthly/klines/BTCUSDT/1m/BTCUSDT-1m-2023-12.zip",
+        "checksum": "947ea9b1c5dfa301f1d5ff89d28f3ee49bc73eef2cfa1f0dc4024048458eb60b",
+        "arquivo": "brutos/klines/BTCUSDT-1m-2023-12.zip",
+        "linhas": 44640
+      },
+      {
+        "url": "https://data.binance.vision/data/futures/um/monthly/markPriceKlines/BTCUSDT/1m/BTCUSDT-1m-2023-12.zip",
+        "checksum": "6c5f2473e4cbb328b7ec271c075c2203ae9b3eb23b53a2cf36325bcb2d0e3741",
+        "arquivo": "brutos/markPriceKlines/BTCUSDT-1m-2023-12.zip",
+        "linhas": 44640
+      },
+      {
+        "url": "https://data.binance.vision/data/futures/um/monthly/fundingRate/BTCUSDT/BTCUSDT-fundingRate-2023-12.zip",
+        "checksum": "8f02fdd2a2da261bbf13ab301c74bdb57fae005f19d5088e9ece5f8824c1a2a7",
+        "arquivo": "brutos/fundingRate/BTCUSDT-fundingRate-2023-12.zip",
+        "linhas": 93
+      }
+    ],
+    "funding_api": [
+      {
+        "url": "https://fapi.binance.com/fapi/v1/fundingRate?symbol=BTCUSDT&startTime=1609459200000&endTime=1704067199999&limit=1000",
+        "arquivo": "brutos/funding_api_000.json",
+        "sha256": "f6e6f829cf14023acf9bdc7efbdfc73b64ce9576d3e387ea94e667041fc3b8be"
+      },
+      {
+        "url": "https://fapi.binance.com/fapi/v1/fundingRate?symbol=BTCUSDT&startTime=1638230400001&endTime=1704067199999&limit=1000",
+        "arquivo": "brutos/funding_api_001.json",
+        "sha256": "c39485ff36c110bfbecd074f5eb58137e9b841df88053c0747fd1597c4d883d1"
+      },
+      {
+        "url": "https://fapi.binance.com/fapi/v1/fundingRate?symbol=BTCUSDT&startTime=1667030400004&endTime=1704067199999&limit=1000",
+        "arquivo": "brutos/funding_api_002.json",
+        "sha256": "2f89523331d22050a6ac821497ab92ebdc1547bf682f3feea7bc9774e1a8114e"
+      },
+      {
+        "url": "https://fapi.binance.com/fapi/v1/fundingRate?symbol=BTCUSDT&startTime=1695830400001&endTime=1704067199999&limit=1000",
+        "arquivo": "brutos/funding_api_003.json",
+        "sha256": "106572bde3ba378e237696b03a54d30cecc86b4b0829b8138fe3e046ddae9461"
+      },
+      {
+        "url": "https://fapi.binance.com/fapi/v1/fundingRate?symbol=BTCUSDT&startTime=1704038400001&endTime=1704067199999&limit=1000",
+        "arquivo": "brutos/funding_api_004.json",
+        "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+      }
+    ],
+    "precos_funding_ausentes": 3100,
+    "tratamento_marca_ausente": "NaN preservado; OHLC de marcação do minuto em colunas separadas. Política de custo é responsabilidade do simulador.",
+    "minutos": 1576800,
+    "candles_1h": 26280,
+    "eventos_funding": 3285,
+    "derivados": {
+      "candles_1h.parquet": "33e6cc32f82b45a7dcefe568d6b13db1625cd93e5ca4bf1b51cc53e22a589ef7",
+      "funding.parquet": "8bf75935acf54468184626d6ce406a284106f7b1d55432d1cc1ab864a435a459",
+      "klines.parquet": "46368e9dcc0e4592fc5464c8c11203fa0dfa23d25364bf9e2e07616281ab49f0",
+      "markPriceKlines.parquet": "5407c0d9ca136bf674489bea22856489004e9ad07323184d6d10cfd3889f57a0"
+    }
+  },
+  "arquivos": {
+    "candles_1h.parquet": "33e6cc32f82b45a7dcefe568d6b13db1625cd93e5ca4bf1b51cc53e22a589ef7",
+    "funding.parquet": "8bf75935acf54468184626d6ce406a284106f7b1d55432d1cc1ab864a435a459",
+    "inicio.json": "025831e02ac309130c323511685d3cc4affeb65c666af8fabac4e801640a5ee6",
+    "klines.parquet": "46368e9dcc0e4592fc5464c8c11203fa0dfa23d25364bf9e2e07616281ab49f0",
+    "markPriceKlines.parquet": "5407c0d9ca136bf674489bea22856489004e9ad07323184d6d10cfd3889f57a0",
+    "brutos/funding_api_000.json": "f6e6f829cf14023acf9bdc7efbdfc73b64ce9576d3e387ea94e667041fc3b8be",
+    "brutos/funding_api_001.json": "c39485ff36c110bfbecd074f5eb58137e9b841df88053c0747fd1597c4d883d1",
+    "brutos/funding_api_002.json": "2f89523331d22050a6ac821497ab92ebdc1547bf682f3feea7bc9774e1a8114e",
+    "brutos/funding_api_003.json": "106572bde3ba378e237696b03a54d30cecc86b4b0829b8138fe3e046ddae9461",
+    "brutos/funding_api_004.json": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+    "fontes/infraestrutura/artefatos.py": "8a6b3cfeee815cdc3742ddf6b6fe7e972fa0757099f16212310515c49eb28a3e",
+    "fontes/mercado_futuros/historico_operacional.py": "8ca79e04c95a622c77417f374243f3e0f54500849dc87a78f0934d3b995883b9",
+    "fontes/mercado_futuros/pipeline.py": "324b0d9f6a0e00162be11e78fb4dea85352b01263e17f2aaf826150360ec751c",
+    "brutos/fundingRate/BTCUSDT-fundingRate-2021-01.zip": "cff916dc4b638ec3de97828e8911cd91cf7d7a3d0836ec0175869c374e66823d",
+    "brutos/fundingRate/BTCUSDT-fundingRate-2021-01.zip.CHECKSUM": "cc8b0c6027dd70d41b905a23fc5674f827ce9bf9172edb5676626c0aff655551",
+    "brutos/fundingRate/BTCUSDT-fundingRate-2021-02.zip": "819a7b107443686adb313fc5fc223302a29f3981e1d1bd9828ad0ade65a8a8af",
+    "brutos/fundingRate/BTCUSDT-fundingRate-2021-02.zip.CHECKSUM": "cec4d288947dfcaa48aeebc7b0382ff03451e47f4397d4c273a09e3b43781f1c",
+    "brutos/fundingRate/BTCUSDT-fundingRate-2021-03.zip": "2125fd300848938c7b992b8f7b7b5007d5b277a4ff1ebda7da083b40242729da",
+    "brutos/fundingRate/BTCUSDT-fundingRate-2021-03.zip.CHECKSUM": "c34bf697bb53622f684deb8c7aa6eb4e3cdc3ff8751a40147196893e5f93b2a2",
+    "brutos/fundingRate/BTCUSDT-fundingRate-2021-04.zip": "9cd888e3b0a1954813d0062c2e60426fdc8e34a7f258f6838371ec67f535b028",
+    "brutos/fundingRate/BTCUSDT-fundingRate-2021-04.zip.CHECKSUM": "7a60f775abbd1f578582ef6edfbe674f864ad2376e6b91787afbbf8d19c9aafd",
+    "brutos/fundingRate/BTCUSDT-fundingRate-2021-05.zip": "ed934afb9cf84df6ecae742e755147333a84244836a66b51523abc66dd5f63af",
+    "brutos/fundingRate/BTCUSDT-fundingRate-2021-05.zip.CHECKSUM": "4e6da223fb549bd61ae7c1acc142d7159f4d4ed778553df0f0e833e08089f9a2",
+    "brutos/fundingRate/BTCUSDT-fundingRate-2021-06.zip": "7b8d9bfb8816636b800764dafb2aa2307d19166c695bfa245adbf7d01d61f766",
+    "brutos/fundingRate/BTCUSDT-fundingRate-2021-06.zip.CHECKSUM": "b423b5dfe5dbda09aae5e9dae36abffd7a370b42a78e09d0f7dec68722b3c35d",
+    "brutos/fundingRate/BTCUSDT-fundingRate-2021-07.zip": "8ab3df641d3bcf40527491f8e26d046ad2b662d1950ead9555ad32975571b7fe",
+    "brutos/fundingRate/BTCUSDT-fundingRate-2021-07.zip.CHECKSUM": "863d9109cc80058428b22f7a99b6edb068f6f052372803dc6d7bebc4252029c8",
+    "brutos/fundingRate/BTCUSDT-fundingRate-2021-08.zip": "7eb681cc45b94176f4b9192a62c3a1925d79031ba001cea2d8dec6ff6e5b9c35",
+    "brutos/fundingRate/BTCUSDT-fundingRate-2021-08.zip.CHECKSUM": "1b130ee35297bae12264b5e0ac4c991ff7a5142e6cc8affd9ff636bb70ef79d2",
+    "brutos/fundingRate/BTCUSDT-fundingRate-2021-09.zip": "03f25a7c25eef18d5f5b5b7bb0b664cab7a210b409f37e95a54e141808a0752d",
+    "brutos/fundingRate/BTCUSDT-fundingRate-2021-09.zip.CHECKSUM": "e211201802aea6c0af551c891caffacf4afa2bffba10210a301751f3fccc8ff8",
+    "brutos/fundingRate/BTCUSDT-fundingRate-2021-10.zip": "f25820d6add687addbca3ef43bee58f70853a6da53832a0c1bc22d00dc8ec64a",
+    "brutos/fundingRate/BTCUSDT-fundingRate-2021-10.zip.CHECKSUM": "94f4fb43d8bb5824754153101eca690c5cd4b3623f0add2e136c630a48790319",
+    "brutos/fundingRate/BTCUSDT-fundingRate-2021-11.zip": "e2e6b2d7218607e7e4a38137d50f553c2cfb901275c19edf567024c1cc6de85f",
+    "brutos/fundingRate/BTCUSDT-fundingRate-2021-11.zip.CHECKSUM": "88287fb2d57e25269823998255332f6c3c1be5723b1a7461ad241d2799e81f1b",
+    "brutos/fundingRate/BTCUSDT-fundingRate-2021-12.zip": "bf3ce484faf41d7dccfd38c5cc3d8de34d8297df30ab10784e874cc10fd1b310",
+    "brutos/fundingRate/BTCUSDT-fundingRate-2021-12.zip.CHECKSUM": "04faef928fcfb0f6c8bac8f1fe7fc5ba87a216fb1d1f6c6330e03ad89faaf759",
+    "brutos/fundingRate/BTCUSDT-fundingRate-2022-01.zip": "22ee19079b620f5c6d820e7d7f8bafa7fde866d89bd664863b8bd527749c12cb",
+    "brutos/fundingRate/BTCUSDT-fundingRate-2022-01.zip.CHECKSUM": "b60b9ea50214a3a17ad24013d572f3daf7b2772803e01e4a681615dd87d9ce16",
+    "brutos/fundingRate/BTCUSDT-fundingRate-2022-02.zip": "fa95088258a905c79ab79e8984d2f6f66933ec2e814dbab4ef9da89b01ab484a",
+    "brutos/fundingRate/BTCUSDT-fundingRate-2022-02.zip.CHECKSUM": "70f6e1a566ee42efbc69690cd8a22b51966e299279b2510e4029b35812e7f7c1",
+    "brutos/fundingRate/BTCUSDT-fundingRate-2022-03.zip": "4cf0883bc07f4ed4cdd3b0d8c0d166b4d15d21e666ab752f9f44401af4d6172f",
+    "brutos/fundingRate/BTCUSDT-fundingRate-2022-03.zip.CHECKSUM": "5adcbc131b1b5745b41870e27d159ad801d43772648f9d28e179038ed9b276f9",
+    "brutos/fundingRate/BTCUSDT-fundingRate-2022-04.zip": "57e2776cc68b3169fc9f8632dad67278f470cd453407a8ebe6c87963c8a31357",
+    "brutos/fundingRate/BTCUSDT-fundingRate-2022-04.zip.CHECKSUM": "e55a5c3fd9747889e4233836daae7b8c90602b9bd1cf85e3274227e2098c6d46",
+    "brutos/fundingRate/BTCUSDT-fundingRate-2022-05.zip": "bced8a5013d09742b96682e6fd01ad4456213515a03d7586ec2b1f2689af5255",
+    "brutos/fundingRate/BTCUSDT-fundingRate-2022-05.zip.CHECKSUM": "58e077d28f3827b3d236069bc1c54443473df16b9ef995bfae663a07b4d47aa7",
+    "brutos/fundingRate/BTCUSDT-fundingRate-2022-06.zip": "0cd0708f8903829eb46f98cf60f4b2516c986e1ccddf6620a5912b48e16baf93",
+    "brutos/fundingRate/BTCUSDT-fundingRate-2022-06.zip.CHECKSUM": "3da8aebd786f33ef35f2c0674c49da7c5d10ca7644caed8ddc35176f9facc501",
+    "brutos/fundingRate/BTCUSDT-fundingRate-2022-07.zip": "29d58cce0cd45f74c6a112039835c6d9ee5a7e60e7c38c2503beb7930453a4fe",
+    "brutos/fundingRate/BTCUSDT-fundingRate-2022-07.zip.CHECKSUM": "e4f0282cdb4f4831e9e19d80846fdfe3107e40f0979bc8d3bd67f663fd847115",
+    "brutos/fundingRate/BTCUSDT-fundingRate-2022-08.zip": "6f4f0c6c84c05694b4b4a5c085776730fd4059723eecd98ee6ffeb3fde4da811",
+    "brutos/fundingRate/BTCUSDT-fundingRate-2022-08.zip.CHECKSUM": "43b4168cb7ebc1a52167a0f3ef8cc64927674754b2f793a2776652c2fc2626b6",
+    "brutos/fundingRate/BTCUSDT-fundingRate-2022-09.zip": "d62cd4e13009de37add446dc4f63ead4c56dcc4955a1e60f6726bcadc5a68fa9",
+    "brutos/fundingRate/BTCUSDT-fundingRate-2022-09.zip.CHECKSUM": "c5e0ad436ec1df6206660ddd350fa3175a60239528137559e6e3458345a768b7",
+    "brutos/fundingRate/BTCUSDT-fundingRate-2022-10.zip": "ad9efed10d4ca1567b865d7a158790977cec1b925395634217069df6696c8bc9",
+    "brutos/fundingRate/BTCUSDT-fundingRate-2022-10.zip.CHECKSUM": "1f3ec516bbe5d8547eb171760afe3735c9e20f6595b1b947691de607bbf72cfa",
+    "brutos/fundingRate/BTCUSDT-fundingRate-2022-11.zip": "8febe5bec1a029e993bbf27490761f8c47c32849bf7dd13441b2b2f6ec1ffb51",
+    "brutos/fundingRate/BTCUSDT-fundingRate-2022-11.zip.CHECKSUM": "a11d0b076472a055dce0b751591944be7be05199e31a54f6145639377edb57c0",
+    "brutos/fundingRate/BTCUSDT-fundingRate-2022-12.zip": "4218c78331bcc4dbeb5768fa112242a880971c1f2cfd1d3f32aaa26ca34069af",
+    "brutos/fundingRate/BTCUSDT-fundingRate-2022-12.zip.CHECKSUM": "3d468a14bd2456045a1a2f4d83337cccf5393c28c71db6867e1c1f65a96471b2",
+    "brutos/fundingRate/BTCUSDT-fundingRate-2023-01.zip": "05e3df32f28d0d50f4c5a280adee9368b4a66fc68c6ddca1b3277087ac0d19f5",
+    "brutos/fundingRate/BTCUSDT-fundingRate-2023-01.zip.CHECKSUM": "5951057db013466a734bf89cba088c9d35fe902bc1393756f4efeef253199230",
+    "brutos/fundingRate/BTCUSDT-fundingRate-2023-02.zip": "5227accd9aaa59f71f5e682abffb58be5f99573ed208ab968b1704c81ac11345",
+    "brutos/fundingRate/BTCUSDT-fundingRate-2023-02.zip.CHECKSUM": "d4968593ef3b38c3fe8ec3aef698c294065542ddfbac922af2b0f430e38d9d71",
+    "brutos/fundingRate/BTCUSDT-fundingRate-2023-03.zip": "ab022adff9b853d2f33cf80154e77c770f57c3392f0bbc36564b2e2cdbd0e872",
+    "brutos/fundingRate/BTCUSDT-fundingRate-2023-03.zip.CHECKSUM": "7788dd213e416947a4e13d5059e9b830d836ee16e4fd8c61451c4a79bb9e8e8f",
+    "brutos/fundingRate/BTCUSDT-fundingRate-2023-04.zip": "2931039d26818edc65d4faefba84945fd1ba52989dd58fb127dc3cd7a12c7fbf",
+    "brutos/fundingRate/BTCUSDT-fundingRate-2023-04.zip.CHECKSUM": "6ea500c3718cc704661b54739c6325af6cf76f566363aa1d044731dcd8e9973e",
+    "brutos/fundingRate/BTCUSDT-fundingRate-2023-05.zip": "5d026fece46df86293054c8c56c2c8de575d30161b82979b11831831217a246e",
+    "brutos/fundingRate/BTCUSDT-fundingRate-2023-05.zip.CHECKSUM": "69ca5320b9b0699ccbd2e295f23e6eccff2cf75c6335250fbab7123a41ee064b",
+    "brutos/fundingRate/BTCUSDT-fundingRate-2023-06.zip": "3ffdde6f1dc9c3c065d77ae43f3ba64d19d4cb76512d4bc1d541933d4fb2e6f7",
+    "brutos/fundingRate/BTCUSDT-fundingRate-2023-06.zip.CHECKSUM": "7939aea6912d1d1ff2a5e617b7ea0034c009cd10ee5e128ff1d1bbe3d0a8335e",
+    "brutos/fundingRate/BTCUSDT-fundingRate-2023-07.zip": "0304baed9fd407293a8a8040b30a1b68bd344803b630d33530375b421733a930",
+    "brutos/fundingRate/BTCUSDT-fundingRate-2023-07.zip.CHECKSUM": "7ede51684cc4b77af7adc0dc9129ca64f85cff22e2e388135f6037f4a046741b",
+    "brutos/fundingRate/BTCUSDT-fundingRate-2023-08.zip": "516a8f50631c6ede6a9642f6d1590b6a22c33ba09935501d2ace8dc1396501fd",
+    "brutos/fundingRate/BTCUSDT-fundingRate-2023-08.zip.CHECKSUM": "f484acb8f864aecb3742de68eb8b538ab7b99d46e927df8271a535b4b7536b6d",
+    "brutos/fundingRate/BTCUSDT-fundingRate-2023-09.zip": "3fd9df6fd1eef33cf5fe625c27012359bc6d64a68c109305d7b44a0354f533c2",
+    "brutos/fundingRate/BTCUSDT-fundingRate-2023-09.zip.CHECKSUM": "7c9723708be144944c2e32e67fcb9e2aaa00b72197431089101b2e66bff5ec99",
+    "brutos/fundingRate/BTCUSDT-fundingRate-2023-10.zip": "03105cc140150bffca834bcccbddc6cfee245e079d2df1759653243bd6e92448",
+    "brutos/fundingRate/BTCUSDT-fundingRate-2023-10.zip.CHECKSUM": "6088dab1cb6d315d494497c9e5c8bd34434cd21b1c20e0973dcc39bf23c40dff",
+    "brutos/fundingRate/BTCUSDT-fundingRate-2023-11.zip": "8015d2997f8d5e757ff3707ee87800ca30a74da0129daa747b64117f07bcc186",
+    "brutos/fundingRate/BTCUSDT-fundingRate-2023-11.zip.CHECKSUM": "edc2abc2b9ccc294ec321b4375844cb626fab48fd32b684ca146fa0dbfc1ded5",
+    "brutos/fundingRate/BTCUSDT-fundingRate-2023-12.zip": "8f02fdd2a2da261bbf13ab301c74bdb57fae005f19d5088e9ece5f8824c1a2a7",
+    "brutos/fundingRate/BTCUSDT-fundingRate-2023-12.zip.CHECKSUM": "3830f1344f5bc018ac3af964a72877048308e4b4d7803ae67d044f4a1902d706",
+    "brutos/klines/BTCUSDT-1m-2021-01.zip": "ba7aeda6a99e0828b39da1b0605aaefcb40882fe9d44034598c4404f8a07783f",
+    "brutos/klines/BTCUSDT-1m-2021-01.zip.CHECKSUM": "4b250d9c240b48bac4dfd22928c6c829bf55616e4fe5a37e45c8694ef0ecd35b",
+    "brutos/klines/BTCUSDT-1m-2021-02.zip": "0a270f354b15b053824a7bb87c652aa95acb4a255fc968fe0a24bdc9e785223e",
+    "brutos/klines/BTCUSDT-1m-2021-02.zip.CHECKSUM": "95d52019e8fc549933751c0e5b9a4f74941c45cedc6c0e47a3f5952f7815b3f1",
+    "brutos/klines/BTCUSDT-1m-2021-03.zip": "15a2676410d5104fac1ea15f7302addbf4d0de14f6db8ce10a4930c3f5d5e7fa",
+    "brutos/klines/BTCUSDT-1m-2021-03.zip.CHECKSUM": "e7390e086268b63c743628daef4f0dba83c55faf73b4da8f7c19a5705322935e",
+    "brutos/klines/BTCUSDT-1m-2021-04.zip": "d957fcde82f9b5a9a05264a9602e5deae03472aa0d424ddb0f27a04e58723217",
+    "brutos/klines/BTCUSDT-1m-2021-04.zip.CHECKSUM": "8f5fb4067ab366d861a393e016c314f97ecab84fe44e2d588104c8f03059771c",
+    "brutos/klines/BTCUSDT-1m-2021-05.zip": "dcf7c567cbde49a5e564b29f01be95e28d32f12cb68c40b2a14da75930187dc8",
+    "brutos/klines/BTCUSDT-1m-2021-05.zip.CHECKSUM": "d757004fd1721f2734e7725f300a7e46b91613a91ec829b31e6217276f633a62",
+    "brutos/klines/BTCUSDT-1m-2021-06.zip": "a640c7f935a1136d2f65f28f9606f0e063185c500f982aec273bb2ed3f61bfc5",
+    "brutos/klines/BTCUSDT-1m-2021-06.zip.CHECKSUM": "6522a1ea3955d10f9c6d8d47583e2af6d5b49d9ec9a07ee59e746d0cd06135d4",
+    "brutos/klines/BTCUSDT-1m-2021-07.zip": "1367b5cd230474b0ecc6031b9e18cffe66e011c8fdd01c3325985a39c5d5ed48",
+    "brutos/klines/BTCUSDT-1m-2021-07.zip.CHECKSUM": "dee94c0d45513a65727ffda36a64780007574f2cc56b37291171fc7617f01158",
+    "brutos/klines/BTCUSDT-1m-2021-08.zip": "a864bdf38c9d06b7a6a1dc07c5593bbe7387cec3b869e9ebee020da053d94f37",
+    "brutos/klines/BTCUSDT-1m-2021-08.zip.CHECKSUM": "3ee0d1d81b5029955eeef242a1ff8ddeb73bcb2117497713bd48bb7b45e50337",
+    "brutos/klines/BTCUSDT-1m-2021-09.zip": "6e7bbfe650e6c56e189e78d521b3714feffd38468d1268b706a6626737326676",
+    "brutos/klines/BTCUSDT-1m-2021-09.zip.CHECKSUM": "43db6dfc9581cb69907b11f306e5c1cc06a9574ffe74e96dff061d11bdb595dd",
+    "brutos/klines/BTCUSDT-1m-2021-10.zip": "4b78dd0174890c975effca2ed078163d6e9b4f7437f692e2c430c724b7eafc24",
+    "brutos/klines/BTCUSDT-1m-2021-10.zip.CHECKSUM": "746d0b537f318f0276e212d6d5862d6cc72752c6003ea86d4105998c6c791534",
+    "brutos/klines/BTCUSDT-1m-2021-11.zip": "67da3342f014166d2af97321599e0011453c4bd5a9282ef12c1a6131efd12993",
+    "brutos/klines/BTCUSDT-1m-2021-11.zip.CHECKSUM": "58158c29e9149ba30492e6c2efcfda2419adc3ab3ae354ee17814dc38119a456",
+    "brutos/klines/BTCUSDT-1m-2021-12.zip": "c905c5c8ff36d0dfac3a0581225ab305f72d1e11e634953d8d3a136161d10956",
+    "brutos/klines/BTCUSDT-1m-2021-12.zip.CHECKSUM": "dbd1767f9fe7743976188a5041ce72c9b0568bc1e8d3f2cf8e004b6259a26414",
+    "brutos/klines/BTCUSDT-1m-2022-01.zip": "9cdbcf68903434c850f9bec60d8174c2cfd105dd24a7566965b442ec15124e04",
+    "brutos/klines/BTCUSDT-1m-2022-01.zip.CHECKSUM": "a4a0fc5937de792e72dd10d613ce580263547b52b2abd6ba2a80c807b4b620ce",
+    "brutos/klines/BTCUSDT-1m-2022-02.zip": "63672d552f98ec125ac4d90d82154313fb9832b7e1aaed196101816bd61bfb89",
+    "brutos/klines/BTCUSDT-1m-2022-02.zip.CHECKSUM": "f6205996db3db808e8b0cb2d848dfeab84a79dc8a39f6e866e3b5d04130e83d6",
+    "brutos/klines/BTCUSDT-1m-2022-03.zip": "4532faf2f92d205fac79b7d25327d2045843b60a4494e00b0962e6b7f028bc06",
+    "brutos/klines/BTCUSDT-1m-2022-03.zip.CHECKSUM": "25d1f20d8c175675872129c5d213cf1bf1432a8aa557f489111427e04d38b304",
+    "brutos/klines/BTCUSDT-1m-2022-04.zip": "0f509e296da62eed5f4e903507ced0de9738ea96a7a885e76dd2394b8049e689",
+    "brutos/klines/BTCUSDT-1m-2022-04.zip.CHECKSUM": "3174c8458923c11e7b2b89ba255973750ec236f0f02cc02a0eabae87e470b357",
+    "brutos/klines/BTCUSDT-1m-2022-05.zip": "768bdbbd11b08d935b3753ecfee7f1e351a346c71b11cf68a4a51296d694f368",
+    "brutos/klines/BTCUSDT-1m-2022-05.zip.CHECKSUM": "35d07f08e036723a8eabef72a8b6779be63b54a98f8e4769ab99f3245e6d8305",
+    "brutos/klines/BTCUSDT-1m-2022-06.zip": "8587319eaf1b1f6d73fd34446acdecdc72c47b23ecfd2d88e2a6dd2a35470565",
+    "brutos/klines/BTCUSDT-1m-2022-06.zip.CHECKSUM": "190f6dffd3732ffc10a051b9554afc4e062c8cd9b7a1e3b40a74d28c1944780f",
+    "brutos/klines/BTCUSDT-1m-2022-07.zip": "6fc45fa135a6be85679a6ab0b1268fbd1f8258079295cd134b9a4c535c6b6b65",
+    "brutos/klines/BTCUSDT-1m-2022-07.zip.CHECKSUM": "a3a0af43b5ab15e2f58dae549f47c0a765bab8187b05c3884222c02f7baa500b",
+    "brutos/klines/BTCUSDT-1m-2022-08.zip": "806ee1d6efa856984fe79453d17f04c0fb5e447413fe828cbd3ec2df9a1f5fc4",
+    "brutos/klines/BTCUSDT-1m-2022-08.zip.CHECKSUM": "23d41c96f0c70edd55e1838c790220617b5c5b1215fdd330baf3a19ece2d7bb5",
+    "brutos/klines/BTCUSDT-1m-2022-09.zip": "fa1adecbe41b530c12f481882115511297ac7b78a9a7ae9d9d21b11c745649a4",
+    "brutos/klines/BTCUSDT-1m-2022-09.zip.CHECKSUM": "9ab66ef9b4608aa2d439d5871c0ddcdf21cdb22a12feab784366067460a8821c",
+    "brutos/klines/BTCUSDT-1m-2022-10.zip": "0f2d2cd67b30ab186bf3db5a07acfe835f1d74335c6493c80e9e4f0598e29b2c",
+    "brutos/klines/BTCUSDT-1m-2022-10.zip.CHECKSUM": "1f8abacb022997b1b4e67aba543d250266fafffa82ca692d81b359613b65c20e",
+    "brutos/klines/BTCUSDT-1m-2022-11.zip": "96916aba47f230a9bc68cd3fd98d0d352e1fd8f23c16c515107c4d965a2067a3",
+    "brutos/klines/BTCUSDT-1m-2022-11.zip.CHECKSUM": "e6c55d247089a1641f5706220a472064ab1181d62b9a987ed98334aa612398bb",
+    "brutos/klines/BTCUSDT-1m-2022-12.zip": "0f4788019cdb29f4db7b03d9efefce099d7adf49c0daf70a144b814b292bf577",
+    "brutos/klines/BTCUSDT-1m-2022-12.zip.CHECKSUM": "2ff163988f4c120f44079b5b722492e8758070da4eeba485f2a1e7f48ff13c66",
+    "brutos/klines/BTCUSDT-1m-2023-01.zip": "b7b04483464b36c89f519bf35d6461d278c709577562108b6a00fb786b92e6a6",
+    "brutos/klines/BTCUSDT-1m-2023-01.zip.CHECKSUM": "435885dbe1655d04ae70a4b5feb8908a931697f2167c097b415da9a39587a964",
+    "brutos/klines/BTCUSDT-1m-2023-02.zip": "b62ca5df57b1715109cb1fd57097529b28410fb36b0db5bd41dbefe7e070db68",
+    "brutos/klines/BTCUSDT-1m-2023-02.zip.CHECKSUM": "bb78e70eb11e0a54c07e08c4cd7178a5caf4b3ca4bd2273aea62560baa005b43",
+    "brutos/klines/BTCUSDT-1m-2023-03.zip": "1cb47aae71e941d3e9d333f9c96723eb35c8b4a7ec90e819c59a7c02f89b03bb",
+    "brutos/klines/BTCUSDT-1m-2023-03.zip.CHECKSUM": "51c7108498af060dc5b7f79f5da3aba626e87bced5cc6bd010cdbbc73c948b17",
+    "brutos/klines/BTCUSDT-1m-2023-04.zip": "2c22e2e460bf0e41884bf71031eebf60224ba470b25777a4d17ddc9298390650",
+    "brutos/klines/BTCUSDT-1m-2023-04.zip.CHECKSUM": "940a46b69fd73c451ff67ad2dad7ebbbcf539164d70f333fd85421ee90ae6f5b",
+    "brutos/klines/BTCUSDT-1m-2023-05.zip": "cf9e0ab390e3872ddb9d807ad161933a28e374e09dbee2b9addf659856d1e656",
+    "brutos/klines/BTCUSDT-1m-2023-05.zip.CHECKSUM": "5f883b366fe7689dde1bf307b84fba6e31173d364bcc9c2ce53cb9e596cb261c",
+    "brutos/klines/BTCUSDT-1m-2023-06.zip": "8dac3fe301198e752b257817542a7ded393dbe00b604f67aba6bc0090778ae95",
+    "brutos/klines/BTCUSDT-1m-2023-06.zip.CHECKSUM": "2b7d1bc58a2e839e76254b1ed01686e8ed35d1ef83404ca74e34b8768b1aeb04",
+    "brutos/klines/BTCUSDT-1m-2023-07.zip": "5cc84c767c9f4d1fa3cb3d33bd009a0b5e3a445e9c89ad2ef259c90b0365cbc3",
+    "brutos/klines/BTCUSDT-1m-2023-07.zip.CHECKSUM": "ffe6ff2766dee40fde87ef09919d01aab7e70b9aa0ad49aa767c3add01eae735",
+    "brutos/klines/BTCUSDT-1m-2023-08.zip": "8d77e6f898fba3aa5bf643d128e0aaa1b722ea6881cd26a3d19088705117a1d7",
+    "brutos/klines/BTCUSDT-1m-2023-08.zip.CHECKSUM": "fc6def4997587e642c9c0ca805934bd73327bd5d885199c7fc6325d9dd096d1a",
+    "brutos/klines/BTCUSDT-1m-2023-09.zip": "ea43f6e612b54e165c47ea30955b8d9e825b1d3ad1846f12c03ad0f0fced9029",
+    "brutos/klines/BTCUSDT-1m-2023-09.zip.CHECKSUM": "1b99463c382de2e8ea9509d52ca997e4aff47bb6939a92e40d6f409dbf52d562",
+    "brutos/klines/BTCUSDT-1m-2023-10.zip": "153f1322695d16a12cab261b7798045323d9f893b19d35d95ffe94a62530b4de",
+    "brutos/klines/BTCUSDT-1m-2023-10.zip.CHECKSUM": "9a115bccc0b9e0d403aa759840458949c663f3df3cff69b35d331e3e323cee8f",
+    "brutos/klines/BTCUSDT-1m-2023-11.zip": "63aa156170b2316927ae4c4928cc78866934a02b4bbc14c730b5fe4790383a80",
+    "brutos/klines/BTCUSDT-1m-2023-11.zip.CHECKSUM": "99b07b70223c3246612360875daf409fdd7ba6c61af96d2b16007dff78244393",
+    "brutos/klines/BTCUSDT-1m-2023-12.zip": "947ea9b1c5dfa301f1d5ff89d28f3ee49bc73eef2cfa1f0dc4024048458eb60b",
+    "brutos/klines/BTCUSDT-1m-2023-12.zip.CHECKSUM": "514a02aaaec7d9722319d50cfc1110d3237f137663e02d56e1ca0527fcb1c697",
+    "brutos/markPriceKlines/BTCUSDT-1m-2021-01.zip": "883021211d84d5d0996bb6c946e82163b508d02f7e7d53e50c399f4622f4a3dc",
+    "brutos/markPriceKlines/BTCUSDT-1m-2021-01.zip.CHECKSUM": "860a16e23548282dfae77ed8ab9dd0323c5ece7c620a7aa2d06e1a20f8e0d5d1",
+    "brutos/markPriceKlines/BTCUSDT-1m-2021-02.zip": "b090f44eb2b24486e89c387db83533f309800aa44931d73964bfc211846205bf",
+    "brutos/markPriceKlines/BTCUSDT-1m-2021-02.zip.CHECKSUM": "1cf02adfb89c634de58bcd61cea778891b0445cb683cdec06cc7cdc555ef19b3",
+    "brutos/markPriceKlines/BTCUSDT-1m-2021-03.zip": "6e25031ed12e52dbd7ddc854e829e9c53df4c1fd621eda00db18ad3cc6c4b439",
+    "brutos/markPriceKlines/BTCUSDT-1m-2021-03.zip.CHECKSUM": "7e9b1cd684c1dc6f0af3f10468590700d373370f67399196e50ba7e14782b451",
+    "brutos/markPriceKlines/BTCUSDT-1m-2021-04.zip": "8f8067c9b653c09fad49545daf1e3438190ec59ad8582b9f52f8395cee038c6a",
+    "brutos/markPriceKlines/BTCUSDT-1m-2021-04.zip.CHECKSUM": "b0f0693c63581fb31cfa419a08a79097339d6620d3e208dc86f09525de1af885",
+    "brutos/markPriceKlines/BTCUSDT-1m-2021-05.zip": "9f5a9515e9ee59519cdce2d8b6ea2a81a21fe377ad524214a292cc51a1d55482",
+    "brutos/markPriceKlines/BTCUSDT-1m-2021-05.zip.CHECKSUM": "50a7034bfcbc0081f1a60cfe0808f7a0752ccf7d89883ef408e563d274bbd30a",
+    "brutos/markPriceKlines/BTCUSDT-1m-2021-06.zip": "0bb4c8f4bfb11d662095277164bd6dbf645d8ef4470786f07be8342f4ccc52fd",
+    "brutos/markPriceKlines/BTCUSDT-1m-2021-06.zip.CHECKSUM": "bd711c7932e0f7cc2d01374213460e54ec606ade5c83d723271582f5f43f5a3c",
+    "brutos/markPriceKlines/BTCUSDT-1m-2021-07.zip": "f803d5e91d9a932bee0b816abc7c6fdedcd9cf9c327474b195ef72d0c9693a06",
+    "brutos/markPriceKlines/BTCUSDT-1m-2021-07.zip.CHECKSUM": "cb697f0743b24f075be1ffa7df9920f66a08b36b0856505726478ac93ffdd8ff",
+    "brutos/markPriceKlines/BTCUSDT-1m-2021-08.zip": "a4dd146ec0ef0f17f63940e3f32a22433fa9e093856f4ebfb8b9c12f0dccdec0",
+    "brutos/markPriceKlines/BTCUSDT-1m-2021-08.zip.CHECKSUM": "50b61cdc139f2e59cc5c73b316b0004140978dd3d01908451c9e671773534010",
+    "brutos/markPriceKlines/BTCUSDT-1m-2021-09.zip": "70167cdb73095e89095038631e94f0629c453abb45a6e9f8f6de0f7429ec4723",
+    "brutos/markPriceKlines/BTCUSDT-1m-2021-09.zip.CHECKSUM": "44deef19c7e3687ed58acc933e6c8a881d7f9a9372aa33cc97bf70fedad419b4",
+    "brutos/markPriceKlines/BTCUSDT-1m-2021-10.zip": "4301f4ae15eec9c9ae241b973ddda311e964fb3c87eeb2f8c4d8c26e7b10c507",
+    "brutos/markPriceKlines/BTCUSDT-1m-2021-10.zip.CHECKSUM": "177c1d27d2e9af563939d65031e6a6e1c696b8eb215840efab0e6c6a722b3714",
+    "brutos/markPriceKlines/BTCUSDT-1m-2021-11.zip": "48b6337e60328c2a48c8664198b0ce01700a7aa3208d86c7eb0035edb06faa53",
+    "brutos/markPriceKlines/BTCUSDT-1m-2021-11.zip.CHECKSUM": "ffea543edff2ae76d5f6d2725e0e304f2fb0a76b8805568e7b44d3649e06c0d3",
+    "brutos/markPriceKlines/BTCUSDT-1m-2021-12.zip": "b7d4014d14c149012c7b64423f1a683ab0364269945e02c1789dcdbe44ebce61",
+    "brutos/markPriceKlines/BTCUSDT-1m-2021-12.zip.CHECKSUM": "e93df6c5cd928d6db96cea820acd2f83ba78c3147d8ab0712050833bbb44d707",
+    "brutos/markPriceKlines/BTCUSDT-1m-2022-01.zip": "620ec2bfdaed255236b7daa113488a4b2eada7bf3384b1fe640d40dd85d9c4bb",
+    "brutos/markPriceKlines/BTCUSDT-1m-2022-01.zip.CHECKSUM": "1b9046797292bb539b7aca221861d39779f2148ad5cbf55b105c95c077e9b1c2",
+    "brutos/markPriceKlines/BTCUSDT-1m-2022-02.zip": "9554d65c02469ef76ba92b7e8646d2ab606238ca83f23b73957a44c78c7674fd",
+    "brutos/markPriceKlines/BTCUSDT-1m-2022-02.zip.CHECKSUM": "5f626d4dba2d74c9f936a23f04e20bbdb02b1dbe80f600fa96131395586326ae",
+    "brutos/markPriceKlines/BTCUSDT-1m-2022-03.zip": "8cc7cd5451a9c9eaef4a82cb80ef96cabda957fb64943b3620e19bb467d71f49",
+    "brutos/markPriceKlines/BTCUSDT-1m-2022-03.zip.CHECKSUM": "8deb0efdfc6de405d5606a3ad2687a57adb74a17bb766d546e8d64c6af2985fc",
+    "brutos/markPriceKlines/BTCUSDT-1m-2022-04.zip": "89d70dc94e4336f71380497008dd3de4831c8eb2b0cf25aa139c042204efb67c",
+    "brutos/markPriceKlines/BTCUSDT-1m-2022-04.zip.CHECKSUM": "7dadda1c20310414731bc5f31aa1f3501a5ec128d6955df135a0a9dd539a3dee",
+    "brutos/markPriceKlines/BTCUSDT-1m-2022-05.zip": "589544c8c2971e42d7b54d3d42c3dee01474b5bb8f03fe6884304b86af194e68",
+    "brutos/markPriceKlines/BTCUSDT-1m-2022-05.zip.CHECKSUM": "f8ac34730922c2ba25cfca23aac2b528aa3a6fbdee75354b9107f4719d3df807",
+    "brutos/markPriceKlines/BTCUSDT-1m-2022-06.zip": "7a4aadc8beebd88105f564c1e4c6db4d2ba3d768638926429aa0b109643b440a",
+    "brutos/markPriceKlines/BTCUSDT-1m-2022-06.zip.CHECKSUM": "5bb9992bc6f8b8d05bfac4ce11c5b8a67958cd3388947e36fa198b4b6bceba8a",
+    "brutos/markPriceKlines/BTCUSDT-1m-2022-07.zip": "35d2afc48289d0c9e75b311672aae21c6d635f62bb3836eb63694f554d39f1c6",
+    "brutos/markPriceKlines/BTCUSDT-1m-2022-07.zip.CHECKSUM": "6074fadb51c9c82b27fe5f58417be627f5e503a4b61cd7a9c9765b803f4008e2",
+    "brutos/markPriceKlines/BTCUSDT-1m-2022-08.zip": "fc15588d80e2fea766ce86906c5b7f1975f00a03637483f6606e26f1769a3675",
+    "brutos/markPriceKlines/BTCUSDT-1m-2022-08.zip.CHECKSUM": "1a1548647ff98d5fc8a60b971e66f52c95c02b201fd0e386ff3108c4e82beabf",
+    "brutos/markPriceKlines/BTCUSDT-1m-2022-09.zip": "cceb950dfd6858865cd76f0ccf2637a930f274e75ae031e17bb4575b4e681427",
+    "brutos/markPriceKlines/BTCUSDT-1m-2022-09.zip.CHECKSUM": "3736a6e5f31da81d65812028cf8e17fd33beae0ea180c895ed00cbacbed7f3c2",
+    "brutos/markPriceKlines/BTCUSDT-1m-2022-10.zip": "e6bba74c7ccb41dcd8a7ea1a65f40dc01de05e3128a265d77cd882898037780f",
+    "brutos/markPriceKlines/BTCUSDT-1m-2022-10.zip.CHECKSUM": "57de42b90f0ef9920e2a33ef83a03dd0c988ed8416eb8bb45d5cb4fb3d2dbaae",
+    "brutos/markPriceKlines/BTCUSDT-1m-2022-11.zip": "da02544e804f995ad34dfd84f4cda4a8c62200fc465329817f2881d772689806",
+    "brutos/markPriceKlines/BTCUSDT-1m-2022-11.zip.CHECKSUM": "7c6c27d809616442f9bd31d0ef724b4ff79808cf7d16eac7902abaec017a10fa",
+    "brutos/markPriceKlines/BTCUSDT-1m-2022-12.zip": "03fe4fa0293236aba29e603e4bafcb128c3703f82bc7ef59bb385eb165f0b58a",
+    "brutos/markPriceKlines/BTCUSDT-1m-2022-12.zip.CHECKSUM": "02b5459603c13b611aa5337968cede8ec4b90e3c4e5bf7babbe7605422768fe2",
+    "brutos/markPriceKlines/BTCUSDT-1m-2023-01.zip": "18abe5d64d97bf153d1d8f7f9b39f51c37454add602b6af8d51f267dd0f19094",
+    "brutos/markPriceKlines/BTCUSDT-1m-2023-01.zip.CHECKSUM": "e18e17ffe2e209aca1299d46515f5e2a3e4ff4ed138b03df7b3d632f434cb422",
+    "brutos/markPriceKlines/BTCUSDT-1m-2023-02.zip": "f84b1b0c1524f381fadaaee37b7be4912cb21fe947106cf01d6a9f0248e38d78",
+    "brutos/markPriceKlines/BTCUSDT-1m-2023-02.zip.CHECKSUM": "b4967bd75c29dc991ab0678239112d7922745bd5304e0b697bcf019303444ade",
+    "brutos/markPriceKlines/BTCUSDT-1m-2023-03.zip": "1debe8c9ac4d0e21ffb0715157bdb543577eff49ce0adf88793572ea48e4da65",
+    "brutos/markPriceKlines/BTCUSDT-1m-2023-03.zip.CHECKSUM": "d8b66f3a7584c6a5d7a8205ac0bacc3f672d7b370a2611248a89650618c4c32a",
+    "brutos/markPriceKlines/BTCUSDT-1m-2023-04.zip": "f5a84258e4f0f62715f0c671b4807cee77ae21c7f2a42a45238728567762db00",
+    "brutos/markPriceKlines/BTCUSDT-1m-2023-04.zip.CHECKSUM": "ac3e4abbdb884ec9e3a8da610e9e8d382de3826cc141a2202344eb6127518db4",
+    "brutos/markPriceKlines/BTCUSDT-1m-2023-05.zip": "fa5ad18ee67b48ffde94a57c674900a7129c1f5078a3d82c02f4cd8ec3411e42",
+    "brutos/markPriceKlines/BTCUSDT-1m-2023-05.zip.CHECKSUM": "feab51e7db3636b84c445910edcd67e3e106ef136148dfcb33701bc1e0cbb131",
+    "brutos/markPriceKlines/BTCUSDT-1m-2023-06.zip": "9e888715d55dc099083916b35e386f5d1002a1daedc62c5ac489b789f709cc28",
+    "brutos/markPriceKlines/BTCUSDT-1m-2023-06.zip.CHECKSUM": "b1bbbc50f3fcd42aa6c6cc4708b1a2828634008afb81a1a095b2e66e2d79507c",
+    "brutos/markPriceKlines/BTCUSDT-1m-2023-07.zip": "0335045b48bb1409cafe0a2f01fb78f11537e7ac54ccc386bd674b1a5b0c857d",
+    "brutos/markPriceKlines/BTCUSDT-1m-2023-07.zip.CHECKSUM": "a1cf8b66b586cd265263ea86eedb62b7a46d2e37a09bd81d6549399b904de78d",
+    "brutos/markPriceKlines/BTCUSDT-1m-2023-08.zip": "f1724cafea417a0c5915d060428bf51ee1f5dd7c7db1b22dedbaf1649775f69d",
+    "brutos/markPriceKlines/BTCUSDT-1m-2023-08.zip.CHECKSUM": "5ec33dea2af0ae27ded20b0fa1ef701e6d79d2a479a0fa98d37462e92937f55a",
+    "brutos/markPriceKlines/BTCUSDT-1m-2023-09.zip": "230cfd0e4356a816a4190428509ae938c47598985a39a55bc8f6149280304bc9",
+    "brutos/markPriceKlines/BTCUSDT-1m-2023-09.zip.CHECKSUM": "3bc606576b661d090c7de0ec85490690b8b30f22bf7307624c3c06830fc49162",
+    "brutos/markPriceKlines/BTCUSDT-1m-2023-10.zip": "515848caafbd72c51e60fada274af8fff339f74fb80fa9ca22e28e2837e2aaee",
+    "brutos/markPriceKlines/BTCUSDT-1m-2023-10.zip.CHECKSUM": "c7aa84591b999cc03b7e3f99952349cc3dfc9400795861a86d2622a05d6df9fc",
+    "brutos/markPriceKlines/BTCUSDT-1m-2023-11.zip": "15297e53a960de47f6880ad76f895b9c59573a546d1017c0c288b10434b2b01c",
+    "brutos/markPriceKlines/BTCUSDT-1m-2023-11.zip.CHECKSUM": "5b65e2ce2ba1ebbbebf2b3c100b35cf224aaddc5919256122e8a684818c3b80c",
+    "brutos/markPriceKlines/BTCUSDT-1m-2023-12.zip": "6c5f2473e4cbb328b7ec271c075c2203ae9b3eb23b53a2cf36325bcb2d0e3741",
+    "brutos/markPriceKlines/BTCUSDT-1m-2023-12.zip.CHECKSUM": "afc82229a62c783cd13d354ea7c7649f4d840eee4ba880a28b076f4d722a6742",
+    "brutos/markPriceKlines/complemento_1625097600000_1625183940000.json": "3edd191301d2f0bdae626124c91b0c7e2d48a1bbb790de6b963c248fb91145d1",
+    "brutos/markPriceKlines/complemento_1625097600000_1625183940000.proveniencia.json": "419f5aecb3f6caeb90a5b8d33bc59726bd1af8658da7aff8503601189ba11b42",
+    "brutos/markPriceKlines/complemento_1627084800000_1627174740000.json": "0577491d83d38cba441dcd0a1f53d99508e5ce3011add1a05d7493517414b249",
+    "brutos/markPriceKlines/complemento_1627084800000_1627174740000.proveniencia.json": "3e01a9a395a44ffb5f03b28d0523f90be50db437aae9f30a8a3a38c1005f96de",
+    "brutos/markPriceKlines/complemento_1627174800000_1627264740000.json": "2d832461a7f3ed06040d4b12cf5a4808997891d876f6fa07c639c7c91d18dc2b",
+    "brutos/markPriceKlines/complemento_1627174800000_1627264740000.proveniencia.json": "f3feff19333c22f0b22f766c7e34d9092be9a56736cc4fa1ed7bb5a9633cee9a",
+    "brutos/markPriceKlines/complemento_1627264800000_1627354740000.json": "ce54b7703b8be270c2b99ff0d24b263f92eab9348e1ba6a845491d68ba6ac40e",
+    "brutos/markPriceKlines/complemento_1627264800000_1627354740000.proveniencia.json": "a88ab802d29a1ab33fd75f66bdf1e2d945f5cd23cd5e4bb646b8a6c5f007d758",
+    "brutos/markPriceKlines/complemento_1627354800000_1627430340000.json": "314146523392f9b0baf563a49c94ac53fec31529da55f979be83cb8f1d17627a",
+    "brutos/markPriceKlines/complemento_1627354800000_1627430340000.proveniencia.json": "cf3ae4215f0831a19f063c65e0662a1cbc6ba3de5c2b6e94c7f916a20fd1575c",
+    "brutos/markPriceKlines/complemento_1659225600000_1659311940000.json": "87907aea68fa1dd2c0e06be8a16bce2823a9bf4b63682de93afe13c2d5dc8e4c",
+    "brutos/markPriceKlines/complemento_1659225600000_1659311940000.proveniencia.json": "6db59791fefd7a5862b906d50c69e0ab8425cde385487f8f1a84afe9cece2dc3",
+    "brutos/markPriceKlines/complemento_1664668800000_1664755140000.json": "839c1345c7f6f5891ea660e847a5873236254a9b35f246b96c229422e94b2f78",
+    "brutos/markPriceKlines/complemento_1664668800000_1664755140000.proveniencia.json": "d1a7b8fcf9b654fd40305a9e73ffd9a6d552daf6f5771460c23845311c5a885f",
+    "brutos/markPriceKlines/complemento_1677196800000_1677283140000.json": "d5e57953130b2eec4882a9235d32d64d17c068ac2843f0e1a2d413c121d64804",
+    "brutos/markPriceKlines/complemento_1677196800000_1677283140000.proveniencia.json": "54823249086fad64b8e32d535fa251e4c0b1c9a80e1d61a7cb7ea3e3bfc2fa40"
+  }
+}

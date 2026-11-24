@@ -1,0 +1,156 @@
+{
+  "utc": "2026-11-08T08:06:10.610249+00:00",
+  "resultados": {
+    "validacao": {
+      "metricas_base": {
+        "capital_final": 10874.422275748297,
+        "retorno_liquido": 0.08744222757482967,
+        "drawdown_maximo": 0.5028559690472337,
+        "crescimento_log_diario": 0.00023882723219500223,
+        "retorno_anualizado": 0.09108426434811219,
+        "calmar": 0.18113390305516403,
+        "sharpe_diario_rf_zero": 0.1854643810346609,
+        "operacoes": 312,
+        "compras": 312,
+        "vendas": 0,
+        "taxa_acerto_liquido": 0.48717948717948717,
+        "profit_factor": 1.0283632877819757,
+        "comissoes": 3073.40531985,
+        "funding": -1077.2523044017128,
+        "pnl_compras": 874.4222757482967,
+        "pnl_vendas": 0,
+        "fracao_dias_posicionado": 0.8888888888888888,
+        "previsoes_nao_positivas": 0
+      },
+      "primeira_entrada": "2024-01-15T00:01:00+00:00",
+      "ultima_entrada": "2024-11-26T00:01:00+00:00",
+      "operacoes_por_mes": {
+        "1": 17,
+        "2": 29,
+        "3": 31,
+        "4": 30,
+        "5": 31,
+        "6": 30,
+        "7": 31,
+        "8": 31,
+        "9": 30,
+        "10": 31,
+        "11": 21,
+        "12": 0
+      },
+      "maior_ganho_usdt": 1071.67148593019,
+      "soma_tres_maiores_ganhos_usdt": 3067.1897879333646,
+      "participacao_maior_ganho_no_pnl_liquido": 1.2255766071525285,
+      "incerteza_exploratoria_carteira_fixa": {
+        "7": {
+          "crescimento_log_diario_ic95": [
+            -0.00239956451860202,
+            0.002935883187103785
+          ],
+          "delta_vs_ensemble_referencia_ic95": [
+            -0.0032262837625673018,
+            0.0006131435602184993
+          ]
+        },
+        "14": {
+          "crescimento_log_diario_ic95": [
+            -0.0022646177503846208,
+            0.0029218913033786146
+          ],
+          "delta_vs_ensemble_referencia_ic95": [
+            -0.002889135982859992,
+            0.00040923203378614726
+          ]
+        },
+        "28": {
+          "crescimento_log_diario_ic95": [
+            -0.0022598278843707314,
+            0.0030277744559580617
+          ],
+          "delta_vs_ensemble_referencia_ic95": [
+            -0.002821434176812446,
+            0.00040099836655117874
+          ]
+        }
+      }
+    },
+    "teste": {
+      "metricas_base": {
+        "capital_final": 10858.916933607887,
+        "retorno_liquido": 0.08589169336078872,
+        "drawdown_maximo": 0.08892955418461812,
+        "crescimento_log_diario": 0.00023543281905150744,
+        "retorno_anualizado": 0.0897332907924031,
+        "calmar": 1.0090379021367455,
+        "sharpe_diario_rf_zero": 0.6238769292086604,
+        "operacoes": 24,
+        "compras": 24,
+        "vendas": 0,
+        "taxa_acerto_liquido": 0.5416666666666666,
+        "profit_factor": 1.377820149606854,
+        "comissoes": 240.11048010000002,
+        "funding": -21.821386292118444,
+        "pnl_compras": 858.9169336078867,
+        "pnl_vendas": 0,
+        "fracao_dias_posicionado": 0.06857142857142857,
+        "previsoes_nao_positivas": 0
+      },
+      "primeira_entrada": "2025-03-04T00:01:00+00:00",
+      "ultima_entrada": "2025-04-20T00:01:00+00:00",
+      "operacoes_por_mes": {
+        "1": 0,
+        "2": 0,
+        "3": 13,
+        "4": 11,
+        "5": 0,
+        "6": 0,
+        "7": 0,
+        "8": 0,
+        "9": 0,
+        "10": 0,
+        "11": 0,
+        "12": 0
+      },
+      "maior_ganho_usdt": 757.6335638549499,
+      "soma_tres_maiores_ganhos_usdt": 1697.8258939682255,
+      "participacao_maior_ganho_no_pnl_liquido": 0.8820801339571974,
+      "incerteza_exploratoria_carteira_fixa": {
+        "7": {
+          "crescimento_log_diario_ic95": [
+            -0.00011828755112150751,
+            0.0007010451944306262
+          ],
+          "delta_vs_ensemble_referencia_ic95": [
+            -0.00020539331250099324,
+            0.003299864539938956
+          ]
+        },
+        "14": {
+          "crescimento_log_diario_ic95": [
+            -8.167492777954128e-05,
+            0.0006989226216280615
+          ],
+          "delta_vs_ensemble_referencia_ic95": [
+            -0.0004058013645551712,
+            0.0036149866921861805
+          ]
+        },
+        "28": {
+          "crescimento_log_diario_ic95": [
+            -2.2914601586820586e-05,
+            0.0006579347078679866
+          ],
+          "delta_vs_ensemble_referencia_ic95": [
+            -3.665505650070511e-05,
+            0.003519948244390828
+          ]
+        }
+      }
+    }
+  },
+  "metodo": "Leitura dos ledgers; bootstrap móvel2000réplicas de dias7/14/28, seed3105, carteira de ensemble já definida. Não reamostra seeds: condiciona nos três modelos treinados. Zero nos dias sem operações, sem refazer política/quantidades. Intervalos exploratórios não corrigem escolha histórica de modelos.",
+  "fonte_ledger_sha256": {
+    "validacao": "d71b3722473b9c81bfb5267f30c3f8003e5dfab0d1112615a6b1fd1b7e1c76d9",
+    "teste": "4695e1a5e5b722b3ba3354d89db710bdeed44a3cf74593a4fae0883983bf2ebe"
+  }
+}

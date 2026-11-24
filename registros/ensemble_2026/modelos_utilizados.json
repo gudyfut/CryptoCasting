@@ -1,0 +1,572 @@
+{
+  "versao": 1,
+  "utc": "2026-11-11T22:36:58.208714+00:00",
+  "natureza": "Indice posterior dos modelos efetivamente utilizados; nao altera identidade, pesos, receita ou selecao.",
+  "avaliacao_2026": {
+    "id": "14b4a75f21eb63ab04e2",
+    "pasta": "dados/reavaliacoes/ensemble_2026_14b4a75f21eb63ab04e2",
+    "congelamento_sha256": "330790003778e42c10613085528a387d2ae13f8ed415bb549045886dea5a3ace"
+  },
+  "configuracoes_autoritativas": {
+    "arquivo": "dados/reavaliacoes/ensemble_2026_14b4a75f21eb63ab04e2/congelamento.json",
+    "sha256": "330790003778e42c10613085528a387d2ae13f8ed415bb549045886dea5a3ace",
+    "campo": "moedas.<simbolo>.configuracao"
+  },
+  "entrada": {
+    "mercado": "Binance USD-M perpetuo, separado por simbolo",
+    "candles": "1d completos UTC",
+    "contexto_dias": 14,
+    "canais": [
+      "Timestamp",
+      "Open",
+      "High",
+      "Low",
+      "Close",
+      "Volume"
+    ],
+    "formato": [
+      "lote",
+      6,
+      14
+    ],
+    "volume_divisor": 1000000000,
+    "volume": "volume base da moeda",
+    "timestamp": "segundos Unix UTC do inicio do candle",
+    "normalizacao": {
+      "metodo": "zscore_por_canal",
+      "ajuste": "candles_unicos_janelas_treino",
+      "ddof": 0,
+      "aritmetica": "float64_sobre_entrada_float32_da_referencia",
+      "momentos": "math_fsum_float64",
+      "saida": "float32",
+      "canal_constante": "escala_um",
+      "clipping": null
+    },
+    "alvo_padronizado": false
+  },
+  "alvo": {
+    "tipo": "retorno_simples_fechamento_seguinte_decimal",
+    "formula": "close_do_dia_previsto / ultimo_close_conhecido - 1",
+    "horizonte_horas": 24,
+    "saida_por_modelo": "um retorno simples em decimal; preco equivalente=ultimo_close*(1+retorno)"
+  },
+  "arquitetura": {
+    "larguras": [
+      14,
+      16,
+      32,
+      1
+    ],
+    "densidade": 4,
+    "estado": 64,
+    "convolucao": 4,
+    "expansao": 2,
+    "eps_layernorm": 1e-05,
+    "familia": "Mamba-1 oficial, nucleo CMamba",
+    "blocos_mamba": 12,
+    "blocos_por_estagio": 4,
+    "estagios": [
+      [
+        14,
+        16
+      ],
+      [
+        16,
+        32
+      ],
+      [
+        32,
+        1
+      ]
+    ],
+    "parametros_por_rede": 136952,
+    "pre_normalizacao": "LayerNorm",
+    "conexao_residual": true,
+    "dropout": 0.0,
+    "scan_eixo": "6canais;14dias representam features por canal",
+    "head": "Permutar [B,6,1] para [B,1,6];Linear6->1;reshape[B]",
+    "padroes_mamba_efetivos": {
+      "d_state": 64,
+      "d_conv": 4,
+      "expand": 2,
+      "dt_rank": "auto",
+      "dt_min": 0.001,
+      "dt_max": 0.1,
+      "dt_init": "random",
+      "dt_scale": 1.0,
+      "dt_init_floor": 0.0001,
+      "conv_bias": true,
+      "bias": false,
+      "use_fast_path": false
+    }
+  },
+  "treinamento": {
+    "otimizador": "Adam",
+    "taxa": 0.01,
+    "weight_decay": 0.001,
+    "penalizacao": "todos_os_parametros_como_codigo_publico",
+    "lote": 32,
+    "epocas": 1000,
+    "scheduler_passo": 100,
+    "scheduler_gamma": 0.5,
+    "perda": "RMSE_por_lote",
+    "epsilon_raiz": 1e-08,
+    "clipping": null,
+    "parada_antecipada": false,
+    "selecao": "menor RMSE global de retorno em2024; primeiro em caso de empate",
+    "limite_segundos_por_ajuste": 14400,
+    "adam_efetivo": {
+      "lr": 0.01,
+      "betas": [
+        0.9,
+        0.999
+      ],
+      "eps": 1e-08,
+      "weight_decay": 0.001,
+      "amsgrad": false,
+      "foreach": null,
+      "maximize": false,
+      "capturable": false,
+      "differentiable": false,
+      "fused": null
+    },
+    "precisao": "FP32",
+    "ordem_janelas": "aleatoria por epoca; ordem interna preservada",
+    "alvo_sem_padronizacao": true,
+    "paciencia": null,
+    "perda_formula": "sqrt(mean((previsao_retorno-alvo_retorno)^2)+1e-8)"
+  },
+  "ensemble": {
+    "membros_por_moeda": 3,
+    "seeds": [
+      42,
+      17,
+      2026
+    ],
+    "pesos": [
+      0.3333333333333333,
+      0.3333333333333333,
+      0.3333333333333333
+    ],
+    "operacao": "media dos tres precos equivalentes antes do filtro, uma carteira por moeda",
+    "modelos_totais": 12,
+    "controle_42_fora_do_ensemble": true
+  },
+  "operacao_vigente": {
+    "fonte": "configuracoes/ensemble_2026_001.json",
+    "identidade_motor": "945f0e52b1f85184c3e7",
+    "modo": "liquida",
+    "filtro_retorno_absoluto": 0.002,
+    "fracao_nocional": 0.95,
+    "capital_inicial_usdt": 10000,
+    "latencia_minutos": 1,
+    "comissao_por_lado": 0.0005,
+    "slippage_por_lado": [
+      0.0001,
+      0.0002,
+      0.0003
+    ],
+    "prazo_fixo_posicao": false,
+    "fecha_em": [
+      "sinal_caixa",
+      "inversao",
+      "fim_da_avaliacao"
+    ],
+    "stop_loss": false,
+    "take_profit": false,
+    "funding": "historico por timestamp",
+    "risco": "envelope mark intraminuto e buffer prudencial0.025",
+    "custos_provisorios": true,
+    "distincao_horizonte_e_posicao": "Horizonte24h e nova decisao diaria; continuidade pode conservar posicao por varios dias."
+  },
+  "backend": {
+    "tipo": "mamba1_oficial_scan_ref_cuda",
+    "ambiente": "dados/reavaliacoes/ensemble_2026_14b4a75f21eb63ab04e2/ambiente_inferencia.json",
+    "sha256": "341ed7c9a6cedfc21133a329ce96c22b992cec6d2b3ffb8d29c7beafe12b5beb"
+  },
+  "moedas": {
+    "BTCUSDT": {
+      "pasta_modelos": "dados/experimentos/padronizacao_diaria_f3f8772670f244779ad7",
+      "periodos_originais": {
+        "treino": [
+          "2020-01-01",
+          "2024-01-01"
+        ],
+        "validacao": [
+          "2024-01-01",
+          "2025-01-01"
+        ],
+        "teste": [
+          "2025-01-01",
+          "2026-01-01"
+        ]
+      },
+      "escalas": {
+        "arquivo": "dados/experimentos/padronizacao_diaria_f3f8772670f244779ad7/escalas.json",
+        "sha256": "9b6a10b8edf5e87d34ef4ded9edf3bc0eb42a75390282d5c5d706334331171e4"
+      },
+      "filtros_instrumento_herdados": {
+        "passo_quantidade": 0.001,
+        "tick_preco": 0.1,
+        "nocional_minimo": 100.0,
+        "buffer_prudencial": 0.025
+      }
+    },
+    "ETHUSDT": {
+      "pasta_modelos": "dados/experimentos/generalizacao_moedas_1f2b005888361d23c111/ETHUSDT",
+      "periodos_originais": {
+        "treino": [
+          "2020-01-01",
+          "2024-01-01"
+        ],
+        "validacao": [
+          "2024-01-01",
+          "2025-01-01"
+        ],
+        "teste": [
+          "2025-01-01",
+          "2026-01-01"
+        ]
+      },
+      "escalas": {
+        "arquivo": "dados/experimentos/generalizacao_moedas_1f2b005888361d23c111/ETHUSDT/escalas.json",
+        "sha256": "4ea7d77fd3219d653945475fc9c79c3e3854caa1c0682bd79e5d141f1d79ba80"
+      },
+      "filtros_instrumento_herdados": {
+        "passo_quantidade": 0.001,
+        "tick_preco": 0.01,
+        "nocional_minimo": 20.0,
+        "quantidade_minima": 0.001,
+        "quantidade_maxima": 2000.0,
+        "buffer_prudencial": 0.025
+      }
+    },
+    "BNBUSDT": {
+      "pasta_modelos": "dados/experimentos/generalizacao_moedas_1f2b005888361d23c111/BNBUSDT",
+      "periodos_originais": {
+        "treino": [
+          "2020-02-11",
+          "2024-01-01"
+        ],
+        "validacao": [
+          "2024-01-01",
+          "2025-01-01"
+        ],
+        "teste": [
+          "2025-01-01",
+          "2026-01-01"
+        ]
+      },
+      "escalas": {
+        "arquivo": "dados/experimentos/generalizacao_moedas_1f2b005888361d23c111/BNBUSDT/escalas.json",
+        "sha256": "512d416753cdeb83aadb0f1813520cd4d183695b91025dbe6d0f8e36e97e967b"
+      },
+      "filtros_instrumento_herdados": {
+        "passo_quantidade": 0.01,
+        "tick_preco": 0.01,
+        "nocional_minimo": 5.0,
+        "quantidade_minima": 0.01,
+        "quantidade_maxima": 2000.0,
+        "buffer_prudencial": 0.025
+      }
+    },
+    "XRPUSDT": {
+      "pasta_modelos": "dados/experimentos/generalizacao_moedas_1f2b005888361d23c111/XRPUSDT/continuacao_001",
+      "periodos_originais": {
+        "treino": [
+          "2020-01-07",
+          "2024-01-01"
+        ],
+        "validacao": [
+          "2024-01-01",
+          "2025-01-01"
+        ],
+        "teste": [
+          "2025-01-01",
+          "2026-01-01"
+        ]
+      },
+      "escalas": {
+        "arquivo": "dados/experimentos/generalizacao_moedas_1f2b005888361d23c111/XRPUSDT/continuacao_001/escalas.json",
+        "sha256": "8df3b1e32c096a085740f1cbb5d27014eb4f78fa52f734549d3c53289e6f3580"
+      },
+      "filtros_instrumento_herdados": {
+        "passo_quantidade": 0.1,
+        "tick_preco": 0.0001,
+        "nocional_minimo": 5.0,
+        "quantidade_minima": 0.1,
+        "quantidade_maxima": 2000000.0,
+        "buffer_prudencial": 0.025
+      }
+    }
+  },
+  "modelos": [
+    {
+      "simbolo": "BTCUSDT",
+      "seed": 42,
+      "epoca_selecionada": 25,
+      "checkpoint": "dados/experimentos/padronizacao_diaria_f3f8772670f244779ad7/ajustes/seed_42/checkpoints/epoca_0025.pt",
+      "checkpoint_sha256": "226d2d190c08054a0ac20473dbd389dc2832ff03355d032abc116611877c0fc6",
+      "selecao": "dados/experimentos/padronizacao_diaria_f3f8772670f244779ad7/ajustes/seed_42/selecao.json",
+      "selecao_sha256": "af973f19eb0643f4ca44dc7a8cfa13433c5b51a87dcdce83961821c07928e626",
+      "conclusao": "dados/experimentos/padronizacao_diaria_f3f8772670f244779ad7/ajustes/seed_42/conclusao.json",
+      "conclusao_sha256": "f87d9253a3edbe01378ae7ff41b3b998f7ecfd30586cb27ba41032591ebc66f5",
+      "parametros": 136952,
+      "tensores": 140,
+      "dtypes": [
+        "torch.float32"
+      ],
+      "vinculo": {
+        "execucao": "f3f8772670f244779ad7",
+        "job": "seed_42",
+        "escalas_sha256": "9b6a10b8edf5e87d34ef4ded9edf3bc0eb42a75390282d5c5d706334331171e4"
+      }
+    },
+    {
+      "simbolo": "BTCUSDT",
+      "seed": 17,
+      "epoca_selecionada": 14,
+      "checkpoint": "dados/experimentos/padronizacao_diaria_f3f8772670f244779ad7/ajustes/seed_17/checkpoints/epoca_0014.pt",
+      "checkpoint_sha256": "83967722e4b6e670376b6f506de23e8067c6fba85cf6780e167829bbc2e913b4",
+      "selecao": "dados/experimentos/padronizacao_diaria_f3f8772670f244779ad7/ajustes/seed_17/selecao.json",
+      "selecao_sha256": "57671d5be3d9ed7d3116105dfa899cd76245cbb7a07f004c2d5ec0244f3c3017",
+      "conclusao": "dados/experimentos/padronizacao_diaria_f3f8772670f244779ad7/ajustes/seed_17/conclusao.json",
+      "conclusao_sha256": "f0e4d3df7cc7a1b8df26eccf4ae0d9e5eb321f2ecaa036668bac7a9b14aed9c5",
+      "parametros": 136952,
+      "tensores": 140,
+      "dtypes": [
+        "torch.float32"
+      ],
+      "vinculo": {
+        "execucao": "f3f8772670f244779ad7",
+        "job": "seed_17",
+        "escalas_sha256": "9b6a10b8edf5e87d34ef4ded9edf3bc0eb42a75390282d5c5d706334331171e4"
+      }
+    },
+    {
+      "simbolo": "BTCUSDT",
+      "seed": 2026,
+      "epoca_selecionada": 44,
+      "checkpoint": "dados/experimentos/padronizacao_diaria_f3f8772670f244779ad7/ajustes/seed_2026/checkpoints/epoca_0044.pt",
+      "checkpoint_sha256": "86f58bb619ce2b6e3d5c96827cf1337d4f5525f1dd6021c35766bc31a854afe3",
+      "selecao": "dados/experimentos/padronizacao_diaria_f3f8772670f244779ad7/ajustes/seed_2026/selecao.json",
+      "selecao_sha256": "0c64b1d35c6a0236f6423d2360d4324ae6dffbeb852567ba10b7ea955ae1281c",
+      "conclusao": "dados/experimentos/padronizacao_diaria_f3f8772670f244779ad7/ajustes/seed_2026/conclusao.json",
+      "conclusao_sha256": "793e0db0172842ce1835d0ce04f52aadac0fe15d7b92a47cee97cc1c717d01de",
+      "parametros": 136952,
+      "tensores": 140,
+      "dtypes": [
+        "torch.float32"
+      ],
+      "vinculo": {
+        "execucao": "f3f8772670f244779ad7",
+        "job": "seed_2026",
+        "escalas_sha256": "9b6a10b8edf5e87d34ef4ded9edf3bc0eb42a75390282d5c5d706334331171e4"
+      }
+    },
+    {
+      "simbolo": "ETHUSDT",
+      "seed": 42,
+      "epoca_selecionada": 67,
+      "checkpoint": "dados/experimentos/generalizacao_moedas_1f2b005888361d23c111/ETHUSDT/ajustes/seed_42/checkpoints/epoca_0067.pt",
+      "checkpoint_sha256": "c47e8f963bef7eba35987d61c2507601a3287aaf20a7ea6bd167f1cb79f73809",
+      "selecao": "dados/experimentos/generalizacao_moedas_1f2b005888361d23c111/ETHUSDT/ajustes/seed_42/selecao.json",
+      "selecao_sha256": "91d5fcc16078b3fa5669e6fc62a1b93fe458a38c2eac72eda65668851e276f22",
+      "conclusao": "dados/experimentos/generalizacao_moedas_1f2b005888361d23c111/ETHUSDT/ajustes/seed_42/conclusao.json",
+      "conclusao_sha256": "b8d449cd82e8ecd06d40605e424a4d8898740e139262d8ed162ef58885e6f31d",
+      "parametros": 136952,
+      "tensores": 140,
+      "dtypes": [
+        "torch.float32"
+      ],
+      "vinculo": {
+        "execucao": "1f2b005888361d23c111",
+        "simbolo": "ETHUSDT",
+        "job": "seed_42",
+        "escalas_sha256": "4ea7d77fd3219d653945475fc9c79c3e3854caa1c0682bd79e5d141f1d79ba80"
+      }
+    },
+    {
+      "simbolo": "ETHUSDT",
+      "seed": 17,
+      "epoca_selecionada": 7,
+      "checkpoint": "dados/experimentos/generalizacao_moedas_1f2b005888361d23c111/ETHUSDT/ajustes/seed_17/checkpoints/epoca_0007.pt",
+      "checkpoint_sha256": "1f6ed63f2e1091d77f995f03f2b4e0231340d996603bfb81793b9a4af28c4168",
+      "selecao": "dados/experimentos/generalizacao_moedas_1f2b005888361d23c111/ETHUSDT/ajustes/seed_17/selecao.json",
+      "selecao_sha256": "2117c12546bd0e9fca5da617d5c6ba978fa1ee3efe07aa409e9f3b2d86cae95f",
+      "conclusao": "dados/experimentos/generalizacao_moedas_1f2b005888361d23c111/ETHUSDT/ajustes/seed_17/conclusao.json",
+      "conclusao_sha256": "d1360f0a2472f15f16527dcd2907702135033a0354882b70077cea3f65ff735f",
+      "parametros": 136952,
+      "tensores": 140,
+      "dtypes": [
+        "torch.float32"
+      ],
+      "vinculo": {
+        "execucao": "1f2b005888361d23c111",
+        "simbolo": "ETHUSDT",
+        "job": "seed_17",
+        "escalas_sha256": "4ea7d77fd3219d653945475fc9c79c3e3854caa1c0682bd79e5d141f1d79ba80"
+      }
+    },
+    {
+      "simbolo": "ETHUSDT",
+      "seed": 2026,
+      "epoca_selecionada": 164,
+      "checkpoint": "dados/experimentos/generalizacao_moedas_1f2b005888361d23c111/ETHUSDT/ajustes/seed_2026/checkpoints/epoca_0164.pt",
+      "checkpoint_sha256": "748707ac70529869ea0cbedb010f26173af03be3da88d8398dbc91c32b0626d7",
+      "selecao": "dados/experimentos/generalizacao_moedas_1f2b005888361d23c111/ETHUSDT/ajustes/seed_2026/selecao.json",
+      "selecao_sha256": "8a3259d603e0c9f911433902007234749b16d35a8c82dc6b0d876eba969b71b4",
+      "conclusao": "dados/experimentos/generalizacao_moedas_1f2b005888361d23c111/ETHUSDT/ajustes/seed_2026/conclusao.json",
+      "conclusao_sha256": "8574c68c897b44f120cef038ec297e88fbc90903706c05d35d42553b954d0500",
+      "parametros": 136952,
+      "tensores": 140,
+      "dtypes": [
+        "torch.float32"
+      ],
+      "vinculo": {
+        "execucao": "1f2b005888361d23c111",
+        "simbolo": "ETHUSDT",
+        "job": "seed_2026",
+        "escalas_sha256": "4ea7d77fd3219d653945475fc9c79c3e3854caa1c0682bd79e5d141f1d79ba80"
+      }
+    },
+    {
+      "simbolo": "BNBUSDT",
+      "seed": 42,
+      "epoca_selecionada": 80,
+      "checkpoint": "dados/experimentos/generalizacao_moedas_1f2b005888361d23c111/BNBUSDT/ajustes/seed_42/checkpoints/epoca_0080.pt",
+      "checkpoint_sha256": "8e0d7f5642c365585230d5d98f162e7d878349419bcb8af2b263b2206c880e0b",
+      "selecao": "dados/experimentos/generalizacao_moedas_1f2b005888361d23c111/BNBUSDT/ajustes/seed_42/selecao.json",
+      "selecao_sha256": "0cd956644637ff91e3b47010f32d10706ca7b24095da6c2027e0f779630543d3",
+      "conclusao": "dados/experimentos/generalizacao_moedas_1f2b005888361d23c111/BNBUSDT/ajustes/seed_42/conclusao.json",
+      "conclusao_sha256": "89888da4f80f6370a21037d4018b6bf308cfcfe4ffd26893a777a31f7bb25d26",
+      "parametros": 136952,
+      "tensores": 140,
+      "dtypes": [
+        "torch.float32"
+      ],
+      "vinculo": {
+        "execucao": "1f2b005888361d23c111",
+        "simbolo": "BNBUSDT",
+        "job": "seed_42",
+        "escalas_sha256": "512d416753cdeb83aadb0f1813520cd4d183695b91025dbe6d0f8e36e97e967b"
+      }
+    },
+    {
+      "simbolo": "BNBUSDT",
+      "seed": 17,
+      "epoca_selecionada": 48,
+      "checkpoint": "dados/experimentos/generalizacao_moedas_1f2b005888361d23c111/BNBUSDT/ajustes/seed_17/checkpoints/epoca_0048.pt",
+      "checkpoint_sha256": "1fa33d97b2cba999b94dbd39c11f2aa6f98c0d41e8e13306b7e94f496f4e5401",
+      "selecao": "dados/experimentos/generalizacao_moedas_1f2b005888361d23c111/BNBUSDT/ajustes/seed_17/selecao.json",
+      "selecao_sha256": "60b044dd25594166cec45fe7f209ab3e85e8fa8c945bf99e38ca32e7fb5878cf",
+      "conclusao": "dados/experimentos/generalizacao_moedas_1f2b005888361d23c111/BNBUSDT/ajustes/seed_17/conclusao.json",
+      "conclusao_sha256": "b384c35fca1104b9eebfc3310d206a350f04018372897a2984b686f824d3c686",
+      "parametros": 136952,
+      "tensores": 140,
+      "dtypes": [
+        "torch.float32"
+      ],
+      "vinculo": {
+        "execucao": "1f2b005888361d23c111",
+        "simbolo": "BNBUSDT",
+        "job": "seed_17",
+        "escalas_sha256": "512d416753cdeb83aadb0f1813520cd4d183695b91025dbe6d0f8e36e97e967b"
+      }
+    },
+    {
+      "simbolo": "BNBUSDT",
+      "seed": 2026,
+      "epoca_selecionada": 39,
+      "checkpoint": "dados/experimentos/generalizacao_moedas_1f2b005888361d23c111/BNBUSDT/ajustes/seed_2026/checkpoints/epoca_0039.pt",
+      "checkpoint_sha256": "b05ed2f60d1f0dc434a3348719fa7f9e313cf7958dd2ef753e44bf628959e303",
+      "selecao": "dados/experimentos/generalizacao_moedas_1f2b005888361d23c111/BNBUSDT/ajustes/seed_2026/selecao.json",
+      "selecao_sha256": "671fda26fb9565d288acc5d0e8d2f6821917011c2a04c9049219d5139381f2f4",
+      "conclusao": "dados/experimentos/generalizacao_moedas_1f2b005888361d23c111/BNBUSDT/ajustes/seed_2026/conclusao.json",
+      "conclusao_sha256": "186f161c527fb66b95c000f2ddf97999534d2f6ed3ade7a921e65c53aba99dcc",
+      "parametros": 136952,
+      "tensores": 140,
+      "dtypes": [
+        "torch.float32"
+      ],
+      "vinculo": {
+        "execucao": "1f2b005888361d23c111",
+        "simbolo": "BNBUSDT",
+        "job": "seed_2026",
+        "escalas_sha256": "512d416753cdeb83aadb0f1813520cd4d183695b91025dbe6d0f8e36e97e967b"
+      }
+    },
+    {
+      "simbolo": "XRPUSDT",
+      "seed": 42,
+      "epoca_selecionada": 54,
+      "checkpoint": "dados/experimentos/generalizacao_moedas_1f2b005888361d23c111/XRPUSDT/continuacao_001/ajustes/seed_42/checkpoints/epoca_0054.pt",
+      "checkpoint_sha256": "74b687970cdfa8f2ca80e487066d4904ca34b2185269c008de39c020669143f3",
+      "selecao": "dados/experimentos/generalizacao_moedas_1f2b005888361d23c111/XRPUSDT/continuacao_001/ajustes/seed_42/selecao.json",
+      "selecao_sha256": "7fe70cd160c3780a055af137c7dc7a5dcb94fe31509c228609b6e3e005655fe6",
+      "conclusao": "dados/experimentos/generalizacao_moedas_1f2b005888361d23c111/XRPUSDT/continuacao_001/ajustes/seed_42/conclusao.json",
+      "conclusao_sha256": "b9d868e6d6a32d4c125bfe31dc04411bd808941d55541e39ef841c8c993aa40f",
+      "parametros": 136952,
+      "tensores": 140,
+      "dtypes": [
+        "torch.float32"
+      ],
+      "vinculo": {
+        "execucao": "1f2b005888361d23c111",
+        "simbolo": "XRPUSDT",
+        "job": "seed_42",
+        "escalas_sha256": "8df3b1e32c096a085740f1cbb5d27014eb4f78fa52f734549d3c53289e6f3580"
+      }
+    },
+    {
+      "simbolo": "XRPUSDT",
+      "seed": 17,
+      "epoca_selecionada": 43,
+      "checkpoint": "dados/experimentos/generalizacao_moedas_1f2b005888361d23c111/XRPUSDT/continuacao_001/ajustes/seed_17/checkpoints/epoca_0043.pt",
+      "checkpoint_sha256": "f066ddfaebeede81241e2db88666ce607f41864cf9da4f90893533dd65d2bc98",
+      "selecao": "dados/experimentos/generalizacao_moedas_1f2b005888361d23c111/XRPUSDT/continuacao_001/ajustes/seed_17/selecao.json",
+      "selecao_sha256": "f5cfe98de38064103b000ed3cf2f47928d3059cfca2f63c7904f6a8c14cda0af",
+      "conclusao": "dados/experimentos/generalizacao_moedas_1f2b005888361d23c111/XRPUSDT/continuacao_001/ajustes/seed_17/conclusao.json",
+      "conclusao_sha256": "9166e6a053cea36b7ded4b5fba1089e1586deb1209b088110524cafb8bc1ca83",
+      "parametros": 136952,
+      "tensores": 140,
+      "dtypes": [
+        "torch.float32"
+      ],
+      "vinculo": {
+        "execucao": "1f2b005888361d23c111",
+        "simbolo": "XRPUSDT",
+        "job": "seed_17",
+        "escalas_sha256": "8df3b1e32c096a085740f1cbb5d27014eb4f78fa52f734549d3c53289e6f3580"
+      }
+    },
+    {
+      "simbolo": "XRPUSDT",
+      "seed": 2026,
+      "epoca_selecionada": 62,
+      "checkpoint": "dados/experimentos/generalizacao_moedas_1f2b005888361d23c111/XRPUSDT/continuacao_001/ajustes/seed_2026/checkpoints/epoca_0062.pt",
+      "checkpoint_sha256": "5e5afdbb615c72e60bb1933bbc2477c28981d032055b0e31efed1324a4411fed",
+      "selecao": "dados/experimentos/generalizacao_moedas_1f2b005888361d23c111/XRPUSDT/continuacao_001/ajustes/seed_2026/selecao.json",
+      "selecao_sha256": "dc78445d1e8bea60365ad78261e10d7e918b8319f2d63ec93a61e45cf13f4469",
+      "conclusao": "dados/experimentos/generalizacao_moedas_1f2b005888361d23c111/XRPUSDT/continuacao_001/ajustes/seed_2026/conclusao.json",
+      "conclusao_sha256": "8d3620a8bfead12e35704841285bd5476dbd7633787d030494d256ab3c9a84b2",
+      "parametros": 136952,
+      "tensores": 140,
+      "dtypes": [
+        "torch.float32"
+      ],
+      "vinculo": {
+        "execucao": "1f2b005888361d23c111",
+        "simbolo": "XRPUSDT",
+        "job": "seed_2026",
+        "escalas_sha256": "8df3b1e32c096a085740f1cbb5d27014eb4f78fa52f734549d3c53289e6f3580"
+      }
+    }
+  ],
+  "resultados": {
+    "continuidade_2024_2025": "registros/continuidade_moedas/fechamento.json",
+    "ensemble_2026": "registros/ensemble_2026/fechamento.json",
+    "entrega_2026": "registros/ensemble_2026/entrega.json"
+  },
+  "limites": "2024selecionou checkpoints;2025e2026ja consultados. Nucleo SSM real, mas scan sobre canais e sondas anteriores de contribuicao nula/residual limitam atribuicao do resultado ao SSM."
+}

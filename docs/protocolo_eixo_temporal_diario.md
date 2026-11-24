@@ -1,0 +1,42 @@
+# Eixo do Mamba e penalização na previsão diária
+
+Autorizado pelo pesquisador em **12/11/2026**. Ciclo fatorial BTC independente; [receita](../configuracoes/eixo_temporal_diario_001.json), [estado](../registros/eixo_temporal_diario/estado.json). Perguntas: a organização temporal melhora previsão e contribuição funcional dos ramos SSM? Há interação com a penalização? Não presumir ganho nem selecionar pela lucratividade de 2025/2026.
+
+## Receita, atribuição e fatores
+
+A referência é o BTC do [índice do ensemble](../registros/ensemble_2026/modelos_utilizados.json), execução padronizada `f3f8772670f244779ad7`. B usa a ablação sem penalização `8a0aeee4d78503b7f50d`. Código derivado do CryptoMamba de Sepehri et al., commit `fef42727861a9c3a32241283ab981ef21a49e291`; original e licença MIT preservados em `registros/cryptomamba/fontes_externas/`. Núcleo Mamba-1 oficial, scan de referência CUDA determinístico FP32. Não é reprodução integral do artigo nem arquitetura original deste TCC.
+
+|Variante|Sequência percorrida|Adam weight_decay|Parâmetros|
+|---|---|---:|---:|
+|A|6 canais|0,001|136.952|
+|B|6 canais|0|136.952|
+|C|14 dias|0,001|137.058|
+|D|14 dias|0|137.058|
+
+Na ordem efetiva, canais = Timestamp, Open, High, Low, Close, Volume. A/B recebem `[B,6,14]`. C/D recebem `[B,14,6]`, projeção linear **6→14 com bias por dia** (98 parâmetros), núcleo larguras14→16→32→1 e quatro blocos por estágio (12Mamba), depois permutação `[B,14,1]→[B,1,14]` e cabeça linear14→1. A cabeça anterior6→1 tem7 parâmetros; a nova tem15. A diferença total é **106 parâmetros (+0,0774%)**. LayerNorm prévia, resíduos, estado64, convolução4, expansão2 e demais defaults permanecem. Projeção e cabeça são aprendidas; não é simples transposição. O contraste de eixo inclui essas adaptações e sua parametrização/otimização; não isola exclusivamente uma permutação. Mesma seed não implica pesos iniciais idênticos entre arquiteturas distintas.
+
+## Dados, causalidade e orçamento
+
+Mesma fonte Binance USD-M BTC, mesmas partições, janelas, alvos e scalers congelados. Treino2020–2023, validação2024, avaliação retrospectiva2025. Preservar a convenção de janelas do desenho diário (perda das primeiras14observações e exclusão da última janela de cada partição):1446/351/350exemplos. Não alterar cobertura neste contraste. Somente candles encerrados antes da origem entram na janela; alvo é retorno simples do próximo fechamento, sem padronizar o alvo. Timestamp em segundos Unix e volume/1e9, entrada float32; z-score calculado em float64 nos candles únicos das janelas de treino e saída float32, sem clipping. Transpor somente após essa transformação. 2026 não entra no treinamento, seleção, comparação ou decisão deste ciclo.
+
+Três seeds42/17/2026 por variante, **200épocas completas**, Adam0,01, weight_decay uniforme do respectivo braço, betas0,9/0,999 e epsilon1e−8. Não aplicar isenções automáticas do pacote Mamba. StepLR100/gamma0,5 após cada época:0,01 nas épocas1–100 e0,005 nas101–200. Lote32 com último lote parcial; perda `sqrt(MSE+1e-8)` por lote. Embaralhar exemplos sem embaralhar dias/canais internos. Sem clipping ou early stopping. Selecionar menor RMSE global de validação em retorno, primeiro em empate; teste inacessível ao treinador. Limite técnico4h por ajuste interrompe e preserva; não publica ajuste parcial como concluído.
+
+## Herança verificável e controles
+
+Somente herdar A/B se as fontes, dados, scalers e receitas coincidirem, o histórico ordenado tiver as200épocas completas e seu primeiro mínimo coincidir exatamente com o checkpoint preservado. A/B executaram1000épocas originalmente, mas o orçamento não altera inicialização, ordem de exemplos ou scheduler prefixo. Conferir controle antigo, trajetórias prefixo e todos os checkpoints salvos até200 da seed42, além da recarga e reprodução exata das previsões de validação das seis redes. Registrar herança como equivalência da seleção até200, nunca como novos treinos de200. Se essas condições falharem, bloquear herança e preparar explicitamente reexecução; não afrouxar tolerâncias ou trocar identidade para aceitar divergência.
+
+Antes de congelar: testes de dimensões, alvo e scaler causal, prefixo causal do núcleo temporal, parâmetros, forward/backward, Adam/StepLR, recarga e treino sintético repetido. Conferir equivalência do treinador privado com o herdado nos braços de canais. Observação não pode modificar pesos, RNG ou trajetória. Na grade: C42→controleC42 (200épocas cada), D42→controleD42, depois C17/C2026/D17/D2026. Cada controle exige histórico científico, épocas, pesos de todos os checkpoints e previsões exatamente iguais; controles fora das médias. Falha interrompe antes das demais seeds ou publicação de teste. Orçamento se A/B forem herdados:6ajustes científicos novos+2controles,1600épocas novas;12modelos científicos contando6herdados.
+
+Sondas fixas:32janelas igualmente espaçadas do treino; inicialização, épocas1/5/10/25/50/100/150/200 e checkpoint selecionado. Normas, ativação Mamba em float64, gradientes da tarefa/L2 e mudança da saída ao zerar temporariamente os ramos. Herdados têm nova sonda dos checkpoints e observações antigas identificadas; não inventar sondas intermediárias inexistentes. Ramo ativo não prova melhor previsão ou retorno. Sufixo temporal perturbado não pode alterar prefixos internos do núcleo; a cabeça final agrega somente dias já conhecidos da janela.
+
+## Avaliação congelada
+
+Principal: MSE do retorno. Complementares: RMSE, MAE, viés, direção (acerto e recalls de alta/queda, abstenções explícitas), correlação e dispersão das previsões/seeds. Média e desvio das três métricas individuais separados do ensemble. Ensemble operacional: média dos três preços equivalentes antes do filtro, como a referência; publicar retorno equivalente também. Naive retorna zero (caixa no backtest). Referência linear Ridge sobre as84coordenadas padronizadas, intercepto não penalizado, objetivo `MSE_medio+lambda*norma²`; grade0,01/0,1/1/10/100 selecionada somente pelo MSE de validação, primeiro em empate. Mesmo treino/informação/janelas e controle determinístico do ajuste linear. Não é ARIMA nem baseline escolhida por lucro.
+
+Contrastes planejados: C−A e D−B (adaptação temporal em cada penalização), B−A e D−C (retirada da penalização em cada eixo) e **(D−C)−(B−A)** (interação), aplicados às perdas pareadas. Comparar também cada braço com Naive e Ridge. Bootstrap pareado de seeds e blocos de dias7/14/28,2000réplicas,14principal; ensemble fixo reamostra apenas dias. Intervalos exploratórios, sem correção da busca histórica/multiplicidade; três seeds não são três mercados independentes. Interação em erros/lucros não é diferença entre pesos. Não promover automaticamente um vencedor por2025.
+
+Mesmo motor de continuidade ADR0037, auditor por lotes inteiros, fonte de minutos/mark/funding e filtros BTC herdados. Filtro±0,20%, nocional95% do patrimônio liquidável, capital10milUSDT, latência1min, comissão0,05% por lado, slippage provisório0,01% e estresses0,02%/0,03%, funding observado. Manter posição e negociar deltas se lado persistir; caixa/inversão/fim encerram. Sem stop/take, sem ordens reais ou liquidação certificada. Reproduzir A/Naive contra a publicação de continuidade antes de aceitar as novas carteiras. São108carteiras:16unidades neurais (4×3seeds+4ensembles)+Naive+Ridge, duas fases, três custos. Publicar retorno líquido, drawdown, crescimento log, custos, funding, exposição e lados. Violação prudencial é falha explícita de uma simulação, nunca lucro inventado nem tentativa descartada; não publicar cobertura completa se algum caso falhar. Incerteza financeira usa diferenças de crescimento log diário pareado, nunca média de retornos tratada como carteira executável.
+
+## Organização e encerramento
+
+Modelo em `codigo/modelos/cryptomamba_temporal.py`; ciclo/treinador/avaliação em `codigo/experimentos/eixo_temporal_diario/`; testes em `testes/eixo_temporal_diario/`; receita/protocolo com nomes próprios; registros e qualificação em `registros/eixo_temporal_diario/`; fontes/configurações/ambiente e artefatos em `dados/experimentos/eixo_temporal_diario_<id>/`. Congelar antes de mercado, conferir hashes antes/depois, bloquear execução duplicada com locks/PID/host/boot. Tentativas e falhas ficam preservadas; retomada exige diagnóstico. Não alterar estudos encerrados. A cronologia e o catálogo recebem vínculos, não cópias de tabelas. O ciclo termina após os quatro braços e avaliações previstas, independentemente do resultado.

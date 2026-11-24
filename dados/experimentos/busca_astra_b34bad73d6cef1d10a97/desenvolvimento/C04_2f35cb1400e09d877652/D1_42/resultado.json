@@ -1,0 +1,57 @@
+{
+  "utc": "2026-11-04T03:00:10.267742+00:00",
+  "seed": 42,
+  "bloco": "D1",
+  "receita": {
+    "representacao": "janela_relativa",
+    "indicadores": true,
+    "contexto": 168,
+    "largura": 32,
+    "camadas": 2,
+    "estado": 16,
+    "dropout": 0.1,
+    "pooling": "ultimo",
+    "taxa": 0.0002,
+    "decay": 0.001,
+    "otimizador": "AdamW",
+    "perda": "huber",
+    "scheduler": "constante",
+    "ganho_saida": 1
+  },
+  "epoca": 5,
+  "epocas_executadas": 15,
+  "parametros": 20417,
+  "recarga_exata": true,
+  "segundos": 66.955841332,
+  "checkpoint_final_sha256": "82b2ad3d71c2391da9d3c4648255c2b821778c84abb2a4a9c846c136b772087d",
+  "memoria_cuda_maxima_bytes": 197404672,
+  "treino_amostra_fixa": {
+    "n": 2048,
+    "mse": 0.0013765531187825081,
+    "rmse": 0.03710192877442503,
+    "mae": 0.02612640022302599,
+    "mse_naive": 0.0014297455745852967,
+    "vies": 0.0013255988270066991,
+    "sd_previsao": 0.005774148246329005,
+    "sd_alvo": 0.03776610782315303,
+    "acuracia_direcional": 0.55078125,
+    "balanced_accuracy": 0.550365654527808
+  },
+  "validacao": {
+    "n": 3981,
+    "mse": 0.000785379705748526,
+    "rmse": 0.02802462677268916,
+    "mae": 0.018985703888939883,
+    "mse_naive": 0.0007603139539356902,
+    "vies": -0.0033631210012667846,
+    "sd_previsao": 0.0035704653692928126,
+    "sd_alvo": 0.02733677744695035,
+    "acuracia_direcional": 0.4925898015573976,
+    "balanced_accuracy": 0.4809372170391999
+  },
+  "diagnostico": {
+    "sd_representacao_media": 0.4786280691623688,
+    "norma_pesos_saida": 0.4896675944328308,
+    "fracao_clipping_ultima_epoca": 1.0
+  }
+}

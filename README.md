@@ -1,51 +1,79 @@
-# CryptoCasting — retorno em 24 horas
+# CryptoCasting
 
-Pesquisa de TCC sobre previsão do retorno de BTC, ETH, BNB e XRP com Mamba, LSTM, ARIMA e Naive. Entrada horária; contextos de 1, 3, 7 e 14 dias; alvo sempre 24 horas à frente.
+**Análise da Previsibilidade de Retornos de Criptomoedas com a Arquitetura Mamba**
 
-Em 26/10/2026 foi autorizado um experimento controlado para corrigir o tratamento de `weight_decay` do Mamba. O estudo de referência permanece preservado. A extensão tem protocolo e identidade próprios, e não transforma os testes de 2024–2025, já consultados, em um novo holdout intocado.
+O código, as tabelas e os registros experimentais estão disponíveis neste repositório. O manuscrito e os arquivos LaTeX são mantidos localmente.
 
-- [Protocolo da correção de penalização](docs/protocolo_penalizacao_mamba.md)
-- [Revisão das configurações e estruturas](docs/auditoria_configuracao_penalizacao.md)
-- [Roteiro e fontes para a redação do TCC](docs/roteiro_redacao_tcc.md)
+**Reforço experimental concluído — 13/11/2026:** [LSTM diária nas quatro moedas](docs/resultados_lstm_diaria.md) e [walk-forward diário A/L em BTC](docs/resultados_walkforward_diario.md) auditados. O comportamento dos ramos variou entre checkpoints e as carteiras entre períodos; avaliações retrospectivas, sem garantia de generalização.
 
-O ponto de entrada da extensão é `python run_penalizacao.py executar`, no ambiente WSL qualificado. Antes de repetir o comando, conferir o processo e `registros/penalizacao/execucao.json`; há exclusão de execução concorrente e retomada por artefatos auditados. A referência mantém seu próprio ponteiro. O estado e a conclusão da extensão devem ser lidos em `progresso.json` na pasta indicada pelo novo ponteiro; sua grade prevista não deve ser apresentada como concluída antes da execução.
+**Extensão A/L em 2026 concluída em 13/11:** 24 redes reaproveitadas, 132 carteiras e controles conferidos, sem novos treinos. Erros próximos e resultados operacionais mistos; nenhuma superioridade uniforme demonstrada. [Explicação e resultados](docs/resultados_ablacao_linear_diaria.md#extensão-retrospectiva-al-em-2026) · [Auditoria](registros/ablacao_linear_2026/conferencia_posterior.json). Recorte já consultado, retrospectivo; referência preservada.
 
-- [Plano e entregas](plano.md)
-- [Decisões do trabalho — ADRs](docs/adr/README.md)
-- [Mapa dos registros de treinamentos e testes](registros/README.md)
-- [Preservação no GitHub e reprodução entre máquinas](docs/armazenamento_e_reproducao.md)
-- [Protocolo experimental](docs/protocolo_experimental.md)
-- [Estado real da execução](docs/andamento.md)
-- [Resultados auditados do desenvolvimento de 2023](docs/resultados_desenvolvimento.md)
-- [Resultados auditados da avaliação de 2024–2025](docs/resultados_avaliacao.md)
-- [Critérios de aceite das oito entregas](docs/aceite_execucao.md)
-- [Decisões de reformulação](docs/decisoes.md)
-- [Arquivo do estudo anterior](arquivo/estudo_barreiras_2026-10-20/README.md)
+**Fechamento experimental concluído em 13/11 às 02h40 BRT:** fatorial BTC e ablação A/L nas quatro moedas, 12 ajustes científicos novos, oito controles exatos e 288 carteiras. Auditoria independente e cinco figuras conferidas. Contribuição dos ramos ausente ou extremamente pequena em A; a ablação não demonstrou vantagem preditiva ou operacional uniforme. Evidências incorporadas à versão editorial para revisão. [Resultados e limites](docs/resultados_ablacao_linear_diaria.md#fechamento-fatorial-e-replicação-entre-ativos) · [Conferência](registros/fechamento_ramos_diarios/conferencia_posterior.json) · [Estado](registros/fechamento_ramos_diarios/estado.json).
 
-As oito entregas computacionais do protocolo estão concluídas e verificadas: desenvolvimento de 2023 e avaliação predefinida de 2024–2025, com 768 ajustes neurais, 64 referências e 288 candidatos ARIMA. O portal apresenta 832 resultados em 384 séries reais. Aceite em `registros/interface/aceite_final.json`; integridade global em `registros/auditorias/1e7c5ed662fba55ddd25/fechamento.json`. Dataset: `d25f6a93a9900725f51e`. Execução: `1e7c5ed662fba55ddd25`. Cada fase tem interpretação própria. Resultados do arquivo não representam este protocolo.
+Repositório de pesquisa e produção do TCC sobre previsão com Mamba e dados de criptomoedas. O objetivo é investigar entradas, pesos, hiperparâmetros, estruturas e tipos de previsão, registrando conclusões fundamentadas para o artigo. Resultados negativos ou inconclusivos também contribuem; um modelo lucrativo não é condição para concluir o trabalho. As [diretrizes de pesquisa](docs/diretrizes_pesquisa.md) definem os princípios e o [guia base](AGENTS.md) indica as instruções por tarefa.
 
-Na avaliação, LSTM teve menor erro que Mamba, mas não demonstrou redução de erro frente ao Naive. Não houve melhoria geral com mais contexto nem rentabilidade consistente na simulação Spot. Esta conclusão computacional não substitui redação, defesa ou aprovação acadêmica.
+O acervo reúne dados, treinamento, validação, teste, análises, simulações e materiais de escrita. LSTM, Naive e ARIMA são referências da trajetória; a utilidade operacional é uma das dimensões investigadas.
 
-## Ambiente
+## Situação atual
 
-Execução científica em Linux/WSL, Python 3.12, PyTorch CUDA e Mamba oficial. Dependências gerais em `requirements.txt`; registro completo do ambiente em `registros/qualificacao/`. Não há fallback silencioso para uma implementação diferente de Mamba.
+O complemento de 17 de novembro reúne os contrastes semestrais com a LSTM, as análises de exposição e a ablação do canal temporal. As tabelas e figuras usadas na conclusão estão na [publicação consolidada](dados/experimentos/complemento_sintese_complemento_revisada_ffa868ab3bbb3314d61d/publicacao).
 
-A interface Next.js fica em `dataview/`. Execute npm nesse diretório. `npm run dev` abre o portal local; `npm run build`, `npm run lint` e `npm test` verificam código e séries exportadas. Com o servidor ativo, `node --test tests/api.integration.mjs` também verifica os endpoints de publicação.
+**Concluída em 12/11 às 19h50 BRT: ablação linear contra A.** Três ajustes científicos e dois controles exatos de200épocas,60carteiras completas. L usa824parâmetros contra136.952; MSE médio0,095%menor e ensemble+17,01% contra+12,83% em2025, sem superioridade estatística estabelecida. [Resultado e limites](docs/resultados_ablacao_linear_diaria.md), [fechamento](registros/ablacao_linear_diaria/fechamento.json) e [conferência posterior](registros/ablacao_linear_diaria/conferencia_posterior.json). Escopo cumprido, referências preservadas, sem2026 ou nova busca.
 
-## Execução e reprodução
+**Concluído em 12/11 às13h48BRT: penalização seletiva contra A.** Execução `26cea089ba0faa9d64dc`, três ajustes científicos novos e dois controles exatos de200épocas;60carteiras completas, sem falhas prudenciais. MSE médio deS piorou0,43%; ensemble melhorou0,21% sem superioridade demonstrada e não operou em2025 por sinais dentro do filtro. [Resultados e limites](docs/resultados_penalizacao_seletiva_diaria.md), [fechamento](registros/penalizacao_seletiva_diaria/fechamento.json), [conferência posterior](registros/penalizacao_seletiva_diaria/conferencia_posterior.json). ReferênciaA preservada;2026excluído; ciclo encerrado; a ablação linear tem autorização própria.
 
-O ponto de entrada é `run_previsao.py`, sempre a partir da raiz do projeto e no ambiente científico qualificado. A ordem do protocolo é:
+**Concluído em12/11: fatorial temporal do CryptoMamba.** BTC,200épocas,três seeds por receita; seis ajustes novos, dois controles exatos e seis referências herdadas.108carteiras auditadas. A adaptação temporal não demonstrou superar a referênciaA; atividade dos ramosSSM não garantiu melhor previsão/lucro. [Resultados e limites](docs/resultados_eixo_temporal_diario.md), [fechamento](registros/eixo_temporal_diario/fechamento.json), [conferência](registros/eixo_temporal_diario/conferencia_posterior.json).2026não participou deste contraste.
 
-1. `python run_previsao.py coletar` e `python run_previsao.py preparar` para obter os arquivos oficiais e construir o dataset.
-2. Qualificação CUDA e testes de contrato antes de qualquer treinamento de mercado; os recibos de ambiente, configuração e fontes fazem parte da identidade da execução.
-3. Piloto real curto/longo, seguido de `python run_previsao.py executar --fase desenvolvimento`.
-4. `python manutencao/consolidar_resultados.py --fase desenvolvimento` para consolidar e conferir a publicação completa. Não aceita uma fase parcial.
-5. `python run_previsao.py congelar`, depois `python run_previsao.py executar --fase avaliacao`.
-6. `python manutencao/consolidar_resultados.py --fase avaliacao` e `python manutencao/exportar_portal.py`.
-7. Inspeção científica e visual final descrita em `docs/aceite_execucao.md`.
+Avaliação posterior encerrada em11/11: **ensemble nas quatro moedas em2026**, de01/01 a10/11, sem novos treinos. Mesmos12checkpoints, escalas e regras;24carteiras e controles exatos conferidos. [Resultados e interpretação](docs/andamento.md#11112026--ensemble-preservado-avaliação-temporal-em-2026), [exposição e fechamento](registros/ensemble_2026/fechamento.json).2026 passa a ser conhecido para hipóteses posteriores.
 
-A sequência desta execução terminou; seu estado está em `registros/continuacao_protocolo.json`. Os comandos acima descrevem a reprodução do fluxo, não solicitam nova execução automática. A interrupção operacional e a retomada estão preservadas em `registros/incidentes/`. Conferir processo/handle antes de qualquer retomada futura, sem duplicar processos por timeout de observação.
+Próximos passos e prioridades no [plano](plano.md). A [generalização diária para ETH, BNB e XRP](docs/protocolo_generalizacao_moedas.md) concluiu os modelos independentes, com BTC herdado; depois vieram continuidade operacional e avaliação do ensemble em2026. [Comparação original das quatro moedas](registros/generalizacao_moedas/comparacao_quatro_moedas.json), [cronologia](docs/andamento.md) e [índice dos modelos usados no ensemble](registros/ensemble_2026/modelos_utilizados.json). A [exploração com IA](docs/exploracao_ia.md) conserva seu contexto histórico.
 
-Preservar fontes científicas e recibos congelados desta identidade mesmo depois da conclusão. Mudanças de método exigem novo ciclo e nova identidade; os períodos de avaliação agora consultados não voltam a ser confirmação intocada. Os testes suplementares de publicação (`python manutencao/testar_consolidacao.py`) usam dados temporários identificados como sintéticos e não alteram os recibos do treinamento.
+A apresentação financeira usa slippage **provisório de 0,01% por lado**, mantendo taxas e funding, conforme a [configuração](configuracoes/custos_vigentes_001.json) e a [reavaliação sem treino](registros/custos_vigentes/execucao.json). As fontes científicas originais continuam preservadas; esse cenário não certifica custo real histórico.
 
-Código, documentação, decisões e evidências leves devem ser versionados no Git. Checkpoints, previsões completas, dataset processado e portal devem ser preservados em pacotes por ciclo no GitHub Releases, com inventário e hashes, além de uma cópia de segurança independente. A publicação desses pacotes ainda está pendente; um clone ou pull não os transfere automaticamente. Consulte a [política de preservação](docs/armazenamento_e_reproducao.md) para o procedimento e as pendências de sincronização.
+Marco operacional de11/11: [continuidade das posições diárias](docs/adr/0037-continuidade-posicoes-diarias.md),408carteiras concluídas nas quatro moedas, sem retreino neural. Reduzir fechamento/reabertura desnecessários melhora o backtest; só ETH tem lucro médio em2025 e o risco permanece elevado. [Comparação e limites](docs/andamento.md#11112026--marco-operacional-continuidade-das-posições-diárias), [artefatos e conferências](registros/continuidade_moedas/fechamento.json). É uma extensão separada; a interface anterior mantém sua política identificada.
+
+| Para quê | Onde começar |
+|---|---|
+| Entender a exploração posterior à interface | [Síntese única](docs/exploracao_ia.md) |
+| Ver o próximo passo | [Plano](plano.md) |
+| Consultar documentação e metodologia | [Índice documental](docs/README.md) |
+| Localizar uma execução/evidência | [Catálogo](registros/catalogo_estudos.json), [mapa dos registros](registros/README.md) |
+| Retomar o ensemble e seus checkpoints | [Características da receita](docs/arquitetura_modelos.md), [índice dos12modelos](registros/ensemble_2026/modelos_utilizados.json), [passagem de contexto](plano.md) |
+| Acompanhar a trajetória até a generalização diária | [Panorama web](dataview/README.md) |
+| Trabalhar no repositório | [Guia base](AGENTS.md), [ambiente e comandos](docs/ambiente_e_execucao.md) |
+| Preparar a escrita e receber o projeto LaTeX | Espaço de escrita do TCC (local: `escrita_tcc/README.md`) |
+
+## Estrutura
+
+| Pasta | Conteúdo |
+|---|---|
+| `codigo/` | Coleta, entradas, modelos, treinamento, avaliação, simulação, experimentos, análises e manutenção |
+| `testes/` | Suítes por camada e ciclo, com descoberta única |
+| `dataview/` | Interface web da trajetória e dos custos vigentes |
+| `configuracoes/` | Receitas identificadas |
+| `dados/` | Mercado, modelos, previsões e publicações preservadas |
+| `registros/` | Catálogo, ponteiros, controles, conferências e incidentes |
+| `docs/` | Guias, arquitetura, protocolos e decisões |
+| `escrita_tcc/` | Redação e projeto LaTeX |
+| `arquivo/` | Fontes históricas e materiais preservados |
+
+## Trabalhar no projeto
+
+Usar o ambiente Python existente. Na raiz:
+
+```sh
+python -m pip install --no-deps --no-build-isolation -e .
+python -B -m comandos.dados --help
+python -B -m comandos.modelos --help
+python -B -m unittest discover -s testes -t . -v
+python -B -m manutencao.arquivo_fontes conferir
+python -B -m manutencao.auditar_repositorio --integridade --exigir-completo
+```
+
+No Windows, o Python local está em `.venv/Scripts/python.exe`. Testes neurais e locks Linux exigem o ambiente WSL/CUDA; skips não significam aprovação. A instalação editável registra os pacotes de `codigo/`, mantendo os namespaces Python. Treinamentos continuam sujeitos ao protocolo e à autorização da rodada.
+
+Executar `npm run dev` dentro de `dataview/`. A interface apresenta a trajetória até a generalização das quatro moedas e usa a releitura financeira conferida de custos vigentes.
+
+Consultar o [mapa dos dados](dados/README.md), os [leitores posteriores](codigo/analises/README.md) e as [ferramentas de manutenção](codigo/manutencao/README.md). Fontes históricas estão nos pacotes verificados de `arquivo/`; os caminhos antigos nos protocolos representam o layout científico original. A recuperação é explícita e não inicia executores.
+
+Dados volumosos e checkpoints locais não são baixados automaticamente pelo Git. Consultar a [política de preservação](docs/armazenamento_e_reproducao.md) antes de transferir de máquina. Organização local não equivale a backup externo.

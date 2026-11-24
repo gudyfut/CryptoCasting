@@ -1,0 +1,72 @@
+{
+  "utc": "2026-11-04T18:41:58.026233+00:00",
+  "seed": 42,
+  "bloco": "S2",
+  "receita": {
+    "representacao": "janela_relativa",
+    "indicadores": false,
+    "contexto": 72,
+    "largura": 32,
+    "camadas": 2,
+    "estado": 16,
+    "dropout": 0.1,
+    "pooling": "media",
+    "taxa": 0.0002,
+    "decay": 0.001,
+    "otimizador": "AdamW",
+    "perda": "huber",
+    "scheduler": "constante",
+    "ganho_saida": 1,
+    "momentum": false,
+    "volatilidade": false,
+    "volume_relativo": false
+  },
+  "epoca": 7,
+  "epocas_executadas": 17,
+  "parametros": 20257,
+  "recarga_exata": true,
+  "segundos": 87.84899587000018,
+  "checkpoint_final_sha256": "00a40f86e320ffb3dc90600f4a36888278b4c951bad139cd11e24cea8fcd1ba6",
+  "memoria_cuda_maxima_bytes": 105214976,
+  "treino_amostra_fixa": {
+    "n": 2048,
+    "mse": 0.0013080354436943752,
+    "rmse": 0.03616677264692518,
+    "mae": 0.0253998231488699,
+    "mse_naive": 0.0013454916043799086,
+    "vies": 0.002379283912595647,
+    "sd_previsao": 0.005130201051674885,
+    "sd_alvo": 0.036662815025905404,
+    "acuracia_direcional": 0.55908203125,
+    "balanced_accuracy": 0.5604879333241746
+  },
+  "validacao": {
+    "n": 2002,
+    "mse": 0.0004882759458325453,
+    "rmse": 0.022096966892144843,
+    "mae": 0.016310261026776383,
+    "mse_naive": 0.0005020511335558228,
+    "vies": 0.0001230744523288465,
+    "sd_previsao": 0.004254332037309543,
+    "sd_alvo": 0.02238130521061072,
+    "acuracia_direcional": 0.5204795204795205,
+    "balanced_accuracy": 0.5171883242482855
+  },
+  "comparacao": {
+    "n": 2184,
+    "mse": 0.0002920154211571246,
+    "rmse": 0.017088458712157882,
+    "mae": 0.011145603112125698,
+    "mse_naive": 0.0002466425882382225,
+    "vies": 0.004416390424816233,
+    "sd_previsao": 0.005600742303239043,
+    "sd_alvo": 0.01564601235837812,
+    "acuracia_direcional": 0.5018315018315018,
+    "balanced_accuracy": 0.514099450640134
+  },
+  "diagnostico": {
+    "sd_representacao_media": 0.08727683126926422,
+    "norma_pesos_saida": 0.5699365735054016,
+    "fracao_clipping_ultima_epoca": 1.0
+  }
+}

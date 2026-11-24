@@ -1,0 +1,9 @@
+# ADR0014 — Comparar CryptoMamba adaptado ao nosso contrato
+
+Data:29/10/2026. Autorização humana: estudar diferenças, “replicar as configurações do cryptomamba aqui, adequado ao nosso caso e compare o resultado [...] depois faça uma análise”. Escopo escolhido: uma abordagem composta,seis seeds usuais,seis ajustes novos,53referências herdadas. Não há busca indefinida ou nova grade de estados.
+
+A fonte pública fixada éCryptoMamba@fef42727861a9c3a32241283ab981ef21a49e291, comMIT e hashes preservados. O código usa formato[B,6,14], SSMPercorrendo canais,d_state64 e12blocos; não é apenas aumentar o estado do nosso Mamba temporal. Também usa fechamento em nível,Adam0,01,RMSE,batch32,StepLR100/0,5 e1000épocas; entradas e scripts não são idênticos à descrição resumida no artigo. A configuração de normalização global está desativada; não atribuir vazamento à versão publicada por existir essa função opcional.
+
+Decisão: preservar nossos cinco canais,contexto168h,retorno24h,datas,purga,scalers e Spot para comparação direta. Adaptar contexto por Linear168→14, reproduzir o núcleo estrutural comMamba oficialCUDA e cinco canais, copiarAdam/RMSE/batch32/dropout0/d_state64, manter teto100/paciência10/clipping/isenções oficiais e adaptarStepLR para10épocas. São139.317parâmetros. **É adaptação, não reprodução literal do artigo nem ablação de fator único.**
+
+O [protocolo](../protocolo_cryptomamba_adaptado.md) registra diferenças, fonte, eixo, custo,metodologia e critério antes de treinar. Métricas de retorno continuam primárias; métricas em preço/MAPE são calculadas para todos os modelos na mesma população. Não copiar políticas públicas sem custos ou comparar seu lucro histórico diretamente ao nosso2025. A referência16/0,0002 fica preservada e nenhuma promoção é automática. Registro em `registros/cryptomamba/`,código separado em `experimento_cryptomamba/`; preparação/qualificação não são treino real.

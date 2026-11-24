@@ -1,0 +1,815 @@
+{
+  "fontes": {
+    "experimentos/operacional_futuros/agente.py": "152ce0e93dc2f493a4d4bc4f8162a3634a2dde02d0bbd233887472e0f63e9493",
+    "experimentos/operacional_futuros/avaliar.py": "37316c2f3cb51cc81cd69cb6edc3c9d717bb470170ba009919324d6e510a3a10",
+    "experimentos/operacional_futuros/ciclo.py": "cedb8aafb3aafc17a5de8fa02cb3c940c1fd235cc83f23d78f1aae0777d5cee7",
+    "experimentos/operacional_futuros/contrato.py": "0b11e6c6c57690de3c91e7b0e7a8fd9a8223fb8449954d2838c7f0bf2249793e",
+    "experimentos/operacional_futuros/publicacao.py": "d588321a027a4c45b76c8c164d1488d621b4c385f980822fedca6d021562f37b",
+    "experimentos/operacional_futuros/qualificar.py": "83f5f7102c7d0f9523316669644e0a8de21f58ba4bc626687d85b3a7a640eeb5",
+    "experimentos/operacional_futuros/qualificar_preparo.py": "196780ba2895113d33c60886fc3f5382be793cc598ab2903dbba04497697b46c",
+    "experimentos/operacional_futuros/receitas.py": "f152d1292b8085e8c88bec0b9550dd357555d6d27c376895c956e151d2e1c7a1",
+    "experimentos/operacional_futuros/worker.py": "21ee379905c97b30dab4b8e931ebf9d4a0330275ab988616a17af57f7943f368",
+    "experimentos/operacional_futuros/__init__.py": "0aa5883e9867b61c4c7fe0d1c3406d691b063c99e2810e81e8d1e33e2739b494",
+    "experimentos/operacional_futuros/__main__.py": "658c62b36ea863bf05d3732711b474bf307865000e9667dab2fc9b0aef8f86a7",
+    "simulacao_operacoes/operacional/auditoria.py": "abf41ebc0749756c06bf6143a331ef6b898f59345de163deae96c510c659cbf4",
+    "simulacao_operacoes/operacional/mercado.py": "3ff7fcb74c7e5d860dcf0a79c2d4d010f057f3d3d3ca9a769395112bf4dff009",
+    "simulacao_operacoes/operacional/motor.py": "a9a1ebbe402ec074c7c99fed8312497572c837a09b4edd206b06e343f1c17150",
+    "simulacao_operacoes/operacional/__init__.py": "a807a91ad93c429f811d429587463f660dfa2bc619a26f13844365f7d224fb3b",
+    "tests_operacional_futuros/test_entradas.py": "bd71d43b84b29dcf92964ae078239da384ca0f5cbee04ce63ca40303c6a70322",
+    "tests_operacional_futuros/test_historico.py": "a4a74d509acc04e39ae012c472c42e0db5c74c1233dd997c943563260baf9a86",
+    "tests_operacional_futuros/test_incerteza.py": "9b4114263b9c86eeb81fe728627897e5ea1403a340d9ef60d0b8e09215ca0a78",
+    "tests_operacional_futuros/test_metricas.py": "15636033df4ee10fbed2738ad51997ba768747496fc0a5b4d34e99f532093f84",
+    "tests_operacional_futuros/test_modelo.py": "b7ed2600e922505c2d24b23ee16aff526571685a700a9dae1a766a057723252e",
+    "tests_operacional_futuros/test_motor.py": "0ac8d1a38ac59aa917f49f6dc5d1da838fac21b1771ef72b922bc43833bd92ec",
+    "tests_operacional_futuros/test_proposta.py": "8935c1945255a75aa6942f64e24269058fa01bb7ac05ba19b30d8d44534e0c8f",
+    "tests_operacional_futuros/test_selecao.py": "928713980abb55ab8534b711e0cb1a7a67c2c6b8a72e9f1dd37f75b06640cef1",
+    "tests_operacional_futuros/test_treino.py": "f49fce7ef834ae0a3ade17f0dfd9b4855fc5ed63aab5668bd7e41401c7158e86",
+    "entradas_modelo/alvos.py": "60cd54bc0bf9bfdefbf49271edb44110b46a8538f45a1d4d6ceb44df4e0a7e4d",
+    "entradas_modelo/amostras.py": "a2c20315d8bae37ad2b35dcae8aa7f01c515afaa7ff82984a5d62b2211c10bbc",
+    "entradas_modelo/conjunto.py": "9744fd6327ed74634660b42185e120e23a481b6187d0897d3042973be2e61610",
+    "entradas_modelo/operacional_futuros.py": "975a2242276a03e970f0b073344d262598959f65552ee7d4051ea14c6a5942a0",
+    "entradas_modelo/pipeline.py": "e9a69438d603ad5ab3e8dde88a0445811f78947ef5552c4949258bca370c0e63",
+    "entradas_modelo/receitas.py": "f60a285ba54b89be78ec30fa0e5c3e88ae73152e7b98920c1d6b36451aad3d5c",
+    "entradas_modelo/__init__.py": "a32efc5cc42d7d1b858e7dd9c01d39c0b7466ce593021169fbc8940795ade29c",
+    "modelos/arima.py": "df37e823342bff7d70833ea056ba24e6293f204b455f227a66c28bfff4654538",
+    "modelos/conferencia.py": "b553421f8ea9c18370695c9e41561384330a207dd5efb0906bcec308538d50bf",
+    "modelos/consumo.py": "45bc850a421175b72a2500b256d0e7b8563892a638ba1e572e4ca22527af6a40",
+    "modelos/contratos.py": "cbcd7f912ce4615549300cee2f04974e59a7ecfb3eb836e035c634eddb620447",
+    "modelos/lstm.py": "bff60cbcc12a185e666b8a511e5be2d5e0ab25c0764f7ecd93e876601dbc04dd",
+    "modelos/mamba.py": "0ca157f55f0f788beee09aa43768eccf0dae139fe969f5823a855cb1a755773a",
+    "modelos/mamba_operacional.py": "357c0042a8fa2f365f3cd120d10f86178974917cc2f91fd9aae8ff10407d937e",
+    "modelos/naive.py": "bd12107c6e9311e68b2377c6417ff32d3de756f5150e3d4d9714fa630cfd045d",
+    "modelos/neurais.py": "4b6cb724313d3b5df83a79afc3291dc0d644110158f0e5c6f62bd6bab85d4c54",
+    "modelos/__init__.py": "9008c1d8057a95f0496b9d1237b06c59032143dbe0534ceed59cb83af38f05b8",
+    "treinamento/ambiente.py": "9e0acf1c09537ea3259d6f02bb6f096cdb819a11c6b1670d95e292e793732bd6",
+    "treinamento/arima.py": "7d22218fac30a5a42921cfe7426d34132e836d400fda4e87c375c80919720ca0",
+    "treinamento/avaliar.py": "0ac89e31da797126b0a19c52444792f0eaee795240f87771b104ed16178b94f0",
+    "treinamento/checkpoints.py": "0f9ceb192473ec2f66245dee215bc63ba88b264beaa47153409ec95fcbc986d2",
+    "treinamento/ciclo.py": "f2438024b6cbfe050eb07ec0f74ab082b666fb23764dff0e1ec6b0aaf694ecf6",
+    "treinamento/configuracao.py": "e63e4131786d207a9e514e4d3c4b82b688c33213d20bb08850112cad04c81182",
+    "treinamento/neural.py": "05928af030bed5b12fe3904ee940f21a735c39e5aac568febbce8a7c4d3d2f08",
+    "treinamento/operacional_futuros.py": "be1c02580e9bbda73babedc8a8dcf99e8257b25d32862f89a474c6652b5a20aa",
+    "treinamento/otimizacao.py": "96bf1dcad24de3cfd9beb1e0b76becfb68c1ff137b84a4eb66b9067f5b07a334",
+    "treinamento/preservacao.py": "0dbaefa24cad87ddadeaa727748bef5ff24a9f26e612497d0341399dc6db08e8",
+    "treinamento/qualificacao.py": "a7f760310cbef8c3d81900cf92b2ad2995d5e7ef0d1fec56f92a2cf2f7610cda",
+    "treinamento/selecao.py": "1671fb202499e547a032488ee51b3b0e214cea0f7e50c394b3b2a2e09591a8db",
+    "treinamento/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "avaliacao/incerteza_operacional.py": "fb19411d2e0742f150fefc7961fdcfb70418257a148dc9160ff26f6ff6721129",
+    "avaliacao/mercado.py": "c83fc429fda2642d9429fe546e167a4c6415b199c78f45befd71dcbb0e8a026b",
+    "avaliacao/metricas.py": "89016c0fba23691707fec66ec11a2e233cab108f27ff5dcd5872b547f9af4af4",
+    "avaliacao/metricas_operacionais.py": "4bd9b0ea0bb0a2285895ab14b44892b8740a8c6e9639d73e1fe68f98cbf99c2f",
+    "avaliacao/publicacao.py": "b3bf2fb4ab48d757119f6e2079c4809b2d76d4bc77f0655faf909f544c87d7ce",
+    "avaliacao/spot.py": "e37d98a16580294a3b0c3c6a353df7ff8aaed176a32a3e0f1b9b07c0b6b80bf6",
+    "avaliacao/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "infraestrutura/artefatos.py": "8a6b3cfeee815cdc3742ddf6b6fe7e972fa0757099f16212310515c49eb28a3e",
+    "infraestrutura/__init__.py": "91c8cb2892c40d290684a1d0bd676b3278cdce4841696602d9e41805f1b062d5",
+    "docs/desenho_operacional_futuros.md": "05b4e9ccfeadf7a620e80a26fbb5bcd6dd433608b4b7e044d007a372a85145b9",
+    "configuracoes/operacional_futuros_001_proposta.json": "fd18448cbf04fd640263dcd778c27b1cd83d1ccfb20145dfadd051cdf142a902",
+    "registros/operacional_futuros/goal_noturno.txt": "bdebea1dae32e20aaea7df3ebe1837e83cc1f6466a12f05eb7c99b019511e38c"
+  },
+  "proposta": {
+    "proposta": "operacional_futuros_001",
+    "versao": 2,
+    "data_local": "2026-11-04",
+    "fuso": "America/Sao_Paulo",
+    "situacao": "preparacao_tecnica_goal_sem_treino",
+    "executavel": false,
+    "desenho": "docs/desenho_operacional_futuros.md",
+    "decisao": "docs/adr/0028-pesquisa-operacional-futuros.md",
+    "objetivo": "Comparar Mamba + politica no proprio mercado futuro, por crescimento liquido e compromisso retorno/drawdown.",
+    "autorizacao": {
+      "organizacao_e_desenho": true,
+      "treinamento": false,
+      "busca": false,
+      "backtest_novo": false,
+      "conta_real": false,
+      "api_paga": false,
+      "preparacao_tecnica": true
+    },
+    "mercado": {
+      "simbolo": "BTCUSDT",
+      "instrumento": "USD-M perpetuo linear",
+      "lados": [
+        "compra",
+        "venda",
+        "caixa"
+      ],
+      "candles_horas": 1,
+      "execucao_minutos": 1,
+      "prazo_maximo_horas": 24,
+      "contexto_inicial_horas": 168,
+      "contextos_permitidos_horas": [
+        24,
+        72,
+        168
+      ],
+      "aquecimento_comum_horas": 336,
+      "dados_atuais": "registros/mercado_futuros/estado.json",
+      "cobertura_necessaria_inicio": "2021-01-01",
+      "coleta_desenvolvimento_pendente": false,
+      "dados_desenvolvimento": "registros/operacional_futuros/dados/execucao.json"
+    },
+    "familias_iniciais": [
+      {
+        "id": "R0",
+        "entrada": "ohlcv_cru",
+        "alvo": "log_retorno_terminal_24h_futuro",
+        "perda": "2_huber_delta1_alvo_padronizado",
+        "selecao_epoca": "mse_real_validacao",
+        "herdar_pesos": false
+      },
+      {
+        "id": "P0",
+        "entrada": "ohlcv_cru",
+        "alvo": "payoff_liquido_unitario_compra_venda",
+        "perda": "mse_dois_alvos_padronizados",
+        "selecao_epoca": "mse_real_medio_dois_canais_validacao",
+        "herdar_pesos": false
+      }
+    ],
+    "rede_inicial": {
+      "familia": "Mamba1_oficial_CUDA",
+      "d_state": 16,
+      "otimizador": "AdamW",
+      "taxa": 0.0002,
+      "receita_ancestral": "configuracoes/busca_astra_002.json",
+      "largura": 32,
+      "camadas": 2,
+      "convolucao": 4,
+      "expansao": 2,
+      "dropout": 0.1,
+      "pooling": "ultimo",
+      "normalizacao_bloco": "pre_layernorm",
+      "weight_decay": 0.001
+    },
+    "barreiras_iniciais": {
+      "volatilidade": "std(log_retornos_horarios_168h,ddof=1)*sqrt(24)",
+      "distancia_stop_log": "max(k_stop*volatilidade,0.005)",
+      "multiplicador_take": 1.5,
+      "fixas_na_entrada": true,
+      "mudanca_exige_novo_alvo_payoff": true,
+      "k_stop": 1.0,
+      "semantica_par": "[k_stop, razao_take_stop]. Take=razao*distancia_stop. Variacao apenas em receitas payoff; alvo e politica mudam juntos, nova identidade."
+    },
+    "carteira": {
+      "capital_usdt": 10000,
+      "fracao_maxima_nocional_entrada": 0.95,
+      "posicoes_simultaneas": 1,
+      "busca_alavancagem": false,
+      "risco_nominal_stop": [
+        0.005,
+        0.01
+      ],
+      "aportes_saques": false,
+      "tributos_incluidos": false,
+      "nocional_maximo_usdt": 50000
+    },
+    "politicas_calibracao": {
+      "margem_adicional_entrada": [
+        0.0,
+        0.001,
+        0.002
+      ],
+      "risco_nominal_stop": [
+        0.005,
+        0.01
+      ],
+      "cadencia_horas_utc": [
+        1,
+        4
+      ],
+      "total": 12,
+      "calibracao": "Uma politica por receita/recorte selecionada em C, conjunta para as seeds daquela fase. Nunca por S."
+    },
+    "execucao_proposta": {
+      "latencia_minutos": 1,
+      "comissao_taker_por_lado": 0.0005,
+      "deslizamentos_por_preenchimento": [
+        0.0005,
+        0.001,
+        0.0015
+      ],
+      "funding": "historico_real",
+      "tarifa_conta_verificada": false,
+      "ambiguidades_stop_take": "stop_primeiro",
+      "margem_liquidacao": "Fechamento prudencial se patrimonio/nocional<=0.02, custo taker+slippage, rejeita promocao. Nao e liquidacao oficial Binance; reportar proxy e ausencia de certificacao historica.",
+      "passo_quantidade_btc": 0.001,
+      "tick_preco_usdt": 0.1,
+      "nocional_minimo_usdt": 100,
+      "filtros_historicos_certificados": false,
+      "ordem_stop": "Stop/take protetivos ativos apos fill; gap executa pior preco disponivel; ambas barreiras no mesmo minuto: stop primeiro.",
+      "funding_marca_ausente": "Preservar NaN. Em todos os cenarios, usar high do minuto se paga e low se recebe; origem intervalar explicitamente marcada. Nunca chamar isto de markPrice exato.",
+      "funding_estimado_R0": "Ultima taxa de settlement ja publicada, com atraso conservador1min; multiplicar por24/intervalo_horas e pelo sinal do lado. Preco de referencia causal, sem taxa realizada futura.",
+      "limiar_margem_prudencial": 0.02,
+      "saida_prudencial_reprova": true,
+      "fim_bloco": "Sem entradas cujo horizonte maximo atravesse fim; fechar qualquer residuo com custos.",
+      "ordem_funding_ambiguo": "Se saida protetiva no mesmo minuto de settlement sem ordem conhecida, pagar se debito e nao creditar receita ambigua; registrar ocorrencia. Entradas em minuto de funding conservadoras ou bloqueadas por regra fixa."
+    },
+    "criterio": {
+      "primario": "mediana_calmar_periodo_blocos_seeds",
+      "crescimento_diario": "log(patrimonio_final/patrimonio_inicial)/dias",
+      "calmar": "(exp(365*crescimento_diario)-1)/drawdown_maximo_mesmo_periodo",
+      "drawdown_zero": "indefinido_sem_infinito_ou_promocao",
+      "desempate": [
+        "crescimento_log_medio",
+        "menor_giro"
+      ],
+      "teto_drawdown_aprovado": null,
+      "resposta_usuario": "Solicitou metrica de equilibrio entre crescimento e risco; nao escolheu 25%.",
+      "fronteira": [
+        "crescimento_composto",
+        "drawdown_maximo"
+      ],
+      "mse_e_gate_economico": false,
+      "tolerancia_empate_calmar": 1e-10,
+      "referencia_inelegivel": "Candidata ainda deve cumprir todos os gates positivos. R0 sem Calmar nao bloqueia comparacao; reportar ausencia, nao substituir por infinito ou ocultar seed."
+    },
+    "elegibilidade_proposta": {
+      "cobertura_completa": true,
+      "insolvencia_liquidacao_permitida": false,
+      "crescimento_medio_base_positivo": true,
+      "crescimento_medio_deslizamento_2x_positivo": true,
+      "recortes_com_crescimento_medio_positivo_minimo": 2,
+      "operacoes_encerradas_minimo_por_carteira_S": 20,
+      "seeds_positivas_reforco_minimo": 6,
+      "seeds_reforco_total": 8,
+      "provar_habilidade_vendida": "Diagnostico separado; lucro total nao basta.",
+      "score_calmar_positivo": true,
+      "fechamento_prudencial_permitido": false
+    },
+    "calendario": {
+      "utc": true,
+      "fim_exclusivo": true,
+      "desenvolvimento": [
+        {
+          "id": "D1",
+          "treino": [
+            "2021-01-01",
+            "2022-10-01"
+          ],
+          "validacao": [
+            "2022-10-01",
+            "2023-01-01"
+          ],
+          "calibracao": [
+            "2023-01-01",
+            "2023-04-01"
+          ],
+          "comparacao": [
+            "2023-04-01",
+            "2023-07-01"
+          ]
+        },
+        {
+          "id": "D2",
+          "treino": [
+            "2021-01-01",
+            "2023-01-01"
+          ],
+          "validacao": [
+            "2023-01-01",
+            "2023-04-01"
+          ],
+          "calibracao": [
+            "2023-04-01",
+            "2023-07-01"
+          ],
+          "comparacao": [
+            "2023-07-01",
+            "2023-10-01"
+          ]
+        },
+        {
+          "id": "D3",
+          "treino": [
+            "2021-01-01",
+            "2023-04-01"
+          ],
+          "validacao": [
+            "2023-04-01",
+            "2023-07-01"
+          ],
+          "calibracao": [
+            "2023-07-01",
+            "2023-10-01"
+          ],
+          "comparacao": [
+            "2023-10-01",
+            "2024-01-01"
+          ]
+        }
+      ],
+      "final_retrospectiva": [
+        {
+          "id": "B1",
+          "treino": [
+            "2021-01-01",
+            "2023-07-01"
+          ],
+          "validacao": [
+            "2023-07-01",
+            "2023-10-01"
+          ],
+          "calibracao": [
+            "2023-10-01",
+            "2024-01-01"
+          ],
+          "avaliacao": [
+            "2024-01-01",
+            "2024-07-01"
+          ]
+        },
+        {
+          "id": "B2",
+          "treino": [
+            "2021-01-01",
+            "2024-01-01"
+          ],
+          "validacao": [
+            "2024-01-01",
+            "2024-04-01"
+          ],
+          "calibracao": [
+            "2024-04-01",
+            "2024-07-01"
+          ],
+          "avaliacao": [
+            "2024-07-01",
+            "2025-01-01"
+          ]
+        },
+        {
+          "id": "B3",
+          "treino": [
+            "2021-01-01",
+            "2024-07-01"
+          ],
+          "validacao": [
+            "2024-07-01",
+            "2024-10-01"
+          ],
+          "calibracao": [
+            "2024-10-01",
+            "2025-01-01"
+          ],
+          "avaliacao": [
+            "2025-01-01",
+            "2025-07-01"
+          ]
+        },
+        {
+          "id": "B4",
+          "treino": [
+            "2021-01-01",
+            "2025-01-01"
+          ],
+          "validacao": [
+            "2025-01-01",
+            "2025-04-01"
+          ],
+          "calibracao": [
+            "2025-04-01",
+            "2025-07-01"
+          ],
+          "avaliacao": [
+            "2025-07-01",
+            "2026-01-01"
+          ]
+        }
+      ],
+      "purga": "Tempo maximo de realizacao do alvo, incluindo latencia/entrada/saida. Testar por timestamps.",
+      "periodos_ja_consultados": true,
+      "politica_global_entre_recortes": false,
+      "purga_minima_minutos": 1442
+    },
+    "seeds": {
+      "exploracao": [
+        42,
+        17,
+        2026
+      ],
+      "reforco_e_final": [
+        42,
+        17,
+        2026,
+        7,
+        123,
+        31415,
+        271828,
+        161803
+      ]
+    },
+    "busca_proposta": {
+      "receitas_maximo_incluindo_iniciais": 8,
+      "propostas_astra_maximo": 6,
+      "candidatas_reforcadas_maximo": 2,
+      "referencia_adicional_reforco": "R0",
+      "finalistas_maximo": 1,
+      "consultas_proponente_maximo": 8,
+      "horas_exploracao_reforco_maximo": 24,
+      "horas_final": "Estimar apos benchmark; nao incluida na promessa de um dia.",
+      "campos_locais": [
+        "representacao",
+        "contexto_horas",
+        "momentum",
+        "volatilidade",
+        "volume_relativo",
+        "d_state",
+        "taxa",
+        "barreiras_payoff"
+      ],
+      "grade_detalhada_congelada": false,
+      "fora_primeira_rodada": [
+        "candle_15min_4h",
+        "horizonte_6h",
+        "alavancagem",
+        "saidas_adaptativas",
+        "edicao_manual_pesos"
+      ],
+      "grade_enumerada_pre_resultados": true,
+      "limite_uma_alteracao_por_proposta": true
+    },
+    "orcamento_proposto": {
+      "ajustes_exploracao": 72,
+      "controles_iniciais": 2,
+      "ajustes_reforco_novos": 45,
+      "ajustes_finais": 64,
+      "controles_finais": 2,
+      "ajustes_novos_maximo": 185,
+      "carteiras_logicas_exploracao": 1224,
+      "carteiras_logicas_reforco": 1224,
+      "carteiras_logicas_final": 1088,
+      "carteiras_baselines": 84,
+      "carteiras_logicas_maximo": 3620,
+      "carteiras_fisicas": "Pode ser menor com heranca auditada; nenhuma executada nesta proposta."
+    },
+    "baselines": [
+      "caixa_naive_zero",
+      "sempre_comprado",
+      "sempre_vendido",
+      "tendencia_causal_fixa"
+    ],
+    "qualificacao_pendente": [
+      "adaptador_entradas_alvos_e_escalas",
+      "motor_barreiras_margem_e_filtros",
+      "treinador_do_novo_contrato",
+      "coordenador_e_isolamento_proponente",
+      "bootstrap_e_auditoria_independente",
+      "benchmark",
+      "qualificacao_integrada",
+      "identidade_congelamento_e_autorizacao_goal"
+    ],
+    "treinamento": {
+      "epocas_maximas": 100,
+      "paciencia": 10,
+      "batch": 64,
+      "microbatch": 32,
+      "clipping": 1.0,
+      "limite_ajuste_segundos": 2700,
+      "dtype": "float32",
+      "amp": false,
+      "scheduler": "constante",
+      "adam_betas": [
+        0.9,
+        0.999
+      ],
+      "adam_eps": 1e-08,
+      "isentar_no_weight_decay": true,
+      "checkpoint": "Menor MSE real em V; perda de treino normalizada, por elemento, sem broadcasting."
+    },
+    "espaco_receitas": {
+      "representacao": [
+        "crua",
+        "relativa",
+        "log_niveis"
+      ],
+      "contexto_horas": [
+        24,
+        72,
+        168
+      ],
+      "momentum": [
+        false,
+        true
+      ],
+      "volatilidade": [
+        false,
+        true
+      ],
+      "volume_relativo": [
+        false,
+        true
+      ],
+      "d_state": [
+        16,
+        32
+      ],
+      "taxa": [
+        0.0001,
+        0.0002
+      ],
+      "barreiras_payoff": [
+        [
+          1.0,
+          1.0
+        ],
+        [
+          1.0,
+          1.5
+        ],
+        [
+          1.0,
+          2.0
+        ],
+        [
+          1.5,
+          1.5
+        ]
+      ]
+    },
+    "formulas_entradas": {
+      "crua": [
+        "O",
+        "H",
+        "L",
+        "C",
+        "V"
+      ],
+      "relativa": [
+        "log(O/C_anterior)",
+        "log(H/C_anterior)",
+        "log(L/C_anterior)",
+        "log(C/C_anterior)",
+        "log1p(V)"
+      ],
+      "log_niveis": [
+        "log(O)",
+        "log(H)",
+        "log(L)",
+        "log(C)",
+        "log1p(V)"
+      ],
+      "momentum": [
+        "log(C/C_lag24)",
+        "log(C/C_lag72)",
+        "log(C/C_lag168)"
+      ],
+      "volatilidade": [
+        "std(log(C/C_anterior),24,ddof=1)",
+        "std(log(C/C_anterior),168,ddof=1)"
+      ],
+      "volume_relativo": [
+        "log1p(V)-media(log1p(V),24)",
+        "log1p(V)-media(log1p(V),168)"
+      ],
+      "escala": "Bases relativa/log_niveis e todos os canais extras: z-score ddof0 de T; crua base sem escala. Escala zero vira1, nao NaN. Alvos: escala propria por canal somente em T.",
+      "janelas": "Todos os rolling incluem somente candles completos disponiveis. Aquecimento comum336h, inclusive crua24h."
+    },
+    "baselines_detalhes": {
+      "caixa_naive_zero": "Patrimonio fixo; Calmar indefinido; sem treino.",
+      "sempre_comprado": "Abrir95% do patrimonio inicial no primeiro instante elegivel e reter ate fim, sujeito a limites e margem, sem realavancar.",
+      "sempre_vendido": "Mesmo procedimento comprado, quantidade negativa.",
+      "tendencia_causal_fixa": "EMA24 versus EMA168 de closes completos, adjust=False e min_periods168; maior compra, menor vende, empate caixa; decisao1h, retida, inverter somente ao mudar sinal, alvo95% na abertura. Sem recalibracao por S."
+    },
+    "operacao_noturna": {
+      "prompt": "registros/operacional_futuros/goal_noturno.txt",
+      "ativado": false,
+      "janela_horas_proposta": 12,
+      "inicio_relativo": "Registrar UTC ao receber o goal; inclui preparo restante, qualificacao, treino e fechamento.",
+      "reserva_minutos_fechamento": 30,
+      "nao_iniciar_ajuste_sem_reserva": true,
+      "prazo_total_nao_reinicia_apos_reboot": true,
+      "politica_prazo": "Parar novos ajustes antes do prazo, preservar coortes parciais sem pontuar/promover e entregar estado auditavel. Nao prometer concluir185 ajustes.",
+      "novo_treino_agora": false
+    }
+  },
+  "qualificacao": "registros\\operacional_futuros\\qualificacao_integrada\\qualificacao_final.json",
+  "qualificacao_sha256": "e9974c13c54a988b7bb006a36608fe781a325d4e9532e015605d34159b7887ea",
+  "dados": {
+    "registros/operacional_futuros/dados/execucao.json": {
+      "id": "7535d44ba23eb371fe4d",
+      "pasta": "dados/mercado/futuros_operacional/tentativas/2026-11-05T030551.440830_0000",
+      "manifesto_sha256": "10b1cce07bea6c7c6119a280addca53131fd31aca2de236348bd6588effd079c"
+    },
+    "registros/mercado_futuros/execucao.json": {
+      "id": "979c54995465216ea020",
+      "pasta": "dados/mercado/futuros_um/tentativas/2026-11-04T145414.524392_0000",
+      "manifesto_sha256": "00b6ff383dc4693a5f84982e2f4b0d01b04e666d441650f7d3b220468f089f52"
+    }
+  },
+  "sessao": {
+    "inicio_utc": "2026-11-05T06:05:40+00:00",
+    "prazo_utc": "2026-11-05T18:05:40+00:00",
+    "limite_novos_trabalhos_utc": "2026-11-05T17:35:40+00:00",
+    "origem_inicio": "createdAt do goal ativo",
+    "autorizacao_recebida": "Usuario autorizou explicitamente implementar, qualificar, congelar e executar ate12h,185 ajustes e3620 avaliacoes logicas, sem outro Ok.",
+    "objetivo_fonte": "goal ativo deste chat",
+    "prompt_sha256": "bdebea1dae32e20aaea7df3ebe1837e83cc1f6466a12f05eb7c99b019511e38c",
+    "configuracao_sha256": "fd18448cbf04fd640263dcd778c27b1cd83d1ccfb20145dfadd051cdf142a902",
+    "situacao": "implementacao",
+    "execucao": null,
+    "vinculo_execucao_pendente": true
+  },
+  "autorizacao": {
+    "treinamento": true,
+    "busca": true,
+    "backtest": true,
+    "conta_real": false,
+    "api_paga": false,
+    "texto": "Usuario autorizou explicitamente implementar, qualificar, congelar e executar ate12h,185 ajustes e3620 avaliacoes logicas, sem outro Ok."
+  },
+  "preservacao": {
+    "experimentos/busca_astra/agente.py": "57f00107973e1307669e7719ee31e1cd353c4428034bc98155dc16c55362f80f",
+    "experimentos/busca_astra/ciclo.py": "32f625e634565c31894a51d2942b95c7ead2f530a5692c4ebeab3fb9800cf267",
+    "experimentos/busca_astra/contrato.py": "80c31abde18710ee637795a2abb2d6abbb9789b3b210b802c3f824a77baabc1c",
+    "experimentos/busca_astra/dados.py": "34fdfff67f19a54ee2c3d7abacee6743aea78108d6a750b0d26c90badb79a248",
+    "experimentos/busca_astra/publicacao.py": "72baec7480908394cc682bad0ede0adc87bac7020e692de9ac65bc5aa8e68268",
+    "experimentos/busca_astra/qualificar.py": "81bd59b378dc5ea175daea5b43bee2442b457bb045a6d4d5852544b373009bfb",
+    "experimentos/busca_astra/rede.py": "173891f3c6536154f6933ad878b95dc74b1feecdc033df0426dc2085f3363d84",
+    "experimentos/busca_astra/treino.py": "10d21d050e5b55dd1b0f5096b0bcaa9ff74c53cb9beea37c94d27322721100a6",
+    "experimentos/busca_astra/worker.py": "5cf6dd0966c7912996f1fed96217888fac0cdf18957b670fd12b8abdd9e71f23",
+    "experimentos/busca_astra/__init__.py": "80f36454f7f79193110b36dd87aba774d7fd61fbeb6fad83c744b4d3581b67a1",
+    "experimentos/busca_astra/__main__.py": "cca829957c2c8bf81e1f8f165e20e88e1f8648999418b58092e43a5f33e59b40",
+    "tests_busca_astra/test_contrato_dados.py": "74ca17703309f9cc4f55f37f300aea3cb02af3ea1f383dc9d111a735ea154ff6",
+    "tests_busca_astra/test_orquestracao.py": "079211db0e17897a97cfc7b480d4a707713f1db8b89e9fec08539e0351848b53",
+    "tests_busca_astra/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "infraestrutura/artefatos.py": "8a6b3cfeee815cdc3742ddf6b6fe7e972fa0757099f16212310515c49eb28a3e",
+    "infraestrutura/__init__.py": "91c8cb2892c40d290684a1d0bd676b3278cdce4841696602d9e41805f1b062d5",
+    "modelos/arima.py": "df37e823342bff7d70833ea056ba24e6293f204b455f227a66c28bfff4654538",
+    "modelos/conferencia.py": "b553421f8ea9c18370695c9e41561384330a207dd5efb0906bcec308538d50bf",
+    "modelos/consumo.py": "45bc850a421175b72a2500b256d0e7b8563892a638ba1e572e4ca22527af6a40",
+    "modelos/contratos.py": "cbcd7f912ce4615549300cee2f04974e59a7ecfb3eb836e035c634eddb620447",
+    "modelos/lstm.py": "bff60cbcc12a185e666b8a511e5be2d5e0ab25c0764f7ecd93e876601dbc04dd",
+    "modelos/mamba.py": "0ca157f55f0f788beee09aa43768eccf0dae139fe969f5823a855cb1a755773a",
+    "modelos/naive.py": "bd12107c6e9311e68b2377c6417ff32d3de756f5150e3d4d9714fa630cfd045d",
+    "modelos/neurais.py": "4b6cb724313d3b5df83a79afc3291dc0d644110158f0e5c6f62bd6bab85d4c54",
+    "modelos/__init__.py": "9008c1d8057a95f0496b9d1237b06c59032143dbe0534ceed59cb83af38f05b8",
+    "treinamento/ambiente.py": "9e0acf1c09537ea3259d6f02bb6f096cdb819a11c6b1670d95e292e793732bd6",
+    "treinamento/arima.py": "7d22218fac30a5a42921cfe7426d34132e836d400fda4e87c375c80919720ca0",
+    "treinamento/avaliar.py": "0ac89e31da797126b0a19c52444792f0eaee795240f87771b104ed16178b94f0",
+    "treinamento/checkpoints.py": "0f9ceb192473ec2f66245dee215bc63ba88b264beaa47153409ec95fcbc986d2",
+    "treinamento/ciclo.py": "f2438024b6cbfe050eb07ec0f74ab082b666fb23764dff0e1ec6b0aaf694ecf6",
+    "treinamento/configuracao.py": "e63e4131786d207a9e514e4d3c4b82b688c33213d20bb08850112cad04c81182",
+    "treinamento/neural.py": "05928af030bed5b12fe3904ee940f21a735c39e5aac568febbce8a7c4d3d2f08",
+    "treinamento/otimizacao.py": "96bf1dcad24de3cfd9beb1e0b76becfb68c1ff137b84a4eb66b9067f5b07a334",
+    "treinamento/preservacao.py": "0dbaefa24cad87ddadeaa727748bef5ff24a9f26e612497d0341399dc6db08e8",
+    "treinamento/qualificacao.py": "a7f760310cbef8c3d81900cf92b2ad2995d5e7ef0d1fec56f92a2cf2f7610cda",
+    "treinamento/selecao.py": "1671fb202499e547a032488ee51b3b0e214cea0f7e50c394b3b2a2e09591a8db",
+    "treinamento/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "backtest_carteira/auditoria.py": "ad439a8d6e2bfe8367ff6d2e96da7e53cd2ca9f86f20ec8d25b4b6a64297bcd9",
+    "backtest_carteira/ciclo.py": "c5ce171fc8298a9e104eb57a2720418bf234425e9b3800df5c62c0a47ad45747",
+    "backtest_carteira/mercado.py": "fb85e0bdac113a4fd57af4332e6ef3fd9ebb31ffb7ba007011648dce505d6f37",
+    "backtest_carteira/politicas.py": "0ab300634f73d4cd34d23bb6a3d48d4bd5f838e23201cf8327a3712eed7a6b79",
+    "backtest_carteira/relatorio.py": "ac0724e405cf6d08280567ca43446f2deb4826a61896b09eff60f4303e9dd54e",
+    "backtest_carteira/simulador.py": "d7fa1748b0e92d23ceb5e1289790977eee351dd86b442f8ab3d18d127be020ec",
+    "backtest_carteira/__init__.py": "935fcaa3336cd1f24f27457418b2cc6abd9d5b24f85f3fdc8dbb69dae8553d27",
+    "docs/protocolo_busca_astra.md": "3b657576a124437a61c2ecb34f76c760ac72f3dd86416bef542c8aac888e80f6",
+    "configuracoes/busca_astra_001.json": "03dbc1df353330e20ccfbb25038fd3caeef065a8525642f7c704505ae773861e",
+    "experimentos/__init__.py": "a14e911bc32033a54926e3b27386c9f3f4b04efeb02cf5aceda53f68d1856b3a",
+    "experimentos/comparacao_astra_crua/ciclo.py": "f57466268c24a2d179a146117e627e64898c127168c0e1a91f2a5f469dff50bf",
+    "experimentos/comparacao_astra_crua/contrato.py": "4ea426ad3014fa950c0d3ebb9ba67df09ade33f2f62578a21be4b07fc8829c36",
+    "experimentos/comparacao_astra_crua/publicacao.py": "d03132fdff07b667abcddd711c8550b883403ac98efc0b9dd90ec3b51843f25b",
+    "experimentos/comparacao_astra_crua/qualificar.py": "aa58d0f93289267e8145747a0dac163c267f59de58c1c5c43cac01dfb8b79c00",
+    "experimentos/comparacao_astra_crua/worker.py": "b2edc1e4dbb1f67f7c1ebb3263c41967196dbbb70be5da114940bf75d3a2105e",
+    "experimentos/comparacao_astra_crua/__init__.py": "d02ebc34a591bdca857686339509005e9b2de65182128ccd92ddd77a85ebed5c",
+    "experimentos/comparacao_astra_crua/__main__.py": "e55633d71820caa1d326d2bb430d95f6c84b226c5af25464d9b797bbee09f3ed",
+    "tests_comparacao_astra_crua/test_contrato.py": "6d7fb586c0b2adec507ebddae9fcb6b414ffbcc3ca1c81250996626a6d6e4156",
+    "tests_comparacao_astra_crua/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "configuracoes/comparacao_astra_crua_001.json": "46ce372522f4717624fde0e939dec4adc5a0fac428bfdfb804dd9403b95688f8",
+    "docs/protocolo_comparacao_astra_crua.md": "37f4ebaf7ff5a7b5888e21b32261a1033838f39d4069cea8ea8da9615e122e63",
+    "simulacao_operacoes/smart/auditoria.py": "1bede980ed139725a73c8a0dcc9f16ad644fd5e6e454d44e40560139b8e08937",
+    "simulacao_operacoes/smart/conta.py": "c15c37b235485ee61287402fbd5f9c551d34e97bb88ed09db790192a00658054",
+    "simulacao_operacoes/smart/mercado.py": "1d9b7c4e6c34c9fb3834b4f80c67d3e66aa3e2412aacb52d4c828756c02430cc",
+    "simulacao_operacoes/smart/politica.py": "91aef98749f92187ed231d7128d5390aeeeb262fb19cf73150958e9f4b2040a5",
+    "simulacao_operacoes/smart/simulador.py": "a7313c7db9d649382dfc975c3c11c558692301364a99fc1cf194919ab91016f0",
+    "simulacao_operacoes/smart/__init__.py": "17404cbfb20937433cf4d3ad3c1e24b23ccfb7711771474b3475f50f5a735263",
+    "experimentos/smart_mercados/ciclo.py": "cc0d3d0e279eaa92ce116146bddebdc34a3353a4cfc4bb1e01f146bb2d61c700",
+    "experimentos/smart_mercados/publicacao.py": "60a313bd332b1d523a6e6b4dfe50dfaaa22bc05a652aafac034723381bfd195c",
+    "experimentos/smart_mercados/__init__.py": "880b055bdf3d9626a0b86afcdd6634eff19e23388660a58a685c1a772cc9e00d",
+    "experimentos/smart_mercados/__main__.py": "1989977a49031477b515263bbd7e7654d4191a142e95110d72c3750ac4dbba57",
+    "tests_smart_mercados/test_smart.py": "cbe3574180a7b975da561b58ed83565dc4ef26db31b1d4924be16c2955bb54b4",
+    "tests_smart_mercados/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "mercado_futuros/contexto.py": "0703c3f27e0ac9931e0e57e5745ca5f11366e4bd10248b32b6d74e36e33d3a31",
+    "mercado_futuros/pipeline.py": "324b0d9f6a0e00162be11e78fb4dea85352b01263e17f2aaf826150360ec751c",
+    "mercado_futuros/__init__.py": "5d5de02d0a6ee7f62b5dbedd2d67ca82822cd2424881e73ff2d3de9ac270cf56",
+    "mercado_futuros/__main__.py": "3e9cef9cd4f98f843ff6a13bd35ebfd30503950ce2579610f58583efa32298c4",
+    "simulacao_operacoes/__init__.py": "58b39e5e994324a2743fc0a0676adb4179746d1eeeb79a72b6249a09fa6bf2a9",
+    "simulacao_operacoes/previsoes.py": "ae82e92e9aff943b0050b10d3370ba2b6817a0bac2c6a456f929b8dfee3f4502",
+    "simulacao_operacoes/futuros/__init__.py": "18ec35b43b2d4c4575e3aec5907fc4c37cd600ff7b21a4d4c3435bf90e2806d8",
+    "simulacao_operacoes/futuros/mercado.py": "5e89be50edfefa06138f618a614272f16eb9e09696398212b2b0f50ce50550f1",
+    "simulacao_operacoes/futuros/contabilidade.py": "78b34c83d55d131664b29caef48cbb8dcaf6e84d4d59717ebe96c305ccd4226a",
+    "configuracoes/smart_mercados_001.json": "e4d82b2fb602090fef0c23ce2baffafac16b3f2006c4873d965be9e90ec6736d",
+    "docs/protocolo_smart_mercados.md": "b46999541bfd0370d745de2969c30baf95b04ddc5f6027ad1f20a8d5c609ce6d",
+    "simulacao_operacoes/revisada/auditoria.py": "cb0fc3651633ca3a3e9d30da0cbfa323351175d08278f702702820fc39e88283",
+    "simulacao_operacoes/revisada/conta.py": "ffa904f71720c67f83fe61e356ffef31f719c3081126431884c1817e26555eb0",
+    "simulacao_operacoes/revisada/politica.py": "9c9aaea70c5481a8551c6732c22d6a1468ff96705385215b028e61ca67d188ac",
+    "simulacao_operacoes/revisada/regras.py": "a90f88f8ef93486601a7e56e5e0844898c9a6698268c29663737a4253cd96db5",
+    "simulacao_operacoes/revisada/simulador.py": "9b39235b57e494b2be25cfb04eb86cd81db4433c55aa8867854ff133ae370726",
+    "simulacao_operacoes/revisada/__init__.py": "5c5edebae653116de549579896f8d811acbbf0681adb916b754419b52cfe9321",
+    "experimentos/revisao_operacional/ciclo.py": "39deabde017807dc825ba9433a050882ff115575c829f3d98c51c3b2c64014da",
+    "experimentos/revisao_operacional/publicacao.py": "36d80cbf2104a1d02f6181403c974ff05cdc5d4646c0eac5ba48fc11ee94e050",
+    "experimentos/revisao_operacional/__init__.py": "d8d6598e24af0d28ba2858a0934fb44205ec58ccd3c712a6aadef04ef71e32b0",
+    "experimentos/revisao_operacional/__main__.py": "111af6895102e6c488c3c866703e27e1cbf2c8b0829860f2d5e6e1328c45f499",
+    "tests_revisao_operacional/test_execucao.py": "9a46be9e954d0a326771b0ac13d7dcfb14671968b793b0d9f14e1e76517fe21f",
+    "configuracoes/revisao_operacional_001.json": "7b3230c026490cc83bcdb3f5ebc08ccc97b77a26b6095166767a4d3b10a073c7",
+    "docs/protocolo_revisao_operacional.md": "d93fd9c86bdbf5a9d2800281b0d70c5b885a43ddb9ec8fa0f48bb94287c36b26",
+    "registros/revisao_operacional/fontes_publicas/futuros.json": "b4a08d0c3ac3338e9f38b8b2b6abe82b3688385311810510593a1b8e2e62e529",
+    "registros/revisao_operacional/fontes_publicas/spot.json": "b21a0b99465320f155ece93e9a70324d0483238b7f8edd2158f7ffe71086a445",
+    "experimentos/busca_astra_002/agente.py": "9484aaa6ebafb3ab4852827888b1af2e75bfcda43a0df1efcb8fdb166f445862",
+    "experimentos/busca_astra_002/ciclo.py": "0209b09041baffc27194ad49026970fdcf4ab200f166febec4c7f5614d913d1b",
+    "experimentos/busca_astra_002/contrato.py": "2455ae85f3b3a471032b1d9434967be4c016e25ed288e120c9a93ccbcbf9be01",
+    "experimentos/busca_astra_002/dados.py": "1e082a04497982e55165a85bcaab05db26621e4a27b7264c0962071753f3d85f",
+    "experimentos/busca_astra_002/metricas.py": "23472107f31622fdac17e0da638644c05bec2d3143e17b83fe4333cb573647d8",
+    "experimentos/busca_astra_002/publicacao.py": "12399b461abc06ce0f7065a7fa23e930b3d4b0bd1bf4c457728b16904af1db29",
+    "experimentos/busca_astra_002/qualificar.py": "44b037bfb241df00056f71a72deb01eb3a92b78521e7792868a1e9908cd3beb4",
+    "experimentos/busca_astra_002/worker.py": "31b6c9b26d3d7950a90f7ce63f2e49160f20a5ee349b0c80800f9d19ed3b480f",
+    "experimentos/busca_astra_002/__init__.py": "b619ea880f069985bae813b221234ca35feaafeb53647d52962d4fca17142317",
+    "experimentos/busca_astra_002/__main__.py": "5bd5629815be017b05ee5725228a1a9f8cbc9ffa79c4ee5bbe291929e98ed1d8",
+    "tests_busca_astra_002/test_contratos.py": "d8ce0b9644e60338c7d03d7835974c36ecbd4471c1a3487746fe1084686ef1b3",
+    "configuracoes/busca_astra_002.json": "06afdf05ed9752df57f2151d79e54e06a18618fbe6d88da641c1231b1effdcf0",
+    "docs/protocolo_busca_astra_002.md": "183199162a902ff303b0fee0b92b5b8a639b08845e02abc3211ecfc264db2ab5",
+    "registros/busca_astra_002/execucao.json": "a66c3da9748fe271316c813037d0e96468e82030730b54db192505d56c71ee1e",
+    "dados/experimentos/busca_astra_002_932da51c61935c911ec5/ajustes.json": "5d3a6b3870c3a84009b9e23ea64a586b7d7eea1fcc4974fe3649d7606f99ed64",
+    "dados/experimentos/busca_astra_002_932da51c61935c911ec5/autorizacao.json": "9f2ac635ac73198461a658d1499fe759b21b90aa22c96aeeb5c55a7f165d7966",
+    "dados/experimentos/busca_astra_002_932da51c61935c911ec5/congelamento.json": "7dd5b508bf351f595df33f9419e335f833ee4cae9e43f738b510eba17691071c",
+    "dados/experimentos/busca_astra_002_932da51c61935c911ec5/controle_desenvolvimento.json": "1d63f2339708f3aa1221ea46236210d5e68e41d19f7a510ee24776916e860dd7",
+    "dados/experimentos/busca_astra_002_932da51c61935c911ec5/desenvolvimento.json": "02bbf71540feb0089ff4f78541587bfad518e448013fbf9c601f667f35d3c4b6",
+    "dados/experimentos/busca_astra_002_932da51c61935c911ec5/fechamento.json": "5e683c784bc6fd0348d44cd53930ee2f65b37666f3c3ac8f8b5745a554ae4b21",
+    "dados/experimentos/busca_astra_002_932da51c61935c911ec5/inicio_preparo.json": "259f4f65a8c6b10f46c3caaca6d019a03bf1a2a5503033517da46259f88b355d",
+    "dados/experimentos/busca_astra_002_932da51c61935c911ec5/orcamento.json": "d789c44cfaa0160fe284733488514ac7f2a6fc7084164a37397ca9ce80079dcd",
+    "dados/experimentos/busca_astra_002_932da51c61935c911ec5/processo.json": "42536ff1a3a4b3016d5f79262b146ff09eba14ee2831999ea9604606f227d638",
+    "dados/experimentos/busca_astra_002_932da51c61935c911ec5/progresso.json": "5e683c784bc6fd0348d44cd53930ee2f65b37666f3c3ac8f8b5745a554ae4b21",
+    "dados/experimentos/busca_astra_002_932da51c61935c911ec5/promovidas.json": "5f3604229eff1bf2c11511dc02b090edecb38528ed874f7469a5a13204297550",
+    "dados/experimentos/busca_astra_002_932da51c61935c911ec5/propostas.json": "ad7184b8b961fa93c659dc7987475337c946140d825ae8db23780a82bfd14b64",
+    "dados/experimentos/busca_astra_002_932da51c61935c911ec5/selecao_receita.json": "3faba2923d3802010fcaab0566350e73e483161345e661aa95cb85d1565819cf",
+    "dados/experimentos/busca_astra_002_932da51c61935c911ec5/worker_windows.json": "8a394f38f4cbfa27159387eff7b494f9ac624779ff8314cf79ffc14906aaa88e",
+    "registros/busca_astra_002/estado.json": "5e683c784bc6fd0348d44cd53930ee2f65b37666f3c3ac8f8b5745a554ae4b21",
+    "registros/revisao_operacional/execucao.json": "5d9d6d3542992f9cd03d8b1016107e8fe072d4c6148a73872368fcf0ed2d15e8",
+    "dados/experimentos/revisao_operacional_6c1a00a9967e2617b8b1/autorizacao.json": "5d94a9ea49a0126795d03f7ca7e97f4036503eaa04431eafe2a87538d4ec575d",
+    "dados/experimentos/revisao_operacional_6c1a00a9967e2617b8b1/congelamento.json": "74265c1f504d3adcc9a97cca33f42452352652d13234397ac24d223b0c343309",
+    "dados/experimentos/revisao_operacional_6c1a00a9967e2617b8b1/fechamento.json": "d93e62782644348e5c36accd22f823c6af8d5a5876035e1496d6507c82e56e05",
+    "dados/experimentos/revisao_operacional_6c1a00a9967e2617b8b1/preservacao_depois.json": "841932d5155c810552fe40f84f0dfaf6ed2869eae5e9dde14f17f4943d03114e",
+    "dados/experimentos/revisao_operacional_6c1a00a9967e2617b8b1/processo.json": "641dcedf42ad293330a596bf458a4f34afceff10f9758b4faa7e23324e43fc36",
+    "dados/experimentos/revisao_operacional_6c1a00a9967e2617b8b1/progresso.json": "d93e62782644348e5c36accd22f823c6af8d5a5876035e1496d6507c82e56e05",
+    "registros/revisao_operacional/estado.json": "d93e62782644348e5c36accd22f823c6af8d5a5876035e1496d6507c82e56e05",
+    "registros/comparacao_astra_crua/execucao.json": "1e63c0e9c36c787e0f5e4c9147da0afe833183f9d571f10cd8c12617643e7903",
+    "dados/experimentos/comparacao_astra_crua_ce284eb4a489f604fb9c/ajustes.json": "7468c40eedbd6ad910b2b262d8db9aadf0ca23bf4ac33d8333dbc7cc3d0edd21",
+    "dados/experimentos/comparacao_astra_crua_ce284eb4a489f604fb9c/autorizacao.json": "b983d28048c433f43c1fddfc4bf39c1b9168d70350bebae911d9cdf539453ec3",
+    "dados/experimentos/comparacao_astra_crua_ce284eb4a489f604fb9c/congelamento.json": "eea8afc4a5a5da396a73ca511b32bc22b4711d81b984c958e8b4c10b825318d1",
+    "dados/experimentos/comparacao_astra_crua_ce284eb4a489f604fb9c/controle_astra.json": "d8f09b66528846e38bf072053410b838b918cbdd9e8d6610c1e1d8ab807a94c8",
+    "dados/experimentos/comparacao_astra_crua_ce284eb4a489f604fb9c/controle_crua.json": "46281653a68639a91353d7aea812fc5f37ed1cef56d3672fdbc9ba85a34c59eb",
+    "dados/experimentos/comparacao_astra_crua_ce284eb4a489f604fb9c/fechamento.json": "aa35e51cc1b45e3fc3bf69676be1d371ffb4d5e89b17e06a0092d2ee81b5ddd6",
+    "dados/experimentos/comparacao_astra_crua_ce284eb4a489f604fb9c/processo.json": "2818cfaa0210d236a6396ff73caa1310c04e3f4e63aecc53b7c2500196fc0881",
+    "dados/experimentos/comparacao_astra_crua_ce284eb4a489f604fb9c/progresso.json": "aa35e51cc1b45e3fc3bf69676be1d371ffb4d5e89b17e06a0092d2ee81b5ddd6",
+    "dados/experimentos/comparacao_astra_crua_ce284eb4a489f604fb9c/progresso_publicacao.json": "547b05a176d62f314135166e89a681bcc1df372108c1b514c210a6299f3dfc24",
+    "dados/experimentos/comparacao_astra_crua_ce284eb4a489f604fb9c/publicacao.json": "bbe880e6d56fa2584a47abe1945141c68b4dc0ff51103505eb4a8c7002dc04b9",
+    "dados/experimentos/comparacao_astra_crua_ce284eb4a489f604fb9c/worker_linux.json": "c2da42c1dc71e729fb42de7c887f640f1bcaa3617db20b2e117cec5bc5ac0a37",
+    "dados/experimentos/comparacao_astra_crua_ce284eb4a489f604fb9c/worker_windows.json": "d31a84734f7511bf50953430f40864cae3075f4f0120c7f9b2db8032ec51ee50",
+    "registros/comparacao_astra_crua/estado.json": "aa35e51cc1b45e3fc3bf69676be1d371ffb4d5e89b17e06a0092d2ee81b5ddd6",
+    "dados/experimentos/backtest_carteira_8ec8a66648313caa48e3/congelamento.json": "a0fa959f80576d9ee421e5d51b0834377ecd918b310af228a1608a221eaaf7a7",
+    "dados/experimentos/backtest_carteira_b9fce5ae0300ce91ba69/congelamento.json": "08f2ae9773fed4679950a5c616632cc82179b796cdc79ed9b2ad694cf1a6ff34",
+    "dados/experimentos/busca_astra_b34bad73d6cef1d10a97/congelamento.json": "406c6f7c26279ef894b82492f86b7d6630a6f411b7b7abd74b68ecc09e1960e4",
+    "dados/experimentos/complemento_estado16_cc0b166fe42a3ed1678d/congelamento.json": "f72b443d23f6af7f6ee4d3d144877d1d58a820b8aff1827e76aeb1bc854ae0dd",
+    "dados/experimentos/crua_huber_1781f557fdf2b45a3ae2/congelamento.json": "aab12bbb2c9dc848652e21c525cc72c36a37541d8381ba4ebb8fd89e4c6cd2dd",
+    "dados/experimentos/cryptomamba_adamw_6829c5fa076dc8c0e0ac/congelamento.json": "3edaab57aecc0d47cc7f07124e3564e767624fb2ded79c28fcb44a4e1ac38726",
+    "dados/experimentos/cryptomamba_adaptado_35dd98141ee20d9b8885/congelamento.json": "17a746f70f1ff610d4905a071994a98a249f071df3a4f3214b24a0ec19131625",
+    "dados/experimentos/entradas_niveis_76f6c437e70eaaa605ad/congelamento.json": "4e8064abe84d98db578679018afba0b755440a83fd5975fce2d1576635431881",
+    "dados/experimentos/estados_ampliados_32_23c2ba54349bcc1b0ee1/congelamento.json": "33fbd49bc170a6851b276ed8e4870ecf78b21cbc0eb49a26bf38e755a2c4d13e",
+    "dados/experimentos/estados_ampliados_64_42cb667ea43df563e3ac/congelamento.json": "0d188c61973bc5bcf2294afb7ac7bb6b4d627e7bf1930e5051529cb4d32d8fe1",
+    "dados/experimentos/estado_mamba_dcf4b0ed9012f7247bce/congelamento.json": "6da44066e695b7e8014a01d6dce3300ef3eac628ab6c1df8a861515bf1b881a2",
+    "dados/experimentos/futuros_3e17e6fc15b66ca60313/congelamento.json": "bf5d4ede40d9925a8f5eba00e40edcc6d7dfc599929f91c1fd3ce2e0686148fc",
+    "dados/experimentos/huber_blocos_10dac17ea9df2c540c57/congelamento.json": "705322f6fffaf6394fdc43417f4c888e0da1d2b155e77e24411eaea3afcb9eb9",
+    "dados/experimentos/mamba16_perda_huber_ed8e55ff978b2742c200/congelamento.json": "2fc72b492592bc0e78b8a9010c3869e73d5d0e4f684ea5750e6ec9462701867a",
+    "dados/experimentos/mamba16_taxa_dinamica_99884456ac71fedfd9b0/congelamento.json": "e493fae48829eca3c00e300b8f0833756381b039216af192ddf0cb546b1bf191",
+    "dados/experimentos/normalizacao_9e03af2150cbb7b1068d/congelamento.json": "5616b7ec2e92c683a68e3b275992d6c1df6af1ed0e19f5f401df6fdca53f0128",
+    "dados/experimentos/ohlcv24_92e3eb82e3f6adf99994/congelamento.json": "4b447dfe02dc057666fd7655ce0b71f5d6ab3544a692c647e7c2bd9f07bb1142",
+    "dados/experimentos/ohlcv_modular_ab5baf3eab3a2e66d8b2/congelamento.json": "9adbabc79b1f9dc711d6bbbc9d5935e54a215a7a5cf4ce2fc6637894bae9997c",
+    "dados/experimentos/penalizacao_7868a4d847c1410fc681/congelamento.json": "ff1f92354d7ee550626658f9d55543d6ef49707734b9d7d83e797b8290360724",
+    "dados/experimentos/retorno24_1e7c5ed662fba55ddd25/congelamento.json": "6d2bf32120d50311a841f02892ceaa9ac9fb8048792860eb9d84e9110aed4188",
+    "dados/experimentos/smart_mercados_9e1d6c3686499c020389/congelamento.json": "04597c7a312c21c012cb5799be68793f957c0c81617df38051a354e65450a4b7",
+    "dados/experimentos/taxa_aprendizado_1af0a64e83d472ac533e/congelamento.json": "847e1288e7673e85d3a9f050e85d3644af528d6c4a3fc5aa65cfd486dd3baa97",
+    "registros/backtest_carteira/execucao.json": "bc3d50b3c486f7fd4d9eb0b2209f6798fa6dc9eca042606a4d02e6398c01036a",
+    "registros/backtest_carteira/execucao_atual.json": "b9b133ecbc23561ecece826ba131a73f67b62346081c10b1b56683d79715e924",
+    "registros/busca_astra/execucao.json": "0dfdde28226249d90309e2b08e679cbab220d341bf28cf0b52208d350c55a502",
+    "registros/complemento_estado16/execucao.json": "f858367a6305163000211ed2b5a9150ec2f3d5811f5889e47ac0cd73177525de",
+    "registros/crua_huber/execucao.json": "185b330f3e3db3ab2f7bd3cb8e2b915786012b475bbfdddc4478efce3ac8ae20",
+    "registros/cryptomamba/execucao.json": "03792c71827f9216affc5a4587fd6cf84762e5a1f39b38c611a3baceae5d76b1",
+    "registros/entradas_niveis/execucao.json": "38cac4e933af168c65081ed2bcc3e5441ee5ec4040b851bc4217f3b42ad83e48",
+    "registros/estado_mamba/execucao.json": "1b008797673d0743ad1d4490646bf3bd44beca1e4c156ed0bdd65d57d3af2b1b",
+    "registros/futuros/execucao.json": "5f16faa278d67920adb9ab772ed730ce7e82f1de62968162e6dedd0bdf8683c1",
+    "registros/huber_blocos/execucao.json": "99a889425745390d2552da39e8d64cedac0aa6f904e5b8a29725e9dad5b22d4d",
+    "registros/mercado_futuros/execucao.json": "e4d8d94b16a8d5924bf27afa3f89d3f06b162fdac9e08158e9ea32c98540453b",
+    "registros/normalizacao/execucao.json": "8003d38282760333ba73f29932f7b73be45a5df1f5e70053908199115b905a8a",
+    "registros/ohlcv/execucao.json": "3cf35c8d377cdd04e95fc1f9e04b3ca8c15109375b72e4bd3fa80a29c5df7ecd",
+    "registros/otimizador/execucao.json": "75a75fed343594763e71fb760f1898faa8e63b4a8777fa3682328ceb23ff7ba6",
+    "registros/penalizacao/execucao.json": "6f0071bd1336b7ee36ac6302167a3eeda2e38b99eac26a9779efe957db147da6",
+    "registros/perda_huber/execucao.json": "f7412cb28025847dc0cbf6a0383c78d08417ed915904a3f16f9fed1aa19f318e",
+    "registros/smart_mercados/execucao.json": "26be159012aba8b24125d03302960360f9d701246db8774bf6ad4f8545d87acb",
+    "registros/taxa_aprendizado/execucao.json": "3ace4700c7ebb8ee979c7fe3016613b51cc449b7925880ed0339252a8a6f4767",
+    "registros/taxa_dinamica/execucao.json": "ab170d569a73b1fd263ae9e3f4f2465f5141d7da61db72ab69f5d274ef45c3a5",
+    "registros/treinamento/execucao.json": "922b9cb8e675f53ae7348db7a07372e869fd822379c1e3b7b32c304cab8b0102"
+  },
+  "tolerancia_controle_real_absoluta": 1e-05,
+  "id": "f0dd11f393b5e26edaf8",
+  "utc": "2026-11-05T06:31:04.125777+00:00"
+}

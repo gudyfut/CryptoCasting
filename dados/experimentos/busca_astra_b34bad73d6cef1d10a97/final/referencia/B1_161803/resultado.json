@@ -1,0 +1,69 @@
+{
+  "utc": "2026-11-04T04:39:14.016180+00:00",
+  "seed": 161803,
+  "bloco": "B1",
+  "receita": {
+    "representacao": "relativa",
+    "indicadores": false,
+    "contexto": 168,
+    "largura": 32,
+    "camadas": 2,
+    "estado": 16,
+    "dropout": 0.1,
+    "pooling": "ultimo",
+    "taxa": 0.0002,
+    "decay": 0.001,
+    "otimizador": "AdamW",
+    "perda": "mse",
+    "scheduler": "constante",
+    "ganho_saida": 1.0
+  },
+  "epoca": 2,
+  "epocas_executadas": 12,
+  "parametros": 20257,
+  "recarga_exata": true,
+  "segundos": 76.5269861669999,
+  "checkpoint_final_sha256": "61dd8bff33674eae166db0c50976871b0ed7b248b30c737d749a06177e788819",
+  "memoria_cuda_maxima_bytes": 167180800,
+  "treino_amostra_fixa": {
+    "n": 2048,
+    "mse": 0.0011820580949799494,
+    "rmse": 0.03438107175438179,
+    "mae": 0.02344584129398767,
+    "mse_naive": 0.0011857132237557987,
+    "vies": 0.001287446813124125,
+    "sd_previsao": 0.0019604863452798113,
+    "sd_alvo": 0.03442042509987141,
+    "acuracia_direcional": 0.50927734375,
+    "balanced_accuracy": 0.5113040672879783
+  },
+  "validacao": {
+    "n": 2184,
+    "mse": 0.0004920052569589248,
+    "rmse": 0.022181191513508124,
+    "mae": 0.01519737167641403,
+    "mse_naive": 0.00048677487682377503,
+    "vies": -0.00514769637094084,
+    "sd_previsao": 0.001347602072220707,
+    "sd_alvo": 0.021510187860790026,
+    "acuracia_direcional": 0.48717948717948717,
+    "balanced_accuracy": 0.4936463288626559
+  },
+  "teste": {
+    "n": 4344,
+    "mse": 0.0007279867985187522,
+    "rmse": 0.02698123048563116,
+    "mae": 0.019447494149505293,
+    "mse_naive": 0.0007274219044532415,
+    "vies": -0.00216150854087861,
+    "sd_previsao": 0.0016461121550660532,
+    "sd_alvo": 0.026895935476635532,
+    "acuracia_direcional": 0.5104766290582546,
+    "balanced_accuracy": 0.5125587537796201
+  },
+  "diagnostico": {
+    "sd_representacao_media": 0.4855327010154724,
+    "norma_pesos_saida": 0.53753662109375,
+    "fracao_clipping_ultima_epoca": 0.858433734939759
+  }
+}

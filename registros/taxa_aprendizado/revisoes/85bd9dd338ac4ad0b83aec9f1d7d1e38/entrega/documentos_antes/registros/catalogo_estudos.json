@@ -1,0 +1,571 @@
+{
+  "versao": 1,
+  "registrado_em": "2026-10-27",
+  "natureza": "Indice retrospectivo de navegacao; nao substitui recibos, nao e pre-registro e nao declara disponibilidade em outra maquina.",
+  "cronologia": "docs/andamento.md",
+  "procedimento": "docs/registro_de_experimentos.md",
+  "estudos": [
+    {
+      "chave": "barreiras_001",
+      "tipo": "historico_arquivado",
+      "execucao": "4e232a796fcda0ea34c3",
+      "dataset": "9341610dbb329a858784",
+      "situacao_historica": "executado_e_arquivado",
+      "pergunta": "Primeiro limite atingido com barreiras; contextos e prazos variaveis.",
+      "comparabilidade": "Alvo, metrica e grade diferentes do retorno24; nao ordenar seus escores no mesmo placar.",
+      "raiz": "arquivo/estudo_barreiras_2026-10-20/projeto",
+      "fontes": {
+        "indice": "arquivo/estudo_barreiras_2026-10-20/README.md",
+        "protocolo": "arquivo/estudo_barreiras_2026-10-20/projeto/docs/protocolo_experimental.md",
+        "configuracao": "arquivo/estudo_barreiras_2026-10-20/projeto/configuracoes/ciclo_001.json",
+        "relatorio": "arquivo/estudo_barreiras_2026-10-20/projeto/historico/analises/ciclo_001_resultados.md",
+        "preservacao": "arquivo/estudo_barreiras_2026-10-20/verificacao.json",
+        "manifesto": "arquivo/estudo_barreiras_2026-10-20/manifesto_antes.json"
+      },
+      "exposicao": "Desenvolvimento 2023; consultar protocolo arquivado para limites.",
+      "distribuicao": "Sem recibo de pacote externo restaurado neste catalogo."
+    },
+    {
+      "chave": "retorno24_001",
+      "tipo": "referencia",
+      "execucao": "1e7c5ed662fba55ddd25",
+      "dataset": "d25f6a93a9900725f51e",
+      "situacao_historica": "concluido_auditado",
+      "decisao": "docs/adr/0001-estudo-retorno-24h.md",
+      "antecessor": "barreiras_001",
+      "relacao": "Substituicao do desenho ativo; resultados nao diretamente comparaveis ao alvo por barreiras.",
+      "pergunta": "Efeito de 24/72/168/336h de contexto no retorno terminal de 24h, Mamba versus LSTM com Naive e ARIMA.",
+      "raiz": "dados/experimentos/retorno24_1e7c5ed662fba55ddd25",
+      "fontes": {
+        "execucao": "dados/experimentos/retorno24_1e7c5ed662fba55ddd25/execucao.json",
+        "protocolo": "docs/protocolo_experimental.md",
+        "configuracao": "configuracoes/retorno24_001.json",
+        "congelamento": "dados/experimentos/retorno24_1e7c5ed662fba55ddd25/congelamento.json",
+        "dataset": "dados/processados/retorno24_d25f6a93a9900725f51e/dataset.json",
+        "fechamento": "registros/auditorias/1e7c5ed662fba55ddd25/fechamento.json",
+        "desenvolvimento": "arquivo/estudos_preliminares_2026-10-28/documentacao/resultados_desenvolvimento.md",
+        "avaliacao": "arquivo/estudos_preliminares_2026-10-28/documentacao/resultados_avaliacao.md",
+        "diagnostico_posterior_frequencia": "arquivo/estudos_preliminares_2026-10-28/documentacao/diagnostico_frequencia_e_configuracoes.md",
+        "revisao_posterior_frequencia": "registros/revisoes/frequencia_2026-10-27T230053.607585Z/resumo.json",
+        "pesquisa_mamba_criptomamba": "arquivo/estudos_preliminares_2026-10-28/documentacao/revisao_mamba_criptomamba.md",
+        "revisao_identidade_mamba": "registros/revisoes/mamba_criptomamba_2026-10-28T000408.161229Z/fechamento.json"
+      },
+      "publicacoes": {
+        "desenvolvimento": "registros/analises/1e7c5ed662fba55ddd25/desenvolvimento",
+        "avaliacao": "registros/analises/1e7c5ed662fba55ddd25/avaliacao"
+      },
+      "exposicao": "Declaracao previa preservada; B1-B4 abertos em 21/10/2026 e conhecidos para hipoteses posteriores.",
+      "distribuicao": "Pacotes externos e restauracao em outra maquina pendentes de recibo."
+    },
+    {
+      "chave": "penalizacao_mamba_001",
+      "tipo": "extensao_controlada",
+      "execucao": "7868a4d847c1410fc681",
+      "dataset": "d25f6a93a9900725f51e",
+      "situacao_historica": "concluido_auditado",
+      "decisao": "docs/adr/0002-penalizacao-mamba.md",
+      "antecessor": "retorno24_001",
+      "relacao": "Comparacao pareada: retirar weight decay somente dos parametros marcados; demais fatores iguais.",
+      "pergunta": "Respeitar _no_weight_decay altera o erro do Mamba e a simulacao Spot?",
+      "raiz": "dados/experimentos/penalizacao_7868a4d847c1410fc681",
+      "fontes": {
+        "execucao": "dados/experimentos/penalizacao_7868a4d847c1410fc681/execucao.json",
+        "protocolo": "docs/protocolo_penalizacao_mamba.md",
+        "configuracao": "configuracoes/penalizacao_mamba_001.json",
+        "congelamento": "dados/experimentos/penalizacao_7868a4d847c1410fc681/congelamento.json",
+        "dataset": "dados/processados/retorno24_d25f6a93a9900725f51e/dataset.json",
+        "fechamento": "registros/auditorias/7868a4d847c1410fc681/fechamento_extensao.json",
+        "relatorio": "arquivo/estudos_preliminares_2026-10-28/documentacao/resultados_penalizacao_mamba.md",
+        "revisao": "registros/revisoes/penalizacao_2026-10-27T210853.776756_0000/resumo.json",
+        "diagnostico_posterior_frequencia": "arquivo/estudos_preliminares_2026-10-28/documentacao/diagnostico_frequencia_e_configuracoes.md",
+        "revisao_posterior_frequencia": "registros/revisoes/frequencia_2026-10-27T230053.607585Z/resumo.json",
+        "pesquisa_mamba_criptomamba": "arquivo/estudos_preliminares_2026-10-28/documentacao/revisao_mamba_criptomamba.md",
+        "revisao_identidade_mamba": "registros/revisoes/mamba_criptomamba_2026-10-28T000408.161229Z/fechamento.json"
+      },
+      "publicacoes": {
+        "desenvolvimento": "dados/experimentos/penalizacao_7868a4d847c1410fc681/analises/desenvolvimento",
+        "avaliacao": "dados/experimentos/penalizacao_7868a4d847c1410fc681/analises/avaliacao"
+      },
+      "heranca": {
+        "execucao": "1e7c5ed662fba55ddd25",
+        "modelos": [
+          "mamba_original",
+          "lstm",
+          "naive",
+          "arima"
+        ]
+      },
+      "exposicao": "Desenvolvimento e avaliacao retrospectivos em periodos ja consultados; sem novo holdout intocado.",
+      "distribuicao": "Pacotes externos e restauracao em outra maquina pendentes de recibo."
+    },
+    {
+      "chave": "normalizacao_mamba_001",
+      "tipo": "extensao_controlada",
+      "execucao": "9e03af2150cbb7b1068d",
+      "dataset": "d25f6a93a9900725f51e",
+      "situacao_historica": "concluido_auditado",
+      "decisao": "docs/adr/0005-proposta-prenormalizacao-mamba.md",
+      "antecessor": "penalizacao_mamba_001",
+      "relacao": "Somente posicao da LayerNorm: pos para pre; manter penalizacao corrigida, dados e demais fatores.",
+      "pergunta": "Pre-normalizacao altera erro e politica Spot em relacao ao Mamba pos-normalizado corrigido?",
+      "raiz": "dados/experimentos/normalizacao_9e03af2150cbb7b1068d",
+      "fontes": {
+        "execucao": "dados/experimentos/normalizacao_9e03af2150cbb7b1068d/execucao.json",
+        "protocolo": "docs/protocolo_normalizacao_mamba.md",
+        "configuracao": "configuracoes/normalizacao_mamba_001.json",
+        "congelamento": "dados/experimentos/normalizacao_9e03af2150cbb7b1068d/congelamento.json",
+        "dataset": "dados/processados/retorno24_d25f6a93a9900725f51e/dataset.json",
+        "fechamento": "registros/auditorias/9e03af2150cbb7b1068d/fechamento_normalizacao.json",
+        "relatorio": "arquivo/estudos_preliminares_2026-10-28/documentacao/resultados_normalizacao_mamba.md",
+        "autorizacao": "registros/normalizacao/autorizacao.json",
+        "revisao": "registros/revisoes/normalizacao_2026-10-28T200441.557811_0000/resumo.json"
+      },
+      "publicacoes": {
+        "desenvolvimento": "dados/experimentos/normalizacao_9e03af2150cbb7b1068d/analises/desenvolvimento",
+        "avaliacao": "dados/experimentos/normalizacao_9e03af2150cbb7b1068d/analises/avaliacao"
+      },
+      "heranca": {
+        "execucao": "7868a4d847c1410fc681",
+        "modelos": [
+          "mamba_posnorm"
+        ]
+      },
+      "herancas_complementares": [
+        {
+          "execucao": "1e7c5ed662fba55ddd25",
+          "modelos": [
+            "lstm",
+            "arima",
+            "naive"
+          ]
+        }
+      ],
+      "exposicao": "DB1-DB4 desenvolvimento; B1-B4 retrospectivos ja consultados.",
+      "distribuicao": "Publicacoes e fechamento locais disponiveis; pacotes externos e restauracao em outra maquina pendentes de recibo."
+    }
+  ],
+  "propostas_historicas_nao_executadas": [
+    {
+      "chave": "barreiras_002_proposto",
+      "fonte": "arquivo/estudo_barreiras_2026-10-20/projeto/historico/ciclos/ciclo_002_proposto.md",
+      "configuracao": "arquivo/estudo_barreiras_2026-10-20/projeto/configuracoes/ciclo_002_proposto.json",
+      "situacao": "proposto_no_estudo_arquivado; nao contar como treinamento e nao executar"
+    }
+  ],
+  "etapa_atual": {
+    "situacao": "taxa_quatro_estados_concluida_conferida",
+    "arquitetura_modelos": "docs/arquitetura_modelos.md",
+    "estado_modelos_modulares": "registros/modelos/estado.json",
+    "decisao_consumo_modelos": "docs/adr/0008-consumo-de-dados-pelos-modelos.md",
+    "situacao_preparacao_r0": "preparacao92e3eb82e3f6adf99994 preservada sem treino; referência modularab5baf3eab3a2e66d8b2 concluída",
+    "arquitetura_dados": "docs/arquitetura_dados.md",
+    "decisao_modularizacao": "docs/adr/0007-modulos-de-dados.md",
+    "estado_dados_modulares": "registros/dados/estado.json",
+    "integracao_novo_modulo_ao_executor": "implementada_qualificada_com_rodadas_concluidas",
+    "fonte_academica": "docs/TCC_1_MuriloRFM.pdf",
+    "indice_documentacao": "docs/README.md",
+    "proposta": "docs/desenho_ohlcv24.md",
+    "decisao": "docs/adr/0006-reorganizacao-e-desenho-ohlcv.md",
+    "arquivo_preliminar": "arquivo/estudos_preliminares_2026-10-28/README.md",
+    "execucao_nova": "ab5baf3eab3a2e66d8b2",
+    "limite": "Duas rodadas OHLCV concluídas; divisão fixa retrospectiva, sem alegação de walk-forward ou holdout intocado.",
+    "configuracao": "configuracoes/treinamento_ohlcv24_001.json",
+    "implementacao": "treinamento/",
+    "ponteiro_execucao": "registros/treinamento/execucao.json",
+    "qualificacao": "registros/treinamento/qualificacoes/09524ec9434041e7805053d7c507987c/qualificacao.json",
+    "dataset": "dados/entradas/0420879c2afc454c7754/manifesto.json",
+    "conferencia_dados": "registros/treinamento/qualificacoes/09524ec9434041e7805053d7c507987c/conferencia_entradas.json",
+    "referencia_preparada_preservada": {
+      "execucao_nova": "92e3eb82e3f6adf99994",
+      "configuracao": "configuracoes/ohlcv24_001.json",
+      "implementacao": "estudo_ohlcv/",
+      "ponteiro_execucao": "registros/ohlcv/execucao.json",
+      "qualificacao": "registros/ohlcv/qualificacao.json",
+      "dataset": "registros/ohlcv/dataset.json",
+      "conferencia_dados": "registros/ohlcv/conferencias/2026-10-28T213844.690511_0000/resumo.json"
+    },
+    "arquitetura_treinamento": "docs/arquitetura_treinamento.md",
+    "estado_treinamento": "registros/treinamento/estado.json",
+    "decisao_treinamento": "docs/adr/0009-treinamento-modular.md",
+    "autorizacao": "registros/treinamento/autorizacao.json",
+    "conferencia_conclusao": "registros/treinamento/conferencias/bbe308fe56c54c2d879b85fc7f1b7105/conclusao.json",
+    "publicacao": "dados/experimentos/ohlcv_modular_ab5baf3eab3a2e66d8b2/publicacoes/tentativa_001",
+    "extensao_estado_mamba": {
+      "execucao": {
+        "id": "dcf4b0ed9012f7247bce",
+        "pasta": "dados/experimentos/estado_mamba_dcf4b0ed9012f7247bce",
+        "congelamento_sha256": "6da44066e695b7e8014a01d6dce3300ef3eac628ab6c1df8a861515bf1b881a2"
+      },
+      "estado": "registros/estado_mamba/estado.json",
+      "protocolo": "docs/protocolo_estado_mamba.md",
+      "alteracao": "d_state16 para8",
+      "ajustes_reais": 6,
+      "seeds_pareadas": [
+        17,
+        42,
+        2026
+      ],
+      "situacao": "concluido_conferido",
+      "configuracao": "configuracoes/mamba_estado8_001.json",
+      "configuracao_modelos": "configuracoes/modelos_mamba_estado8_001.json",
+      "conferencia_conclusao": "registros/estado_mamba/conferencias/c041b9a06cdc4a99a3d10f3faa6cf0e2/conclusao.json",
+      "publicacao": "dados/experimentos/estado_mamba_dcf4b0ed9012f7247bce/publicacoes/tentativa_001",
+      "relatorio": "docs/resultados_estado_mamba.md"
+    },
+    "relatorio_comparativo": "docs/resultados_estado_mamba.md",
+    "estados_ampliados": {
+      "indice": "registros/estados_ampliados/estado.json",
+      "fila": "registros/estados_ampliados/fila/progresso.json",
+      "ordem": [
+        32,
+        64
+      ],
+      "ajustes_reais_total": 12,
+      "execucoes": {
+        "32": {
+          "id": "23c2ba54349bcc1b0ee1",
+          "pasta": "dados/experimentos/estados_ampliados_32_23c2ba54349bcc1b0ee1",
+          "congelamento_sha256": "33fbd49bc170a6851b276ed8e4870ecf78b21cbc0eb49a26bf38e755a2c4d13e"
+        },
+        "64": {
+          "id": "42cb667ea43df563e3ac",
+          "pasta": "dados/experimentos/estados_ampliados_64_42cb667ea43df563e3ac",
+          "congelamento_sha256": "0d188c61973bc5bcf2294afb7ac7bb6b4d627e7bf1930e5051529cb4d32d8fe1"
+        }
+      },
+      "protocolo": "docs/protocolo_estados32_64.md",
+      "situacao": "concluido_conferido",
+      "comparacao_consolidada": {
+        "arquivo": "registros/estados_ampliados/comparacoes/308422d9179540cb974f62df962d0c93/comparacao.json",
+        "sha256": "fe636f18601e1844b6dcb5a2602e58ad4d5ec8fadb2d6cbc2497451b7cced0a6"
+      },
+      "relatorio": "docs/resultados_estados32_64.md"
+    },
+    "comparacao_quatro_estados_seis_seeds": {
+      "complemento16": {
+        "id": "cc0b166fe42a3ed1678d",
+        "pasta": "dados/experimentos/complemento_estado16_cc0b166fe42a3ed1678d",
+        "congelamento_sha256": "f72b443d23f6af7f6ee4d3d144877d1d58a820b8aff1827e76aeb1bc854ae0dd"
+      },
+      "estado": "registros/complemento_estado16/estado.json",
+      "comparacao": {
+        "arquivo": "registros/complemento_estado16/comparacoes/5d26dcadbceb4abcaec9e723967dbc3a/comparacao.json",
+        "sha256": "10a3eb7d494c72804107a43f169aed19b38eee2aaaa581773062c11b62968077"
+      },
+      "relatorio": "docs/resultados_estados32_64.md"
+    },
+    "referencia_para_proximas_hipoteses": {
+      "arquivo": "registros/referencias/mamba16_ohlcv24_001.json",
+      "sha256": "d09a1f74a118d249e61f1d539aae6919e7a195ff0dec9ade513db5955232ecc3",
+      "decisao": "docs/adr/0012-referencia16-e-proxima-hipotese.md"
+    },
+    "taxa_aprendizado": {
+      "situacao": "concluido_conferido",
+      "utc": "2026-10-29T23:51:48.209574+00:00",
+      "execucao": {
+        "id": "1af0a64e83d472ac533e",
+        "pasta": "dados/experimentos/taxa_aprendizado_1af0a64e83d472ac533e",
+        "congelamento_sha256": "847e1288e7673e85d3a9f050e85d3644af528d6c4a3fc5aa65cfd486dd3baa97"
+      },
+      "novos": 24,
+      "herdados": 29,
+      "auditoria": {
+        "arquivo": "registros/taxa_aprendizado/conferencias/82f988b3caf946cd9042e6ca4e9ef9a2/conclusao.json",
+        "sha256": "8ae425a836e9df020412e985069f2151b276cb441fc05fb44b86384b150cd521"
+      },
+      "comparacao": {
+        "arquivo": "registros/taxa_aprendizado/analises/d19f433a7aef4bf09dabf115288ab594/comparacao.json",
+        "sha256": "9d356abaefcc6ea84e4352134e43bae4671a1f039c103e8cec3179b30d93eac5"
+      },
+      "relatorio": "docs/resultados_taxa_aprendizado.md",
+      "preservados": 433,
+      "proxima_acao": "Sem promoção automática ou novos treinamentos autorizados."
+    }
+  },
+  "propostas_em_definicao": [
+    {
+      "chave": "ohlcv_extensoes_futuras",
+      "fonte": "docs/desenho_ohlcv24.md",
+      "situacao": "apos_R0_sem_execucao",
+      "origem": "Ablações/configuracoes uma por ciclo; walk-forward ampliado apos selecao limitada. Nao iniciar automaticamente."
+    },
+    {
+      "chave": "taxa_aprendizado_mamba_001",
+      "situacao": "executando_autorizada",
+      "fonte": "docs/desenho_ohlcv24.md#11-referência-adotada-e-próxima-hipótese-proposta",
+      "referencia": "registros/referencias/mamba16_ohlcv24_001.json",
+      "fator": "treino.taxa_aprendizado",
+      "valor_referencia": 0.0002,
+      "valor_candidato": 0.0001,
+      "seeds": [
+        17,
+        42,
+        2026,
+        7,
+        123,
+        31415
+      ],
+      "orcamento_novos_ajustes_proposto": 24,
+      "ajustes_executados": 0,
+      "criterio_proposto": "Quatro efeitos de validação com IC98,75% principal Bonferroni; teste/Spot secundários retrospectivos; sem promoção automática.",
+      "protocolo_execucao": "docs/protocolo_taxa_aprendizado.md",
+      "estados": [
+        8,
+        16,
+        32,
+        64
+      ],
+      "execucao": "1af0a64e83d472ac533e",
+      "estado_verificavel": "registros/taxa_aprendizado/estado.json"
+    }
+  ],
+  "rodadas_ohlcv": [
+    {
+      "nome": "Referência OHLCV R0",
+      "execucao": "ab5baf3eab3a2e66d8b2",
+      "situacao": "concluido_conferido",
+      "ponteiro": "registros/treinamento/execucao.json",
+      "protocolo_congelado": "dados/experimentos/ohlcv_modular_ab5baf3eab3a2e66d8b2/protocolo.md",
+      "configuracao_congelada": "dados/experimentos/ohlcv_modular_ab5baf3eab3a2e66d8b2/fontes/configuracoes/treinamento_ohlcv24_001.json",
+      "modelos_configuracao_congelada": "dados/experimentos/ohlcv_modular_ab5baf3eab3a2e66d8b2/fontes/configuracoes/modelos_ohlcv24_001.json",
+      "pesos_tentativas": "dados/experimentos/ohlcv_modular_ab5baf3eab3a2e66d8b2/celulas",
+      "publicacao": "dados/experimentos/ohlcv_modular_ab5baf3eab3a2e66d8b2/publicacoes/tentativa_001",
+      "dataset": "dados/entradas/0420879c2afc454c7754",
+      "ajustes_neurais_novos": 8,
+      "ajustes_neurais_principais": 6,
+      "controles_neurais_reais": 2,
+      "estado_mamba": 16,
+      "seeds_principais": [
+        17,
+        42,
+        2026
+      ],
+      "conferencia": "registros/treinamento/conferencias/bbe308fe56c54c2d879b85fc7f1b7105/conclusao.json"
+    },
+    {
+      "nome": "Extensão Mamba estado8",
+      "execucao": "dcf4b0ed9012f7247bce",
+      "antecessor": "ab5baf3eab3a2e66d8b2",
+      "situacao": "concluido_conferido",
+      "ponteiro": "registros/estado_mamba/execucao.json",
+      "protocolo_congelado": "dados/experimentos/estado_mamba_dcf4b0ed9012f7247bce/protocolo.md",
+      "configuracao_congelada": "dados/experimentos/estado_mamba_dcf4b0ed9012f7247bce/fontes/configuracoes/mamba_estado8_001.json",
+      "modelos_configuracao_congelada": "dados/experimentos/estado_mamba_dcf4b0ed9012f7247bce/fontes/configuracoes/modelos_mamba_estado8_001.json",
+      "pesos_tentativas": "dados/experimentos/estado_mamba_dcf4b0ed9012f7247bce/celulas",
+      "publicacao": "dados/experimentos/estado_mamba_dcf4b0ed9012f7247bce/publicacoes/tentativa_001",
+      "dataset": "dados/entradas/0420879c2afc454c7754",
+      "ajustes_neurais_novos": 6,
+      "referencias_herdadas": 8,
+      "controles_neurais_reais": 0,
+      "estado_mamba": 8,
+      "seeds_principais": [
+        17,
+        42,
+        2026,
+        7,
+        123,
+        31415
+      ],
+      "seeds_pareadas": [
+        17,
+        42,
+        2026
+      ],
+      "conferencia": "registros/estado_mamba/conferencias/c041b9a06cdc4a99a3d10f3faa6cf0e2/conclusao.json",
+      "relatorio": "docs/resultados_estado_mamba.md"
+    },
+    {
+      "nome": "Extensão Mamba estado32",
+      "execucao": "23c2ba54349bcc1b0ee1",
+      "situacao": "concluido_conferido",
+      "progresso": "dados/experimentos/estados_ampliados_32_23c2ba54349bcc1b0ee1/progresso.json",
+      "antecessor": "dcf4b0ed9012f7247bce",
+      "ponteiro": "registros/estados_ampliados/estado32/execucao.json",
+      "protocolo_congelado": "dados/experimentos/estados_ampliados_32_23c2ba54349bcc1b0ee1/protocolo.md",
+      "configuracao_congelada": "dados/experimentos/estados_ampliados_32_23c2ba54349bcc1b0ee1/fontes/configuracoes/mamba_estado32_001.json",
+      "modelos_configuracao_congelada": "dados/experimentos/estados_ampliados_32_23c2ba54349bcc1b0ee1/fontes/configuracoes/modelos_mamba_estado32_001.json",
+      "pasta_execucao": "dados/experimentos/estados_ampliados_32_23c2ba54349bcc1b0ee1",
+      "pesos_tentativas_previstos": "dados/experimentos/estados_ampliados_32_23c2ba54349bcc1b0ee1/celulas",
+      "publicacao_ponteiro_previsto": "dados/experimentos/estados_ampliados_32_23c2ba54349bcc1b0ee1/publicacao.json",
+      "dataset": "dados/entradas/0420879c2afc454c7754",
+      "estado_mamba": 32,
+      "ajustes_neurais_novos_planejados": 6,
+      "seeds_principais": [
+        17,
+        42,
+        2026,
+        7,
+        123,
+        31415
+      ],
+      "seeds_comuns_quatro_estados": [
+        17,
+        42,
+        2026
+      ],
+      "seeds_comuns8_32_64": [
+        17,
+        42,
+        2026,
+        7,
+        123,
+        31415
+      ],
+      "dependencia32": null,
+      "limite": "Paths previstos de pesos/publicação não representam resultados já produzidos; resolver progresso/artefatos.",
+      "publicacao": "dados/experimentos/estados_ampliados_32_23c2ba54349bcc1b0ee1/publicacoes/tentativa_001",
+      "conferencia": "registros/estados_ampliados/estado32/conferencias/56cc98d1a9b4404c89e5f4e248f2227c/conclusao.json",
+      "ajustes_neurais_novos_concluidos": 6,
+      "relatorio": "docs/resultados_estados32_64.md"
+    },
+    {
+      "nome": "Extensão Mamba estado64",
+      "execucao": "42cb667ea43df563e3ac",
+      "situacao": "concluido_conferido",
+      "progresso": "dados/experimentos/estados_ampliados_64_42cb667ea43df563e3ac/progresso.json",
+      "antecessor": "23c2ba54349bcc1b0ee1",
+      "ponteiro": "registros/estados_ampliados/estado64/execucao.json",
+      "protocolo_congelado": "dados/experimentos/estados_ampliados_64_42cb667ea43df563e3ac/protocolo.md",
+      "configuracao_congelada": "dados/experimentos/estados_ampliados_64_42cb667ea43df563e3ac/fontes/configuracoes/mamba_estado64_001.json",
+      "modelos_configuracao_congelada": "dados/experimentos/estados_ampliados_64_42cb667ea43df563e3ac/fontes/configuracoes/modelos_mamba_estado64_001.json",
+      "pasta_execucao": "dados/experimentos/estados_ampliados_64_42cb667ea43df563e3ac",
+      "pesos_tentativas_previstos": "dados/experimentos/estados_ampliados_64_42cb667ea43df563e3ac/celulas",
+      "publicacao_ponteiro_previsto": "dados/experimentos/estados_ampliados_64_42cb667ea43df563e3ac/publicacao.json",
+      "dataset": "dados/entradas/0420879c2afc454c7754",
+      "estado_mamba": 64,
+      "ajustes_neurais_novos_planejados": 6,
+      "seeds_principais": [
+        17,
+        42,
+        2026,
+        7,
+        123,
+        31415
+      ],
+      "seeds_comuns_quatro_estados": [
+        17,
+        42,
+        2026
+      ],
+      "seeds_comuns8_32_64": [
+        17,
+        42,
+        2026,
+        7,
+        123,
+        31415
+      ],
+      "dependencia32": "23c2ba54349bcc1b0ee1",
+      "limite": "Paths previstos de pesos/publicação não representam resultados já produzidos; resolver progresso/artefatos.",
+      "publicacao": "dados/experimentos/estados_ampliados_64_42cb667ea43df563e3ac/publicacoes/tentativa_001",
+      "conferencia": "registros/estados_ampliados/estado64/conferencias/414d92eead5844b68437b95065c1b9cd/conclusao.json",
+      "ajustes_neurais_novos_concluidos": 6,
+      "relatorio": "docs/resultados_estados32_64.md"
+    },
+    {
+      "nome": "Complemento Mamba estado16 para seis seeds",
+      "execucao": "cc0b166fe42a3ed1678d",
+      "antecessor": "ab5baf3eab3a2e66d8b2",
+      "situacao": "concluido_conferido",
+      "ponteiro": "registros/complemento_estado16/execucao.json",
+      "pasta_execucao": "dados/experimentos/complemento_estado16_cc0b166fe42a3ed1678d",
+      "protocolo_congelado": "dados/experimentos/complemento_estado16_cc0b166fe42a3ed1678d/protocolo.md",
+      "configuracao_congelada": "dados/experimentos/complemento_estado16_cc0b166fe42a3ed1678d/fontes/configuracoes/mamba_estado16_complemento_001.json",
+      "modelos_configuracao_congelada": "dados/experimentos/complemento_estado16_cc0b166fe42a3ed1678d/fontes/configuracoes/modelos_ohlcv24_001.json",
+      "dataset": "dados/entradas/0420879c2afc454c7754",
+      "ajustes_neurais_novos_planejados": 3,
+      "referencias_herdadas": 26,
+      "seeds_novas": [
+        7,
+        123,
+        31415
+      ],
+      "seeds_principais": [
+        17,
+        42,
+        2026,
+        7,
+        123,
+        31415
+      ],
+      "estado_mamba": 16,
+      "progresso": "dados/experimentos/complemento_estado16_cc0b166fe42a3ed1678d/progresso.json",
+      "ajustes_neurais_novos_concluidos": 3,
+      "conferencia": "registros/complemento_estado16/conferencias/4365008389e54ec992ebba57337141b4/conclusao.json",
+      "publicacao": "dados/experimentos/complemento_estado16_cc0b166fe42a3ed1678d/publicacoes/tentativa_001",
+      "pesos_tentativas": "dados/experimentos/complemento_estado16_cc0b166fe42a3ed1678d/celulas",
+      "relatorio": "docs/resultados_estados32_64.md",
+      "comparacao": {
+        "arquivo": "registros/complemento_estado16/comparacoes/5d26dcadbceb4abcaec9e723967dbc3a/comparacao.json",
+        "sha256": "10a3eb7d494c72804107a43f169aed19b38eee2aaaa581773062c11b62968077"
+      }
+    },
+    {
+      "nome": "Taxa AdamW0,0001 nos quatro estados",
+      "execucao": "1af0a64e83d472ac533e",
+      "situacao": "concluido_conferido",
+      "ponteiro": "registros/taxa_aprendizado/execucao.json",
+      "pasta_execucao": "dados/experimentos/taxa_aprendizado_1af0a64e83d472ac533e",
+      "protocolo_congelado": "dados/experimentos/taxa_aprendizado_1af0a64e83d472ac533e/protocolo.md",
+      "configuracoes_congeladas": {
+        "8": "dados/experimentos/taxa_aprendizado_1af0a64e83d472ac533e/fontes/configuracoes/mamba_taxa0001_estado8_001.json",
+        "16": "dados/experimentos/taxa_aprendizado_1af0a64e83d472ac533e/fontes/configuracoes/mamba_taxa0001_estado16_001.json",
+        "32": "dados/experimentos/taxa_aprendizado_1af0a64e83d472ac533e/fontes/configuracoes/mamba_taxa0001_estado32_001.json",
+        "64": "dados/experimentos/taxa_aprendizado_1af0a64e83d472ac533e/fontes/configuracoes/mamba_taxa0001_estado64_001.json"
+      },
+      "pesos_tentativas": "dados/experimentos/taxa_aprendizado_1af0a64e83d472ac533e/celulas",
+      "dataset": "dados/entradas/0420879c2afc454c7754",
+      "estados": [
+        8,
+        16,
+        32,
+        64
+      ],
+      "seeds_principais": [
+        17,
+        42,
+        2026,
+        7,
+        123,
+        31415
+      ],
+      "ajustes_neurais_novos_planejados": 24,
+      "referencias_herdadas": 29,
+      "progresso": "dados/experimentos/taxa_aprendizado_1af0a64e83d472ac533e/progresso.json",
+      "taxa_referencia": 0.0002,
+      "taxa_candidata": 0.0001,
+      "inicio_utc": "2026-10-29T22:23:02.619825+00:00",
+      "ajustes_neurais_novos_concluidos": 24,
+      "publicacao": "dados/experimentos/taxa_aprendizado_1af0a64e83d472ac533e/publicacoes/tentativa_001",
+      "conferencia": "registros/taxa_aprendizado/conferencias/82f988b3caf946cd9042e6ca4e9ef9a2/conclusao.json",
+      "relatorio": "docs/resultados_taxa_aprendizado.md"
+    }
+  ],
+  "investigacoes_ohlcv": [
+    {
+      "chave": "estados_internos_001",
+      "situacao": "encerrada_com_referencia_escolhida",
+      "estados": [
+        8,
+        16,
+        32,
+        64
+      ],
+      "seeds": [
+        17,
+        42,
+        2026,
+        7,
+        123,
+        31415
+      ],
+      "fechamento": {
+        "arquivo": "registros/investigacoes/estados_internos_001/fechamento.json",
+        "sha256": "6cc2279a8791963c024ddc87e1ae9951db3f57c94cd0a5a8daf400d884c64db2"
+      },
+      "relatorio": "docs/resultados_estados32_64.md",
+      "referencia_escolhida": "registros/referencias/mamba16_ohlcv24_001.json",
+      "novos_ajustes_ao_indexar": 0
+    }
+  ]
+}

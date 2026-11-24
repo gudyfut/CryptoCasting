@@ -1,0 +1,72 @@
+{
+  "utc": "2026-11-04T18:01:21.587571+00:00",
+  "seed": 17,
+  "bloco": "S1",
+  "receita": {
+    "representacao": "crua",
+    "indicadores": false,
+    "contexto": 168,
+    "largura": 32,
+    "camadas": 2,
+    "estado": 16,
+    "dropout": 0.1,
+    "pooling": "ultimo",
+    "taxa": 0.0002,
+    "decay": 0.001,
+    "otimizador": "AdamW",
+    "perda": "huber",
+    "scheduler": "constante",
+    "ganho_saida": 1.0,
+    "momentum": false,
+    "volatilidade": false,
+    "volume_relativo": false
+  },
+  "epoca": 3,
+  "epocas_executadas": 13,
+  "parametros": 20257,
+  "recarga_exata": true,
+  "segundos": 55.714932406,
+  "checkpoint_final_sha256": "452c0e4972f48bc68537ae004e28c45042370989da4146183d364d0ebed0e7a1",
+  "memoria_cuda_maxima_bytes": 146855936,
+  "treino_amostra_fixa": {
+    "n": 2048,
+    "mse": 0.0014310093456382158,
+    "rmse": 0.037828684164773904,
+    "mae": 0.026778203579736953,
+    "mse_naive": 0.0014297455745852967,
+    "vies": 0.0022272950635236557,
+    "sd_previsao": 0.000812227657591701,
+    "sd_alvo": 0.03776610782315303,
+    "acuracia_direcional": 0.49365234375,
+    "balanced_accuracy": 0.4950135849985733
+  },
+  "validacao": {
+    "n": 1979,
+    "mse": 0.0010006657516089899,
+    "rmse": 0.03163330130746694,
+    "mae": 0.020645821272640343,
+    "mse_naive": 0.0010215783129051167,
+    "vies": -0.004808676773952074,
+    "sd_previsao": 0.000559323316108239,
+    "sd_alvo": 0.031358491761766645,
+    "acuracia_direcional": 0.5715007579585649,
+    "balanced_accuracy": 0.5
+  },
+  "comparacao": {
+    "n": 2002,
+    "mse": 0.0005004002258088936,
+    "rmse": 0.022369627305990004,
+    "mae": 0.016303123069562647,
+    "mse_naive": 0.0005020511335558228,
+    "vies": -0.0006124511334004738,
+    "sd_previsao": 0.00013705481253695445,
+    "sd_alvo": 0.02238130521061072,
+    "acuracia_direcional": 0.5164835164835165,
+    "balanced_accuracy": 0.5
+  },
+  "diagnostico": {
+    "sd_representacao_media": 0.1201811209321022,
+    "norma_pesos_saida": 0.4851452112197876,
+    "fracao_clipping_ultima_epoca": 0.3446808510638298
+  }
+}

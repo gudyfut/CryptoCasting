@@ -1,0 +1,69 @@
+{
+  "utc": "2026-11-04T05:17:23.355322+00:00",
+  "seed": 7,
+  "bloco": "B2",
+  "receita": {
+    "representacao": "janela_relativa",
+    "indicadores": false,
+    "contexto": 72,
+    "largura": 32,
+    "camadas": 2,
+    "estado": 16,
+    "dropout": 0.1,
+    "pooling": "ultimo",
+    "taxa": 0.0002,
+    "decay": 0.001,
+    "otimizador": "AdamW",
+    "perda": "huber",
+    "scheduler": "constante",
+    "ganho_saida": 1
+  },
+  "epoca": 8,
+  "epocas_executadas": 18,
+  "parametros": 20257,
+  "recarga_exata": true,
+  "segundos": 134.47996341199996,
+  "checkpoint_final_sha256": "e0047502d8c75f1e065541ae15202666b379ea76d07b978b21669377d6530052",
+  "memoria_cuda_maxima_bytes": 117900800,
+  "treino_amostra_fixa": {
+    "n": 2048,
+    "mse": 0.001078958576080162,
+    "rmse": 0.032847504868409136,
+    "mae": 0.02241285079973652,
+    "mse_naive": 0.0010804153835294685,
+    "vies": -0.0006392606717819207,
+    "sd_previsao": 0.001833473704133472,
+    "sd_alvo": 0.03286701410288522,
+    "acuracia_direcional": 0.52734375,
+    "balanced_accuracy": 0.5279083431257344
+  },
+  "validacao": {
+    "n": 2160,
+    "mse": 0.0005694176588230047,
+    "rmse": 0.023862473862175413,
+    "mae": 0.01756946831015102,
+    "mse_naive": 0.0005737635341431438,
+    "vies": 0.0011912289692637501,
+    "sd_previsao": 0.0014503739019005475,
+    "sd_alvo": 0.023912761601148975,
+    "acuracia_direcional": 0.5581287633163502,
+    "balanced_accuracy": 0.5582657501094205
+  },
+  "teste": {
+    "n": 4392,
+    "mse": 0.000720847440643105,
+    "rmse": 0.02684860221022884,
+    "mae": 0.019644688443624013,
+    "mse_naive": 0.0007158615200008409,
+    "vies": -0.0024800126906546188,
+    "sd_previsao": 0.0016319108208662301,
+    "sd_alvo": 0.02666856927670914,
+    "acuracia_direcional": 0.4947632058287796,
+    "balanced_accuracy": 0.49717836517589153
+  },
+  "diagnostico": {
+    "sd_representacao_media": 0.2532389461994171,
+    "norma_pesos_saida": 0.4587079882621765,
+    "fracao_clipping_ultima_epoca": 0.3325
+  }
+}

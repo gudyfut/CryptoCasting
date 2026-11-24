@@ -1,0 +1,36 @@
+{
+  "type": "object",
+  "properties": {
+    "acao": {
+      "type": "string",
+      "enum": [
+        "propor",
+        "encerrar"
+      ]
+    },
+    "pai": {
+      "type": "string"
+    },
+    "campo": {
+      "type": "string"
+    },
+    "valor_json": {
+      "type": "string"
+    },
+    "hipotese": {
+      "type": "string"
+    },
+    "risco": {
+      "type": "string"
+    }
+  },
+  "required": [
+    "acao",
+    "pai",
+    "campo",
+    "valor_json",
+    "hipotese",
+    "risco"
+  ],
+  "additionalProperties": false
+}

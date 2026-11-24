@@ -1,0 +1,205 @@
+{
+  "epoca": 1,
+  "populacao": "janelas de treino fixas e espaçadas; sem alvos na sonda",
+  "indices": [
+    0,
+    2,
+    4,
+    6,
+    8,
+    10,
+    12,
+    14,
+    16,
+    18,
+    20,
+    22,
+    24,
+    26,
+    28,
+    30,
+    33,
+    35,
+    37,
+    39,
+    41,
+    43,
+    45,
+    47,
+    49,
+    51,
+    53,
+    55,
+    57,
+    59,
+    61,
+    64
+  ],
+  "normas": {
+    "lineares": {
+      "norma": 4.731409456128929,
+      "elementos": 930,
+      "fracao_menor_1e6": 0.0
+    },
+    "layernorm": {
+      "norma": 15.538330922224546,
+      "elementos": 496,
+      "fracao_menor_1e6": 0.0
+    },
+    "A_log": {
+      "norma": 587.9842712764856,
+      "elementos": 31744,
+      "fracao_menor_1e6": 0.0
+    },
+    "D": {
+      "norma": 21.776593924966303,
+      "elementos": 496,
+      "fracao_menor_1e6": 0.0
+    },
+    "outros_mamba": {
+      "norma": 113.75192586327077,
+      "elementos": 103392,
+      "fracao_menor_1e6": 9.671928195605076e-06
+    }
+  },
+  "ativacoes": {
+    "nucleo.blocks.0.0.op": {
+      "forma": [
+        32,
+        14,
+        14
+      ],
+      "rms_saida": 0.0399968656330576,
+      "max_saida": 0.09208448231220245
+    },
+    "nucleo.blocks.0.1.op": {
+      "forma": [
+        32,
+        14,
+        14
+      ],
+      "rms_saida": 0.08594013900603016,
+      "max_saida": 0.16856001317501068
+    },
+    "nucleo.blocks.0.2.op": {
+      "forma": [
+        32,
+        14,
+        14
+      ],
+      "rms_saida": 0.05384038868359041,
+      "max_saida": 0.12743614614009857
+    },
+    "nucleo.blocks.0.3.op": {
+      "forma": [
+        32,
+        14,
+        14
+      ],
+      "rms_saida": 0.06574814164936105,
+      "max_saida": 0.1381501406431198
+    },
+    "nucleo.blocks.1.0.op": {
+      "forma": [
+        32,
+        14,
+        16
+      ],
+      "rms_saida": 0.02554486264764127,
+      "max_saida": 0.0619736909866333
+    },
+    "nucleo.blocks.1.1.op": {
+      "forma": [
+        32,
+        14,
+        16
+      ],
+      "rms_saida": 0.02415387363081109,
+      "max_saida": 0.052859239280223846
+    },
+    "nucleo.blocks.1.2.op": {
+      "forma": [
+        32,
+        14,
+        16
+      ],
+      "rms_saida": 0.024577046024696823,
+      "max_saida": 0.05767328664660454
+    },
+    "nucleo.blocks.1.3.op": {
+      "forma": [
+        32,
+        14,
+        16
+      ],
+      "rms_saida": 0.053781175024704204,
+      "max_saida": 0.13931584358215332
+    },
+    "nucleo.blocks.2.0.op": {
+      "forma": [
+        32,
+        14,
+        32
+      ],
+      "rms_saida": 0.02732369581119297,
+      "max_saida": 0.057285428047180176
+    },
+    "nucleo.blocks.2.1.op": {
+      "forma": [
+        32,
+        14,
+        32
+      ],
+      "rms_saida": 0.05553256622972454,
+      "max_saida": 0.11790020018815994
+    },
+    "nucleo.blocks.2.2.op": {
+      "forma": [
+        32,
+        14,
+        32
+      ],
+      "rms_saida": 0.048959865609302496,
+      "max_saida": 0.13401831686496735
+    },
+    "nucleo.blocks.2.3.op": {
+      "forma": [
+        32,
+        14,
+        32
+      ],
+      "rms_saida": 0.031761211300731305,
+      "max_saida": 0.09313330054283142
+    }
+  },
+  "contribuicao_ramos": {
+    "max_abs": 0.2982516810297966,
+    "rms": 0.2960905791212006,
+    "previsao_media": -0.3057774845510721,
+    "previsao_desvio": 0.001283171723381545
+  },
+  "gradiente_ultimo_lote_antes_atualizacao": {
+    "lineares": {
+      "norma_gradiente_tarefa": 2.940536152193778,
+      "norma_l2": 0.004742436827160654
+    },
+    "layernorm": {
+      "norma_gradiente_tarefa": 0.08912094186991466,
+      "norma_l2": 0.015601174120348197
+    },
+    "A_log": {
+      "norma_gradiente_tarefa": 0.00010480695699548943,
+      "norma_l2": 0.5896988292213785
+    },
+    "D": {
+      "norma_gradiente_tarefa": 0.04077619686763484,
+      "norma_l2": 0.021938375824429802
+    },
+    "outros_mamba": {
+      "norma_gradiente_tarefa": 0.6929669090738643,
+      "norma_l2": 0.11432062846868249
+    }
+  },
+  "pesos_e_rng_preservados": true,
+  "limites": "Somente observação; não seleciona épocas nem interrompe por desempenho. Gradiente de um lote não é trajetória do Adam; contribuição funcional não é lucro."
+}

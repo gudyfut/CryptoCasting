@@ -1,0 +1,4887 @@
+{
+  "id": "10dac17ea9df2c540c57",
+  "utc": "2026-11-03T05:14:46.091685+00:00",
+  "contrato": {
+    "configuracao": {
+      "versao": 1,
+      "ciclo": "huber_blocos_001",
+      "seeds": [
+        17,
+        42,
+        2026,
+        7,
+        123,
+        31415,
+        271828,
+        161803
+      ],
+      "ordem_seeds": [
+        42,
+        17,
+        2026,
+        7,
+        123,
+        31415,
+        271828,
+        161803
+      ],
+      "blocos": {
+        "B1": {
+          "treino": [
+            "2021-01-01T00:00:00Z",
+            "2023-10-01T00:00:00Z"
+          ],
+          "validacao": [
+            "2023-10-01T00:00:00Z",
+            "2024-01-01T00:00:00Z"
+          ],
+          "teste": [
+            "2024-01-01T00:00:00Z",
+            "2024-07-01T00:00:00Z"
+          ]
+        },
+        "B2": {
+          "treino": [
+            "2021-01-01T00:00:00Z",
+            "2024-04-01T00:00:00Z"
+          ],
+          "validacao": [
+            "2024-04-01T00:00:00Z",
+            "2024-07-01T00:00:00Z"
+          ],
+          "teste": [
+            "2024-07-01T00:00:00Z",
+            "2025-01-01T00:00:00Z"
+          ]
+        },
+        "B3": {
+          "treino": [
+            "2021-01-01T00:00:00Z",
+            "2024-10-01T00:00:00Z"
+          ],
+          "validacao": [
+            "2024-10-01T00:00:00Z",
+            "2025-01-01T00:00:00Z"
+          ],
+          "teste": [
+            "2025-01-01T00:00:00Z",
+            "2025-07-01T00:00:00Z"
+          ]
+        },
+        "B4": {
+          "treino": [
+            "2021-01-01T00:00:00Z",
+            "2025-04-01T00:00:00Z"
+          ],
+          "validacao": [
+            "2025-04-01T00:00:00Z",
+            "2025-07-01T00:00:00Z"
+          ],
+          "teste": [
+            "2025-07-01T00:00:00Z",
+            "2026-01-01T00:00:00Z"
+          ]
+        }
+      },
+      "receita_base": "configuracoes/mamba16_perda_huber_001.json",
+      "entradas_base": "configuracoes/entradas_ohlcv24_001.json",
+      "candles_pasta": "dados/mercado/candles/93509a1b06b19103ac1c",
+      "variantes": [
+        "mse",
+        "huber"
+      ],
+      "ajustes_principais": 64,
+      "controles_reais": 2,
+      "ajustes_reais_total": 66,
+      "controle_bloco": "B1",
+      "controle_seed": 42,
+      "carteira_execucao": "dados/experimentos/backtest_carteira_8ec8a66648313caa48e3",
+      "politicas": [
+        "smart",
+        "diaria24"
+      ],
+      "cenarios": [
+        "ideal",
+        "base",
+        "agravado"
+      ],
+      "simulacoes_total": 408,
+      "bootstrap": {
+        "dias": [
+          7,
+          14,
+          28
+        ],
+        "principal": 14,
+        "replicas": 2000,
+        "seed": 20261103,
+        "principal_seeds_e_tempo": true
+      },
+      "exposicao": "retrospectiva2024_2025_ja_consultados",
+      "agregacao": "media igual entre4blocos; media entre8seeds dentro de cada bloco; nao ensemble",
+      "limite_desenvolvimento_dias": 4
+    },
+    "receitas": {
+      "B1": {
+        "mse": {
+          "versao": "huber-blocos-1",
+          "ciclo": "huber_blocos_001",
+          "hipotese": "Trocar somente MSE supervisionado por 2*Huber(delta=1) no alvo padronizado; seleção continua MSE real.",
+          "horizonte": 24,
+          "candle_minutos": 60,
+          "origem_minutos": 60,
+          "entradas": [
+            "abertura_relativa",
+            "maxima_relativa",
+            "minima_relativa",
+            "fechamento_relativo",
+            "volume_transformado"
+          ],
+          "seeds": [
+            17,
+            42,
+            2026,
+            7,
+            123,
+            31415,
+            271828,
+            161803
+          ],
+          "mamba": {
+            "largura": 32,
+            "camadas": 2,
+            "estado": 16,
+            "convolucao": 4,
+            "expansao": 2,
+            "dropout": 0.1
+          },
+          "lstm": {
+            "largura": 32,
+            "camadas": 2,
+            "dropout": 0.1
+          },
+          "treino": {
+            "epocas": 100,
+            "paciencia": 10,
+            "batch": 64,
+            "microbatch": 32,
+            "taxa_aprendizado": 0.0002,
+            "weight_decay": 0.001,
+            "clipping": 1.0
+          },
+          "arima": {
+            "ordens": [
+              [
+                0,
+                1,
+                0
+              ],
+              [
+                0,
+                1,
+                1
+              ],
+              [
+                0,
+                1,
+                2
+              ],
+              [
+                1,
+                1,
+                0
+              ],
+              [
+                1,
+                1,
+                1
+              ],
+              [
+                1,
+                1,
+                2
+              ],
+              [
+                2,
+                1,
+                0
+              ],
+              [
+                2,
+                1,
+                1
+              ],
+              [
+                2,
+                1,
+                2
+              ]
+            ],
+            "tendencia": "n",
+            "maxiter": 200
+          },
+          "dispositivo": "cuda",
+          "backend": "oficial",
+          "bootstrap": {
+            "dias": [
+              7,
+              14,
+              28
+            ],
+            "principal": 14,
+            "replicas": 2000,
+            "seed": 20261020
+          },
+          "operacao": {
+            "hora_utc": 0,
+            "latencia_minutos": 1,
+            "capital": 10000.0,
+            "taxa": 0.001,
+            "slippage": 0.0005,
+            "taxa_agravada": 0.002,
+            "slippage_agravado": 0.001
+          },
+          "par": "BTCUSDT",
+          "contexto": 168,
+          "representacao": "log_ohlc_relativo_close_anterior_e_log1p_volume_base",
+          "normalizacao": "padronizacao_estatica_por_canal_treino_horas_unicas",
+          "normalizacao_bloco": "pre_layernorm",
+          "divisao": {
+            "treino": [
+              "2021-01-01T00:00:00Z",
+              "2023-10-01T00:00:00Z"
+            ],
+            "validacao": [
+              "2023-10-01T00:00:00Z",
+              "2024-01-01T00:00:00Z"
+            ],
+            "teste": [
+              "2024-01-01T00:00:00Z",
+              "2024-07-01T00:00:00Z"
+            ]
+          },
+          "exposicao": "retrospectiva_periodos_ja_consultados",
+          "modelos": [
+            "mamba"
+          ],
+          "controles_reproducao": [],
+          "reproducao": {
+            "diferenca_absoluta_previsao": 1e-05,
+            "diferenca_relativa_mse": 0.0001,
+            "mesma_epoca": true,
+            "origem_limites": "mesmos limites dos controles dos ciclos preliminares; recarga do checkpoint permanece exata"
+          },
+          "entradas_pasta": "dados/entradas/03eef4c9ce12efb81741",
+          "mercado_pasta": "dados/mercado/binance_spot/449aab6c79dbf88aa625",
+          "configuracao_modelos": "configuracoes/modelos_ohlcv24_001.json",
+          "referencia_execucao": "nova_comparacao_pareada_em_blocos",
+          "seeds_pareadas": [
+            17,
+            42,
+            2026,
+            7,
+            123,
+            31415,
+            271828,
+            161803
+          ],
+          "controle": "Dois controles reais B1/42, além de reprodução sintética; 66 ajustes no total.",
+          "perda": {
+            "nome": "MSELoss",
+            "alvo": "padronizado_treino"
+          },
+          "bloco": "B1",
+          "variante": "mse"
+        },
+        "huber": {
+          "versao": "huber-blocos-1",
+          "ciclo": "huber_blocos_001",
+          "hipotese": "Trocar somente MSE supervisionado por 2*Huber(delta=1) no alvo padronizado; seleção continua MSE real.",
+          "horizonte": 24,
+          "candle_minutos": 60,
+          "origem_minutos": 60,
+          "entradas": [
+            "abertura_relativa",
+            "maxima_relativa",
+            "minima_relativa",
+            "fechamento_relativo",
+            "volume_transformado"
+          ],
+          "seeds": [
+            17,
+            42,
+            2026,
+            7,
+            123,
+            31415,
+            271828,
+            161803
+          ],
+          "mamba": {
+            "largura": 32,
+            "camadas": 2,
+            "estado": 16,
+            "convolucao": 4,
+            "expansao": 2,
+            "dropout": 0.1
+          },
+          "lstm": {
+            "largura": 32,
+            "camadas": 2,
+            "dropout": 0.1
+          },
+          "treino": {
+            "epocas": 100,
+            "paciencia": 10,
+            "batch": 64,
+            "microbatch": 32,
+            "taxa_aprendizado": 0.0002,
+            "weight_decay": 0.001,
+            "clipping": 1.0
+          },
+          "arima": {
+            "ordens": [
+              [
+                0,
+                1,
+                0
+              ],
+              [
+                0,
+                1,
+                1
+              ],
+              [
+                0,
+                1,
+                2
+              ],
+              [
+                1,
+                1,
+                0
+              ],
+              [
+                1,
+                1,
+                1
+              ],
+              [
+                1,
+                1,
+                2
+              ],
+              [
+                2,
+                1,
+                0
+              ],
+              [
+                2,
+                1,
+                1
+              ],
+              [
+                2,
+                1,
+                2
+              ]
+            ],
+            "tendencia": "n",
+            "maxiter": 200
+          },
+          "dispositivo": "cuda",
+          "backend": "oficial",
+          "bootstrap": {
+            "dias": [
+              7,
+              14,
+              28
+            ],
+            "principal": 14,
+            "replicas": 2000,
+            "seed": 20261020
+          },
+          "operacao": {
+            "hora_utc": 0,
+            "latencia_minutos": 1,
+            "capital": 10000.0,
+            "taxa": 0.001,
+            "slippage": 0.0005,
+            "taxa_agravada": 0.002,
+            "slippage_agravado": 0.001
+          },
+          "par": "BTCUSDT",
+          "contexto": 168,
+          "representacao": "log_ohlc_relativo_close_anterior_e_log1p_volume_base",
+          "normalizacao": "padronizacao_estatica_por_canal_treino_horas_unicas",
+          "normalizacao_bloco": "pre_layernorm",
+          "divisao": {
+            "treino": [
+              "2021-01-01T00:00:00Z",
+              "2023-10-01T00:00:00Z"
+            ],
+            "validacao": [
+              "2023-10-01T00:00:00Z",
+              "2024-01-01T00:00:00Z"
+            ],
+            "teste": [
+              "2024-01-01T00:00:00Z",
+              "2024-07-01T00:00:00Z"
+            ]
+          },
+          "exposicao": "retrospectiva_periodos_ja_consultados",
+          "modelos": [
+            "mamba"
+          ],
+          "controles_reproducao": [],
+          "reproducao": {
+            "diferenca_absoluta_previsao": 1e-05,
+            "diferenca_relativa_mse": 0.0001,
+            "mesma_epoca": true,
+            "origem_limites": "mesmos limites dos controles dos ciclos preliminares; recarga do checkpoint permanece exata"
+          },
+          "entradas_pasta": "dados/entradas/03eef4c9ce12efb81741",
+          "mercado_pasta": "dados/mercado/binance_spot/449aab6c79dbf88aa625",
+          "configuracao_modelos": "configuracoes/modelos_ohlcv24_001.json",
+          "referencia_execucao": "nova_comparacao_pareada_em_blocos",
+          "seeds_pareadas": [
+            17,
+            42,
+            2026,
+            7,
+            123,
+            31415,
+            271828,
+            161803
+          ],
+          "controle": "Dois controles reais B1/42, além de reprodução sintética; 66 ajustes no total.",
+          "perda": {
+            "nome": "HuberLoss",
+            "delta": 1.0,
+            "multiplicador": 2.0,
+            "reducao": "sum_por_lote_real",
+            "alvo": "padronizado_treino"
+          },
+          "bloco": "B1",
+          "variante": "huber"
+        }
+      },
+      "B2": {
+        "mse": {
+          "versao": "huber-blocos-1",
+          "ciclo": "huber_blocos_001",
+          "hipotese": "Trocar somente MSE supervisionado por 2*Huber(delta=1) no alvo padronizado; seleção continua MSE real.",
+          "horizonte": 24,
+          "candle_minutos": 60,
+          "origem_minutos": 60,
+          "entradas": [
+            "abertura_relativa",
+            "maxima_relativa",
+            "minima_relativa",
+            "fechamento_relativo",
+            "volume_transformado"
+          ],
+          "seeds": [
+            17,
+            42,
+            2026,
+            7,
+            123,
+            31415,
+            271828,
+            161803
+          ],
+          "mamba": {
+            "largura": 32,
+            "camadas": 2,
+            "estado": 16,
+            "convolucao": 4,
+            "expansao": 2,
+            "dropout": 0.1
+          },
+          "lstm": {
+            "largura": 32,
+            "camadas": 2,
+            "dropout": 0.1
+          },
+          "treino": {
+            "epocas": 100,
+            "paciencia": 10,
+            "batch": 64,
+            "microbatch": 32,
+            "taxa_aprendizado": 0.0002,
+            "weight_decay": 0.001,
+            "clipping": 1.0
+          },
+          "arima": {
+            "ordens": [
+              [
+                0,
+                1,
+                0
+              ],
+              [
+                0,
+                1,
+                1
+              ],
+              [
+                0,
+                1,
+                2
+              ],
+              [
+                1,
+                1,
+                0
+              ],
+              [
+                1,
+                1,
+                1
+              ],
+              [
+                1,
+                1,
+                2
+              ],
+              [
+                2,
+                1,
+                0
+              ],
+              [
+                2,
+                1,
+                1
+              ],
+              [
+                2,
+                1,
+                2
+              ]
+            ],
+            "tendencia": "n",
+            "maxiter": 200
+          },
+          "dispositivo": "cuda",
+          "backend": "oficial",
+          "bootstrap": {
+            "dias": [
+              7,
+              14,
+              28
+            ],
+            "principal": 14,
+            "replicas": 2000,
+            "seed": 20261020
+          },
+          "operacao": {
+            "hora_utc": 0,
+            "latencia_minutos": 1,
+            "capital": 10000.0,
+            "taxa": 0.001,
+            "slippage": 0.0005,
+            "taxa_agravada": 0.002,
+            "slippage_agravado": 0.001
+          },
+          "par": "BTCUSDT",
+          "contexto": 168,
+          "representacao": "log_ohlc_relativo_close_anterior_e_log1p_volume_base",
+          "normalizacao": "padronizacao_estatica_por_canal_treino_horas_unicas",
+          "normalizacao_bloco": "pre_layernorm",
+          "divisao": {
+            "treino": [
+              "2021-01-01T00:00:00Z",
+              "2024-04-01T00:00:00Z"
+            ],
+            "validacao": [
+              "2024-04-01T00:00:00Z",
+              "2024-07-01T00:00:00Z"
+            ],
+            "teste": [
+              "2024-07-01T00:00:00Z",
+              "2025-01-01T00:00:00Z"
+            ]
+          },
+          "exposicao": "retrospectiva_periodos_ja_consultados",
+          "modelos": [
+            "mamba"
+          ],
+          "controles_reproducao": [],
+          "reproducao": {
+            "diferenca_absoluta_previsao": 1e-05,
+            "diferenca_relativa_mse": 0.0001,
+            "mesma_epoca": true,
+            "origem_limites": "mesmos limites dos controles dos ciclos preliminares; recarga do checkpoint permanece exata"
+          },
+          "entradas_pasta": "dados/entradas/20569241906f93905387",
+          "mercado_pasta": "dados/mercado/binance_spot/449aab6c79dbf88aa625",
+          "configuracao_modelos": "configuracoes/modelos_ohlcv24_001.json",
+          "referencia_execucao": "nova_comparacao_pareada_em_blocos",
+          "seeds_pareadas": [
+            17,
+            42,
+            2026,
+            7,
+            123,
+            31415,
+            271828,
+            161803
+          ],
+          "controle": "Dois controles reais B1/42, além de reprodução sintética; 66 ajustes no total.",
+          "perda": {
+            "nome": "MSELoss",
+            "alvo": "padronizado_treino"
+          },
+          "bloco": "B2",
+          "variante": "mse"
+        },
+        "huber": {
+          "versao": "huber-blocos-1",
+          "ciclo": "huber_blocos_001",
+          "hipotese": "Trocar somente MSE supervisionado por 2*Huber(delta=1) no alvo padronizado; seleção continua MSE real.",
+          "horizonte": 24,
+          "candle_minutos": 60,
+          "origem_minutos": 60,
+          "entradas": [
+            "abertura_relativa",
+            "maxima_relativa",
+            "minima_relativa",
+            "fechamento_relativo",
+            "volume_transformado"
+          ],
+          "seeds": [
+            17,
+            42,
+            2026,
+            7,
+            123,
+            31415,
+            271828,
+            161803
+          ],
+          "mamba": {
+            "largura": 32,
+            "camadas": 2,
+            "estado": 16,
+            "convolucao": 4,
+            "expansao": 2,
+            "dropout": 0.1
+          },
+          "lstm": {
+            "largura": 32,
+            "camadas": 2,
+            "dropout": 0.1
+          },
+          "treino": {
+            "epocas": 100,
+            "paciencia": 10,
+            "batch": 64,
+            "microbatch": 32,
+            "taxa_aprendizado": 0.0002,
+            "weight_decay": 0.001,
+            "clipping": 1.0
+          },
+          "arima": {
+            "ordens": [
+              [
+                0,
+                1,
+                0
+              ],
+              [
+                0,
+                1,
+                1
+              ],
+              [
+                0,
+                1,
+                2
+              ],
+              [
+                1,
+                1,
+                0
+              ],
+              [
+                1,
+                1,
+                1
+              ],
+              [
+                1,
+                1,
+                2
+              ],
+              [
+                2,
+                1,
+                0
+              ],
+              [
+                2,
+                1,
+                1
+              ],
+              [
+                2,
+                1,
+                2
+              ]
+            ],
+            "tendencia": "n",
+            "maxiter": 200
+          },
+          "dispositivo": "cuda",
+          "backend": "oficial",
+          "bootstrap": {
+            "dias": [
+              7,
+              14,
+              28
+            ],
+            "principal": 14,
+            "replicas": 2000,
+            "seed": 20261020
+          },
+          "operacao": {
+            "hora_utc": 0,
+            "latencia_minutos": 1,
+            "capital": 10000.0,
+            "taxa": 0.001,
+            "slippage": 0.0005,
+            "taxa_agravada": 0.002,
+            "slippage_agravado": 0.001
+          },
+          "par": "BTCUSDT",
+          "contexto": 168,
+          "representacao": "log_ohlc_relativo_close_anterior_e_log1p_volume_base",
+          "normalizacao": "padronizacao_estatica_por_canal_treino_horas_unicas",
+          "normalizacao_bloco": "pre_layernorm",
+          "divisao": {
+            "treino": [
+              "2021-01-01T00:00:00Z",
+              "2024-04-01T00:00:00Z"
+            ],
+            "validacao": [
+              "2024-04-01T00:00:00Z",
+              "2024-07-01T00:00:00Z"
+            ],
+            "teste": [
+              "2024-07-01T00:00:00Z",
+              "2025-01-01T00:00:00Z"
+            ]
+          },
+          "exposicao": "retrospectiva_periodos_ja_consultados",
+          "modelos": [
+            "mamba"
+          ],
+          "controles_reproducao": [],
+          "reproducao": {
+            "diferenca_absoluta_previsao": 1e-05,
+            "diferenca_relativa_mse": 0.0001,
+            "mesma_epoca": true,
+            "origem_limites": "mesmos limites dos controles dos ciclos preliminares; recarga do checkpoint permanece exata"
+          },
+          "entradas_pasta": "dados/entradas/20569241906f93905387",
+          "mercado_pasta": "dados/mercado/binance_spot/449aab6c79dbf88aa625",
+          "configuracao_modelos": "configuracoes/modelos_ohlcv24_001.json",
+          "referencia_execucao": "nova_comparacao_pareada_em_blocos",
+          "seeds_pareadas": [
+            17,
+            42,
+            2026,
+            7,
+            123,
+            31415,
+            271828,
+            161803
+          ],
+          "controle": "Dois controles reais B1/42, além de reprodução sintética; 66 ajustes no total.",
+          "perda": {
+            "nome": "HuberLoss",
+            "delta": 1.0,
+            "multiplicador": 2.0,
+            "reducao": "sum_por_lote_real",
+            "alvo": "padronizado_treino"
+          },
+          "bloco": "B2",
+          "variante": "huber"
+        }
+      },
+      "B3": {
+        "mse": {
+          "versao": "huber-blocos-1",
+          "ciclo": "huber_blocos_001",
+          "hipotese": "Trocar somente MSE supervisionado por 2*Huber(delta=1) no alvo padronizado; seleção continua MSE real.",
+          "horizonte": 24,
+          "candle_minutos": 60,
+          "origem_minutos": 60,
+          "entradas": [
+            "abertura_relativa",
+            "maxima_relativa",
+            "minima_relativa",
+            "fechamento_relativo",
+            "volume_transformado"
+          ],
+          "seeds": [
+            17,
+            42,
+            2026,
+            7,
+            123,
+            31415,
+            271828,
+            161803
+          ],
+          "mamba": {
+            "largura": 32,
+            "camadas": 2,
+            "estado": 16,
+            "convolucao": 4,
+            "expansao": 2,
+            "dropout": 0.1
+          },
+          "lstm": {
+            "largura": 32,
+            "camadas": 2,
+            "dropout": 0.1
+          },
+          "treino": {
+            "epocas": 100,
+            "paciencia": 10,
+            "batch": 64,
+            "microbatch": 32,
+            "taxa_aprendizado": 0.0002,
+            "weight_decay": 0.001,
+            "clipping": 1.0
+          },
+          "arima": {
+            "ordens": [
+              [
+                0,
+                1,
+                0
+              ],
+              [
+                0,
+                1,
+                1
+              ],
+              [
+                0,
+                1,
+                2
+              ],
+              [
+                1,
+                1,
+                0
+              ],
+              [
+                1,
+                1,
+                1
+              ],
+              [
+                1,
+                1,
+                2
+              ],
+              [
+                2,
+                1,
+                0
+              ],
+              [
+                2,
+                1,
+                1
+              ],
+              [
+                2,
+                1,
+                2
+              ]
+            ],
+            "tendencia": "n",
+            "maxiter": 200
+          },
+          "dispositivo": "cuda",
+          "backend": "oficial",
+          "bootstrap": {
+            "dias": [
+              7,
+              14,
+              28
+            ],
+            "principal": 14,
+            "replicas": 2000,
+            "seed": 20261020
+          },
+          "operacao": {
+            "hora_utc": 0,
+            "latencia_minutos": 1,
+            "capital": 10000.0,
+            "taxa": 0.001,
+            "slippage": 0.0005,
+            "taxa_agravada": 0.002,
+            "slippage_agravado": 0.001
+          },
+          "par": "BTCUSDT",
+          "contexto": 168,
+          "representacao": "log_ohlc_relativo_close_anterior_e_log1p_volume_base",
+          "normalizacao": "padronizacao_estatica_por_canal_treino_horas_unicas",
+          "normalizacao_bloco": "pre_layernorm",
+          "divisao": {
+            "treino": [
+              "2021-01-01T00:00:00Z",
+              "2024-10-01T00:00:00Z"
+            ],
+            "validacao": [
+              "2024-10-01T00:00:00Z",
+              "2025-01-01T00:00:00Z"
+            ],
+            "teste": [
+              "2025-01-01T00:00:00Z",
+              "2025-07-01T00:00:00Z"
+            ]
+          },
+          "exposicao": "retrospectiva_periodos_ja_consultados",
+          "modelos": [
+            "mamba"
+          ],
+          "controles_reproducao": [],
+          "reproducao": {
+            "diferenca_absoluta_previsao": 1e-05,
+            "diferenca_relativa_mse": 0.0001,
+            "mesma_epoca": true,
+            "origem_limites": "mesmos limites dos controles dos ciclos preliminares; recarga do checkpoint permanece exata"
+          },
+          "entradas_pasta": "dados/entradas/3fb143ccbf6e346d07cf",
+          "mercado_pasta": "dados/mercado/binance_spot/449aab6c79dbf88aa625",
+          "configuracao_modelos": "configuracoes/modelos_ohlcv24_001.json",
+          "referencia_execucao": "nova_comparacao_pareada_em_blocos",
+          "seeds_pareadas": [
+            17,
+            42,
+            2026,
+            7,
+            123,
+            31415,
+            271828,
+            161803
+          ],
+          "controle": "Dois controles reais B1/42, além de reprodução sintética; 66 ajustes no total.",
+          "perda": {
+            "nome": "MSELoss",
+            "alvo": "padronizado_treino"
+          },
+          "bloco": "B3",
+          "variante": "mse"
+        },
+        "huber": {
+          "versao": "huber-blocos-1",
+          "ciclo": "huber_blocos_001",
+          "hipotese": "Trocar somente MSE supervisionado por 2*Huber(delta=1) no alvo padronizado; seleção continua MSE real.",
+          "horizonte": 24,
+          "candle_minutos": 60,
+          "origem_minutos": 60,
+          "entradas": [
+            "abertura_relativa",
+            "maxima_relativa",
+            "minima_relativa",
+            "fechamento_relativo",
+            "volume_transformado"
+          ],
+          "seeds": [
+            17,
+            42,
+            2026,
+            7,
+            123,
+            31415,
+            271828,
+            161803
+          ],
+          "mamba": {
+            "largura": 32,
+            "camadas": 2,
+            "estado": 16,
+            "convolucao": 4,
+            "expansao": 2,
+            "dropout": 0.1
+          },
+          "lstm": {
+            "largura": 32,
+            "camadas": 2,
+            "dropout": 0.1
+          },
+          "treino": {
+            "epocas": 100,
+            "paciencia": 10,
+            "batch": 64,
+            "microbatch": 32,
+            "taxa_aprendizado": 0.0002,
+            "weight_decay": 0.001,
+            "clipping": 1.0
+          },
+          "arima": {
+            "ordens": [
+              [
+                0,
+                1,
+                0
+              ],
+              [
+                0,
+                1,
+                1
+              ],
+              [
+                0,
+                1,
+                2
+              ],
+              [
+                1,
+                1,
+                0
+              ],
+              [
+                1,
+                1,
+                1
+              ],
+              [
+                1,
+                1,
+                2
+              ],
+              [
+                2,
+                1,
+                0
+              ],
+              [
+                2,
+                1,
+                1
+              ],
+              [
+                2,
+                1,
+                2
+              ]
+            ],
+            "tendencia": "n",
+            "maxiter": 200
+          },
+          "dispositivo": "cuda",
+          "backend": "oficial",
+          "bootstrap": {
+            "dias": [
+              7,
+              14,
+              28
+            ],
+            "principal": 14,
+            "replicas": 2000,
+            "seed": 20261020
+          },
+          "operacao": {
+            "hora_utc": 0,
+            "latencia_minutos": 1,
+            "capital": 10000.0,
+            "taxa": 0.001,
+            "slippage": 0.0005,
+            "taxa_agravada": 0.002,
+            "slippage_agravado": 0.001
+          },
+          "par": "BTCUSDT",
+          "contexto": 168,
+          "representacao": "log_ohlc_relativo_close_anterior_e_log1p_volume_base",
+          "normalizacao": "padronizacao_estatica_por_canal_treino_horas_unicas",
+          "normalizacao_bloco": "pre_layernorm",
+          "divisao": {
+            "treino": [
+              "2021-01-01T00:00:00Z",
+              "2024-10-01T00:00:00Z"
+            ],
+            "validacao": [
+              "2024-10-01T00:00:00Z",
+              "2025-01-01T00:00:00Z"
+            ],
+            "teste": [
+              "2025-01-01T00:00:00Z",
+              "2025-07-01T00:00:00Z"
+            ]
+          },
+          "exposicao": "retrospectiva_periodos_ja_consultados",
+          "modelos": [
+            "mamba"
+          ],
+          "controles_reproducao": [],
+          "reproducao": {
+            "diferenca_absoluta_previsao": 1e-05,
+            "diferenca_relativa_mse": 0.0001,
+            "mesma_epoca": true,
+            "origem_limites": "mesmos limites dos controles dos ciclos preliminares; recarga do checkpoint permanece exata"
+          },
+          "entradas_pasta": "dados/entradas/3fb143ccbf6e346d07cf",
+          "mercado_pasta": "dados/mercado/binance_spot/449aab6c79dbf88aa625",
+          "configuracao_modelos": "configuracoes/modelos_ohlcv24_001.json",
+          "referencia_execucao": "nova_comparacao_pareada_em_blocos",
+          "seeds_pareadas": [
+            17,
+            42,
+            2026,
+            7,
+            123,
+            31415,
+            271828,
+            161803
+          ],
+          "controle": "Dois controles reais B1/42, além de reprodução sintética; 66 ajustes no total.",
+          "perda": {
+            "nome": "HuberLoss",
+            "delta": 1.0,
+            "multiplicador": 2.0,
+            "reducao": "sum_por_lote_real",
+            "alvo": "padronizado_treino"
+          },
+          "bloco": "B3",
+          "variante": "huber"
+        }
+      },
+      "B4": {
+        "mse": {
+          "versao": "huber-blocos-1",
+          "ciclo": "huber_blocos_001",
+          "hipotese": "Trocar somente MSE supervisionado por 2*Huber(delta=1) no alvo padronizado; seleção continua MSE real.",
+          "horizonte": 24,
+          "candle_minutos": 60,
+          "origem_minutos": 60,
+          "entradas": [
+            "abertura_relativa",
+            "maxima_relativa",
+            "minima_relativa",
+            "fechamento_relativo",
+            "volume_transformado"
+          ],
+          "seeds": [
+            17,
+            42,
+            2026,
+            7,
+            123,
+            31415,
+            271828,
+            161803
+          ],
+          "mamba": {
+            "largura": 32,
+            "camadas": 2,
+            "estado": 16,
+            "convolucao": 4,
+            "expansao": 2,
+            "dropout": 0.1
+          },
+          "lstm": {
+            "largura": 32,
+            "camadas": 2,
+            "dropout": 0.1
+          },
+          "treino": {
+            "epocas": 100,
+            "paciencia": 10,
+            "batch": 64,
+            "microbatch": 32,
+            "taxa_aprendizado": 0.0002,
+            "weight_decay": 0.001,
+            "clipping": 1.0
+          },
+          "arima": {
+            "ordens": [
+              [
+                0,
+                1,
+                0
+              ],
+              [
+                0,
+                1,
+                1
+              ],
+              [
+                0,
+                1,
+                2
+              ],
+              [
+                1,
+                1,
+                0
+              ],
+              [
+                1,
+                1,
+                1
+              ],
+              [
+                1,
+                1,
+                2
+              ],
+              [
+                2,
+                1,
+                0
+              ],
+              [
+                2,
+                1,
+                1
+              ],
+              [
+                2,
+                1,
+                2
+              ]
+            ],
+            "tendencia": "n",
+            "maxiter": 200
+          },
+          "dispositivo": "cuda",
+          "backend": "oficial",
+          "bootstrap": {
+            "dias": [
+              7,
+              14,
+              28
+            ],
+            "principal": 14,
+            "replicas": 2000,
+            "seed": 20261020
+          },
+          "operacao": {
+            "hora_utc": 0,
+            "latencia_minutos": 1,
+            "capital": 10000.0,
+            "taxa": 0.001,
+            "slippage": 0.0005,
+            "taxa_agravada": 0.002,
+            "slippage_agravado": 0.001
+          },
+          "par": "BTCUSDT",
+          "contexto": 168,
+          "representacao": "log_ohlc_relativo_close_anterior_e_log1p_volume_base",
+          "normalizacao": "padronizacao_estatica_por_canal_treino_horas_unicas",
+          "normalizacao_bloco": "pre_layernorm",
+          "divisao": {
+            "treino": [
+              "2021-01-01T00:00:00Z",
+              "2025-04-01T00:00:00Z"
+            ],
+            "validacao": [
+              "2025-04-01T00:00:00Z",
+              "2025-07-01T00:00:00Z"
+            ],
+            "teste": [
+              "2025-07-01T00:00:00Z",
+              "2026-01-01T00:00:00Z"
+            ]
+          },
+          "exposicao": "retrospectiva_periodos_ja_consultados",
+          "modelos": [
+            "mamba"
+          ],
+          "controles_reproducao": [],
+          "reproducao": {
+            "diferenca_absoluta_previsao": 1e-05,
+            "diferenca_relativa_mse": 0.0001,
+            "mesma_epoca": true,
+            "origem_limites": "mesmos limites dos controles dos ciclos preliminares; recarga do checkpoint permanece exata"
+          },
+          "entradas_pasta": "dados/entradas/e8e3e94fb5e58f609d23",
+          "mercado_pasta": "dados/mercado/binance_spot/449aab6c79dbf88aa625",
+          "configuracao_modelos": "configuracoes/modelos_ohlcv24_001.json",
+          "referencia_execucao": "nova_comparacao_pareada_em_blocos",
+          "seeds_pareadas": [
+            17,
+            42,
+            2026,
+            7,
+            123,
+            31415,
+            271828,
+            161803
+          ],
+          "controle": "Dois controles reais B1/42, além de reprodução sintética; 66 ajustes no total.",
+          "perda": {
+            "nome": "MSELoss",
+            "alvo": "padronizado_treino"
+          },
+          "bloco": "B4",
+          "variante": "mse"
+        },
+        "huber": {
+          "versao": "huber-blocos-1",
+          "ciclo": "huber_blocos_001",
+          "hipotese": "Trocar somente MSE supervisionado por 2*Huber(delta=1) no alvo padronizado; seleção continua MSE real.",
+          "horizonte": 24,
+          "candle_minutos": 60,
+          "origem_minutos": 60,
+          "entradas": [
+            "abertura_relativa",
+            "maxima_relativa",
+            "minima_relativa",
+            "fechamento_relativo",
+            "volume_transformado"
+          ],
+          "seeds": [
+            17,
+            42,
+            2026,
+            7,
+            123,
+            31415,
+            271828,
+            161803
+          ],
+          "mamba": {
+            "largura": 32,
+            "camadas": 2,
+            "estado": 16,
+            "convolucao": 4,
+            "expansao": 2,
+            "dropout": 0.1
+          },
+          "lstm": {
+            "largura": 32,
+            "camadas": 2,
+            "dropout": 0.1
+          },
+          "treino": {
+            "epocas": 100,
+            "paciencia": 10,
+            "batch": 64,
+            "microbatch": 32,
+            "taxa_aprendizado": 0.0002,
+            "weight_decay": 0.001,
+            "clipping": 1.0
+          },
+          "arima": {
+            "ordens": [
+              [
+                0,
+                1,
+                0
+              ],
+              [
+                0,
+                1,
+                1
+              ],
+              [
+                0,
+                1,
+                2
+              ],
+              [
+                1,
+                1,
+                0
+              ],
+              [
+                1,
+                1,
+                1
+              ],
+              [
+                1,
+                1,
+                2
+              ],
+              [
+                2,
+                1,
+                0
+              ],
+              [
+                2,
+                1,
+                1
+              ],
+              [
+                2,
+                1,
+                2
+              ]
+            ],
+            "tendencia": "n",
+            "maxiter": 200
+          },
+          "dispositivo": "cuda",
+          "backend": "oficial",
+          "bootstrap": {
+            "dias": [
+              7,
+              14,
+              28
+            ],
+            "principal": 14,
+            "replicas": 2000,
+            "seed": 20261020
+          },
+          "operacao": {
+            "hora_utc": 0,
+            "latencia_minutos": 1,
+            "capital": 10000.0,
+            "taxa": 0.001,
+            "slippage": 0.0005,
+            "taxa_agravada": 0.002,
+            "slippage_agravado": 0.001
+          },
+          "par": "BTCUSDT",
+          "contexto": 168,
+          "representacao": "log_ohlc_relativo_close_anterior_e_log1p_volume_base",
+          "normalizacao": "padronizacao_estatica_por_canal_treino_horas_unicas",
+          "normalizacao_bloco": "pre_layernorm",
+          "divisao": {
+            "treino": [
+              "2021-01-01T00:00:00Z",
+              "2025-04-01T00:00:00Z"
+            ],
+            "validacao": [
+              "2025-04-01T00:00:00Z",
+              "2025-07-01T00:00:00Z"
+            ],
+            "teste": [
+              "2025-07-01T00:00:00Z",
+              "2026-01-01T00:00:00Z"
+            ]
+          },
+          "exposicao": "retrospectiva_periodos_ja_consultados",
+          "modelos": [
+            "mamba"
+          ],
+          "controles_reproducao": [],
+          "reproducao": {
+            "diferenca_absoluta_previsao": 1e-05,
+            "diferenca_relativa_mse": 0.0001,
+            "mesma_epoca": true,
+            "origem_limites": "mesmos limites dos controles dos ciclos preliminares; recarga do checkpoint permanece exata"
+          },
+          "entradas_pasta": "dados/entradas/e8e3e94fb5e58f609d23",
+          "mercado_pasta": "dados/mercado/binance_spot/449aab6c79dbf88aa625",
+          "configuracao_modelos": "configuracoes/modelos_ohlcv24_001.json",
+          "referencia_execucao": "nova_comparacao_pareada_em_blocos",
+          "seeds_pareadas": [
+            17,
+            42,
+            2026,
+            7,
+            123,
+            31415,
+            271828,
+            161803
+          ],
+          "controle": "Dois controles reais B1/42, além de reprodução sintética; 66 ajustes no total.",
+          "perda": {
+            "nome": "HuberLoss",
+            "delta": 1.0,
+            "multiplicador": 2.0,
+            "reducao": "sum_por_lote_real",
+            "alvo": "padronizado_treino"
+          },
+          "bloco": "B4",
+          "variante": "huber"
+        }
+      }
+    },
+    "entradas": {
+      "B1": {
+        "pasta": "dados/entradas/03eef4c9ce12efb81741",
+        "manifesto_sha256": "517738d5054d690e0902dba89b54808f48c4808a9097f0b414139e9428f55fd6"
+      },
+      "B2": {
+        "pasta": "dados/entradas/20569241906f93905387",
+        "manifesto_sha256": "3d6baf0f60fefeb8bc6787988af60f183de3fd9185254e346eb0894d817051ed"
+      },
+      "B3": {
+        "pasta": "dados/entradas/3fb143ccbf6e346d07cf",
+        "manifesto_sha256": "82f4657329526cdada196afe3afcc8309ed651738afaada3e5857f4efbce3c98"
+      },
+      "B4": {
+        "pasta": "dados/entradas/e8e3e94fb5e58f609d23",
+        "manifesto_sha256": "f1df71c34b275d9f1f4a1c8c80a93cf297f756b18f81d039296b48ae753bde74"
+      }
+    },
+    "identidades_consumo": {
+      "B1": "63021aed1dd8866395bc5ae932b84f558a0a619bc589263aef3620ad0274841e",
+      "B2": "a15088bd02fec30ee971200d9fe91cd7dede00696d6d8ecffb9433756c58bbdb",
+      "B3": "fd2a695986044972e0e34bd1481793aeb3cd8662635e9711cbca19bb7e284513",
+      "B4": "ebb027b25895f46c0a724aa4faefdc67b232d069f12051c67689d87edcc2eb29"
+    },
+    "fontes": {
+      "infraestrutura/__init__.py": "91c8cb2892c40d290684a1d0bd676b3278cdce4841696602d9e41805f1b062d5",
+      "infraestrutura/artefatos.py": "8a6b3cfeee815cdc3742ddf6b6fe7e972fa0757099f16212310515c49eb28a3e",
+      "mercado_binance/__init__.py": "1993613e6993a8af8ee69166f85eb809bea6f069829376487a40ee3fb544dcc8",
+      "mercado_binance/api.py": "b170c17c808da6f030f69531e8196033b22dbb1137cb950c77c8a4f8f7d586a3",
+      "mercado_binance/candles.py": "99d539cc682c8662b4f267f0c594b54a46c8da9fa5cdd8b7757a22bb0a2eee05",
+      "mercado_binance/contratos.py": "7dfc6f0c4739629a7ca98f4cecbfc49d939a90967ccdef7dad5012356e4d9ac5",
+      "mercado_binance/pipeline.py": "2fae3c6c7474e7a77735e2c34a0bf56f38cf4f03ca267dcaeb830e8100ce1ba1",
+      "mercado_binance/transporte.py": "ec0bd84e482ec957ba611c4af3b8f5f7dc60abafdba88211a531c954c9da589b",
+      "mercado_binance/validacao.py": "fdb47dcb5a66e984db584170e597f14dd636cbf55f087a382b03c04e43f78395",
+      "entradas_modelo/__init__.py": "a32efc5cc42d7d1b858e7dd9c01d39c0b7466ce593021169fbc8940795ade29c",
+      "entradas_modelo/alvos.py": "60cd54bc0bf9bfdefbf49271edb44110b46a8538f45a1d4d6ceb44df4e0a7e4d",
+      "entradas_modelo/amostras.py": "a2c20315d8bae37ad2b35dcae8aa7f01c515afaa7ff82984a5d62b2211c10bbc",
+      "entradas_modelo/conjunto.py": "9744fd6327ed74634660b42185e120e23a481b6187d0897d3042973be2e61610",
+      "entradas_modelo/pipeline.py": "e9a69438d603ad5ab3e8dde88a0445811f78947ef5552c4949258bca370c0e63",
+      "entradas_modelo/receitas.py": "f60a285ba54b89be78ec30fa0e5c3e88ae73152e7b98920c1d6b36451aad3d5c",
+      "modelos/__init__.py": "9008c1d8057a95f0496b9d1237b06c59032143dbe0534ceed59cb83af38f05b8",
+      "modelos/arima.py": "df37e823342bff7d70833ea056ba24e6293f204b455f227a66c28bfff4654538",
+      "modelos/conferencia.py": "b553421f8ea9c18370695c9e41561384330a207dd5efb0906bcec308538d50bf",
+      "modelos/consumo.py": "45bc850a421175b72a2500b256d0e7b8563892a638ba1e572e4ca22527af6a40",
+      "modelos/contratos.py": "cbcd7f912ce4615549300cee2f04974e59a7ecfb3eb836e035c634eddb620447",
+      "modelos/lstm.py": "bff60cbcc12a185e666b8a511e5be2d5e0ab25c0764f7ecd93e876601dbc04dd",
+      "modelos/mamba.py": "0ca157f55f0f788beee09aa43768eccf0dae139fe969f5823a855cb1a755773a",
+      "modelos/naive.py": "bd12107c6e9311e68b2377c6417ff32d3de756f5150e3d4d9714fa630cfd045d",
+      "modelos/neurais.py": "4b6cb724313d3b5df83a79afc3291dc0d644110158f0e5c6f62bd6bab85d4c54",
+      "treinamento/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "treinamento/ambiente.py": "9e0acf1c09537ea3259d6f02bb6f096cdb819a11c6b1670d95e292e793732bd6",
+      "treinamento/arima.py": "7d22218fac30a5a42921cfe7426d34132e836d400fda4e87c375c80919720ca0",
+      "treinamento/avaliar.py": "0ac89e31da797126b0a19c52444792f0eaee795240f87771b104ed16178b94f0",
+      "treinamento/checkpoints.py": "0f9ceb192473ec2f66245dee215bc63ba88b264beaa47153409ec95fcbc986d2",
+      "treinamento/ciclo.py": "f2438024b6cbfe050eb07ec0f74ab082b666fb23764dff0e1ec6b0aaf694ecf6",
+      "treinamento/configuracao.py": "e63e4131786d207a9e514e4d3c4b82b688c33213d20bb08850112cad04c81182",
+      "treinamento/neural.py": "05928af030bed5b12fe3904ee940f21a735c39e5aac568febbce8a7c4d3d2f08",
+      "treinamento/otimizacao.py": "96bf1dcad24de3cfd9beb1e0b76becfb68c1ff137b84a4eb66b9067f5b07a334",
+      "treinamento/preservacao.py": "0dbaefa24cad87ddadeaa727748bef5ff24a9f26e612497d0341399dc6db08e8",
+      "treinamento/qualificacao.py": "a7f760310cbef8c3d81900cf92b2ad2995d5e7ef0d1fec56f92a2cf2f7610cda",
+      "treinamento/selecao.py": "1671fb202499e547a032488ee51b3b0e214cea0f7e50c394b3b2a2e09591a8db",
+      "avaliacao/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "avaliacao/mercado.py": "c83fc429fda2642d9429fe546e167a4c6415b199c78f45befd71dcbb0e8a026b",
+      "avaliacao/metricas.py": "89016c0fba23691707fec66ec11a2e233cab108f27ff5dcd5872b547f9af4af4",
+      "avaliacao/publicacao.py": "b3bf2fb4ab48d757119f6e2079c4809b2d76d4bc77f0655faf909f544c87d7ce",
+      "avaliacao/spot.py": "e37d98a16580294a3b0c3c6a353df7ff8aaed176a32a3e0f1b9b07c0b6b80bf6",
+      "analises/__init__.py": "a14e911bc32033a54926e3b27386c9f3f4b04efeb02cf5aceda53f68d1856b3a",
+      "analises/agregacao.py": "46ed0407a63db8a0079f9afcf93cd0c8a4509ce4f1e92bebe11b32b6a16b24d4",
+      "analises/metricas.py": "41623410147a077361092a680339feea94a02e84383069b213532a1d003836e2",
+      "analises/previsoes.py": "8c299f1324d88fa8a0c50754a9ac447914f37898b37b05ca8e90ae7f2ad5b828",
+      "experimentos/__init__.py": "a14e911bc32033a54926e3b27386c9f3f4b04efeb02cf5aceda53f68d1856b3a",
+      "experimentos/comum.py": "4ec199c085e88cd14277384952b89a9c35a5fdbe0a586de097941bef084025b0",
+      "experimentos/perda_huber/__init__.py": "1750418c7358fb2a1a602e7c99988d8f5a0657d2fabcc78e5744adfe244ad37c",
+      "experimentos/perda_huber/__main__.py": "0b7ed184a426fa6d383af2424f9ff41d9396c97b69d2e9626e51403718ef277c",
+      "experimentos/perda_huber/ciclo.py": "ddba6a39735d289f42810a46529eae70ecf648d81afb29c1b3cfd1a99b94677a",
+      "experimentos/perda_huber/perda.py": "749b9b7f87be34a061d44d5ab286d686c6e4330b09f7262da4696fd9c280be1a",
+      "experimentos/perda_huber/publicacao.py": "29b9134eac88097093db1392dac433414528681b9177da63de8ae46481a659a7",
+      "experimentos/perda_huber/referencias.py": "bbff04107c92d4aaaab03ca24d9c11cdca8364b7c458eea26fcc20e963a878a8",
+      "experimentos/perda_huber/treino.py": "37ff9e2bf26431697318b2942a1ad29c2d7d280651884994334bb7c18d175995",
+      "experimentos/huber_blocos/__init__.py": "2fa8c3c345fae9aa1a5c124ca4ee403ded8de58436e817984676e7d690a7bfef",
+      "experimentos/huber_blocos/__main__.py": "a9ec4d4ff0a61f184433e9f564624579bbebc413da0b35841206a938f4702e52",
+      "experimentos/huber_blocos/ciclo.py": "3d410924c1abba91091175e950eec853e1d73d4cf81e76b2f3baa949e496c59e",
+      "experimentos/huber_blocos/dados.py": "62acdbff40215b12f6574cf151644c790d5c166bf0c070bd291810db55ce630e",
+      "experimentos/huber_blocos/estatisticas.py": "7f0d7a0c6423f3592bc6bb4bf1ef5434aa17c33abd611d57a7250eb75199b6c4",
+      "experimentos/huber_blocos/preservacao.py": "15888c8bf0a59be6df11c11bce57160364d1137aaf14b49d54b99f455736c10d",
+      "experimentos/huber_blocos/publicacao.py": "b7f2facdf7bad8b1eed1160bf679c118468e48edf564a250495987bab62bfbb7",
+      "tests_modelos/apoio.py": "19d5616bcc78550c38282016825f14ff7e985168ad60b39c3f08d29d7f61ba2f",
+      "tests_modelos/test_arima.py": "457f2c03864813cd8c5adff95aa8988efeff16e48f9282b28f7fb78e7b960090",
+      "tests_modelos/test_consumo.py": "af243c8458133075ece7c5037439e419cae57660cf3f7bc887ce178396f818a6",
+      "tests_modelos/test_neurais.py": "18c1781677834988de34b44daea9c442c626b68bee96609143508c6fc6dcfadc",
+      "tests_huber/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "tests_huber/test_ciclo.py": "7ca44e1f49de643fe068fad17d3ca24f7aa19529311ddc1bf99ee174fd0235d6",
+      "tests_huber_blocos/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "tests_huber_blocos/test_ciclo.py": "5d28e0c480b824f6fee44237f42f24f496cccea46b7889e85939475a3f36afc4",
+      "backtest_carteira/__init__.py": "935fcaa3336cd1f24f27457418b2cc6abd9d5b24f85f3fdc8dbb69dae8553d27",
+      "backtest_carteira/auditoria.py": "ad439a8d6e2bfe8367ff6d2e96da7e53cd2ca9f86f20ec8d25b4b6a64297bcd9",
+      "backtest_carteira/ciclo.py": "c5ce171fc8298a9e104eb57a2720418bf234425e9b3800df5c62c0a47ad45747",
+      "backtest_carteira/mercado.py": "fb85e0bdac113a4fd57af4332e6ef3fd9ebb31ffb7ba007011648dce505d6f37",
+      "backtest_carteira/politicas.py": "0ab300634f73d4cd34d23bb6a3d48d4bd5f838e23201cf8327a3712eed7a6b79",
+      "backtest_carteira/relatorio.py": "ac0724e405cf6d08280567ca43446f2deb4826a61896b09eff60f4303e9dd54e",
+      "backtest_carteira/simulador.py": "d7fa1748b0e92d23ceb5e1289790977eee351dd86b442f8ab3d18d127be020ec",
+      "tests_backtest_carteira/__init__.py": "3b9d78ec5b1842d5310fe7bd0d0c05979a27e7a5d991d647403cba1e02683f8c",
+      "tests_backtest_carteira/test_carteira.py": "20fc9a6b641f852582b58f1d96aac32705a24b5144b1e639c00ba8592dcc2d6a",
+      "tests_backtest_carteira/test_mercado.py": "08c9857ad5c710f21c0b6e634d4cf27cfb5cfc0997c2250fcec880a39fa299a4",
+      "configuracoes/huber_blocos_001.json": "d1de35d0899e08052653a4db4f26e4fa3729047c0a52931b5226a6c9e8b5d841",
+      "docs/protocolo_huber_blocos.md": "2ac7b2b83a227d1c47a5f6fd05c2490c8d853cd4f11f62f6e93b4d56582e8ddb",
+      "configuracoes/mamba16_perda_huber_001.json": "9025f321143149a2f33c37699400be66ab92b6196aaf42cbd3c815016a64aaf3",
+      "configuracoes/entradas_ohlcv24_001.json": "92c2ed229a56bfb223de2f0bb8369d491cbf4fc73bcbe79e408ea4f4de3c27d0",
+      "configuracoes/modelos_ohlcv24_001.json": "4311f1d1da59cc7b6bcb400d2539dc009d67f84ab570accee3b1a3b164b02c7d",
+      "configuracoes/backtest_carteira_001.json": "90c49786892452830ed4cdf3a8589bbd9a2f8e0283325ad7c708b7a025c530b1"
+    },
+    "ambiente": {
+      "python": "3.12.13",
+      "torch": "2.6.0+cu118",
+      "cuda": "11.8",
+      "host": "MuriloRFM",
+      "gpu": "NVIDIA GeForce RTX 4050 Laptop GPU",
+      "implementacao_instalada": {
+        "mamba": "a17e4c51b582dc0d4d690a649eba521cd0c1ee3dc8f0473a0967cdc9ec0874e3",
+        "mamba_ssm.ops.selective_scan_interface": "543edd077f11c80cccd5c5e2f926420d9105fd238d9e8960e53660cfa234dce8",
+        "selective_scan_cuda": "9ef2a8bad7534cfac451bfe312124cd1efb609ecfd65ce63262526d3113c87e1",
+        "causal_conv1d_cuda": "72a06e63ea5a209ec95d5a7ecc7199750b6df4ddf5ecc9019cd2a5c5758e2aac"
+      },
+      "pacotes": {
+        "mamba_ssm": "2.2.6.post3",
+        "causal_conv1d": "1.6.2.post1",
+        "numpy": "2.2.6",
+        "pandas": "3.0.3",
+        "statsmodels": "0.14.6",
+        "pyarrow": "24.0.0"
+      },
+      "perdas_instaladas_sha256": "724c30072ca0cb69228553a636b2937ff88b60a2a2c80b806bd2a3827033e2b6"
+    },
+    "qualificacao": {
+      "arquivo": "registros/huber_blocos/qualificacoes/a1048044401c4a6393ab66b8d071b5b8/qualificacao.json",
+      "sha256": "faefb220734ec2f2578878a6105847789234140844f693c46a6450760831021b"
+    },
+    "carteira": {
+      "pasta": "dados/experimentos/backtest_carteira_8ec8a66648313caa48e3",
+      "congelamento_sha256": "a0fa959f80576d9ee421e5d51b0834377ecd918b310af228a1608a221eaaf7a7",
+      "contrato": {
+        "configuracao": {
+          "versao": 1,
+          "ciclo": "backtest_carteira_001",
+          "pergunta": "Retenção e rebalanceamento fracionado aproveitam as previsões preservadas após custos?",
+          "mercado_pasta": "dados/mercado/binance_spot/449aab6c79dbf88aa625",
+          "dataset_pasta": "dados/entradas/0420879c2afc454c7754",
+          "publicacao_origem": "dados/experimentos/cryptomamba_adaptado_35dd98141ee20d9b8885/publicacoes/tentativa_001",
+          "series": {
+            "estado16_17": "dados/experimentos/ohlcv_modular_ab5baf3eab3a2e66d8b2/celulas/mamba_17/tentativa_001",
+            "estado16_42": "dados/experimentos/ohlcv_modular_ab5baf3eab3a2e66d8b2/celulas/mamba_42/tentativa_001",
+            "estado16_2026": "dados/experimentos/ohlcv_modular_ab5baf3eab3a2e66d8b2/celulas/mamba_2026/tentativa_001",
+            "estado16_7": "dados/experimentos/complemento_estado16_cc0b166fe42a3ed1678d/celulas/mamba_7/tentativa_001",
+            "estado16_123": "dados/experimentos/complemento_estado16_cc0b166fe42a3ed1678d/celulas/mamba_123/tentativa_001",
+            "estado16_31415": "dados/experimentos/complemento_estado16_cc0b166fe42a3ed1678d/celulas/mamba_31415/tentativa_001",
+            "lstm_17": "dados/experimentos/ohlcv_modular_ab5baf3eab3a2e66d8b2/celulas/lstm_17/tentativa_001",
+            "lstm_42": "dados/experimentos/ohlcv_modular_ab5baf3eab3a2e66d8b2/celulas/lstm_42/tentativa_001",
+            "lstm_2026": "dados/experimentos/ohlcv_modular_ab5baf3eab3a2e66d8b2/celulas/lstm_2026/tentativa_001",
+            "cryptomamba_17": "dados/experimentos/cryptomamba_adaptado_35dd98141ee20d9b8885/celulas/cryptomamba_17/tentativa_001",
+            "cryptomamba_42": "dados/experimentos/cryptomamba_adaptado_35dd98141ee20d9b8885/celulas/cryptomamba_42/tentativa_001",
+            "cryptomamba_2026": "dados/experimentos/cryptomamba_adaptado_35dd98141ee20d9b8885/celulas/cryptomamba_2026/tentativa_001",
+            "cryptomamba_7": "dados/experimentos/cryptomamba_adaptado_35dd98141ee20d9b8885/celulas/cryptomamba_7/tentativa_001",
+            "cryptomamba_123": "dados/experimentos/cryptomamba_adaptado_35dd98141ee20d9b8885/celulas/cryptomamba_123/tentativa_001",
+            "cryptomamba_31415": "dados/experimentos/cryptomamba_adaptado_35dd98141ee20d9b8885/celulas/cryptomamba_31415/tentativa_001",
+            "naive": "dados/experimentos/ohlcv_modular_ab5baf3eab3a2e66d8b2/celulas/naive/tentativa_001",
+            "arima": "dados/experimentos/ohlcv_modular_ab5baf3eab3a2e66d8b2/celulas/arima/tentativa_001"
+          },
+          "seeds": [
+            17,
+            42,
+            2026,
+            7,
+            123,
+            31415
+          ],
+          "seeds_pareadas_lstm": [
+            17,
+            42,
+            2026
+          ],
+          "politicas": [
+            "smart",
+            "vanilla",
+            "diaria24"
+          ],
+          "partes": [
+            "validacao",
+            "teste"
+          ],
+          "capital": 10000.0,
+          "latencia_minutos": 1,
+          "risco_smart": 0.02,
+          "limiar_vanilla": 0.01,
+          "minimo_usdt": 5.0,
+          "passo_btc": 1e-05,
+          "custos": {
+            "ideal": {
+              "taxa": 0.0,
+              "slippage": 0.0
+            },
+            "base": {
+              "taxa": 0.001,
+              "slippage": 0.0005
+            },
+            "agravado": {
+              "taxa": 0.002,
+              "slippage": 0.001
+            }
+          },
+          "bootstrap": {
+            "dias": 14,
+            "replicas": 2000,
+            "seed": 20261030
+          },
+          "simulacoes_planejadas": 369,
+          "novos_treinamentos": 0,
+          "buscas_parametros": 0,
+          "exposicao": "2024 seleção de checkpoints; 2025 consultado, análise retrospectiva; não holdout novo/walk-forward."
+        },
+        "fontes": {
+          "backtest_carteira/__init__.py": "935fcaa3336cd1f24f27457418b2cc6abd9d5b24f85f3fdc8dbb69dae8553d27",
+          "backtest_carteira/auditoria.py": "ad439a8d6e2bfe8367ff6d2e96da7e53cd2ca9f86f20ec8d25b4b6a64297bcd9",
+          "backtest_carteira/ciclo.py": "c5ce171fc8298a9e104eb57a2720418bf234425e9b3800df5c62c0a47ad45747",
+          "backtest_carteira/mercado.py": "fb85e0bdac113a4fd57af4332e6ef3fd9ebb31ffb7ba007011648dce505d6f37",
+          "backtest_carteira/politicas.py": "0ab300634f73d4cd34d23bb6a3d48d4bd5f838e23201cf8327a3712eed7a6b79",
+          "backtest_carteira/relatorio.py": "ac0724e405cf6d08280567ca43446f2deb4826a61896b09eff60f4303e9dd54e",
+          "backtest_carteira/simulador.py": "d7fa1748b0e92d23ceb5e1289790977eee351dd86b442f8ab3d18d127be020ec",
+          "tests_backtest_carteira/__init__.py": "3b9d78ec5b1842d5310fe7bd0d0c05979a27e7a5d991d647403cba1e02683f8c",
+          "tests_backtest_carteira/test_carteira.py": "20fc9a6b641f852582b58f1d96aac32705a24b5144b1e639c00ba8592dcc2d6a",
+          "tests_backtest_carteira/test_mercado.py": "08c9857ad5c710f21c0b6e634d4cf27cfb5cfc0997c2250fcec880a39fa299a4",
+          "configuracoes/backtest_carteira_001.json": "90c49786892452830ed4cdf3a8589bbd9a2f8e0283325ad7c708b7a025c530b1",
+          "run_backtest.py": "16fcbd67f006e364f336258ad20d841b62070881fd58613218eb25153ac8fb44",
+          "infraestrutura/artefatos.py": "8a6b3cfeee815cdc3742ddf6b6fe7e972fa0757099f16212310515c49eb28a3e",
+          "docs/protocolo_backtest_carteira.md": "9804a340fa6a02499cc090618e15dd3b9d3f247ea54e568ce44f30fe32a56fdd",
+          "registros/cryptomamba/fontes_externas/fef42727861a9c3a32241283ab981ef21a49e291/utils/trade.py": "2ef7749cae1ca3e8e994f35b9112d3fa90448162d14404bf7ccb83964facc99e",
+          "registros/cryptomamba/fontes_externas/fef42727861a9c3a32241283ab981ef21a49e291/scripts/simulate_trade.py": "57ffbc1288b5a1102fd02f8f7125792aed8f4d45f2fee3a61d9ab92e0b0657e4",
+          "registros/cryptomamba/fontes_externas/fef42727861a9c3a32241283ab981ef21a49e291/LICENSE": "1903d57dbabb004f056ae9433e12ee8847b44c2852f453ae9667abb030a8a8a8",
+          "registros/cryptomamba/fontes_externas/fef42727861a9c3a32241283ab981ef21a49e291/proveniencia.json": "c750c6dcb37eb9fa61fe5704b5021bd30e5920a3d9aac3b891aa4fdd2d7c4bf3",
+          "run_backtest_revisado.py": "8d52cf35761360b80084c9147dba9f666d22c2ebabbf4fce6d847d377b231059"
+        },
+        "insumos": {
+          "dados/experimentos/ohlcv_modular_ab5baf3eab3a2e66d8b2/celulas/mamba_17/tentativa_001/conclusao.json": "b3fc8bb1b9fa2788b45612dbf0117127a9c99ea70460827f5762365f497cb63e",
+          "dados/experimentos/ohlcv_modular_ab5baf3eab3a2e66d8b2/celulas/mamba_17/tentativa_001/previsoes_validacao.parquet": "8ad7fe09f5387ee6ccf30ea0b387e2b8965d52ce114bd4292e1ecb8288e6a92e",
+          "dados/experimentos/ohlcv_modular_ab5baf3eab3a2e66d8b2/celulas/mamba_17/tentativa_001/previsoes_teste.parquet": "b40bbd18419b13654f54d3a5fff3f76e590f3b4959790c350f6be54d59225691",
+          "dados/experimentos/ohlcv_modular_ab5baf3eab3a2e66d8b2/celulas/mamba_42/tentativa_001/conclusao.json": "92c7ebee418dcc313554dfd699f1fa742cdd5ae256d14e603d876fcad0f29688",
+          "dados/experimentos/ohlcv_modular_ab5baf3eab3a2e66d8b2/celulas/mamba_42/tentativa_001/previsoes_validacao.parquet": "25957a1f5d7c795d82441e93089d931805306615cd2df4f27ad196fa7ed71e5b",
+          "dados/experimentos/ohlcv_modular_ab5baf3eab3a2e66d8b2/celulas/mamba_42/tentativa_001/previsoes_teste.parquet": "6892c343f160da64f8ca30eabacf890034a053d4a0e602def20ba422f68c8782",
+          "dados/experimentos/ohlcv_modular_ab5baf3eab3a2e66d8b2/celulas/mamba_2026/tentativa_001/conclusao.json": "065b5c1e9c613a9e149cc6e9c400d808517a43305a16737b6e949a599043f64a",
+          "dados/experimentos/ohlcv_modular_ab5baf3eab3a2e66d8b2/celulas/mamba_2026/tentativa_001/previsoes_validacao.parquet": "30ea3774609c81bc3a2b412b71648bfb27f9642d4c863e5e0fe01bc93a1a6a90",
+          "dados/experimentos/ohlcv_modular_ab5baf3eab3a2e66d8b2/celulas/mamba_2026/tentativa_001/previsoes_teste.parquet": "e114e61563841c36ece5438a88ee8d5479d7313f8501b00139fcad3da3abdddb",
+          "dados/experimentos/complemento_estado16_cc0b166fe42a3ed1678d/celulas/mamba_7/tentativa_001/conclusao.json": "283061d0627c996b5c80d5047fbbcc3a6ea82cc38d06c67ed417d7a0dd222e71",
+          "dados/experimentos/complemento_estado16_cc0b166fe42a3ed1678d/celulas/mamba_7/tentativa_001/previsoes_validacao.parquet": "624055b33f03227bb080e656aee1a7171869f9917e419c2fb1b06d5f3c3930c7",
+          "dados/experimentos/complemento_estado16_cc0b166fe42a3ed1678d/celulas/mamba_7/tentativa_001/previsoes_teste.parquet": "d9129ddcd6993a237fb9f358cac408d140063952271656732d8c61c88539814b",
+          "dados/experimentos/complemento_estado16_cc0b166fe42a3ed1678d/celulas/mamba_123/tentativa_001/conclusao.json": "37bfc4fc3d0a35b7bba57b0107f58ebcf4b97acf234371c6c0bb0d31eb8400a1",
+          "dados/experimentos/complemento_estado16_cc0b166fe42a3ed1678d/celulas/mamba_123/tentativa_001/previsoes_validacao.parquet": "4c50467cde612402501f559cb852d65369950ae3638225c97b41ecc6934766cc",
+          "dados/experimentos/complemento_estado16_cc0b166fe42a3ed1678d/celulas/mamba_123/tentativa_001/previsoes_teste.parquet": "038c02e748fc1d866315afde34e60c88506b34ef29fa57f93e3c1cace0885f83",
+          "dados/experimentos/complemento_estado16_cc0b166fe42a3ed1678d/celulas/mamba_31415/tentativa_001/conclusao.json": "a5ef18ff3f46e1dfb02dd79699fb8db6771e74c8d00aca2cbe0c73d5eb682b6e",
+          "dados/experimentos/complemento_estado16_cc0b166fe42a3ed1678d/celulas/mamba_31415/tentativa_001/previsoes_validacao.parquet": "536caa84cb0efa7fb98f6461da0a85d0e6be556638480d4cd5da05445f0aafa7",
+          "dados/experimentos/complemento_estado16_cc0b166fe42a3ed1678d/celulas/mamba_31415/tentativa_001/previsoes_teste.parquet": "7dfc157604b4c4f7956c7fc8aa098ff4c0411c4c5fe820890327f4caf1030e65",
+          "dados/experimentos/ohlcv_modular_ab5baf3eab3a2e66d8b2/celulas/lstm_17/tentativa_001/conclusao.json": "64e8aa41ba1854bdead0596b0511219565eee932593aa354475479edef305eb9",
+          "dados/experimentos/ohlcv_modular_ab5baf3eab3a2e66d8b2/celulas/lstm_17/tentativa_001/previsoes_validacao.parquet": "c7fee36a361d38cb812abef1a2ae239e6827d5fb07cf80a87654209d815cabc9",
+          "dados/experimentos/ohlcv_modular_ab5baf3eab3a2e66d8b2/celulas/lstm_17/tentativa_001/previsoes_teste.parquet": "05e57b7510dff1e17fe7051c1d7ef07de45644b0a247becdab555882e234696e",
+          "dados/experimentos/ohlcv_modular_ab5baf3eab3a2e66d8b2/celulas/lstm_42/tentativa_001/conclusao.json": "cd79420cecf8496f97b0d0db3bc48aa5a6ef3cf820db20b52a7fd2867313b02c",
+          "dados/experimentos/ohlcv_modular_ab5baf3eab3a2e66d8b2/celulas/lstm_42/tentativa_001/previsoes_validacao.parquet": "849dde68b5aae00c2c16c6048fbd5518f74c56d76f18e7ed20b1b65010bc0bdc",
+          "dados/experimentos/ohlcv_modular_ab5baf3eab3a2e66d8b2/celulas/lstm_42/tentativa_001/previsoes_teste.parquet": "ba874628103f89f8ab38be789ab11f9805bcdc2c7d1a5ddfb3a7629552f9e390",
+          "dados/experimentos/ohlcv_modular_ab5baf3eab3a2e66d8b2/celulas/lstm_2026/tentativa_001/conclusao.json": "9fa4733d2d1acf5f2a1c6a36b7cf8aec15c825f163bbb265221896adda7c36fa",
+          "dados/experimentos/ohlcv_modular_ab5baf3eab3a2e66d8b2/celulas/lstm_2026/tentativa_001/previsoes_validacao.parquet": "7675faf9a7385f53256c80b8f26bfb056650a834359fea71900edc1138799ad3",
+          "dados/experimentos/ohlcv_modular_ab5baf3eab3a2e66d8b2/celulas/lstm_2026/tentativa_001/previsoes_teste.parquet": "121500ff54b4428817f79f3368aa28cadeaeeaade2a820214203f75428e96428",
+          "dados/experimentos/cryptomamba_adaptado_35dd98141ee20d9b8885/celulas/cryptomamba_17/tentativa_001/conclusao.json": "0cd10f341f8192189778bbb19af26882449bc9a2728f1611a5252d1b9614d7b1",
+          "dados/experimentos/cryptomamba_adaptado_35dd98141ee20d9b8885/celulas/cryptomamba_17/tentativa_001/previsoes_validacao.parquet": "ccdb4812966393cab38a86c75ea155a3fa35df68b158d80eb854af4b596d3936",
+          "dados/experimentos/cryptomamba_adaptado_35dd98141ee20d9b8885/celulas/cryptomamba_17/tentativa_001/previsoes_teste.parquet": "942788da99e8adc6596ce2ebac546439c67afe09b55eaed5fe6d85e345eea53d",
+          "dados/experimentos/cryptomamba_adaptado_35dd98141ee20d9b8885/celulas/cryptomamba_42/tentativa_001/conclusao.json": "55e68c3ddf934feea12efa3ab8bba01dd5642056cd66c73e477ec038e49fbf50",
+          "dados/experimentos/cryptomamba_adaptado_35dd98141ee20d9b8885/celulas/cryptomamba_42/tentativa_001/previsoes_validacao.parquet": "d512a698a2b84fa23ccc880a09bd70a7feae62ced19c225301d25ea5ecc4f12f",
+          "dados/experimentos/cryptomamba_adaptado_35dd98141ee20d9b8885/celulas/cryptomamba_42/tentativa_001/previsoes_teste.parquet": "d74edd7940a6f18cf13ee5772d179feabb6b917b825d124c7baad08d5aadb728",
+          "dados/experimentos/cryptomamba_adaptado_35dd98141ee20d9b8885/celulas/cryptomamba_2026/tentativa_001/conclusao.json": "eabde8fca660770743103a755593921627680439368a295744f763e575df2cdd",
+          "dados/experimentos/cryptomamba_adaptado_35dd98141ee20d9b8885/celulas/cryptomamba_2026/tentativa_001/previsoes_validacao.parquet": "e082c48b303450a5ee3d441091382f8ce8b2884f2c131e6eb101e15f4edf72b4",
+          "dados/experimentos/cryptomamba_adaptado_35dd98141ee20d9b8885/celulas/cryptomamba_2026/tentativa_001/previsoes_teste.parquet": "071b797595f1ffe5f066bb65aa9c3e5b15889aaf1f2e777feede9f7c9f777371",
+          "dados/experimentos/cryptomamba_adaptado_35dd98141ee20d9b8885/celulas/cryptomamba_7/tentativa_001/conclusao.json": "c6349d1eb130559934cb6367928431c52e8f6f50248470d82b7536760dbc7598",
+          "dados/experimentos/cryptomamba_adaptado_35dd98141ee20d9b8885/celulas/cryptomamba_7/tentativa_001/previsoes_validacao.parquet": "aed6c3288bc01fa90bdc425541ca8d23427ad6ba3d9c45731657dc8029c8647f",
+          "dados/experimentos/cryptomamba_adaptado_35dd98141ee20d9b8885/celulas/cryptomamba_7/tentativa_001/previsoes_teste.parquet": "211f1c4121aa6e3658c5e1cdfeceba7bdae88e7076c6aff28ee7cf52f606d56b",
+          "dados/experimentos/cryptomamba_adaptado_35dd98141ee20d9b8885/celulas/cryptomamba_123/tentativa_001/conclusao.json": "0c6cbb0426b5e5db2b689da718c596703f0497f2b6f58734af6ad94e8b5c9b4f",
+          "dados/experimentos/cryptomamba_adaptado_35dd98141ee20d9b8885/celulas/cryptomamba_123/tentativa_001/previsoes_validacao.parquet": "d447a65936746022e3ae3d438d53aa3897582a8cfb7638dff792976fafab79d1",
+          "dados/experimentos/cryptomamba_adaptado_35dd98141ee20d9b8885/celulas/cryptomamba_123/tentativa_001/previsoes_teste.parquet": "91ed7bb3269e110bc4987a10fd1495738aa913438bdd8a7e2df9c50d61e731d5",
+          "dados/experimentos/cryptomamba_adaptado_35dd98141ee20d9b8885/celulas/cryptomamba_31415/tentativa_001/conclusao.json": "385f1ba3a1bdf922f3c3a44213d8190d9c5170a90666f7c77a8346d7b43c45c8",
+          "dados/experimentos/cryptomamba_adaptado_35dd98141ee20d9b8885/celulas/cryptomamba_31415/tentativa_001/previsoes_validacao.parquet": "06007ee00499ad081432bd331b899042070c7740e82581a28a42aa93c60ad02d",
+          "dados/experimentos/cryptomamba_adaptado_35dd98141ee20d9b8885/celulas/cryptomamba_31415/tentativa_001/previsoes_teste.parquet": "36af5038b5a8f95d89129679308204c577294430a16b7fbfc560fb397f8b92d3",
+          "dados/experimentos/ohlcv_modular_ab5baf3eab3a2e66d8b2/celulas/naive/tentativa_001/conclusao.json": "47728d6dfe7371555fe3e24087789fd795f5772007f0acc0302495ebba1d8b1d",
+          "dados/experimentos/ohlcv_modular_ab5baf3eab3a2e66d8b2/celulas/naive/tentativa_001/previsoes_validacao.parquet": "f03cafedc54343317b5de382c13b36038e5dfa3b8f7a254bb8d02fb4a7eb6085",
+          "dados/experimentos/ohlcv_modular_ab5baf3eab3a2e66d8b2/celulas/naive/tentativa_001/previsoes_teste.parquet": "16919d4895e518d7ddbc319e7f5b65fb93a85bfb6be37636e69073a29c646bf3",
+          "dados/experimentos/ohlcv_modular_ab5baf3eab3a2e66d8b2/celulas/arima/tentativa_001/conclusao.json": "b57695e9c63f77a71a68c45468ad2e537b2bed2957df520411debc4a82d7b302",
+          "dados/experimentos/ohlcv_modular_ab5baf3eab3a2e66d8b2/celulas/arima/tentativa_001/previsoes_validacao.parquet": "53ca61776b6466f478bb2c6bf042da49d5d5875bedd583e8fd20a2a208d02534",
+          "dados/experimentos/ohlcv_modular_ab5baf3eab3a2e66d8b2/celulas/arima/tentativa_001/previsoes_teste.parquet": "a2f38cb3ed4ee23739e5392fb447ac7987db9e1a233446b6dfd1348098c484ad",
+          "dados/mercado/binance_spot/449aab6c79dbf88aa625/minutos/BTCUSDT/2023-12.parquet": "5543a6f607974e29f90ca09177f515987db4493f099f5213c519d92c041df1c2",
+          "dados/mercado/binance_spot/449aab6c79dbf88aa625/minutos/BTCUSDT/2024-01.parquet": "b62633b9a49f15b3bed8df98355a8f4eb3f1216e394965748cc7d8427550f471",
+          "dados/mercado/binance_spot/449aab6c79dbf88aa625/minutos/BTCUSDT/2024-02.parquet": "af6f68371a6a1e10ee54345eedbceb5721ccce18f849eb3f604378de720406bc",
+          "dados/mercado/binance_spot/449aab6c79dbf88aa625/minutos/BTCUSDT/2024-03.parquet": "eff6d8079d5036e5fa556bd41a7458e22b03745293c8848984124d89b6fb4e4d",
+          "dados/mercado/binance_spot/449aab6c79dbf88aa625/minutos/BTCUSDT/2024-04.parquet": "028395c10a756510cc8f7edef4ebeb06628530c40e8a7e9b764d5399f7a2178e",
+          "dados/mercado/binance_spot/449aab6c79dbf88aa625/minutos/BTCUSDT/2024-05.parquet": "a4d30d844c09111c6b8fc96a0b29145457bccf60059afe2a6c73fc8c4a9e31fb",
+          "dados/mercado/binance_spot/449aab6c79dbf88aa625/minutos/BTCUSDT/2024-06.parquet": "82069f2aa0748cb224bfbfe149c73d2194d02c6cb863be88d41d2e0177010ac9",
+          "dados/mercado/binance_spot/449aab6c79dbf88aa625/minutos/BTCUSDT/2024-07.parquet": "f1fd65c63b52523a145bd188da6617a2fef58778c0679e5636a35b1761269046",
+          "dados/mercado/binance_spot/449aab6c79dbf88aa625/minutos/BTCUSDT/2024-08.parquet": "9dae872db866cd624280f25dddc90f5cde81e0dfa9348bc7a7d0d1c9aef4dcff",
+          "dados/mercado/binance_spot/449aab6c79dbf88aa625/minutos/BTCUSDT/2024-09.parquet": "10f5322143ca67fc796b852881806b2b44d0856aa6f96292e3ff9dc6f48de0ec",
+          "dados/mercado/binance_spot/449aab6c79dbf88aa625/minutos/BTCUSDT/2024-10.parquet": "42438631dcf61679ab0701801aef47b6f9ba3d993a5284fe68325863e680414a",
+          "dados/mercado/binance_spot/449aab6c79dbf88aa625/minutos/BTCUSDT/2024-11.parquet": "b731dc69365139acb61943ea20c0eb163ea680ffbce96cd1d5e8ab539fe4672f",
+          "dados/mercado/binance_spot/449aab6c79dbf88aa625/minutos/BTCUSDT/2024-12.parquet": "1582634c83d683410d3e663d4d1cca3379654be09a048f9722a92f71571e5c12",
+          "dados/mercado/binance_spot/449aab6c79dbf88aa625/minutos/BTCUSDT/2025-01.parquet": "a1c5bb41fa3712d9cc02bbfb26c0b411d4fc10659d9d3767ed7251c705dadafa",
+          "dados/mercado/binance_spot/449aab6c79dbf88aa625/minutos/BTCUSDT/2025-02.parquet": "f23add94e24e5f9754e90eb631f3d7ec2c053652010100f16f97b0f8679d36b0",
+          "dados/mercado/binance_spot/449aab6c79dbf88aa625/minutos/BTCUSDT/2025-03.parquet": "3063cd7e75cef9e9ff30a8cb328557568769be2ceaa11bf8e5361a4c11eec920",
+          "dados/mercado/binance_spot/449aab6c79dbf88aa625/minutos/BTCUSDT/2025-04.parquet": "63d3f4ac928819b912d1660c329f816c68131c28498e1c1a494a7b4bc52e1573",
+          "dados/mercado/binance_spot/449aab6c79dbf88aa625/minutos/BTCUSDT/2025-05.parquet": "6fb1f0d05ca289a5a44566ed473a1f49084f6cdfc69ed6179a79bd538862b910",
+          "dados/mercado/binance_spot/449aab6c79dbf88aa625/minutos/BTCUSDT/2025-06.parquet": "164a095966a9ac2a6df398fa58df95a7639968d7b2a26880139ba5ab20ae2f6a",
+          "dados/mercado/binance_spot/449aab6c79dbf88aa625/minutos/BTCUSDT/2025-07.parquet": "aa42869e3c0759779d429c98cbfad28ecd62a851cbbec96d993e740f111ba547",
+          "dados/mercado/binance_spot/449aab6c79dbf88aa625/minutos/BTCUSDT/2025-08.parquet": "67df46b1df4b8283d174805097eb16e630fc5053333c56d4db379c67ca562718",
+          "dados/mercado/binance_spot/449aab6c79dbf88aa625/minutos/BTCUSDT/2025-09.parquet": "36576312a046a3f60c3488e68709eb50064f52caff7a066f91da080e004dd7da",
+          "dados/mercado/binance_spot/449aab6c79dbf88aa625/minutos/BTCUSDT/2025-10.parquet": "38e1e9749e72d81c1787e05745c460236bf2e5772caf5e2a6e2dc12027b40e08",
+          "dados/mercado/binance_spot/449aab6c79dbf88aa625/minutos/BTCUSDT/2025-11.parquet": "a37faf43f6c1352e5bd2cd6fd2664a9c4212810b8774647cbb101a3d1495b580",
+          "dados/mercado/binance_spot/449aab6c79dbf88aa625/minutos/BTCUSDT/2025-12.parquet": "cd0df96952c0495cbee76c5150e0c57007754b6866d186325d38a8c608c428a1",
+          "dados/mercado/binance_spot/449aab6c79dbf88aa625/manifesto.json": "c400f234dee55aba0ea042d09a77018166502b516be54bdb27f1b6d3ed0ac3d3",
+          "dados/mercado/binance_spot/449aab6c79dbf88aa625/qualidade.json": "5f2d45b655b07665e70b4f3c87000ef4899fa54ca87a7927cdbfb473aabaeca1",
+          "dados/experimentos/cryptomamba_adaptado_35dd98141ee20d9b8885/publicacoes/tentativa_001/manifesto.json": "86dc915f920be638deeb66691663f45326afd8107fcac9938d9eaf20778f4893",
+          "dados/experimentos/cryptomamba_adaptado_35dd98141ee20d9b8885/publicacoes/tentativa_001/resultados.json": "92753992d8814e678da16b1d550243fc8a2aeaff9ef0c70ecc7efd5c04823e03",
+          "registros/cryptomamba/execucao.json": "03792c71827f9216affc5a4587fd6cf84762e5a1f39b38c611a3baceae5d76b1",
+          "registros/cryptomamba/fechamento.json": "f7060f95a2fac4be256c2213b6fc484df2ebd24c39c4e1f3bd4bae954cc384a3",
+          "registros/referencias/mamba16_ohlcv24_001.json": "d09a1f74a118d249e61f1d539aae6919e7a195ff0dec9ade513db5955232ecc3",
+          "registros/backtest_carteira/revisao_loader/qualificacao_loader.json": "001182bca7cc5776dc8bca07ac04185e02b577413d8f9bc2a15cce7d5920e2ee"
+        },
+        "mercado_partes": [
+          {
+            "par": "BTCUSDT",
+            "periodo": {
+              "inicio": "2023-12-01T00:00:00+00:00",
+              "fim": "2024-01-01T00:00:00+00:00"
+            },
+            "arquivo": "minutos/BTCUSDT/2023-12.parquet",
+            "esperados": 44640,
+            "registros_recebidos": 44640,
+            "completos": 44640,
+            "interrompidos": 0,
+            "ausentes_na_fonte": 0,
+            "indisponiveis": 0,
+            "completos_sem_negocios": 0,
+            "unidade_fonte": "ms"
+          },
+          {
+            "par": "BTCUSDT",
+            "periodo": {
+              "inicio": "2024-01-01T00:00:00+00:00",
+              "fim": "2024-02-01T00:00:00+00:00"
+            },
+            "arquivo": "minutos/BTCUSDT/2024-01.parquet",
+            "esperados": 44640,
+            "registros_recebidos": 44640,
+            "completos": 44640,
+            "interrompidos": 0,
+            "ausentes_na_fonte": 0,
+            "indisponiveis": 0,
+            "completos_sem_negocios": 0,
+            "unidade_fonte": "ms"
+          },
+          {
+            "par": "BTCUSDT",
+            "periodo": {
+              "inicio": "2024-02-01T00:00:00+00:00",
+              "fim": "2024-03-01T00:00:00+00:00"
+            },
+            "arquivo": "minutos/BTCUSDT/2024-02.parquet",
+            "esperados": 41760,
+            "registros_recebidos": 41760,
+            "completos": 41760,
+            "interrompidos": 0,
+            "ausentes_na_fonte": 0,
+            "indisponiveis": 0,
+            "completos_sem_negocios": 0,
+            "unidade_fonte": "ms"
+          },
+          {
+            "par": "BTCUSDT",
+            "periodo": {
+              "inicio": "2024-03-01T00:00:00+00:00",
+              "fim": "2024-04-01T00:00:00+00:00"
+            },
+            "arquivo": "minutos/BTCUSDT/2024-03.parquet",
+            "esperados": 44640,
+            "registros_recebidos": 44640,
+            "completos": 44640,
+            "interrompidos": 0,
+            "ausentes_na_fonte": 0,
+            "indisponiveis": 0,
+            "completos_sem_negocios": 0,
+            "unidade_fonte": "ms"
+          },
+          {
+            "par": "BTCUSDT",
+            "periodo": {
+              "inicio": "2024-04-01T00:00:00+00:00",
+              "fim": "2024-05-01T00:00:00+00:00"
+            },
+            "arquivo": "minutos/BTCUSDT/2024-04.parquet",
+            "esperados": 43200,
+            "registros_recebidos": 43200,
+            "completos": 43200,
+            "interrompidos": 0,
+            "ausentes_na_fonte": 0,
+            "indisponiveis": 0,
+            "completos_sem_negocios": 0,
+            "unidade_fonte": "ms"
+          },
+          {
+            "par": "BTCUSDT",
+            "periodo": {
+              "inicio": "2024-05-01T00:00:00+00:00",
+              "fim": "2024-06-01T00:00:00+00:00"
+            },
+            "arquivo": "minutos/BTCUSDT/2024-05.parquet",
+            "esperados": 44640,
+            "registros_recebidos": 44640,
+            "completos": 44640,
+            "interrompidos": 0,
+            "ausentes_na_fonte": 0,
+            "indisponiveis": 0,
+            "completos_sem_negocios": 0,
+            "unidade_fonte": "ms"
+          },
+          {
+            "par": "BTCUSDT",
+            "periodo": {
+              "inicio": "2024-06-01T00:00:00+00:00",
+              "fim": "2024-07-01T00:00:00+00:00"
+            },
+            "arquivo": "minutos/BTCUSDT/2024-06.parquet",
+            "esperados": 43200,
+            "registros_recebidos": 43200,
+            "completos": 43200,
+            "interrompidos": 0,
+            "ausentes_na_fonte": 0,
+            "indisponiveis": 0,
+            "completos_sem_negocios": 0,
+            "unidade_fonte": "ms"
+          },
+          {
+            "par": "BTCUSDT",
+            "periodo": {
+              "inicio": "2024-07-01T00:00:00+00:00",
+              "fim": "2024-08-01T00:00:00+00:00"
+            },
+            "arquivo": "minutos/BTCUSDT/2024-07.parquet",
+            "esperados": 44640,
+            "registros_recebidos": 44640,
+            "completos": 44640,
+            "interrompidos": 0,
+            "ausentes_na_fonte": 0,
+            "indisponiveis": 0,
+            "completos_sem_negocios": 0,
+            "unidade_fonte": "ms"
+          },
+          {
+            "par": "BTCUSDT",
+            "periodo": {
+              "inicio": "2024-08-01T00:00:00+00:00",
+              "fim": "2024-09-01T00:00:00+00:00"
+            },
+            "arquivo": "minutos/BTCUSDT/2024-08.parquet",
+            "esperados": 44640,
+            "registros_recebidos": 44640,
+            "completos": 44640,
+            "interrompidos": 0,
+            "ausentes_na_fonte": 0,
+            "indisponiveis": 0,
+            "completos_sem_negocios": 0,
+            "unidade_fonte": "ms"
+          },
+          {
+            "par": "BTCUSDT",
+            "periodo": {
+              "inicio": "2024-09-01T00:00:00+00:00",
+              "fim": "2024-10-01T00:00:00+00:00"
+            },
+            "arquivo": "minutos/BTCUSDT/2024-09.parquet",
+            "esperados": 43200,
+            "registros_recebidos": 43200,
+            "completos": 43200,
+            "interrompidos": 0,
+            "ausentes_na_fonte": 0,
+            "indisponiveis": 0,
+            "completos_sem_negocios": 0,
+            "unidade_fonte": "ms"
+          },
+          {
+            "par": "BTCUSDT",
+            "periodo": {
+              "inicio": "2024-10-01T00:00:00+00:00",
+              "fim": "2024-11-01T00:00:00+00:00"
+            },
+            "arquivo": "minutos/BTCUSDT/2024-10.parquet",
+            "esperados": 44640,
+            "registros_recebidos": 44640,
+            "completos": 44640,
+            "interrompidos": 0,
+            "ausentes_na_fonte": 0,
+            "indisponiveis": 0,
+            "completos_sem_negocios": 0,
+            "unidade_fonte": "ms"
+          },
+          {
+            "par": "BTCUSDT",
+            "periodo": {
+              "inicio": "2024-11-01T00:00:00+00:00",
+              "fim": "2024-12-01T00:00:00+00:00"
+            },
+            "arquivo": "minutos/BTCUSDT/2024-11.parquet",
+            "esperados": 43200,
+            "registros_recebidos": 43200,
+            "completos": 43200,
+            "interrompidos": 0,
+            "ausentes_na_fonte": 0,
+            "indisponiveis": 0,
+            "completos_sem_negocios": 0,
+            "unidade_fonte": "ms"
+          },
+          {
+            "par": "BTCUSDT",
+            "periodo": {
+              "inicio": "2024-12-01T00:00:00+00:00",
+              "fim": "2025-01-01T00:00:00+00:00"
+            },
+            "arquivo": "minutos/BTCUSDT/2024-12.parquet",
+            "esperados": 44640,
+            "registros_recebidos": 44640,
+            "completos": 44640,
+            "interrompidos": 0,
+            "ausentes_na_fonte": 0,
+            "indisponiveis": 0,
+            "completos_sem_negocios": 0,
+            "unidade_fonte": "ms"
+          },
+          {
+            "par": "BTCUSDT",
+            "periodo": {
+              "inicio": "2025-01-01T00:00:00+00:00",
+              "fim": "2025-02-01T00:00:00+00:00"
+            },
+            "arquivo": "minutos/BTCUSDT/2025-01.parquet",
+            "esperados": 44640,
+            "registros_recebidos": 44640,
+            "completos": 44640,
+            "interrompidos": 0,
+            "ausentes_na_fonte": 0,
+            "indisponiveis": 0,
+            "completos_sem_negocios": 0,
+            "unidade_fonte": "us"
+          },
+          {
+            "par": "BTCUSDT",
+            "periodo": {
+              "inicio": "2025-02-01T00:00:00+00:00",
+              "fim": "2025-03-01T00:00:00+00:00"
+            },
+            "arquivo": "minutos/BTCUSDT/2025-02.parquet",
+            "esperados": 40320,
+            "registros_recebidos": 40320,
+            "completos": 40320,
+            "interrompidos": 0,
+            "ausentes_na_fonte": 0,
+            "indisponiveis": 0,
+            "completos_sem_negocios": 0,
+            "unidade_fonte": "us"
+          },
+          {
+            "par": "BTCUSDT",
+            "periodo": {
+              "inicio": "2025-03-01T00:00:00+00:00",
+              "fim": "2025-04-01T00:00:00+00:00"
+            },
+            "arquivo": "minutos/BTCUSDT/2025-03.parquet",
+            "esperados": 44640,
+            "registros_recebidos": 44640,
+            "completos": 44640,
+            "interrompidos": 0,
+            "ausentes_na_fonte": 0,
+            "indisponiveis": 0,
+            "completos_sem_negocios": 0,
+            "unidade_fonte": "us"
+          },
+          {
+            "par": "BTCUSDT",
+            "periodo": {
+              "inicio": "2025-04-01T00:00:00+00:00",
+              "fim": "2025-05-01T00:00:00+00:00"
+            },
+            "arquivo": "minutos/BTCUSDT/2025-04.parquet",
+            "esperados": 43200,
+            "registros_recebidos": 43200,
+            "completos": 43200,
+            "interrompidos": 0,
+            "ausentes_na_fonte": 0,
+            "indisponiveis": 0,
+            "completos_sem_negocios": 0,
+            "unidade_fonte": "us"
+          },
+          {
+            "par": "BTCUSDT",
+            "periodo": {
+              "inicio": "2025-05-01T00:00:00+00:00",
+              "fim": "2025-06-01T00:00:00+00:00"
+            },
+            "arquivo": "minutos/BTCUSDT/2025-05.parquet",
+            "esperados": 44640,
+            "registros_recebidos": 44640,
+            "completos": 44640,
+            "interrompidos": 0,
+            "ausentes_na_fonte": 0,
+            "indisponiveis": 0,
+            "completos_sem_negocios": 0,
+            "unidade_fonte": "us"
+          },
+          {
+            "par": "BTCUSDT",
+            "periodo": {
+              "inicio": "2025-06-01T00:00:00+00:00",
+              "fim": "2025-07-01T00:00:00+00:00"
+            },
+            "arquivo": "minutos/BTCUSDT/2025-06.parquet",
+            "esperados": 43200,
+            "registros_recebidos": 43200,
+            "completos": 43200,
+            "interrompidos": 0,
+            "ausentes_na_fonte": 0,
+            "indisponiveis": 0,
+            "completos_sem_negocios": 0,
+            "unidade_fonte": "us"
+          },
+          {
+            "par": "BTCUSDT",
+            "periodo": {
+              "inicio": "2025-07-01T00:00:00+00:00",
+              "fim": "2025-08-01T00:00:00+00:00"
+            },
+            "arquivo": "minutos/BTCUSDT/2025-07.parquet",
+            "esperados": 44640,
+            "registros_recebidos": 44640,
+            "completos": 44640,
+            "interrompidos": 0,
+            "ausentes_na_fonte": 0,
+            "indisponiveis": 0,
+            "completos_sem_negocios": 0,
+            "unidade_fonte": "us"
+          },
+          {
+            "par": "BTCUSDT",
+            "periodo": {
+              "inicio": "2025-08-01T00:00:00+00:00",
+              "fim": "2025-09-01T00:00:00+00:00"
+            },
+            "arquivo": "minutos/BTCUSDT/2025-08.parquet",
+            "esperados": 44640,
+            "registros_recebidos": 44640,
+            "completos": 44640,
+            "interrompidos": 0,
+            "ausentes_na_fonte": 0,
+            "indisponiveis": 0,
+            "completos_sem_negocios": 0,
+            "unidade_fonte": "us"
+          },
+          {
+            "par": "BTCUSDT",
+            "periodo": {
+              "inicio": "2025-09-01T00:00:00+00:00",
+              "fim": "2025-10-01T00:00:00+00:00"
+            },
+            "arquivo": "minutos/BTCUSDT/2025-09.parquet",
+            "esperados": 43200,
+            "registros_recebidos": 43200,
+            "completos": 43200,
+            "interrompidos": 0,
+            "ausentes_na_fonte": 0,
+            "indisponiveis": 0,
+            "completos_sem_negocios": 0,
+            "unidade_fonte": "us"
+          },
+          {
+            "par": "BTCUSDT",
+            "periodo": {
+              "inicio": "2025-10-01T00:00:00+00:00",
+              "fim": "2025-11-01T00:00:00+00:00"
+            },
+            "arquivo": "minutos/BTCUSDT/2025-10.parquet",
+            "esperados": 44640,
+            "registros_recebidos": 44640,
+            "completos": 44640,
+            "interrompidos": 0,
+            "ausentes_na_fonte": 0,
+            "indisponiveis": 0,
+            "completos_sem_negocios": 0,
+            "unidade_fonte": "us"
+          },
+          {
+            "par": "BTCUSDT",
+            "periodo": {
+              "inicio": "2025-11-01T00:00:00+00:00",
+              "fim": "2025-12-01T00:00:00+00:00"
+            },
+            "arquivo": "minutos/BTCUSDT/2025-11.parquet",
+            "esperados": 43200,
+            "registros_recebidos": 43200,
+            "completos": 43200,
+            "interrompidos": 0,
+            "ausentes_na_fonte": 0,
+            "indisponiveis": 0,
+            "completos_sem_negocios": 0,
+            "unidade_fonte": "us"
+          },
+          {
+            "par": "BTCUSDT",
+            "periodo": {
+              "inicio": "2025-12-01T00:00:00+00:00",
+              "fim": "2026-01-01T00:00:00+00:00"
+            },
+            "arquivo": "minutos/BTCUSDT/2025-12.parquet",
+            "esperados": 44640,
+            "registros_recebidos": 44640,
+            "completos": 44640,
+            "interrompidos": 0,
+            "ausentes_na_fonte": 0,
+            "indisponiveis": 0,
+            "completos_sem_negocios": 0,
+            "unidade_fonte": "us"
+          }
+        ],
+        "medias_validacao_para_controle": {
+          "estado16_17": 0.0012720258517386301,
+          "estado16_42": 0.0002935820592785094,
+          "estado16_2026": 0.0014143533616629716,
+          "estado16_7": 0.0011941958038099501,
+          "estado16_123": 0.0005152532680851871,
+          "estado16_31415": 0.0005719455401240154,
+          "lstm_17": 0.00024186447883863023,
+          "lstm_42": -0.0004991753504630769,
+          "lstm_2026": -8.884303222528236e-06,
+          "cryptomamba_17": 0.0015787388270256002,
+          "cryptomamba_42": 0.0018877214297081553,
+          "cryptomamba_2026": 0.0019279785130431625,
+          "cryptomamba_7": 0.001093812923041885,
+          "cryptomamba_123": 0.0008317526588648191,
+          "cryptomamba_31415": 0.0014596697359185939,
+          "naive": 0.0,
+          "arima": -1.134072543926834e-05
+        },
+        "grade": [
+          {
+            "parte": "validacao",
+            "cenario": "ideal",
+            "politica": "smart",
+            "serie": "estado16_17"
+          },
+          {
+            "parte": "validacao",
+            "cenario": "ideal",
+            "politica": "smart",
+            "serie": "estado16_42"
+          },
+          {
+            "parte": "validacao",
+            "cenario": "ideal",
+            "politica": "smart",
+            "serie": "estado16_2026"
+          },
+          {
+            "parte": "validacao",
+            "cenario": "ideal",
+            "politica": "smart",
+            "serie": "estado16_7"
+          },
+          {
+            "parte": "validacao",
+            "cenario": "ideal",
+            "politica": "smart",
+            "serie": "estado16_123"
+          },
+          {
+            "parte": "validacao",
+            "cenario": "ideal",
+            "politica": "smart",
+            "serie": "estado16_31415"
+          },
+          {
+            "parte": "validacao",
+            "cenario": "ideal",
+            "politica": "smart",
+            "serie": "lstm_17"
+          },
+          {
+            "parte": "validacao",
+            "cenario": "ideal",
+            "politica": "smart",
+            "serie": "lstm_42"
+          },
+          {
+            "parte": "validacao",
+            "cenario": "ideal",
+            "politica": "smart",
+            "serie": "lstm_2026"
+          },
+          {
+            "parte": "validacao",
+            "cenario": "ideal",
+            "politica": "smart",
+            "serie": "cryptomamba_17"
+          },
+          {
+            "parte": "validacao",
+            "cenario": "ideal",
+            "politica": "smart",
+            "serie": "cryptomamba_42"
+          },
+          {
+            "parte": "validacao",
+            "cenario": "ideal",
+            "politica": "smart",
+            "serie": "cryptomamba_2026"
+          },
+          {
+            "parte": "validacao",
+            "cenario": "ideal",
+            "politica": "smart",
+            "serie": "cryptomamba_7"
+          },
+          {
+            "parte": "validacao",
+            "cenario": "ideal",
+            "politica": "smart",
+            "serie": "cryptomamba_123"
+          },
+          {
+            "parte": "validacao",
+            "cenario": "ideal",
+            "politica": "smart",
+            "serie": "cryptomamba_31415"
+          },
+          {
+            "parte": "validacao",
+            "cenario": "ideal",
+            "politica": "smart",
+            "serie": "naive"
+          },
+          {
+            "parte": "validacao",
+            "cenario": "ideal",
+            "politica": "smart",
+            "serie": "arima"
+          },
+          {
+            "parte": "validacao",
+            "cenario": "ideal",
+            "politica": "vanilla",
+            "serie": "estado16_17"
+          },
+          {
+            "parte": "validacao",
+            "cenario": "ideal",
+            "politica": "vanilla",
+            "serie": "estado16_42"
+          },
+          {
+            "parte": "validacao",
+            "cenario": "ideal",
+            "politica": "vanilla",
+            "serie": "estado16_2026"
+          },
+          {
+            "parte": "validacao",
+            "cenario": "ideal",
+            "politica": "vanilla",
+            "serie": "estado16_7"
+          },
+          {
+            "parte": "validacao",
+            "cenario": "ideal",
+            "politica": "vanilla",
+            "serie": "estado16_123"
+          },
+          {
+            "parte": "validacao",
+            "cenario": "ideal",
+            "politica": "vanilla",
+            "serie": "estado16_31415"
+          },
+          {
+            "parte": "validacao",
+            "cenario": "ideal",
+            "politica": "vanilla",
+            "serie": "lstm_17"
+          },
+          {
+            "parte": "validacao",
+            "cenario": "ideal",
+            "politica": "vanilla",
+            "serie": "lstm_42"
+          },
+          {
+            "parte": "validacao",
+            "cenario": "ideal",
+            "politica": "vanilla",
+            "serie": "lstm_2026"
+          },
+          {
+            "parte": "validacao",
+            "cenario": "ideal",
+            "politica": "vanilla",
+            "serie": "cryptomamba_17"
+          },
+          {
+            "parte": "validacao",
+            "cenario": "ideal",
+            "politica": "vanilla",
+            "serie": "cryptomamba_42"
+          },
+          {
+            "parte": "validacao",
+            "cenario": "ideal",
+            "politica": "vanilla",
+            "serie": "cryptomamba_2026"
+          },
+          {
+            "parte": "validacao",
+            "cenario": "ideal",
+            "politica": "vanilla",
+            "serie": "cryptomamba_7"
+          },
+          {
+            "parte": "validacao",
+            "cenario": "ideal",
+            "politica": "vanilla",
+            "serie": "cryptomamba_123"
+          },
+          {
+            "parte": "validacao",
+            "cenario": "ideal",
+            "politica": "vanilla",
+            "serie": "cryptomamba_31415"
+          },
+          {
+            "parte": "validacao",
+            "cenario": "ideal",
+            "politica": "vanilla",
+            "serie": "naive"
+          },
+          {
+            "parte": "validacao",
+            "cenario": "ideal",
+            "politica": "vanilla",
+            "serie": "arima"
+          },
+          {
+            "parte": "validacao",
+            "cenario": "ideal",
+            "politica": "diaria24",
+            "serie": "estado16_17"
+          },
+          {
+            "parte": "validacao",
+            "cenario": "ideal",
+            "politica": "diaria24",
+            "serie": "estado16_42"
+          },
+          {
+            "parte": "validacao",
+            "cenario": "ideal",
+            "politica": "diaria24",
+            "serie": "estado16_2026"
+          },
+          {
+            "parte": "validacao",
+            "cenario": "ideal",
+            "politica": "diaria24",
+            "serie": "estado16_7"
+          },
+          {
+            "parte": "validacao",
+            "cenario": "ideal",
+            "politica": "diaria24",
+            "serie": "estado16_123"
+          },
+          {
+            "parte": "validacao",
+            "cenario": "ideal",
+            "politica": "diaria24",
+            "serie": "estado16_31415"
+          },
+          {
+            "parte": "validacao",
+            "cenario": "ideal",
+            "politica": "diaria24",
+            "serie": "lstm_17"
+          },
+          {
+            "parte": "validacao",
+            "cenario": "ideal",
+            "politica": "diaria24",
+            "serie": "lstm_42"
+          },
+          {
+            "parte": "validacao",
+            "cenario": "ideal",
+            "politica": "diaria24",
+            "serie": "lstm_2026"
+          },
+          {
+            "parte": "validacao",
+            "cenario": "ideal",
+            "politica": "diaria24",
+            "serie": "cryptomamba_17"
+          },
+          {
+            "parte": "validacao",
+            "cenario": "ideal",
+            "politica": "diaria24",
+            "serie": "cryptomamba_42"
+          },
+          {
+            "parte": "validacao",
+            "cenario": "ideal",
+            "politica": "diaria24",
+            "serie": "cryptomamba_2026"
+          },
+          {
+            "parte": "validacao",
+            "cenario": "ideal",
+            "politica": "diaria24",
+            "serie": "cryptomamba_7"
+          },
+          {
+            "parte": "validacao",
+            "cenario": "ideal",
+            "politica": "diaria24",
+            "serie": "cryptomamba_123"
+          },
+          {
+            "parte": "validacao",
+            "cenario": "ideal",
+            "politica": "diaria24",
+            "serie": "cryptomamba_31415"
+          },
+          {
+            "parte": "validacao",
+            "cenario": "ideal",
+            "politica": "diaria24",
+            "serie": "naive"
+          },
+          {
+            "parte": "validacao",
+            "cenario": "ideal",
+            "politica": "diaria24",
+            "serie": "arima"
+          },
+          {
+            "parte": "validacao",
+            "cenario": "ideal",
+            "politica": "caixa",
+            "serie": "benchmark"
+          },
+          {
+            "parte": "validacao",
+            "cenario": "ideal",
+            "politica": "comprar_manter",
+            "serie": "benchmark"
+          },
+          {
+            "parte": "validacao",
+            "cenario": "base",
+            "politica": "smart",
+            "serie": "estado16_17"
+          },
+          {
+            "parte": "validacao",
+            "cenario": "base",
+            "politica": "smart",
+            "serie": "estado16_42"
+          },
+          {
+            "parte": "validacao",
+            "cenario": "base",
+            "politica": "smart",
+            "serie": "estado16_2026"
+          },
+          {
+            "parte": "validacao",
+            "cenario": "base",
+            "politica": "smart",
+            "serie": "estado16_7"
+          },
+          {
+            "parte": "validacao",
+            "cenario": "base",
+            "politica": "smart",
+            "serie": "estado16_123"
+          },
+          {
+            "parte": "validacao",
+            "cenario": "base",
+            "politica": "smart",
+            "serie": "estado16_31415"
+          },
+          {
+            "parte": "validacao",
+            "cenario": "base",
+            "politica": "smart",
+            "serie": "lstm_17"
+          },
+          {
+            "parte": "validacao",
+            "cenario": "base",
+            "politica": "smart",
+            "serie": "lstm_42"
+          },
+          {
+            "parte": "validacao",
+            "cenario": "base",
+            "politica": "smart",
+            "serie": "lstm_2026"
+          },
+          {
+            "parte": "validacao",
+            "cenario": "base",
+            "politica": "smart",
+            "serie": "cryptomamba_17"
+          },
+          {
+            "parte": "validacao",
+            "cenario": "base",
+            "politica": "smart",
+            "serie": "cryptomamba_42"
+          },
+          {
+            "parte": "validacao",
+            "cenario": "base",
+            "politica": "smart",
+            "serie": "cryptomamba_2026"
+          },
+          {
+            "parte": "validacao",
+            "cenario": "base",
+            "politica": "smart",
+            "serie": "cryptomamba_7"
+          },
+          {
+            "parte": "validacao",
+            "cenario": "base",
+            "politica": "smart",
+            "serie": "cryptomamba_123"
+          },
+          {
+            "parte": "validacao",
+            "cenario": "base",
+            "politica": "smart",
+            "serie": "cryptomamba_31415"
+          },
+          {
+            "parte": "validacao",
+            "cenario": "base",
+            "politica": "smart",
+            "serie": "naive"
+          },
+          {
+            "parte": "validacao",
+            "cenario": "base",
+            "politica": "smart",
+            "serie": "arima"
+          },
+          {
+            "parte": "validacao",
+            "cenario": "base",
+            "politica": "vanilla",
+            "serie": "estado16_17"
+          },
+          {
+            "parte": "validacao",
+            "cenario": "base",
+            "politica": "vanilla",
+            "serie": "estado16_42"
+          },
+          {
+            "parte": "validacao",
+            "cenario": "base",
+            "politica": "vanilla",
+            "serie": "estado16_2026"
+          },
+          {
+            "parte": "validacao",
+            "cenario": "base",
+            "politica": "vanilla",
+            "serie": "estado16_7"
+          },
+          {
+            "parte": "validacao",
+            "cenario": "base",
+            "politica": "vanilla",
+            "serie": "estado16_123"
+          },
+          {
+            "parte": "validacao",
+            "cenario": "base",
+            "politica": "vanilla",
+            "serie": "estado16_31415"
+          },
+          {
+            "parte": "validacao",
+            "cenario": "base",
+            "politica": "vanilla",
+            "serie": "lstm_17"
+          },
+          {
+            "parte": "validacao",
+            "cenario": "base",
+            "politica": "vanilla",
+            "serie": "lstm_42"
+          },
+          {
+            "parte": "validacao",
+            "cenario": "base",
+            "politica": "vanilla",
+            "serie": "lstm_2026"
+          },
+          {
+            "parte": "validacao",
+            "cenario": "base",
+            "politica": "vanilla",
+            "serie": "cryptomamba_17"
+          },
+          {
+            "parte": "validacao",
+            "cenario": "base",
+            "politica": "vanilla",
+            "serie": "cryptomamba_42"
+          },
+          {
+            "parte": "validacao",
+            "cenario": "base",
+            "politica": "vanilla",
+            "serie": "cryptomamba_2026"
+          },
+          {
+            "parte": "validacao",
+            "cenario": "base",
+            "politica": "vanilla",
+            "serie": "cryptomamba_7"
+          },
+          {
+            "parte": "validacao",
+            "cenario": "base",
+            "politica": "vanilla",
+            "serie": "cryptomamba_123"
+          },
+          {
+            "parte": "validacao",
+            "cenario": "base",
+            "politica": "vanilla",
+            "serie": "cryptomamba_31415"
+          },
+          {
+            "parte": "validacao",
+            "cenario": "base",
+            "politica": "vanilla",
+            "serie": "naive"
+          },
+          {
+            "parte": "validacao",
+            "cenario": "base",
+            "politica": "vanilla",
+            "serie": "arima"
+          },
+          {
+            "parte": "validacao",
+            "cenario": "base",
+            "politica": "diaria24",
+            "serie": "estado16_17"
+          },
+          {
+            "parte": "validacao",
+            "cenario": "base",
+            "politica": "diaria24",
+            "serie": "estado16_42"
+          },
+          {
+            "parte": "validacao",
+            "cenario": "base",
+            "politica": "diaria24",
+            "serie": "estado16_2026"
+          },
+          {
+            "parte": "validacao",
+            "cenario": "base",
+            "politica": "diaria24",
+            "serie": "estado16_7"
+          },
+          {
+            "parte": "validacao",
+            "cenario": "base",
+            "politica": "diaria24",
+            "serie": "estado16_123"
+          },
+          {
+            "parte": "validacao",
+            "cenario": "base",
+            "politica": "diaria24",
+            "serie": "estado16_31415"
+          },
+          {
+            "parte": "validacao",
+            "cenario": "base",
+            "politica": "diaria24",
+            "serie": "lstm_17"
+          },
+          {
+            "parte": "validacao",
+            "cenario": "base",
+            "politica": "diaria24",
+            "serie": "lstm_42"
+          },
+          {
+            "parte": "validacao",
+            "cenario": "base",
+            "politica": "diaria24",
+            "serie": "lstm_2026"
+          },
+          {
+            "parte": "validacao",
+            "cenario": "base",
+            "politica": "diaria24",
+            "serie": "cryptomamba_17"
+          },
+          {
+            "parte": "validacao",
+            "cenario": "base",
+            "politica": "diaria24",
+            "serie": "cryptomamba_42"
+          },
+          {
+            "parte": "validacao",
+            "cenario": "base",
+            "politica": "diaria24",
+            "serie": "cryptomamba_2026"
+          },
+          {
+            "parte": "validacao",
+            "cenario": "base",
+            "politica": "diaria24",
+            "serie": "cryptomamba_7"
+          },
+          {
+            "parte": "validacao",
+            "cenario": "base",
+            "politica": "diaria24",
+            "serie": "cryptomamba_123"
+          },
+          {
+            "parte": "validacao",
+            "cenario": "base",
+            "politica": "diaria24",
+            "serie": "cryptomamba_31415"
+          },
+          {
+            "parte": "validacao",
+            "cenario": "base",
+            "politica": "diaria24",
+            "serie": "naive"
+          },
+          {
+            "parte": "validacao",
+            "cenario": "base",
+            "politica": "diaria24",
+            "serie": "arima"
+          },
+          {
+            "parte": "validacao",
+            "cenario": "base",
+            "politica": "caixa",
+            "serie": "benchmark"
+          },
+          {
+            "parte": "validacao",
+            "cenario": "base",
+            "politica": "comprar_manter",
+            "serie": "benchmark"
+          },
+          {
+            "parte": "validacao",
+            "cenario": "agravado",
+            "politica": "smart",
+            "serie": "estado16_17"
+          },
+          {
+            "parte": "validacao",
+            "cenario": "agravado",
+            "politica": "smart",
+            "serie": "estado16_42"
+          },
+          {
+            "parte": "validacao",
+            "cenario": "agravado",
+            "politica": "smart",
+            "serie": "estado16_2026"
+          },
+          {
+            "parte": "validacao",
+            "cenario": "agravado",
+            "politica": "smart",
+            "serie": "estado16_7"
+          },
+          {
+            "parte": "validacao",
+            "cenario": "agravado",
+            "politica": "smart",
+            "serie": "estado16_123"
+          },
+          {
+            "parte": "validacao",
+            "cenario": "agravado",
+            "politica": "smart",
+            "serie": "estado16_31415"
+          },
+          {
+            "parte": "validacao",
+            "cenario": "agravado",
+            "politica": "smart",
+            "serie": "lstm_17"
+          },
+          {
+            "parte": "validacao",
+            "cenario": "agravado",
+            "politica": "smart",
+            "serie": "lstm_42"
+          },
+          {
+            "parte": "validacao",
+            "cenario": "agravado",
+            "politica": "smart",
+            "serie": "lstm_2026"
+          },
+          {
+            "parte": "validacao",
+            "cenario": "agravado",
+            "politica": "smart",
+            "serie": "cryptomamba_17"
+          },
+          {
+            "parte": "validacao",
+            "cenario": "agravado",
+            "politica": "smart",
+            "serie": "cryptomamba_42"
+          },
+          {
+            "parte": "validacao",
+            "cenario": "agravado",
+            "politica": "smart",
+            "serie": "cryptomamba_2026"
+          },
+          {
+            "parte": "validacao",
+            "cenario": "agravado",
+            "politica": "smart",
+            "serie": "cryptomamba_7"
+          },
+          {
+            "parte": "validacao",
+            "cenario": "agravado",
+            "politica": "smart",
+            "serie": "cryptomamba_123"
+          },
+          {
+            "parte": "validacao",
+            "cenario": "agravado",
+            "politica": "smart",
+            "serie": "cryptomamba_31415"
+          },
+          {
+            "parte": "validacao",
+            "cenario": "agravado",
+            "politica": "smart",
+            "serie": "naive"
+          },
+          {
+            "parte": "validacao",
+            "cenario": "agravado",
+            "politica": "smart",
+            "serie": "arima"
+          },
+          {
+            "parte": "validacao",
+            "cenario": "agravado",
+            "politica": "vanilla",
+            "serie": "estado16_17"
+          },
+          {
+            "parte": "validacao",
+            "cenario": "agravado",
+            "politica": "vanilla",
+            "serie": "estado16_42"
+          },
+          {
+            "parte": "validacao",
+            "cenario": "agravado",
+            "politica": "vanilla",
+            "serie": "estado16_2026"
+          },
+          {
+            "parte": "validacao",
+            "cenario": "agravado",
+            "politica": "vanilla",
+            "serie": "estado16_7"
+          },
+          {
+            "parte": "validacao",
+            "cenario": "agravado",
+            "politica": "vanilla",
+            "serie": "estado16_123"
+          },
+          {
+            "parte": "validacao",
+            "cenario": "agravado",
+            "politica": "vanilla",
+            "serie": "estado16_31415"
+          },
+          {
+            "parte": "validacao",
+            "cenario": "agravado",
+            "politica": "vanilla",
+            "serie": "lstm_17"
+          },
+          {
+            "parte": "validacao",
+            "cenario": "agravado",
+            "politica": "vanilla",
+            "serie": "lstm_42"
+          },
+          {
+            "parte": "validacao",
+            "cenario": "agravado",
+            "politica": "vanilla",
+            "serie": "lstm_2026"
+          },
+          {
+            "parte": "validacao",
+            "cenario": "agravado",
+            "politica": "vanilla",
+            "serie": "cryptomamba_17"
+          },
+          {
+            "parte": "validacao",
+            "cenario": "agravado",
+            "politica": "vanilla",
+            "serie": "cryptomamba_42"
+          },
+          {
+            "parte": "validacao",
+            "cenario": "agravado",
+            "politica": "vanilla",
+            "serie": "cryptomamba_2026"
+          },
+          {
+            "parte": "validacao",
+            "cenario": "agravado",
+            "politica": "vanilla",
+            "serie": "cryptomamba_7"
+          },
+          {
+            "parte": "validacao",
+            "cenario": "agravado",
+            "politica": "vanilla",
+            "serie": "cryptomamba_123"
+          },
+          {
+            "parte": "validacao",
+            "cenario": "agravado",
+            "politica": "vanilla",
+            "serie": "cryptomamba_31415"
+          },
+          {
+            "parte": "validacao",
+            "cenario": "agravado",
+            "politica": "vanilla",
+            "serie": "naive"
+          },
+          {
+            "parte": "validacao",
+            "cenario": "agravado",
+            "politica": "vanilla",
+            "serie": "arima"
+          },
+          {
+            "parte": "validacao",
+            "cenario": "agravado",
+            "politica": "diaria24",
+            "serie": "estado16_17"
+          },
+          {
+            "parte": "validacao",
+            "cenario": "agravado",
+            "politica": "diaria24",
+            "serie": "estado16_42"
+          },
+          {
+            "parte": "validacao",
+            "cenario": "agravado",
+            "politica": "diaria24",
+            "serie": "estado16_2026"
+          },
+          {
+            "parte": "validacao",
+            "cenario": "agravado",
+            "politica": "diaria24",
+            "serie": "estado16_7"
+          },
+          {
+            "parte": "validacao",
+            "cenario": "agravado",
+            "politica": "diaria24",
+            "serie": "estado16_123"
+          },
+          {
+            "parte": "validacao",
+            "cenario": "agravado",
+            "politica": "diaria24",
+            "serie": "estado16_31415"
+          },
+          {
+            "parte": "validacao",
+            "cenario": "agravado",
+            "politica": "diaria24",
+            "serie": "lstm_17"
+          },
+          {
+            "parte": "validacao",
+            "cenario": "agravado",
+            "politica": "diaria24",
+            "serie": "lstm_42"
+          },
+          {
+            "parte": "validacao",
+            "cenario": "agravado",
+            "politica": "diaria24",
+            "serie": "lstm_2026"
+          },
+          {
+            "parte": "validacao",
+            "cenario": "agravado",
+            "politica": "diaria24",
+            "serie": "cryptomamba_17"
+          },
+          {
+            "parte": "validacao",
+            "cenario": "agravado",
+            "politica": "diaria24",
+            "serie": "cryptomamba_42"
+          },
+          {
+            "parte": "validacao",
+            "cenario": "agravado",
+            "politica": "diaria24",
+            "serie": "cryptomamba_2026"
+          },
+          {
+            "parte": "validacao",
+            "cenario": "agravado",
+            "politica": "diaria24",
+            "serie": "cryptomamba_7"
+          },
+          {
+            "parte": "validacao",
+            "cenario": "agravado",
+            "politica": "diaria24",
+            "serie": "cryptomamba_123"
+          },
+          {
+            "parte": "validacao",
+            "cenario": "agravado",
+            "politica": "diaria24",
+            "serie": "cryptomamba_31415"
+          },
+          {
+            "parte": "validacao",
+            "cenario": "agravado",
+            "politica": "diaria24",
+            "serie": "naive"
+          },
+          {
+            "parte": "validacao",
+            "cenario": "agravado",
+            "politica": "diaria24",
+            "serie": "arima"
+          },
+          {
+            "parte": "validacao",
+            "cenario": "agravado",
+            "politica": "caixa",
+            "serie": "benchmark"
+          },
+          {
+            "parte": "validacao",
+            "cenario": "agravado",
+            "politica": "comprar_manter",
+            "serie": "benchmark"
+          },
+          {
+            "parte": "teste",
+            "cenario": "ideal",
+            "politica": "smart",
+            "serie": "estado16_17"
+          },
+          {
+            "parte": "teste",
+            "cenario": "ideal",
+            "politica": "smart",
+            "serie": "estado16_42"
+          },
+          {
+            "parte": "teste",
+            "cenario": "ideal",
+            "politica": "smart",
+            "serie": "estado16_2026"
+          },
+          {
+            "parte": "teste",
+            "cenario": "ideal",
+            "politica": "smart",
+            "serie": "estado16_7"
+          },
+          {
+            "parte": "teste",
+            "cenario": "ideal",
+            "politica": "smart",
+            "serie": "estado16_123"
+          },
+          {
+            "parte": "teste",
+            "cenario": "ideal",
+            "politica": "smart",
+            "serie": "estado16_31415"
+          },
+          {
+            "parte": "teste",
+            "cenario": "ideal",
+            "politica": "smart",
+            "serie": "lstm_17"
+          },
+          {
+            "parte": "teste",
+            "cenario": "ideal",
+            "politica": "smart",
+            "serie": "lstm_42"
+          },
+          {
+            "parte": "teste",
+            "cenario": "ideal",
+            "politica": "smart",
+            "serie": "lstm_2026"
+          },
+          {
+            "parte": "teste",
+            "cenario": "ideal",
+            "politica": "smart",
+            "serie": "cryptomamba_17"
+          },
+          {
+            "parte": "teste",
+            "cenario": "ideal",
+            "politica": "smart",
+            "serie": "cryptomamba_42"
+          },
+          {
+            "parte": "teste",
+            "cenario": "ideal",
+            "politica": "smart",
+            "serie": "cryptomamba_2026"
+          },
+          {
+            "parte": "teste",
+            "cenario": "ideal",
+            "politica": "smart",
+            "serie": "cryptomamba_7"
+          },
+          {
+            "parte": "teste",
+            "cenario": "ideal",
+            "politica": "smart",
+            "serie": "cryptomamba_123"
+          },
+          {
+            "parte": "teste",
+            "cenario": "ideal",
+            "politica": "smart",
+            "serie": "cryptomamba_31415"
+          },
+          {
+            "parte": "teste",
+            "cenario": "ideal",
+            "politica": "smart",
+            "serie": "naive"
+          },
+          {
+            "parte": "teste",
+            "cenario": "ideal",
+            "politica": "smart",
+            "serie": "arima"
+          },
+          {
+            "parte": "teste",
+            "cenario": "ideal",
+            "politica": "vanilla",
+            "serie": "estado16_17"
+          },
+          {
+            "parte": "teste",
+            "cenario": "ideal",
+            "politica": "vanilla",
+            "serie": "estado16_42"
+          },
+          {
+            "parte": "teste",
+            "cenario": "ideal",
+            "politica": "vanilla",
+            "serie": "estado16_2026"
+          },
+          {
+            "parte": "teste",
+            "cenario": "ideal",
+            "politica": "vanilla",
+            "serie": "estado16_7"
+          },
+          {
+            "parte": "teste",
+            "cenario": "ideal",
+            "politica": "vanilla",
+            "serie": "estado16_123"
+          },
+          {
+            "parte": "teste",
+            "cenario": "ideal",
+            "politica": "vanilla",
+            "serie": "estado16_31415"
+          },
+          {
+            "parte": "teste",
+            "cenario": "ideal",
+            "politica": "vanilla",
+            "serie": "lstm_17"
+          },
+          {
+            "parte": "teste",
+            "cenario": "ideal",
+            "politica": "vanilla",
+            "serie": "lstm_42"
+          },
+          {
+            "parte": "teste",
+            "cenario": "ideal",
+            "politica": "vanilla",
+            "serie": "lstm_2026"
+          },
+          {
+            "parte": "teste",
+            "cenario": "ideal",
+            "politica": "vanilla",
+            "serie": "cryptomamba_17"
+          },
+          {
+            "parte": "teste",
+            "cenario": "ideal",
+            "politica": "vanilla",
+            "serie": "cryptomamba_42"
+          },
+          {
+            "parte": "teste",
+            "cenario": "ideal",
+            "politica": "vanilla",
+            "serie": "cryptomamba_2026"
+          },
+          {
+            "parte": "teste",
+            "cenario": "ideal",
+            "politica": "vanilla",
+            "serie": "cryptomamba_7"
+          },
+          {
+            "parte": "teste",
+            "cenario": "ideal",
+            "politica": "vanilla",
+            "serie": "cryptomamba_123"
+          },
+          {
+            "parte": "teste",
+            "cenario": "ideal",
+            "politica": "vanilla",
+            "serie": "cryptomamba_31415"
+          },
+          {
+            "parte": "teste",
+            "cenario": "ideal",
+            "politica": "vanilla",
+            "serie": "naive"
+          },
+          {
+            "parte": "teste",
+            "cenario": "ideal",
+            "politica": "vanilla",
+            "serie": "arima"
+          },
+          {
+            "parte": "teste",
+            "cenario": "ideal",
+            "politica": "diaria24",
+            "serie": "estado16_17"
+          },
+          {
+            "parte": "teste",
+            "cenario": "ideal",
+            "politica": "diaria24",
+            "serie": "estado16_42"
+          },
+          {
+            "parte": "teste",
+            "cenario": "ideal",
+            "politica": "diaria24",
+            "serie": "estado16_2026"
+          },
+          {
+            "parte": "teste",
+            "cenario": "ideal",
+            "politica": "diaria24",
+            "serie": "estado16_7"
+          },
+          {
+            "parte": "teste",
+            "cenario": "ideal",
+            "politica": "diaria24",
+            "serie": "estado16_123"
+          },
+          {
+            "parte": "teste",
+            "cenario": "ideal",
+            "politica": "diaria24",
+            "serie": "estado16_31415"
+          },
+          {
+            "parte": "teste",
+            "cenario": "ideal",
+            "politica": "diaria24",
+            "serie": "lstm_17"
+          },
+          {
+            "parte": "teste",
+            "cenario": "ideal",
+            "politica": "diaria24",
+            "serie": "lstm_42"
+          },
+          {
+            "parte": "teste",
+            "cenario": "ideal",
+            "politica": "diaria24",
+            "serie": "lstm_2026"
+          },
+          {
+            "parte": "teste",
+            "cenario": "ideal",
+            "politica": "diaria24",
+            "serie": "cryptomamba_17"
+          },
+          {
+            "parte": "teste",
+            "cenario": "ideal",
+            "politica": "diaria24",
+            "serie": "cryptomamba_42"
+          },
+          {
+            "parte": "teste",
+            "cenario": "ideal",
+            "politica": "diaria24",
+            "serie": "cryptomamba_2026"
+          },
+          {
+            "parte": "teste",
+            "cenario": "ideal",
+            "politica": "diaria24",
+            "serie": "cryptomamba_7"
+          },
+          {
+            "parte": "teste",
+            "cenario": "ideal",
+            "politica": "diaria24",
+            "serie": "cryptomamba_123"
+          },
+          {
+            "parte": "teste",
+            "cenario": "ideal",
+            "politica": "diaria24",
+            "serie": "cryptomamba_31415"
+          },
+          {
+            "parte": "teste",
+            "cenario": "ideal",
+            "politica": "diaria24",
+            "serie": "naive"
+          },
+          {
+            "parte": "teste",
+            "cenario": "ideal",
+            "politica": "diaria24",
+            "serie": "arima"
+          },
+          {
+            "parte": "teste",
+            "cenario": "ideal",
+            "politica": "smart_constante",
+            "serie": "estado16_17"
+          },
+          {
+            "parte": "teste",
+            "cenario": "ideal",
+            "politica": "smart_constante",
+            "serie": "estado16_42"
+          },
+          {
+            "parte": "teste",
+            "cenario": "ideal",
+            "politica": "smart_constante",
+            "serie": "estado16_2026"
+          },
+          {
+            "parte": "teste",
+            "cenario": "ideal",
+            "politica": "smart_constante",
+            "serie": "estado16_7"
+          },
+          {
+            "parte": "teste",
+            "cenario": "ideal",
+            "politica": "smart_constante",
+            "serie": "estado16_123"
+          },
+          {
+            "parte": "teste",
+            "cenario": "ideal",
+            "politica": "smart_constante",
+            "serie": "estado16_31415"
+          },
+          {
+            "parte": "teste",
+            "cenario": "ideal",
+            "politica": "smart_constante",
+            "serie": "lstm_17"
+          },
+          {
+            "parte": "teste",
+            "cenario": "ideal",
+            "politica": "smart_constante",
+            "serie": "lstm_42"
+          },
+          {
+            "parte": "teste",
+            "cenario": "ideal",
+            "politica": "smart_constante",
+            "serie": "lstm_2026"
+          },
+          {
+            "parte": "teste",
+            "cenario": "ideal",
+            "politica": "smart_constante",
+            "serie": "cryptomamba_17"
+          },
+          {
+            "parte": "teste",
+            "cenario": "ideal",
+            "politica": "smart_constante",
+            "serie": "cryptomamba_42"
+          },
+          {
+            "parte": "teste",
+            "cenario": "ideal",
+            "politica": "smart_constante",
+            "serie": "cryptomamba_2026"
+          },
+          {
+            "parte": "teste",
+            "cenario": "ideal",
+            "politica": "smart_constante",
+            "serie": "cryptomamba_7"
+          },
+          {
+            "parte": "teste",
+            "cenario": "ideal",
+            "politica": "smart_constante",
+            "serie": "cryptomamba_123"
+          },
+          {
+            "parte": "teste",
+            "cenario": "ideal",
+            "politica": "smart_constante",
+            "serie": "cryptomamba_31415"
+          },
+          {
+            "parte": "teste",
+            "cenario": "ideal",
+            "politica": "smart_constante",
+            "serie": "naive"
+          },
+          {
+            "parte": "teste",
+            "cenario": "ideal",
+            "politica": "smart_constante",
+            "serie": "arima"
+          },
+          {
+            "parte": "teste",
+            "cenario": "ideal",
+            "politica": "caixa",
+            "serie": "benchmark"
+          },
+          {
+            "parte": "teste",
+            "cenario": "ideal",
+            "politica": "comprar_manter",
+            "serie": "benchmark"
+          },
+          {
+            "parte": "teste",
+            "cenario": "base",
+            "politica": "smart",
+            "serie": "estado16_17"
+          },
+          {
+            "parte": "teste",
+            "cenario": "base",
+            "politica": "smart",
+            "serie": "estado16_42"
+          },
+          {
+            "parte": "teste",
+            "cenario": "base",
+            "politica": "smart",
+            "serie": "estado16_2026"
+          },
+          {
+            "parte": "teste",
+            "cenario": "base",
+            "politica": "smart",
+            "serie": "estado16_7"
+          },
+          {
+            "parte": "teste",
+            "cenario": "base",
+            "politica": "smart",
+            "serie": "estado16_123"
+          },
+          {
+            "parte": "teste",
+            "cenario": "base",
+            "politica": "smart",
+            "serie": "estado16_31415"
+          },
+          {
+            "parte": "teste",
+            "cenario": "base",
+            "politica": "smart",
+            "serie": "lstm_17"
+          },
+          {
+            "parte": "teste",
+            "cenario": "base",
+            "politica": "smart",
+            "serie": "lstm_42"
+          },
+          {
+            "parte": "teste",
+            "cenario": "base",
+            "politica": "smart",
+            "serie": "lstm_2026"
+          },
+          {
+            "parte": "teste",
+            "cenario": "base",
+            "politica": "smart",
+            "serie": "cryptomamba_17"
+          },
+          {
+            "parte": "teste",
+            "cenario": "base",
+            "politica": "smart",
+            "serie": "cryptomamba_42"
+          },
+          {
+            "parte": "teste",
+            "cenario": "base",
+            "politica": "smart",
+            "serie": "cryptomamba_2026"
+          },
+          {
+            "parte": "teste",
+            "cenario": "base",
+            "politica": "smart",
+            "serie": "cryptomamba_7"
+          },
+          {
+            "parte": "teste",
+            "cenario": "base",
+            "politica": "smart",
+            "serie": "cryptomamba_123"
+          },
+          {
+            "parte": "teste",
+            "cenario": "base",
+            "politica": "smart",
+            "serie": "cryptomamba_31415"
+          },
+          {
+            "parte": "teste",
+            "cenario": "base",
+            "politica": "smart",
+            "serie": "naive"
+          },
+          {
+            "parte": "teste",
+            "cenario": "base",
+            "politica": "smart",
+            "serie": "arima"
+          },
+          {
+            "parte": "teste",
+            "cenario": "base",
+            "politica": "vanilla",
+            "serie": "estado16_17"
+          },
+          {
+            "parte": "teste",
+            "cenario": "base",
+            "politica": "vanilla",
+            "serie": "estado16_42"
+          },
+          {
+            "parte": "teste",
+            "cenario": "base",
+            "politica": "vanilla",
+            "serie": "estado16_2026"
+          },
+          {
+            "parte": "teste",
+            "cenario": "base",
+            "politica": "vanilla",
+            "serie": "estado16_7"
+          },
+          {
+            "parte": "teste",
+            "cenario": "base",
+            "politica": "vanilla",
+            "serie": "estado16_123"
+          },
+          {
+            "parte": "teste",
+            "cenario": "base",
+            "politica": "vanilla",
+            "serie": "estado16_31415"
+          },
+          {
+            "parte": "teste",
+            "cenario": "base",
+            "politica": "vanilla",
+            "serie": "lstm_17"
+          },
+          {
+            "parte": "teste",
+            "cenario": "base",
+            "politica": "vanilla",
+            "serie": "lstm_42"
+          },
+          {
+            "parte": "teste",
+            "cenario": "base",
+            "politica": "vanilla",
+            "serie": "lstm_2026"
+          },
+          {
+            "parte": "teste",
+            "cenario": "base",
+            "politica": "vanilla",
+            "serie": "cryptomamba_17"
+          },
+          {
+            "parte": "teste",
+            "cenario": "base",
+            "politica": "vanilla",
+            "serie": "cryptomamba_42"
+          },
+          {
+            "parte": "teste",
+            "cenario": "base",
+            "politica": "vanilla",
+            "serie": "cryptomamba_2026"
+          },
+          {
+            "parte": "teste",
+            "cenario": "base",
+            "politica": "vanilla",
+            "serie": "cryptomamba_7"
+          },
+          {
+            "parte": "teste",
+            "cenario": "base",
+            "politica": "vanilla",
+            "serie": "cryptomamba_123"
+          },
+          {
+            "parte": "teste",
+            "cenario": "base",
+            "politica": "vanilla",
+            "serie": "cryptomamba_31415"
+          },
+          {
+            "parte": "teste",
+            "cenario": "base",
+            "politica": "vanilla",
+            "serie": "naive"
+          },
+          {
+            "parte": "teste",
+            "cenario": "base",
+            "politica": "vanilla",
+            "serie": "arima"
+          },
+          {
+            "parte": "teste",
+            "cenario": "base",
+            "politica": "diaria24",
+            "serie": "estado16_17"
+          },
+          {
+            "parte": "teste",
+            "cenario": "base",
+            "politica": "diaria24",
+            "serie": "estado16_42"
+          },
+          {
+            "parte": "teste",
+            "cenario": "base",
+            "politica": "diaria24",
+            "serie": "estado16_2026"
+          },
+          {
+            "parte": "teste",
+            "cenario": "base",
+            "politica": "diaria24",
+            "serie": "estado16_7"
+          },
+          {
+            "parte": "teste",
+            "cenario": "base",
+            "politica": "diaria24",
+            "serie": "estado16_123"
+          },
+          {
+            "parte": "teste",
+            "cenario": "base",
+            "politica": "diaria24",
+            "serie": "estado16_31415"
+          },
+          {
+            "parte": "teste",
+            "cenario": "base",
+            "politica": "diaria24",
+            "serie": "lstm_17"
+          },
+          {
+            "parte": "teste",
+            "cenario": "base",
+            "politica": "diaria24",
+            "serie": "lstm_42"
+          },
+          {
+            "parte": "teste",
+            "cenario": "base",
+            "politica": "diaria24",
+            "serie": "lstm_2026"
+          },
+          {
+            "parte": "teste",
+            "cenario": "base",
+            "politica": "diaria24",
+            "serie": "cryptomamba_17"
+          },
+          {
+            "parte": "teste",
+            "cenario": "base",
+            "politica": "diaria24",
+            "serie": "cryptomamba_42"
+          },
+          {
+            "parte": "teste",
+            "cenario": "base",
+            "politica": "diaria24",
+            "serie": "cryptomamba_2026"
+          },
+          {
+            "parte": "teste",
+            "cenario": "base",
+            "politica": "diaria24",
+            "serie": "cryptomamba_7"
+          },
+          {
+            "parte": "teste",
+            "cenario": "base",
+            "politica": "diaria24",
+            "serie": "cryptomamba_123"
+          },
+          {
+            "parte": "teste",
+            "cenario": "base",
+            "politica": "diaria24",
+            "serie": "cryptomamba_31415"
+          },
+          {
+            "parte": "teste",
+            "cenario": "base",
+            "politica": "diaria24",
+            "serie": "naive"
+          },
+          {
+            "parte": "teste",
+            "cenario": "base",
+            "politica": "diaria24",
+            "serie": "arima"
+          },
+          {
+            "parte": "teste",
+            "cenario": "base",
+            "politica": "smart_constante",
+            "serie": "estado16_17"
+          },
+          {
+            "parte": "teste",
+            "cenario": "base",
+            "politica": "smart_constante",
+            "serie": "estado16_42"
+          },
+          {
+            "parte": "teste",
+            "cenario": "base",
+            "politica": "smart_constante",
+            "serie": "estado16_2026"
+          },
+          {
+            "parte": "teste",
+            "cenario": "base",
+            "politica": "smart_constante",
+            "serie": "estado16_7"
+          },
+          {
+            "parte": "teste",
+            "cenario": "base",
+            "politica": "smart_constante",
+            "serie": "estado16_123"
+          },
+          {
+            "parte": "teste",
+            "cenario": "base",
+            "politica": "smart_constante",
+            "serie": "estado16_31415"
+          },
+          {
+            "parte": "teste",
+            "cenario": "base",
+            "politica": "smart_constante",
+            "serie": "lstm_17"
+          },
+          {
+            "parte": "teste",
+            "cenario": "base",
+            "politica": "smart_constante",
+            "serie": "lstm_42"
+          },
+          {
+            "parte": "teste",
+            "cenario": "base",
+            "politica": "smart_constante",
+            "serie": "lstm_2026"
+          },
+          {
+            "parte": "teste",
+            "cenario": "base",
+            "politica": "smart_constante",
+            "serie": "cryptomamba_17"
+          },
+          {
+            "parte": "teste",
+            "cenario": "base",
+            "politica": "smart_constante",
+            "serie": "cryptomamba_42"
+          },
+          {
+            "parte": "teste",
+            "cenario": "base",
+            "politica": "smart_constante",
+            "serie": "cryptomamba_2026"
+          },
+          {
+            "parte": "teste",
+            "cenario": "base",
+            "politica": "smart_constante",
+            "serie": "cryptomamba_7"
+          },
+          {
+            "parte": "teste",
+            "cenario": "base",
+            "politica": "smart_constante",
+            "serie": "cryptomamba_123"
+          },
+          {
+            "parte": "teste",
+            "cenario": "base",
+            "politica": "smart_constante",
+            "serie": "cryptomamba_31415"
+          },
+          {
+            "parte": "teste",
+            "cenario": "base",
+            "politica": "smart_constante",
+            "serie": "naive"
+          },
+          {
+            "parte": "teste",
+            "cenario": "base",
+            "politica": "smart_constante",
+            "serie": "arima"
+          },
+          {
+            "parte": "teste",
+            "cenario": "base",
+            "politica": "caixa",
+            "serie": "benchmark"
+          },
+          {
+            "parte": "teste",
+            "cenario": "base",
+            "politica": "comprar_manter",
+            "serie": "benchmark"
+          },
+          {
+            "parte": "teste",
+            "cenario": "agravado",
+            "politica": "smart",
+            "serie": "estado16_17"
+          },
+          {
+            "parte": "teste",
+            "cenario": "agravado",
+            "politica": "smart",
+            "serie": "estado16_42"
+          },
+          {
+            "parte": "teste",
+            "cenario": "agravado",
+            "politica": "smart",
+            "serie": "estado16_2026"
+          },
+          {
+            "parte": "teste",
+            "cenario": "agravado",
+            "politica": "smart",
+            "serie": "estado16_7"
+          },
+          {
+            "parte": "teste",
+            "cenario": "agravado",
+            "politica": "smart",
+            "serie": "estado16_123"
+          },
+          {
+            "parte": "teste",
+            "cenario": "agravado",
+            "politica": "smart",
+            "serie": "estado16_31415"
+          },
+          {
+            "parte": "teste",
+            "cenario": "agravado",
+            "politica": "smart",
+            "serie": "lstm_17"
+          },
+          {
+            "parte": "teste",
+            "cenario": "agravado",
+            "politica": "smart",
+            "serie": "lstm_42"
+          },
+          {
+            "parte": "teste",
+            "cenario": "agravado",
+            "politica": "smart",
+            "serie": "lstm_2026"
+          },
+          {
+            "parte": "teste",
+            "cenario": "agravado",
+            "politica": "smart",
+            "serie": "cryptomamba_17"
+          },
+          {
+            "parte": "teste",
+            "cenario": "agravado",
+            "politica": "smart",
+            "serie": "cryptomamba_42"
+          },
+          {
+            "parte": "teste",
+            "cenario": "agravado",
+            "politica": "smart",
+            "serie": "cryptomamba_2026"
+          },
+          {
+            "parte": "teste",
+            "cenario": "agravado",
+            "politica": "smart",
+            "serie": "cryptomamba_7"
+          },
+          {
+            "parte": "teste",
+            "cenario": "agravado",
+            "politica": "smart",
+            "serie": "cryptomamba_123"
+          },
+          {
+            "parte": "teste",
+            "cenario": "agravado",
+            "politica": "smart",
+            "serie": "cryptomamba_31415"
+          },
+          {
+            "parte": "teste",
+            "cenario": "agravado",
+            "politica": "smart",
+            "serie": "naive"
+          },
+          {
+            "parte": "teste",
+            "cenario": "agravado",
+            "politica": "smart",
+            "serie": "arima"
+          },
+          {
+            "parte": "teste",
+            "cenario": "agravado",
+            "politica": "vanilla",
+            "serie": "estado16_17"
+          },
+          {
+            "parte": "teste",
+            "cenario": "agravado",
+            "politica": "vanilla",
+            "serie": "estado16_42"
+          },
+          {
+            "parte": "teste",
+            "cenario": "agravado",
+            "politica": "vanilla",
+            "serie": "estado16_2026"
+          },
+          {
+            "parte": "teste",
+            "cenario": "agravado",
+            "politica": "vanilla",
+            "serie": "estado16_7"
+          },
+          {
+            "parte": "teste",
+            "cenario": "agravado",
+            "politica": "vanilla",
+            "serie": "estado16_123"
+          },
+          {
+            "parte": "teste",
+            "cenario": "agravado",
+            "politica": "vanilla",
+            "serie": "estado16_31415"
+          },
+          {
+            "parte": "teste",
+            "cenario": "agravado",
+            "politica": "vanilla",
+            "serie": "lstm_17"
+          },
+          {
+            "parte": "teste",
+            "cenario": "agravado",
+            "politica": "vanilla",
+            "serie": "lstm_42"
+          },
+          {
+            "parte": "teste",
+            "cenario": "agravado",
+            "politica": "vanilla",
+            "serie": "lstm_2026"
+          },
+          {
+            "parte": "teste",
+            "cenario": "agravado",
+            "politica": "vanilla",
+            "serie": "cryptomamba_17"
+          },
+          {
+            "parte": "teste",
+            "cenario": "agravado",
+            "politica": "vanilla",
+            "serie": "cryptomamba_42"
+          },
+          {
+            "parte": "teste",
+            "cenario": "agravado",
+            "politica": "vanilla",
+            "serie": "cryptomamba_2026"
+          },
+          {
+            "parte": "teste",
+            "cenario": "agravado",
+            "politica": "vanilla",
+            "serie": "cryptomamba_7"
+          },
+          {
+            "parte": "teste",
+            "cenario": "agravado",
+            "politica": "vanilla",
+            "serie": "cryptomamba_123"
+          },
+          {
+            "parte": "teste",
+            "cenario": "agravado",
+            "politica": "vanilla",
+            "serie": "cryptomamba_31415"
+          },
+          {
+            "parte": "teste",
+            "cenario": "agravado",
+            "politica": "vanilla",
+            "serie": "naive"
+          },
+          {
+            "parte": "teste",
+            "cenario": "agravado",
+            "politica": "vanilla",
+            "serie": "arima"
+          },
+          {
+            "parte": "teste",
+            "cenario": "agravado",
+            "politica": "diaria24",
+            "serie": "estado16_17"
+          },
+          {
+            "parte": "teste",
+            "cenario": "agravado",
+            "politica": "diaria24",
+            "serie": "estado16_42"
+          },
+          {
+            "parte": "teste",
+            "cenario": "agravado",
+            "politica": "diaria24",
+            "serie": "estado16_2026"
+          },
+          {
+            "parte": "teste",
+            "cenario": "agravado",
+            "politica": "diaria24",
+            "serie": "estado16_7"
+          },
+          {
+            "parte": "teste",
+            "cenario": "agravado",
+            "politica": "diaria24",
+            "serie": "estado16_123"
+          },
+          {
+            "parte": "teste",
+            "cenario": "agravado",
+            "politica": "diaria24",
+            "serie": "estado16_31415"
+          },
+          {
+            "parte": "teste",
+            "cenario": "agravado",
+            "politica": "diaria24",
+            "serie": "lstm_17"
+          },
+          {
+            "parte": "teste",
+            "cenario": "agravado",
+            "politica": "diaria24",
+            "serie": "lstm_42"
+          },
+          {
+            "parte": "teste",
+            "cenario": "agravado",
+            "politica": "diaria24",
+            "serie": "lstm_2026"
+          },
+          {
+            "parte": "teste",
+            "cenario": "agravado",
+            "politica": "diaria24",
+            "serie": "cryptomamba_17"
+          },
+          {
+            "parte": "teste",
+            "cenario": "agravado",
+            "politica": "diaria24",
+            "serie": "cryptomamba_42"
+          },
+          {
+            "parte": "teste",
+            "cenario": "agravado",
+            "politica": "diaria24",
+            "serie": "cryptomamba_2026"
+          },
+          {
+            "parte": "teste",
+            "cenario": "agravado",
+            "politica": "diaria24",
+            "serie": "cryptomamba_7"
+          },
+          {
+            "parte": "teste",
+            "cenario": "agravado",
+            "politica": "diaria24",
+            "serie": "cryptomamba_123"
+          },
+          {
+            "parte": "teste",
+            "cenario": "agravado",
+            "politica": "diaria24",
+            "serie": "cryptomamba_31415"
+          },
+          {
+            "parte": "teste",
+            "cenario": "agravado",
+            "politica": "diaria24",
+            "serie": "naive"
+          },
+          {
+            "parte": "teste",
+            "cenario": "agravado",
+            "politica": "diaria24",
+            "serie": "arima"
+          },
+          {
+            "parte": "teste",
+            "cenario": "agravado",
+            "politica": "smart_constante",
+            "serie": "estado16_17"
+          },
+          {
+            "parte": "teste",
+            "cenario": "agravado",
+            "politica": "smart_constante",
+            "serie": "estado16_42"
+          },
+          {
+            "parte": "teste",
+            "cenario": "agravado",
+            "politica": "smart_constante",
+            "serie": "estado16_2026"
+          },
+          {
+            "parte": "teste",
+            "cenario": "agravado",
+            "politica": "smart_constante",
+            "serie": "estado16_7"
+          },
+          {
+            "parte": "teste",
+            "cenario": "agravado",
+            "politica": "smart_constante",
+            "serie": "estado16_123"
+          },
+          {
+            "parte": "teste",
+            "cenario": "agravado",
+            "politica": "smart_constante",
+            "serie": "estado16_31415"
+          },
+          {
+            "parte": "teste",
+            "cenario": "agravado",
+            "politica": "smart_constante",
+            "serie": "lstm_17"
+          },
+          {
+            "parte": "teste",
+            "cenario": "agravado",
+            "politica": "smart_constante",
+            "serie": "lstm_42"
+          },
+          {
+            "parte": "teste",
+            "cenario": "agravado",
+            "politica": "smart_constante",
+            "serie": "lstm_2026"
+          },
+          {
+            "parte": "teste",
+            "cenario": "agravado",
+            "politica": "smart_constante",
+            "serie": "cryptomamba_17"
+          },
+          {
+            "parte": "teste",
+            "cenario": "agravado",
+            "politica": "smart_constante",
+            "serie": "cryptomamba_42"
+          },
+          {
+            "parte": "teste",
+            "cenario": "agravado",
+            "politica": "smart_constante",
+            "serie": "cryptomamba_2026"
+          },
+          {
+            "parte": "teste",
+            "cenario": "agravado",
+            "politica": "smart_constante",
+            "serie": "cryptomamba_7"
+          },
+          {
+            "parte": "teste",
+            "cenario": "agravado",
+            "politica": "smart_constante",
+            "serie": "cryptomamba_123"
+          },
+          {
+            "parte": "teste",
+            "cenario": "agravado",
+            "politica": "smart_constante",
+            "serie": "cryptomamba_31415"
+          },
+          {
+            "parte": "teste",
+            "cenario": "agravado",
+            "politica": "smart_constante",
+            "serie": "naive"
+          },
+          {
+            "parte": "teste",
+            "cenario": "agravado",
+            "politica": "smart_constante",
+            "serie": "arima"
+          },
+          {
+            "parte": "teste",
+            "cenario": "agravado",
+            "politica": "caixa",
+            "serie": "benchmark"
+          },
+          {
+            "parte": "teste",
+            "cenario": "agravado",
+            "politica": "comprar_manter",
+            "serie": "benchmark"
+          }
+        ],
+        "ambiente": {
+          "python": "3.14.5",
+          "host": "MuriloRFM",
+          "sistema": "Windows",
+          "pacotes": {
+            "numpy": "2.4.6",
+            "pandas": "3.0.3",
+            "pyarrow": "24.0.0",
+            "matplotlib": "3.11.0"
+          }
+        },
+        "qualificacao": {
+          "arquivo": "registros/backtest_carteira/revisao_loader/qualificacoes/273c3cfca01f498da3a1434f555b3c25/resultado.json",
+          "sha256": "b9ff943b6ab02f9fb81d9e483d44d7ee87bb9d99d8bd8f3db472020a2181e395"
+        }
+      }
+    },
+    "protocolo_sha256": "2ac7b2b83a227d1c47a5f6fd05c2490c8d853cd4f11f62f6e93b4d56582e8ddb",
+    "preservacao_antes_sha256": "90f1522c73776c87844ac00dce96ebf7da9eeca4f0f6139eb78d899d54d2afe9",
+    "grade": [
+      {
+        "bloco": "B1",
+        "perda": "mse",
+        "seed": 42,
+        "controle": false
+      },
+      {
+        "bloco": "B1",
+        "perda": "huber",
+        "seed": 42,
+        "controle": false
+      },
+      {
+        "bloco": "B1",
+        "perda": "mse",
+        "seed": 42,
+        "controle": true
+      },
+      {
+        "bloco": "B1",
+        "perda": "huber",
+        "seed": 42,
+        "controle": true
+      },
+      {
+        "bloco": "B1",
+        "perda": "mse",
+        "seed": 17,
+        "controle": false
+      },
+      {
+        "bloco": "B1",
+        "perda": "huber",
+        "seed": 17,
+        "controle": false
+      },
+      {
+        "bloco": "B1",
+        "perda": "mse",
+        "seed": 2026,
+        "controle": false
+      },
+      {
+        "bloco": "B1",
+        "perda": "huber",
+        "seed": 2026,
+        "controle": false
+      },
+      {
+        "bloco": "B1",
+        "perda": "mse",
+        "seed": 7,
+        "controle": false
+      },
+      {
+        "bloco": "B1",
+        "perda": "huber",
+        "seed": 7,
+        "controle": false
+      },
+      {
+        "bloco": "B1",
+        "perda": "mse",
+        "seed": 123,
+        "controle": false
+      },
+      {
+        "bloco": "B1",
+        "perda": "huber",
+        "seed": 123,
+        "controle": false
+      },
+      {
+        "bloco": "B1",
+        "perda": "mse",
+        "seed": 31415,
+        "controle": false
+      },
+      {
+        "bloco": "B1",
+        "perda": "huber",
+        "seed": 31415,
+        "controle": false
+      },
+      {
+        "bloco": "B1",
+        "perda": "mse",
+        "seed": 271828,
+        "controle": false
+      },
+      {
+        "bloco": "B1",
+        "perda": "huber",
+        "seed": 271828,
+        "controle": false
+      },
+      {
+        "bloco": "B1",
+        "perda": "mse",
+        "seed": 161803,
+        "controle": false
+      },
+      {
+        "bloco": "B1",
+        "perda": "huber",
+        "seed": 161803,
+        "controle": false
+      },
+      {
+        "bloco": "B2",
+        "perda": "mse",
+        "seed": 42,
+        "controle": false
+      },
+      {
+        "bloco": "B2",
+        "perda": "huber",
+        "seed": 42,
+        "controle": false
+      },
+      {
+        "bloco": "B2",
+        "perda": "mse",
+        "seed": 17,
+        "controle": false
+      },
+      {
+        "bloco": "B2",
+        "perda": "huber",
+        "seed": 17,
+        "controle": false
+      },
+      {
+        "bloco": "B2",
+        "perda": "mse",
+        "seed": 2026,
+        "controle": false
+      },
+      {
+        "bloco": "B2",
+        "perda": "huber",
+        "seed": 2026,
+        "controle": false
+      },
+      {
+        "bloco": "B2",
+        "perda": "mse",
+        "seed": 7,
+        "controle": false
+      },
+      {
+        "bloco": "B2",
+        "perda": "huber",
+        "seed": 7,
+        "controle": false
+      },
+      {
+        "bloco": "B2",
+        "perda": "mse",
+        "seed": 123,
+        "controle": false
+      },
+      {
+        "bloco": "B2",
+        "perda": "huber",
+        "seed": 123,
+        "controle": false
+      },
+      {
+        "bloco": "B2",
+        "perda": "mse",
+        "seed": 31415,
+        "controle": false
+      },
+      {
+        "bloco": "B2",
+        "perda": "huber",
+        "seed": 31415,
+        "controle": false
+      },
+      {
+        "bloco": "B2",
+        "perda": "mse",
+        "seed": 271828,
+        "controle": false
+      },
+      {
+        "bloco": "B2",
+        "perda": "huber",
+        "seed": 271828,
+        "controle": false
+      },
+      {
+        "bloco": "B2",
+        "perda": "mse",
+        "seed": 161803,
+        "controle": false
+      },
+      {
+        "bloco": "B2",
+        "perda": "huber",
+        "seed": 161803,
+        "controle": false
+      },
+      {
+        "bloco": "B3",
+        "perda": "mse",
+        "seed": 42,
+        "controle": false
+      },
+      {
+        "bloco": "B3",
+        "perda": "huber",
+        "seed": 42,
+        "controle": false
+      },
+      {
+        "bloco": "B3",
+        "perda": "mse",
+        "seed": 17,
+        "controle": false
+      },
+      {
+        "bloco": "B3",
+        "perda": "huber",
+        "seed": 17,
+        "controle": false
+      },
+      {
+        "bloco": "B3",
+        "perda": "mse",
+        "seed": 2026,
+        "controle": false
+      },
+      {
+        "bloco": "B3",
+        "perda": "huber",
+        "seed": 2026,
+        "controle": false
+      },
+      {
+        "bloco": "B3",
+        "perda": "mse",
+        "seed": 7,
+        "controle": false
+      },
+      {
+        "bloco": "B3",
+        "perda": "huber",
+        "seed": 7,
+        "controle": false
+      },
+      {
+        "bloco": "B3",
+        "perda": "mse",
+        "seed": 123,
+        "controle": false
+      },
+      {
+        "bloco": "B3",
+        "perda": "huber",
+        "seed": 123,
+        "controle": false
+      },
+      {
+        "bloco": "B3",
+        "perda": "mse",
+        "seed": 31415,
+        "controle": false
+      },
+      {
+        "bloco": "B3",
+        "perda": "huber",
+        "seed": 31415,
+        "controle": false
+      },
+      {
+        "bloco": "B3",
+        "perda": "mse",
+        "seed": 271828,
+        "controle": false
+      },
+      {
+        "bloco": "B3",
+        "perda": "huber",
+        "seed": 271828,
+        "controle": false
+      },
+      {
+        "bloco": "B3",
+        "perda": "mse",
+        "seed": 161803,
+        "controle": false
+      },
+      {
+        "bloco": "B3",
+        "perda": "huber",
+        "seed": 161803,
+        "controle": false
+      },
+      {
+        "bloco": "B4",
+        "perda": "mse",
+        "seed": 42,
+        "controle": false
+      },
+      {
+        "bloco": "B4",
+        "perda": "huber",
+        "seed": 42,
+        "controle": false
+      },
+      {
+        "bloco": "B4",
+        "perda": "mse",
+        "seed": 17,
+        "controle": false
+      },
+      {
+        "bloco": "B4",
+        "perda": "huber",
+        "seed": 17,
+        "controle": false
+      },
+      {
+        "bloco": "B4",
+        "perda": "mse",
+        "seed": 2026,
+        "controle": false
+      },
+      {
+        "bloco": "B4",
+        "perda": "huber",
+        "seed": 2026,
+        "controle": false
+      },
+      {
+        "bloco": "B4",
+        "perda": "mse",
+        "seed": 7,
+        "controle": false
+      },
+      {
+        "bloco": "B4",
+        "perda": "huber",
+        "seed": 7,
+        "controle": false
+      },
+      {
+        "bloco": "B4",
+        "perda": "mse",
+        "seed": 123,
+        "controle": false
+      },
+      {
+        "bloco": "B4",
+        "perda": "huber",
+        "seed": 123,
+        "controle": false
+      },
+      {
+        "bloco": "B4",
+        "perda": "mse",
+        "seed": 31415,
+        "controle": false
+      },
+      {
+        "bloco": "B4",
+        "perda": "huber",
+        "seed": 31415,
+        "controle": false
+      },
+      {
+        "bloco": "B4",
+        "perda": "mse",
+        "seed": 271828,
+        "controle": false
+      },
+      {
+        "bloco": "B4",
+        "perda": "huber",
+        "seed": 271828,
+        "controle": false
+      },
+      {
+        "bloco": "B4",
+        "perda": "mse",
+        "seed": 161803,
+        "controle": false
+      },
+      {
+        "bloco": "B4",
+        "perda": "huber",
+        "seed": 161803,
+        "controle": false
+      }
+    ]
+  }
+}

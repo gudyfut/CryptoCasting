@@ -1,0 +1,33 @@
+{
+  "id": "a3f7d049d06d31955d9b",
+  "contrato": {
+    "pai": {
+      "id": "979c54995465216ea020",
+      "pasta": "dados/mercado/futuros_um/tentativas/2026-11-04T145414.524392_0000",
+      "manifesto_sha256": "00b6ff383dc4693a5f84982e2f4b0d01b04e666d441650f7d3b220468f089f52"
+    },
+    "fontes": {
+      "mercado_futuros/contexto.py": "0703c3f27e0ac9931e0e57e5745ca5f11366e4bd10248b32b6d74e36e33d3a31",
+      "mercado_futuros/pipeline.py": "324b0d9f6a0e00162be11e78fb4dea85352b01263e17f2aaf826150360ec751c",
+      "mercado_futuros/__init__.py": "5d5de02d0a6ee7f62b5dbedd2d67ca82822cd2424881e73ff2d3de9ac270cf56",
+      "mercado_futuros/__main__.py": "3e9cef9cd4f98f843ff6a13bd35ebfd30503950ce2579610f58583efa32298c4"
+    },
+    "origens": [
+      {
+        "url": "https://fapi.binance.com/fapi/v1/klines?symbol=BTCUSDT&interval=1m&startTime=1704067140000&endTime=1704067199999&limit=1",
+        "arquivo": "klines.json",
+        "sha256": "548d4de0067fa040d79ee074f00ff75ed1aab4f2b8eea8f765c3a4f82c487d76"
+      },
+      {
+        "url": "https://fapi.binance.com/fapi/v1/markPriceKlines?symbol=BTCUSDT&interval=1m&startTime=1704067140000&endTime=1704067199999&limit=1",
+        "arquivo": "markPriceKlines.json",
+        "sha256": "f04901c7324541543857e0c823b203db4c3e2ee47ae867e9319cabfa148c8054"
+      }
+    ],
+    "motivo": "Preco conhecido antes da primeira origem de 2024; nao muda dados de 2024–2025."
+  },
+  "arquivos": {
+    "klines.json": "548d4de0067fa040d79ee074f00ff75ed1aab4f2b8eea8f765c3a4f82c487d76",
+    "markPriceKlines.json": "f04901c7324541543857e0c823b203db4c3e2ee47ae867e9319cabfa148c8054"
+  }
+}

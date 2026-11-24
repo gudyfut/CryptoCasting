@@ -1,0 +1,37 @@
+{
+  "ciclo": "normalizacao_mamba_001",
+  "referencia": "7868a4d847c1410fc681",
+  "dataset": "d25f6a93a9900725f51e",
+  "intervencao": "Somente LayerNorm: LN(x+Mamba(x)) para x+Mamba(LN(x)); manter penalizacao corrigida",
+  "exposicao": "Todos os resultados DB1–DB4 e B1–B4 foram consultados; análise retrospectiva pareada, sem holdout intocado.",
+  "controles_reexecutados": [
+    {
+      "par": "BTCUSDT",
+      "fold": "DB1",
+      "contexto": 24,
+      "seed": 42,
+      "modelo": "mamba"
+    },
+    {
+      "par": "BTCUSDT",
+      "fold": "DB1",
+      "contexto": 336,
+      "seed": 42,
+      "modelo": "mamba"
+    }
+  ],
+  "contraste_principal": "mamba_prenorm_menos_mamba_posnorm",
+  "fase_principal": "avaliacao",
+  "fase_secundaria": "desenvolvimento",
+  "metrica": "mse",
+  "referencias_reutilizadas": [
+    "mamba_posnorm",
+    "lstm",
+    "arima",
+    "naive"
+  ],
+  "regra": "Executar toda a grade original Mamba nas duas fases, sem seleção de seeds/contextos e sem modificar o método após consultar resultados novos.",
+  "referencia_inicial": "1e7c5ed662fba55ddd25",
+  "ajustes_prenorm": 384,
+  "autorizacao": "Pesquisador autorizou em 28/10/2026 implementar pre-normalizacao e treinar/testar somente Mamba, sem retreinar outras familias."
+}

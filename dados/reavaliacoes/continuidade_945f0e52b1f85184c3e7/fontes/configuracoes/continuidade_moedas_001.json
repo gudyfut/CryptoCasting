@@ -1,0 +1,31 @@
+{
+  "ciclo": "continuidade_moedas_001",
+  "moedas": ["BTCUSDT", "ETHUSDT", "BNBUSDT", "XRPUSDT"],
+  "receita_mamba": "diaria_padronizada",
+  "seeds": [42, 17, 2026],
+  "fases": ["validacao", "teste"],
+  "modos": ["diaria", "liquida"],
+  "slippage_por_lado": [0.0001, 0.0002, 0.0003],
+  "comissao_por_lado": 0.0005,
+  "filtro_retorno_absoluto": 0.002,
+  "fracao_nocional": 0.95,
+  "unidades": ["42", "17", "2026", "ensemble", "naive", "arima", "sempre_comprado", "sempre_vendido"],
+  "referencia_passiva": "comprar_manter_futuro_quantidade_fixa_95pct_inicial_com_funding",
+  "carteiras_previstas": 408,
+  "novos_treinamentos_neurais": 0,
+  "arima": {
+    "ordens": [[0,1,0],[0,1,1],[0,1,2],[1,1,0],[1,1,1],[1,1,2],[2,1,0],[2,1,1],[2,1,2]],
+    "serie": "log_preco_diario_centralizado_treino_vezes_100",
+    "deriva": false,
+    "maxiter": 200,
+    "ajuste": "somente_treino_original_da_moeda",
+    "selecao": "menor_mse_retorno_simples_validacao",
+    "teste": "parametros_fixos_com_filtragem_causal_um_passo",
+    "ajustes_candidatos": 36,
+    "controles_repeticao": 4
+  },
+  "filtros_ordens": "minimo_nocional_para_abertura_aumento; reducoes_reduceOnly_isentas_de_minimo_nocional; lote_min_max_por_instrumento",
+  "confirmacao_btc_legado": true,
+  "bootstrap": {"replicas": 2000, "blocos": [7,14,28], "principal": 14, "seed": 11112026},
+  "exposicao": "2024 selecionou checkpoints;2025 ja consultado; resultados retrospectivos"
+}

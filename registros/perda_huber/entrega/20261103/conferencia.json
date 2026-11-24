@@ -1,0 +1,1351 @@
+{
+  "utc": "2026-11-03T04:39:29.476669+00:00",
+  "execucao": "ed8e55ff978b2742c200",
+  "conferido": true,
+  "script_sha256": "1067769e9db0a0173425dd2b2d24fc90b079b00f5325829482a44a18dd61d05f",
+  "fontes_atuais_e_copiadas": 76,
+  "arquivos_publicados": 350,
+  "anteriores_preservados": 5533,
+  "series": 59,
+  "novas": 6,
+  "carteiras_com_recibo": 54,
+  "medias": {
+    "validacao": {
+      "huber_seis": {
+        "mse": 0.0007163598691850297,
+        "mae": 0.01942996448023758,
+        "rmse": 0.02676489673582994
+      },
+      "mamba16_seis": {
+        "mse": 0.0007198377556273794,
+        "mae": 0.019492588428615547,
+        "rmse": 0.026829785956667115
+      },
+      "huber_tres": {
+        "mse": 0.0007168862664941128,
+        "mae": 0.019442238041968787,
+        "rmse": 0.026774729461683498
+      },
+      "mamba16_tres": {
+        "mse": 0.0007191639649393512,
+        "mae": 0.019477157430665814,
+        "rmse": 0.026817229410708677
+      },
+      "lstm_tres": {
+        "mse": 0.0007194461126312054,
+        "mae": 0.01947729069661525,
+        "rmse": 0.026822389202868557
+      },
+      "naive": {
+        "mse": 0.0007218624747170446,
+        "mae": 0.01952317340881851,
+        "rmse": 0.026867498482684327
+      },
+      "arima": {
+        "mse": 0.0007215880388459149,
+        "mae": 0.019514755535297384,
+        "rmse": 0.026862390787975574
+      }
+    },
+    "teste": {
+      "huber_seis": {
+        "mse": 0.0004962803549811226,
+        "mae": 0.015877157789704346,
+        "rmse": 0.022277281953843986
+      },
+      "mamba16_seis": {
+        "mse": 0.0004965700544756442,
+        "mae": 0.015893904321981938,
+        "rmse": 0.02228369313893577
+      },
+      "huber_tres": {
+        "mse": 0.0004978543426760791,
+        "mae": 0.015899609741343457,
+        "rmse": 0.02231260748045169
+      },
+      "mamba16_tres": {
+        "mse": 0.0004958900852585443,
+        "mae": 0.015889174609555242,
+        "rmse": 0.022268305975051594
+      },
+      "lstm_tres": {
+        "mse": 0.0004980096415650243,
+        "mae": 0.015931068406533095,
+        "rmse": 0.022315952611489432
+      },
+      "naive": {
+        "mse": 0.0004952210450734487,
+        "mae": 0.015863957149945096,
+        "rmse": 0.022253562525435082
+      },
+      "arima": {
+        "mse": 0.000494621670222033,
+        "mae": 0.015854094605724754,
+        "rmse": 0.02224009150660206
+      }
+    }
+  },
+  "contrastes": {
+    "validacao": {
+      "delta_mse": -3.4778864423497085e-06,
+      "delta_relativo_pct": -0.48314865609105917,
+      "ic95": {
+        "7": [
+          -7.141036789131617e-06,
+          4.292256428401602e-07
+        ],
+        "14": [
+          -7.220174278099461e-06,
+          2.932450502246537e-08
+        ],
+        "28": [
+          -7.209771199512984e-06,
+          1.6919874573763648e-07
+        ]
+      }
+    },
+    "teste": {
+      "delta_mse": -2.8969949452158634e-07,
+      "delta_relativo_pct": -0.05834010567299375,
+      "ic95": {
+        "7": [
+          -2.1134579591210184e-06,
+          1.7454965999784161e-06
+        ],
+        "14": [
+          -2.1129104155601695e-06,
+          1.7580494209874605e-06
+        ],
+        "28": [
+          -2.092607971090069e-06,
+          1.7928507674024874e-06
+        ]
+      }
+    }
+  },
+  "trajetorias": [
+    {
+      "seed": 17,
+      "epocas": 23,
+      "selecionada": 13,
+      "delta_mse_pct": {
+        "validacao": -0.28129266663962094,
+        "teste": -0.19269971299050725
+      }
+    },
+    {
+      "seed": 42,
+      "epocas": 14,
+      "selecionada": 4,
+      "delta_mse_pct": {
+        "validacao": -0.36847998770810353,
+        "teste": 1.7679268742221144
+      }
+    },
+    {
+      "seed": 2026,
+      "epocas": 19,
+      "selecionada": 9,
+      "delta_mse_pct": {
+        "validacao": -0.30031517305419975,
+        "teste": -0.3599589993901531
+      }
+    },
+    {
+      "seed": 7,
+      "epocas": 22,
+      "selecionada": 12,
+      "delta_mse_pct": {
+        "validacao": -0.5566018944837436,
+        "teste": -0.2896541157031973
+      }
+    },
+    {
+      "seed": 123,
+      "epocas": 26,
+      "selecionada": 16,
+      "delta_mse_pct": {
+        "validacao": -0.7261546305302957,
+        "teste": -0.6447040804287374
+      }
+    },
+    {
+      "seed": 31415,
+      "epocas": 19,
+      "selecionada": 9,
+      "delta_mse_pct": {
+        "validacao": -0.6648395954848674,
+        "teste": -0.6007511742564864
+      }
+    }
+  ],
+  "smart_base": {
+    "validacao": {
+      "retorno_medio": 0.9637156906655902,
+      "desvio_seeds": 0.13589772037143893,
+      "seeds_lucrativas": 6,
+      "referencia": {
+        "capital_final": 18145.217912634074,
+        "retorno_liquido": 0.8145217912634074,
+        "drawdown_minuto_close": 0.2969863832090495,
+        "exposicao_media": 0.7591776799691189,
+        "ordens_executadas": 325.5,
+        "compras": 235.16666666666666,
+        "vendas": 90.33333333333333,
+        "comissoes_usdt": 120.48280854639127,
+        "slippage_usdt": 60.243471615659985,
+        "giro_capital_inicial": 12.04828085463913,
+        "valor_residual_usdt": 0.4374676958062274,
+        "n_seeds": 6,
+        "desvio_retorno_seeds": 0.23285931767886148,
+        "seeds_lucrativas": 6,
+        "retornos_individuais": {
+          "estado16_17": 0.9503679233965323,
+          "estado16_42": 1.0388037210369698,
+          "estado16_2026": 0.8228169666266691,
+          "estado16_7": 1.0101425812946756,
+          "estado16_123": 0.48274227708781225,
+          "estado16_31415": 0.5822572781377853
+        }
+      },
+      "retornos_por_seed": {
+        "17": 0.9513196352091022,
+        "42": 1.062148348640791,
+        "2026": 1.0683123731587139,
+        "7": 1.0750868176319988,
+        "123": 0.7304001342212476,
+        "31415": 0.895026835131687
+      }
+    },
+    "teste": {
+      "retorno_medio": -0.08649345104975074,
+      "desvio_seeds": 0.007676400219521387,
+      "seeds_lucrativas": 0,
+      "referencia": {
+        "capital_final": 9120.5425553915,
+        "retorno_liquido": -0.08794574446085002,
+        "drawdown_minuto_close": 0.3442893795404256,
+        "exposicao_media": 0.8940364435957636,
+        "ordens_executadas": 254.16666666666666,
+        "compras": 211.33333333333334,
+        "vendas": 42.833333333333336,
+        "comissoes_usdt": 49.08593909788278,
+        "slippage_usdt": 24.54276179511396,
+        "giro_capital_inicial": 4.90859390978828,
+        "valor_residual_usdt": 0.2158066052062875,
+        "n_seeds": 6,
+        "desvio_retorno_seeds": 0.015663501226827803,
+        "seeds_lucrativas": 0,
+        "retornos_individuais": {
+          "estado16_17": -0.09840532859908269,
+          "estado16_42": -0.057655998623922455,
+          "estado16_2026": -0.09270495909604493,
+          "estado16_7": -0.09425988271294339,
+          "estado16_123": -0.0852886874703983,
+          "estado16_31415": -0.09935961026270834
+        }
+      },
+      "retornos_por_seed": {
+        "17": -0.08402882590120175,
+        "42": -0.09046237183792205,
+        "2026": -0.08941693838589981,
+        "7": -0.09482149994821754,
+        "123": -0.072580613339849,
+        "31415": -0.08765045688541429
+      }
+    }
+  },
+  "comparacao_detalhada": {
+    "diagnosticos": {
+      "validacao": {
+        "referencia": {
+          "horario": {
+            "n": 8760.0,
+            "mse": 0.0007198377556273794,
+            "rmse": 0.026829785956667115,
+            "mae": 0.01949258842861555,
+            "mediana_erro_absoluto": 0.013851660173777106,
+            "p95_erro_absoluto": 0.05576405565414211,
+            "vies": -0.0012078255127346237,
+            "acuracia_direcional": 0.5161339421613395,
+            "acerto_balanceado_direcional": 0.49866172592774727,
+            "pearson": 0.03134677046923009,
+            "spearman": -0.00038775275474923246,
+            "vitorias_naive": 0.49942922374429227,
+            "desvio_previsao": 0.002215132325406957,
+            "desvio_alvo": 0.026781367058861468,
+            "fracao_previsoes_alta": 0.7357686453576865,
+            "fracao_reais_alta": 0.5371004566210046
+          },
+          "diario": {
+            "n": 365.0,
+            "mse": 0.0007606091816205208,
+            "rmse": 0.02757906223511561,
+            "mae": 0.02000518266979458,
+            "mediana_erro_absoluto": 0.013747284940771523,
+            "p95_erro_absoluto": 0.05828628096057029,
+            "vies": -0.0012764282758296172,
+            "acuracia_direcional": 0.5242009132420091,
+            "acerto_balanceado_direcional": 0.5126376602274779,
+            "pearson": 0.04057886772957606,
+            "spearman": 0.02985368550156334,
+            "vitorias_naive": 0.5095890410958903,
+            "desvio_previsao": 0.002018021572601967,
+            "desvio_alvo": 0.027571428679044743,
+            "fracao_previsoes_alta": 0.7488584474885845,
+            "fracao_reais_alta": 0.5232876712328767
+          }
+        },
+        "huber": {
+          "horario": {
+            "n": 8760.0,
+            "mse": 0.0007163598691850297,
+            "rmse": 0.02676489673582994,
+            "mae": 0.019429964480237576,
+            "mediana_erro_absoluto": 0.013791307023436629,
+            "p95_erro_absoluto": 0.05578567230574725,
+            "vies": -0.0006716732778125652,
+            "acuracia_direcional": 0.5267123287671233,
+            "acerto_balanceado_direcional": 0.5011913424874712,
+            "pearson": 0.052409132110762396,
+            "spearman": 0.019397144492275902,
+            "vitorias_naive": 0.5076484018264841,
+            "desvio_previsao": 0.0020436369042592085,
+            "desvio_alvo": 0.026781367058861468,
+            "fracao_previsoes_alta": 0.8442732115677322,
+            "fracao_reais_alta": 0.5371004566210046
+          },
+          "diario": {
+            "n": 365.0,
+            "mse": 0.0007552620999077185,
+            "rmse": 0.027482018585969912,
+            "mae": 0.01998925509994848,
+            "mediana_erro_absoluto": 0.013700321562856221,
+            "p95_erro_absoluto": 0.05864277529582198,
+            "vies": -0.0004895529734310122,
+            "acuracia_direcional": 0.5269406392694064,
+            "acerto_balanceado_direcional": 0.5092450502497443,
+            "pearson": 0.0926070740825628,
+            "spearman": 0.06769515386178311,
+            "vitorias_naive": 0.5050228310502283,
+            "desvio_previsao": 0.001926312488295126,
+            "desvio_alvo": 0.027571428679044743,
+            "fracao_previsoes_alta": 0.880365296803653,
+            "fracao_reais_alta": 0.5232876712328767
+          }
+        }
+      },
+      "teste": {
+        "referencia": {
+          "horario": {
+            "n": 8736.0,
+            "mse": 0.0004965700544756442,
+            "rmse": 0.022283693138935762,
+            "mae": 0.015893904321981938,
+            "mediana_erro_absoluto": 0.011275616779098075,
+            "p95_erro_absoluto": 0.0463273507981641,
+            "vies": 0.0018571088477474249,
+            "acuracia_direcional": 0.5141178266178267,
+            "acerto_balanceado_direcional": 0.5031031884379086,
+            "pearson": 0.0688740917330556,
+            "spearman": 0.04369846808750702,
+            "vitorias_naive": 0.48889652014652013,
+            "desvio_previsao": 0.0019180875241514347,
+            "desvio_alvo": 0.022252898296103107,
+            "fracao_previsoes_alta": 0.8880876068376068,
+            "fracao_reais_alta": 0.5141941391941391
+          },
+          "diario": {
+            "n": 364.0,
+            "mse": 0.0004822729669033161,
+            "rmse": 0.02196066435902296,
+            "mae": 0.01579163280997949,
+            "mediana_erro_absoluto": 0.011216014077703264,
+            "p95_erro_absoluto": 0.04507082022801088,
+            "vies": 0.0017678105556206138,
+            "acuracia_direcional": 0.5004578754578755,
+            "acerto_balanceado_direcional": 0.4983571335124635,
+            "pearson": -0.005594216755830601,
+            "spearman": 0.0014135718992506045,
+            "vitorias_naive": 0.4761904761904763,
+            "desvio_previsao": 0.001656630488760741,
+            "desvio_alvo": 0.02180734322757313,
+            "fracao_previsoes_alta": 0.8823260073260074,
+            "fracao_reais_alta": 0.5027472527472527
+          }
+        },
+        "huber": {
+          "horario": {
+            "n": 8736.0,
+            "mse": 0.0004962803549811225,
+            "rmse": 0.022277281953843986,
+            "mae": 0.015877157789704346,
+            "mediana_erro_absoluto": 0.011215690635666862,
+            "p95_erro_absoluto": 0.04634146768314676,
+            "vies": 0.00225186211232088,
+            "acuracia_direcional": 0.5154342185592186,
+            "acerto_balanceado_direcional": 0.5025522561280445,
+            "pearson": 0.09314237920624469,
+            "spearman": 0.07136748567366057,
+            "vitorias_naive": 0.48674068986568986,
+            "desvio_previsao": 0.0017954880129731111,
+            "desvio_alvo": 0.022252898296103107,
+            "fracao_previsoes_alta": 0.9538499694749695,
+            "fracao_reais_alta": 0.5141941391941391
+          },
+          "diario": {
+            "n": 364.0,
+            "mse": 0.00048019524923593435,
+            "rmse": 0.02191328286524862,
+            "mae": 0.015750547336645156,
+            "mediana_erro_absoluto": 0.011165833903875566,
+            "p95_erro_absoluto": 0.04432391799014282,
+            "vies": 0.002388340233366438,
+            "acuracia_direcional": 0.5041208791208791,
+            "acerto_balanceado_direcional": 0.5015573267316769,
+            "pearson": 0.059564330681336125,
+            "spearman": 0.05591705927945031,
+            "vitorias_naive": 0.4761904761904762,
+            "desvio_previsao": 0.001708432454960284,
+            "desvio_alvo": 0.02180734322757313,
+            "fracao_previsoes_alta": 0.9665750915750917,
+            "fracao_reais_alta": 0.5027472527472527
+          }
+        }
+      }
+    },
+    "precos_derivados": {
+      "validacao": {
+        "referencia": {
+          "rmse_usdt": 1780.3617970347516,
+          "mae_usdt": 1280.8246589175976,
+          "mape_preco_pct": 1.9473959542570292
+        },
+        "huber": {
+          "rmse_usdt": 1776.4958575119383,
+          "mae_usdt": 1277.2373572233553,
+          "mape_preco_pct": 1.9422981385508657
+        }
+      },
+      "teste": {
+        "referencia": {
+          "rmse_usdt": 2177.9931546088815,
+          "mae_usdt": 1583.065378044236,
+          "mape_preco_pct": 1.5946846908075314
+        },
+        "huber": {
+          "rmse_usdt": 2178.0359370202386,
+          "mae_usdt": 1581.7350144302718,
+          "mape_preco_pct": 1.5937105539955843
+        }
+      }
+    },
+    "trimestres": {
+      "validacao": {
+        "referencia": {
+          "1": {
+            "n": 2184.0,
+            "mse": 0.0008769830453969916,
+            "rmse": 0.029613804545001968,
+            "mae": 0.021136576127018747,
+            "mediana_erro_absoluto": 0.013465125997035443,
+            "p95_erro_absoluto": 0.06656080776354138,
+            "vies": -0.005177053232882897,
+            "acuracia_direcional": 0.5251068376068376,
+            "acerto_balanceado_direcional": 0.5156711510613449,
+            "pearson": 0.05285490490990755,
+            "spearman": 0.03058249369459294,
+            "vitorias_naive": 0.51007326007326,
+            "desvio_previsao": 0.0023272357721314126,
+            "desvio_alvo": 0.02916392008686779,
+            "fracao_previsoes_alta": 0.565552503052503,
+            "fracao_reais_alta": 0.5746336996336997
+          },
+          "2": {
+            "n": 2184.0,
+            "mse": 0.000580244447533661,
+            "rmse": 0.02408816356107542,
+            "mae": 0.017800064942084047,
+            "mediana_erro_absoluto": 0.012922081523622501,
+            "p95_erro_absoluto": 0.05247956914871848,
+            "vies": 0.002184027117736225,
+            "acuracia_direcional": 0.5222069597069596,
+            "acerto_balanceado_direcional": 0.5164972583990394,
+            "pearson": 0.04513812160999047,
+            "spearman": 0.062104167932436644,
+            "vitorias_naive": 0.5033577533577533,
+            "desvio_previsao": 0.0018872917040163803,
+            "desvio_alvo": 0.023983788840630824,
+            "fracao_previsoes_alta": 0.8022741147741148,
+            "fracao_reais_alta": 0.5096153846153846
+          },
+          "3": {
+            "n": 2208.0,
+            "mse": 0.0008148237542948354,
+            "rmse": 0.028545001580872125,
+            "mae": 0.020757482093226465,
+            "mediana_erro_absoluto": 0.015514581746593264,
+            "p95_erro_absoluto": 0.05240093943168659,
+            "vies": 0.0015636791744625539,
+            "acuracia_direcional": 0.503774154589372,
+            "acerto_balanceado_direcional": 0.4947533327421596,
+            "pearson": 0.0775391915336876,
+            "spearman": 0.024230547214669523,
+            "vitorias_naive": 0.4886020531400966,
+            "desvio_previsao": 0.0023064439990378056,
+            "desvio_alvo": 0.02859253863571978,
+            "fracao_previsoes_alta": 0.8318236714975846,
+            "fracao_reais_alta": 0.5135869565217391
+          },
+          "4": {
+            "n": 2184.0,
+            "mse": 0.000606255973100871,
+            "rmse": 0.02462205302917558,
+            "mae": 0.018262330621752598,
+            "mediana_erro_absoluto": 0.013987558885811867,
+            "p95_erro_absoluto": 0.051002519165596207,
+            "vies": -0.003432411205718083,
+            "acuracia_direcional": 0.5135836385836386,
+            "acerto_balanceado_direcional": 0.48883186190148137,
+            "pearson": 0.028855792468746116,
+            "spearman": -0.014589621128813615,
+            "vitorias_naive": 0.4958028083028083,
+            "desvio_previsao": 0.0020273761238241038,
+            "desvio_alvo": 0.02437207051743923,
+            "fracao_previsoes_alta": 0.7423687423687424,
+            "fracao_reais_alta": 0.550824175824176
+          }
+        },
+        "huber": {
+          "1": {
+            "n": 2184.0,
+            "mse": 0.000870439347484808,
+            "rmse": 0.02950315299342778,
+            "mae": 0.021032977650815743,
+            "mediana_erro_absoluto": 0.013282497651831093,
+            "p95_erro_absoluto": 0.06627871671416745,
+            "vies": -0.004503607930545251,
+            "acuracia_direcional": 0.5401404151404151,
+            "acerto_balanceado_direcional": 0.5074782320306145,
+            "pearson": 0.0469005185869631,
+            "spearman": 0.0159820699228124,
+            "vitorias_naive": 0.5237332112332113,
+            "desvio_previsao": 0.0021646872018157583,
+            "desvio_alvo": 0.02916392008686779,
+            "fracao_previsoes_alta": 0.719932844932845,
+            "fracao_reais_alta": 0.5746336996336997
+          },
+          "2": {
+            "n": 2184.0,
+            "mse": 0.0005813301199277416,
+            "rmse": 0.02411060607630619,
+            "mae": 0.01777505751621707,
+            "mediana_erro_absoluto": 0.01290507746663942,
+            "p95_erro_absoluto": 0.05285473608086957,
+            "vies": 0.002621075321261101,
+            "acuracia_direcional": 0.5233516483516483,
+            "acerto_balanceado_direcional": 0.5160677549101108,
+            "pearson": 0.05711041607639947,
+            "spearman": 0.07416947381652807,
+            "vitorias_naive": 0.5013736263736264,
+            "desvio_previsao": 0.0017185748628359726,
+            "desvio_alvo": 0.023983788840630824,
+            "fracao_previsoes_alta": 0.8822496947496948,
+            "fracao_reais_alta": 0.5096153846153846
+          },
+          "3": {
+            "n": 2208.0,
+            "mse": 0.0008099831476416999,
+            "rmse": 0.028460040565558734,
+            "mae": 0.02066953950171781,
+            "mediana_erro_absoluto": 0.015391266596512146,
+            "p95_erro_absoluto": 0.05216094385098308,
+            "vies": 0.002086628540871978,
+            "acuracia_direcional": 0.5183423913043478,
+            "acerto_balanceado_direcional": 0.5066823163502244,
+            "pearson": 0.13241123433193427,
+            "spearman": 0.08491965746081791,
+            "vitorias_naive": 0.500528381642512,
+            "desvio_previsao": 0.002133034707304599,
+            "desvio_alvo": 0.02859253863571978,
+            "fracao_previsoes_alta": 0.9292723429951689,
+            "fracao_reais_alta": 0.5135869565217391
+          },
+          "4": {
+            "n": 2184.0,
+            "mse": 0.0006026580344500817,
+            "rmse": 0.024548969331033777,
+            "mae": 0.018228661548666945,
+            "mediana_erro_absoluto": 0.013963845541216198,
+            "p95_erro_absoluto": 0.05112981285799013,
+            "vies": -0.0029211000518346215,
+            "acuracia_direcional": 0.5251068376068376,
+            "acerto_balanceado_direcional": 0.4899645636164431,
+            "pearson": 0.036022539372994294,
+            "spearman": 0.0002644550175869252,
+            "vitorias_naive": 0.50503663003663,
+            "desvio_previsao": 0.001904598680822353,
+            "desvio_alvo": 0.02437207051743923,
+            "fracao_previsoes_alta": 0.8447039072039072,
+            "fracao_reais_alta": 0.550824175824176
+          }
+        }
+      },
+      "teste": {
+        "referencia": {
+          "1": {
+            "n": 2160.0,
+            "mse": 0.000767312542050079,
+            "rmse": 0.027699966018303854,
+            "mae": 0.020211415002627645,
+            "mediana_erro_absoluto": 0.014852393516216528,
+            "p95_erro_absoluto": 0.058783634305810795,
+            "vies": 0.003028916836591297,
+            "acuracia_direcional": 0.49128086419753086,
+            "acerto_balanceado_direcional": 0.5026387309488561,
+            "pearson": 0.10556042169381097,
+            "spearman": 0.08648041028402585,
+            "vitorias_naive": 0.4712962962962963,
+            "desvio_previsao": 0.0025135343210767303,
+            "desvio_alvo": 0.027699179080718835,
+            "fracao_previsoes_alta": 0.8503858024691358,
+            "fracao_reais_alta": 0.4837962962962963
+          },
+          "2": {
+            "n": 2184.0,
+            "mse": 0.00039911179399966214,
+            "rmse": 0.019977450249900205,
+            "mae": 0.014260466636306,
+            "mediana_erro_absoluto": 0.010297738829609859,
+            "p95_erro_absoluto": 0.04232850501929932,
+            "vies": -0.0010671977737586353,
+            "acuracia_direcional": 0.5386904761904762,
+            "acerto_balanceado_direcional": 0.5013020138999982,
+            "pearson": 0.08979323615482922,
+            "spearman": 0.019527511305039134,
+            "vitorias_naive": 0.5117521367521367,
+            "desvio_previsao": 0.001745488951457606,
+            "desvio_alvo": 0.020041596364038294,
+            "fracao_previsoes_alta": 0.8889652014652015,
+            "fracao_reais_alta": 0.5480769230769232
+          },
+          "3": {
+            "n": 2208.0,
+            "mse": 0.00023996255206508161,
+            "rmse": 0.015490677491200358,
+            "mae": 0.011539820217844983,
+            "mediana_erro_absoluto": 0.008203251976549588,
+            "p95_erro_absoluto": 0.03233152022813851,
+            "vies": 0.0007199409525048685,
+            "acuracia_direcional": 0.5349486714975846,
+            "acerto_balanceado_direcional": 0.5019763351296767,
+            "pearson": 0.04851017764295378,
+            "spearman": 0.04805701162833382,
+            "vitorias_naive": 0.5067934782608695,
+            "desvio_previsao": 0.0009699922458302146,
+            "desvio_alvo": 0.015469407656503802,
+            "fracao_previsoes_alta": 0.9440670289855073,
+            "fracao_reais_alta": 0.5371376811594203
+          },
+          "4": {
+            "n": 2184.0,
+            "mse": 0.0005856883846227539,
+            "rmse": 0.024200758360051606,
+            "mae": 0.01765920768153136,
+            "mediana_erro_absoluto": 0.013260071275571014,
+            "p95_erro_absoluto": 0.05189976789342141,
+            "vies": 0.004772148737015757,
+            "acuracia_direcional": 0.4910714285714286,
+            "acerto_balanceado_direcional": 0.5005051691729323,
+            "pearson": 0.028121074829668677,
+            "spearman": 0.014926561669761827,
+            "vitorias_naive": 0.4653540903540904,
+            "desvio_previsao": 0.0020239048502720285,
+            "desvio_alvo": 0.023669809006731764,
+            "fracao_previsoes_alta": 0.8679029304029303,
+            "fracao_reais_alta": 0.48717948717948717
+          }
+        },
+        "huber": {
+          "1": {
+            "n": 2160.0,
+            "mse": 0.0007676615474211286,
+            "rmse": 0.02770648042962602,
+            "mae": 0.02020250188221986,
+            "mediana_erro_absoluto": 0.01483600742614658,
+            "p95_erro_absoluto": 0.05866098672216411,
+            "vies": 0.0036019035495169233,
+            "acuracia_direcional": 0.48804012345679015,
+            "acerto_balanceado_direcional": 0.5025386029280293,
+            "pearson": 0.13795569706862304,
+            "spearman": 0.12725790825223413,
+            "vitorias_naive": 0.46527777777777785,
+            "desvio_previsao": 0.0023689820673343707,
+            "desvio_alvo": 0.027699179080718835,
+            "fracao_previsoes_alta": 0.9472993827160495,
+            "fracao_reais_alta": 0.4837962962962963
+          },
+          "2": {
+            "n": 2184.0,
+            "mse": 0.00039565591448524135,
+            "rmse": 0.019890902622544174,
+            "mae": 0.014185990992293939,
+            "mediana_erro_absoluto": 0.010198214152577663,
+            "p95_erro_absoluto": 0.04177258762105646,
+            "vies": -0.0007468399243820853,
+            "acuracia_direcional": 0.5451007326007327,
+            "acerto_balanceado_direcional": 0.5023211101038648,
+            "pearson": 0.1380236419781499,
+            "spearman": 0.06910130404192334,
+            "vitorias_naive": 0.5154151404151404,
+            "desvio_previsao": 0.0016526785860771183,
+            "desvio_alvo": 0.020041596364038294,
+            "fracao_previsoes_alta": 0.9451312576312576,
+            "fracao_reais_alta": 0.5480769230769232
+          },
+          "3": {
+            "n": 2208.0,
+            "mse": 0.00023994523931423757,
+            "rmse": 0.015490147496964179,
+            "mae": 0.011532778485328877,
+            "mediana_erro_absoluto": 0.008212445872575117,
+            "p95_erro_absoluto": 0.03228756297871649,
+            "vies": 0.0009451274646248477,
+            "acuracia_direcional": 0.5370621980676329,
+            "acerto_balanceado_direcional": 0.5025568741206663,
+            "pearson": 0.060089046499526254,
+            "spearman": 0.06258478417006784,
+            "vitorias_naive": 0.5052838164251207,
+            "desvio_previsao": 0.0008766144043640482,
+            "desvio_alvo": 0.015469407656503802,
+            "fracao_previsoes_alta": 0.9647493961352658,
+            "fracao_reais_alta": 0.5371376811594203
+          },
+          "4": {
+            "n": 2184.0,
+            "mse": 0.0005876577990127498,
+            "rmse": 0.024241293143699865,
+            "mae": 0.01768263148465483,
+            "mediana_erro_absoluto": 0.013209638254062489,
+            "p95_erro_absoluto": 0.052429637258065064,
+            "vies": 0.005236452701116054,
+            "acuracia_direcional": 0.490995115995116,
+            "acerto_balanceado_direcional": 0.5027412280701754,
+            "pearson": 0.04790884223112623,
+            "spearman": 0.037791651873688194,
+            "vitorias_naive": 0.46054639804639813,
+            "desvio_previsao": 0.001841969602286618,
+            "desvio_alvo": 0.023669809006731764,
+            "fracao_previsoes_alta": 0.9580280830280832,
+            "fracao_reais_alta": 0.48717948717948717
+          }
+        }
+      }
+    },
+    "spot_r0": {
+      "referencia": {
+        "base": {
+          "capital_inicial": 10000.0,
+          "capital_final": 8153.631614850776,
+          "retorno_liquido": -0.18463683851492238,
+          "drawdown": 0.2832536682697142,
+          "entradas_planejadas": 58.0,
+          "minutos_expostos_planejados": 83520.0,
+          "custos_observados": 1677.4169738533503,
+          "desvio_retorno_seeds": 0.10134646678070729,
+          "seeds_lucrativas": 0,
+          "retorno_min": -0.3332107653959533,
+          "retorno_max": -0.07433074613833268
+        },
+        "agravado": {
+          "capital_inicial": 10000.0,
+          "capital_final": 6986.604010625124,
+          "retorno_liquido": -0.30133959893748763,
+          "drawdown": 0.3738437219564541,
+          "entradas_planejadas": 58.0,
+          "minutos_expostos_planejados": 83520.0,
+          "custos_observados": 2966.0951913209897,
+          "desvio_retorno_seeds": 0.16498343870181692,
+          "seeds_lucrativas": 0,
+          "retorno_min": -0.5592520009556815,
+          "retorno_max": -0.11506259398691598
+        },
+        "bruto_mesmos_sinais": {
+          "capital_inicial": 10000.0,
+          "capital_final": 9665.558069182047,
+          "retorno_liquido": -0.033444193081795325,
+          "drawdown": 0.20488059409890913,
+          "entradas_planejadas": 58.0,
+          "minutos_expostos_planejados": 83520.0,
+          "custos_observados": 0.0,
+          "desvio_retorno_seeds": 0.07582082407454163,
+          "seeds_lucrativas": 3,
+          "retorno_min": -0.17381273336505842,
+          "retorno_max": 0.03321899644568238
+        }
+      },
+      "huber": {
+        "base": {
+          "capital_inicial": 10000.0,
+          "capital_final": 8966.4256412906,
+          "retorno_liquido": -0.10335743587094005,
+          "drawdown": 0.2910694637590067,
+          "entradas_planejadas": 70.83333333333333,
+          "minutos_expostos_planejados": 102000.0,
+          "custos_observados": 2228.657040889366,
+          "desvio_retorno_seeds": 0.1307894417570302,
+          "seeds_lucrativas": 2,
+          "retorno_min": -0.24196572166940744,
+          "retorno_max": 0.05549351755528087
+        },
+        "agravado": {
+          "capital_inicial": 10000.0,
+          "capital_final": 7362.236369129769,
+          "retorno_liquido": -0.263776363087023,
+          "drawdown": 0.3718574057692978,
+          "entradas_planejadas": 70.83333333333333,
+          "minutos_expostos_planejados": 102000.0,
+          "custos_observados": 3867.2097496009187,
+          "desvio_retorno_seeds": 0.17509902572028613,
+          "seeds_lucrativas": 0,
+          "retorno_min": -0.45989589747888027,
+          "retorno_max": -0.01783079533999532
+        },
+        "bruto_mesmos_sinais": {
+          "capital_inicial": 10000.0,
+          "capital_final": 11118.268592761371,
+          "retorno_liquido": 0.11182685927613717,
+          "drawdown": 0.23476357087719357,
+          "entradas_planejadas": 70.83333333333333,
+          "minutos_expostos_planejados": 102000.0,
+          "custos_observados": 0.0,
+          "desvio_retorno_seeds": 0.17655226609891425,
+          "seeds_lucrativas": 5,
+          "retorno_min": -0.19024751799869855,
+          "retorno_max": 0.3064053815485275
+        }
+      }
+    },
+    "smart": {
+      "validacao": {
+        "ideal": {
+          "referencia/smart": {
+            "capital_inicial": 10000.0,
+            "capital_final": 18382.906660599998,
+            "caixa_final": 18382.44275,
+            "btc_residual": 4.999999999993436e-06,
+            "valor_residual_usdt": 0.4639105999993909,
+            "retorno_liquido": 0.8382906660599998,
+            "drawdown_minuto_close": 0.296129971240286,
+            "exposicao_media": 0.7591516662765851,
+            "minutos": 525600.0,
+            "dias_decisao": 365.0,
+            "ordens_executadas": 325.5,
+            "compras": 235.16666666666666,
+            "vendas": 90.33333333333333,
+            "ordens_recusadas_filtro": 39.833333333333336,
+            "comissoes_usdt": 0.0,
+            "slippage_usdt": 0.0,
+            "giro_capital_inicial": 12.15877586783,
+            "desvio_retorno_seeds": 0.2418738933207146,
+            "seeds_lucrativas": 6,
+            "retorno_min": 0.498374633309999,
+            "retorno_max": 1.0934752814000013
+          },
+          "huber/smart": {
+            "capital_inicial": 10000.0,
+            "capital_final": 19784.92381058334,
+            "caixa_final": 19784.923810583332,
+            "btc_residual": 8.326672684688674e-17,
+            "valor_residual_usdt": 7.725663442315067e-12,
+            "retorno_liquido": 0.978492381058334,
+            "drawdown_minuto_close": 0.3164243227790133,
+            "exposicao_media": 0.8947577950906207,
+            "minutos": 525600.0,
+            "dias_decisao": 365.0,
+            "ordens_executadas": 257.1666666666667,
+            "compras": 213.5,
+            "vendas": 43.666666666666664,
+            "ordens_recusadas_filtro": 108.33333333333333,
+            "comissoes_usdt": 0.0,
+            "slippage_usdt": 0.0,
+            "giro_capital_inicial": 7.599069860911666,
+            "desvio_retorno_seeds": 0.1309069988502406,
+            "seeds_lucrativas": 6,
+            "retorno_min": 0.7533440957199999,
+            "retorno_max": 1.0837122332200013
+          }
+        },
+        "base": {
+          "referencia/smart": {
+            "capital_inicial": 10000.0,
+            "capital_final": 18145.217912634074,
+            "caixa_final": 18144.78044493827,
+            "btc_residual": 4.7150000000671195e-06,
+            "valor_residual_usdt": 0.4374676958062274,
+            "retorno_liquido": 0.8145217912634074,
+            "drawdown_minuto_close": 0.2969863832090495,
+            "exposicao_media": 0.7591776799691189,
+            "minutos": 525600.0,
+            "dias_decisao": 365.0,
+            "ordens_executadas": 325.5,
+            "compras": 235.16666666666666,
+            "vendas": 90.33333333333333,
+            "ordens_recusadas_filtro": 40.0,
+            "comissoes_usdt": 120.48280854639127,
+            "slippage_usdt": 60.243471615659985,
+            "giro_capital_inicial": 12.04828085463913,
+            "desvio_retorno_seeds": 0.23285931767886148,
+            "seeds_lucrativas": 6,
+            "retorno_min": 0.48274227708781225,
+            "retorno_max": 1.0388037210369698
+          },
+          "huber/smart": {
+            "capital_inicial": 10000.0,
+            "capital_final": 19637.1569066559,
+            "caixa_final": 19636.697171251293,
+            "btc_residual": 4.9550000000749455e-06,
+            "valor_residual_usdt": 0.45973540460695367,
+            "retorno_liquido": 0.9637156906655902,
+            "drawdown_minuto_close": 0.3167695094292164,
+            "exposicao_media": 0.8947557586823618,
+            "minutos": 525600.0,
+            "dias_decisao": 365.0,
+            "ordens_executadas": 256.8333333333333,
+            "compras": 213.16666666666666,
+            "vendas": 43.666666666666664,
+            "ordens_recusadas_filtro": 108.66666666666667,
+            "comissoes_usdt": 75.5936324550001,
+            "slippage_usdt": 37.7992455107206,
+            "giro_capital_inicial": 7.55936324550001,
+            "desvio_retorno_seeds": 0.13589772037143893,
+            "seeds_lucrativas": 6,
+            "retorno_min": 0.7304001342212476,
+            "retorno_max": 1.0750868176319988
+          }
+        },
+        "agravado": {
+          "referencia/smart": {
+            "capital_inicial": 10000.0,
+            "capital_final": 17911.68648824885,
+            "caixa_final": 17911.254432843383,
+            "btc_residual": 4.656666666662719e-06,
+            "valor_residual_usdt": 0.4320554054663004,
+            "retorno_liquido": 0.7911686488248851,
+            "drawdown_minuto_close": 0.2978378899150473,
+            "exposicao_media": 0.7591874490723294,
+            "minutos": 525600.0,
+            "dias_decisao": 365.0,
+            "ordens_executadas": 325.3333333333333,
+            "compras": 235.0,
+            "vendas": 90.33333333333333,
+            "ordens_recusadas_filtro": 40.166666666666664,
+            "comissoes_usdt": 238.78882176859952,
+            "slippage_usdt": 119.4025689743943,
+            "giro_capital_inicial": 11.939441088429973,
+            "desvio_retorno_seeds": 0.2248767097331571,
+            "seeds_lucrativas": 6,
+            "retorno_min": 0.4671848016585052,
+            "retorno_max": 0.9935651273255477
+          },
+          "huber/smart": {
+            "capital_inicial": 10000.0,
+            "capital_final": 19492.21277601746,
+            "caixa_final": 19491.81999837613,
+            "btc_residual": 4.233333333293158e-06,
+            "valor_residual_usdt": 0.3927776413296058,
+            "retorno_liquido": 0.949221277601746,
+            "drawdown_minuto_close": 0.3171098948781213,
+            "exposicao_media": 0.8947787405938517,
+            "minutos": 525600.0,
+            "dias_decisao": 365.0,
+            "ordens_executadas": 256.8333333333333,
+            "compras": 213.16666666666666,
+            "vendas": 43.666666666666664,
+            "ordens_recusadas_filtro": 108.66666666666667,
+            "comissoes_usdt": 150.41271687845997,
+            "slippage_usdt": 75.2160102581972,
+            "giro_capital_inicial": 7.520635843922997,
+            "desvio_retorno_seeds": 0.14097443364464327,
+            "seeds_lucrativas": 6,
+            "retorno_min": 0.7077116389488576,
+            "retorno_max": 1.0665096886703282
+          }
+        }
+      },
+      "teste": {
+        "ideal": {
+          "referencia/smart": {
+            "capital_inicial": 10000.0,
+            "capital_final": 9190.06645826667,
+            "caixa_final": 9189.771640500001,
+            "btc_residual": 3.3333333333401363e-06,
+            "valor_residual_usdt": 0.2948177666672684,
+            "retorno_liquido": -0.08099335417333309,
+            "drawdown_minuto_close": 0.3437768156248772,
+            "exposicao_media": 0.8939971993999339,
+            "minutos": 524160.0,
+            "dias_decisao": 364.0,
+            "ordens_executadas": 254.33333333333334,
+            "compras": 211.5,
+            "vendas": 42.833333333333336,
+            "ordens_recusadas_filtro": 110.66666666666667,
+            "comissoes_usdt": 0.0,
+            "slippage_usdt": 0.0,
+            "giro_capital_inicial": 4.936005039843332,
+            "desvio_retorno_seeds": 0.020583820834840373,
+            "seeds_lucrativas": 0,
+            "retorno_min": -0.09486823267000022,
+            "retorno_max": -0.04038031012000065
+          },
+          "referencia/smart_constante": {
+            "capital_inicial": 10000.0,
+            "capital_final": 9161.230102450001,
+            "caixa_final": 9161.082693566668,
+            "btc_residual": 1.6666666666752723e-06,
+            "valor_residual_usdt": 0.1474088833340945,
+            "retorno_liquido": -0.0838769897549998,
+            "drawdown_minuto_close": 0.35551704548487084,
+            "exposicao_media": 0.9087896494310721,
+            "minutos": 524160.0,
+            "dias_decisao": 364.0,
+            "ordens_executadas": 127.16666666666667,
+            "compras": 126.16666666666667,
+            "vendas": 1.0,
+            "ordens_recusadas_filtro": 237.83333333333334,
+            "comissoes_usdt": 0.0,
+            "slippage_usdt": 0.0,
+            "giro_capital_inicial": 1.8849334672100004,
+            "desvio_retorno_seeds": 0.011227987005495618,
+            "seeds_lucrativas": 0,
+            "retorno_min": -0.09412890871999913,
+            "retorno_max": -0.07034965120000036
+          },
+          "huber/smart": {
+            "capital_inicial": 10000.0,
+            "capital_final": 9172.647665166665,
+            "caixa_final": 9172.205438516668,
+            "btc_residual": 4.99999999996568e-06,
+            "valor_residual_usdt": 0.44222664999696454,
+            "retorno_liquido": -0.08273523348333357,
+            "drawdown_minuto_close": 0.35797218244281953,
+            "exposicao_media": 0.9643744684969985,
+            "minutos": 524160.0,
+            "dias_decisao": 364.0,
+            "ordens_executadas": 145.5,
+            "compras": 132.83333333333334,
+            "vendas": 12.666666666666666,
+            "ordens_recusadas_filtro": 219.5,
+            "comissoes_usdt": 0.0,
+            "slippage_usdt": 0.0,
+            "giro_capital_inicial": 2.642759249505001,
+            "desvio_retorno_seeds": 0.008387226267557174,
+            "seeds_lucrativas": 0,
+            "retorno_min": -0.09199499438000003,
+            "retorno_max": -0.06805912640000022
+          },
+          "huber/smart_constante": {
+            "capital_inicial": 10000.0,
+            "capital_final": 9079.99903905,
+            "caixa_final": 9079.704221283333,
+            "btc_residual": 3.333333333329728e-06,
+            "valor_residual_usdt": 0.2948177666663478,
+            "retorno_liquido": -0.09200009609500005,
+            "drawdown_minuto_close": 0.35813526443499116,
+            "exposicao_media": 0.9626252283241121,
+            "minutos": 524160.0,
+            "dias_decisao": 364.0,
+            "ordens_executadas": 65.0,
+            "compras": 64.0,
+            "vendas": 1.0,
+            "ordens_recusadas_filtro": 300.0,
+            "comissoes_usdt": 0.0,
+            "slippage_usdt": 0.0,
+            "giro_capital_inicial": 1.8955772654550003,
+            "desvio_retorno_seeds": 0.002072466757482396,
+            "seeds_lucrativas": 0,
+            "retorno_min": -0.09358110349000037,
+            "retorno_max": -0.08807473416999978
+          }
+        },
+        "base": {
+          "referencia/smart": {
+            "capital_inicial": 10000.0,
+            "capital_final": 9120.5425553915,
+            "caixa_final": 9120.326748786292,
+            "btc_residual": 2.440000000071089e-06,
+            "valor_residual_usdt": 0.2158066052062875,
+            "retorno_liquido": -0.08794574446085002,
+            "drawdown_minuto_close": 0.3442893795404256,
+            "exposicao_media": 0.8940364435957636,
+            "minutos": 524160.0,
+            "dias_decisao": 364.0,
+            "ordens_executadas": 254.16666666666666,
+            "compras": 211.33333333333334,
+            "vendas": 42.833333333333336,
+            "ordens_recusadas_filtro": 110.83333333333333,
+            "comissoes_usdt": 49.08593909788278,
+            "slippage_usdt": 24.54276179511396,
+            "giro_capital_inicial": 4.90859390978828,
+            "desvio_retorno_seeds": 0.015663501226827803,
+            "seeds_lucrativas": 0,
+            "retorno_min": -0.09935961026270834,
+            "retorno_max": -0.057655998623922455
+          },
+          "referencia/smart_constante": {
+            "capital_inicial": 10000.0,
+            "capital_final": 9134.278793287294,
+            "caixa_final": 9133.550593403625,
+            "btc_residual": 8.233333333389678e-06,
+            "valor_residual_usdt": 0.72819988367165,
+            "retorno_liquido": -0.08657212067127046,
+            "drawdown_minuto_close": 0.3555082561218832,
+            "exposicao_media": 0.9087224449169585,
+            "minutos": 524160.0,
+            "dias_decisao": 364.0,
+            "ordens_executadas": 127.16666666666667,
+            "compras": 126.16666666666667,
+            "vendas": 1.0,
+            "ordens_recusadas_filtro": 237.83333333333334,
+            "comissoes_usdt": 18.830586647331685,
+            "slippage_usdt": 9.415081311723887,
+            "giro_capital_inicial": 1.8830586647331697,
+            "desvio_retorno_seeds": 0.011232064143094451,
+            "seeds_lucrativas": 0,
+            "retorno_min": -0.09683021880058773,
+            "retorno_max": -0.0730106869582503
+          },
+          "huber/smart": {
+            "capital_inicial": 10000.0,
+            "capital_final": 9135.065489502493,
+            "caixa_final": 9134.847176946272,
+            "btc_residual": 2.468333333380257e-06,
+            "valor_residual_usdt": 0.21831255622081688,
+            "retorno_liquido": -0.08649345104975074,
+            "drawdown_minuto_close": 0.35803729479989577,
+            "exposicao_media": 0.9643648558004655,
+            "minutos": 524160.0,
+            "dias_decisao": 364.0,
+            "ordens_executadas": 145.5,
+            "compras": 132.83333333333334,
+            "vendas": 12.666666666666666,
+            "ordens_recusadas_filtro": 219.5,
+            "comissoes_usdt": 26.37546034893408,
+            "slippage_usdt": 13.187520373523506,
+            "giro_capital_inicial": 2.637546034893408,
+            "desvio_retorno_seeds": 0.007676400219521387,
+            "seeds_lucrativas": 0,
+            "retorno_min": -0.09482149994821754,
+            "retorno_max": -0.072580613339849
+          },
+          "huber/smart_constante": {
+            "capital_inicial": 10000.0,
+            "capital_final": 9052.988031652098,
+            "caixa_final": 9052.272508932398,
+            "btc_residual": 8.089999999997636e-06,
+            "valor_residual_usdt": 0.7155227196997909,
+            "retorno_liquido": -0.09470119683479018,
+            "drawdown_minuto_close": 0.35813062684502234,
+            "exposicao_media": 0.9625905031373065,
+            "minutos": 524160.0,
+            "dias_decisao": 364.0,
+            "ordens_executadas": 65.0,
+            "compras": 64.0,
+            "vendas": 1.0,
+            "ordens_recusadas_filtro": 300.0,
+            "comissoes_usdt": 18.9371937117469,
+            "slippage_usdt": 9.468364540898902,
+            "giro_capital_inicial": 1.8937193711746907,
+            "desvio_retorno_seeds": 0.00206454527406098,
+            "seeds_lucrativas": 0,
+            "retorno_min": -0.09627739396117907,
+            "retorno_max": -0.09078727292234323
+          }
+        },
+        "agravado": {
+          "referencia/smart": {
+            "capital_inicial": 10000.0,
+            "capital_final": 9051.495042531898,
+            "caixa_final": 9051.27333957136,
+            "btc_residual": 2.506666666702665e-06,
+            "valor_residual_usdt": 0.22170296053651725,
+            "retorno_liquido": -0.0948504957468102,
+            "drawdown_minuto_close": 0.34480611316335863,
+            "exposicao_media": 0.8940291703474902,
+            "minutos": 524160.0,
+            "dias_decisao": 364.0,
+            "ordens_executadas": 254.0,
+            "compras": 211.16666666666666,
+            "vendas": 42.833333333333336,
+            "ordens_recusadas_filtro": 111.0,
+            "comissoes_usdt": 97.61821117863924,
+            "slippage_usdt": 48.80825357919753,
+            "giro_capital_inicial": 4.880910558931963,
+            "desvio_retorno_seeds": 0.011129357118909286,
+            "seeds_lucrativas": 0,
+            "retorno_min": -0.10526304655785057,
+            "retorno_max": -0.07464144945779339
+          },
+          "referencia/smart_constante": {
+            "capital_inicial": 10000.0,
+            "capital_final": 9107.408201032735,
+            "caixa_final": 9106.827410032396,
+            "btc_residual": 6.56666666671903e-06,
+            "valor_residual_usdt": 0.5807910003379647,
+            "retorno_liquido": -0.08925917989672662,
+            "drawdown_minuto_close": 0.3555028318687639,
+            "exposicao_media": 0.9086522443274175,
+            "minutos": 524160.0,
+            "dias_decisao": 364.0,
+            "ordens_executadas": 127.16666666666667,
+            "compras": 126.16666666666667,
+            "vendas": 1.0,
+            "ordens_recusadas_filtro": 237.83333333333334,
+            "comissoes_usdt": 37.6257212881868,
+            "slippage_usdt": 18.812004221132458,
+            "giro_capital_inicial": 1.88128606440934,
+            "desvio_retorno_seeds": 0.011220176182756022,
+            "seeds_lucrativas": 0,
+            "retorno_min": -0.09950737868857307,
+            "retorno_max": -0.075680233066447
+          },
+          "huber/smart": {
+            "capital_inicial": 10000.0,
+            "capital_final": 9097.832644471113,
+            "caixa_final": 9097.35946195561,
+            "btc_residual": 5.350000000047446e-06,
+            "valor_residual_usdt": 0.47318251550419643,
+            "retorno_liquido": -0.09021673555288874,
+            "drawdown_minuto_close": 0.35809366535074405,
+            "exposicao_media": 0.9643789683465868,
+            "minutos": 524160.0,
+            "dias_decisao": 364.0,
+            "ordens_executadas": 145.5,
+            "compras": 132.83333333333334,
+            "vendas": 12.666666666666666,
+            "ordens_recusadas_filtro": 219.5,
+            "comissoes_usdt": 52.64790514432176,
+            "slippage_usdt": 26.323101701482198,
+            "giro_capital_inicial": 2.632395257216088,
+            "desvio_retorno_seeds": 0.007024782095111973,
+            "seeds_lucrativas": 0,
+            "retorno_min": -0.0976854900114591,
+            "retorno_max": -0.07710924645389183
+          },
+          "huber/smart_constante": {
+            "capital_inicial": 10000.0,
+            "capital_final": 9026.087214033098,
+            "caixa_final": 9025.533546267296,
+            "btc_residual": 6.2600000000125515e-06,
+            "valor_residual_usdt": 0.5536677658011102,
+            "retorno_liquido": -0.09739127859669026,
+            "drawdown_minuto_close": 0.3581533600363472,
+            "exposicao_media": 0.9626153359757644,
+            "minutos": 524160.0,
+            "dias_decisao": 364.0,
+            "ordens_executadas": 65.16666666666667,
+            "compras": 64.16666666666667,
+            "vendas": 1.0,
+            "ordens_recusadas_filtro": 299.8333333333333,
+            "comissoes_usdt": 37.84244704609201,
+            "slippage_usdt": 18.92028594159913,
+            "giro_capital_inicial": 1.8921223523045996,
+            "desvio_retorno_seeds": 0.0020504040164363857,
+            "seeds_lucrativas": 0,
+            "retorno_min": -0.09896218376755661,
+            "retorno_max": -0.09350403609136371
+          }
+        }
+      }
+    },
+    "carteiras_reconstruidas_de_ordens": 54,
+    "benchmarks": {
+      "validacao": {
+        "caixa": {
+          "capital_final": 10000.0,
+          "retorno_liquido": 0.0,
+          "drawdown_minuto_close": 0.0,
+          "exposicao_media": 0.0,
+          "ordens_executadas": 0.0,
+          "compras": 0.0,
+          "vendas": 0.0,
+          "comissoes_usdt": 0.0,
+          "slippage_usdt": 0.0,
+          "giro_capital_inicial": 0.0,
+          "valor_residual_usdt": 0.0,
+          "n_seeds": 1,
+          "desvio_retorno_seeds": null,
+          "seeds_lucrativas": 0,
+          "retornos_individuais": {
+            "benchmark": 0.0
+          }
+        },
+        "comprar_manter": {
+          "capital_final": 21868.984478876013,
+          "retorno_liquido": 1.1868984478876015,
+          "drawdown_minuto_close": 0.33123014442672927,
+          "exposicao_media": 0.999982351772442,
+          "ordens_executadas": 2.0,
+          "compras": 1.0,
+          "vendas": 1.0,
+          "comissoes_usdt": 31.890007106546904,
+          "slippage_usdt": 15.947980172898859,
+          "giro_capital_inicial": 3.1890007106546903,
+          "valor_residual_usdt": 0.3442216652016576,
+          "n_seeds": 1,
+          "desvio_retorno_seeds": null,
+          "seeds_lucrativas": 1,
+          "retornos_individuais": {
+            "benchmark": 1.1868984478876015
+          }
+        }
+      },
+      "teste": {
+        "caixa": {
+          "capital_final": 10000.0,
+          "retorno_liquido": 0.0,
+          "drawdown_minuto_close": 0.0,
+          "exposicao_media": 0.0,
+          "ordens_executadas": 0.0,
+          "compras": 0.0,
+          "vendas": 0.0,
+          "comissoes_usdt": 0.0,
+          "slippage_usdt": 0.0,
+          "giro_capital_inicial": 0.0,
+          "valor_residual_usdt": 0.0,
+          "n_seeds": 1,
+          "desvio_retorno_seeds": null,
+          "seeds_lucrativas": 0,
+          "retornos_individuais": {
+            "benchmark": 0.0
+          }
+        },
+        "comprar_manter": {
+          "capital_final": 9419.8825090606,
+          "retorno_liquido": -0.05801174909393991,
+          "drawdown_minuto_close": 0.35985781256652616,
+          "exposicao_media": 0.9999847074721796,
+          "ordens_executadas": 2.0,
+          "compras": 1.0,
+          "vendas": 1.0,
+          "comissoes_usdt": 19.42869852394915,
+          "slippage_usdt": 9.714208946949094,
+          "giro_capital_inicial": 1.9428698523949148,
+          "valor_residual_usdt": 0.2856784158993774,
+          "n_seeds": 1,
+          "desvio_retorno_seeds": null,
+          "seeds_lucrativas": 0,
+          "retornos_individuais": {
+            "benchmark": -0.05801174909393991
+          }
+        }
+      }
+    }
+  },
+  "limites": [
+    "Sem treino, inferência ou repetição do executor; recarga exata é a evidência congelada, não nova inferência nesta conferência.",
+    "IC temporal condicional aos modelos existentes; não mede integralmente incerteza de novos treinamentos.",
+    "Seeds iguais não garantem trajetórias CUDA bit a bit; não há controle real extra nesta rodada.",
+    "2024 seleção e 2025 já consultado; exploração retrospectiva."
+  ]
+}

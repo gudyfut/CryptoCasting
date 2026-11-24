@@ -1,0 +1,93 @@
+{
+  "contexto": {
+    "fase": "qualificacao",
+    "recortes": {
+      "S1": {
+        "treino": [
+          "2021-01-01",
+          "2023-01-01"
+        ],
+        "parada": [
+          "2023-01-01",
+          "2023-04-01"
+        ],
+        "comparacao": [
+          "2023-04-01",
+          "2023-07-01"
+        ]
+      },
+      "S2": {
+        "treino": [
+          "2021-01-01",
+          "2023-04-01"
+        ],
+        "parada": [
+          "2023-04-01",
+          "2023-07-01"
+        ],
+        "comparacao": [
+          "2023-07-01",
+          "2023-10-01"
+        ]
+      },
+      "S3": {
+        "treino": [
+          "2021-01-01",
+          "2023-07-01"
+        ],
+        "parada": [
+          "2023-07-01",
+          "2023-10-01"
+        ],
+        "comparacao": [
+          "2023-10-01",
+          "2024-01-01"
+        ]
+      }
+    },
+    "receitas": {
+      "A0_C05": {
+        "representacao": "janela_relativa",
+        "indicadores": false,
+        "contexto": 72,
+        "largura": 32,
+        "camadas": 2,
+        "estado": 16,
+        "dropout": 0.1,
+        "pooling": "ultimo",
+        "taxa": 0.0002,
+        "decay": 0.001,
+        "otimizador": "AdamW",
+        "perda": "huber",
+        "scheduler": "constante",
+        "ganho_saida": 1,
+        "momentum": false,
+        "volatilidade": false,
+        "volume_relativo": false
+      },
+      "R0_crua_huber": {
+        "representacao": "crua",
+        "indicadores": false,
+        "contexto": 168,
+        "largura": 32,
+        "camadas": 2,
+        "estado": 16,
+        "dropout": 0.1,
+        "pooling": "ultimo",
+        "taxa": 0.0002,
+        "decay": 0.001,
+        "otimizador": "AdamW",
+        "perda": "huber",
+        "scheduler": "constante",
+        "ganho_saida": 1.0,
+        "momentum": false,
+        "volatilidade": false,
+        "volume_relativo": false
+      }
+    },
+    "historico": [],
+    "rejeicoes": [],
+    "instrucao": "QUALIFICACAO TECNICA SOMENTE. Nao propor hipotese. Responda acao encerrar, pai A0_C05, fator momentum, valor como string JSON null. Declare que nao recebeu resultados e nao usou ferramentas. Essa resposta nao encerra a busca futura."
+  },
+  "sha256_logico": "fecbf55eb909f77ccf53ed2d610819f1f60e29c0a0f8c0e444c2df38088f6202"
+}

@@ -1,0 +1,52 @@
+--- treinador_herdado
+
++++ treinador_observado
+
+@@ -9,7 +9,8 @@
+
+ from treinamento.otimizacao import fixar_seed
+ 
+ 
+-from .metricas import metricas_retorno as metricas
++from experimentos.alvo_retorno_diario.metricas import metricas_retorno as metricas
++from .observacao import observar, gradientes, EPOCAS
+ 
+ 
+ def inferir(rede,x,lote=32):
+@@ -28,6 +29,7 @@
+
+     x=torch.as_tensor(dados['treino']['x'],device='cuda');y=torch.as_tensor(dados['treino']['y'],dtype=torch.float32,device='cuda')
+     gen=torch.Generator().manual_seed(seed);inicio=time.monotonic();melhor=math.inf;historico=[];melhor_p=None
+     try:
++        observar(rede,dados['treino']['x'],d/'observacoes/inicial.json',0)
+         for epoca in range(1,total+1):
+             if time.monotonic()-inicio>cfg['limite_segundos_por_ajuste']:raise TimeoutError('Limite do ajuste; preservar sem publicar como concluído.')
+             rede.train();ordem=torch.randperm(len(x),generator=gen).numpy();soma=0.;taxa=opt.param_groups[0]['lr']
+@@ -38,6 +40,8 @@
+
+                 perda.backward()
+                 finitos=torch.stack([torch.isfinite(p.grad).all() for p in rede.parameters() if p.grad is not None]).all()
+                 if not finitos:raise ValueError('Gradiente não finito.')
++                if epoca in EPOCAS and i+cfg['lote']>=len(ordem):
++                    grad=gradientes(rede,cfg['weight_decay'])
+                 opt.step();soma+=float(perda.detach())*len(ix)
+             val=inferir(rede,dados['validacao']['x']);m=metricas(dados['validacao']['y'],val,dados['validacao']['ultimo_close'])
+             if m['rmse_retorno']<melhor:
+@@ -45,6 +49,7 @@
+
+                 torch.save({'pesos':{k:v.detach().cpu() for k,v in rede.state_dict().items()},'vinculo':vinculo,'epoca':epoca},arquivo)
+                 salvar_json(d/'selecao.json',{'epoca':epoca,'rmse_validacao':melhor,'checkpoint':arquivo.relative_to(d).as_posix(),'sha256':sha256(arquivo)})
+             scheduler.step()
++            if epoca in EPOCAS:observar(rede,dados['treino']['x'],d/'observacoes'/f'epoca_{epoca:04d}.json',epoca,grad)
+             linha={'epoca':epoca,'perda_treino_rmse_lotes':soma/len(x),'rmse_global_validacao_retorno':m['rmse_retorno'],'taxa':taxa,'segundos':time.monotonic()-inicio}
+             historico.append(linha)
+             with (d/'epocas.jsonl').open('a',encoding='utf-8') as f:
+@@ -57,6 +62,7 @@
+
+         ck=torch.load(d/sel['checkpoint'],map_location='cpu',weights_only=True);assert ck['vinculo']==vinculo
+         rede.load_state_dict(ck['pesos'],strict=True);val=inferir(rede,dados['validacao']['x'])
+         np.testing.assert_array_equal(val,melhor_p)
++        observar(rede,dados['treino']['x'],d/'observacoes/selecionado.json',sel['epoca'])
+         np.savez_compressed(d/'validacao.npz',previsoes=val,**{k:v for k,v in dados['validacao'].items() if k!='x'})
+         conclusao={'utc':agora(),'situacao':'concluido','seed':seed,'epocas':total,'epoca_escolhida':escolhida,'recarga_exata':True,
+                    'segundos':time.monotonic()-inicio,'metricas_validacao':metricas(dados['validacao']['y'],val,dados['validacao']['ultimo_close']),

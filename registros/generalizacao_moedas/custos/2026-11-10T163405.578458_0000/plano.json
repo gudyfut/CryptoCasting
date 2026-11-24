@@ -1,0 +1,88 @@
+{
+  "utc": "2026-11-10T16:34:05.579375+00:00",
+  "autorizacao": "Pesquisador solicitou verificar realismo de slippage e taxas, sem novos treinamentos, em10/11/2026.",
+  "fontes": {
+    "analises/etapas/generalizacao_moedas/auditar_custos.py": "24ca0df85bb2df52115f51f868b39a8a8de4934173a2a71cac9bbe465484d029",
+    "simulacao_operacoes/diaria_24h.py": "65e113c9f23f07c640fe7774b9bd3eadfdc93510f7138a01f6fa0710c552f999",
+    "simulacao_operacoes/envelopes_marcacao.py": "bdf54a554c774cb62cf131a5efca1e03b4450e42b9491cdf3e2bcb6a433edb03",
+    "experimentos/generalizacao_moedas/avaliacao.py": "59036dd50c12c73c0bed466882894d10ed781d39169bb1297f7b42ace95a48c9"
+  },
+  "pais": {
+    "BTC": {
+      "pasta": "dados/experimentos/padronizacao_diaria_f3f8772670f244779ad7",
+      "fechamento_sha256": "e09f750a95b79b3bfd87353389eb930994afe5f3e14deb27fe9b617dff9f9657"
+    },
+    "ETH": {
+      "pasta": "dados/experimentos/generalizacao_moedas_1f2b005888361d23c111/ETHUSDT",
+      "fechamento_sha256": "5d7d44b5de9a247b18ca5eb085b4e398bf8f1cf3ebe338d4c95ecad72a7353e9"
+    },
+    "BNB": {
+      "pasta": "dados/experimentos/generalizacao_moedas_1f2b005888361d23c111/BNBUSDT",
+      "fechamento_sha256": "71d40a45a0e8eeef5cdb08e845c525fe34b39262935c23f3f99b41517706a415"
+    },
+    "XRP": {
+      "pasta": "dados/experimentos/generalizacao_moedas_1f2b005888361d23c111/XRPUSDT/continuacao_001",
+      "fechamento_sha256": "c584f377e5edbf94d26a03282084e5ef95fb26522c833fd10731975d02a60c93"
+    }
+  },
+  "receita_original": {
+    "id": "1f2b005888361d23c111",
+    "pasta": "dados/experimentos/generalizacao_moedas_1f2b005888361d23c111",
+    "congelamento_sha256": "f385eadbdb4742ff298bacf42f2d57057c488530712eefdc3e4c15d454941074"
+  },
+  "escopo": "Sensibilidade contábil mantendo sinais/filtro/horários/gestão/candles/previsões. Somente taxa e slippage variam. Não selecionar cenário pelo lucro.",
+  "casos": {
+    "slip_0bp": {
+      "comissao_por_lado": 0.0005,
+      "slippage_por_lado": 0.0
+    },
+    "slip_05bp": {
+      "comissao_por_lado": 0.0005,
+      "slippage_por_lado": 5e-05
+    },
+    "slip_1bp": {
+      "comissao_por_lado": 0.0005,
+      "slippage_por_lado": 0.0001
+    },
+    "slip_2bp": {
+      "comissao_por_lado": 0.0005,
+      "slippage_por_lado": 0.0002
+    },
+    "referencia_5bp": {
+      "comissao_por_lado": 0.0005,
+      "slippage_por_lado": 0.0005
+    },
+    "fee_045_slip_5bp": {
+      "comissao_por_lado": 0.00045,
+      "slippage_por_lado": 0.0005
+    }
+  },
+  "ajustes_novos": 0,
+  "carteiras_previstas": 144,
+  "seeds": [
+    42,
+    17,
+    2026
+  ],
+  "fases": [
+    "validacao",
+    "teste"
+  ],
+  "livro": {
+    "amostras_por_moeda": 12,
+    "intervalo_segundos": 5,
+    "limite_niveis": 100,
+    "nocionais_usdt_mid": [
+      9500,
+      50000
+    ],
+    "limites": "Amostra atual curta, sem ordens reais; VWAP estático vs midpoint e melhor oferta. Não mede latência, cancelamentos ou slippage histórico2024/2025; RPI não aparece no endpoint."
+  },
+  "taxas": {
+    "fonte": "https://www.binance.com/en/support/faq/detail/360033544231",
+    "conclusao": "Exemplo oficial .05% taker/.02% maker e desconto BNB10%; FAQ declara valores hipotéticos. Tabela atual pública retornou No records found. Não confirmar tarifa específica de conta ou histórico2024/2025.",
+    "tabela": "https://www.binance.com/en/fee/futureFee",
+    "api_conta_nao_acessada": "/fapi/v1/commissionRate",
+    "maker": "Não simular maker com preenchimento garantido. .045% é sensibilidade de desconto equivalente em USDT; não simula carteiraBNB ou comprova elegibilidade."
+  }
+}

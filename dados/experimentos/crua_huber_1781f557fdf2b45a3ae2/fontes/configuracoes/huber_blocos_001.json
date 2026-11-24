@@ -1,0 +1,119 @@
+{
+  "versao": 1,
+  "ciclo": "huber_blocos_001",
+  "seeds": [
+    17,
+    42,
+    2026,
+    7,
+    123,
+    31415,
+    271828,
+    161803
+  ],
+  "ordem_seeds": [
+    42,
+    17,
+    2026,
+    7,
+    123,
+    31415,
+    271828,
+    161803
+  ],
+  "blocos": {
+    "B1": {
+      "treino": [
+        "2021-01-01T00:00:00Z",
+        "2023-10-01T00:00:00Z"
+      ],
+      "validacao": [
+        "2023-10-01T00:00:00Z",
+        "2024-01-01T00:00:00Z"
+      ],
+      "teste": [
+        "2024-01-01T00:00:00Z",
+        "2024-07-01T00:00:00Z"
+      ]
+    },
+    "B2": {
+      "treino": [
+        "2021-01-01T00:00:00Z",
+        "2024-04-01T00:00:00Z"
+      ],
+      "validacao": [
+        "2024-04-01T00:00:00Z",
+        "2024-07-01T00:00:00Z"
+      ],
+      "teste": [
+        "2024-07-01T00:00:00Z",
+        "2025-01-01T00:00:00Z"
+      ]
+    },
+    "B3": {
+      "treino": [
+        "2021-01-01T00:00:00Z",
+        "2024-10-01T00:00:00Z"
+      ],
+      "validacao": [
+        "2024-10-01T00:00:00Z",
+        "2025-01-01T00:00:00Z"
+      ],
+      "teste": [
+        "2025-01-01T00:00:00Z",
+        "2025-07-01T00:00:00Z"
+      ]
+    },
+    "B4": {
+      "treino": [
+        "2021-01-01T00:00:00Z",
+        "2025-04-01T00:00:00Z"
+      ],
+      "validacao": [
+        "2025-04-01T00:00:00Z",
+        "2025-07-01T00:00:00Z"
+      ],
+      "teste": [
+        "2025-07-01T00:00:00Z",
+        "2026-01-01T00:00:00Z"
+      ]
+    }
+  },
+  "receita_base": "configuracoes/mamba16_perda_huber_001.json",
+  "entradas_base": "configuracoes/entradas_ohlcv24_001.json",
+  "candles_pasta": "dados/mercado/candles/93509a1b06b19103ac1c",
+  "variantes": [
+    "mse",
+    "huber"
+  ],
+  "ajustes_principais": 64,
+  "controles_reais": 2,
+  "ajustes_reais_total": 66,
+  "controle_bloco": "B1",
+  "controle_seed": 42,
+  "carteira_execucao": "dados/experimentos/backtest_carteira_8ec8a66648313caa48e3",
+  "politicas": [
+    "smart",
+    "diaria24"
+  ],
+  "cenarios": [
+    "ideal",
+    "base",
+    "agravado"
+  ],
+  "simulacoes_total": 408,
+  "bootstrap": {
+    "dias": [
+      7,
+      14,
+      28
+    ],
+    "principal": 14,
+    "replicas": 2000,
+    "seed": 20261103,
+    "principal_seeds_e_tempo": true
+  },
+  "exposicao": "retrospectiva2024_2025_ja_consultados",
+  "agregacao": "media igual entre4blocos; media entre8seeds dentro de cada bloco; nao ensemble",
+  "limite_desenvolvimento_dias": 4
+}

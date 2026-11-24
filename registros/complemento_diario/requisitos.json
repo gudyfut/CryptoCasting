@@ -1,0 +1,188 @@
+{
+  "natureza": "Matriz de encerramento do escopo autorizado; atualizar somente mediante evidência.",
+  "autorizacao": "registros/complemento_diario/autorizacao.txt",
+  "requisitos": [
+    {
+      "id": "01_leitura_inventario",
+      "situacao": "concluido",
+      "evidencia": "registros/complemento_diario/inventario.json",
+      "criterio_revisado": "Inventário atual de pais, dados, fontes e artefatos; ausências investigadas e referências localizadas."
+    },
+    {
+      "id": "02_escopo_congelado",
+      "situacao": "concluido",
+      "evidencia": "registros/complemento_diario/inicio.json",
+      "criterio_revisado": "Autorização, perguntas, matrizes, métricas, orçamento e condição temporal congelados antes dos novos resultados."
+    },
+    {
+      "id": "03_ambiente_recuperado",
+      "situacao": "concluido",
+      "evidencia": "registros/complemento_diario/reinicio_wsl_administrador.json",
+      "criterio_revisado": "WSL recuperado com autorização explícita; ambiente CUDA qualificado e processos identificados por host, PID, boot e início."
+    },
+    {
+      "id": "04_qualificacao_causalidade_dados",
+      "situacao": "concluido",
+      "evidencia": "registros/complemento_diario/qualificacao_dados.json",
+      "criterio_revisado": "Janelas, alvos, purga, escalas do treino e causalidade reconstruídos; perturbação futura não altera entradas correspondentes."
+    },
+    {
+      "id": "05_qualificacao_lstm",
+      "situacao": "concluido",
+      "evidencia": "registros/complemento_diario/lstm_walkforward/qualificacao.json",
+      "criterio_revisado": "Repetição sintética e controles reais da LSTM aprovados antes da liberação da grade dependente."
+    },
+    {
+      "id": "06_qualificacao_motor_e_custo",
+      "situacao": "concluido",
+      "evidencia": "registros/complemento_diario/qualificacao_operacional.json",
+      "criterio_revisado": "Controle do cenário original e auditoria contábil independente qualificaram o motor; custo representativo medido."
+    },
+    {
+      "id": "07_lstm_12_treinos_2_controles",
+      "situacao": "concluido",
+      "evidencia": "registros/complemento_diario/lstm_walkforward/conferencia_posterior.json",
+      "criterio_revisado": "LSTM: quatro blocos, três seeds, 200 épocas, 12 científicos e dois controles; seleção pela validação e recargas exatas."
+    },
+    {
+      "id": "08_lstm_previsoes_seeds_medias_ensembles",
+      "situacao": "concluido",
+      "evidencia": "registros/complemento_diario/lstm_walkforward/conferencia_posterior.json",
+      "criterio_revisado": "Populações B1-B4: 167/169/166/169; referências A/L/Naive qualificadas; métricas por seed, médias e ensemble separadas."
+    },
+    {
+      "id": "09_lstm_bootstrap_pareado_7_14_28",
+      "situacao": "concluido",
+      "evidencia": "registros/complemento_diario/lstm_walkforward/conferencia_posterior.json",
+      "criterio_revisado": "Bootstrap pareado de 7/14/28 dias, 2000 réplicas, sem cruzar blocos; seeds reamostradas apenas nas médias individuais."
+    },
+    {
+      "id": "10_lstm_48_carteiras",
+      "situacao": "concluido",
+      "evidencia": "registros/complemento_diario/lstm_walkforward/conferencia_posterior.json",
+      "criterio_revisado": "48 carteiras LSTM: quatro blocos, três seeds e ensemble, três custos; continuidade e fechamento auditados."
+    },
+    {
+      "id": "11_lstm_auditoria_posterior",
+      "situacao": "concluido",
+      "evidencia": "registros/complemento_diario/lstm_walkforward/conferencia_posterior.json",
+      "criterio_revisado": "Auditoria LSTM: 14 seleções, dois controles exatos, 288 intervalos e 48 carteiras; critério de validação recalculado."
+    },
+    {
+      "id": "12_filtros_324_combinacoes_108_controles",
+      "situacao": "concluido",
+      "evidencia": "registros/complemento_diario/sensibilidade_filtro/conferencia_posterior.json",
+      "criterio_revisado": "Sensibilidade: grade completa de 324 combinações; 108 controles originais exatos, nenhum filtro selecionado."
+    },
+    {
+      "id": "13_filtros_exposicao_giro_custos_funding_falhas",
+      "situacao": "concluido",
+      "evidencia": "registros/complemento_diario/sensibilidade_filtro/conferencia_posterior.json",
+      "criterio_revisado": "Decisões e exposição executada por lado, ordens, episódios, reversões, giro, custos, funding e falhas preservados."
+    },
+    {
+      "id": "14_filtros_semestres_episodios_concentracao",
+      "situacao": "concluido",
+      "evidencia": "registros/complemento_diario/sensibilidade_filtro/conferencia_posterior.json",
+      "criterio_revisado": "Semestres sem reiniciar capital; concentração rotulada como movimento bruto, distinta do lucro líquido."
+    },
+    {
+      "id": "15_filtros_auditoria_posterior",
+      "situacao": "concluido",
+      "evidencia": "registros/complemento_diario/sensibilidade_filtro/conferencia_posterior.json",
+      "criterio_revisado": "As 324 carteiras da sensibilidade tiveram auditoria posterior, incluindo descrições e reconciliação contábil."
+    },
+    {
+      "id": "16_exposicao_referencias_32_herdadas",
+      "situacao": "concluido",
+      "evidencia": "registros/complemento_diario/referencias_exposicao/conferencia_posterior.json",
+      "criterio_revisado": "32 referências fixas de caixa, comprar/manter, comprado e vendido herdadas e auditadas nas quatro moedas e dois períodos."
+    },
+    {
+      "id": "17_exposicao_offsets_previos_2376_24_zeros",
+      "situacao": "concluido",
+      "evidencia": "registros/complemento_diario/deslocamento_exposicao/conferencia_posterior.json",
+      "criterio_revisado": "24 casos, 99 offsets sem reposição por caso, seed diagnóstica e offsets prévios; 2376 carteiras e 24 controles zero."
+    },
+    {
+      "id": "18_exposicao_distribuicoes_degeneracao_multiplicidade",
+      "situacao": "concluido",
+      "evidencia": "registros/complemento_diario/deslocamento_exposicao/conferencia_posterior.json",
+      "criterio_revisado": "Distribuições de retorno, crescimento log diário e drawdown completas; caso constante XRP/LSTM 2025 e multiplicidades mantidos."
+    },
+    {
+      "id": "19_exposicao_diferencas_executadas_falhas",
+      "situacao": "concluido",
+      "evidencia": "registros/complemento_diario/deslocamento_exposicao/conferencia_posterior.json",
+      "criterio_revisado": "Diferenças de exposição executada, episódios, ordens, giro e custos publicadas; cobertura sem descarte de falhas."
+    },
+    {
+      "id": "20_exposicao_auditoria_posterior",
+      "situacao": "concluido",
+      "evidencia": "registros/complemento_diario/deslocamento_exposicao/conferencia_posterior.json",
+      "criterio_revisado": "Auditoria posterior recalculou contabilidade, offsets, distribuições, percentis e degeneração; diagnóstico retrospectivo explícito."
+    },
+    {
+      "id": "21_timestamp_decisao_por_validade_prazo",
+      "situacao": "concluido",
+      "evidencia": "registros/complemento_diario/ablacao_timestamp/decisao.json",
+      "criterio_revisado": "Ablação decidida depois das auditorias obrigatórias; elegibilidade por validade e prazo medido, sem depender do sinal dos resultados."
+    },
+    {
+      "id": "22_timestamp_qualificacao_24_treinos_4_controles",
+      "situacao": "concluido",
+      "evidencia": "registros/complemento_diario/ablacao_timestamp/conferencia_posterior.json",
+      "criterio_revisado": "Timestamp: 24 científicos e quatro controles exatos, 200 épocas; canal zerado após padronização sem mudar os demais dados ou dimensões."
+    },
+    {
+      "id": "23_timestamp_previsoes_bootstrap_96_carteiras",
+      "situacao": "concluido",
+      "evidencia": "registros/complemento_diario/ablacao_timestamp/conferencia_posterior.json",
+      "criterio_revisado": "68 séries de previsão, médias/ensembles separados, 384 intervalos e 96 carteiras nos três custos e filtro original."
+    },
+    {
+      "id": "24_timestamp_intervencao_ramos_12_checkpoints_36_populacoes",
+      "situacao": "concluido",
+      "evidencia": "registros/complemento_diario/ablacao_timestamp/conferencia_posterior.json",
+      "criterio_revisado": "12 checkpoints A e 36 populações completas; intervenção reversível nos ramos, pesos/RNG preservados e decisões conferidas."
+    },
+    {
+      "id": "25_timestamp_auditoria_posterior",
+      "situacao": "concluido",
+      "evidencia": "registros/complemento_diario/ablacao_timestamp/conferencia_posterior.json",
+      "criterio_revisado": "Auditoria timestamp aprovada: 28 seleções, quatro controles, canal zerado, 36 diagnósticos, 384 intervalos e 96 carteiras."
+    },
+    {
+      "id": "26_tabelas_figuras_verificadas",
+      "situacao": "concluido",
+      "qualificacao": "registros/complemento_diario/qualificacao_publicacao/qualificacao.json",
+      "criterio_revisado": "18 tabelas e oito figuras verificadas; revisão visual identificada preserva todos os números, a primeira publicação e sete figuras idênticas.",
+      "evidencia": "registros/complemento_diario/sintese_complemento/inspecao_visual.json"
+    },
+    {
+      "id": "27_resultados_sintese_limites_reproducao",
+      "situacao": "concluido",
+      "criterio_revisado": "Sínteses nos documentos de resultados existentes, com unidades, incerteza, resultados negativos, limites e instruções de consulta/reprodução.",
+      "evidencia": "registros/complemento_diario/documentacao_final.json"
+    },
+    {
+      "id": "28_catalogo_plano_cronologia_preservados_atualizados",
+      "situacao": "concluido",
+      "criterio_revisado": "Catálogo, plano, índice e cronologia atualizados; versões anteriores preservadas e alterações de codificação revertidas ao original.",
+      "evidencia": "registros/complemento_diario/documentacao_final.json"
+    },
+    {
+      "id": "29_integridade_final_pais_artigo_inalterado",
+      "situacao": "concluido",
+      "criterio_revisado": "Conferência global deve validar os 4584 arquivos dos pais, 39 arquivos editoriais, fontes, dados e cópias anteriores.",
+      "evidencia": "registros/complemento_diario/conferencia_encerramento.json"
+    },
+    {
+      "id": "30_auditoria_orcamento_cobertura_encerramento",
+      "situacao": "concluido",
+      "criterio_revisado": "Fechamento exige cobertura integral, orçamento de 36 científicos e seis controles, auditorias, publicação e documentação; nenhuma pendência obrigatória.",
+      "evidencia": "registros/complemento_diario/conferencia_encerramento.json"
+    }
+  ],
+  "revisao_de_cobertura_utc": "2026-11-17T18:37:05.976763+00:00"
+}
